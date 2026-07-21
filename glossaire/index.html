@@ -1,0 +1,2342 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation développeur de VigieChiro Companion : architecture, conventions, et comment contribuer au code.">
+      
+      
+      
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/glossaire/">
+      
+      
+        <link rel="prev" href="../modele-de-donnees/">
+      
+      
+        <link rel="next" href="../injection/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Glossaire du domaine - VigieChiro Companion · Doc développeur</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#glossaire-du-domaine" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VigieChiro Companion · Doc développeur
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Glossaire du domaine
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VigieChiro Companion · Doc développeur
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vue d'ensemble
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns et principes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation et chrome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modele-de-donnees/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle de données et domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Glossaire du domaine
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Glossaire du domaine
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lunite-de-travail-nuit-passage-participation" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'unité de travail : nuit, passage, participation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lot-terme-deprecie" class="md-nav__link">
+    <span class="md-ellipsis">
+      « lot » : terme déprécié
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verdict-de-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verdict de vérification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verdict de vérification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verdict-final-du-passage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verdict final du passage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verdict-par-fichier-son" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verdict par fichier son
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-verbes-des-echanges-avec-la-plateforme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les verbes des échanges avec la plateforme
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autres-termes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autres termes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Injection (Guice)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ajouter-une-fonctionnalite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ajouter une fonctionnalité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cycle-de-chantier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cycle de vie d'un chantier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Décisions (ADR)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Décisions (ADR)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Journal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 · Réactivation d'un passage reconstruit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0002 · Détection acoustique de pointe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0003 · Feature = plugin désactivable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0004 · Cross-feature sans cycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0005 · Cascade de preuves, archivé = état observé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0006 · Dépôt par ZIP par défaut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0007 · Retours HTTP scellés (ReponseApi)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0008 · Aucun échec silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0009 · La nuit comme unité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0010 · Dialogues bloquants = ports
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0011 · Transformation pilotée par le log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0012 · Audit : tout écart visible, un état normal silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0013 · Ancrage passage ↔ participation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0014-parite-cli-ihm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0014 · Parité CLI ↔ IHM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0015 · Cartes SD de recette : générateur déterministe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0016 · Squelettes hydratés à la demande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0017 · Origine d'un point (état porté)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0018 · La synchro rapatrie l'identité de la nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0019 · L'ancrage s'acquiert quand il sert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0020 · Écrire sur la plateforme : ne rien inventer, ne rien effacer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0021 · Le double-clic est un miroir qui rend compte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0022 · Le verbe dit le sens de l'échange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0023 · Bandeau par défaut, modal si irréversible
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0024 · Les heures d'une nuit viennent de ses preuves
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0025 · Une capture passe par le code de production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0026 · Le nommage des tranches est une étape du pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0027 · Une attente porte toujours un nom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0028 · Un état n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0031 · Un retour n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0032-le-plan-precede-l-ecriture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0032 · Le plan précède l'écriture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0033-la-fenetre-borne-le-disque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0033 · La fenêtre borne le disque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0034 · La forme du dépôt se choisit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0035 · Un pictogramme est une icône
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0036 · La copie des bruts est une option
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0037 · Une barre d'actions plie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0038 · Quatre niveaux de sévérité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0039 · Une barre de statut est neutre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0040 · Le sujet de commit est une syntaxe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0041 · Un check requis gouverne la branche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0042 · Un aperçu qui ment est refusé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0043 · La mesure fait foi en CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0044 · Le mécanisme de parallélisme suit la nature de l'attente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0045 · L'UpgradeCode Windows est une constante d'identité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0046 · Une classe CSS a une seule feuille
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0047 · L'identité de distribution est le projet Echonuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0048 · L'utilisateur possède ses fichiers, l'app observe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Recette (acceptation)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Recette (acceptation)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Méthode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/fixtures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fixtures (générateur de cartes SD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s1-premier-contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S1 · Premier contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s2-importer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S2 · Importer une nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s3-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S3 · Vérifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S4 · Déposer et suivre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface en ligne de commande (CLI)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests-et-qualite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests et qualité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-vigiechiro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contrat de l'API VigieChiro
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance et benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../observabilite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Observabilité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../captures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Captures d'écran
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-cd-release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CI/CD et release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sécurité et données sensibles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#lunite-de-travail-nuit-passage-participation" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'unité de travail : nuit, passage, participation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lot-terme-deprecie" class="md-nav__link">
+    <span class="md-ellipsis">
+      « lot » : terme déprécié
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#verdict-de-verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verdict de vérification
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Verdict de vérification">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#verdict-final-du-passage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verdict final du passage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#verdict-par-fichier-son" class="md-nav__link">
+    <span class="md-ellipsis">
+      Verdict par fichier son
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-verbes-des-echanges-avec-la-plateforme" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les verbes des échanges avec la plateforme
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#autres-termes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autres termes
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/glossaire.md" title="Editer cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/glossaire.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="glossaire-du-domaine">Glossaire du domaine<a class="headerlink" href="#glossaire-du-domaine" title="Permanent link">&para;</a></h1>
+<p>Le <strong>vocabulaire</strong> employé dans le code, les revues et les issues. Cette page fixe <em>les mots</em> ; le
+<a href="../modele-de-donnees/">Modèle de données &amp; domaine</a> fixe <em>les entités et le schéma</em> ; le
+<strong><a href="https://companion.echonuit.fr/glossaire/">glossaire utilisateur</a></strong> fixe
+les définitions vues par l'utilisateur final. Une divergence de mot entre ces trois surfaces est un
+<strong>défaut de vocabulaire</strong> à corriger.</p>
+<h2 id="lunite-de-travail-nuit-passage-participation">L'unité de travail : nuit, passage, participation<a class="headerlink" href="#lunite-de-travail-nuit-passage-participation" title="Permanent link">&para;</a></h2>
+<p>Un même objet porte trois noms selon le point de vue. Les distinguer lève l'ambiguïté historique du
+mot « lot ».</p>
+<table>
+<thead>
+<tr>
+<th>Terme</th>
+<th>Point de vue</th>
+<th>Définition</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>nuit</strong></td>
+<td>capture (utilisateur)</td>
+<td>Une nuit d'enregistrement sur un point d'écoute. Terme naturel, dominant dans l'IHM.</td>
+</tr>
+<tr>
+<td><strong>passage</strong></td>
+<td>protocole / modèle</td>
+<td>L'entité <code>Passage</code> : un point d'écoute, une année, un <strong>numéro de passage</strong>. C'est la <strong>racine d'agrégat</strong> du <a href="../patterns/#machine-a-etats-moteurworkflowpassage">workflow à états</a> <code>Importé → … → Déposé</code>.</td>
+</tr>
+<tr>
+<td><strong>participation</strong></td>
+<td>plateforme</td>
+<td>La nuit <strong>déposée</strong> sur Vigie-Chiro. Un passage donne lieu à <strong>au plus une</strong> participation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>1 nuit ↔ 1 passage</strong> : chaque nuit importée devient un passage distinct. « nuit » et « passage »
+désignent donc le même objet ; on garde les deux mots car ils portent des nuances différentes (la
+capture physique d'un côté, l'entité protocolaire numérotée de l'autre).</p>
+<h2 id="lot-terme-deprecie">« lot » : terme déprécié<a class="headerlink" href="#lot-terme-deprecie" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">N'employez plus « lot » pour désigner un passage</p>
+<p>Historiquement, « lot » désignait <em>l'ensemble préparé des fichiers d'un passage au moment du
+dépôt</em>. Ce n'est <strong>pas</strong> un regroupement de plusieurs passages : le dépôt se fait <strong>passage par
+passage</strong> (un passage donne lieu à au plus une participation). Le mot induit en erreur, car il
+évoque un batch. <strong>Vocabulaire retenu : on parle du <em>dépôt</em> d'un passage.</strong></p>
+<ul>
+<li>Côté IHM et doc utilisateur : « lot » est <strong>purgé</strong> (« préparer le <strong>dépôt</strong> »…).</li>
+<li>Côté code : le package <code>fr.univ_amu.iut.lot</code> <strong>conserve son nom pour l'instant</strong> ; son
+  renommage est tracé dans une issue de refactor dédiée du chantier
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/1524">#1524</a>.</li>
+</ul>
+</div>
+<p>Le mot « lot » subsiste par ailleurs au sens générique de <em>jeu de fichiers</em> (l'entrée du classifieur
+Tadarida, une écoute filtrée sur plusieurs sites). Là aussi on préfère « <strong>jeu</strong> » ou
+« <strong>sélection</strong> », pour ne pas le confondre avec le dépôt.</p>
+<h2 id="verdict-de-verification">Verdict de vérification<a class="headerlink" href="#verdict-de-verification" title="Permanent link">&para;</a></h2>
+<p>Le <strong>verdict</strong> est le jugement de qualité porté sur un passage après écoute d'un échantillon de
+séquences (parcours P3, règles R13 consultative et R14 bloquante).</p>
+<h3 id="verdict-final-du-passage">Verdict final du passage<a class="headerlink" href="#verdict-final-du-passage" title="Permanent link">&para;</a></h3>
+<p><strong>Dérivé</strong> des verdicts par fichier son et <strong>surchargeable</strong> (proposé, pas imposé — R13).</p>
+<table>
+<thead>
+<tr>
+<th>Verdict final</th>
+<th>Sens</th>
+<th>Dépôt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Non vérifié</code></td>
+<td>pas encore jugé (valeur sentinelle)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>OK</code></td>
+<td>pleinement exploitable</td>
+<td>autorisé</td>
+</tr>
+<tr>
+<td><code>Utilisable</code></td>
+<td>exploitable avec réserve</td>
+<td>autorisé</td>
+</tr>
+<tr>
+<td><code>Inexploitable</code></td>
+<td>à écarter</td>
+<td><strong>bloqué (R14, garde reprise au lot 7)</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="verdict-par-fichier-son">Verdict par fichier son<a class="headerlink" href="#verdict-par-fichier-son" title="Permanent link">&para;</a></h3>
+<p>Saisi à l'écoute de chaque séquence de l'échantillon ; alimente la colonne « Verdict » et la barre
+tricolore de la sélection, et sa dérivation (<code>AgregationVerdict</code>) propose le verdict final.</p>
+<table>
+<thead>
+<tr>
+<th>Verdict fichier</th>
+<th>Sens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Non jugé</code></td>
+<td>pas encore écouté (défaut)</td>
+</tr>
+<tr>
+<td><code>Bon</code></td>
+<td>séquence exploitable</td>
+</tr>
+<tr>
+<td><code>Mauvais</code></td>
+<td>mauvaise qualité, mais pas inutilisable</td>
+</tr>
+<tr>
+<td><code>Inexploitable</code></td>
+<td>rien d'exploitable</td>
+</tr>
+</tbody>
+</table>
+<p>Les enums vivent dans <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/model/Verdict.java"><code>commun/model/Verdict</code></a> et <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/model/VerdictFichier.java"><code>commun/model/VerdictFichier</code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Bascule de vocabulaire livrée (chantier #1524, lot 6b)</p>
+<p>Le lexique du <strong>verdict final</strong> a basculé de <code>À vérifier / OK / Douteux / À jeter</code> vers <code>Non vérifié
+/ OK / Utilisable / Inexploitable</code> (correspondance : <code>OK</code>→<code>OK</code>, <code>Douteux</code>→<code>Utilisable</code>,
+<code>À jeter</code>→<code>Inexploitable</code>, <code>À vérifier</code>→<code>Non vérifié</code>). Seuls les <strong>libellés</strong> changent : les <strong>noms
+de constantes</strong> de l'enum restent <code>A_VERIFIER/OK/DOUTEUX/A_JETER</code> (pour préserver les badges CSS, le
+tri par <code>ordinal</code> et les vues de filtre sauvegardées), et le libellé stocké dans
+<code>passage.verification_verdict</code> est réécrit par la migration <code>V28</code>. La <strong>garde de dépôt</strong>
+(<code>Inexploitable</code> bloque, requalification) est reprise au <strong>lot 7</strong>.</p>
+</div>
+<h2 id="les-verbes-des-echanges-avec-la-plateforme">Les verbes des échanges avec la plateforme<a class="headerlink" href="#les-verbes-des-echanges-avec-la-plateforme" title="Permanent link">&para;</a></h2>
+<p>Le verbe qui nomme un geste est la <strong>seule</strong> indication que l'utilisateur a sur ce qui va se passer :
+il ne voit ni la requête, ni la direction, ni ce qui sera écrit chez qui. Deux fois, à deux chantiers
+d'écart, ce mot a menti (#1855, #1838) : d'où la règle de l'<a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/">ADR 0022</a>,
+<strong>le verbe dit le sens réel de l'échange</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Verbe</th>
+<th>Ce qu'il désigne</th>
+<th>Exemples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Importer</strong></td>
+<td>L'<strong>entrée de données dans l'application</strong>, quelle qu'en soit la source. C'est le verbe de l'objet qui <strong>n'existait pas encore</strong> localement.</td>
+<td>« Importer une nuit » (carte SD), « Importer depuis VigieChiro… » (observations d'une participation)</td>
+</tr>
+<tr>
+<td><strong>Récupérer</strong></td>
+<td>Le <strong>rapatriement, depuis la plateforme, de ce que l'application connaît déjà</strong> : compléter ou rafraîchir.</td>
+<td>« Récupérer depuis Vigie-Chiro » (sites, points, passages ; météo et matériel d'un passage), « Récupération des identifiants et des échanges avec le validateur… » (ancrage et fils #1417)</td>
+</tr>
+<tr>
+<td><strong>Envoyer</strong></td>
+<td>L'écriture <strong>vers</strong> la plateforme d'un objet déjà rattaché. Fait la paire avec « Récupérer ».</td>
+<td>« Envoyer vers VigieChiro » (métadonnées d'un passage)</td>
+</tr>
+<tr>
+<td><strong>Publier</strong></td>
+<td>L'écriture <strong>vers</strong> la plateforme de <strong>corrections</strong> portées sur des observations existantes.</td>
+<td>« Publier les corrections vers VigieChiro… »</td>
+</tr>
+<tr>
+<td><strong>Téléverser</strong> / <strong>Déposer</strong></td>
+<td>Le <strong>dépôt</strong> des fichiers d'une nuit vérifiée. Voir l'entrée « Dépôt » du glossaire utilisateur.</td>
+<td>« Téléverser sur Vigie-Chiro »</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">« Importer » et « Récupérer » ne sont pas interchangeables, et ce n'est pas une incohérence</p>
+<p>Le menu ☰ dit « <strong>Importer</strong> depuis VigieChiro… » là où Mes sites dit « <strong>Récupérer</strong> depuis
+VigieChiro » : même plateforme, même direction, deux verbes. C'est <strong>voulu</strong>, ils ne portent pas le
+même objet (règle 2 de l'ADR 0022). Aligner les deux reviendrait à écrire « Récupérer depuis la
+carte SD », ce que personne n'écrirait.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">« Synchroniser » : réservé à l'interne</p>
+<p>Le mot promet un échange <strong>bidirectionnel</strong> et ne doit apparaître dans <strong>aucun</strong> libellé, message
+de progression ou nom de commande CLI dont le geste ne fait que recevoir. Il reste juste, en
+revanche, pour les classes qui réconcilient deux états (<code>RapprochementVigieChiro.synchroniser</code>,
+<code>RapportSynchro</code>) : elles font bien ce que le mot dit.</p>
+</div>
+<h2 id="autres-termes">Autres termes<a class="headerlink" href="#autres-termes" title="Permanent link">&para;</a></h2>
+<p>Les termes du <strong>domaine vus par l'utilisateur</strong> (carré, point d'écoute, préfixe, séquence, sonogramme,
+spectrogramme, statut, Tadarida, passage archivé, réactivation…) sont définis dans le
+<strong><a href="https://companion.echonuit.fr/glossaire/">glossaire utilisateur</a></strong>.
+Cette page-ci ne reprend que les termes dont le <strong>sens interne</strong> mérite une précision pour qui lit ou
+modifie le code.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../modele-de-donnees/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Modèle de données et domaine">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Modèle de données et domaine
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../injection/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Injection (Guice)">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Injection (Guice)
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sébastien Nedjar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

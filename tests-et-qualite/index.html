@@ -1,0 +1,2713 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation développeur de VigieChiro Companion : architecture, conventions, et comment contribuer au code.">
+      
+      
+      
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/tests-et-qualite/">
+      
+      
+        <link rel="prev" href="../cli/">
+      
+      
+        <link rel="next" href="../api-vigiechiro/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Tests et qualité - VigieChiro Companion · Doc développeur</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#tests-et-qualite" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VigieChiro Companion · Doc développeur
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Tests et qualité
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VigieChiro Companion · Doc développeur
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vue d'ensemble
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns et principes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation et chrome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modele-de-donnees/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle de données et domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossaire/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossaire du domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Injection (Guice)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ajouter-une-fonctionnalite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ajouter une fonctionnalité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cycle-de-chantier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cycle de vie d'un chantier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Décisions (ADR)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Décisions (ADR)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Journal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 · Réactivation d'un passage reconstruit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0002 · Détection acoustique de pointe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0003 · Feature = plugin désactivable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0004 · Cross-feature sans cycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0005 · Cascade de preuves, archivé = état observé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0006 · Dépôt par ZIP par défaut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0007 · Retours HTTP scellés (ReponseApi)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0008 · Aucun échec silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0009 · La nuit comme unité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0010 · Dialogues bloquants = ports
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0011 · Transformation pilotée par le log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0012 · Audit : tout écart visible, un état normal silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0013 · Ancrage passage ↔ participation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0014-parite-cli-ihm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0014 · Parité CLI ↔ IHM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0015 · Cartes SD de recette : générateur déterministe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0016 · Squelettes hydratés à la demande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0017 · Origine d'un point (état porté)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0018 · La synchro rapatrie l'identité de la nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0019 · L'ancrage s'acquiert quand il sert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0020 · Écrire sur la plateforme : ne rien inventer, ne rien effacer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0021 · Le double-clic est un miroir qui rend compte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0022 · Le verbe dit le sens de l'échange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0023 · Bandeau par défaut, modal si irréversible
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0024 · Les heures d'une nuit viennent de ses preuves
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0025 · Une capture passe par le code de production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0026 · Le nommage des tranches est une étape du pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0027 · Une attente porte toujours un nom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0028 · Un état n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0031 · Un retour n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0032-le-plan-precede-l-ecriture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0032 · Le plan précède l'écriture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0033-la-fenetre-borne-le-disque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0033 · La fenêtre borne le disque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0034 · La forme du dépôt se choisit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0035 · Un pictogramme est une icône
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0036 · La copie des bruts est une option
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0037 · Une barre d'actions plie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0038 · Quatre niveaux de sévérité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0039 · Une barre de statut est neutre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0040 · Le sujet de commit est une syntaxe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0041 · Un check requis gouverne la branche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0042 · Un aperçu qui ment est refusé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0043 · La mesure fait foi en CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0044 · Le mécanisme de parallélisme suit la nature de l'attente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0045 · L'UpgradeCode Windows est une constante d'identité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0046 · Une classe CSS a une seule feuille
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0047 · L'identité de distribution est le projet Echonuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0048 · L'utilisateur possède ses fichiers, l'app observe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Recette (acceptation)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Recette (acceptation)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Méthode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/fixtures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fixtures (générateur de cartes SD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s1-premier-contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S1 · Premier contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s2-importer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S2 · Importer une nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s3-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S3 · Vérifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S4 · Déposer et suivre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface en ligne de commande (CLI)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Tests et qualité
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Tests et qualité
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#les-commandes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les commandes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ihm-testee-en-headless-sans-x11-ni-xvfb" class="md-nav__link">
+    <span class="md-ellipsis">
+      IHM testée en headless (sans X11 ni xvfb)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-taxonomie-des-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      La taxonomie des tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La taxonomie des tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tester-un-geste-pas-un-bouton" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tester un geste, pas un bouton
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semer-une-nuit-jeudedonneespassage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semer une nuit : JeuDeDonneesPassage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-documentation-est-tenue-par-un-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      La documentation est tenue par un test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-outils-qualite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les outils qualité
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les outils qualité">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#couverture-et-mutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Couverture et mutation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un garde-fou de non-régression se vérifie en le voyant rouge
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-qui-bloque-la-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ce qui bloque la CI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecrire-un-nouveau-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Écrire un nouveau test
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Écrire un nouveau test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trois-pieges-recurrents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trois pièges récurrents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-vigiechiro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contrat de l'API VigieChiro
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance et benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../observabilite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Observabilité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../captures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Captures d'écran
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-cd-release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CI/CD et release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sécurité et données sensibles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#les-commandes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les commandes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ihm-testee-en-headless-sans-x11-ni-xvfb" class="md-nav__link">
+    <span class="md-ellipsis">
+      IHM testée en headless (sans X11 ni xvfb)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-taxonomie-des-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      La taxonomie des tests
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La taxonomie des tests">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#tester-un-geste-pas-un-bouton" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tester un geste, pas un bouton
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#semer-une-nuit-jeudedonneespassage" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semer une nuit : JeuDeDonneesPassage
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#la-documentation-est-tenue-par-un-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      La documentation est tenue par un test
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-outils-qualite" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les outils qualité
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les outils qualité">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#couverture-et-mutation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Couverture et mutation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Un garde-fou de non-régression se vérifie en le voyant rouge
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-qui-bloque-la-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ce qui bloque la CI
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ecrire-un-nouveau-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      Écrire un nouveau test
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Écrire un nouveau test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trois-pieges-recurrents" class="md-nav__link">
+    <span class="md-ellipsis">
+      Trois pièges récurrents
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/tests-et-qualite.md" title="Editer cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/tests-et-qualite.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="tests-et-qualite">Tests et qualité<a class="headerlink" href="#tests-et-qualite" title="Permanent link">&para;</a></h1>
+<p>La chaîne qualité tourne à <strong>chaque push</strong> (CI) et localement via <code>./mvnw</code>. Cette page est la
+référence structurée ; le repo-root garde un mémo
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/TESTING.md"><strong>TESTING.md</strong></a>.</p>
+<h2 id="les-commandes">Les commandes<a class="headerlink" href="#les-commandes" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Commande</th>
+<th>Effet</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>./mvnw test</code></td>
+<td><strong>Toute</strong> la suite de tests</td>
+</tr>
+<tr>
+<td><code>./mvnw test -Dtest=SitesViewModelTest</code></td>
+<td>Une seule <strong>classe</strong> de test</td>
+</tr>
+<tr>
+<td><code>./mvnw test -Dtest=SitesViewModelTest#chargeLesSites</code></td>
+<td>Une seule <strong>méthode</strong></td>
+</tr>
+<tr>
+<td><code>./mvnw verify</code></td>
+<td>Build complet : tests + couverture + contrôles (PMD/JaCoCo <strong>non</strong> bloquants)</td>
+</tr>
+<tr>
+<td><code>./mvnw -Pquality-gate verify</code></td>
+<td><strong>Portail qualité</strong> : PMD <code>failOnViolation</code> + seuils JaCoCo <strong>bloquants</strong></td>
+</tr>
+<tr>
+<td><code>./mvnw -Pmutation test</code></td>
+<td>Tests de <strong>mutation</strong> PIT (lent, à la demande)</td>
+</tr>
+<tr>
+<td><code>./mvnw pmd:check</code></td>
+<td>Rapport PMD seul (rapide)</td>
+</tr>
+<tr>
+<td><code>./mvnw spotless:check</code> / <code>spotless:apply</code></td>
+<td>Vérifie / applique le formatage</td>
+</tr>
+<tr>
+<td><code>./mvnw javafx:run</code></td>
+<td>Lance l'application</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Quand lancer <code>clean</code> ?</p>
+<p>Le build Maven est <strong>incrémental</strong> : <code>./mvnw verify</code> réutilise <code>target/</code>. Après certains
+changements, une classe périmée peut y subsister et provoquer une erreur <strong>trompeuse</strong> (à la
+compilation ou au packaging) que <code>./mvnw clean verify</code> fait disparaître. Réflexe : en cas
+d'erreur inexpliquée alors que le code semble correct, <strong>relancer avec <code>clean</code></strong>. Cas typiques :</p>
+<ul>
+<li><strong>suppression ou renommage</strong> d'une classe/méthode : l'ancien <code>.class</code> reste dans <code>target/</code> ;</li>
+<li><strong>changement de dépendances</strong> (<code>pom.xml</code>).</li>
+</ul>
+<p>La CI part <strong>toujours</strong> d'un checkout propre : ce piège est purement <strong>local</strong>. Le cas du
+<strong>packaging</strong> est réglé depuis #1188 : le fat-jar est attaché sous le classifier <code>shaded</code>, le shade
+ne re-traite plus sa propre sortie (packaging <strong>idempotent</strong>, garde-fou en CI).</p>
+</div>
+<h2 id="ihm-testee-en-headless-sans-x11-ni-xvfb">IHM testée en <em>headless</em> (sans X11 ni xvfb)<a class="headerlink" href="#ihm-testee-en-headless-sans-x11-ni-xvfb" title="Permanent link">&para;</a></h2>
+<p>Les tests <strong>TestFX</strong> tournent en mémoire grâce à la <strong>Headless Platform</strong> de JavaFX : aucun <code>xvfb</code>,
+aucun display. La config vit dans le bloc Surefire du <code>pom.xml</code>, <strong>rien à régler</strong> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;glass.platform&gt;</span>Headless<span class="nt">&lt;/glass.platform&gt;</span><span class="w">   </span><span class="cm">&lt;!-- plateforme Glass logicielle --&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">&lt;prism.order&gt;</span>sw<span class="nt">&lt;/prism.order&gt;</span><span class="w">               </span><span class="cm">&lt;!-- rendu logiciel --&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">&lt;java.awt.headless&gt;</span>true<span class="nt">&lt;/java.awt.headless&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">&lt;testfx.robot&gt;</span>glass<span class="nt">&lt;/testfx.robot&gt;</span><span class="w">          </span><span class="cm">&lt;!-- robot piloté par Glass --&gt;</span>
+</code></pre></div>
+<p>On <strong>ne met pas</strong> <code>testfx.headless=true</code> : ce flag réactiverait l'ancien bootstrap Monocle. Le
+headless vient de <code>glass.platform=Headless</code>, pas de TestFX. Le <code>argLine</code> ajoute les <code>--add-opens</code> /
+<code>--add-exports</code> requis par JavaFX (accès aux internes <code>com.sun.javafx.*</code> pour TestFX) + l'agent JaCoCo
++ l'agent <strong>Mockito</strong> (voir ci-dessous).</p>
+<div class="admonition note">
+<p class="admonition-title">Préparation à Java 26+</p>
+<p>Sous Java 25 tout passe, mais deux signaux annoncent la bascule 26 :</p>
+<ul>
+<li><strong>Agent Mockito explicite</strong> <em>(fait)</em> : Mockito 5 s'auto-attachait dynamiquement (« A Java agent
+  has been loaded dynamically… will be disallowed by default in a future release »). On passe
+  désormais <code>byte-buddy-agent</code> en <code>-javaagent</code> via <code>maven-dependency-plugin:properties</code>
+  (<code>${net.bytebuddy:byte-buddy-agent:jar}</code> dans l'<code>argLine</code>) : plus d'auto-attachement, prêt pour
+  le JDK 26.</li>
+<li><strong><code>sun.misc.Unsafe</code></strong> <em>(à surveiller)</em> : le warning vient de <strong>Guava</strong> (transitif), pas du code
+  du projet. Il disparaîtra avec une montée de version de Guava ; rien à faire ici pour l'instant.</li>
+</ul>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Lancer les tests avec le bon JDK</p>
+<p>Utilisez un <strong>JDK 25 standard</strong> (<code>25.0.2-open</code> / Temurin), <strong>pas</strong> un JDK packagé FX (<code>fx-zulu</code>) :
+ce dernier embarque JavaFX 25, masque les jars Maven FX 26 et fait échouer le headless
+(<code>NPE com.sun.glass.ui.PlatformFactory.getPlatformFactory()</code> : la Headless Platform n'existe qu'en
+FX 26). Comme la CI :
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
+</code></pre></div></p>
+</div>
+<h2 id="la-taxonomie-des-tests">La taxonomie des tests<a class="headerlink" href="#la-taxonomie-des-tests" title="Permanent link">&para;</a></h2>
+<p>Les tests vivent sous <code>src/test/java/fr/univ_amu/iut/</code>, en <strong>miroir</strong> des paquets de production.</p>
+<table>
+<thead>
+<tr>
+<th>Catégorie</th>
+<th>Emplacement</th>
+<th>Vérifie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unitaires métier</td>
+<td><code>&lt;feature&gt;/model/</code>, <code>&lt;feature&gt;/dao/</code>, <code>commun/persistence/</code>, <code>commun/model/</code></td>
+<td>Entités, services, DAO, migrations. Sans JavaFX.</td>
+</tr>
+<tr>
+<td>ViewModel</td>
+<td><code>&lt;feature&gt;/viewmodel/</code></td>
+<td>État observable + logique de présentation, sans composant graphique.</td>
+</tr>
+<tr>
+<td>Intégration de vue (TestFX)</td>
+<td><code>&lt;feature&gt;/view/*VueIntegrationTest</code></td>
+<td>La vue FXML se lie au ViewModel et réagit (headless).</td>
+</tr>
+<tr>
+<td><strong>Geste</strong> (TestFX)</td>
+<td><code>&lt;feature&gt;/view/*ViewTest</code></td>
+<td>Le bouton est <strong>cliqué</strong>, et on vérifie son <strong>effet</strong> (#1405).</td>
+</tr>
+<tr>
+<td>Bout en bout</td>
+<td><code>fr.univ_amu.iut.e2e.*</code>, <code>&lt;feature&gt;/e2e/Parcours*E2ETest</code></td>
+<td>Le scénario complet : IHM → ViewModel → service → base.</td>
+</tr>
+<tr>
+<td><strong>CLI shell (bats)</strong></td>
+<td><code>src/test/bats/*.bats</code> (fixtures partagées <code>helper.bash</code>)</td>
+<td>La CLI <strong>empaquetée</strong> (fat-jar shadé), au niveau <strong>processus</strong> : arguments picocli, texte d'aide, <strong>codes de sortie</strong>, refus métier — ce que les tests Java in-process ne voient pas. <code>cli.bats</code> éprouve les commandes du chantier #1565 ; <code>cli-surface.bats</code> couvre le contrat <strong>hors-ligne de chaque</strong> sous-commande (aide, refus des options requises manquantes, exécution locale, refus sans jeton) ; <code>cli-reseau.bats</code> pointe le client sur un <strong>serveur stub</strong> (processus Python <code>stub_vigiechiro.py</code>) via la surcharge <code>VIGIECHIRO_URL</code> (<code>ConnexionModule#urlDeBase</code>) et prouve le chemin réseau <strong>sans jeton réel ni Internet</strong>. Reste à étoffer : contrats métier réseau sur fixtures Eve réalistes (#1592). Lancés en CI après le smoke-test du fat-jar (#1572, amorce).</td>
+</tr>
+<tr>
+<td>Architecture (ArchUnit)</td>
+<td><code>architecture/ArchitectureTest</code></td>
+<td>Les <strong>6 règles</strong> de frontière MVVM (cf. <a href="../architecture/">Architecture</a>).</td>
+</tr>
+<tr>
+<td><strong>Documentation</strong></td>
+<td><code>documentation/DocumentationAJourTest</code></td>
+<td>Toute commande CLI a sa ligne, tout écran a sa fiche (#1458).</td>
+</tr>
+</tbody>
+</table>
+<p>Outils : <strong>JUnit 5 + AssertJ + Mockito</strong> ; <strong>ApprovalTests</strong> pour les sorties verbatim (CSV Tadarida
+<code>_Vu</code> : le premier run produit un <code>*.received</code>, à approuver en <code>*.approved</code>).</p>
+<h3 id="tester-un-geste-pas-un-bouton">Tester un geste, pas un bouton<a class="headerlink" href="#tester-un-geste-pas-un-bouton" title="Permanent link">&para;</a></h3>
+<p>Un test qui vérifie qu'un bouton est <strong>présent et actif</strong> ne dit rien de ce qu'il fait. C'était
+pourtant tout ce qu'on avait sur les actions <strong>irréversibles</strong> - purger les originaux de toutes les
+nuits, restaurer la base, supprimer un passage et sa nuit, réimporter par-dessus les validations de
+l'observateur. Et pas par négligence : un <code>showAndWait()</code> <strong>fige</strong> un test headless, donc le clic
+était <strong>impossible</strong>.</p>
+<p>Les dialogues d'une action sont désormais des <strong>ports</strong> remplaçables (<code>Confirmateur</code>, <code>Notificateur</code>,
+<code>SelecteurFichier</code>, <code>DemandeurDeChoix</code> : cf.
+<a href="../patterns/#les-dialogues-dune-action-sont-des-ports-socle-commun">Patrons</a>).
+Un test de geste les remplace par des doubles, <strong>déclenche</strong> l'action, et vérifie <strong>ce qui s'est
+passé</strong> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">confirmations</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">confirme</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">     </span><span class="c1">// l&#39;effet, pas « un mock a été appelé »</span>
+</code></pre></div>
+<p>Trois exigences, dans l'ordre d'importance :</p>
+<ol>
+<li><strong>Le refus.</strong> Sur une action irréversible, « Annuler annule vraiment » est le test qui compte le
+   plus - et c'est celui qui manquait partout.</li>
+<li><strong>L'effet réel.</strong> Quand la fixture le permet (vrai injecteur + vraie base), asserter que la ligne a
+   <strong>disparu de la base</strong>, pas qu'un mock a reçu un appel.</li>
+<li><strong>Le message de confirmation est un contenu.</strong> Sur une suppression en cascade, c'est le seul
+   avertissement que l'utilisateur recevra : vérifier qu'il annonce le gain, ce qui est conservé, et
+   ce qui est <strong>définitivement</strong> perdu.</li>
+<li><strong>Renoncer n'est pas abandonner.</strong> Quand un dialogue offre plusieurs issues, l'une d'elles <strong>détruit</strong>
+   souvent quelque chose et une autre <strong>ne fait rien</strong>. Les deux ferment le dialogue. Un test doit les
+   <strong>distinguer</strong> - c'est le piège le plus coûteux de tout ce chantier.</li>
+</ol>
+<div class="admonition tip">
+<p class="admonition-title">Ce qu'aucun test ne verra</p>
+<p>Trois défauts d'IHM de #1431 n'ont été trouvés qu'en <strong>regardant une capture</strong> : un libellé tronqué,
+un emoji qui ne se rend pas (#700), et une <strong>réplique</strong> de dialogue qui avait <strong>dérivé</strong> du vrai
+écran. Un geste testé n'est pas un écran regardé : rendez la capture, et <strong>ouvrez-la</strong>.</p>
+</div>
+<h3 id="semer-une-nuit-jeudedonneespassage">Semer une nuit : <code>JeuDeDonneesPassage</code><a class="headerlink" href="#semer-une-nuit-jeudedonneespassage" title="Permanent link">&para;</a></h3>
+<p>Le schéma est <strong>profond</strong> : une <code>observation</code> référence une <code>sequence</code>, qui référence une
+<code>recording_session</code>, qui référence un <code>passage</code>, qui référence un <code>point</code>, un <code>site</code>, un <code>recorder</code> et un
+<code>user</code>. Écrire un test sur <strong>une observation</strong> obligeait donc à connaître <strong>sept tables</strong> - et
+<strong>soixante-quinze</strong> fichiers de test resemaient cette même chaîne à la main, en trois styles SQL
+différents (#1258).</p>
+<p>Ce n'était pas de la rigueur, c'était du <strong>bruit</strong> : le test parlait de la plomberie au lieu de parler de
+ce qu'il vérifie. Et chaque migration de schéma coûtait autant de retouches que de copies.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">JeuDeDonneesPassage</span><span class="w"> </span><span class="n">jeu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JeuDeDonneesPassage</span><span class="p">.</span><span class="na">dans</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">        </span><span class="p">.</span><span class="na">carre</span><span class="p">(</span><span class="s">&quot;130711&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="p">.</span><span class="na">point</span><span class="p">(</span><span class="s">&quot;Z41&quot;</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="p">.</span><span class="na">semer</span><span class="p">();</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kt">long</span><span class="w"> </span><span class="n">douteuse</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservation</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="kt">long</span><span class="w"> </span><span class="n">validee</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationValidee</span><span class="p">(</span><span class="s">&quot;Nyclei&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kt">long</span><span class="w"> </span><span class="n">corrigee</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationCorrigee</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pippip&quot;</span><span class="p">);</span>
+</code></pre></div>
+<p>Valeurs par défaut : utilisateur <code>u-1</code>, carré <code>640380</code>, point <code>A1</code>, enregistreur <code>SN-1</code> - celles que les
+tests utilisaient déjà. Tout se surcharge avant <code>semer()</code>.</p>
+<p><strong>Migration opportuniste</strong>, pas de big bang : on bascule un fichier <strong>quand on le retouche</strong>. Les trois
+styles SQL et les jeux de colonnes variables rendent une conversion mécanique <strong>risquée</strong>, et un test
+converti trop vite est un test qu'on ne relit plus.</p>
+<div class="admonition warning">
+<p class="admonition-title">Un cliquet empêche de l'oublier</p>
+<p><strong>Une migration opportuniste sans garde-fou est une migration qu'on oublie</strong> - le même défaut que la
+doc, qui dérivait parce que rien ne rougissait. <code>CliquetFixturePassageTest</code> <strong>épingle la liste</strong> des
+tests qui sèment encore un passage à la main (<strong>66</strong> au 2026-07-14), et elle ne peut que <strong>rétrécir</strong> :</p>
+<ul>
+<li><strong>ajouter un semeur de plus</strong> → CI rouge (c'est le cas qui compte : sans lui, la dette repousserait
+  aussi vite qu'on la coupe) ;</li>
+<li><strong>en migrer un</strong> → CI rouge aussi, jusqu'à ce qu'on <strong>retire son nom</strong> de la liste. Le geste est
+  trivial, et c'est ce qui rend le progrès <strong>visible</strong>.</li>
+</ul>
+<p>Le compteur restant est donc <strong>toujours exact</strong>, sans que personne ait à s'en souvenir.</p>
+</div>
+<p>Deux limites, assumées :</p>
+<ul>
+<li>la fixture <strong>ne migre pas</strong> le schéma (les tests ne l'obtiennent pas tous de la même façon) et <strong>ne sème
+  aucun taxon</strong> : le référentiel réel est déjà posé par <code>V02__seed_taxons.sql</code>, et réinsérer <code>Pipkuh</code>
+  <strong>viole la clé primaire</strong> ;</li>
+<li>les <strong>outils de capture</strong> (<code>src/main/.../outils</code>) restent <strong>autonomes</strong> : ce sont des exécutables
+  indépendants, la fixture de test ne leur est pas accessible, on accepte leur duplication.</li>
+</ul>
+<h3 id="la-documentation-est-tenue-par-un-test">La documentation est tenue par un test<a class="headerlink" href="#la-documentation-est-tenue-par-un-test" title="Permanent link">&para;</a></h3>
+<p>Une doc qui ment est <strong>pire</strong> qu'une doc absente : on la croit. Le dépôt l'avait déjà tranché pour les
+<strong>captures</strong>, défendues par quatre garde-fous (cf. <a href="../captures/">Captures</a>). Les <strong>commandes</strong> et les
+<strong>écrans</strong>, eux, n'avaient rien - et ils ont dérivé, en silence : <code>dev-docs/cli.md</code> a documenté jusqu'à
+<strong>22 commandes sur 29</strong>, et l'écran « Audit de cohérence » a vécu <strong>sans aucune fiche</strong> de sa livraison
+(#1133) à la clôture de l'EPIC #1154. Aucune CI n'a rougi. Une relecture à la main les a trouvés.</p>
+<p><code>DocumentationAJourTest</code> comble l'asymétrie, en confrontant la doc non pas à une liste tenue à la main
+(c'est exactement ce qui dérive) mais à la <strong>vérité du câblage</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>Ce qui est confronté</th>
+<th>À quoi</th>
+<th>Ce que ça empêche</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Les sous-commandes de l'annotation <code>@Command</code> de <code>CommandeRacine</code></td>
+<td>Le tableau de <code>dev-docs/cli.md</code></td>
+<td>Une commande livrée, testée, verte en CI… et <strong>introuvable</strong> dans sa propre doc</td>
+</tr>
+<tr>
+<td>Les <code>ActiviteAccueil</code> <strong>liées dans l'injecteur</strong></td>
+<td>La fiche <code>docs/ecrans/&lt;pageDoc&gt;.md</code></td>
+<td>Un <strong>écran entier</strong> offert à l'utilisateur, sans page</td>
+</tr>
+<tr>
+<td>Les fiches présentes sur le disque</td>
+<td>La <code>nav</code> de <code>mkdocs.yml</code> <strong>et</strong> le tableau de <code>docs/ecrans/index.md</code></td>
+<td>Une page que le site ne publie pas, ou qu'on ne peut atteindre depuis l'index de sa section</td>
+</tr>
+</tbody>
+</table>
+<p>Deux détails qui comptent :</p>
+<ul>
+<li>Les commandes sont lues <strong>sur l'annotation</strong>, par réflexion - jamais instanciées. Leurs constructeurs
+  tirent des <code>Provider</code> qui <strong>ouvrent la base</strong> : les instancier ferait de l'E/S pour rien.</li>
+<li><code>ActiviteAccueil.pageDoc()</code> est une méthode du <strong>contrat</strong>, pas une convention. Le nom de la fiche ne se
+  déduit ni du titre (« Sons de référence » se documente dans <code>validation.md</code>) ni du paquet (la feature
+  <code>audio</code> aussi) : il faut le <strong>dire</strong>. Le compilateur force donc à choisir une fiche, et le test refuse
+  qu'elle soit absente.</li>
+</ul>
+<h2 id="les-outils-qualite">Les outils qualité<a class="headerlink" href="#les-outils-qualite" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Outil</th>
+<th>Rôle</th>
+<th>Bloquant ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>ArchUnit</strong></td>
+<td>Frontières MVVM + absence de cycles</td>
+<td>Oui (tests)</td>
+</tr>
+<tr>
+<td><strong>Spotless</strong> (Palantir)</td>
+<td>Format du code, via un <em>hook</em> pre-commit silencieux</td>
+<td>Oui (<code>spotless:check</code> en CI)</td>
+</tr>
+<tr>
+<td><strong>PMD</strong></td>
+<td><em>Code smells</em></td>
+<td>Bloquant <strong>sous <code>-Pquality-gate</code></strong></td>
+</tr>
+<tr>
+<td><strong>JaCoCo</strong></td>
+<td>Couverture</td>
+<td>Seuils bloquants <strong>sous <code>-Pquality-gate</code></strong></td>
+</tr>
+<tr>
+<td><strong>PIT</strong></td>
+<td>Qualité des tests par <strong>mutation</strong></td>
+<td>Non (à la demande, <code>-Pmutation</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="couverture-et-mutation">Couverture et mutation<a class="headerlink" href="#couverture-et-mutation" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>JaCoCo</strong> : sous <code>-Pquality-gate</code>, seuils <strong>bloquants</strong> au niveau <code>BUNDLE</code> — <strong>85 % de lignes</strong> et
+  <strong>70 % de branches</strong>. Les <code>**/outils/**</code> (capture d'écran, bancs de mesure) sont <strong>exclus</strong> : ils
+  sont validés par exécution, pas par tests unitaires.</li>
+<li>
+<p><strong>PIT</strong> (<code>-Pmutation</code>) évalue si les tests <strong>détectent</strong> des mutations du code. Lent sur tout le
+  dépôt, mais <strong>rapide ciblé</strong> sur la classe qu'on vient d'écrire - et c'est ainsi qu'il sert le mieux :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
+</code></pre></div>
+</li>
+</ul>
+<p><strong>Sur une classe de vue (TestFX), passer les options de la JVM headless.</strong> Le profil <code>mutation</code> ne
+reprend pas l'<code>argLine</code> de Surefire : sans elles, PIT lance ses minions sans <code>glass.platform=Headless</code>,
+la suite ne démarre pas et l'outil s'arrête sur « <em>tests did not pass without mutation</em> ». On les lui
+donne à la main :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.commun.view.Modales<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.commun.view.ModalesTest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span>-DjvmArgs<span class="o">=</span><span class="s2">&quot;-Dglass.platform=Headless,-Dprism.order=sw,-Djava.awt.headless=true,-Dtestfx.robot=glass,--enable-native-access=ALL-UNNAMED&quot;</span>
+</code></pre></div>
+<p>PIT couvre donc aussi la couche <code>view</code>, ce que l'échec brut laissait croire impossible.</p>
+<p>⚠️ <strong>Lire le rapport, pas le résumé.</strong> <code>target/pit-reports/mutations.xml</code> écrit ses attributs en
+<strong>apostrophes simples</strong> (<code>status='SURVIVED'</code>). Un filtre écrit en guillemets doubles ne matche rien et
+annonce « 0 survivant » sur n'importe quel rapport - y compris sur une classe dont sept mutants
+survivaient. Le résumé imprimé en fin de course (<code>Generated N Killed M</code>) est la référence à recouper.</p>
+<div class="highlight"><pre><span></span><code>Rapport HTML dans `target/pit-reports/`. Un **mutant survivant** désigne une ligne que rien ne
+vérifie vraiment.
+</code></pre></div>
+<h3 id="un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge">Un garde-fou de non-régression se vérifie en le voyant rouge<a class="headerlink" href="#un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge" title="Permanent link">&para;</a></h3>
+<p>Un test écrit pour empêcher un défaut de revenir ne vaut que si l'on a <strong>constaté qu'il échoue</strong> quand
+le défaut est là. Les suites de l'EPIC #1863 ont produit <strong>quatre</strong> contre-exemples en une seule
+session, tous verts et tous creux :</p>
+<ul>
+<li>un test d'alias CLI qui passait <strong>avec et sans</strong> l'alias (<code>--help</code> sur une commande inconnue déclenche
+  l'aide de la <strong>racine</strong>, qui liste justement la commande cherchée) ;</li>
+<li>une sonde live dont la remise en état allait échouer en silence ;</li>
+<li>une garde « n'écrire que si la saisie a changé », posée pour corriger un défaut constaté, que rien
+  n'avait jamais verrouillée ;</li>
+<li>un test de boucle d'horodatage qui refaisait lui-même la moitié du calcul qu'il prétendait vérifier.</li>
+</ul>
+<p><strong>Deux gestes, pas un.</strong> Ils ne couvrent pas la même chose :</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Ce que ça couvre</th>
+<th>Ce que ça ne voit pas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>PIT</strong> (<code>-Pmutation</code> ciblé)</td>
+<td>l'<strong>espace entier</strong> des mutations d'une classe : conditions inversées, bornes, retours neutralisés</td>
+<td>tout ce qui n'est pas du code Java mutable - attribut d'annotation (<code>aliases</code>), câblage Guice, FXML, sonde réseau</td>
+</tr>
+<tr>
+<td><strong>La mutation à la main</strong></td>
+<td>n'importe quoi : réintroduire le défaut d'origine, retirer une annotation, casser un binding</td>
+<td>une seule hypothèse à la fois, celle qu'on a pensé à tester</td>
+</tr>
+</tbody>
+</table>
+<p>PIT est plus <strong>exhaustif</strong> là où il s'applique ; le geste manuel est plus <strong>large</strong>. Les trois premiers
+contre-exemples ci-dessus sont hors de portée de PIT ; le quatrième, en revanche, était exactement dans
+sa cible - et un <code>-Pmutation</code> ciblé l'aurait signalé sans qu'on ait à deviner lequel mutant écrire.</p>
+<p><strong>En pratique</strong> : à la passe 6 d'une clôture, lancer PIT ciblé sur les classes que le chantier a
+introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindre.</p>
+<h2 id="ce-qui-bloque-la-ci">Ce qui bloque la CI<a class="headerlink" href="#ce-qui-bloque-la-ci" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Commande</th>
+<th>Bloquant ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>« Java CI » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a>) — tests <strong>+ couverture</strong></td>
+<td><code>./mvnw -B verify -Djacoco.haltOnFailure=true</code></td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td>« Quality gate » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a>) — formatage</td>
+<td><code>./mvnw -B spotless:check</code></td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td>« Quality gate » — portail PMD</td>
+<td><code>./mvnw -B -Pquality-gate compile pmd:check</code></td>
+<td><strong>Oui</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>lint.yml</code> vérifie aussi la <strong>complétude des captures</strong> (cf. <a href="../captures/">Captures</a>). Une PR doit
+passer <strong>les deux</strong> workflows (cf. <a href="../ci-cd-release/">CI/CD et release</a>).</p>
+<p>Deux invariants sont en plus <strong>verrouillés</strong> : un test fige le <strong>plan d'exécution</strong> des requêtes O5
+(l'index ne doit pas régresser, cf. <a href="../performance/">Performance et benchmarks</a>), et les <strong>garde-fous</strong>
+PMD / ArchUnit ne se désactivent <strong>jamais</strong> pour « faire passer » un build (cf.
+<a href="../securite/">Sécurité et données sensibles</a>).</p>
+<h2 id="ecrire-un-nouveau-test">Écrire un nouveau test<a class="headerlink" href="#ecrire-un-nouveau-test" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Un test de vue part d'un <strong>injecteur</strong> (réel ou partiel) Guice et d'une <strong>base jetable</strong> (workspace
+  temporaire + <code>MigrationSchema.migrer()</code>), comme les <code>*VueIntegrationTest</code> / <code>*E2ETest</code> existants.</li>
+<li><strong>TestFX</strong> : interroger les nœuds par <code>fx:id</code> (<code>lookup("#monId")</code>), piloter via le robot Glass,
+  asserter avec AssertJ. Préférer <strong><code>bouton.fire()</code></strong> à un clic robot quand c'est possible (plus
+  stable en headless).</li>
+<li>Pour une capture déterministe, voir
+  <a href="../ajouter-une-fonctionnalite/#7-ajouter-un-apercu-capture-decran">Ajouter une fonctionnalité §7</a>.</li>
+</ul>
+<h3 id="trois-pieges-recurrents">Trois pièges récurrents<a class="headerlink" href="#trois-pieges-recurrents" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title"><code>assertThat(path).endsWith(Path)</code> canonicalise</p>
+<p>Cette forme appelle <code>toRealPath</code> et lève <code>NoSuchFileException</code> si le dossier n'existe pas (erreur
+sur runner neuf). Préférer le booléen <strong>lexical</strong> : <code>assertThat(p.endsWith(autre)).isTrue()</code>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title"><code>fire()</code> est un no-op sur un contrôle désactivé</p>
+<p><code>Button.fire()</code> comme <code>Hyperlink.fire()</code> vérifient <code>isDisabled()</code> <strong>avant</strong> d'émettre. Un test qui
+« clique » un contrôle grisé ne déclenche donc <strong>rien</strong>, et s'il attend un refus métier, il échoue
+sans dire pourquoi. Le plus souvent, c'est le <strong>test</strong> qui a tort : quand l'affordance (#789) a
+déjà <strong>fermé</strong> le geste, il n'y a plus de refus à annoncer, et c'est le <strong>grisage</strong> qu'il faut
+asserter. <em>On ne prévient pas après coup ce qu'on a déjà empêché.</em></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Mutation hors fil JavaFX</p>
+<p>Un handler qui modifie l'IHM depuis un thread d'arrière-plan lève <code>Not on FX application thread</code>,
+souvent <strong>avalée</strong> (l'écran fige). Découper <strong>préparation</strong> (fil FX) / <strong>exécution</strong> (hors-thread)
+/ retour sur le fil FX - c'est exactement le contrat du socle <code>ExecuteurTache</code> (#793, cf.
+<a href="../patterns/">Patterns</a>), <strong>synchrone en test</strong> : avec lui, <code>bouton.fire()</code> rend l'état terminal
+observable au retour du clic, sans attente.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Interface en ligne de commande (CLI)">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Interface en ligne de commande (CLI)
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../api-vigiechiro/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Contrat de l&#39;API VigieChiro">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Contrat de l'API VigieChiro
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sébastien Nedjar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

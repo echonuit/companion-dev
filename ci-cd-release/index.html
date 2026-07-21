@@ -1,0 +1,2560 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation développeur de VigieChiro Companion : architecture, conventions, et comment contribuer au code.">
+      
+      
+      
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/ci-cd-release/">
+      
+      
+        <link rel="prev" href="../captures/">
+      
+      
+        <link rel="next" href="../securite/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>CI/CD et release - VigieChiro Companion · Doc développeur</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cicd-et-release" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VigieChiro Companion · Doc développeur
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              CI/CD et release
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VigieChiro Companion · Doc développeur
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vue d'ensemble
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns et principes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation et chrome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modele-de-donnees/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle de données et domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossaire/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossaire du domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Injection (Guice)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ajouter-une-fonctionnalite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ajouter une fonctionnalité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cycle-de-chantier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cycle de vie d'un chantier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Décisions (ADR)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Décisions (ADR)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Journal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 · Réactivation d'un passage reconstruit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0002 · Détection acoustique de pointe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0003 · Feature = plugin désactivable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0004 · Cross-feature sans cycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0005 · Cascade de preuves, archivé = état observé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0006 · Dépôt par ZIP par défaut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0007 · Retours HTTP scellés (ReponseApi)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0008 · Aucun échec silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0009 · La nuit comme unité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0010 · Dialogues bloquants = ports
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0011 · Transformation pilotée par le log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0012 · Audit : tout écart visible, un état normal silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0013 · Ancrage passage ↔ participation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0014-parite-cli-ihm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0014 · Parité CLI ↔ IHM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0015 · Cartes SD de recette : générateur déterministe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0016 · Squelettes hydratés à la demande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0017 · Origine d'un point (état porté)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0018 · La synchro rapatrie l'identité de la nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0019 · L'ancrage s'acquiert quand il sert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0020 · Écrire sur la plateforme : ne rien inventer, ne rien effacer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0021 · Le double-clic est un miroir qui rend compte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0022 · Le verbe dit le sens de l'échange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0023 · Bandeau par défaut, modal si irréversible
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0024 · Les heures d'une nuit viennent de ses preuves
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0025 · Une capture passe par le code de production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0026 · Le nommage des tranches est une étape du pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0027 · Une attente porte toujours un nom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0028 · Un état n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0031 · Un retour n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0032-le-plan-precede-l-ecriture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0032 · Le plan précède l'écriture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0033-la-fenetre-borne-le-disque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0033 · La fenêtre borne le disque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0034 · La forme du dépôt se choisit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0035 · Un pictogramme est une icône
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0036 · La copie des bruts est une option
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0037 · Une barre d'actions plie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0038 · Quatre niveaux de sévérité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0039 · Une barre de statut est neutre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0040 · Le sujet de commit est une syntaxe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0041 · Un check requis gouverne la branche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0042 · Un aperçu qui ment est refusé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0043 · La mesure fait foi en CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0044 · Le mécanisme de parallélisme suit la nature de l'attente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0045 · L'UpgradeCode Windows est une constante d'identité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0046 · Une classe CSS a une seule feuille
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0047 · L'identité de distribution est le projet Echonuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0048 · L'utilisateur possède ses fichiers, l'app observe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Recette (acceptation)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Recette (acceptation)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Méthode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/fixtures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fixtures (générateur de cartes SD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s1-premier-contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S1 · Premier contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s2-importer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S2 · Importer une nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s3-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S3 · Vérifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S4 · Déposer et suivre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface en ligne de commande (CLI)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests-et-qualite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests et qualité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-vigiechiro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contrat de l'API VigieChiro
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance et benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../observabilite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Observabilité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../captures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Captures d'écran
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    CI/CD et release
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    CI/CD et release
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#les-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les workflows
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-portail-qualite-pquality-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le portail qualité (-Pquality-gate)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pourquoi-build-et-paquet-sont-deux-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pourquoi build et paquet sont deux jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-release-semantic-release-jpackage" class="md-nav__link">
+    <span class="md-ellipsis">
+      La release (semantic-release + jpackage)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La release (semantic-release + jpackage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#larchive-portable-2107" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'archive portable (#2107)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lappimage-2107" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'AppImage (#2107)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-empreintes-sha-256-2107" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les empreintes SHA-256 (#2107)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-titre-informe-au-lieu-de-bloquer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pourquoi titre informe au lieu de bloquer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flatpak-2111" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flatpak (#2111)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dépendances
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sécurité et données sensibles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#les-workflows" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les workflows
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-portail-qualite-pquality-gate" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le portail qualité (-Pquality-gate)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pourquoi-build-et-paquet-sont-deux-jobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pourquoi build et paquet sont deux jobs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-release-semantic-release-jpackage" class="md-nav__link">
+    <span class="md-ellipsis">
+      La release (semantic-release + jpackage)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="La release (semantic-release + jpackage)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#larchive-portable-2107" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'archive portable (#2107)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lappimage-2107" class="md-nav__link">
+    <span class="md-ellipsis">
+      L'AppImage (#2107)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-empreintes-sha-256-2107" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les empreintes SHA-256 (#2107)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-titre-informe-au-lieu-de-bloquer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pourquoi titre informe au lieu de bloquer
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#flatpak-2111" class="md-nav__link">
+    <span class="md-ellipsis">
+      Flatpak (#2111)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependances" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dépendances
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/ci-cd-release.md" title="Editer cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/ci-cd-release.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les workflows et le processus de
+publication.</p>
+<h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Workflow</th>
+<th>Déclencheur</th>
+<th>Rôle</th>
+<th>Bloque la PR ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>build</code></td>
+<td>push <code>main</code> + PR</td>
+<td>« Java CI » : <code>./mvnw -B verify -Djacoco.haltOnFailure=true</code> (compilation + tous les tests dont ArchUnit + <strong>seuils de couverture JaCoCo bloquants</strong>)</td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>paquet</code></td>
+<td>push <code>main</code> + PR</td>
+<td>Assemblage du fat-jar (<code>package -DskipTests</code>) puis smoke-test, <strong>E2E CLI bats</strong> et idempotence du packaging. <strong>En parallèle</strong> de <code>build</code></td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a></td>
+<td>push <code>main</code> + PR</td>
+<td>« Quality gate » (statique) : <code>spotless:check</code> + complétude des captures + <code>./mvnw -Pquality-gate compile pmd:check</code> (<strong>PMD bloquant</strong>)</td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/docs.yml">docs.yml</a></td>
+<td>push/PR sur la doc</td>
+<td>Construit les <strong>deux</strong> sites MkDocs (<code>--strict</code>) ; déploie Pages (dormant tant que <code>ENABLE_PAGES</code> ≠ true)</td>
+<td>Build oui</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/titre-pr.yml">titre-pr.yml</a></td>
+<td>PR (dont <code>edited</code>)</td>
+<td>Le <strong>titre de la PR</strong> suit Conventional Commits (c'est lui que semantic-release lira, cf. ci-dessous)</td>
+<td>Non - <strong>informatif</strong>, et volontairement (cf. ci-dessous)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/capture-vues.yml">capture-vues.yml</a></td>
+<td>push <code>main</code></td>
+<td>Régénère les aperçus PNG (cf. <a href="../captures/">Captures</a>)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/release.yml">release.yml</a></td>
+<td>push <code>main</code></td>
+<td>Version + Release + installeurs natifs (dormant tant que <code>ENABLE_RELEASE</code> ≠ true)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/devcontainer-image.yml">devcontainer-image.yml</a></td>
+<td>push <code>solution</code></td>
+<td>Build/push de l'image devcontainer</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition info">
+<p class="admonition-title">Workflows « dormants »</p>
+<p>Pages et release ne s'activent que via des <strong>variables de dépôt</strong> (<code>ENABLE_PAGES</code>,
+<code>ENABLE_RELEASE</code> = <code>true</code>). Tant qu'elles sont absentes, ces étapes ne rougissent pas la CI.</p>
+</div>
+<h2 id="le-portail-qualite-pquality-gate">Le portail qualité (<code>-Pquality-gate</code>)<a class="headerlink" href="#le-portail-qualite-pquality-gate" title="Permanent link">&para;</a></h2>
+<p>Le profil Maven <code>quality-gate</code> rend <strong>bloquants</strong> des contrôles tolérants par défaut :</p>
+<ul>
+<li><strong>PMD</strong> : <code>failOnViolation=true</code> (sinon simple rapport), exécuté par <code>lint.yml</code> (<code>compile pmd:check</code>) ;</li>
+<li><strong>JaCoCo</strong> : le seuil de couverture devient bloquant, exécuté par <code>maven.yml</code>
+  (<code>verify -Djacoco.haltOnFailure=true</code>, <strong>85 % de lignes</strong>).</li>
+</ul>
+<p>Ces deux contrôles sont <strong>répartis sur deux workflows</strong> : <code>lint.yml</code> porte le <strong>statique</strong> (Spotless +
+captures + PMD), <code>maven.yml</code> porte les <strong>tests + couverture</strong>. Localement :</p>
+<ul>
+<li><code>./mvnw -Pquality-gate compile pmd:check</code> reproduit la gate PMD de <code>lint.yml</code> ;</li>
+<li><code>./mvnw -Pquality-gate verify</code> reproduit le build complet <strong>avec</strong> la couverture bloquante (comme <code>maven.yml</code>).</li>
+</ul>
+<p><strong>Spotless</strong> (Palantir Java Format) formate via un <em>hook</em> pre-commit et est vérifié par <code>lint.yml</code> (<code>spotless:check</code>).</p>
+<h2 id="pourquoi-build-et-paquet-sont-deux-jobs">Pourquoi <code>build</code> et <code>paquet</code> sont deux jobs<a class="headerlink" href="#pourquoi-build-et-paquet-sont-deux-jobs" title="Permanent link">&para;</a></h2>
+<p><code>maven.yml</code> portait auparavant quatre préoccupations à la file dans un seul job. Deux coûts en
+découlaient. Le premier, mesuré : 449 s de tests, puis 148 s d'E2E bats, puis 9 s d'idempotence <strong>en
+série</strong>, soit ~10 min avant le moindre verdict. Le second, plus gênant, était une <strong>dépendance
+fausse</strong> : les étapes de packaging ne s'exécutaient qu'après le succès des tests, donc une suite rouge
+<strong>masquait</strong> l'état du packaging, qu'on n'apprenait qu'au tour suivant.</p>
+<p>Or ces étapes ne dépendent que de l'<strong>assemblage</strong> : <code>package -DskipTests</code> suffit (~20 s en local, et
+les 21 tests bats passent sur ce seul artefact). D'où la séparation :</p>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Ce dont il dépend</th>
+<th>Ce qu'il prouve</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>build</code></td>
+<td>la suite de tests</td>
+<td>le comportement, et la couverture au seuil</td>
+</tr>
+<tr>
+<td><code>paquet</code></td>
+<td>l'assemblage du fat-jar</td>
+<td>que le jar <strong>démarre</strong>, que la CLI répond, que le shade est idempotent</td>
+</tr>
+</tbody>
+</table>
+<p>Les deux tournent <strong>en parallèle</strong> et rendent leur verdict indépendamment : le chemin critique se
+ramène au plus long des deux, et un packaging cassé rougit même quand les tests échouent.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ce qui ne gagne rien à être optimisé</p>
+<p>L'installation d'<code>apt</code>/<code>bats</code> coûte <strong>9 s</strong>, pas davantage : c'est vérifié. Les ~140 s du harnais
+sont les <strong>21 tests eux-mêmes</strong>, qui lancent chacun un JVM sur le fat-jar. Chercher un cache apt
+ici ne rapporte rien - l'hypothèse a été faite, mesurée, et démentie.</p>
+</div>
+<h2 id="la-release-semantic-release-jpackage">La release (semantic-release + jpackage)<a class="headerlink" href="#la-release-semantic-release-jpackage" title="Permanent link">&para;</a></h2>
+<p>À chaque push sur <code>main</code>, <strong><a href="https://semantic-release.gitbook.io">semantic-release</a></strong> analyse les
+<strong><a href="https://www.conventionalcommits.org/fr/">Conventional Commits</a></strong> pour calculer la version, créer le
+tag <code>vX.Y.Z</code> et la <strong>Release GitHub</strong> (en brouillon), et mettre à jour <code>CHANGELOG.md</code> (format
+<a href="https://keepachangelog.com/fr/">Keep a Changelog</a>). Puis une <strong>matrice</strong> construit les installeurs
+natifs et les attache à la Release.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant Dev
+    participant Main as Branche main
+    participant Rel as release.yml
+    participant SR as semantic-release
+    participant GH as Release GitHub
+    Dev-&gt;&gt;Main: push (Conventional Commits)
+    Main-&gt;&gt;Rel: déclenche (si ENABLE_RELEASE)
+    Rel-&gt;&gt;SR: analyse les commits
+    SR-&gt;&gt;GH: tag vX.Y.Z + Release (brouillon)
+    SR-&gt;&gt;Main: commit CHANGELOG.md [skip ci]
+    Rel-&gt;&gt;Rel: job installers (matrice, profil -Pinstaller)
+    Rel-&gt;&gt;GH: attache installeurs + archives portables à la Release</code></pre>
+<p>Chaque runner produit <strong>deux</strong> artefacts, à partir du même profil <code>installer</code> :</p>
+<table>
+<thead>
+<tr>
+<th>Runner</th>
+<th>Installeur</th>
+<th>Archive portable</th>
+<th>Architecture</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ubuntu-latest</code></td>
+<td><code>.deb</code></td>
+<td><code>…-linux-x64-portable.tar.gz</code></td>
+<td>x64</td>
+</tr>
+<tr>
+<td><code>macos-latest</code></td>
+<td><code>.dmg</code></td>
+<td><code>…-macos-arm64-portable.zip</code></td>
+<td>arm64 (Apple Silicon)</td>
+</tr>
+<tr>
+<td><code>windows-latest</code></td>
+<td><code>.msi</code></td>
+<td><code>…-windows-x64-portable.zip</code></td>
+<td>x64</td>
+</tr>
+</tbody>
+</table>
+<h3 id="larchive-portable-2107">L'archive portable (#2107)<a class="headerlink" href="#larchive-portable-2107" title="Permanent link">&para;</a></h3>
+<p>L'installeur demande des <strong>droits d'administration</strong>. C'est un obstacle pour qui veut simplement
+essayer le produit, ou l'utiliser sur une machine qu'il n'administre pas - un poste de laboratoire, un
+ordinateur prêté. L'archive portable est la <strong>marche du bas</strong> : on décompresse, on lance, rien ne
+s'installe.</p>
+<p>Elle vient du <strong>même profil <code>installer</code></strong>, avec <code>-Djpackage.type=app-image</code> : jpackage produit alors
+le dossier autonome (lanceur natif + runtime + fat-jar) au lieu de l'emballer dans un installeur.
+Aucune configuration Maven supplémentaire n'a été nécessaire.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./mvnw<span class="w"> </span>-Pinstaller<span class="w"> </span>-Djpackage.type<span class="o">=</span>app-image<span class="w"> </span>-DskipTests<span class="w"> </span>verify<span class="w">   </span><span class="c1"># -&gt; target/dist/VigieChiro/</span>
+</code></pre></div>
+<p>Le <strong>format d'archive</strong> est choisi pour ce qu'il préserve, et ce n'est pas interchangeable :</p>
+<ul>
+<li><strong><code>tar.gz</code></strong> (Linux) garde le <strong>bit exécutable</strong> du lanceur ;</li>
+<li><strong><code>ditto</code></strong> (macOS) est le seul outil qui préserve un bundle <code>.app</code> intact - un <code>zip -r</code> casse ses
+  liens symboliques et ses permissions, et l'application ne s'ouvre plus ;</li>
+<li><strong><code>zip</code></strong> (Windows), où la notion de bit exécutable n'existe pas.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Le dossier est retiré après empaquetage</p>
+<p><code>gh release upload</code> échoue sur un répertoire. L'étape supprime donc <code>VigieChiro/</code> (ou
+<code>VigieChiro.app</code>) une fois l'archive faite, sans quoi le téléversement casse toute la publication.</p>
+</div>
+<h3 id="lappimage-2107">L'AppImage (#2107)<a class="headerlink" href="#lappimage-2107" title="Permanent link">&para;</a></h3>
+<p>Sous Linux uniquement, la même app-image donne aussi une <strong>AppImage</strong> : un <strong>fichier unique et
+exécutable</strong>, qu'on rend exécutable et qu'on lance, sans rien décompresser. C'est le complément de
+l'archive portable pour qui préfère un fichier à un dossier, et le seul des deux formats à
+<strong>s'intégrer au menu des applications</strong>, grâce à son <code>.desktop</code>.</p>
+<p>Elle est construite par
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/construit-appimage.sh"><code>.github/scripts/construit-appimage.sh</code></a>,
+à partir de trois éléments versionnés dans <code>.github/appimage/</code> (le point d'entrée <code>AppRun</code>, le
+<code>.desktop</code>, et l'icône reprise de celle que jpackage dépose dans <code>lib/</code>). Le script est <strong>lançable à
+la main</strong>, ce qui permet de le vérifier sans passer par une release :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./mvnw<span class="w"> </span>-Pinstaller<span class="w"> </span>-Djpackage.type<span class="o">=</span>app-image<span class="w"> </span>-DskipTests<span class="w"> </span>verify
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>./.github/scripts/construit-appimage.sh<span class="w"> </span><span class="m">2</span>.20.0<span class="w"> </span>x86_64<span class="w">      </span><span class="c1"># -&gt; target/dist/*.AppImage</span>
+</code></pre></div>
+<p>L'étape est placée <strong>avant</strong> l'empaquetage de l'archive portable, qui supprime
+<code>target/dist/VigieChiro</code> : les deux formats partent de la même app-image.</p>
+<div class="admonition danger">
+<p class="admonition-title">Deux pièges rencontrés à la construction, tous deux silencieux à la lecture</p>
+<p><strong>Ne pas définir <code>SOURCE_DATE_EPOCH</code>.</strong> L'idée d'un artefact reproductible est tentante, mais
+appimagetool passe déjà ses propres options de date à <code>mksquashfs</code>, qui refuse alors les deux
+ensemble : <code>SOURCE_DATE_EPOCH and command line options can't be used at the same time to set
+timestamp(s)</code>. Le script le neutralise s'il vient de l'environnement.</p>
+<p><strong>Une seule catégorie principale dans le <code>.desktop</code>.</strong> <code>Categories=Science;Biology;Education;</code>
+en déclare deux (<code>Science</code> et <code>Education</code>), et l'application <strong>apparaît deux fois</strong> dans le menu.
+Seul <code>Science</code> est principal ici, <code>Biology</code> en étant une sous-catégorie.</p>
+</div>
+<p><code>--appimage-extract-and-run</code> est passé à appimagetool parce que celui-ci est lui-même une AppImage :
+il lui faut FUSE pour se monter, ce dont les conteneurs CI ne disposent pas toujours, avec un échec
+obscur à la clé.</p>
+<div class="admonition danger">
+<p class="admonition-title">La dépendance invisible : <code>desktop-file-validate</code></p>
+<p>appimagetool valide le <code>.desktop</code> avec cet outil et <strong>s'arrête</strong> s'il ne le trouve pas. Il est
+fourni par le paquet <strong><code>desktop-file-utils</code></strong>, présent sur la plupart des postes de développement
+(les environnements de bureau le tirent) et <strong>absent des runners GitHub</strong>.</p>
+<p>C'est exactement le genre d'écart qu'une vérification locale ne peut pas voir : la construction
+passait ici et <strong>a fait échouer la release v2.21.0</strong>, laissant la Release en brouillon. Le
+workflow l'installe donc explicitement, et le script <strong>contrôle sa présence</strong> pour que l'échec
+nomme le paquet au lieu de renvoyer le message d'appimagetool, qui ne le dit pas.</p>
+<p>Leçon plus générale pour ce dépôt : un outil de build appelé <strong>indirectement</strong> par un autre outil
+est une dépendance qu'il faut déclarer, parce que rien ne la rend visible tant que le poste qui
+construit la possède.</p>
+</div>
+<h3 id="les-empreintes-sha-256-2107">Les empreintes SHA-256 (#2107)<a class="headerlink" href="#les-empreintes-sha-256-2107" title="Permanent link">&para;</a></h3>
+<p>Les installeurs ne sont <strong>pas signés</strong>. Sans empreinte, un utilisateur n'a donc <strong>aucun moyen</strong> de
+vérifier ce qu'il télécharge. Chaque artefact est accompagné d'un fichier <code>&lt;nom&gt;.sha256</code>, produit par
+le job <code>installers</code> <strong>juste avant le téléversement</strong>.</p>
+<div class="admonition danger">
+<p class="admonition-title">Une empreinte atteste la source, pas ce que le canal en a fait</p>
+<p>La première version calculait les empreintes sur les artefacts <strong>re-téléchargés</strong> depuis la
+Release, au motif que « le transfert se trouve ainsi couvert ». C'était <strong>faux, et dangereux</strong> :
+une corruption survenue au téléversement se serait retrouvée <strong>certifiée conforme</strong>, et
+l'utilisateur aurait vérifié un binaire abîmé <strong>avec succès</strong>.</p>
+<p>L'empreinte doit porter sur la <strong>sortie de build</strong>. Alors une corruption du canal fait échouer la
+vérification - ce qui est précisément le service attendu.</p>
+</div>
+<p><strong>Un fichier par artefact, et non une liste unique.</strong> L'utilisateur télécharge <strong>un</strong> fichier : lui
+demander de récupérer en plus une liste de sept empreintes dont six ne le concernent pas, puis d'y
+filtrer sa ligne, est une friction que <code>sha256sum -c mon-fichier.sha256</code> supprime. Ce choix a de plus
+retiré de la chaîne un aller-retour de plusieurs centaines de mégaoctets, et le piège de
+l'auto-exclusion qu'imposait une liste (le fichier ne devait pas figurer dans sa propre liste).</p>
+<div class="admonition tip">
+<p class="admonition-title">macOS n'a pas <code>sha256sum</code></p>
+<p>L'étape bascule sur <code>shasum -a 256</code>, qui produit exactement le <strong>même format</strong> : un <code>.sha256</code>
+généré sous macOS se vérifie sous Linux, et réciproquement. C'est vérifié dans les deux sens.</p>
+</div>
+<p><strong>Ce qu'une empreinte prouve, et ce qu'elle ne prouve pas.</strong> Elle atteste que le fichier est
+<strong>identique</strong> à celui publié : elle détecte un téléchargement corrompu ou tronqué. Elle ne remplace
+<strong>pas</strong> une signature - publiée au même endroit que les fichiers, elle n'atteste d'aucune identité.
+La signature de code reste cadrée en #2112, où elle est suspendue à une décision de financement.</p>
+<p>Chaque installeur embarque son <strong>runtime</strong> (jpackage, profil <code>-Pinstaller</code>) : l'utilisateur final
+<strong>n'installe pas Java</strong>. Construire un installeur localement :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./mvnw<span class="w"> </span>-Pinstaller<span class="w"> </span>-Djpackage.type<span class="o">=</span>deb<span class="w"> </span>-DskipTests<span class="w"> </span>verify<span class="w">   </span><span class="c1"># ou dmg / msi selon l&#39;OS</span>
+</code></pre></div>
+<p>Le shade attache le fat-jar sous le <strong>classifier <code>shaded</code></strong> (<code>vigiechiro-*-shaded.jar</code>, #1188) : l'artefact
+principal <code>vigiechiro-*.jar</code> reste <strong>mince</strong>. jpackage empaquette donc le <code>-shaded</code>, et le packaging est
+<strong>idempotent</strong> (le shade ne re-traite jamais sa propre sortie ; garde-fou d'idempotence dans <code>maven.yml</code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Le type de commit pilote la version</p>
+<p><code>fix:</code> → patch, <code>feat:</code> → minor, <code>BREAKING CHANGE</code> → major. Le <code>[skip ci]</code> du commit de CHANGELOG
+évite que la release se redéclenche en boucle. Détails de conventions :
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Ce que semantic-release lit réellement : le titre de la PR</p>
+<p>Les PR sont fusionnées en <strong>squash</strong> (<code>squash_merge_commit_title = PR_TITLE</code>) : le <strong>titre de la
+PR</strong> devient le sujet du commit sur <code>main</code>, et les messages des commits de branche sont écartés à
+la fusion. C'est donc le titre qui pilote la version, et c'est lui que valide
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/titre-pr.yml">titre-pr.yml</a>.</p>
+<p><strong>Pas d'espace avant le <code>:</code></strong> : <code>feat(scope): …</code> publie, <code>feat(scope) : …</code> ne publie rien. Cette
+seconde forme a arrêté la publication du 18 au 20 juillet 2026, en accumulant 58 commits
+releasables <strong>sans faire rougir quoi que ce soit</strong> - « aucun changement pertinent » est un verdict
+vert. <code>.releaserc.json</code> élargit désormais le <code>headerPattern</code> pour tolérer l'espace (sur le
+<code>commit-analyzer</code> <strong>et</strong> le <code>release-notes-generator</code>, faute de quoi les notes sortiraient vides),
+mais le garde-fou reste le contrôle du titre. Cf.
+<a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/">ADR 0040</a>.</p>
+</div>
+<h3 id="pourquoi-titre-informe-au-lieu-de-bloquer">Pourquoi <code>titre</code> informe au lieu de bloquer<a class="headerlink" href="#pourquoi-titre-informe-au-lieu-de-bloquer" title="Permanent link">&para;</a></h3>
+<p>Le contrôle a <strong>été</strong> rendu obligatoire (ruleset <code>titre-de-pr-conforme</code>), le temps d'une heure, et
+cette heure a suffi à casser <strong>deux</strong> automatismes. Le retour en arrière est délibéré, et vaut d'être
+expliqué : c'est exactement le genre de décision qu'on retente sans en connaître les raisons.</p>
+<p><strong>Un check requis ne gouverne pas « les PR », il gouverne la branche</strong> - donc <em>tout</em> ce qui y écrit.
+Ce dépôt y écrit par deux chemins automatisés, et les deux se sont cassés :</p>
+<table>
+<thead>
+<tr>
+<th>Chemin</th>
+<th>Ce qui s'est passé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>PR d'aperçus (<code>capture-vues.yml</code>)</td>
+<td><code>BLOCKED</code>, <strong>aucun check rapporté</strong> : GitHub ne déclenche aucun workflow pour un événement produit avec le <code>GITHUB_TOKEN</code> (garde-fou anti-récursion), donc <code>titre-pr.yml</code> ne s'exécute jamais - et un check requis muet bloque la fusion <strong>pour toujours</strong></td>
+</tr>
+<tr>
+<td>Push du CHANGELOG (<code>semantic-release</code>)</td>
+<td><code>GH013 … Required status check "titre" is expected</code> : un <strong>push direct</strong> est soumis aux mêmes règles, et un commit poussé n'a évidemment aucun check</td>
+</tr>
+</tbody>
+</table>
+<p>Le second a <strong>arrêté la publication</strong>, c'est-à-dire précisément ce que le chantier #2104 venait de
+réparer. Trois releases ont échoué d'affilée avant que la règle ne soit retirée.</p>
+<p>La dérogation qu'on attendrait est fermée : ajouter <code>github-actions</code> aux contournements d'un ruleset
+<strong>de dépôt</strong> échoue en <strong>422</strong> (<code>Actor GitHub Actions integration must be part of the ruleset source
+or owner organization</code>). Seul un ruleset <strong>d'organisation</strong> l'accepterait.</p>
+<p><strong>La décision</strong> : <code>titre</code> reste <strong>informatif</strong>. Il rougit sur un mauvais titre - c'est ainsi qu'il a
+attrapé la PR #2122 le jour même - et cette information suffit. Le bénéfice du blocage était faible
+(un seul mainteneur, qui dispose de toute façon du contournement administrateur) ; son coût a été
+mesuré. Cf. <a href="../decisions/0041-un-check-requis-gouverne-la-branche/">ADR 0041</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Le check publié par le bot des captures est resté</p>
+<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/capture-vues.yml">capture-vues.yml</a>
+exécute lui-même la validation, avec le <strong>même script</strong>, et publie le résultat comme check run.
+Ce mécanisme est né du besoin de débloquer, mais il se justifie encore sans lui : sans ce
+passage, une PR d'aperçus ne serait validée par <strong>rien du tout</strong>. Il ne publie jamais un succès
+en dur - un garde-fou qui ne sait que réussir ne garde rien.</p>
+</div>
+<p><strong>Ce qu'il faut retenir pour la suite.</strong> Avant de rendre un check obligatoire, inventorier <strong>tous les
+chemins d'écriture vers <code>main</code></strong>, pas seulement les PR humaines - et se demander pour chacun comment
+le check y rapportera.</p>
+<h2 id="flatpak-2111">Flatpak (#2111)<a class="headerlink" href="#flatpak-2111" title="Permanent link">&para;</a></h2>
+<p>Le manifeste vit dans <a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/flatpak"><code>flatpak/</code></a>,
+qui porte aussi le mode d'emploi de construction et de soumission. Trois points valent d'être connus
+d'ici :</p>
+<p><strong>Il extrait le <code>.deb</code> publié</strong>, il ne construit pas depuis les sources. Les builds Flathub n'ont
+<strong>aucun réseau</strong>, donc une résolution Maven y est impossible sans vendorer chaque dépendance
+transitive. Même choix que Gluon Scene Builder, pour la même raison - et plus simple chez nous, le
+fat-jar embarquant déjà JavaFX.</p>
+<p><strong>Il consomme donc directement le travail de #2107</strong> : le <code>.deb</code> <strong>et son empreinte SHA-256</strong> publiée
+sont exactement ce que la source du manifeste demande.</p>
+<p><strong>La montée de version est automatique</strong> : <code>x-checker-data</code> fait ouvrir la PR de mise à jour par le
+robot de Flathub. Publier une version ne demande aucun geste côté paquet.</p>
+<div class="admonition tip">
+<p class="admonition-title">Le <code>.desktop</code> de jpackage est invalide</p>
+<p>jpackage écrit <code>Categories=Unknown</code>, valeur que <code>desktop-file-validate</code> refuse. Le manifeste la
+corrige au build - et c'est la <strong>première</strong> édition qu'il fait, car <code>desktop-file-edit</code> valide le
+fichier à chaque appel et échouerait avant d'y arriver. Le <code>.deb</code> installé normalement, lui, garde
+cette catégorie fautive.</p>
+</div>
+<h2 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">&para;</a></h2>
+<p>Les mises à jour sont proposées par <strong>Dependabot</strong>
+(<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>),
+<strong>mensuellement</strong>, pour <code>maven</code> et <code>github-actions</code>. <strong>JavaFX (<code>org.openjfx:*</code>) est volontairement
+exclu</strong> de l'automatisation : ses bumps ont un impact fort (rendu, Headless Platform) et se décident à
+la main.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../captures/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Captures d&#39;écran">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Captures d'écran
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../securite/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Sécurité et données sensibles">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Sécurité et données sensibles
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sébastien Nedjar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

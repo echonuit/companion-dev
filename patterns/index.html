@@ -1,0 +1,3257 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation développeur de VigieChiro Companion : architecture, conventions, et comment contribuer au code.">
+      
+      
+      
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/patterns/">
+      
+      
+        <link rel="prev" href="../architecture/">
+      
+      
+        <link rel="next" href="../navigation/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Patterns et principes - VigieChiro Companion · Doc développeur</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#patterns-et-principes" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VigieChiro Companion · Doc développeur
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Patterns et principes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VigieChiro Companion · Doc développeur
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vue d'ensemble
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Patterns et principes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Patterns et principes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mvvm-model-view-viewmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      MVVM (Model-View-ViewModel)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objets-valeurs-records-immuables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objets-valeurs (records immuables)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine" class="md-nav__link">
+    <span class="md-ellipsis">
+      État observé (un statut distant n'est pas un statut du domaine)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cascade-de-preuves-verification-graduee-refuser-plutot-que-se-tromper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cascade de preuves (vérification graduée, refuser plutôt que se tromper)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation et chrome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modele-de-donnees/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle de données et domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossaire/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossaire du domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Injection (Guice)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ajouter-une-fonctionnalite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ajouter une fonctionnalité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cycle-de-chantier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cycle de vie d'un chantier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Décisions (ADR)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Décisions (ADR)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Journal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 · Réactivation d'un passage reconstruit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0002 · Détection acoustique de pointe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0003 · Feature = plugin désactivable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0004 · Cross-feature sans cycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0005 · Cascade de preuves, archivé = état observé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0006 · Dépôt par ZIP par défaut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0007 · Retours HTTP scellés (ReponseApi)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0008 · Aucun échec silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0009 · La nuit comme unité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0010 · Dialogues bloquants = ports
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0011 · Transformation pilotée par le log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0012 · Audit : tout écart visible, un état normal silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0013 · Ancrage passage ↔ participation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0014-parite-cli-ihm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0014 · Parité CLI ↔ IHM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0015 · Cartes SD de recette : générateur déterministe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0016 · Squelettes hydratés à la demande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0017 · Origine d'un point (état porté)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0018 · La synchro rapatrie l'identité de la nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0019 · L'ancrage s'acquiert quand il sert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0020 · Écrire sur la plateforme : ne rien inventer, ne rien effacer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0021 · Le double-clic est un miroir qui rend compte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0022 · Le verbe dit le sens de l'échange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0023 · Bandeau par défaut, modal si irréversible
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0024 · Les heures d'une nuit viennent de ses preuves
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0025 · Une capture passe par le code de production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0026 · Le nommage des tranches est une étape du pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0027 · Une attente porte toujours un nom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0028 · Un état n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0031 · Un retour n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0032-le-plan-precede-l-ecriture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0032 · Le plan précède l'écriture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0033-la-fenetre-borne-le-disque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0033 · La fenêtre borne le disque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0034 · La forme du dépôt se choisit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0035 · Un pictogramme est une icône
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0036 · La copie des bruts est une option
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0037 · Une barre d'actions plie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0038 · Quatre niveaux de sévérité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0039 · Une barre de statut est neutre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0040 · Le sujet de commit est une syntaxe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0041 · Un check requis gouverne la branche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0042 · Un aperçu qui ment est refusé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0043 · La mesure fait foi en CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0044 · Le mécanisme de parallélisme suit la nature de l'attente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0045 · L'UpgradeCode Windows est une constante d'identité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0046 · Une classe CSS a une seule feuille
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0047 · L'identité de distribution est le projet Echonuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0048 · L'utilisateur possède ses fichiers, l'app observe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Recette (acceptation)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Recette (acceptation)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Méthode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/fixtures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fixtures (générateur de cartes SD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s1-premier-contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S1 · Premier contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s2-importer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S2 · Importer une nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s3-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S3 · Vérifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S4 · Déposer et suivre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface en ligne de commande (CLI)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests-et-qualite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests et qualité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-vigiechiro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contrat de l'API VigieChiro
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance et benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../observabilite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Observabilité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../captures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Captures d'écran
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-cd-release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CI/CD et release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sécurité et données sensibles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#mvvm-model-view-viewmodel" class="md-nav__link">
+    <span class="md-ellipsis">
+      MVVM (Model-View-ViewModel)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#objets-valeurs-records-immuables" class="md-nav__link">
+    <span class="md-ellipsis">
+      Objets-valeurs (records immuables)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine" class="md-nav__link">
+    <span class="md-ellipsis">
+      État observé (un statut distant n'est pas un statut du domaine)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cascade-de-preuves-verification-graduee-refuser-plutot-que-se-tromper" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cascade de preuves (vérification graduée, refuser plutôt que se tromper)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/patterns.md" title="Editer cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/patterns.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="patterns-et-principes">Patterns et principes<a class="headerlink" href="#patterns-et-principes" title="Permanent link">&para;</a></h1>
+<p>L'architecture (cf. <a href="../architecture/">Architecture</a>) applique des <strong>patrons de conception</strong> connus,
+chacun choisi pour une raison précise et pour faire respecter les principes <strong>SOLID</strong> ainsi que
+d'autres principes transverses (loi de Déméter, YAGNI, KISS, DRY… détaillés en fin de page,
+<a href="#au-dela-de-solid">Au-delà de SOLID</a>).</p>
+<p>Chaque patron est présenté ainsi : <strong>le problème</strong> qu'il résout, <strong>la solution</strong>, <strong>comment il est
+utilisé ici</strong> (avec, selon les cas, un extrait et un lien vers le code), un <strong>diagramme</strong> quand il
+clarifie la structure ou le flux, et les <strong>principes</strong> qu'il sert.</p>
+<div class="admonition abstract">
+<p class="admonition-title">Rappel SOLID</p>
+<p><strong>S</strong>RP responsabilité unique · <strong>O</strong>CP ouvert/fermé · <strong>L</strong>SP substitution de Liskov ·
+<strong>I</strong>SP ségrégation des interfaces · <strong>D</strong>IP inversion des dépendances.</p>
+</div>
+<hr />
+<h2 id="mvvm-model-view-viewmodel">MVVM (Model-View-ViewModel)<a class="headerlink" href="#mvvm-model-view-viewmodel" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Mélanger affichage, logique de présentation et règles métier dans les controllers
+rend le code <strong>intestable</strong> (il faut une fenêtre) et <strong>non réutilisable</strong> (tout est lié à JavaFX).</p>
+<p><strong>La solution.</strong> Trois couches : le <code>model</code> (métier pur), le <code>viewmodel</code> (état <strong>observable</strong> +
+logique de présentation), la <code>view</code> (FXML + controller) qui <strong>observe</strong> le viewmodel par <em>data
+binding</em>. Le flux de dépendances va de la vue vers le modèle, jamais l'inverse.</p>
+<p><strong>Dans cette application.</strong> Chaque feature suit ce découpage. La vue ne fait que <strong>lier</strong> des contrôles à des
+propriétés ; elle ne calcule rien et ne touche pas la base.</p>
+<pre class="mermaid"><code>classDiagram
+    class View {
+        Controller
+        FXML
+    }
+    class ViewModel {
+        Property
+        ObservableList
+    }
+    class Model {
+        services
+        DAO
+    }
+    View ..&gt; ViewModel : se lie
+    ViewModel ..&gt; Model : appelle</code></pre>
+<p><strong>Principes.</strong> <strong>SRP</strong> (une responsabilité par couche), <strong>DIP</strong> (la vue dépend d'abstractions
+observables, pas de logique concrète). Frontières <strong>garanties par ArchUnit</strong> (<code>viewmodel_sans_javafx_ui</code>,
+<code>view_sans_jdbc</code>).</p>
+<hr />
+<h2 id="objets-valeurs-records-immuables">Objets-valeurs (records immuables)<a class="headerlink" href="#objets-valeurs-records-immuables" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Des entités <strong>mutables</strong> (avec setters) se prêtent aux états incohérents, au partage
+accidentel d'une instance et aux bugs d'égalité (comparaison par référence).</p>
+<p><strong>La solution.</strong> Modéliser le domaine en <strong><code>record</code> immuables</strong> : champs finaux, égalité <strong>par
+valeur</strong>, aucun setter. Pour « modifier », on <strong>crée</strong> une nouvelle instance.</p>
+<p><strong>Dans cette application.</strong> Le domaine est quasi entièrement en records (<strong>≈ 70</strong> : <code>Passage</code>, <code>Site</code>,
+<code>SequenceDEcoute</code>, <code>Observation</code>…). Les DAO <strong>construisent</strong> ces records ligne par ligne via un
+<code>RowMapper</code>, et les ViewModels les exposent dans des <code>ObservableList</code>.</p>
+<p><strong>Principes.</strong> Immuabilité (sûreté en lecture, raisonnement local) et <strong>SRP</strong> (l'entité ne porte que
+ses données). Socle naturel du DAO et du <code>RowMapper</code>.</p>
+<hr />
+<h2 id="etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine">État observé (un statut distant n'est pas un statut du domaine)<a class="headerlink" href="#etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Un système distant expose un état (l'avancement d'un calcul, le verrouillage d'un
+site…). La tentation est de l'ajouter à l'énumération de statuts qu'on possède déjà : un seul enum, un
+seul stepper, tout le monde est content. Sauf que cet état <strong>ne nous appartient pas</strong>. Il change sans
+nous prévenir, il n'est pas forcément <strong>monotone</strong>, et le jour où il recule, notre statut ment.</p>
+<p><strong>La solution.</strong> Le garder <strong>distinct</strong> : une énumération à part, alimentée par lecture, jamais par une
+transition locale. Le statut du domaine continue de dire ce que <strong>nous</strong> avons fait ; l'état observé
+dit ce que <strong>l'autre</strong> en a fait. Et comme une lecture réseau coûte cher, on <strong>persiste le dernier
+relevé</strong> avec sa date : l'écran affiche alors un souvenir, en le disant.</p>
+<p><strong>Dans cette application.</strong> <code>EtatTraitement</code> (EPIC #1259) suit l'analyse Tadarida côté serveur (<code>PLANIFIE →
+EN_COURS → FINI/ERREUR/RETRY</code>) <strong>sans</strong> étendre <code>StatutWorkflow</code> : une relance ramène <code>FINI</code> à
+<code>PLANIFIE</code>, si bien qu'un statut local « Traité » deviendrait faux. <code>DEPOSE</code> reste terminal (« ma part
+est faite »). Le dernier relevé est mis en cache (<code>participation_traitement</code>), et <code>SuiviTraitement</code> est
+le <strong>point de relevé unique</strong> : il interroge <strong>et</strong> mémorise. Même partition que <code>StatutPlateforme</code>
+(sites).</p>
+<p><strong>Le disque est un autre système que nous ne possédons pas</strong> (EPIC #1297). Les fichiers audio d'un
+passage peuvent disparaître sans nous : purge volontaire, disque externe débranché, dossier déplacé.
+« Archivé » n'est donc <strong>pas</strong> une valeur de <code>StatutWorkflow</code> mais un <strong>constat</strong> :
+<code>DisponibiliteAudio</code> (<code>COMPLETE</code> / <code>PARTIELLE</code> / <code>ABSENTE</code>), produit par <code>ServiceDisponibiliteAudio</code> en
+regardant le disque (un <code>Files.list</code> par dossier, pas un <code>exists</code> par fichier), mis en cache et
+invalidé aux gestes qui le changent. Toute l'IHM se règle <strong>là-dessus</strong> : l'écoute se voile, l'audit
+informe au lieu de crier, la réactivation s'offre.</p>
+<p>Un geste <strong>déclaré</strong> est autre chose qu'un état <strong>observé</strong>, et les deux coexistent :
+<code>recording_session.archived_at</code> et <code>originals_purged_at</code> disent « l'utilisateur a demandé ça, tel
+jour » ; c'est ce qui permet à l'audit de distinguer <em>purgé exprès</em> (INFO) de <em>corrompu</em> (ERREUR),
+alors que le disque, lui, rend le même verdict dans les deux cas : « absent ». <strong>Le marqueur explique,
+l'observation décide.</strong></p>
+<p><strong>Principes.</strong> SSOT (la source de vérité reste distante : on ne la copie pas, on la <strong>date</strong>),
+<strong>honnêteté de l'IHM</strong> (« dernier état connu le… » plutôt qu'une fraîcheur feinte) et <strong>KISS</strong> (pas de
+sondage : on relit à l'ouverture, à la demande, ou après une action).</p>
+<hr />
+<h2 id="cascade-de-preuves-verification-graduee-refuser-plutot-que-se-tromper">Cascade de preuves (vérification graduée, refuser plutôt que se tromper)<a class="headerlink" href="#cascade-de-preuves-verification-graduee-refuser-plutot-que-se-tromper" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Rebrancher des fichiers retrouvés sur un passage archivé demande de répondre à : « ce
+WAV est-il <strong>bien</strong> celui-là ? ». Le nom ne prouve rien (deux nuits d'un même carré portent des noms
+voisins ; un fichier peut être renommé, tronqué, ré-encodé). Une empreinte cryptographique prouve tout,
+mais <strong>n'existe pas</strong> pour les passages antérieurs, ni pour un passage reconstruit depuis la plateforme
+(#1305) : exiger la preuve forte, c'est exclure exactement les cas où l'on en aurait le plus besoin. Et
+la faute à ne pas commettre est claire : <strong>rebrancher silencieusement le mauvais audio</strong> sur des
+observations, ce qui fabrique une donnée fausse et indétectable.</p>
+<p><strong>La solution.</strong> Une <strong>cascade</strong> de preuves de force décroissante, où chaque niveau tranche s'il le
+peut et passe la main sinon, et où le doute non levé est un <strong>refus</strong>, jamais un « probablement bon » :</p>
+<ol>
+<li><strong>empreinte</strong> (SHA-256 des 64 premiers Kio, <code>Empreintes.empreinteCourte</code>) : identité certaine, quand
+   elle a été capturée ;</li>
+<li><strong>structure</strong> : la durée réelle lue dans l'en-tête WAV confrontée à celle qu'on a enregistrée
+   (tolérance 0,15 s), et la taille en octets ;</li>
+<li><strong>acoustique</strong> (<code>AnalyseAcoustique</code>, filtre de Goertzel) : les <strong>cris des observations</strong> rapatriées
+   sont-ils réellement présents, aux fréquences et aux instants annoncés ? C'est la preuve qui reste
+   quand aucune autre n'existe, et c'est la plus parlante : elle valide l'audio <strong>contre les données
+   qu'on s'apprête à y rebrancher</strong>.</li>
+</ol>
+<p>Le verdict est un type scellé (<code>VerdictIdentite</code> = <code>Acceptee(NiveauConfiance, preuves)</code> /
+<code>Refusee(motif)</code>) : l'appelant ne peut pas confondre « accepté avec certitude » et « accepté sur faisceau
+d'indices », et le <strong>niveau de confiance minimal</strong> atteint remonte jusqu'au rapport, donc jusqu'à
+l'utilisateur.</p>
+<p><strong>Dans cette application</strong> (#1309, consommé par #1302 et #1305). <code>VerificationIdentiteAudio</code> porte la cascade ;
+<code>ServiceReactivationPassage</code> ne copie <strong>que</strong> les fichiers acceptés, laisse les divergents de côté et les
+<strong>énumère</strong> ; un passage sans empreinte reste donc réactivable, mais par la preuve acoustique, pas par la
+confiance dans un nom.</p>
+<p><strong>Corollaire : un fichier <em>reconstruit</em> est un candidat comme un autre</strong> (#1406). Quand l'utilisateur n'a
+gardé que ses <strong>bruts</strong>, les séquences sont <strong>régénérées</strong> (la transformation est déterministe, R11) puis
+soumises à la <strong>même</strong> cascade. Si le code de transformation n'a pas changé, l'empreinte de la tranche
+régénérée est celle capturée avant l'archivage → <strong>CERTITUDE</strong> ; s'il a changé, la cascade descend d'un
+cran au lieu d'accorder une confiance aveugle. C'est le point à retenir : <strong>la reproductibilité est une
+preuve, pas un prérequis</strong> - on ne se dispense jamais de vérifier au motif qu'on a fabriqué le fichier
+soi-même. Et un <strong>brut refusé ne régénère rien</strong> : recalculer à partir d'un fichier dont l'identité n'est
+pas établie, c'est fabriquer du faux.</p>
+<p><strong>Cas limite : le passage <em>reconstruit</em> (EPIC #1653).</strong> Un passage reconstruit depuis la plateforme
+(#1305) n'a <strong>jamais eu</strong> d'empreinte : ni sur ses originaux (un placeholder <code>…-reconstruit.wav</code> tient
+lieu d'inventaire, sans fréquence d'acquisition), ni sur ses séquences. La cascade y tomberait donc
+directement sur l'acoustique - qui produit des <strong>faux négatifs</strong> sur des cris réels faibles. Mais l'audio
+régénéré est, par construction, un <strong>extrait verbatim</strong> du brut <strong>désigné par l'utilisateur</strong> (la
+transformation copie le PCM sans rééchantillonnage, prouvé octet à octet) : son identité tient à la
+<strong>régénération elle-même</strong>, pas à une empreinte qu'on n'a pas. L'<strong>hydratation</strong> (<code>HydratationDepuisBruts</code>,</p>
+<h1 id="16501682-laccepte-donc-sur-preuve-structurelle-nom-duree-forte-et-la-concordance">1650/#1682) l'accepte donc sur preuve <strong>structurelle</strong> (nom + durée, <code>FORTE</code>), et la concordance<a class="headerlink" href="#16501682-laccepte-donc-sur-preuve-structurelle-nom-duree-forte-et-la-concordance" title="Permanent link">&para;</a></h1>
+<p>acoustique y devient un <strong>indice non bloquant</strong> (<code>IndiceAcoustique</code>), jamais un veto. La chaîne :
+<code>InventaireBrutsSource</code> (#1649, lit la Fe du <strong>log</strong> et énumère les bruts) → régénération → rebranchement
+structurel → <code>AdoptionOriginauxReconstruits</code> (#1651, remplace le placeholder par les vrais originaux,
+déclarés « purgés » puisque connus mais non stockés localement). Détail : <code>AnalyseAcoustique</code> mesure
+désormais l'énergie <strong>de pointe</strong> sur une courte fenêtre glissée dans celle de l'observation (#1687) - la
+moyenne sur <strong>toute</strong> la fenêtre diluait un cri de quelques ms noyé dans plusieurs secondes, d'où des faux
+négatifs qui rendaient l'hydratation d'un vrai passage inopérante avant correction. Le <em>pourquoi</em> de ces
+deux choix est consigné en <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/">ADR 0001</a>
+(identité structurelle) et <a href="../decisions/0002-detection-acoustique-energie-de-pointe/">ADR 0002</a> (énergie de pointe).</p>
+<p><strong>Principes.</strong> Fail-safe (ne pas pouvoir prouver = ne pas faire), <strong>honnêteté</strong> (dire <em>avec quelle
+force</em> on a conclu), et refus de la fausse alternative « preuve parfaite ou rien ».</p>
+<hr />
+<h2 id="issue-dappel-triee-le-transport-ne-parle-plus-par-silence">Issue d'appel triée (le transport ne parle plus par silence)<a class="headerlink" href="#issue-dappel-triee-le-transport-ne-parle-plus-par-silence" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Un client HTTP qui « dégrade proprement » convertit tout échec en <code>Optional.empty()</code>
+ou liste vide. C'est le bon réflexe pour <strong>un seul</strong> cas : « je ne suis pas connecté » (l'application
+vit hors ligne). Pour les autres, c'est une perte d'information catastrophique : un <code>422</code> devient une
+collection vide (l'import mort et muet de #1277, 4806 observations invisibles), un délai réseau
+devient « aucun résultat », et une panne au milieu d'une pagination rend un <strong>préfixe silencieux</strong>
+pire que le vide. L'appelant ne peut ni informer l'utilisateur, ni décider correctement.</p>
+<p><strong>La solution.</strong> Un type scellé qui rend l'issue <strong>exhaustive à la compilation</strong> :
+<code>ReponseApi&lt;T&gt;</code> = <code>Succes(valeur)</code> / <code>NonConnecte</code> / <code>Injoignable(cause)</code> / <code>Refuse(statut, corps)</code>.
+Un <code>switch</code> qui oublie une branche ne compile pas — la famille de bugs #1277, c'est « un cas auquel
+personne n'a pensé ». Le comportement commun vit dans les variantes par <strong>override</strong> (<code>enOptionnel</code>,
+<code>transformer</code>, <code>lireAvec</code>, <code>puis</code>, <code>echec</code>), jamais par <code>switch (this)</code>. Là où le silence reste le
+comportement <strong>voulu</strong>, c'est l'appelant qui le choisit, explicitement : <code>enOptionnel()</code>.</p>
+<p><strong>Dans cette application</strong> (#1284). <code>TransportVigieChiro</code> émet et trie ; <code>ClientVigieChiro</code> nomme les
+endpoints ; <code>PaginationEve</code> est <strong>tout-ou-rien</strong> (l'issue de la page fautive, jamais un préfixe).
+Conséquences : la modale de connexion distingue « jeton refusé (401) » de « plateforme injoignable » ;
+l'import et le suivi du traitement disent pourquoi ; la <strong>garde anti-purge</strong> des rapprocheurs est
+inchangée mais sa cause remonte au bandeau ; la garde anti-relance du dépôt devient <strong>fail-safe</strong> (état
+illisible sans <code>--forcer</code> = pas de lancement) ; la vérification d'un dépôt hors ligne lève
+« vérification impossible » au lieu d'un faux « tout manquant ». Le <strong>contrat live</strong> verrouille
+<code>max_results=1000 → Refuse(422)</code> : la sonde qui aurait rendu #1277 bruyante par construction.</p>
+<p><strong>Principes.</strong> Honnêteté (une panne n'est pas une donnée), <strong>exhaustivité par le compilateur</strong> plutôt
+que par la relecture, fail-safe (ne pas pouvoir prouver qu'une action destructrice est sûre = ne pas
+la faire), et un <strong>vocabulaire unique</strong> des messages d'échec (<code>ReponseApi.echec()</code>).</p>
+<hr />
+<h2 id="le-verdict-porte-son-message-resultat-scelle-message-par-variante">Le verdict porte son message (résultat scellé, message par variante)<a class="headerlink" href="#le-verdict-porte-son-message-resultat-scelle-message-par-variante" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Une opération à plusieurs issues renvoie souvent un rapport « à trous » :
+<code>(boolean succes, String motif, Rapport rapport)</code>, dont l'appelant doit deviner quels champs sont
+renseignés dans quel cas. Chaque appelant re-tricote alors le même <code>if</code> — et chaque <strong>surface</strong> (IHM,
+CLI) invente sa propre phrase pour dire la même chose. Les deux finissent par diverger.</p>
+<p><strong>La solution.</strong> Un type <strong>scellé</strong> dont chaque variante porte <strong>ce qui la caractérise</strong>, et <strong>sait le
+dire</strong>. Le message n'est pas dans l'appelant : il est dans le verdict.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">sealed</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">ResultatReset</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="nf">codeSortie</span><span class="p">();</span><span class="w">     </span><span class="c1">// 0 fait · 2 refusé (distinct de 1, l&#39;échec d&#39;exécution)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">String</span><span class="w"> </span><span class="nf">enClair</span><span class="p">();</span><span class="w">     </span><span class="c1">// ce qu&#39;il faut dire à l&#39;utilisateur</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="kd">record</span> <span class="nc">Refuse</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">motif</span><span class="p">,</span><span class="w"> </span><span class="n">BilanRecuperabilite</span><span class="w"> </span><span class="n">bilan</span><span class="p">)</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ResultatReset</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="kd">record</span> <span class="nc">Fait</span><span class="p">(</span><span class="n">BilanSauvegarde</span><span class="w"> </span><span class="n">sauvegarde</span><span class="p">,</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="n">filet</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">passagesReconstruits</span><span class="p">,</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">                </span><span class="n">RapportAudit</span><span class="w"> </span><span class="n">audit</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">aRetablir</span><span class="p">)</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">ResultatReset</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="err">…</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="p">}</span>
+</code></pre></div>
+<p>L'IHM <strong>affiche</strong> <code>enClair()</code>, la CLI <strong>affiche</strong> <code>enClair()</code> et sort sur <code>codeSortie()</code>. Aucune des deux
+ne traduit un état en phrase : la parité CLI ↔ IHM est <strong>structurelle</strong>, pas maintenue à la main.</p>
+<p><strong>Dans cette application.</strong> <code>VerdictCarre</code> (#733 : <code>Concorde</code> / <code>Diverge</code> / <code>HorsGrille</code> / <code>Indisponible</code> — dont
+le message <strong>vide</strong> exprime le silence hors ligne) et <code>ResultatReset</code> (#1419). Même famille que
+<a href="#issue-dappel-triee-le-transport-ne-parle-plus-par-silence">l'issue d'appel triée</a>, appliquée aux
+<strong>opérations locales</strong> plutôt qu'au transport : exhaustivité par le compilateur, comportement par
+<strong>override</strong> et jamais par <code>switch (this)</code>.</p>
+<hr />
+<h2 id="refuser-avant-de-detruire-lordre-des-garde-fous-est-la-garantie">Refuser avant de détruire (l'ordre des garde-fous est la garantie)<a class="headerlink" href="#refuser-avant-de-detruire-lordre-des-garde-fous-est-la-garantie" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Une opération destructrice qui vérifie ses conditions <strong>au fil de l'eau</strong> laisse, au
+premier obstacle, un état <strong>à moitié détruit</strong> — le pire des deux mondes. Et l'utilisateur, lui, ne
+distingue plus « ça a refusé » de « ça a planté en route ».</p>
+<p><strong>La solution.</strong> Tous les refus <strong>avant</strong> la première écriture, et un refus qui <strong>le dit</strong> : <em>rien n'a été
+modifié</em>. L'ordre des étapes n'est pas une commodité de lecture, c'est <strong>la garantie</strong>.</p>
+<p>Le reset guidé (#1419) en est le cas d'école :</p>
+<ol>
+<li><strong>dire ce qu'on perdrait</strong> — une nuit dont l'audio n'est ni sur le disque ni sur le serveur est perdue
+   pour de bon ; sans acceptation <strong>explicite</strong>, on s'arrête là ;</li>
+<li><strong>vérifier que la plateforme répond</strong> — la base neuve se <strong>repeuple depuis le serveur</strong> : le détruire
+   alors qu'il est injoignable laisserait un workspace <strong>vide</strong>. Aucune sauvegarde ne rendrait ça
+   acceptable, et c'est le garde-fou décisif ;</li>
+<li><strong>sauvegarder</strong> ; 4. <strong>base neuve</strong> ; 5. <strong>repeupler</strong> ; 6. <strong>auditer</strong>.</li>
+</ol>
+<p>Le pendant, pour une écriture <strong>irréversible</strong> : <strong>le serveur d'abord, la base ensuite</strong> (#1418). Le
+message n'est écrit localement qu'<strong>après</strong> que le serveur l'a accepté. L'inverse laisserait, au moindre
+refus, un message que l'observateur <strong>croirait envoyé</strong> et que le validateur ne verrait <strong>jamais</strong>.</p>
+<p><strong>Corollaires.</strong></p>
+<ul>
+<li>Une <strong>confirmation nomme ce qu'on perd</strong> : elle énumère les nuits, ou cite le texte qui va partir. Un
+  « êtes-vous sûr ? » générique n'est <strong>pas un consentement</strong> — on ne consent qu'à ce qu'on a lu. C'est ce
+  message-là que le test vérifie, pas le fait qu'un dialogue s'ouvre.</li>
+<li>Une <strong>écriture définitive mérite d'être désactivable</strong>. <code>discuter-validateur</code> (#1418) est une
+  fonctionnalité à part de la lecture du fil : couper l'écriture laisse la lecture intacte. Lire est sans
+  conséquence ; écrire ne se retire pas.</li>
+<li>Un <strong>refus a son propre code de sortie</strong> (<code>2</code>), distinct du succès (<code>0</code>) et de l'échec d'exécution
+  (<code>1</code>) : un script peut ainsi refuser d'enchaîner.</li>
+</ul>
+<hr />
+<h2 id="un-invariant-deux-politiques-de-surface-lunification-dun-geste-1656">Un invariant, deux politiques de surface (l'unification d'un geste, #1656)<a class="headerlink" href="#un-invariant-deux-politiques-de-surface-lunification-dun-geste-1656" title="Permanent link">&para;</a></h2>
+<p>Quand un même geste métier vit sur <strong>plusieurs surfaces</strong> (IHM, CLI) et se met à diverger, on ne le
+recopie pas : on remonte la <strong>règle de fond</strong> à un seul endroit (le service), et chaque surface n'en
+porte qu'une <strong>présentation mince</strong>.</p>
+<p>Le chantier « importer les observations d'un passage » (#1656) est le cas d'école : la même décision
+« un seul jeu par passage » était réimplémentée <strong>cinq fois</strong>, dont deux qui plantaient sur la contrainte
+<code>UNIQUE</code>. Après unification :</p>
+<ul>
+<li><strong>la règle</strong> vit une seule fois, dans le <strong>noyau de service</strong> (<code>NoyauImportObservations</code>) : hors
+  remplacement, refuser <strong>avant l'INSERT</strong> (cf. « Refuser avant de détruire ») ;</li>
+<li><strong>la surface IHM</strong> la rend par une <strong>question</strong> (<code>DecisionRemplacementJeu</code> : détecter → confirmer →
+  remplacer | abandonner), partagée par les fronts de « Sons &amp; validation » ;</li>
+<li><strong>la surface CLI</strong> la rend par un <strong>refus d'usage</strong> (<code>GardeJeuExistant</code>, code <code>2</code>, « relancez avec
+  <code>--remplacer</code> »), partagé par les commandes d'import.</li>
+</ul>
+<p>Le test à se poser est celui de la <strong>sur-unification</strong> : fondre les deux présentations en une seule
+serait une erreur (un dialogue interactif et un code de sortie ne sont pas le même objet). Le bon
+découpage : <strong>une règle, deux adaptateurs</strong>. Une capacité présente d'un seul côté (ou rendue
+différemment de chaque côté) est une dette invisible ; la règle centralisée est la garantie qu'elles ne
+redivergeront pas.</p>
+<hr />
+<h2 id="package-by-feature-tranches-verticales">Package-by-feature (tranches verticales)<a class="headerlink" href="#package-by-feature-tranches-verticales" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Une organisation <strong>par couche</strong> (<code>controllers/</code>, <code>services/</code>, <code>dao/</code>…) éparpille une
+même fonctionnalité dans tout le projet : pour modifier un écran, on touche partout.</p>
+<p><strong>La solution.</strong> Regrouper le code <strong>par fonctionnalité</strong> : <code>sites/</code>, <code>passage/</code>… chacun contenant ses
+4 couches. Une feature devient une <strong>tranche verticale</strong> autonome.</p>
+<p><strong>Dans cette application.</strong> Les 10 features sont des paquets autonomes ; le socle <code>commun/</code> porte le partagé
+(chrome, persistance, DI). On ouvre, modifie ou supprime une feature sans naviguer ailleurs.</p>
+<p><strong>Principes.</strong> <strong>Forte cohésion / faible couplage</strong> ; <strong>OCP</strong> à l'échelle du produit (ajouter une
+feature ≈ ajouter un paquet, sans toucher aux autres — garanti par
+<code>pas_de_dependance_inter_feature_vers_la_vue</code>).</p>
+<hr />
+<h2 id="injection-de-dependances-composition-root">Injection de dépendances + Composition Root<a class="headerlink" href="#injection-de-dependances-composition-root" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Si chaque objet <strong>crée</strong> ses dépendances (<code>new ServiceX()</code>), le graphe est figé,
+impossible à substituer en test, et le câblage est dispersé partout.</p>
+<p><strong>La solution.</strong> Les objets <strong>reçoivent</strong> leurs dépendances (constructeur), et <strong>un seul</strong> endroit, la
+<em>Composition Root</em>, assemble le graphe complet.</p>
+<p><strong>Dans cette application.</strong> <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di/RacineInjecteur.java"><code>RacineInjecteur</code></a>
+installe le socle + les 10 modules de feature (Guice). Même les controllers FXML sont injectés (cf.
+<em>Factory</em> plus bas). En test, on substitue une base jetable sans changer le code de production.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">Injector</span><span class="w"> </span><span class="nf">creer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Guice</span><span class="p">.</span><span class="na">createInjector</span><span class="p">(</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">CommunModule</span><span class="p">(),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PersistenceModule</span><span class="p">(),</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="k">new</span><span class="w"> </span><span class="n">SitesModule</span><span class="p">(),</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PassageModule</span><span class="p">(),</span><span class="w"> </span><span class="cm">/* … */</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">RechercheModule</span><span class="p">());</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>Détails et diagramme de séquence : <a href="../injection/">Injection (Guice)</a>.</p>
+<p><strong>Principes.</strong> <strong>DIP</strong> (on dépend d'abstractions, le câblage est externalisé) et <strong>IoC</strong> (« ne nous
+appelez pas, nous vous appellerons » : le conteneur instancie).</p>
+<hr />
+<h2 id="singleton-gere-par-le-conteneur">Singleton (géré par le conteneur)<a class="headerlink" href="#singleton-gere-par-le-conteneur" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Certaines ressources doivent être <strong>uniques</strong> dans toute l'application : une seule
+base, un seul service de navigation. Les multiplier créerait des incohérences (deux connexions, deux
+historiques).</p>
+<p><strong>La solution.</strong> Plutôt que le Singleton « maison » (constructeur privé + champ statique, difficile à
+tester et à substituer), on <strong>délègue l'unicité au conteneur</strong> : <code>@Singleton</code> Guice.</p>
+<p><strong>Dans cette application.</strong> <code>SourceDeDonnees</code>, <code>Navigateur</code>, les <code>Navigation*</code> et la <strong>plupart des providers
+de DAO et de services</strong> des features sont <code>@Singleton</code> (~70 bindings) : une seule instance par
+injecteur, mais <strong>toujours injectée</strong> (donc remplaçable en test).</p>
+<p><strong>Principes.</strong> Évite l'<strong>état statique global</strong> tout en restant <strong>testable</strong> : l'unicité est une
+décision de <strong>câblage</strong>, pas une contrainte gravée dans la classe.</p>
+<hr />
+<h2 id="separated-interface-contrats-ouvrir">Separated Interface (contrats <code>Ouvrir*</code>)<a class="headerlink" href="#separated-interface-contrats-ouvrir" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Si <code>sites</code> appelait directement <code>passage.view.NavigationPassage</code>, les features
+seraient <strong>couplées</strong> entre elles — impossible de les faire évoluer indépendamment (et la règle
+ArchUnit l'interdit).</p>
+<p><strong>La solution.</strong> Publier une <strong>interface dans le socle</strong>, l'implémenter dans la feature cible :
+l'appelant dépend de l'<strong>abstraction</strong>, jamais de l'implémentation. La dépendance est <strong>inversée</strong>.</p>
+<p><strong>Dans cette application.</strong> <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/OuvrirPassage.java"><code>OuvrirPassage</code></a>
+(socle) est implémenté par
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/view/NavigationPassage.java"><code>NavigationPassage</code></a>
+(feature <code>passage</code>) et <strong>bindé</strong> par <code>PassageModule</code>. <code>sites</code> injecte <code>OuvrirPassage</code>.</p>
+<pre class="mermaid"><code>classDiagram
+    class OuvrirPassage {
+        &lt;&lt;interface&gt;&gt;
+        +ouvrir(Long, ContexteSite)
+    }
+    class NavigationPassage
+    SiteDetailController ..&gt; OuvrirPassage : injecte
+    NavigationPassage ..|&gt; OuvrirPassage : implémente
+    note for OuvrirPassage "dans le socle commun.view"</code></pre>
+<p><strong>Principes.</strong> <strong>DIP</strong> (les deux features dépendent du contrat, pas l'une de l'autre) et <strong>OCP</strong>
+(brancher une nouvelle implémentation sans modifier l'appelant). Tous les contrats : <code>OuvrirSite</code>,
+<code>OuvrirPassage</code>, <code>OuvrirVerification</code>, <code>OuvrirImportation</code>, <code>OuvrirLot</code>, <code>OuvrirValidation</code>,
+<code>OuvrirDiagnostic</code>. Voir aussi <a href="../navigation/#ouvrir-une-autre-feature-sans-en-dependre">Navigation</a>.</p>
+<hr />
+<h2 id="facade-navigation">Facade (<code>Navigation*</code>)<a class="headerlink" href="#facade-navigation" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Ouvrir un écran demande plusieurs gestes : charger le FXML, brancher la
+<code>controllerFactory</code>, ouvrir le controller sur son contexte, empiler dans le <code>Navigateur</code>. Répétés tels
+quels chez chaque appelant, ils seraient verbeux et fragiles.</p>
+<p><strong>La solution.</strong> Une <strong>façade</strong> par feature expose une opération <strong>simple</strong> (<code>ouvrir(...)</code>) qui
+orchestre ces gestes en interne.</p>
+<p><strong>Dans cette application.</strong> <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/view/NavigationPassage.java"><code>NavigationPassage</code></a>
+(et ses homologues <code>Navigation*</code>) implémente le contrat <code>Ouvrir*</code> en <strong>cachant</strong> le <code>FXMLLoader</code> et le
+<code>Navigateur</code> : l'appelant ne voit qu'<code>ouvrir(idPassage, contexte)</code>. Le <code>Navigateur</code> lui-même est une
+façade sur la zone centrale du chrome + l'historique.</p>
+<p><strong>Principes.</strong> <strong>SRP</strong> (la mécanique d'ouverture est encapsulée) et <strong>faible couplage</strong> (l'appelant
+ignore FXML / Navigateur).</p>
+<hr />
+<h2 id="plugin-extension-multibinder">Plugin / Extension (Multibinder)<a class="headerlink" href="#plugin-extension-multibinder" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> L'accueil affiche une carte pour <strong>certaines</strong> features (et un compteur de tableau de
+bord pour d'autres). Si le <code>MainController</code> connaissait chacune, ajouter une contribution l'obligerait
+à <strong>se modifier</strong> à chaque fois.</p>
+<p><strong>La solution.</strong> Le socle déclare un <code>Set&lt;T&gt;</code> que <strong>les features intéressées alimentent</strong> (multibinding
+Guice), sans que le socle connaisse les contributeurs. Il injecte l'ensemble et l'agrège.</p>
+<p><strong>Dans cette application.</strong> Quatre points d'extension suivent ce patron, chacun avec un helper du DSL
+<a href="../injection/#ce-que-publie-un-module-de-feature"><code>ModuleDeFeature</code></a> : <code>ActiviteAccueil</code> (carte
+d'accueil, <code>activite(...)</code>), <code>IndicateurAccueil</code> (compteur, <code>indicateur(...)</code>), <code>OngletReglages</code>
+(onglet de l'écran Réglages, <code>ongletReglages(...)</code>) et <code>ActionMenu</code> (entrée du menu ☰, <code>actionMenu(...)</code>).
+Le contrat est <strong>agnostique de JavaFX</strong> (dans <code>commun/view</code>), la feature ne fournit que des données
+(un descripteur, un libellé…), et c'est le socle (<code>MainController</code>, <code>EcranReglagesController</code>,
+<code>ConstructeurMenuOutils</code>) qui construit les widgets. Exemple : une bascule de menu déclare une
+<code>BooleanProperty</code> liée à <code>ReglagesReactifs</code> ; le socle en fait une <code>CheckMenuItem</code>.</p>
+<pre class="mermaid"><code>classDiagram
+    class MainController {
+        Set~ActiviteAccueil~ activites
+    }
+    class ActiviteAccueil {
+        &lt;&lt;interface&gt;&gt;
+    }
+    MainController o-- ActiviteAccueil : agrège
+    ActiviteAccueil &lt;|.. ActiviteMesSites
+    ActiviteAccueil &lt;|.. ActiviteImporterNuit</code></pre>
+<p><strong>Principes.</strong> <strong>OCP</strong> par excellence : le chrome est <strong>fermé à la modification</strong> mais <strong>ouvert à
+l'extension</strong> (une nouvelle carte = un nouveau binding, zéro ligne touchée dans le socle).</p>
+<p><strong>Feature = plugin.</strong> Le patron va jusqu'au bout : les modules de feature sont eux-mêmes
+<strong>auto-découverts</strong> par <code>RacineInjecteur</code> (<code>ServiceLoader&lt;ModuleDeFeature&gt;</code>, cf.
+<a href="../injection/#la-racine-de-composition">Injection</a>). Une feature complète (DAO, services, carte,
+compteur, réglages, entrée de menu) s'ajoute donc <strong>sans toucher une seule ligne du socle ni de la
+racine de composition</strong> — juste un <code>XxxModule extends ModuleDeFeature</code> déclaré comme service.</p>
+<hr />
+<h2 id="interfaces-de-role-fines-isp">Interfaces de rôle fines (ISP)<a class="headerlink" href="#interfaces-de-role-fines-isp" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Une grosse interface « écran » avec <em>garde de sortie + fil d'Ariane + rafraîchissement
++ …</em> forcerait <strong>chaque</strong> écran à tout implémenter, même ce qu'il n'utilise pas.</p>
+<p><strong>La solution.</strong> De petites interfaces <strong>optionnelles</strong>, à responsabilité unique, qu'un écran
+implémente <strong>seulement si</strong> la capacité le concerne. Le <code>Navigateur</code> les détecte par <code>instanceof</code>.</p>
+<p><strong>Dans cette application.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Interface (1 rôle)</th>
+<th>Implémentée par les écrans qui…</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/GardeQuitter.java"><code>GardeQuitter</code></a></td>
+<td>ont une <strong>saisie non enregistrée</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/EmplacementNavigation.java"><code>EmplacementNavigation</code></a></td>
+<td>ont une <strong>place hiérarchique</strong> (fil d'Ariane)</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/RafraichirAuRetour.java"><code>RafraichirAuRetour</code></a></td>
+<td>affichent des <strong>données mutables</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Un écran lecture seule n'implémente <strong>aucune</strong> des trois.</p>
+<p><strong>Principes.</strong> <strong>ISP</strong> (aucun écran n'est forcé d'implémenter ce qu'il n'utilise pas) et <strong>OCP</strong> (le
+Navigateur honore de nouvelles capacités sans connaître les écrans).</p>
+<hr />
+<h2 id="dao-data-access-object">DAO (Data Access Object)<a class="headerlink" href="#dao-data-access-object" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Du SQL <code>PreparedStatement</code> mélangé à la logique métier ou à l'IHM est impossible à
+tester, à réutiliser, et viole la séparation des couches.</p>
+<p><strong>La solution.</strong> Isoler l'accès aux données derrière des objets dédiés ; le reste du code ignore JDBC
+et dialogue avec des <strong>services</strong>.</p>
+<p><strong>Dans cette application.</strong> Chaque entité a son DAO dans <code>*/model/dao/</code>. La règle ArchUnit <code>view_sans_jdbc</code>
+<strong>interdit</strong> à l'IHM de toucher <code>model.dao</code> ou <code>java.sql</code>.</p>
+<p><strong>Principes.</strong> <strong>SRP</strong> (la persistance est une responsabilité à part) et <strong>DIP</strong> (le métier dépend
+d'abstractions de données, pas de l'API JDBC).</p>
+<hr />
+<h2 id="template-method-daogenerique">Template Method (<code>DaoGenerique</code>)<a class="headerlink" href="#template-method-daogenerique" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Tous les DAO réécriraient la même mécanique : ouvrir une connexion, exécuter, itérer
+le <code>ResultSet</code>, fermer. Beaucoup de <strong>duplication</strong>.</p>
+<p><strong>La solution.</strong> Une classe de base fixe le <strong>squelette</strong> de l'algorithme (<code>findAll</code>, <code>findById</code>,
+<code>delete</code>) et <strong>délègue</strong> les détails variables à des méthodes que les sous-classes remplissent.</p>
+<p><strong>Dans cette application.</strong> <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence/DaoGenerique.java"><code>DaoGenerique&lt;T, ID&gt;</code></a>
+fournit les opérations communes ; un DAO concret donne seulement <code>table()</code>, <code>colonneCle()</code> et son
+<code>RowMapper</code>.</p>
+<pre class="mermaid"><code>classDiagram
+    class DaoGenerique {
+        &lt;&lt;abstract&gt;&gt;
+        +findAll()
+        +findById(id)
+        +delete(id)
+        #table()
+        #colonneCle()
+        #rowMapper()
+    }
+    class SiteDao
+    class PassageDao
+    DaoGenerique &lt;|-- SiteDao
+    DaoGenerique &lt;|-- PassageDao</code></pre>
+<p><strong>Principes.</strong> <strong>DRY</strong> (la boucle <code>ResultSet</code> n'existe qu'une fois), <strong>OCP</strong> (un nouveau DAO <strong>étend</strong>
+sans modifier la base) et <strong>LSP</strong> (tout <code>DaoGenerique</code> concret est substituable à l'abstraction).</p>
+<hr />
+<h2 id="strategy-rowmapper-generation-de-selection">Strategy (<code>RowMapper</code>, génération de sélection)<a class="headerlink" href="#strategy-rowmapper-generation-de-selection" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Une partie d'un algorithme <strong>varie</strong> (comment lire une ligne ? comment choisir des
+séquences ?) alors que le reste est stable. Un <code>if/else</code> géant serait fragile et fermé.</p>
+<p><strong>La solution.</strong> Encapsuler la partie variable derrière une <strong>abstraction interchangeable</strong>, injectée
+ou passée au client.</p>
+<p><strong>Dans cette application.</strong> Deux usages :</p>
+<ul>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence/RowMapper.java"><code>RowMapper&lt;T&gt;</code></a>
+  (<code>@FunctionalInterface</code>) : « transformer <strong>une</strong> ligne en entité » varie par DAO (souvent une
+  lambda) ; l'itération reste dans <code>DaoGenerique</code>.</li>
+</ul>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@FunctionalInterface</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">RowMapper</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/qualification/model/GenerateurSelection.java"><code>GenerateurSelection</code></a> :
+  <code>selectionner(sequences, methode, taille)</code> choisit un sous-ensemble selon la <code>MethodeSelection</code>
+  (répartition temporelle vs aléatoire vs manuel) — une <strong>règle pure</strong>, sans base ni IHM.</li>
+</ul>
+<pre class="mermaid"><code>classDiagram
+    class RowMapper {
+        &lt;&lt;interface&gt;&gt;
+        +mapper(ResultSet) T
+    }
+    class DaoGenerique
+    DaoGenerique o-- RowMapper : utilise (stratégie)</code></pre>
+<p><strong>Principes.</strong> <strong>OCP</strong> (ajouter une stratégie sans modifier l'appelant), <strong>SRP</strong> (chaque stratégie est
+une règle isolée, <strong>testable sans persistance ni IHM</strong> — objectif réutilisation O6).</p>
+<hr />
+<h2 id="table-de-suivi-par-unite-socle-commun">Table de suivi par unité (socle <code>commun</code>)<a class="headerlink" href="#table-de-suivi-par-unite-socle-commun" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Trois opérations longues (génération d'archives #820, import par fichier #947, dépôt
+VigieChiro #983) doivent montrer l'avancement <strong>de chaque unité de travail</strong> (état coloré + barre),
+alimenté depuis des fils d'arrière-plan, parfois dans le désordre (travail parallèle).</p>
+<p><strong>La solution.</strong> Un socle en trois couches, spécialisé par feature :</p>
+<ul>
+<li><code>commun.viewmodel</code> : <code>EtatUnite</code> (en attente / en cours / terminée / échec), <code>LigneSuivi</code> (ligne
+  observable extensible), <code>SuiviLignes&lt;L&gt;</code> (pilote générique, ciblage par numéro, tolérant aux
+  événements inconnus ou dans le désordre) ;</li>
+<li><code>commun.view</code> : <code>TableSuivi</code> (colonnes <code>#</code> / spécifiques / Progression, rangées colorées
+  <code>.ligne-suivi.etat-…</code> dans <code>design.css</code>) + <code>CelluleProgressionUnite</code> (barre vive ou icône + libellé,
+  raison d'échec en infobulle) ;</li>
+<li>côté feature : une interface d'événements métier (<code>SuiviArchives</code>, <code>SuiviFichiers</code>, <code>SuiviDepot</code>,
+  chacune avec sa variante <code>inerte()</code>), un <strong>relais</strong> qui rejoue chaque événement sur le fil JavaFX
+  (<code>Platform.runLater</code>), et une spécialisation <code>SuiviLignesXxx extends SuiviLignes&lt;LigneXxx&gt;</code> qui
+  traduit les événements en mutations observables.</li>
+</ul>
+<p><strong>La règle.</strong> Toute nouvelle opération longue « par unité » réutilise ce socle : définir l'interface
+d'événements (+ <code>inerte()</code>), la ligne et le pilote spécialisés, le relais fil JavaFX — jamais une
+table ad hoc.</p>
+<h2 id="occupation-dun-ecran-pendant-un-traitement-long-socle-commun">Occupation d'un écran pendant un traitement long (socle <code>commun</code>)<a class="headerlink" href="#occupation-dun-ecran-pendant-un-traitement-long-socle-commun" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Un traitement lourd (agrégats, inspection de dossier, appel réseau) exécuté
+<strong>synchrone sur le fil JavaFX</strong> fige l'IHM sans feedback ; un <code>setCursor(WAIT)</code> n'y suffit pas, fil
+bloqué. Le patron correct (thread virtuel → travail → <code>Platform.runLater</code>) était recopié écran par
+écran, avec le piège récurrent des mutations hors fil JavaFX (« clic figé »).</p>
+<p><strong>La solution.</strong> Deux briques de <code>commun.view</code>, à composer :</p>
+<ul>
+<li><code>ExecuteurTache</code> (interface <code>@ImplementedBy</code> synchrone) : <code>executer(Supplier travail, Consumer
+  succès, Consumer échec)</code> exécute le travail <strong>hors du fil JavaFX</strong> puis applique résultat/erreur
+  <strong>sur</strong> le fil JavaFX. <code>ExecuteurTacheAsynchrone</code> (thread virtuel + <code>runLater</code>) en production ;
+  <code>ExecuteurTacheSynchrone</code> (défaut) rend les tests déterministes. Sœur d'<code>ExecuteurFiche</code>.</li>
+<li><code>IndicateurOccupation</code> : superpose sur un <code>StackPane</code> hôte un voile + roue + libellé « … en
+  cours » (<code>enCoursProperty</code>, styles <code>.occupation-*</code> dans <code>design.css</code>), et pilote un <code>ExecuteurTache</code>
+  via <code>occuper(libellé, travail, succès, échec)</code>. Le voile capte les clics le temps du traitement.</li>
+<li><code>OccupationChrome</code> (#1215) : la déclinaison <strong>chrome entier</strong> pour les traitements du menu « ☰ »
+  qui ne concernent aucun écran (sauvegarde / restauration de la base, purge des originaux) : voile
+  sur la racine de la fenêtre, et <strong>opération critique (#906) posée le temps du travail</strong> (fermer
+  l'application en pleine copie déclenche l'avertissement du socle). Installée par le
+  <code>MainController</code>, consommée par injection dans les <code>ActionMenu</code>.</li>
+<li><code>DialogueProgression</code> (#1597) / port <code>SuiviOperation</code> (#1622) : la déclinaison <strong>modale à barre de
+  progression annulable</strong>, pour les opérations <strong>longues</strong> dont l'utilisateur veut voir l'avancement et
+  pouvoir renoncer (reconstruction, réactivation avec ancrage, import des observations). Là où
+  <code>IndicateurOccupation</code> pose un voile opaque (« ça travaille »), la modale <strong>dit où on en est</strong> (barre
+  déterminée + libellé d'étape + ETA) et <strong>laisse annuler</strong> (bouton « Annuler » câblé sur le jeton). Elle
+  pilote le même <code>ExecuteurTache</code> (progression + annulation ci-dessous). Le port <code>SuiviOperation</code> rend le
+  geste <strong>testable sans fenêtre</strong> : un double <strong>synchrone</strong> exécute le travail sans ouvrir de <code>Stage</code>, si
+  bien que le déclenchement s'éprouve <strong>hors du fil JavaFX</strong>.</li>
+</ul>
+<p><strong>Opérations longues « riches » (#1252).</strong> Pour les traitements qui diffusent leur avancement ou
+s'annulent, le socle étend <code>ExecuteurTache</code> sans toucher aux écrans déjà migrés :</p>
+<ul>
+<li><strong>progression déterminée</strong> : <code>relaisProgression(application)</code> fabrique le <code>Consumer&lt;Progression&gt;</code> à
+  passer au service ; chaque point revient sur le fil JavaFX (immédiat en test). Pour tout autre
+  événement de suivi (table par unité, cf. section précédente), <code>surFilJavaFx()</code> fournit l'<code>Executor</code>
+  du fil JavaFX - les relais de suivi n'ont plus à recopier <code>Platform.runLater</code> ;</li>
+<li><strong>annulation coopérative</strong> : le <strong>jeton appartient à l'appelant</strong> (<code>commun.model.JetonAnnulation</code>,
+  câblé sur le bouton « Annuler » de l'écran). Deux styles au choix du travail : <code>leverSiAnnule()</code>
+  lève <code>OperationAnnuleeException</code>, que la surcharge <code>executer(travail, succès, annule, échec)</code>
+  conclut par le callback <code>annule</code> (jamais par <code>échec</code>) ; ou bien le moteur lit <code>estAnnule()</code> /
+  <code>jeton::estAnnule</code> et <strong>rend un bilan partiel honnête</strong> par le chemin de succès (patron du dépôt
+  #1044 : jamais d'unité fantôme, la reprise ne renvoie que le manquant). Jamais d'interruption
+  brutale de thread ;</li>
+<li><strong>désactivation d'un bouton pendant la tâche</strong> : pas d'API dédiée, un binding suffit -
+  <code>bouton.disableProperty().bind(occupation.enCoursProperty())</code> (patron posé par #1254 sur M-Audit).
+  Plus jamais de <code>setDisable(true/false)</code> posé à la main autour de l'appel.</li>
+</ul>
+<p><strong>Testabilité de l'annulation en synchrone.</strong> L'exécuteur synchrone n'empêche pas de tester
+l'annulation : le jeton appartenant à l'appelant, le test l'<strong>annule avant de déclencher</strong>
+l'opération et vérifie l'arrêt propre au premier point de contrôle (callback <code>annule</code>, ni succès ni
+échec) - c'est le contrat coopératif qui est testé, la simultanéité réelle relevant de l'E2E.</p>
+<p><strong>La règle.</strong> Toute opération longue d'un écran passe par le socle — <code>IndicateurOccupation</code> (voile) pour
+les traitements brefs, <code>DialogueProgression</code> (modale) quand l'avancement mérite d'être montré et
+l'opération annulée — l'échec étant routé vers le filet d'erreurs de l'écran (#795), jamais un
+<code>Thread.ofVirtual()</code> + <code>runLater</code> recopié à la main, y compris pour la progression et l'annulation
+(surcharges ci-dessus). Le déport écran par
+écran (EPIC #793 puis reliquat #1316) est <strong>terminé</strong> : plus aucun <code>Thread.ofVirtual</code> ne vit hors du
+socle, tout nouvel écran naît avec ce patron.</p>
+<p><strong>Piège capture (#1278).</strong> Les outils de capture doivent lier les exécuteurs <strong>synchrones</strong>
+(<code>ModuleCaptureCommun</code>) : <code>ApercuFx</code> snapshotte immédiatement, l'asynchrone de production capturerait
+le voile « Chargement… » à la place du contenu. Le garde-fou <code>CablageInjecteursCaptureTest</code> casse la
+CI si un injecteur de capture résout un exécuteur asynchrone.</p>
+<h2 id="une-modale-de-progression-suivre-son-contenu-et-ne-jamais-se-taire-socle-commun">Une modale de progression : suivre son contenu, et ne jamais se taire (socle <code>commun</code>)<a class="headerlink" href="#une-modale-de-progression-suivre-son-contenu-et-ne-jamais-se-taire-socle-commun" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Une modale est dimensionnée <strong>à son ouverture</strong>, sur le contenu visible à cet instant.
+Tout ce qui paraît ensuite - une seconde barre de phase, un compte rendu de fin, un bandeau - agrandit la
+mise en page sans agrandir la fenêtre : le bas passe sous la ligne de flottaison. Chaque modale s'en était
+tirée pour son seul cas connu, si bien que la réactivation poussait toujours ses <strong>boutons</strong> hors de la
+fenêtre dès que la barre d'ancrage paraissait (#1931).</p>
+<p><strong>La solution.</strong> <code>Modales.suivreLaCroissance(racine, revelations…)</code> prend la racine et les propriétés dont
+un changement fait paraître du contenu ; la fenêtre s'ajuste à chacune. À poser à côté de
+<code>Modales.fermerParEchap</code>, qui répond à la même histoire (un comportement transverse que chaque modale
+réinventait).</p>
+<p>⚠️ <strong>Ajuster, oui ; figer, non.</strong> L'implémentation appelle <code>sizeToScene()</code> et <strong>rien d'autre</strong>. Une version
+qui gardait <code>max(taille avant, taille après)</code> pour « ne jamais rétrécir » a fait passer le <code>Stage</code> en
+dimensionnement <strong>explicite</strong> : il cesse alors définitivement de s'ajuster à ses scènes suivantes. Sans
+effet pour une modale que l'on jette après usage - mais le <code>Stage</code> du harnais TestFX est <strong>partagé par
+toutes les classes de test d'un même fork</strong>, et il est resté figé à 600 px pour toutes les suivantes, dont
+les noeuds tombaient « hors de la fenêtre » très loin de la cause (#1940).</p>
+<p><strong>Les phases sont des blocs.</strong> Quand une opération enchaîne plusieurs phases, chacune est un bloc : son nom
+(<code>.nom-de-phase</code>) et son message sur une ligne, sa barre sur <strong>toute la largeur</strong> en dessous. Le nom, la
+barre et le message sur une même ligne ont deux défauts : le message dispute sa largeur à la barre, si bien
+que la phase au message le plus long se retrouve avec la barre la plus <strong>courte</strong> - or empiler deux barres,
+c'est demander à l'oeil de les comparer ; et le nom redit le début du message au prix de la place prise à la
+barre (#1935, #1946).</p>
+<p><strong>Et la modale ne se tait jamais.</strong> Un intervalle où le travail continue sans qu'aucune barre ne bouge est
+un défaut au même titre qu'une barre figée à 100 % : nommer chaque étape, et <strong>poser le libellé avant</strong> le
+geste qu'il annonce, jamais après. Raison d'être et cas vécu : <a href="../decisions/0027-une-attente-porte-toujours-un-nom/">ADR 0027</a>.</p>
+<h2 id="les-dialogues-dune-action-sont-des-ports-socle-commun">Les dialogues d'une action sont des ports (socle <code>commun</code>)<a class="headerlink" href="#les-dialogues-dune-action-sont-des-ports-socle-commun" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Un <code>showAndWait()</code> <strong>fige</strong> un test TestFX headless (piège connu depuis #798). Toute
+action qui ouvre un dialogue est donc, littéralement, <strong>impossible à cliquer dans un test</strong> : le test
+s'arrête sur la ligne du dialogue et n'en revient jamais. La conséquence a mis longtemps à être
+nommée (#1405) :</p>
+<blockquote>
+<p>On ne testait que le <strong>grisage</strong> des boutons. Jamais leur <strong>effet</strong>.</p>
+</blockquote>
+<p>Et cela portait précisément sur les gestes qu'on veut couvrir : purger les originaux de toutes les
+nuits, restaurer la base, supprimer un passage et sa nuit, réimporter par-dessus les validations de
+l'observateur. Tous irréversibles, tous non testés.</p>
+<p><strong>La solution.</strong> Rendre <strong>remplaçable</strong> chaque forme de dialogue. <strong>Quatre</strong> familles, bâties sur le même
+triplet - un <strong>contrat neutre</strong>, une <strong>implémentation réelle</strong>, un <strong>porteur injectable</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>port</th>
+<th>ce qu'il demande</th>
+<th>implémentation réelle</th>
+<th>double en test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Confirmateur</code> (#1013)</td>
+<td>le <strong>oui/non</strong></td>
+<td><code>ConfirmationNavigation</code></td>
+<td>répond ce qu'on lui dit</td>
+</tr>
+<tr>
+<td><code>Notificateur</code> (#1404)</td>
+<td>le <strong>compte rendu</strong></td>
+<td><code>NotificationDialogue</code></td>
+<td><strong>capture</strong> ce qui a été dit</td>
+</tr>
+<tr>
+<td><code>SelecteurFichier</code> (#1425)</td>
+<td>la <strong>désignation</strong> d'un fichier / dossier</td>
+<td><code>SelecteurFichierJavaFx</code></td>
+<td>répond un chemin, <strong>ou rien</strong> (annulé)</td>
+</tr>
+<tr>
+<td><code>DemandeurDeChoix&lt;T&gt;</code> (#1431)</td>
+<td>le <strong>choix</strong> parmi plusieurs options</td>
+<td><code>ChoixDansListe</code> <strong>ou</strong> <code>ChoixParBoutons</code></td>
+<td>répond une option, <strong>ou rien</strong> (renoncé)</td>
+</tr>
+</tbody>
+</table>
+<p>Chaque <strong>écran</strong> détient <strong>une</strong> instance de chaque porteur qu'il utilise, champ <code>final</code>, exposée à ses
+tests par un accesseur package-private. Ses <strong>collaborateurs</strong> (actions extraites, cartes, helpers)
+<strong>reçoivent</strong> ces porteurs : ils n'en fabriquent pas. Quand un écran en accumule plusieurs, ils forment
+une unité qu'on peut extraire (<code>DialoguesAudio</code> en porte trois).</p>
+<h3 id="annuler-nest-pas-une-option-cest-un-renoncement">« Annuler » n'est pas une option : c'est un renoncement<a class="headerlink" href="#annuler-nest-pas-une-option-cest-un-renoncement" title="Permanent link">&para;</a></h3>
+<p>Le dernier port est né d'un dialogue qui semblait <strong>inclassable</strong> : « Enregistrer / Abandonner /
+<strong>Annuler</strong> », à la sortie du mode édition de la carte. Trois boutons, donc trois issues - et aucun
+contrat existant pour ça. Il aurait fallu inventer un port « à trois branches », taillé pour <strong>un seul
+écran</strong>.</p>
+<p>C'était une erreur de lecture :</p>
+<blockquote>
+<p><strong>« Annuler » n'est pas une troisième décision. C'est le refus de décider.</strong> On reste en édition, rien
+n'est enregistré, rien n'est perdu.</p>
+</blockquote>
+<p>Le dialogue n'a donc pas trois issues : il en a <strong>deux</strong>, plus la possibilité de <strong>renoncer</strong> - ce qui se
+lit <code>Optional.empty()</code>, exactement comme un sélecteur de fichier qu'on ferme. Un seul contrat suffit, et
+il sert <strong>aussi</strong> au choix d'une participation VigieChiro parmi une liste.</p>
+<p>Corollaire à retenir : <strong>renoncer n'est pas abandonner</strong>. Les deux ferment le dialogue ; <strong>un seul
+détruit</strong> le travail de l'utilisateur. Un test doit les distinguer.</p>
+<p><strong>La présentation, elle, reste à l'appelant</strong> - car elle n'est légitimement pas la même :</p>
+<ul>
+<li><code>ChoixDansListe</code> quand les options sont des <strong>données</strong> (on ignore combien de participations le compte
+  contiendra) ;</li>
+<li><code>ChoixParBoutons</code> quand ce sont des <strong>décisions</strong> (enregistrer / abandonner) : deux décisions se lisent
+  d'un coup d'œil, une liste déroulante y serait un <strong>recul</strong>.</li>
+</ul>
+<h3 id="un-formulaire-nest-pas-un-dialogue-cest-une-vue">Un formulaire n'est pas un dialogue : c'est une vue<a class="headerlink" href="#un-formulaire-nest-pas-un-dialogue-cest-une-vue" title="Permanent link">&para;</a></h3>
+<p>Face aux <code>Dialog&lt;T&gt;</code> de saisie (créer un site, personnaliser une sélection d'écoute), la tentation était
+d'ajouter un cinquième port, générique, rendant <code>Optional&lt;T&gt;</code>. <strong>Il ne fallait pas</strong> : l'application avait
+déjà le bon patron, et il était testé.</p>
+<blockquote>
+<p>Un formulaire est une <strong>vue</strong> : FXML + controller + ViewModel + une entrée <code>ouvrirModale*</code> sur la façade
+de navigation.</p>
+</blockquote>
+<p>Cinq modales le suivent (<code>ModalePoint</code>, <code>ModaleSite</code>, <code>RattachementModale</code>, <code>ReconstructionModale</code>,
+<code>ModaleSelection</code>), toutes couvertes par un test TestFX. Les <code>Dialog&lt;T&gt;</code> bâtis à la main étaient les
+<strong>intrus</strong>, et ils cumulaient <strong>trois</strong> défauts liés :</p>
+<ol>
+<li>le <strong>geste</strong> était injouable (<code>showAndWait</code>) ;</li>
+<li>la <strong>validation</strong> vivait dans la vue, donc n'était pas testable non plus (elle devient un binding
+   observable du ViewModel, vérifiable <strong>sans IHM</strong>) ;</li>
+<li>leur <strong>capture de documentation</strong> était une <strong>réplique</strong> reconstruite à la main (<code>CaptureDialogues</code>),
+   faute de <code>.fxml</code> - et elle <strong>avait dérivé</strong> : elle affichait un protocole « Point fixe » là où la vraie
+   valeur est « PointFixeStandard ». La doc mentait, et rien ne pouvait le signaler.</li>
+</ol>
+<p>Le refus métier y gagne aussi : il s'affiche <strong>dans</strong> la modale, à côté du champ fautif, <strong>sans perdre la
+saisie</strong> - là où l'alerte d'après coup obligeait à tout ressaisir.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Écran : un champ final par porteur, un accesseur par porteur.</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ConfirmateurModifiable</span><span class="w"> </span><span class="n">confirmateur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ConfirmateurModifiable</span><span class="p">();</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">NotificateurModifiable</span><span class="w"> </span><span class="n">notificateur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotificateurModifiable</span><span class="p">();</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">confirmateur</span><span class="p">.</span><span class="na">confirmer</span><span class="p">(</span><span class="s">&quot;Supprimer ce site et ses points d&#39;écoute ?&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">viewModel</span><span class="p">.</span><span class="na">supprimerSite</span><span class="p">();</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">notificateur</span><span class="p">.</span><span class="na">notifier</span><span class="p">(</span><span class="n">NiveauNotification</span><span class="p">.</span><span class="na">INFORMATION</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Site supprimé&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;…&quot;</span><span class="p">);</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1">// Test de vue : le geste devient cliquable, et vérifiable JUSQU&#39;À SON EFFET.</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">   </span><span class="c1">// pas « un mock a été appelé » : la ligne a disparu</span>
+</code></pre></div>
+<p><strong>La règle.</strong> Jamais de <code>new Alert(...)</code>, de <code>FileChooser</code> ni de <code>DirectoryChooser</code> dans un contrôleur
+ou une action. Et surtout, la formulation générale - c'est elle qui compte, pas la liste des ports :</p>
+<blockquote>
+<p>Une action ne devient testable que si <strong>tous</strong> ses dialogues sont remplaçables. Il suffit d'en
+<strong>oublier un</strong> pour que le geste reste hors de portée.</p>
+</blockquote>
+<p>C'est ce qui avait échappé jusqu'à #1425 : le <code>Confirmateur</code> et le <code>Notificateur</code> ne suffisaient pas à
+rendre la sauvegarde testable, parce qu'elle <strong>commence</strong> par un sélecteur natif. Le test s'arrêtait à
+la première ligne. Deux ports sur trois, c'est zéro geste testable.</p>
+<p>Deux pièges corollaires, tous deux rencontrés :</p>
+<ul>
+<li><strong>Un porteur que rien n'expose est mort-né.</strong> <code>CartesPointsSite</code> fabriquait son propre
+  <code>ConfirmateurModifiable</code> sans accesseur : le patron était là, mais aucun test ne pouvait le
+  remplacer. Un porteur se <strong>partage depuis l'écran</strong>, il ne se recrée pas.</li>
+<li>
+<p><strong>Une surcharge « production / test » est un troisième idiome pour le même besoin.</strong> <code>audio</code> avait
+  <code>lancer(…)</code> qui fabriquait le vrai dialogue et <code>lancer(…, Confirmateur)</code> pour les tests. Un écran,
+  une paire de porteurs, partagée.</p>
+</li>
+<li>
+<p><strong>Un port qu'on croit manquant peut être un port déjà là.</strong> <code>GestionnaireVues</code> semblait bloqué par son
+  <code>TextInputDialog</code> ; il reçoit en fait son demandeur de nom <strong>par constructeur</strong> depuis toujours, et onze
+  tests s'en servent avec un stub. Vérifier avant d'abstraire.</p>
+</li>
+</ul>
+<p><strong>Ce qui reste en dur</strong> (et c'est légitime) : les <strong>implémentations</strong> des ports elles-mêmes
+(<code>ConfirmationNavigation</code>, <code>NotificationDialogue</code>, <code>SelecteurFichierJavaFx</code>, <code>ChoixDansListe</code>,
+<code>ChoixParBoutons</code>), et le <strong>filet global</strong> d'<code>App.java</code> (exceptions non capturées, #795) - le seul endroit
+où le dialogue <strong>est</strong> la fonction.</p>
+<p><strong>Le contre-exemple à connaître.</strong> Un refus <strong>prévenu par l'affordance</strong> n'a pas de notification à
+tester - il n'arrive jamais. Sur M-Site-detail, « Supprimer » est grisé quand un point porte des
+passages (#789), et <strong>JavaFX n'émet aucune action sur un bouton désactivé</strong> (<code>Button.fire()</code> est un
+no-op). Le <code>catch</code> du refus métier reste comme garde défensive, mais c'est le <strong>grisage</strong> que le test
+doit vérifier : <em>on ne prévient pas après coup ce qu'on a déjà empêché.</em></p>
+<p><strong>Et ce qu'aucun test ne verra jamais.</strong> Trois défauts de ce chantier n'ont été trouvés qu'en <strong>regardant
+une capture</strong> : un libellé tronqué, un emoji qui ne se rend pas (#700), une réplique de dialogue qui avait
+<strong>dérivé du vrai écran</strong>. Un geste testé n'est pas un écran regardé - <a href="../captures/">rendez la capture, et ouvrez-la</a>.</p>
+<h2 id="ecrans-de-donnees-densite-badge-filtres-socle-design-partage">Écrans de données : densité, badge, filtres (socle design partagé)<a class="headerlink" href="#ecrans-de-donnees-densite-badge-filtres-socle-design-partage" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Les onze écrans sont nés à des moments différents, sans référentiel de design commun :
+tables plus ou moins denses, statuts tantôt en texte coloré tantôt en pastille, chaque feature
+recopiant son CSS. Le chantier #686 a unifié la <strong>famille « écrans de données »</strong> (audio, multisite,
+analyse, fiche site, qualification) sur un socle <code>commun/view</code>.</p>
+<p><strong>La solution.</strong> Trois briques réutilisables, plus une feuille de style chargée par tous les écrans :</p>
+<ul>
+<li><code>commun.view.TableDonnees</code> : <code>uniformiser(table)</code> (et <code>uniformiserNavigable</code> pour une table qui
+  répond au clavier) applique la classe CSS <code>table-donnees</code> (hauteur de ligne, padding, en-tête
+  uniques). <strong>Un appel unique</strong> dans le contrôleur garantit la densité partagée ;</li>
+<li><code>commun.view.ColonneBadge</code> : <code>cellule(Function&lt;S, String&gt; classe)</code> fabrique une cellule <strong>pastille</strong>
+  dont la couleur est <strong>dérivée de la donnée de la ligne</strong> (jamais stockée). Les surcharges
+  <code>classe(StatutWorkflow)</code> / <code>classe(Verdict)</code> couvrent les types de <code>commun.model</code> ;</li>
+<li><code>commun.view.design.css</code> : jetons sémantiques (<code>-badge-succes/avertissement/danger/info/neutre-*</code>) et
+  classes <code>.badge-*</code>, <strong>chargée par tous les FXML</strong> (plus de CSS de statut recopié par feature).</li>
+</ul>
+<p><strong>Le piège d'architecture (mapping feature → classe CSS).</strong> <code>ColonneBadge</code> vit dans <code>commun</code>, qui <strong>ne
+doit dépendre d'aucune feature</strong> (règle <code>ArchitectureTest.features_sans_cycle</code>). Le socle ne connaît donc
+que les enums de <code>commun.model</code>. Pour un statut <strong>propre à une feature</strong> (<code>Fraicheur</code> côté sites,
+<code>StatutObservation</code> côté validation…), le mapping statut → classe CSS reste <strong>côté feature</strong>, et l'on
+passe cette fonction au générique <code>cellule(Function)</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// sites : la vue mappe son enum</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">colStatut</span><span class="p">.</span><span class="na">setCellFactory</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ColonneBadge</span><span class="p">.</span><span class="na">cellule</span><span class="p">(</span><span class="n">LignePassage</span><span class="p">::</span><span class="n">statutClasseCss</span><span class="p">));</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// audio : FormatLigneAudio.classeBadgeStatut(StatutObservation) -&gt; &quot;badge-observation-…&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">col</span><span class="p">.</span><span class="na">statut</span><span class="p">().</span><span class="na">setCellFactory</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">ColonneBadge</span><span class="p">.</span><span class="na">cellule</span><span class="p">(</span><span class="n">ligne</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">FormatLigneAudio</span><span class="p">.</span><span class="na">classeBadgeStatut</span><span class="p">(</span><span class="n">ligne</span><span class="p">.</span><span class="na">statut</span><span class="p">())));</span>
+</code></pre></div>
+<p>Les classes CSS correspondantes (<code>.badge-observation-*</code>, <code>.badge-frais/tiede/froid</code>) vivent quand même
+dans <code>design.css</code> : ce ne sont que des <strong>chaînes</strong>, aucune dépendance de code de <code>commun</code> vers la feature.</p>
+<p><strong>La règle.</strong> Une nouvelle table de données réutilise <code>TableDonnees.uniformiser</code> + <code>ColonneBadge</code> ;
+jamais une densité ni une pastille ad hoc. Un statut de <code>commun.model</code> passe par <code>ColonneBadge.classe</code> ;
+un statut de feature reçoit un <code>classeBadge</code>/<code>classeCss</code> <strong>côté feature</strong> (jamais une surcharge dans
+<code>commun</code>, sous peine de cycle).</p>
+<h2 id="icones-dihm-un-pictogramme-se-pose-il-ne-secrit-pas">Icônes d'IHM : un pictogramme se pose, il ne s'écrit pas<a class="headerlink" href="#icones-dihm-un-pictogramme-se-pose-il-ne-secrit-pas" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Les libellés portaient leurs pictogrammes <strong>en toutes lettres</strong> dans le <code>text</code> des
+FXML : <code>♻ Réactivation</code>, <code>☰</code>, <code>📤 Exporter…</code>. Un caractère dépend des <strong>polices installées</strong> sur la
+machine : selon le système il tombe en rectangle vide, en noir et blanc, ou en emoji couleur pleine
+taille qui déséquilibre la ligne. Il ne se <strong>teinte</strong> pas non plus avec le texte, donc il ne peut
+suivre aucun état. #700 avait posé la règle ; l'usage littéral était revenu, jusqu'à <strong>35 glyphes sur
+17 vues</strong> au moment de #1933.</p>
+<p>Le rendu est correct sur la machine qui écrit le code. C'est précisément pourquoi le défaut ne se
+signale pas tout seul : il se voit sur les <strong>aperçus régénérés en CI</strong>, où plusieurs pictogrammes du
+produit ne s'affichent pas du tout.</p>
+<p><strong>La solution.</strong> Un <a href="https://kordamp.org/ikonli/"><code>FontIcon</code></a> (pack FontAwesome 5) dans le <code>&lt;graphic&gt;</code>
+du nœud, et le texte reste du texte :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;Label</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;Reconstruire un passage manquant&quot;</span><span class="w"> </span><span class="na">styleClass=</span><span class="s">&quot;titre-page&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&lt;graphic&gt;&lt;FontIcon</span><span class="w"> </span><span class="na">iconLiteral=</span><span class="s">&quot;fas-cloud&quot;</span><span class="w"> </span><span class="na">styleClass=</span><span class="s">&quot;titre-page-icone&quot;</span><span class="nt">/&gt;&lt;/graphic&gt;</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">&lt;/Label&gt;</span>
+</code></pre></div>
+<p><strong>Où passe la frontière.</strong> Ce qui <strong>désigne une action ou un objet</strong> est une icône ; ce qui <strong>vit dans
+une phrase</strong> reste un caractère. Mécaniquement, par bloc Unicode : les flèches (U+2190-U+21FF) et les
+opérateurs mathématiques (U+2200-U+22FF) sont de la typographie (<code>A → B</code>, <code>≥ 1 mois</code>), tout le reste
+est un pictogramme. Un signe typographique <strong>seul</strong> sur un nœud retombe du côté icône : c'est un
+bouton à icône qui n'a pas dit son nom. Le raisonnement complet est dans
+<a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/">ADR 0035</a>.</p>
+<p><strong>Trois pièges.</strong></p>
+<ul>
+<li><strong><code>-fx-text-fill</code> ne colore pas un <code>FontIcon</code></strong> : c'est <code>-fx-icon-color</code>. En convertissant un
+  caractère en icône dans un contrôle déjà stylé, la <strong>taille</strong> est conservée (une <code>FontIcon</code> suit le
+  <code>-fx-font-size</code> hérité, au même titre que <code>-fx-icon-size</code>), mais la <strong>couleur retombe au noir</strong>. La
+  substitution compile, les tests passent, et l'icône est noire au milieu d'un contrôle gris ardoise.
+  Mesures et garde-fou dans
+  <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/">ADR 0035</a>.</li>
+<li><strong>Une icône se réévalue comme son libellé.</strong> Une entrée de menu dont le texte change d'état (« Se
+  connecter… » / « Vigie-Chiro : pseudo ») doit changer d'icône avec lui. <code>ConstructeurMenuOutils</code>
+  réévalue les deux à chaque <code>setOnShowing</code>, en réutilisant le <code>FontIcon</code> en place.</li>
+<li><strong>Un <code>promptText</code> est une chaîne</strong>, il n'accueille pas de nœud. Une loupe dans un champ de recherche
+  se pose <strong>à côté</strong> du champ, ou pas du tout.</li>
+</ul>
+<p><strong>La règle.</strong> Aucun pictogramme littéral dans un FXML : <code>PictogrammesFxmlTest</code> échoue dessus. La
+<strong>CLI</strong> est hors sujet — une console ne rend pas de <code>FontIcon</code>, <code>⚠</code> y est le seul moyen d'écrire un
+avertissement. Les libellés bâtis en Java restent à traiter (#1564).</p>
+<h2 id="actions-de-ligne-dune-table-double-clic-et-menu-contextuel-socle-commun">Actions de ligne d'une table : double-clic et menu contextuel (socle <code>commun</code>)<a class="headerlink" href="#actions-de-ligne-dune-table-double-clic-et-menu-contextuel-socle-commun" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Les neuf tables de l'application ont grandi séparément, et leurs gestes avaient
+divergé. Le <strong>menu contextuel</strong> se réduisait partout à « Colonnes… », sauf la table des espèces de
+l'Inventaire qui y ajoutait « Fiche de l'espèce » ; trois tables (dépôt du Lot, Audit, Importation)
+n'avaient <strong>aucun</strong> menu. Le <strong>double-clic</strong> ouvrait selon l'écran l'écoute, le passage, ou rien. La
+même action s'atteignait par deux gestes différents d'un écran à l'autre, et les actions de ligne
+vivaient en boutons ou dans le ☰, jamais sous le curseur. Le chantier #1792 a unifié tout cela.</p>
+<p><strong>La solution.</strong> Quatre briques de <code>commun/view</code>, composables avec le <code>GestionnaireColonnes</code> existant :</p>
+<ul>
+<li><code>DoubleClicLigne.installer(table, action)</code> : pose une <code>rowFactory</code> qui déclenche <code>action</code> au
+  double-clic <strong>sur une ligne remplie</strong>. Le même geste installe aussi la sélection au <strong>clic droit</strong>,
+  qui cible la ligne survolée <strong>sans casser une sélection multiple</strong> en cours ;</li>
+<li><code>MenuLigne.item(libelle, table, action)</code> : un <code>MenuItem</code> lié à la sélection, désactivé quand elle est
+  vide ;</li>
+<li><code>MenuCopier.creer(table, Entree...)</code> : le sous-menu « Copier ▸ », chaque <code>Entree(libelle, valeur)</code>
+  extrayant une chaîne de la ligne, déposée dans le presse-papier système (<code>PressePapier</code>) ;</li>
+<li><code>ActionVigieChiroPassage.item(table, idPassage)</code> : ouvre la page de la participation du passage de la
+  ligne, désactivé avec son motif quand le passage n'est pas lié à la plateforme.</li>
+</ul>
+<p>Les items se passent en varargs à <code>GestionnaireColonnes.installerClicDroit</code> /
+<code>installer</code> / <code>installerEtPersister</code>, <strong>seul propriétaire des menus contextuels</strong> de production : il les
+compose et referme toujours la liste par « Colonnes… ».</p>
+<p><strong>La grammaire du menu, stable d'un écran à l'autre.</strong> L'ordre porte du sens ; on ne le réarrange pas
+au gré des écrans :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Action principale de la ligne     (miroir du double-clic)
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Actions secondaires               (Vigie-Chiro, auditer…)
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>──────────
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Validation ▸                      (sous-menu, si l&#39;écran valide)
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Copier ▸
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>──────────
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Colonnes…                         (toujours en dernier)
+</code></pre></div>
+<p><strong>Le double-clic est le miroir de l'action principale</strong>, jamais une action qu'on ne trouve nulle part
+ailleurs : il n'a aucune affordance propre, donc tout ce qu'il déclenche doit rester atteignable par un
+chemin visible.</p>
+<p><strong>Le piège (un geste sans état ne peut pas être muet).</strong> Un <code>MenuItem</code> montre son état <strong>avant</strong> le
+clic : indisponible, il se grise et porte le motif dans son libellé (#789). Un double-clic n'a rien à
+montrer avant le geste, donc son silence ne se distingue pas d'une panne - c'est exactement ce qui a
+été remonté de l'usage réel (#1834, #1837). Une action ouverte au double-clic doit donc <strong>rendre
+compte</strong> quand elle n'aboutit pas : <code>ActionFicheEspece.ouvrir</code> rend un booléen, et
+<code>ouvrirOuSignaler(espece, siAucuneFiche)</code> route le motif vers le canal de l'écran. Voir
+<a href="../decisions/0021-double-clic-miroir-qui-rend-compte/">ADR 0021</a>.</p>
+<p><strong>Le véhicule du motif.</strong> <code>commun.viewmodel.RetourOperation</code> (texte + <code>commun.model.Severite</code>) et
+<code>commun.view.BandeauRetour.installer(...)</code> rendent ce retour dans un bandeau <strong>non modal</strong> -
+véhicule <strong>par défaut</strong> de tout compte rendu, le modal étant réservé à l'irréversible
+(<a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/">ADR 0023</a>) :
+un double-clic est un geste courant et souvent accidentel, une boîte modale y serait pire que le
+silence. Le style vit dans <code>design.css</code> sous <code>.bandeau-retour</code>, que tous les écrans chargent déjà.</p>
+<p><strong>La règle.</strong> Une nouvelle table de données pose <code>DoubleClicLigne.installer</code> sur son action principale,
+compose son menu par le <code>GestionnaireColonnes</code> dans l'ordre ci-dessus, et donne à toute action ouverte
+au double-clic un moyen de dire pourquoi elle n'a rien fait.</p>
+<h2 id="rendre-compte-dune-operation">Rendre compte d'une opération<a class="headerlink" href="#rendre-compte-dune-operation" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> « Message » est un mot commode qui recouvre trois choses différentes, et un écran qui
+les mélange finit par mentir. L'EPIC #1870 a migré onze écrans et en a trouvé les trois formes.</p>
+<p><strong>Les trois natures, et leur véhicule.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Nature</th>
+<th>Ce que c'est</th>
+<th>Véhicule</th>
+<th>Se ferme ?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>État</strong></td>
+<td>ce qui <em>est</em> (« Passage déposé le… », « Cohérence : corrigez les contrôles »)</td>
+<td>libellé permanent, adossé à ce qu'il décrit</td>
+<td>non</td>
+</tr>
+<tr>
+<td><strong>Retour d'opération</strong></td>
+<td>ce qui <em>vient de se passer</em>, en <strong>une phrase bornée</strong></td>
+<td><code>RetourOperation</code> + <code>BandeauRetour</code> ou <code>LibelleRetour</code></td>
+<td>oui</td>
+</tr>
+<tr>
+<td><strong>Compte rendu</strong></td>
+<td>ce qui <em>vient de se passer</em>, de manière <strong>extensible</strong> : des constats, leurs détails</td>
+<td><code>CompteRendu</code> + <code>VueCompteRendu</code>, dans sa propre zone</td>
+<td>non, il se remplace</td>
+</tr>
+<tr>
+<td><strong>Travail en cours</strong></td>
+<td>ce qui <em>se passe</em></td>
+<td>barre de progression, <code>IndicateurOccupation</code>, barre de statut</td>
+<td>sans objet</td>
+</tr>
+</tbody>
+</table>
+<p>⚠ <strong>Le mot « compte rendu » a changé de sens</strong> avec l'<a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/">ADR 0031</a>. Il désignait ici ce qui s'appelle désormais <strong>retour d'opération</strong>. Le critère qui les sépare n'est pas la longueur actuelle mais l'<strong>extensibilité</strong> : un message qui concatène une partie variable est déjà un compte rendu, et un compte rendu n'a <strong>jamais</strong> sa place dans un bandeau - l'y loger revient à le tronquer.</p>
+<p><strong>Comment choisir.</strong> Si ce qu'il y a à dire peut grandir - une liste de refus, de fichiers, de passages -
+c'est un compte rendu. Si c'est une phrase dont la forme est connue d'avance, c'est un retour.</p>
+<p>Un état et un compte rendu ne partagent <strong>jamais</strong> de propriété, et un compte rendu ne se <strong>déduit</strong>
+jamais d'un statut : le même statut est atteint en agissant <em>et</em> en ouvrant un écran déjà dans cet
+état, et seul le premier mérite d'être rapporté. Voir
+<a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/">ADR 0028</a>.</p>
+<p><strong>Les sévérités.</strong> Elles vivent dans <code>commun.model.Severite</code> - le <strong>modèle</strong>, pas la vue : un constat
+d'audit qualifie sa gravité sans rien savoir de l'affichage (<a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/">ADR 0038</a>, amendée par #2159).</p>
+<p><code>SUCCES</code> quand l'opération a abouti. <code>ERREUR</code> quand elle a échoué ou a été refusée par un service.
+<code>AVERTISSEMENT</code> quand elle a <strong>abouti</strong> mais que quelque chose mérite l'attention : une nuit déjà
+importée qu'on réimporte quand même, un dossier mélangeant deux enregistreurs. <code>INFO</code> pour tout le
+reste, et ce « reste » est plus large qu'il n'y paraît :</p>
+<ul>
+<li>un <strong>guidage</strong> : l'utilisateur a quelque chose à faire, rien n'est cassé (« saisissez des nombres ») ;</li>
+<li>une <strong>absence d'objet</strong> : « rien à relever », « traitement déjà lancé » - rien n'a raté ;</li>
+<li>un <strong>résultat partiel</strong> : relevé incomplet, dépôt interrompu. Annoncer un succès mentirait sur ce
+  qui est acquis, annoncer une erreur nierait ce qui est passé.</li>
+</ul>
+<p><strong>La sévérité ne s'écrit jamais dans le texte.</strong> Le constructeur compact de <code>RetourOperation</code> refuse un
+message ouvrant par <code>⚠ ✓ ✗</code>. La vue la rend <strong>deux fois</strong> - couleur et icône - depuis la valeur, par
+<code>IconesSeverite</code>, table unique partagée par le bandeau, le compte rendu et le libellé inline. Un glyphe
+dans la chaîne la dirait une troisième fois sans garantie d'accord (<a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/">ADR 0035</a> point 5).</p>
+<p><strong>Une confirmation transporte une structure, pas une chaîne.</strong> Le port <code>Confirmateur</code> accepte un
+<code>CompteRendu</code> autant qu'un <code>String</code> (<code>confirmer(CompteRendu)</code>, #2060) : la modale de confirmation rend
+alors la structure de <code>VueCompteRendu</code> - un <code>Label</code> par détail, le retrait porté par le CSS - au lieu
+d'aplatir une liste à puces dans une chaîne. Une puce aplatie perd son alignement dès qu'une ligne
+dépasse la largeur du dialogue ; la structure ne le peut pas. Seule l'implémentation qui <strong>rend</strong> le
+dialogue (<code>ConfirmationNavigation</code>) surcharge la méthode ; les stubs de test se contentent du repli
+textuel par défaut.</p>
+<p><strong>L'exception : les surfaces qui n'ont que du texte.</strong> Un pictogramme se rend en icône <em>là où un
+composant le rend</em>. Là où il n'y a que du texte - la <strong>CLI</strong> (<a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/">ADR 0035</a>
+point 6), une <strong>info-bulle</strong> dont l'avertissement ouvre une ligne interne (<code>Tooltip</code> n'accepte qu'un
+<code>graphic</code>, en tête), un message imposé à un port en <code>String</code> - le glyphe littéral reste, et c'est
+<strong>assumé</strong> (#2036). Le signe distinctif : aucun <code>Label</code> ni <code>FontIcon</code> ne peut s'y poser. Ce n'est pas un
+oubli, c'est la limite de la surface ; on l'écrit à l'endroit du glyphe pour que le prochain lecteur ne
+le « corrige » pas.</p>
+<p><strong>Une barre de statut est neutre.</strong> Elle dit <em>où l'on en est</em>, pas si c'est bien ou mal : ses phrases
+s'écrivent sans marqueur, et ce qui doit alerter passe par un bandeau ou un encart
+(<a href="../decisions/0039-une-barre-de-statut-est-neutre/">ADR 0039</a>).</p>
+<p><strong>Le patron <code>Messages&lt;Ecran&gt;</code>.</strong> Quand un écran porte un état <strong>et</strong> un compte rendu, les deux vivent
+dans une petite classe dédiée plutôt que dans le ViewModel : <code>MessagesAudio</code>, <code>MessagesLot</code>,
+<code>MessagesRattachement</code>. Elle expose les propriétés en lecture et des méthodes qui <strong>nomment la
+sévérité</strong> (<code>succes</code>, <code>info</code>, <code>erreur</code>, <code>effacer</code>). Le ViewModel garde sa responsabilité d'orchestrer,
+et le plafond <code>GodClass</code> du portail qualité s'en trouve mieux.</p>
+<p><strong>Un collaborateur qui n'émet que des échecs</strong> peut rester agnostique et recevoir un <code>Consumer&lt;String&gt;</code>,
+la sévérité se décidant au point de jonction. <strong>Un collaborateur qui émet plusieurs natures</strong> reçoit la
+messagerie et choisit lui-même : la lui faire deviner ailleurs reviendrait à réinterpréter ses messages
+d'après leur texte.</p>
+<p><strong>Le piège à connaître.</strong> Un message de garde placé derrière un contrôle <strong>grisé sur la même condition</strong>
+n'est jamais lu par personne. Cinq cas de ce genre existent dans l'application (#1970) : la garde et le
+<code>disableProperty().bind(…)</code> testent le même prédicat. Aucun test ne le signale - c'est en essayant de
+<strong>produire une capture</strong> du message qu'on s'en aperçoit.</p>
+<h2 id="unit-of-work-unitedetravail">Unit of Work (<code>UniteDeTravail</code>)<a class="headerlink" href="#unit-of-work-unitedetravail" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Par défaut, chaque écriture DAO s'auto-commit. Mais « créer un passage <strong>et</strong> sa
+session » doit être <strong>atomique</strong> : si la 2ᵉ échoue, la 1ʳᵉ ne doit pas rester en base.</p>
+<p><strong>La solution.</strong> Regrouper les écritures dans <strong>une transaction</strong> : tout réussit (commit), ou tout est
+annulé (rollback).</p>
+<p><strong>Dans cette application.</strong> <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence/UniteDeTravail.java"><code>UniteDeTravail</code></a>
+exécute un bloc sur <strong>une seule connexion</strong> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">uniteDeTravail</span><span class="p">.</span><span class="na">executer</span><span class="p">(</span><span class="n">connexion</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="c1">// plusieurs écritures... une exception =&gt; rollback</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">});</span>
+</code></pre></div>
+<pre class="mermaid"><code>sequenceDiagram
+    participant S as Service
+    participant U as UniteDeTravail
+    participant DB as Connexion
+    S-&gt;&gt;U: executer(co -&gt; { écritures })
+    U-&gt;&gt;DB: autoCommit(false)
+    U-&gt;&gt;DB: écritures…
+    alt tout réussit
+        U-&gt;&gt;DB: commit()
+    else exception
+        U-&gt;&gt;DB: rollback()
+    end</code></pre>
+<p><strong>Principes.</strong> <strong>SRP</strong> (la gestion transactionnelle est isolée des DAO) ; garantit l'<strong>intégrité</strong> O7.</p>
+<div class="admonition note">
+<p class="admonition-title">Quand une seule transaction est impossible : compensation</p>
+<p><code>UniteDeTravail</code> regroupe des écritures <strong>sur une même connexion</strong>. Mais certaines opérations
+franchissent une frontière qui ouvre sa <strong>propre</strong> transaction - typiquement la reconstruction d'un
+passage (#1522), dont l'import des observations passe par un port qui gère sa transaction à lui (et
+SQLite n'a qu'un seul écrivain). Une transaction unique est alors infaisable. On garde malgré tout la
+règle « mieux vaut ne rien créer que créer à moitié » par <strong>compensation</strong> (<em>saga</em>) : si une étape
+échoue, on <strong>défait</strong> ce qui précède - ici via les clés étrangères <code>ON DELETE CASCADE</code> (supprimer le
+passage emporte sa session, ses séquences, ses observations, cf.
+<a href="../modele-de-donnees/">Modèle de données</a>). Le résultat visible est celui d'une transaction : tout,
+ou rien.</p>
+</div>
+<hr />
+<h2 id="materialiser-tard-consommer-liberer-aussitot">Matérialiser tard, consommer, libérer aussitôt<a class="headerlink" href="#materialiser-tard-consommer-liberer-aussitot" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Certaines étapes ont besoin de fichiers qui <strong>n'existent pas encore</strong> : les tranches
+régénérées d'un brut, les archives ZIP d'un dépôt. Tout produire d'abord, tout consommer ensuite est la
+lecture naturelle - et c'est celle qui fait exploser le disque, précisément sur les nuits volumineuses
+que ces opérations visent. Régénérer une nuit entière pour libérer de la place commencerait par doubler
+l'occupation qu'on cherchait à réduire.</p>
+<p><strong>La solution.</strong> Ne matérialiser qu'<strong>au moment de consommer</strong>, et libérer <strong>dès que la consommation
+est acquise</strong>. Le pic n'est plus la somme des ressources produites, mais le nombre de ressources
+vivantes à un instant donné - un nombre que l'on <strong>borne explicitement</strong>.</p>
+<p>La libération n'est donc pas de l'hygiène : <strong>c'est elle qui borne le pic</strong>. C'est ce qui distingue ce
+patron d'un simple <code>try</code>/<code>finally</code> de nettoyage.</p>
+<p><strong>Dans cette application.</strong> Le patron est écrit quatre fois, dans trois features :</p>
+<table>
+<thead>
+<tr>
+<th>Où</th>
+<th>Matérialise</th>
+<th>Libère</th>
+<th>Ce qui borne le pic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/importation/model/DecoupageParallele.java"><code>DecoupageParallele</code></a></td>
+<td>un sous-dossier <code>.tmp-decoupage/&lt;i&gt;</code> par original</td>
+<td>après le nommage définitif</td>
+<td>le <code>Semaphore</code> de la campagne</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/model/ReactivationDepuisBruts.java"><code>ReactivationDepuisBruts</code></a></td>
+<td><code>DossierTemporaire.creer("vc-regen-…")</code></td>
+<td>en <code>finally</code>, après rebranchement</td>
+<td><strong>un brut à la fois</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/model/HydratationDepuisBruts.java"><code>HydratationDepuisBruts</code></a></td>
+<td>un temporaire par brut, sur un fil d'<code>ExecutionParallele</code></td>
+<td>en <code>finally</code></td>
+<td>le <code>Semaphore</code> d'<code>ExecutionParallele</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/lot/model/SourceArchivesRegenerables.java"><code>SourceArchivesRegenerables</code></a></td>
+<td>une archive ZIP à la résolution</td>
+<td>après le commit <code>DEPOSE</code></td>
+<td>la fenêtre 2, relayée par <code>parallelismeMax()</code></td>
+</tr>
+</tbody>
+</table>
+<pre class="mermaid"><code>sequenceDiagram
+    participant M as Moteur
+    participant S as Source / temporaire
+    participant C as Consommateur
+    loop dans la limite de la borne
+        M-&gt;&gt;S: matérialiser (tard, faillible)
+        S--&gt;&gt;M: chemin
+        M-&gt;&gt;C: consommer
+        alt consommation prouvée
+            M-&gt;&gt;S: libérer
+        else échec
+            Note over S: reste sur le disque,&lt;br/&gt;la reprise le retrouve
+        end
+    end</code></pre>
+<p><strong>La libération suit la preuve, jamais la tentative.</strong> Dans le dépôt, <code>source.liberer</code> est appelé
+<em>après</em> le commit qui marque l'unité <code>DEPOSE</code>, jamais avant : une coupure entre les deux laisserait une
+unité ni en ligne ni sur le disque. La reprise la régénérerait, mais on aurait perdu la preuve de
+l'envoi.</p>
+<p><strong>Principes.</strong> <strong>SRP</strong> (qui produit la ressource sait la libérer) ; borne le pic disque, objectif O3.</p>
+<div class="admonition note">
+<p class="admonition-title">Deux politiques d'échec de libération, et c'est voulu</p>
+<p>Trois des quatre occurrences <strong>avalent</strong> l'échec de libération : ne pas avoir pu rendre de la place
+n'est pas une raison de faire échouer une opération par ailleurs réussie. Le reliquat sera repris
+par « Libérer l'espace disque ». C'est le contrat que portent
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/model/DossierTemporaire.java"><code>DossierTemporaire.supprimer</code></a>
+(« efface <strong>au mieux</strong> ») et <code>SourceDepot.liberer</code>, formulé deux fois de façon indépendante.</p>
+<p><code>DecoupageParallele</code> <strong>échoue dur</strong>, et c'est la bonne asymétrie : son temporaire n'est pas un
+reliquat mais une <strong>étape du pipeline</strong>. Le nommage définitif lit ce dossier
+(<a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/">ADR 0026</a>) ; un temporaire
+survivant fausserait la découpe suivante au lieu de simplement occuper de la place.</p>
+<p>La règle : <strong>avaler si la ressource n'est qu'un coût, échouer si elle porte du sens.</strong></p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Ce qui n'est pas ce patron : la ressource de session</p>
+<p><code>ImportationViewModel</code> extrait aussi un ZIP dans un temporaire, mais celui-ci est un <strong>champ</strong> qui
+survit à plusieurs interactions, se libère sur des <strong>transitions d'écran</strong> et non à la fin d'une
+consommation, et s'accompagne d'un filet anti-fuite balayant les résidus au démarrage.</p>
+<p>C'est une <strong>ressource de session</strong>, gouvernée par le cycle de vie d'un écran. Lui appliquer ce
+patron-ci la libérerait sous les pieds de l'utilisateur. Un patron sans frontière se fait invoquer
+à tort.</p>
+</div>
+<p>Trois ADR décidaient déjà ce patron, chacune pour sa feature et sans se citer :
+<a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/">0026</a> (temporaire vidé après
+chaque brut), <a href="../decisions/0032-le-plan-precede-l-ecriture/">0032</a> (résolution tardive et faillible,
+<code>liberer</code> no-op par défaut), <a href="../decisions/0033-la-fenetre-borne-le-disque/">0033</a> (fenêtre bornée, la
+libération suit la preuve). Cette section est ce qui les relie.</p>
+<hr />
+<h2 id="observer-proprietes-et-binding-javafx">Observer (propriétés et <em>binding</em> JavaFX)<a class="headerlink" href="#observer-proprietes-et-binding-javafx" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Comment garder l'IHM <strong>synchronisée</strong> avec l'état sans que le modèle « pousse » vers
+des widgets qu'il ne devrait pas connaître ?</p>
+<p><strong>La solution.</strong> Le sujet (une <code>Property</code> / <code>ObservableList</code>) <strong>notifie</strong> ses observateurs au
+changement ; la vue <strong>s'abonne</strong> par <em>binding</em>. Le sujet ignore qui l'observe.</p>
+<p><strong>Dans cette application.</strong> Le viewmodel expose des propriétés ; la vue s'y lie. Quand l'état change, l'IHM se
+met à jour <strong>toute seule</strong> : la vue <em>observe</em>, elle ne <em>tire</em> pas. C'est le moteur de MVVM.</p>
+<pre class="mermaid"><code>sequenceDiagram
+    participant VM as ViewModel
+    participant P as Property
+    participant V as Vue
+    VM-&gt;&gt;P: set(nouvelle valeur)
+    P--&gt;&gt;V: notifie (invalidation)
+    V-&gt;&gt;V: met à jour le widget</code></pre>
+<p><strong>Principes.</strong> <strong>Faible couplage</strong> View↔ViewModel et <strong>DIP</strong> (la vue dépend d'abstractions
+observables, pas de logique).</p>
+<div class="admonition note">
+<p class="admonition-title">API fluente (le « builder » le plus proche)</p>
+<p>Les liaisons s'écrivent souvent avec l'<strong>API fluente</strong> de JavaFX :
+<code>Bindings.when(cond).then(a).otherwise(b)</code>, <code>Bindings.createStringBinding(...)</code>. C'est un
+<em>builder</em> conditionnel <strong>fourni par la bibliothèque</strong> — pas un patron Builder que nous
+implémentons. Le projet n'a d'ailleurs <strong>pas de Builder maison</strong> : les entités sont des <code>record</code>
+immuables (cf. <em>Objets-valeurs</em>), qui rendraient un builder superflu.</p>
+</div>
+<hr />
+<h2 id="factory-controllerfactory">Factory (<code>controllerFactory</code>)<a class="headerlink" href="#factory-controllerfactory" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Par défaut, <code>FXMLLoader</code> crée les controllers avec <code>new</code> (constructeur vide) : ils ne
+peuvent <strong>pas</strong> recevoir de dépendances injectées.</p>
+<p><strong>La solution.</strong> Fournir au loader une <strong>fabrique</strong> qui délègue la création à Guice.</p>
+<p><strong>Dans cette application.</strong> <code>loader.setControllerFactory(injector::getInstance)</code> : chaque controller est
+instancié <strong>par le conteneur</strong>, donc reçoit ses ViewModels/services par constructeur (cf.
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/App.java"><code>App</code></a>).
+Diagramme de séquence du bootstrap : <a href="../injection/#des-controllers-fxml-injectes">Injection</a>.</p>
+<p><strong>Principes.</strong> <strong>DIP</strong> (le controller ne construit pas ses dépendances) et <strong>IoC</strong>.</p>
+<hr />
+<h2 id="machine-a-etats-moteurworkflowpassage">Machine à états (<code>MoteurWorkflowPassage</code>)<a class="headerlink" href="#machine-a-etats-moteurworkflowpassage" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Le statut d'un passage (<code>Importé → … → Déposé</code>) doit avancer <strong>dans l'ordre</strong> : on ne
+doit ni sauter une étape (importer puis déposer) ni revenir en arrière. Disséminer ces règles dans les
+services serait fragile.</p>
+<p><strong>La solution.</strong> Centraliser les <strong>transitions autorisées</strong> dans un objet dédié : depuis un état, une
+seule cible permise (le successeur immédiat).</p>
+<p><strong>Dans cette application.</strong> <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/model/MoteurWorkflowPassage.java"><code>MoteurWorkflowPassage</code></a>
+porte l'ordre et expose <code>suivant(...)</code> / <code>estTransitionAutorisee(...)</code> / <code>exigerTransitionAutorisee(...)</code>.
+La logique est <strong>isolée</strong> de l'énum
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/model/StatutWorkflow.java"><code>StatutWorkflow</code></a>
+(simple porteur de libellés).</p>
+<pre class="mermaid"><code>stateDiagram-v2
+    [*] --&gt; IMPORTE
+    IMPORTE --&gt; TRANSFORME
+    TRANSFORME --&gt; VERIFIE
+    VERIFIE --&gt; PRET_A_DEPOSER
+    PRET_A_DEPOSER --&gt; DEPOSE
+    DEPOSE --&gt; [*]</code></pre>
+<p><strong>Principes.</strong> <strong>SRP</strong> (les règles de transition ne polluent ni l'énum ni les services) et un <strong>point
+de vérité unique</strong> pour l'avancement d'une nuit.</p>
+<hr />
+<h2 id="synthese-ou-vit-chaque-principe-solid">Synthèse : où vit chaque principe SOLID<a class="headerlink" href="#synthese-ou-vit-chaque-principe-solid" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Principe</th>
+<th>Incarné surtout par</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>S</strong>RP</td>
+<td>MVVM (couches), DAO, <code>UniteDeTravail</code>, <code>MoteurWorkflowPassage</code>, Facade, objets-valeurs</td>
+</tr>
+<tr>
+<td><strong>O</strong>CP</td>
+<td>Contrats <code>Ouvrir*</code>, Multibinder d'accueil, Template Method, Strategy</td>
+</tr>
+<tr>
+<td><strong>L</strong>SP</td>
+<td>Sous-types de <code>DaoGenerique</code> substituables</td>
+</tr>
+<tr>
+<td><strong>I</strong>SP</td>
+<td>Interfaces de rôle fines (<code>GardeQuitter</code>, <code>RafraichirAuRetour</code>, <code>EmplacementNavigation</code>)</td>
+</tr>
+<tr>
+<td><strong>D</strong>IP</td>
+<td>Injection + Composition Root, contrats <code>Ouvrir*</code>, <em>binding</em> observable, Factory</td>
+</tr>
+</tbody>
+</table>
+<h2 id="au-dela-de-solid">Au-delà de SOLID<a class="headerlink" href="#au-dela-de-solid" title="Permanent link">&para;</a></h2>
+<p>SOLID n'est pas seul : l'architecture respecte aussi plusieurs principes transverses, eux aussi
+visibles dans le code.</p>
+<h3 id="loi-de-demeter-ne-parle-qua-tes-amis-proches">Loi de Déméter (« ne parle qu'à tes amis proches »)<a class="headerlink" href="#loi-de-demeter-ne-parle-qua-tes-amis-proches" title="Permanent link">&para;</a></h3>
+<p>Un objet ne devrait appeler que les méthodes de <strong>lui-même</strong>, de ses <strong>paramètres</strong>, de ce qu'il
+<strong>crée</strong> et de ses <strong>champs directs</strong> — pas de chaîne <code>a.getB().getC().faire()</code>.</p>
+<p><strong>Ici.</strong> La vue se lie à <code>vm.titreProperty()</code> (un collaborateur <strong>direct</strong>), jamais à
+<code>vm.modele().site().nom()</code>. Les contrats <code>Ouvrir*</code> reçoivent un <code>ContexteSite</code> / <code>ContextePassage</code>
+(données <strong>passées en paramètre</strong>) plutôt que de fouiller dans l'écran appelant. Et <code>view_sans_jdbc</code>
+interdit à la vue de « traverser » les couches jusqu'à la base.</p>
+<h3 id="yagni-vous-nen-aurez-pas-besoin">YAGNI (« vous n'en aurez pas besoin »)<a class="headerlink" href="#yagni-vous-nen-aurez-pas-besoin" title="Permanent link">&para;</a></h3>
+<p>Ne pas construire de <strong>généricité spéculative</strong>.</p>
+<p><strong>Ici.</strong> Pas d'ORM (des DAO <code>PreparedStatement</code> directs) ; le workflow est une simple <code>List</code> ordonnée
+(<code>suivant()</code> = <code>index + 1</code>), pas un moteur d'états générique ; <code>DaoGenerique</code> n'offre que les
+opérations <strong>réellement</strong> communes (lecture/suppression), les <code>insert</code>/<code>update</code> n'étant écrits que là
+où on en a besoin ; l'application étant mono-utilisateur, <code>idUtilisateurCourant</code> est simplement le
+premier utilisateur (aucune machinerie d'authentification construite « au cas où »).</p>
+<h3 id="kiss-reste-simple">KISS (« reste simple »)<a class="headerlink" href="#kiss-reste-simple" title="Permanent link">&para;</a></h3>
+<p><strong>Ici.</strong> SQLite fichier (pas de serveur), tests headless <strong>en mémoire</strong> (pas de <code>xvfb</code>), capture par
+<code>Scene.snapshot()</code> (pas d'orchestration lourde).</p>
+<h3 id="dry-ne-te-repete-pas">DRY (« ne te répète pas »)<a class="headerlink" href="#dry-ne-te-repete-pas" title="Permanent link">&para;</a></h3>
+<p><strong>Ici.</strong> <code>DaoGenerique</code> (Template Method) et <code>RowMapper</code> (Strategy) factorisent la boucle <code>ResultSet</code>
+écrite <strong>une seule fois</strong> ; les sections communes de doc renvoient à une source unique.</p>
+<h3 id="tell-dont-ask">Tell, Don't Ask<a class="headerlink" href="#tell-dont-ask" title="Permanent link">&para;</a></h3>
+<p>Demander à un objet d'<strong>agir</strong>, plutôt que de lire son état pour décider à sa place.</p>
+<p><strong>Ici.</strong> <code>MoteurWorkflowPassage.exigerTransitionAutorisee(actuel, cible)</code> <strong>vérifie et lève</strong> si la
+transition est interdite, au lieu d'exposer l'ordre pour que chaque appelant le re-teste.</p>
+<h3 id="composition-plutot-quheritage">Composition plutôt qu'héritage<a class="headerlink" href="#composition-plutot-quheritage" title="Permanent link">&para;</a></h3>
+<p><strong>Ici.</strong> Le chrome <strong>compose</strong> des capacités via de petites interfaces optionnelles (ISP) détectées à
+l'exécution, et l'injection <strong>compose</strong> le graphe d'objets — au lieu d'une hiérarchie de classes
+profonde. (<code>DaoGenerique</code> reste un héritage <strong>assumé</strong>, limité au Template Method.)</p>
+<h3 id="convention-plutot-que-configuration">Convention plutôt que configuration<a class="headerlink" href="#convention-plutot-que-configuration" title="Permanent link">&para;</a></h3>
+<p><strong>Ici.</strong> Les <code>.fxml</code>/<code>.css</code> à côté de leur controller, les paquets de test en <strong>miroir</strong> de la
+production, le <code>captures.manifest</code>, les noms <code>Capture*</code> / <code>Navigation*</code> / <code>*Module</code> : autant de
+conventions qui évitent de la configuration.</p>
+<h3 id="fail-fast">Fail-fast<a class="headerlink" href="#fail-fast" title="Permanent link">&para;</a></h3>
+<p><strong>Ici.</strong> <code>exigerTransitionAutorisee</code> lève <strong>tôt</strong> ; <code>Objects.requireNonNull(...)</code> garde les
+constructeurs ; <code>DataAccessException</code> remonte une erreur SQL sans la masquer.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../architecture/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Architecture">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Architecture
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../navigation/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Navigation et chrome">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Navigation et chrome
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sébastien Nedjar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>

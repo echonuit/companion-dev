@@ -1,0 +1,2752 @@
+
+<!doctype html>
+<html lang="fr" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Documentation développeur de VigieChiro Companion : architecture, conventions, et comment contribuer au code.">
+      
+      
+      
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/cycle-de-chantier/">
+      
+      
+        <link rel="prev" href="../ajouter-une-fonctionnalite/">
+      
+      
+        <link rel="next" href="../decisions/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Cycle de vie d'un chantier - VigieChiro Companion · Doc développeur</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cycle-de-vie-dun-chantier" class="md-skip">
+          Aller au contenu
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="En-tête">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            VigieChiro Companion · Doc développeur
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Cycle de vie d'un chantier
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode sombre"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Mode sombre" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Mode clair"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Mode clair" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Rechercher" placeholder="Rechercher" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Recherche">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Effacer" aria-label="Effacer" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initialisation de la recherche
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    VigieChiro Companion · Doc développeur
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/echonuit/vigiechiro-pr-companion" title="Aller au dépôt" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+  </div>
+  <div class="md-source__repository">
+    echonuit/vigiechiro-pr-companion
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Vue d'ensemble
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns et principes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation et chrome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../persistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../modele-de-donnees/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle de données et domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossaire/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossaire du domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Injection (Guice)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ajouter-une-fonctionnalite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ajouter une fonctionnalité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Cycle de vie d'un chantier
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Cycle de vie d'un chantier
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-louverture-lanalyse-de-depart" class="md-nav__link">
+    <span class="md-ellipsis">
+      À l'ouverture : l'analyse de départ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="À l'ouverture : l'analyse de départ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-0-le-triage-avant-tout-le-reste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 0 : le triage, avant tout le reste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#au-commencement-de-chaque-issue-rappeler-ce-quon-fait-et-pourquoi-maintenant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Au commencement de chaque issue : rappeler ce qu'on fait et pourquoi maintenant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#et-se-signaler-dire-quon-la-prend-et-ce-quon-va-faire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Et se signaler : dire qu'on la prend, et ce qu'on va faire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-la-cloture-les-10-passes" class="md-nav__link">
+    <span class="md-ellipsis">
+      À la clôture : les 10 passes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="À la clôture : les 10 passes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-audit-dintegration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Audit d'intégration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-passe-de-coherence-cli-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Passe de cohérence CLI ↔ UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-passe-de-doc-developpeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Passe de doc développeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-passe-de-doc-utilisateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Passe de doc utilisateur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-passe-de-brief-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Passe de brief projet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-passe-de-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Passe de tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-passe-dharmonisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Passe d'harmonisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-passe-de-revue-visuelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Passe de revue visuelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-passe-didentification-des-nouveaux-chantiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Passe d'identification des nouveaux chantiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-phase-de-bilan" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Phase de bilan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-suites-dune-cloture-se-closent-aussi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les suites d'une clôture se closent aussi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modele-de-cloture-a-coller-dans-lepic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modèle de clôture (à coller dans l'EPIC)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modele-de-commencement-dissue-a-commenter-sur-lissue-avant-la-premiere-ligne-de-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modèle de commencement d'issue (à commenter sur l'issue, avant la première ligne de code)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Décisions (ADR)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Décisions (ADR)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Journal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 · Réactivation d'un passage reconstruit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0002 · Détection acoustique de pointe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0003 · Feature = plugin désactivable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0004 · Cross-feature sans cycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0005 · Cascade de preuves, archivé = état observé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0006 · Dépôt par ZIP par défaut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0007 · Retours HTTP scellés (ReponseApi)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0008 · Aucun échec silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0009 · La nuit comme unité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0010 · Dialogues bloquants = ports
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0011 · Transformation pilotée par le log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0012 · Audit : tout écart visible, un état normal silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0013 · Ancrage passage ↔ participation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0014-parite-cli-ihm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0014 · Parité CLI ↔ IHM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0015 · Cartes SD de recette : générateur déterministe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0016 · Squelettes hydratés à la demande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0017 · Origine d'un point (état porté)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0018 · La synchro rapatrie l'identité de la nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0019 · L'ancrage s'acquiert quand il sert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0020 · Écrire sur la plateforme : ne rien inventer, ne rien effacer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0021 · Le double-clic est un miroir qui rend compte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0022 · Le verbe dit le sens de l'échange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0023 · Bandeau par défaut, modal si irréversible
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0024 · Les heures d'une nuit viennent de ses preuves
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0025 · Une capture passe par le code de production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0026 · Le nommage des tranches est une étape du pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0027 · Une attente porte toujours un nom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0028 · Un état n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0031 · Un retour n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0032-le-plan-precede-l-ecriture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0032 · Le plan précède l'écriture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0033-la-fenetre-borne-le-disque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0033 · La fenêtre borne le disque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0034 · La forme du dépôt se choisit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0035 · Un pictogramme est une icône
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0036 · La copie des bruts est une option
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0037 · Une barre d'actions plie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0038 · Quatre niveaux de sévérité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0039 · Une barre de statut est neutre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0040 · Le sujet de commit est une syntaxe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0041 · Un check requis gouverne la branche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0042 · Un aperçu qui ment est refusé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0043 · La mesure fait foi en CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0044 · Le mécanisme de parallélisme suit la nature de l'attente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0045 · L'UpgradeCode Windows est une constante d'identité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0046 · Une classe CSS a une seule feuille
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0047 · L'identité de distribution est le projet Echonuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0048 · L'utilisateur possède ses fichiers, l'app observe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_12" id="__nav_12_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Recette (acceptation)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            Recette (acceptation)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Méthode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/fixtures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fixtures (générateur de cartes SD)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s1-premier-contact/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S1 · Premier contact
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s2-importer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S2 · Importer une nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s3-verifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S3 · Vérifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S4 · Déposer et suivre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Interface en ligne de commande (CLI)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests-et-qualite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tests et qualité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api-vigiechiro/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Contrat de l'API VigieChiro
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Performance et benchmarks
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../observabilite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Observabilité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../captures/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Captures d'écran
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ci-cd-release/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CI/CD et release
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../securite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sécurité et données sensibles
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#a-louverture-lanalyse-de-depart" class="md-nav__link">
+    <span class="md-ellipsis">
+      À l'ouverture : l'analyse de départ
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="À l'ouverture : l'analyse de départ">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-0-le-triage-avant-tout-le-reste" class="md-nav__link">
+    <span class="md-ellipsis">
+      Étape 0 : le triage, avant tout le reste
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#au-commencement-de-chaque-issue-rappeler-ce-quon-fait-et-pourquoi-maintenant" class="md-nav__link">
+    <span class="md-ellipsis">
+      Au commencement de chaque issue : rappeler ce qu'on fait et pourquoi maintenant
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#et-se-signaler-dire-quon-la-prend-et-ce-quon-va-faire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Et se signaler : dire qu'on la prend, et ce qu'on va faire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#a-la-cloture-les-10-passes" class="md-nav__link">
+    <span class="md-ellipsis">
+      À la clôture : les 10 passes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="À la clôture : les 10 passes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-audit-dintegration" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Audit d'intégration
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-passe-de-coherence-cli-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Passe de cohérence CLI ↔ UI
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-passe-de-doc-developpeur" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Passe de doc développeur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-passe-de-doc-utilisateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Passe de doc utilisateur
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-passe-de-brief-projet" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Passe de brief projet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-passe-de-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Passe de tests
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-passe-dharmonisation" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Passe d'harmonisation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-passe-de-revue-visuelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Passe de revue visuelle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#9-passe-didentification-des-nouveaux-chantiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      9. Passe d'identification des nouveaux chantiers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#10-phase-de-bilan" class="md-nav__link">
+    <span class="md-ellipsis">
+      10. Phase de bilan
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-suites-dune-cloture-se-closent-aussi" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les suites d'une clôture se closent aussi
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modele-de-cloture-a-coller-dans-lepic" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modèle de clôture (à coller dans l'EPIC)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modele-de-commencement-dissue-a-commenter-sur-lissue-avant-la-premiere-ligne-de-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modèle de commencement d'issue (à commenter sur l'issue, avant la première ligne de code)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/cycle-de-chantier.md" title="Editer cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
+    </a>
+  
+  
+    
+      
+    
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/cycle-de-chantier.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
+    </a>
+  
+
+
+<h1 id="cycle-de-vie-dun-chantier">Cycle de vie d'un chantier<a class="headerlink" href="#cycle-de-vie-dun-chantier" title="Permanent link">&para;</a></h1>
+<p>Un <strong>chantier</strong> est un lot de travail d'ampleur <strong>EPIC</strong> : une évolution qui ne tient pas dans une
+seule PR et se découpe en plusieurs (ex. l'EPIC « Réglages auto-découverts → feature = plugin »). Là
+où <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a> décrit une <strong>PR</strong> et
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>
+le <strong>flux de contribution</strong>, cette page décrit le niveau au-dessus : comment on <strong>ouvre</strong> et on
+<strong>clôt</strong> un chantier entier.</p>
+<p>Le principe : un chantier ne se termine pas au dernier <code>feat:</code> mergé. Une fois le cœur livré, une
+<strong>clôture en 10 passes</strong> garantit que l'évolution est intégrée, cohérente entre les deux surfaces
+(IHM et CLI), documentée, testée, harmonisée, <strong>regardée</strong>, et que la suite est cadrée.</p>
+<div class="admonition note">
+<p class="admonition-title">Où est la règle courte ?</p>
+<p>La version concise pour les contributeurs vit dans la section « Cycle de vie d'un chantier » de
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>.
+Cette page en est la version approfondie : la <strong>raison d'être</strong> et le <strong>mode opératoire</strong> de
+chaque passe.</p>
+</div>
+<h2 id="a-louverture-lanalyse-de-depart">À l'ouverture : l'analyse de départ<a class="headerlink" href="#a-louverture-lanalyse-de-depart" title="Permanent link">&para;</a></h2>
+<p>Avant d'écrire du code :</p>
+<ol>
+<li><strong>Trier et regrouper les issues existantes</strong> — <strong>avant</strong> la cartographie et le plan. Voir
+   ci-dessous : c'est l'étape qui décide de quoi le chantier est fait.</li>
+<li><strong>Cartographier l'existant.</strong> Repérer les <strong>patterns déjà en place</strong> qui répondent (au moins en
+   partie) au besoin, pour les <strong>réutiliser</strong> plutôt que réinventer. La plupart des extensions du
+   socle se calquent sur un pattern existant (<code>Multibinder&lt;ActiviteAccueil&gt;</code>, contrats <code>Ouvrir*</code>,
+   patron DAO, <code>Capture*</code>…). Voir <a href="../patterns/">Patterns et principes</a>.</li>
+<li><strong>Rédiger un plan</strong> : découpage, contraintes d'architecture (<a href="../architecture/">Architecture</a> et les
+   règles ArchUnit de <a href="../tests-et-qualite/">Tests et qualité</a>), risques, ordre des paliers.</li>
+<li><strong>Découper en issues</strong> reliées à un <strong>EPIC</strong> (une issue « parapluie » avec la task-list des
+   sous-issues). Chaque sous-issue porte son palier et ses dépendances.</li>
+</ol>
+<h3 id="etape-0-le-triage-avant-tout-le-reste">Étape 0 : le triage, avant tout le reste<a class="headerlink" href="#etape-0-le-triage-avant-tout-le-reste" title="Permanent link">&para;</a></h3>
+<p><strong>Rien ne garantit qu'une issue soit rattachée au bon chantier.</strong> Elles naissent une par une, souvent
+en passe 9 d'une clôture, avec le vocabulaire du chantier qui les a trouvées plutôt que celui du
+problème qu'elles décrivent. Deux issues sur le même sujet, écrites depuis deux angles, ne se
+ressemblent pas — et le recoupement ne se découvre qu'au <strong>conflit de fusion</strong>, quand deux chantiers
+ont déjà construit deux chemins.</p>
+<p>Avant de cartographier quoi que ce soit, donc :</p>
+<ol>
+<li><strong>Balayer les issues ouvertes</strong>, pas seulement celles qu'on croit concernées. Le tri se fait par
+   <strong>concept</strong>, pas par mot-clé : « la sévérité s'écrit dans le texte » et « des avertissements vivent
+   hors du système de restitution » sont le même sujet sous deux noms.</li>
+<li><strong>Chercher les EPIC vivants</strong> qui pourraient déjà couvrir le besoin, et <strong>les issues fermées</strong>
+   qui l'ont différé : une issue qui dit « différé de #N » signale un parent, éventuellement clos, dont
+   la moitié restante n'a plus de toit.</li>
+<li><strong>Décider des rattachements</strong> : une issue appartient au chantier qui traite sa <strong>cause</strong>, pas celui
+   qui a remarqué son symptôme. Quand deux chantiers se recoupent, <strong>découper le périmètre
+   explicitement</strong> et l'écrire dans les deux, plutôt que de laisser la fusion arbitrer.
+   <strong>Vérifier ce qui est déjà pris</strong> : <code>gh issue list --assignee "*"</code> donne la liste, et le commentaire
+   de prise dit le chantier, la branche et le remède envisagé (voir ci-dessous). Une revendication
+   <strong>ancienne se vérifie</strong> au lieu de se croire — branche vivante ? PR ouverte ? — parce qu'une
+   revendication oubliée fait passer une issue libre pour prise.</li>
+<li><strong>Recadrer titre et corps</strong> des issues déplacées. Un recadrage laissé en commentaire sous un corps
+   périmé ne recadre rien : qui lit en diagonale retient la première version.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Pourquoi cette étape existe</p>
+<p>Elle a été ajoutée après un cas réel. La passe 7 d'un chantier a compté 28 endroits écrivant leur
+sévérité dans du texte, et en a fait une issue. Une autre issue couvrait déjà <strong>six des huit cas les
+plus profonds</strong>, avec un remède plus juste — et son prérequis a fusionné pendant que le doublon
+s'écrivait. Le recoupement n'a été vu qu'en lisant un commit apparu sur <code>main</code>.</p>
+<p><strong>Un audit de clôture produit un comptage, pas une lecture.</strong> Le comptage était exact ; il mélangeait
+deux problèmes de profondeur différente, et l'un des deux avait déjà une analyse ailleurs.</p>
+</div>
+<h3 id="au-commencement-de-chaque-issue-rappeler-ce-quon-fait-et-pourquoi-maintenant">Au commencement de chaque issue : rappeler ce qu'on fait et pourquoi maintenant<a class="headerlink" href="#au-commencement-de-chaque-issue-rappeler-ce-quon-fait-et-pourquoi-maintenant" title="Permanent link">&para;</a></h3>
+<p>Un chantier s'enchaîne vite : issue, PR, CI, fusion, issue suivante. À ce rythme, le <strong>pourquoi</strong> se
+perd — celui qui suit le fil (ou le relit trois semaines plus tard) voit une succession de correctifs
+sans savoir ce qu'ils construisent.</p>
+<p><strong>Avant d'ouvrir la première ligne de code d'une issue</strong>, énoncer trois choses :</p>
+<ul>
+<li><strong>ce qu'il y a à faire</strong>, en une phrase, dans les termes du problème et non de la solution ;</li>
+<li><strong>pourquoi maintenant</strong> : ce qui la rend traitable (un prérequis fusionné, une mesure qui vient de
+  tomber) ou urgente (elle bloque autre chose) ;</li>
+<li><strong>dans quelle continuité</strong> elle s'inscrit : de quel chantier elle vient, quelle issue elle suit, ce
+  qu'elle rend possible ensuite.</li>
+</ul>
+<p>Le troisième point est celui qu'on saute, et c'est le seul qui ne se retrouve pas après coup. Une issue
+sans continuité écrite devient un correctif isolé dont personne ne sait s'il a été fini.</p>
+<h3 id="et-se-signaler-dire-quon-la-prend-et-ce-quon-va-faire">Et se signaler : dire qu'on la prend, et ce qu'on va faire<a class="headerlink" href="#et-se-signaler-dire-quon-la-prend-et-ce-quon-va-faire" title="Permanent link">&para;</a></h3>
+<p>Ces trois phrases ne servent pas qu'à soi. <strong>Elles se déposent en commentaire sur l'issue</strong>, et l'issue
+est <strong>assignée</strong> à qui la prend.</p>
+<p>Les deux ensemble, pas l'un ou l'autre, parce qu'ils ne servent pas à la même chose :</p>
+<ul>
+<li><strong>l'assignee est le signal machine.</strong> <code>gh issue list --assignee "*"</code> répond « voici tout ce qui est
+  pris » en une commande. Un commentaire, lui, oblige à ouvrir chaque issue pour savoir ;</li>
+<li><strong>le commentaire porte ce que l'assignee ne dit pas</strong> : de quel <strong>chantier</strong> l'issue relève, sur quelle
+  <strong>branche</strong> le travail se fait, et surtout <strong>quel remède est envisagé</strong>.</li>
+</ul>
+<p>Ce dernier point est le vrai gain, et il dépasse la simple réservation. Deux personnes peuvent voir le
+même défaut et imaginer deux corrections dont l'une est meilleure ; si chacune est annoncée, le
+désaccord se règle <strong>avant</strong> le code. Sinon il se règle au moment de choisir laquelle des deux branches
+on jette.</p>
+<p><strong>Un signalement se relâche.</strong> Quand on s'arrête — reporté, bloqué, abandonné — on <strong>retire l'assignee et
+on le dit</strong>. Une revendication oubliée depuis trois semaines est <strong>pire que rien</strong> : elle fait passer une
+issue libre pour prise, et personne ne la reprendra. Au triage (étape 0), une revendication ancienne se
+<strong>vérifie</strong> — branche vivante ? PR ouverte ? — au lieu de se croire.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ce que le signalement ne couvre pas</p>
+<p>Il répond à « <strong>cette issue est-elle prise ?</strong> ». Il ne répond <strong>pas</strong> à « <strong>cette issue est-elle la
+même que celle-là, sous d'autres mots ?</strong> » — et c'est cette seconde question qui a produit le
+doublon le plus coûteux du dépôt : deux issues sur le même sujet, écrites depuis deux angles, ne se
+ressemblent pas, et aucune n'était assignée.</p>
+<p>Le signalement est un <strong>filet</strong>, pas une garantie : il repose sur la discipline, et la discipline
+lâche exactement quand ça va vite, c'est-à-dire quand les collisions arrivent. Il complète l'étape 0,
+il ne la remplace pas.</p>
+</div>
+<h2 id="a-la-cloture-les-10-passes">À la clôture : les 10 passes<a class="headerlink" href="#a-la-cloture-les-10-passes" title="Permanent link">&para;</a></h2>
+<p>Elles s'exécutent <strong>dans l'ordre</strong> : l'audit d'intégration peut révéler du travail à faire avant de
+documenter, la cohérence CLI peut révéler une commande à ajouter (qui sera alors documentée et
+testée par les passes suivantes), l'harmonisation peut <strong>casser un écran sans casser un test</strong> (d'où la
+revue visuelle <strong>juste après</strong> elle), la revue visuelle peut faire émerger de nouveaux chantiers, et le
+bilan vient en dernier.</p>
+<h3 id="1-audit-dintegration">1. Audit d'intégration<a class="headerlink" href="#1-audit-dintegration" title="Permanent link">&para;</a></h3>
+<p><code>main</code> a <strong>évolué pendant</strong> le chantier (autres PR mergées, nouvelles features, nouvelles
+conventions). Cette passe vérifie que rien n'a été laissé de côté avant de finaliser :</p>
+<ul>
+<li><strong>rebaser</strong> la ou les branches restantes sur <code>main</code> et résoudre les divergences ;</li>
+<li>chercher les <strong>nouveaux points d'accroche</strong> apparus entre-temps qu'il faudrait câbler (une nouvelle
+  feature devrait-elle contribuer au mécanisme qu'on vient d'introduire ?) ;</li>
+<li>traquer les <strong>régressions</strong> et les <strong>conventions apparues</strong> depuis l'ouverture (ex. un nouveau
+  contrat socle, un nouveau seuil qualité).</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Signal concret</p>
+<p>Un <code>git log --oneline main</code> depuis le SHA d'ouverture du chantier (souvent tracé dans l'EPIC) met
+en évidence ce qui a bougé et mérite un regard.</p>
+</div>
+<h3 id="2-passe-de-coherence-cli-ui">2. Passe de cohérence CLI ↔ UI<a class="headerlink" href="#2-passe-de-coherence-cli-ui" title="Permanent link">&para;</a></h3>
+<p>L'application expose <strong>deux surfaces</strong> sur le même domaine : l'IHM JavaFX et la <strong>CLI</strong> picocli
+(scriptable, headless, cf. <a href="../cli/">CLI</a>). Quand un chantier ajoute ou modifie une <strong>capacité
+métier</strong> (une opération, une option, un format d'export, une règle de gestion), la CLI doit exposer
+l'<strong>équivalent</strong> pour que les deux surfaces restent au même niveau : un traitement disponible d'un
+seul côté crée une asymétrie et une dette invisibles.</p>
+<p>Cette passe :</p>
+<ul>
+<li>identifie les <strong>capacités métier</strong> introduites ou changées par le chantier (pas les détails de
+  présentation : une pastille de statut, une mise en page n'ont pas d'équivalent CLI) ;</li>
+<li>vérifie que la CLI offre l'opération correspondante (commande ou option de <code>fr.univ_amu.iut.cli</code>)
+  avec le <strong>même comportement</strong> : mêmes règles, mêmes formats, mêmes garde-fous ;</li>
+<li>en cas d'écart : <strong>aligner tout de suite</strong> si c'est petit (la commande ajoutée sera alors
+  documentée et testée par les passes suivantes), sinon <strong>créer une issue</strong> (passe 9) pour ne pas
+  perdre le contexte ;</li>
+<li>si le chantier est <strong>purement présentationnel</strong>, le noter explicitement « sans objet côté CLI ».</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Signal concret</p>
+<p>Un <strong>service de domaine</strong> nouvellement appelé par un ViewModel mais par aucune commande de
+<code>fr.univ_amu.iut.cli.commande</code> signale une capacité présente d'un seul côté. La CLI et l'IHM
+partagent les mêmes services : la parité se joue au niveau des services exposés, pas du code d'IHM.</p>
+</div>
+<h3 id="3-passe-de-doc-developpeur">3. Passe de doc développeur<a class="headerlink" href="#3-passe-de-doc-developpeur" title="Permanent link">&para;</a></h3>
+<p>Mettre à jour le <strong>site dev</strong> (<code>dev-docs/</code>, publié sous <code>…/dev/</code>) pour que l'architecture décrite
+colle au code livré : <a href="../architecture/">Architecture</a>, <a href="../patterns/">Patterns et principes</a>,
+<a href="../injection/">Injection (Guice)</a>, <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a> si le
+chantier a introduit un <strong>nouveau pattern d'extension</strong> que les futures features devront suivre.</p>
+<p>Toute <strong>décision structurante</strong> prise pendant le chantier - un choix d'architecture ou de domaine qu'un
+développeur futur pourrait raisonnablement remettre en cause faute d'en connaître les raisons - donne une
+<strong><a href="../decisions/">ADR</a></strong> : une par décision, immuable, expliquant le pourquoi.</p>
+<h3 id="4-passe-de-doc-utilisateur">4. Passe de doc utilisateur<a class="headerlink" href="#4-passe-de-doc-utilisateur" title="Permanent link">&para;</a></h3>
+<p>Documenter le chantier pour les <strong>utilisateurs</strong> dans le site produit (<code>docs/</code>), avec <strong>autant de
+captures que nécessaire</strong>. Les aperçus sont régénérés en CI : ajouter/mettre à jour les classes
+<code>Capture*</code> et le manifeste, cf. <a href="../captures/">Captures d'écran</a>. Une fonctionnalité visible sans
+capture est une fonctionnalité à moitié livrée.</p>
+<h3 id="5-passe-de-brief-projet">5. Passe de brief projet<a class="headerlink" href="#5-passe-de-brief-projet" title="Permanent link">&para;</a></h3>
+<p>Le <strong>brief projet</strong> (dépôt <a href="https://github.com/echonuit/brief"><code>echonuit/brief</code></a>) est le
+document de <strong>conception</strong> vivant du produit : le besoin, les <strong>parcours utilisateurs</strong> (P1-P10), les
+maquettes, le modèle conceptuel. Ce n'est <strong>pas</strong> un sujet pédagogique - son lecteur est un
+<strong>contributeur</strong> du produit, pas un étudiant. Quand un chantier change un de ces <strong>éléments de
+conception</strong> (un parcours, une maquette, le modèle de données, une contrainte produit), répercuter
+l'évolution dans le brief pour qu'il reste aligné avec le produit réellement livré. Un brief qui décrit
+une version périmée du produit égare son lecteur. C'est <strong>rarement</strong> « sans objet » pour un chantier
+qui touche au comportement ou à la conception du produit.</p>
+<h3 id="6-passe-de-tests">6. Passe de tests<a class="headerlink" href="#6-passe-de-tests" title="Permanent link">&para;</a></h3>
+<p>Vérifier que <strong>chaque usage</strong> introduit est couvert :</p>
+<ul>
+<li><strong>tests d'intégration</strong> TestFX (headless) sur les vues et leurs bindings ;</li>
+<li><strong>tests E2E</strong> (<code>fr.univ_amu.iut.e2e.*</code>) sur les parcours complets IHM → ViewModel → service →
+  base.</li>
+</ul>
+<p>Pièges et conventions dans <a href="../tests-et-qualite/">Tests et qualité</a>. Les frontières d'architecture
+sont couvertes automatiquement par <code>ArchitectureTest</code>.</p>
+<p><strong>Chercher ce qui manque, pas relire ce qu'on a écrit.</strong> C'est le point qui a le plus souvent failli :
+on relit ses propres tests, on les trouve verts, et on conclut que c'est couvert - alors qu'un pan
+entier n'a jamais été regardé. L'inventaire se fait donc <strong>depuis le diff du chantier</strong>
+(<code>git diff origin/main...</code>, toutes les PR confondues), pas depuis sa mémoire. Pour <strong>chaque capacité</strong>
+ajoutée ou changée - un service, un geste d'IHM, une commande CLI, une migration, un port, un état
+persisté - on note <strong>quel test la couvre et à quel niveau</strong>. « Aucun » est une réponse valable, mais
+elle doit être <strong>dite</strong> : un trou assumé devient une issue (passe 9), un trou tacite devient une
+régression. Trois familles concentrent les angles morts :</p>
+<ul>
+<li><strong>les chemins non nominaux</strong> : le refus, l'erreur, l'annulation, l'état vide, la donnée absente, la
+  <strong>feature désactivée</strong> (<a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/">ADR 0003</a>).
+  Le cas nominal est presque toujours testé ; c'est l'autre branche qui manque ;</li>
+<li><strong>les surfaces jumelles</strong> : un geste couvert côté IHM mais pas côté <strong>CLI</strong> (ou l'inverse) n'est
+  couvert qu'à moitié - c'est le prolongement de la passe 2
+  (<a href="../decisions/0014-parite-cli-ihm/">ADR 0014</a>) ;</li>
+<li><strong>le cas réel</strong> : un test synthétique vert ne prouve pas que le vrai jeu de données passe. Quand
+  c'est possible, rejouer le geste sur une <strong>vraie nuit</strong> avant de conclure.</li>
+</ul>
+<p><strong>Un zéro se confirme à la main.</strong> L'inventaire se mène volontiers à coups de <code>grep</code> - bonne amorce,
+mais qui se trompe <strong>dans les deux sens</strong>. Un audit réel de la suite E2E en a produit <strong>quatre</strong> de
+suite : chercher le nom d'un écran remonte un <strong>homonyme</strong> (« recherche » → le protocole
+<code>PointFixeRecherche</code>) ; chercher par <strong>clé de vue</strong> rate les parcours qui pilotent les <strong>services</strong>
+(<code>importation</code>, <code>lot</code>, <code>qualification</code> ressortaient à zéro alors qu'ils sont couverts) ; chercher une
+commande CLI par son <strong>nom de classe</strong> la déclare non testée quand le test l'invoque en kebab-case - et
+l'inverse quand le test instancie la classe. Il a fallu <strong>croiser deux signaux</strong> pour obtenir la vraie
+réponse : sur 41 commandes, <strong>zéro</strong> sans test, là où les greps naïfs en annonçaient jusqu'à 20. Donc :
+un « aucun test » sorti d'un grep n'est qu'une <strong>hypothèse</strong>, à confirmer en ouvrant les fichiers
+<strong>avant</strong> d'en faire une issue. Une issue fausse coûte plus cher que le trou qu'elle prétend signaler.</p>
+<p><strong>Un garde-fou de non-régression se vérifie en le voyant rouge.</strong> Un test écrit pour empêcher un défaut
+de revenir ne prouve rien tant qu'on ne l'a pas vu <strong>échouer</strong> avec le défaut en place. Deux gestes,
+complémentaires : <strong>PIT ciblé</strong> sur les classes du chantier (<code>-Pmutation</code>, exhaustif là où il
+s'applique) et la <strong>mutation à la main</strong> pour ce que PIT ne mute pas - attribut d'annotation, câblage,
+FXML, sonde réseau. Le mode d'emploi et les quatre contre-exemples qui ont motivé la règle sont dans
+<a href="../tests-et-qualite/#un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge">Tests et qualité</a>.</p>
+<p><strong>Des E2E qui traversent, quitte à fusionner des scénarios.</strong> Un E2E ne vaut pas par le nombre
+d'assertions mais par ce qu'il <strong>traverse</strong>. Plusieurs parcours courts, qui bouchonnent chacun l'étape
+voisine, prouvent chacun une tranche et <strong>personne ne prouve la chaîne</strong> : les défauts se logent
+précisément dans les <strong>coutures</strong> entre deux étapes. Quand deux scénarios partagent leur amont, les
+<strong>fusionner</strong> en un seul qui va plus loin donne une couverture plus <strong>fidèle</strong>. Le critère de fusion
+est simple : deux étapes se fusionnent quand le défaut probable est <strong>entre</strong> elles. À l'inverse,
+fusionner sans couture à exercer ne produit qu'un test-fleuve illisible - la longueur n'est pas le but.</p>
+<p><strong>Ce qui ne peut pas être automatisé va en recette.</strong> Certaines vérifications ne se scriptent pas :
+finesse du rendu, fluidité perçue, geste qui exige un vrai serveur, une vraie carte SD ou du matériel.
+Elles ne disparaissent pas pour autant : elles s'écrivent dans la <a href="../recette/">recette</a>, sur le
+script de la <strong>session propriétaire</strong> de l'écran (<code>recette/sessions/</code>), sous forme de <strong>cases
+numérotées <code>Sxx-NN</code></strong> - une case = <strong>un fait observable</strong>, jamais un contrôle groupé. Sans ce report,
+« pas automatisable » devient silencieusement « pas vérifié ».</p>
+<h3 id="7-passe-dharmonisation">7. Passe d'harmonisation<a class="headerlink" href="#7-passe-dharmonisation" title="Permanent link">&para;</a></h3>
+<p><strong>Prendre du recul sur l'application entière</strong>, pas seulement sur les fichiers que le chantier a
+touchés. Il s'agit de regarder comment ce qui vient d'être livré <strong>s'intègre dans le tout</strong>. La passe
+se fait en <strong>deux temps</strong>.</p>
+<p><strong>Premier temps : l'audit global.</strong> Avant de refactorer quoi que ce soit, cartographier l'intégration
+du résultat du chantier dans le reste de l'application. Deux questions, posées sur <strong>tout le code</strong> et
+pas sur le seul périmètre du chantier :</p>
+<ul>
+<li><strong>Qu'est-ce qui ressemble</strong> à ce qu'on vient d'écrire ? Un geste, un composant, un contrat, une
+  formulation d'IHM, un parcours.</li>
+<li><strong>Qu'est-ce qui bénéficierait</strong> du résultat du chantier ? Un écran qui gagnerait le nouveau
+  composant, un service qui pourrait s'appuyer sur la nouvelle abstraction, un appelant resté sur
+  l'ancienne façon de faire.</li>
+</ul>
+<p>Cet audit doit être <strong>exhaustif et scrupuleux</strong> : l'enjeu est de <strong>comprendre ce qui sous-tend la
+demande initiale</strong> (le concept réel, au-delà de la formulation du ticket) et d'en repérer <strong>tous les
+axes</strong> possibles. On ne s'arrête pas au premier doublon évident.</p>
+<p><strong>Second temps : le refactoring de conceptualisation.</strong> Retravailler l'application pour que sa
+structure <strong>exprime mieux ce concept</strong> et la rende à la fois plus <strong>lisible</strong> et plus
+<strong>compréhensible</strong>. La <strong>réduction de la duplication</strong> (code répété entre features → <strong>contrat/pattern
+partagé</strong> dans <code>commun</code>) et l'<strong>abstraction</strong> (classe devenue trop grosse → <strong>Extract Class</strong>, le PMD
+<code>GodClass</code> du portail qualité est le garde-fou, cf. <a href="../tests-et-qualite/">Tests et qualité</a>) sont des
+<strong>outils</strong> au service de cette clarté, <strong>pas</strong> le but : un code plus court mais moins compréhensible
+n'est pas une harmonisation. C'est le moment de transformer trois copies d'un même geste en un
+mécanisme d'extension.</p>
+<p><strong>Discuter, ne pas trancher seul.</strong> Un refactoring de conceptualisation engage l'application entière.
+Dès qu'un choix, un doute ou une conséquence n'est pas évident, <strong>en discuter avec l'utilisateur</strong> :
+soumettre les options, expliciter les compromis, laisser trancher la direction. C'est un des rares
+moments où l'on <strong>remonte</strong> de l'implémentation vers la conception ; on ne s'y engage pas à l'aveugle.</p>
+<h3 id="8-passe-de-revue-visuelle">8. Passe de revue visuelle<a class="headerlink" href="#8-passe-de-revue-visuelle" title="Permanent link">&para;</a></h3>
+<p><strong>Inspecter visuellement toutes les conséquences visibles du chantier.</strong> Pas seulement les écrans
+nouveaux ou modifiés : <strong>chaque état</strong> qu'un écran touché peut prendre (donnée présente ou absente,
+GPS renseigné ou non, liste vide ou pleine, calcul disponible ou indisponible, thème clair ou
+sombre...). On <strong>régénère</strong> les captures concernées, on les <strong>ouvre une par une</strong>, on les <strong>regarde</strong>.</p>
+<p><strong>Les captures sont une documentation vivante de l'état réel de l'application.</strong> Il est donc <strong>crucial
+qu'elles reflètent toutes les fonctionnalités visuelles du chantier</strong>. Une conséquence visible qui n'a
+<strong>pas</strong> de capture n'est <strong>pas documentée</strong> : elle dérivera en silence, et le prochain qui lira la doc
+verra un produit qui n'existe plus. Cette passe <strong>ajoute donc autant de captures que nécessaire</strong> : un
+état neuf apparu avec le chantier, une variante qu'aucune capture ne montrait, un écran entier créé.
+Une capture ajoutée devient une <strong>validation visuelle rejouable</strong> (seed déterministe, entrée au
+manifeste des captures, insertion dans la doc) : elle est régénérée à chaque build et re-contrôlée à
+chaque chantier suivant.</p>
+<p>Cette passe existe parce qu'un constat s'est répété <strong>cinq fois</strong> sur les chantiers #1405 et #1431 :</p>
+<blockquote>
+<p><strong>Un geste testé n'est pas un écran regardé.</strong></p>
+</blockquote>
+<p>Cinq défauts d'IHM y ont été trouvés en <strong>ouvrant une capture</strong>, et <strong>aucun</strong> par un test - alors que les
+gestes concernés étaient couverts :</p>
+<ul>
+<li>un libellé tronqué (« Code du poi… ») ; puis <strong>le même</strong> sur un autre écran, préexistant ;</li>
+<li>une consigne rognée par le bouton voisin (« Copier le m… ») ;</li>
+<li>un emoji qui ne se rend pas (glyphe absent, cf. #700) ;</li>
+<li>et une <strong>capture de documentation qui avait dérivé du produit</strong> : elle affichait un protocole
+  « Point fixe » qui <strong>n'existe pas</strong>, et cachait une confirmation destructive entière.</li>
+</ul>
+<p>Aucun de ces défauts ne fait rougir quoi que ce soit. Un test vérifie qu'un bouton <strong>fait</strong> ce qu'il
+doit ; il ne vérifie pas qu'on peut <strong>lire</strong> ce qu'il dit.</p>
+<p><strong>Pourquoi ici, et pas plus tôt.</strong> La passe précédente (harmonisation) touche volontiers au CSS partagé
+ou aux composants du socle : c'est <strong>elle</strong> qui est la plus à même de casser un écran sans casser un
+test. On regarde donc <strong>après</strong> elle. Et comme les aperçus sont <strong>régénérés automatiquement sur <code>main</code></strong>,
+un défaut corrigé ici rafraîchit la documentation tout seul.</p>
+<p><strong>Ce qu'on cherche.</strong> D'abord la <strong>couverture</strong> : chaque conséquence visible du chantier a-t-elle une
+capture ? Un état montré nulle part est un angle mort ; on <strong>crée la capture manquante</strong> avant d'aller
+plus loin. Puis, sur chaque capture (par ordre de fréquence constatée) :</p>
+<ol>
+<li>du <strong>texte coupé</strong> - libellé, consigne, bouton (une ellipse <code>…</code> est un aveu) ;</li>
+<li>un <strong>glyphe absent</strong> (emoji, symbole) ;</li>
+<li>un <strong>écart entre la capture et le produit</strong> : si une capture est <em>reconstruite</em> quelque part au lieu
+   d'être <em>rendue</em>, elle <strong>mentira</strong> tôt ou tard (cf. #1468) ;</li>
+<li>une <strong>régression de style</strong> après une factorisation CSS ;</li>
+<li>un <strong>écran de la doc qui ne ressemble plus</strong> à ce que le chantier a livré.</li>
+</ol>
+<p>Ce qui se corrige tout de suite se corrige ; le reste part en issue à la passe suivante.</p>
+<p><strong>Regarder ne suffit pas : il faut regarder d'assez près pour que l'affirmation tienne.</strong> Un aperçu
+s'ouvre à sa taille naturelle, où un glyphe fait douze pixels. À cette échelle, un <strong>pictogramme
+monochrome fin est indistinguable du vide</strong> : on conclut « absent » sur ce qui est simplement discret.
+La clôture de #1933 en a fait les frais, en publiant trois « preuves » d'absence dont <strong>une seule</strong>
+était exacte - recadrées et agrandies ×3, deux des glyphes se rendaient, et un troisième se rendait
+en <strong>forme méconnaissable</strong>, ce que personne n'avait envisagé. Avant d'écrire qu'un élément manque,
+qu'un texte est coupé ou qu'une couleur a bougé, <strong>recadrer la zone et l'agrandir</strong>. Trente secondes,
+et l'affirmation devient un constat.</p>
+<p>Corollaire pour la rédaction : un pictogramme littéral n'a pas deux issues mais <strong>trois</strong> - rendu,
+absent, ou déformé. La troisième est la pire pour l'utilisateur, puisqu'elle se lit comme une faute de
+frappe dans le libellé.</p>
+<h3 id="9-passe-didentification-des-nouveaux-chantiers">9. Passe d'identification des nouveaux chantiers<a class="headerlink" href="#9-passe-didentification-des-nouveaux-chantiers" title="Permanent link">&para;</a></h3>
+<p>Un chantier en révèle d'autres (dette assumée, palier différé, idée née en chemin). Les <strong>cadrer</strong> et
+<strong>créer les issues</strong> correspondantes (reliées à un nouvel EPIC si elles forment un ensemble), pour ne
+pas perdre le contexte encore frais.</p>
+<h3 id="10-phase-de-bilan">10. Phase de bilan<a class="headerlink" href="#10-phase-de-bilan" title="Permanent link">&para;</a></h3>
+<p>Une <strong>synthèse</strong> courte : ce qui a été livré, la <strong>dette restante</strong>, les <strong>décisions</strong> prises et leur
+pourquoi. Elle se dépose dans le corps de l'EPIC (au moment de le clore) et, si elle change une
+règle du dépôt, se répercute dans <code>CLAUDE.md</code> / <code>CONTRIBUTING.md</code>. Le bilan <strong>renvoie</strong> aux
+<a href="../decisions/">ADR</a> écrites en passe 3 plutôt que de redérouler le raisonnement des décisions.</p>
+<p><strong>Et il se montre.</strong> Un chantier d'IHM se juge sur ce qu'il change à l'écran, or le bilan est un texte :
+il décrit des captures que son lecteur n'a pas sous les yeux. La passe 8 les a pourtant toutes ouvertes,
+recadrées et regardées — ce travail reste dans la tête de qui l'a fait.</p>
+<p>La passe 10 produit donc un <strong>artefact visuel</strong> : une page qui met les états <strong>avant / après</strong> côte à
+côte, une ligne par conséquence visible du chantier, avec la phrase qui dit ce qu'on doit y voir. Elle
+sert deux fois :</p>
+<ul>
+<li><strong>pour valider</strong> — c'est le seul support sur lequel un relecteur peut dire « non, ça ne va pas » sans
+  relire le code. Un bilan qui affirme « les huit boutons s'affichent en entier » demande qu'on le
+  croie ; une capture le montre ;</li>
+<li><strong>pour dater</strong> — elle fige à quoi ressemblait l'écran à la clôture, ce que le prochain chantier pourra
+  comparer.</li>
+</ul>
+<p>Elle est <strong>soumise avant de clore l'EPIC</strong>, pas après : son objet est d'obtenir un assentiment, pas de
+documenter une décision déjà prise.</p>
+<div class="admonition tip">
+<p class="admonition-title">Ce qu'elle contient, au minimum</p>
+<p>Une entrée par écran touché : la capture <strong>avant</strong>, la capture <strong>après</strong>, et une phrase qui nomme ce
+qui a changé. Les défauts trouvés en chemin y figurent aussi, <strong>recadrés et agrandis</strong> — un glyphe de
+douze pixels ne se juge pas à l'échelle 1 (cf. passe 8). Ce qui n'a <strong>pas</strong> été corrigé y a sa place :
+une troncature laissée en l'état, montrée et assumée, vaut mieux qu'une omission.</p>
+</div>
+<h2 id="les-suites-dune-cloture-se-closent-aussi">Les suites d'une clôture se closent aussi<a class="headerlink" href="#les-suites-dune-cloture-se-closent-aussi" title="Permanent link">&para;</a></h2>
+<p>La passe 9 crée des issues ; la passe 10 les nomme « dette restante » et clôt l'EPIC. Ces issues, une
+fois livrées, forment un <strong>nouveau delta</strong> - et rien ne les rattrape si l'on considère que le chantier
+est fini.</p>
+<p>Le dépôt l'a vécu <strong>trois fois</strong> : les suites de l'EPIC #1662 ont formé l'EPIC #1863, dont les suites
+ont formé le delta clos par #1920 ; les suites de #1838 ont eu leur propre clôture (#1921). Le patron
+est donc régulier, pas accidentel.</p>
+<p><strong>Les suites d'un chantier se closent par les mêmes 10 passes</strong>, appliquées à leur seul delta
+(<code>git log &lt;sha-de-la-clôture-précédente&gt;..origin/main</code>, filtré sur les commits du chantier). C'est peu
+coûteux - le périmètre est étroit - et c'est là qu'on trouve ce que le travail de suite a laissé
+derrière lui : une capacité livrée d'un seul côté, un état visuel sans capture, une règle construite par
+quatre PR qu'aucune ADR ne porte.</p>
+<p><strong>Un bilan est une hypothèse, pas un verdict.</strong> Sa section « dette restante » décrit ce qu'on croyait
+comprendre au moment de l'écrire. Le bilan de #1864 affirmait d'un défaut d'horodatage qu'« une
+troncature de fuseau est confirmée, mais elle n'explique pas tout - au moins deux facteurs, dont un qui
+détruit la fin de nuit ». C'était faux : il n'y avait qu'un facteur, mais il <strong>composait</strong> à chaque
+cycle. Ce qui a tranché n'est pas un raisonnement plus fin, c'est d'être allé <strong>lire l'état réel</strong> sur la
+plateforme. Quand une suite est traitée, <strong>relire ce que le bilan en disait</strong> et le corriger s'il s'est
+trompé : une analyse fausse laissée en place oriente le chantier suivant.</p>
+<h2 id="modele-de-cloture-a-coller-dans-lepic">Modèle de clôture (à coller dans l'EPIC)<a class="headerlink" href="#modele-de-cloture-a-coller-dans-lepic" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gu">## Ouverture de chantier</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">- [ ]</span> 0. Triage : issues ouvertes balayées <span class="gs">**par concept**</span>, EPIC vivants et issues « différées de <span class="ni">#N</span> » cherchés, rattachements décidés, titres/corps recadrés
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">- [ ]</span> 1. Cartographie de l&#39;existant (patterns réutilisables)
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">- [ ]</span> 2. Plan (découpage, contraintes, risques, ordre des paliers)
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">- [ ]</span> 3. Issues créées et reliées à l&#39;EPIC
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="gu">## Clôture de chantier</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">- [ ]</span> 1. Audit d&#39;intégration (rebase sur <span class="sb">`main`</span>, points d&#39;accroche, régressions)
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">- [ ]</span> 2. Cohérence CLI ↔ UI (capacités métier exposées des deux côtés, ou « sans objet »)
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">- [ ]</span> 3. Doc développeur (dev-docs) à jour + ADR pour toute décision structurante (dev-docs/decisions/)
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">- [ ]</span> 4. Doc utilisateur (docs/) + captures
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">- [ ]</span> 5. Brief projet (echonuit/brief) répercuté si un élément de conception change
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, non-automatisable reporté en <span class="gs">**recette**</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l&#39;utilisateur**</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">- [ ]</span> 10. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
+</code></pre></div>
+<h2 id="modele-de-commencement-dissue-a-commenter-sur-lissue-avant-la-premiere-ligne-de-code">Modèle de commencement d'issue (à <strong>commenter sur l'issue</strong>, avant la première ligne de code)<a class="headerlink" href="#modele-de-commencement-dissue-a-commenter-sur-lissue-avant-la-premiere-ligne-de-code" title="Permanent link">&para;</a></h2>
+<p>À déposer en commentaire, <strong>et assigner l'issue</strong> dans la foulée.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gs">**Pris par**</span> : chantier &lt;EPIC ou thème&gt; · branche <span class="sb">`&lt;nom-de-branche&gt;`</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gs">**Ce qu&#39;il y a à faire**</span> : &lt;une phrase, dans les termes du problème&gt;
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="gs">**Pourquoi maintenant**</span> : &lt;ce qui la rend traitable ou urgente&gt;
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="gs">**Dans quelle continuité**</span> : &lt;le chantier d&#39;où elle vient, l&#39;issue qu&#39;elle suit, ce qu&#39;elle permet ensuite&gt;
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="gs">**Remède envisagé**</span> : &lt;la piste retenue, pour qu&#39;un désaccord se voie avant le code&gt;
+</code></pre></div>
+<p>Et quand on s'arrête sans avoir fini — reporté, bloqué, abandonné :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gs">**Reposée**</span> : &lt;ce qui a été fait, ce qui bloque, ce qu&#39;il reste&gt;. Assignee retiré.
+</code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Retour en haut de la page
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
+        
+          
+          <a href="../ajouter-une-fonctionnalite/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Ajouter une fonctionnalité">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Précédent
+              </span>
+              <div class="md-ellipsis">
+                Ajouter une fonctionnalité
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../decisions/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Journal">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Suivant
+              </span>
+              <div class="md-ellipsis">
+                Journal
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Sébastien Nedjar
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
