@@ -2259,12 +2259,6 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>PublicationCorrections.publier</code> (un PATCH par observation publiable : taxon + certitude + ancrage ; idempotente, code 1 si refus). <strong>Acquiert d'abord l'ancrage qui manque</strong> (#1838) quand la nuit est rattachée à une participation : une nuit importée par CSV (#1565) n'en porte pas, ses corrections seraient sinon toutes écartées. Le rapatriement peut durer ; son avancement va sur la <strong>sortie d'erreur</strong>, la sortie standard restant réservée au bilan. Une nuit déjà ancrée n'en paie pas le coût</td>
 </tr>
 <tr>
-<td><code>archiver</code></td>
-<td><code>--passage &lt;id&gt; [--confirmer]</code></td>
-<td>#1300</td>
-<td><code>ServiceArchivagePassage.archiver</code> : libère le disque d'une nuit <strong>déposée</strong> (séquences + bruts), après avoir <strong>capturé les empreintes</strong>. Sans <code>--confirmer</code>, annonce ce qui serait supprimé et sort en <code>2</code> : la suppression est irréversible, elle ne se fait pas par inadvertance</td>
-</tr>
-<tr>
 <td><code>reactiver</code></td>
 <td><code>--passage &lt;id&gt; --source &lt;dir&gt; [--json]</code></td>
 <td>#1302, #1406, #1571</td>
