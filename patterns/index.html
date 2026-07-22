@@ -2052,11 +2052,13 @@ passage peuvent disparaître sans nous : purge volontaire, disque externe débra
 regardant le disque (un <code>Files.list</code> par dossier, pas un <code>exists</code> par fichier), mis en cache et
 invalidé aux gestes qui le changent. Toute l'IHM se règle <strong>là-dessus</strong> : l'écoute se voile, l'audit
 informe au lieu de crier, la réactivation s'offre.</p>
-<p>Un geste <strong>déclaré</strong> est autre chose qu'un état <strong>observé</strong>, et les deux coexistent :
-<code>recording_session.archived_at</code> et <code>originals_purged_at</code> disent « l'utilisateur a demandé ça, tel
-jour » ; c'est ce qui permet à l'audit de distinguer <em>purgé exprès</em> (INFO) de <em>corrompu</em> (ERREUR),
-alors que le disque, lui, rend le même verdict dans les deux cas : « absent ». <strong>Le marqueur explique,
-l'observation décide.</strong></p>
+<p>Un geste <strong>déclaré</strong> est autre chose qu'un état <strong>observé</strong>. Le projet est passé des premiers au
+second : l'audio absent ne se <strong>déclare</strong> plus, il s'<strong>observe</strong>
+(<a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">ADR 0048</a>) - l'utilisateur
+possède ses fichiers, et son absence n'est jamais une corruption. Il reste un marqueur déclaré,
+<code>recording_session.originals_purged_at</code> : il dit « l'utilisateur a purgé les bruts, tel jour », ce qui
+permet à l'audit de distinguer <em>purgé exprès</em> (silence) de <em>disparu</em> (ERREUR), là où le disque rend le
+même verdict dans les deux cas.</p>
 <p><strong>Principes.</strong> SSOT (la source de vérité reste distante : on ne la copie pas, on la <strong>date</strong>),
 <strong>honnêteté de l'IHM</strong> (« dernier état connu le… » plutôt qu'une fraîcheur feinte) et <strong>KISS</strong> (pas de
 sondage : on relit à l'ouverture, à la demande, ou après une action).</p>

@@ -2202,10 +2202,12 @@ réactivable si les fichiers d'origine reparaissent.</p>
   une nuit de 4806 séquences, contre plusieurs minutes pour une empreinte complète - et elle
   suffit à distinguer deux WAV différents, dont les en-têtes et les premières trames diffèrent.
   Elle est posée <strong>à l'import</strong> (<code>TransformationAudio</code>) ; les nuits déjà importées se rattrapent
-  avec <code>retro-empreintes</code> (<code>BackfillEmpreintes</code>), et l'archivage la pose <strong>avant</strong> de supprimer.</li>
-<li><strong><code>V24__archivage_passage.sql</code></strong> : <code>recording_session.archived_at</code>. Un <strong>geste déclaré</strong>, pas un
-  état : « l'utilisateur a archivé cette nuit, tel jour ». L'état, lui, s'<strong>observe</strong> sur le disque
-  (<code>DisponibiliteAudio</code>, cf. <a href="../patterns/#etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine">patterns</a>).</li>
+  avec <code>retro-empreintes</code> (<code>BackfillEmpreintes</code>).</li>
+<li><strong><code>V24__archivage_passage.sql</code></strong> : <code>recording_session.archived_at</code>. <strong>Colonne vestigiale</strong> : le
+  geste d'archivage a été retiré (<a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">ADR 0048</a>),
+  plus personne ne l'écrit ni ne la lit. La disponibilité de l'audio s'<strong>observe</strong> sur le disque
+  (<code>DisponibiliteAudio</code>, cf. <a href="../patterns/#etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine">patterns</a>).
+  Son retrait effectif est une migration à venir.</li>
 <li><strong><code>V25__purge_originaux_declaree.sql</code></strong> : <code>recording_session.originals_purged_at</code>, et
   <strong>rétro-déclaration</strong> des sessions dont le volume de bruts est déjà à zéro. Elle répare un
   défaut latent : la purge globale des originaux n'écrivait <strong>rien</strong> en base, si bien que l'audit
