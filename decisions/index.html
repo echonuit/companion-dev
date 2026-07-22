@@ -560,6 +560,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-numero-dune-adr-est-celui-de-son-chantier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le numéro d'une ADR est celui de son chantier
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#format" class="md-nav__link">
     <span class="md-ellipsis">
       Format
@@ -1552,6 +1561,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1881 · Le numéro d'une ADR est celui de son chantier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1932,6 +1962,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-numero-dune-adr-est-celui-de-son-chantier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Le numéro d'une ADR est celui de son chantier
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#format" class="md-nav__link">
     <span class="md-ellipsis">
       Format
@@ -1993,8 +2032,18 @@
 <p>On écrit une ADR quand un chantier prend une décision qu'un développeur futur <strong>pourrait raisonnablement remettre en cause</strong> faute d'en connaître les raisons : « pourquoi ne pas simplement comparer l'empreinte ? », « pourquoi une fenêtre courte plutôt qu'une moyenne ? ».</p>
 <h2 id="quand-en-ecrire-une">Quand en écrire une<a class="headerlink" href="#quand-en-ecrire-une" title="Permanent link">&para;</a></h2>
 <p>Au fil d'un chantier, à la <strong>passe 3 (doc développeur)</strong> de sa <a href="../cycle-de-chantier/">clôture</a> : chaque décision structurante prise pendant le chantier donne une ADR. La <strong>passe 10 (bilan)</strong> s'y réfère plutôt que de dupliquer le raisonnement.</p>
+<h2 id="le-numero-dune-adr-est-celui-de-son-chantier">Le numéro d'une ADR est celui de son chantier<a class="headerlink" href="#le-numero-dune-adr-est-celui-de-son-chantier" title="Permanent link">&para;</a></h2>
+<p><strong>Le numéro d'une ADR est le numéro de l'issue du chantier qui l'a décidée</strong> (l'EPIC quand il y en a un). Il ne se choisit pas : il est déjà attribué quand on s'assoit pour écrire.</p>
+<p>Ce n'était pas le cas avant : le numéro était pris au compteur, « le premier libre dans le dossier ». Ce compteur était une ressource partagée sans verrou, et deux chantiers parallèles prenaient régulièrement le même. Sur les quatre dernières ADR numérotées ainsi, <strong>trois</strong> ont dû être renumérotées, et la dernière collision a coûté bien plus que le renommage d'un fichier (#1881). Réserver le numéro à l'avance a été essayé, et démenti en trente minutes ; un script de balayage des branches a été écrit, et sa sortie s'est survolée. Un numéro d'issue, lui, ne peut pas entrer en collision : personne ne le choisit.</p>
+<p>Comme les numéros d'issue croissent avec le temps, le dossier reste dans l'ordre chronologique.</p>
+<div class="admonition note">
+<p class="admonition-title">Le compteur est clos à 0048</p>
+<p>Les ADR <strong>0001 à 0048</strong> gardent leur numéro de compteur : elles ne bougent pas. Les renuméroter toucherait 288 citations dans 154 fichiers, dont 93 fichiers Java, et surtout les discussions GitHub déjà closes, qu'on ne peut pas réécrire. <strong>0049 n'existera jamais</strong> : une ADR numérotée sous 1000 est une ADR d'avant la bascule.</p>
+<p>Deux trous subsistent dans cette série, <strong>0029 et 0030</strong> : ce sont les numéros qu'une résolution de collision a libérés. Ils restent vides, parce que les combler ferait pointer vers un numéro qui a déjà voulu dire autre chose dans une PR et une discussion.</p>
+</div>
+<p><code>DocumentationAJourTest</code> garde la règle : numéros uniques, en-tête d'accord avec le nom de fichier, ligne de journal et entrée de nav pour chaque ADR, et pour toute ADR postérieure à la bascule, un numéro qui figure bien dans sa ligne « Chantier ».</p>
 <h2 id="format">Format<a class="headerlink" href="#format" title="Permanent link">&para;</a></h2>
-<p>Copier le squelette suivant dans <code>NNNN-titre-court.md</code> (numéro à 4 chiffres, incrémental) :</p>
+<p>Copier le squelette suivant dans <code>NNNN-titre-court.md</code>, où <code>NNNN</code> est le numéro de l'issue du chantier :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gh"># ADR NNNN — La décision, formulée comme une affirmation</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">-</span><span class="w"> </span><span class="gs">**Statut**</span> : Accepté — AAAA-MM-JJ
@@ -2252,6 +2301,11 @@
 <td><a href="0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">0048</a></td>
 <td>L'utilisateur possède ses fichiers : l'application observe la disponibilité de l'audio au lieu de l'archiver, et peut le référencer en place (reformule #1038)</td>
 <td>#1038, #2028, EPIC #1297</td>
+</tr>
+<tr>
+<td><a href="1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/">1881</a></td>
+<td>Le numéro d'une ADR est celui de son chantier, pas un compteur : le compteur est clos à 0048</td>
+<td>#1881</td>
 </tr>
 </tbody>
 </table>
