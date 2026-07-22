@@ -2098,6 +2098,20 @@ par un écran dédié.</p>
 <p>Ces frontières ne sont pas qu'une convention : elles sont <strong>vérifiées automatiquement</strong> par
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/architecture/ArchitectureTest.java"><strong>ArchUnit</strong></a>.
 Casser une frontière fait <strong>échouer la CI</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Sauf si la dépendance se réduit à une constante</p>
+<p>ArchUnit lit le <strong>bytecode</strong>, et une dépendance qui ne consiste qu'en une <strong>constante compile-time</strong>
+n'y laisse aucune trace : le compilateur inline la valeur, le <code>.class</code> ne cite jamais la classe qui la
+déclarait (JLS 13.1). Toutes les règles ci-dessous sont aveugles à ce cas — ce n'est pas un faux négatif
+isolé mais une <strong>catégorie</strong>, qui vaut pour toute <code>String</code>, <code>int</code> ou <code>boolean</code> constant.</p>
+<p>Le cas s'est produit : une commande CLI a cité le <code>viewmodel</code> d'une feature pour une clé de réglage
+sans qu'aucune règle ne bronche (<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/2181">#2181</a>).
+D'où un <strong>doublon au niveau des sources</strong>, <code>IsolationFeatureSourcesTest</code>, qui lit l'<code>import</code> dans le
+<code>.java</code> — présent quoi qu'en fasse le compilateur. Mesuré : en réintroduisant volontairement une telle
+dépendance, les six règles ArchUnit restent <strong>vertes</strong> et ce test échoue.</p>
+<p>Il ne couvre que la règle d'<strong>isolation inter-feature</strong>. Un vert d'ArchUnit dit donc « aucune dépendance
+<strong>dans le bytecode</strong> », pas « aucune dépendance ».</p>
+</div>
 <table>
 <thead>
 <tr>
