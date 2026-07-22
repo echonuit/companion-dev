@@ -2423,10 +2423,18 @@ défaut est <code>&lt;Documents&gt;/VigieChiro-Companion</code>.</p>
 </tr>
 <tr>
 <td><code>2</code></td>
-<td>mauvaise invocation (commande inconnue, argument requis manquant ou mal formé)</td>
+<td>mauvaise invocation (commande inconnue, argument requis manquant ou mal formé) <strong>ou refus d'agir</strong></td>
 </tr>
 </tbody>
 </table>
+<p><strong><code>2</code> dit aussi « j'ai refusé, je n'ai rien fait ».</strong> Les commandes <strong>destructives</strong> exigent un drapeau
+explicite (<code>--confirmer</code>, <code>--ecraser</code>) : sans lui, elles <strong>chiffrent la perte</strong> et sortent en <code>2</code> sans
+rien toucher. C'est volontairement <strong>distinct de <code>1</code></strong> — après un <code>1</code>, l'état est incertain ; après un
+<code>2</code>, il est <strong>intact</strong>, et un script peut s'arrêter sans avoir à vérifier quoi que ce soit. Le message
+de refus part sur <strong>stderr</strong>, pour ne pas se mêler au compte rendu.</p>
+<p>Suivent cette règle : <code>supprimer-passage</code>, <code>importer --ecraser</code>, <code>restaurer</code>, <code>reset-guide --executer</code>,
+<code>discussion</code>, <code>sauvegarder</code> (incomplète). <code>restaurer</code> rendait <code>1</code> sur stdout jusqu'à #2294 — la
+convention n'était écrite nulle part, et c'est ainsi qu'elle a dérivé.</p>
 <p><code>deposer-vigiechiro</code> étend la convention : <code>0</code> <strong>seulement si le dépôt est complet</strong> ; <code>1</code> si des
 fichiers restent à reprendre (relancer la même commande ne re-téléverse que les manquants). Le jeton
 vient de <code>--token</code>, sinon de la variable d'environnement <code>VIGIECHIRO_TOKEN</code>, sinon de la <strong>connexion
