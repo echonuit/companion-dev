@@ -2439,14 +2439,19 @@ captures que nécessaire</strong>. Les aperçus sont régénérés en CI : ajout
 <code>Capture*</code> et le manifeste, cf. <a href="../captures/">Captures d'écran</a>. Une fonctionnalité visible sans
 capture est une fonctionnalité à moitié livrée.</p>
 <h3 id="5-passe-de-brief-projet">5. Passe de brief projet<a class="headerlink" href="#5-passe-de-brief-projet" title="Permanent link">&para;</a></h3>
-<p>Le <strong>brief projet</strong> (dépôt <a href="https://github.com/echonuit/brief"><code>echonuit/brief</code></a>) est le
-document de <strong>conception</strong> vivant du produit : le besoin, les <strong>parcours utilisateurs</strong> (P1-P10), les
-maquettes, le modèle conceptuel. Ce n'est <strong>pas</strong> un sujet pédagogique - son lecteur est un
-<strong>contributeur</strong> du produit, pas un étudiant. Quand un chantier change un de ces <strong>éléments de
-conception</strong> (un parcours, une maquette, le modèle de données, une contrainte produit), répercuter
-l'évolution dans le brief pour qu'il reste aligné avec le produit réellement livré. Un brief qui décrit
-une version périmée du produit égare son lecteur. C'est <strong>rarement</strong> « sans objet » pour un chantier
-qui touche au comportement ou à la conception du produit.</p>
+<p>Le <strong>brief projet</strong> est le document de <strong>conception</strong> vivant du produit : le besoin, les <strong>parcours
+utilisateurs</strong> (P1-P10), les maquettes, le modèle conceptuel. Ce n'est <strong>pas</strong> un sujet pédagogique -
+son lecteur est un <strong>contributeur</strong> du produit, pas un étudiant. Quand un chantier change un de ces
+<strong>éléments de conception</strong> (un parcours, une maquette, le modèle de données, une contrainte produit),
+répercuter l'évolution dans le brief pour qu'il reste aligné avec le produit réellement livré. Un brief
+qui décrit une version périmée du produit égare son lecteur. C'est <strong>rarement</strong> « sans objet » pour un
+chantier qui touche au comportement ou à la conception du produit.</p>
+<p>Ses sources sont <strong>dans ce dépôt</strong>, sous <a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/brief"><code>brief/</code></a>,
+aux côtés de <code>docs/</code> et <code>dev-docs/</code>. Cette passe se fait donc <strong>dans la pull request du chantier</strong>,
+comme les deux passes de documentation qui précèdent : il n'y a plus de second dépôt ni de seconde
+pull request. Le dépôt <code>echonuit/brief</code> ne porte plus que le site construit, publié automatiquement
+sur <a href="https://brief.echonuit.fr/">brief.echonuit.fr</a> ; le modifier n'a aucun effet.</p>
+<p>Prévisualiser le rendu avant de livrer : <code>mkdocs serve -f mkdocs-brief.yml</code>.</p>
 <h3 id="6-passe-de-tests">6. Passe de tests<a class="headerlink" href="#6-passe-de-tests" title="Permanent link">&para;</a></h3>
 <p>Vérifier que <strong>chaque usage</strong> introduit est couvert :</p>
 <ul>
@@ -2649,7 +2654,7 @@ trompé : une analyse fausse laissée en place oriente le chantier suivant.</p>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">- [ ]</span> 2. Cohérence CLI ↔ UI (capacités métier exposées des deux côtés, ou « sans objet »)
 <a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">- [ ]</span> 3. Doc développeur (dev-docs) à jour + ADR pour toute décision structurante (dev-docs/decisions/)
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">- [ ]</span> 4. Doc utilisateur (docs/) + captures
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">- [ ]</span> 5. Brief projet (echonuit/brief) répercuté si un élément de conception change
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">- [ ]</span> 5. Brief projet (<span class="sb">`brief/`</span>, dans la PR du chantier) répercuté si un élément de conception change
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, non-automatisable reporté en <span class="gs">**recette**</span>
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l&#39;utilisateur**</span>
 <a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
