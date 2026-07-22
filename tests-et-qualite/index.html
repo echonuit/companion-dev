@@ -1737,6 +1737,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="IHM testée en headless (sans X11 ni xvfb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-butoirs-testfx-sont-des-coupe-circuits-pas-des-budgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les butoirs TestFX sont des coupe-circuits, pas des budgets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2026,6 +2041,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="IHM testée en headless (sans X11 ni xvfb)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-butoirs-testfx-sont-des-coupe-circuits-pas-des-budgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Les butoirs TestFX sont des coupe-circuits, pas des budgets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2275,6 +2305,60 @@ FX 26). Comme la CI :
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
 </code></pre></div></p>
 </div>
+<h3 id="les-butoirs-testfx-sont-des-coupe-circuits-pas-des-budgets">Les butoirs TestFX sont des coupe-circuits, pas des budgets<a class="headerlink" href="#les-butoirs-testfx-sont-des-coupe-circuits-pas-des-budgets" title="Permanent link">&para;</a></h3>
+<p><code>FxToolkit</code> borne deux attentes : le démarrage du toolkit JavaFX (<code>testfx.launch.timeout</code>) et la mise
+en place d'un test, c'est-à-dire l'exécution de la méthode <code>@Start</code> par
+<code>ApplicationExtension.beforeEach</code> (<code>testfx.setup.timeout</code>). Leur seul rôle est d'empêcher un fil FX
+bloqué de figer le build indéfiniment. <strong>Ils ne mesurent rien</strong> : dépasser un butoir ne dit pas que le
+code est lent, seulement que la machine n'a pas rendu la main à temps.</p>
+<p>Les deux valeurs sont posées dans le <code>pom.xml</code> à <strong>120 s</strong>, et non laissées aux défauts de TestFX
+(30 s et 60 s) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;testfx.setup.timeout&gt;</span>120000<span class="nt">&lt;/testfx.setup.timeout&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nt">&lt;testfx.launch.timeout&gt;</span>120000<span class="nt">&lt;/testfx.launch.timeout&gt;</span>
+</code></pre></div>
+<p>Ce n'est pas un confort. Les défauts de TestFX supposent une JVM seule sur sa machine, alors que la
+suite lance <strong>une JVM par coeur</strong> (<code>surefire.forkCount=1C</code>) sur un runner partagé. Les deux décisions
+avaient été prises séparément, et le calcul ne tombait pas juste (#2120) :</p>
+<table>
+<thead>
+<tr>
+<th>Grandeur</th>
+<th>Mesure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mise en place la plus lente de la suite, 4 coeurs / 4 forks, machine au repos</td>
+<td><strong>6,9 s</strong> (<code>SonsValidationViewTest#basculer_reference</code>)</td>
+</tr>
+<tr>
+<td>Marge sous l'ancien butoir de 30 s</td>
+<td><strong>4,3x</strong></td>
+</tr>
+<tr>
+<td>Durée du job <code>build</code> sur 27 runs CI consécutifs</td>
+<td>de <strong>370 s à 2260 s</strong>, soit <strong>5,4x</strong></td>
+</tr>
+</tbody>
+</table>
+<p>La marge était <strong>plus petite que la variation de la machine</strong>. Le butoir vivait donc dans le bruit, et
+expirait au hasard des runs. À 120 s, la marge est de 17x sur le nominal, soit 3x au-delà de la pire
+dégradation observée, et un vrai interblocage est toujours coupé en deux minutes.</p>
+<div class="admonition warning">
+<p class="admonition-title">Un <code>» Timeout</code> en CI ne se lit pas comme un échec de test</p>
+<p>Surefire l'affiche sous cette forme, sans distinguer une assertion fausse d'une attente expirée :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>SonsValidationViewTest.basculer_reference » Timeout
+</code></pre></div>
+<p>La trace le tranche en trois lignes : <code>ApplicationExtension.beforeEach</code> puis
+<code>FxToolkit.setupApplication</code> puis <code>WaitForAsyncUtils.waitFor</code> signifient que <strong>le test n'a jamais
+commencé</strong>. Le premier réflexe est alors de regarder la <strong>durée du job</strong>, pas le diff : si le build
+a mis trois fois son temps habituel, c'est le runner qu'on observe, pas le code.</p>
+<p>Le piège est ailleurs : un rouge intermittent qu'on prend l'habitude d'écarter finit par couvrir
+celui qui compte. C'est ce précédent, et non le temps perdu, qui a motivé #2120.</p>
+</div>
+<p><code>ButoirsTestFxTest</code> vérifie que ces deux valeurs atteignent bien la JVM <strong>forkée</strong>. Elles passent par
+<code>systemPropertyVariables</code> : posées sur la JVM de Maven, elles n'auraient aucun effet, et TestFX
+retomberait <strong>en silence</strong> sur ses défauts.</p>
 <h2 id="la-taxonomie-des-tests">La taxonomie des tests<a class="headerlink" href="#la-taxonomie-des-tests" title="Permanent link">&para;</a></h2>
 <p>Les tests vivent sous <code>src/test/java/fr/univ_amu/iut/</code>, en <strong>miroir</strong> des paquets de production.</p>
 <table>
@@ -2340,12 +2424,12 @@ passage et sa nuit, réimporter par-dessus les validations de l'observateur. Et 
 <a href="../patterns/#les-dialogues-dune-action-sont-des-ports-socle-commun">Patrons</a>).
 Un test de geste les remplace par des doubles, <strong>déclenche</strong> l'action, et vérifie <strong>ce qui s'est
 passé</strong> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">confirmations</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">confirme</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">     </span><span class="c1">// l&#39;effet, pas « un mock a été appelé »</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">confirmations</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">confirme</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">     </span><span class="c1">// l&#39;effet, pas « un mock a été appelé »</span>
 </code></pre></div>
 <p>Trois exigences, dans l'ordre d'importance :</p>
 <ol>
@@ -2374,14 +2458,14 @@ un emoji qui ne se rend pas (#700), et une <strong>réplique</strong> de dialogu
 différents (#1258).</p>
 <p>Ce n'était pas de la rigueur, c'était du <strong>bruit</strong> : le test parlait de la plomberie au lieu de parler de
 ce qu'il vérifie. Et chaque migration de schéma coûtait autant de retouches que de copies.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">JeuDeDonneesPassage</span><span class="w"> </span><span class="n">jeu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JeuDeDonneesPassage</span><span class="p">.</span><span class="na">dans</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">        </span><span class="p">.</span><span class="na">carre</span><span class="p">(</span><span class="s">&quot;130711&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">        </span><span class="p">.</span><span class="na">point</span><span class="p">(</span><span class="s">&quot;Z41&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">        </span><span class="p">.</span><span class="na">semer</span><span class="p">();</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="kt">long</span><span class="w"> </span><span class="n">douteuse</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservation</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">);</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="kt">long</span><span class="w"> </span><span class="n">validee</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationValidee</span><span class="p">(</span><span class="s">&quot;Nyclei&quot;</span><span class="p">);</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="kt">long</span><span class="w"> </span><span class="n">corrigee</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationCorrigee</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pippip&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">JeuDeDonneesPassage</span><span class="w"> </span><span class="n">jeu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JeuDeDonneesPassage</span><span class="p">.</span><span class="na">dans</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">        </span><span class="p">.</span><span class="na">carre</span><span class="p">(</span><span class="s">&quot;130711&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">        </span><span class="p">.</span><span class="na">point</span><span class="p">(</span><span class="s">&quot;Z41&quot;</span><span class="p">)</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="p">.</span><span class="na">semer</span><span class="p">();</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="kt">long</span><span class="w"> </span><span class="n">douteuse</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservation</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">);</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="kt">long</span><span class="w"> </span><span class="n">validee</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationValidee</span><span class="p">(</span><span class="s">&quot;Nyclei&quot;</span><span class="p">);</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="kt">long</span><span class="w"> </span><span class="n">corrigee</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationCorrigee</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pippip&quot;</span><span class="p">);</span>
 </code></pre></div>
 <p>Valeurs par défaut : utilisateur <code>u-1</code>, carré <code>640380</code>, point <code>A1</code>, enregistreur <code>SN-1</code> - celles que les
 tests utilisaient déjà. Tout se surcharge avant <code>semer()</code>.</p>
@@ -2528,11 +2612,11 @@ c'est lui qui bloque la CI. Or, laissée par défaut, l'extension applique le pr
 <p>Le réglage qui les réaligne <strong>ne peut pas être versionné</strong> : <code>sonarlint.rules</code> est de scope
 <code>application</code>, donc VS Code le lit <strong>uniquement</strong> depuis les réglages utilisateur et ignore
 silencieusement un bloc placé dans <code>.vscode/settings.json</code>. À recopier dans ses réglages personnels :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&quot;sonarlint.rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&quot;java:S107&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constructorMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;java:S3776&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">&quot;java:S106&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">&quot;sonarlint.rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&quot;java:S107&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constructorMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">&quot;java:S3776&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">&quot;java:S106&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span>
 </code></pre></div>
 <p>Trois points à ne pas redécouvrir :</p>
 <ul>
@@ -2555,9 +2639,9 @@ l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 <li>
 <p><strong>PIT</strong> (<code>-Pmutation</code>) évalue si les tests <strong>détectent</strong> des mutations du code. Lent sur tout le
   dépôt, mais <strong>rapide ciblé</strong> sur la classe qu'on vient d'écrire - et c'est ainsi qu'il sert le mieux :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
 </code></pre></div>
 </li>
 </ul>
@@ -2565,10 +2649,10 @@ l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 reprend pas l'<code>argLine</code> de Surefire : sans elles, PIT lance ses minions sans <code>glass.platform=Headless</code>,
 la suite ne démarre pas et l'outil s'arrête sur « <em>tests did not pass without mutation</em> ». On les lui
 donne à la main :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.commun.view.Modales<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.commun.view.ModalesTest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>-DjvmArgs<span class="o">=</span><span class="s2">&quot;-Dglass.platform=Headless,-Dprism.order=sw,-Djava.awt.headless=true,-Dtestfx.robot=glass,--enable-native-access=ALL-UNNAMED&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.commun.view.Modales<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.commun.view.ModalesTest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>-DjvmArgs<span class="o">=</span><span class="s2">&quot;-Dglass.platform=Headless,-Dprism.order=sw,-Djava.awt.headless=true,-Dtestfx.robot=glass,--enable-native-access=ALL-UNNAMED&quot;</span>
 </code></pre></div>
 <p>PIT couvre donc aussi la couche <code>view</code>, ce que l'échec brut laissait croire impossible.</p>
 <p>⚠️ <strong>Lire le rapport, pas le résumé.</strong> <code>target/pit-reports/mutations.xml</code> écrit ses attributs en
