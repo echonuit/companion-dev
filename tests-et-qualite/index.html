@@ -1792,6 +1792,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#sonarqube-for-ide-facultatif-a-configurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      SonarQube for IDE (facultatif, à configurer)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#couverture-et-mutation" class="md-nav__link">
     <span class="md-ellipsis">
       Couverture et mutation
@@ -2070,6 +2079,15 @@
   
     <nav class="md-nav" aria-label="Les outils qualité">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sonarqube-for-ide-facultatif-a-configurer" class="md-nav__link">
+    <span class="md-ellipsis">
+      SonarQube for IDE (facultatif, à configurer)
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#couverture-et-mutation" class="md-nav__link">
@@ -2471,6 +2489,64 @@ tests qui sèment encore un passage à la main (<strong>66</strong> au 2026-07-1
 </tr>
 </tbody>
 </table>
+<h3 id="sonarqube-for-ide-facultatif-a-configurer">SonarQube for IDE (facultatif, à configurer)<a class="headerlink" href="#sonarqube-for-ide-facultatif-a-configurer" title="Permanent link">&para;</a></h3>
+<p>L'extension <strong>SonarQube for IDE</strong> (ex-SonarLint) analyse à la frappe et complète utilement PMD :
+elle voit des bugs et des fuites de ressources que le ruleset ne cherche pas. Mais <strong>PMD fait foi</strong> :
+c'est lui qui bloque la CI. Or, laissée par défaut, l'extension applique le profil « Sonar way »
+(542 règles Java) et <strong>contredit trois seuils</strong> délibérément arbitrés dans
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/pmd-ruleset.xml"><code>pmd-ruleset.xml</code></a> :</p>
+<table>
+<thead>
+<tr>
+<th>Règle Sonar</th>
+<th>Défaut</th>
+<th>Ce que dit le ruleset PMD</th>
+<th>Remontées sur <code>src/main/java</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>java:S107</code> (nb de paramètres)</td>
+<td>7</td>
+<td><code>ExcessiveParameterList</code> <strong>11</strong> : les <code>@Provides</code> Guice agrègent leurs collaborateurs</td>
+<td><strong>30</strong></td>
+</tr>
+<tr>
+<td><code>java:S3776</code> (complexité cognitive)</td>
+<td>15</td>
+<td>pendant de <code>CyclomaticComplexity</code> <strong>24</strong> : les parseurs écrits à la main montent à 27</td>
+<td><strong>9</strong></td>
+</tr>
+<tr>
+<td><code>java:S106</code> (sortie standard)</td>
+<td>actif</td>
+<td>aucun équivalent : <code>**/outils/**</code> et la CLI picocli écrivent sur stdout</td>
+<td><strong>28 fichiers</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Le réglage qui les réaligne <strong>ne peut pas être versionné</strong> : <code>sonarlint.rules</code> est de scope
+<code>application</code>, donc VS Code le lit <strong>uniquement</strong> depuis les réglages utilisateur et ignore
+silencieusement un bloc placé dans <code>.vscode/settings.json</code>. À recopier dans ses réglages personnels :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&quot;sonarlint.rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span><span class="nt">&quot;java:S107&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constructorMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;java:S3776&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">&quot;java:S106&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>Trois points à ne pas redécouvrir :</p>
+<ul>
+<li>La clé de <code>java:S3776</code> prend une <strong>majuscule</strong> (<code>Threshold</code>). Écrite en minuscule, elle est ignorée
+  sans le moindre message et le seuil reste à 15.</li>
+<li><code>java:S107</code> ne visite ni les <strong>records</strong> : les 27 records à 8 composants ou plus, dont
+  <code>LigneObservationAudio</code> et ses 30 composants, ne remontent pas. Inutile de relever le seuil pour eux.</li>
+<li>On ne coupe <strong>que</strong> ces trois règles. Le reste de « Sonar way » est un complément, pas un doublon ;
+  le désactiver en bloc reviendrait à ne garder que ce que PMD sait déjà faire.</li>
+</ul>
+<p>Pour une configuration réellement <strong>partagée</strong> entre contributeurs, la seule voie serait le
+<em>connected mode</em> (SonarQube Cloud, gratuit sur dépôt public) avec un profil qualité côté serveur.
+Le coût est un second référentiel de règles à tenir en phase avec <code>pmd-ruleset.xml</code> ; tant que
+l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 <h3 id="couverture-et-mutation">Couverture et mutation<a class="headerlink" href="#couverture-et-mutation" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>JaCoCo</strong> : sous <code>-Pquality-gate</code>, seuils <strong>bloquants</strong> au niveau <code>BUNDLE</code> — <strong>85 % de lignes</strong> et
@@ -2479,9 +2555,9 @@ tests qui sèment encore un passage à la main (<strong>66</strong> au 2026-07-1
 <li>
 <p><strong>PIT</strong> (<code>-Pmutation</code>) évalue si les tests <strong>détectent</strong> des mutations du code. Lent sur tout le
   dépôt, mais <strong>rapide ciblé</strong> sur la classe qu'on vient d'écrire - et c'est ainsi qu'il sert le mieux :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
 </code></pre></div>
 </li>
 </ul>
@@ -2489,10 +2565,10 @@ tests qui sèment encore un passage à la main (<strong>66</strong> au 2026-07-1
 reprend pas l'<code>argLine</code> de Surefire : sans elles, PIT lance ses minions sans <code>glass.platform=Headless</code>,
 la suite ne démarre pas et l'outil s'arrête sur « <em>tests did not pass without mutation</em> ». On les lui
 donne à la main :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.commun.view.Modales<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.commun.view.ModalesTest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span>-DjvmArgs<span class="o">=</span><span class="s2">&quot;-Dglass.platform=Headless,-Dprism.order=sw,-Djava.awt.headless=true,-Dtestfx.robot=glass,--enable-native-access=ALL-UNNAMED&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.commun.view.Modales<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.commun.view.ModalesTest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span>-DjvmArgs<span class="o">=</span><span class="s2">&quot;-Dglass.platform=Headless,-Dprism.order=sw,-Djava.awt.headless=true,-Dtestfx.robot=glass,--enable-native-access=ALL-UNNAMED&quot;</span>
 </code></pre></div>
 <p>PIT couvre donc aussi la couche <code>view</code>, ce que l'échec brut laissait croire impossible.</p>
 <p>⚠️ <strong>Lire le rapport, pas le résumé.</strong> <code>target/pit-reports/mutations.xml</code> écrit ses attributs en
