@@ -2193,7 +2193,7 @@ publication.</p>
 <ul>
 <li><strong>PMD</strong> : <code>failOnViolation=true</code> (sinon simple rapport), exécuté par <code>lint.yml</code> (<code>compile pmd:check</code>) ;</li>
 <li><strong>JaCoCo</strong> : le seuil de couverture devient bloquant, exécuté par <code>maven.yml</code>
-  (<code>verify -Djacoco.haltOnFailure=true</code>, <strong>85 % de lignes</strong>).</li>
+  (<code>verify -Djacoco.haltOnFailure=true</code>). Les valeurs vivent dans le <code>pom.xml</code>, seule source.</li>
 </ul>
 <p>Ces deux contrôles sont <strong>répartis sur deux workflows</strong> : <code>lint.yml</code> porte le <strong>statique</strong> (Spotless +
 captures + PMD), <code>maven.yml</code> porte les <strong>tests + couverture</strong>. Localement :</p>

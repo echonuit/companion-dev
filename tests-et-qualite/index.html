@@ -2654,9 +2654,12 @@ Le coût est un second référentiel de règles à tenir en phase avec <code>pmd
 l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 <h3 id="couverture-et-mutation">Couverture et mutation<a class="headerlink" href="#couverture-et-mutation" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>JaCoCo</strong> : sous <code>-Pquality-gate</code>, seuils <strong>bloquants</strong> au niveau <code>BUNDLE</code> — <strong>85 % de lignes</strong> et
-  <strong>70 % de branches</strong>. Les <code>**/outils/**</code> (capture d'écran, bancs de mesure) sont <strong>exclus</strong> : ils
-  sont validés par exécution, pas par tests unitaires.</li>
+<li><strong>JaCoCo</strong> : sous <code>-Pquality-gate</code>, seuils <strong>bloquants</strong> au niveau <code>BUNDLE</code>. Leurs valeurs, la
+  raison de chacune et la recette pour re-mesurer la couverture vivent dans le
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/pom.xml"><code>pom.xml</code></a>, <strong>seule
+  source</strong> : les répéter ici les ferait diverger au premier resserrage. Les <code>**/outils/**</code> (capture
+  d'écran, bancs de mesure) sont <strong>exclus</strong> : ils sont validés par exécution, pas par tests
+  unitaires.</li>
 <li>
 <p><strong>PIT</strong> (<code>-Pmutation</code>) évalue si les tests <strong>détectent</strong> des mutations du code. Lent sur tout le
   dépôt, mais <strong>rapide ciblé</strong> sur la classe qu'on vient d'écrire - et c'est ainsi qu'il sert le mieux :</p>
