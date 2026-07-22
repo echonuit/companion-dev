@@ -2055,10 +2055,12 @@ informe au lieu de crier, la réactivation s'offre.</p>
 <p>Un geste <strong>déclaré</strong> est autre chose qu'un état <strong>observé</strong>. Le projet est passé des premiers au
 second : l'audio absent ne se <strong>déclare</strong> plus, il s'<strong>observe</strong>
 (<a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">ADR 0048</a>) - l'utilisateur
-possède ses fichiers, et son absence n'est jamais une corruption. Il reste un marqueur déclaré,
-<code>recording_session.originals_purged_at</code> : il dit « l'utilisateur a purgé les bruts, tel jour », ce qui
-permet à l'audit de distinguer <em>purgé exprès</em> (silence) de <em>disparu</em> (ERREUR), là où le disque rend le
-même verdict dans les deux cas.</p>
+possède ses fichiers, et son absence n'est jamais une corruption.</p>
+<p>Ce basculement a rendu les marqueurs inutiles l'un après l'autre. <code>archived_at</code> a disparu du code ;
+<code>originals_purged_at</code> ne gouverne plus l'audit, qui ne contrôle <strong>plus du tout</strong> les bruts : ce sont
+des copies <strong>optionnelles</strong> de ré-analyse (<a href="../decisions/0036-la-copie-des-bruts-est-une-option/">ADR 0036</a>),
+absentes de la plupart des nuits, donc leur absence est l'état normal - et un état normal reste
+silencieux. Il n'y avait plus rien à distinguer : le disque et la base disent la même chose.</p>
 <p><strong>Principes.</strong> SSOT (la source de vérité reste distante : on ne la copie pas, on la <strong>date</strong>),
 <strong>honnêteté de l'IHM</strong> (« dernier état connu le… » plutôt qu'une fraîcheur feinte) et <strong>KISS</strong> (pas de
 sondage : on relit à l'ouverture, à la demande, ou après une action).</p>
