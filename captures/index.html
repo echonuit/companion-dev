@@ -1844,6 +1844,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Le garde-fou de fidélité : un aperçu qui ment est refusé">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capturer-un-dialogue-pre-enrouler-les-textes-longs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capturer un dialogue : pré-enrouler les textes longs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1971,6 +1986,21 @@
       Le garde-fou de fidélité : un aperçu qui ment est refusé
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Le garde-fou de fidélité : un aperçu qui ment est refusé">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#capturer-un-dialogue-pre-enrouler-les-textes-longs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Capturer un dialogue : pré-enrouler les textes longs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2150,11 +2180,40 @@ puisqu'il s'arrête au premier écran fautif. Voir
 <a href="../decisions/0043-la-mesure-fait-foi-en-ci/">ADR 0043</a> et
 <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/">ADR 0042</a>.</p>
 </div>
+<h3 id="capturer-un-dialogue-pre-enrouler-les-textes-longs">Capturer un dialogue : pré-enrouler les textes longs<a class="headerlink" href="#capturer-un-dialogue-pre-enrouler-les-textes-longs" title="Permanent link">&para;</a></h3>
+<p>Un dialogue se capture <strong>hors <code>showAndWait</code></strong> — on veut l'image, pas la modale bloquante. Dans cet
+état, <strong>rien ne borne la largeur du contenu</strong> d'un <code>DialogPane</code> : un libellé <code>wrapText</code> long y garde
+sa largeur d'une ligne, déborde, et se fait couper par une ellipse. La mise en page ne le rattrape pas
+— imposer la largeur du dialogue ne se propage pas à son contenu, et la hauteur d'un libellé
+enroulable se calcule à sa largeur <em>préférée</em>, pas à sa largeur réelle (mesuré en #2243).</p>
+<p>Le remède est <strong>à la source</strong> : pré-découper le texte aux espaces avant de rendre, sans en changer un
+mot.</p>
+<ul>
+<li><strong>message texte</strong> : <code>CaptureConfirmationsImport#enrouler(String)</code> ;</li>
+<li><strong>compte rendu structuré</strong> : <code>CaptureConfirmationsImport#enrouler(CompteRendu)</code>, qui réenroule le
+  fait de chaque constat, ses détails, le préambule et la conclusion.</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Le garde-fou ne voit pas cette troncature-là</p>
+<p>Le contrôle de fidélité ci-dessus <strong>ne l'attrape pas</strong> : sa mesure verticale retombe sur la même
+hauteur d'une ligne (l'écart vaut zéro), et sa mesure horizontale exclut par principe les libellés
+enroulables. Aucun contrôle géométrique ne referme ce trou de façon fiable — toute construction
+reproductible s'enroule correctement, ou déclenche déjà la mesure verticale (six essais instrumentés
+en #2265). <strong>Une capture de dialogue vert ne prouve donc pas que son texte long est lisible</strong> :
+l'ouvrir reste le seul contrôle, ce que fait la passe de revue visuelle.</p>
+</div>
 <h2 id="ajouter-une-capture">Ajouter une capture<a class="headerlink" href="#ajouter-une-capture" title="Permanent link">&para;</a></h2>
 <p>La marche à suivre (nouvel écran) est dans
 <strong><a href="../ajouter-une-fonctionnalite/#7-ajouter-un-apercu-capture-decran">Ajouter une fonctionnalité §7</a></strong> :
 écrire <code>CaptureMaFeature</code> sur le patron existant, l'ajouter à <code>capture-screenshots.sh</code>, et déclarer
 l'aperçu au <code>captures.manifest</code>.</p>
+<p><strong>La capture principale montre le cas nominal ; chaque état particulier a la sienne.</strong> Une vue en a
+souvent plusieurs (donnée absente, GPS non renseigné, alerte levée…). Le seed de la capture principale
+doit produire l'état <strong>ordinaire</strong>, et chaque écart obtenir sa capture <strong>dédiée</strong>, avec sa section dans
+la doc utilisateur. Sinon un état particulier s'installe <strong>par accident</strong> dans l'image de référence : le
+Diagnostic illustrait sa page avec une nuit <em>hors nuit</em>, l'alerte y était visible sans être ni nommée ni
+documentée, et un simple ajustement des horaires du seed l'aurait fait disparaître sans que personne ne
+le voie (#2222). Un état montré <strong>incidemment</strong> est presque aussi fragile qu'un état montré nulle part.</p>
 <div class="admonition note">
 <p class="admonition-title">Exposées au site via un hook</p>
 <p>Les PNG vivent dans <code>.github/assets/</code> ; le hook

@@ -2749,7 +2749,15 @@ bouton à icône qui n'a pas dit son nom. Le raisonnement complet est dans
 </ul>
 <p><strong>La règle.</strong> Aucun pictogramme littéral dans un FXML : <code>PictogrammesFxmlTest</code> échoue dessus. La
 <strong>CLI</strong> est hors sujet — une console ne rend pas de <code>FontIcon</code>, <code>⚠</code> y est le seul moyen d'écrire un
-avertissement. Les libellés bâtis en Java restent à traiter (#1564).</p>
+avertissement. Les libellés bâtis <strong>en Java</strong> (#1564) ont été repris depuis : les glyphes de
+<strong>sévérité</strong> par #2036 puis #2188/#2221, qui les font dériver du type plutôt que de les écrire.</p>
+<p><strong>Un pictogramme d'état n'est pas une sévérité, mais il se pose pareil.</strong> La colonne « Écouté » de la
+qualification rendait <code>ecoutee() ? "✓" : "○"</code> — deux pictogrammes dans une chaîne, qui ne disent
+pourtant aucune sévérité (ce ✓ veut dire « écouté », pas « succès »). <code>MarqueurEcoute</code> les <strong>pose</strong> par
+un <code>cellFactory</code>, comme la colonne badge de verdict : la <strong>forme</strong> distingue les deux états (un <code>CHECK</code>
+plein, un cercle creux), la couleur reste neutre. Choisir un glyphe <strong>différent</strong> de celui de la
+sévérité est délibéré — réutiliser <code>CHECK_CIRCLE</code> aurait fait lire « succès » là où on dit « fait »
+(#2237).</p>
 <h2 id="actions-de-ligne-dune-table-double-clic-et-menu-contextuel-socle-commun">Actions de ligne d'une table : double-clic et menu contextuel (socle <code>commun</code>)<a class="headerlink" href="#actions-de-ligne-dune-table-double-clic-et-menu-contextuel-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Les neuf tables de l'application ont grandi séparément, et leurs gestes avaient
 divergé. Le <strong>menu contextuel</strong> se réduisait partout à « Colonnes… », sauf la table des espèces de
