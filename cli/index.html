@@ -2158,9 +2158,9 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>importer</code></td>
-<td><code>--source &lt;dir&gt; --point &lt;id&gt; [--annee N] [--passage N] [--conserver-originaux \| --sans-originaux]</code></td>
+<td><code>--source &lt;dir&gt; --point &lt;id&gt; [--annee N] [--passage N] [--conserver-originaux \| --sans-originaux] [--ecraser]</code></td>
 <td>P2</td>
-<td><code>ServiceImport</code>. Le mode de conservation suit le <strong>réglage</strong> <code>import.conserver-originaux</code> (par défaut : <strong>pas de copie</strong>) ; les deux options le forcent pour un import ponctuel et s'excluent. Auparavant la commande conservait <strong>en dur</strong>, quel que soit le réglage (#2064). La sortie rapporte aussi le <strong>doublon de nuit</strong> et les <strong>anomalies du journal</strong> : l'écran les montre depuis #2044, la commande les taisait (#2004)</td>
+<td><code>ServiceImport</code>. Le mode de conservation suit le <strong>réglage</strong> <code>import.conserver-originaux</code> (par défaut : <strong>pas de copie</strong>) ; les deux options le forcent pour un import ponctuel et s'excluent. Auparavant la commande conservait <strong>en dur</strong>, quel que soit le réglage (#2064). La sortie rapporte aussi le <strong>doublon de nuit</strong> et les <strong>anomalies du journal</strong> : l'écran les montre depuis #2044, la commande les taisait (#2004). <strong>Collision de numéro</strong> (#2278) : la perte est chiffrée (séquences, validations Tadarida) et, <strong>sans <code>--ecraser</code>, rien n'est importé</strong> — sortie <code>2</code>. Avec, <code>ServiceImport.ecraserEtImporter</code> sauvegarde d'abord, puis remplace la nuit existante</td>
 </tr>
 <tr>
 <td><code>importer-tadarida</code></td>
