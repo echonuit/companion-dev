@@ -2241,6 +2241,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>ServiceLot.reinitialiserDepot</code> (efface le plan <code>depot_unite</code>, retour « Prêt à déposer » ; <strong>local</strong>, archives ZIP et lien de participation conservés) — équivalent du bouton « Réinitialiser le dépôt »</td>
 </tr>
 <tr>
+<td><code>supprimer-passage</code></td>
+<td><code>--passage &lt;id&gt; [--confirmer]</code></td>
+<td>#2278</td>
+<td><code>ServicePassage.supprimer</code> — équivalent du bouton « Supprimer » de la fiche passage. <strong>Destructif</strong> : chiffre d'abord la perte (séquences, validations Tadarida menacées) puis, <strong>sans <code>--confirmer</code>, ne touche à rien et sort en <code>2</code></strong>. Un passage <strong>déposé</strong> ou introuvable est refusé par le métier (code <code>1</code>). La cascade s'arrête à la base : les fichiers de la nuit restent sur le disque</td>
+</tr>
+<tr>
 <td><code>verifier-depot-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;]</code></td>
 <td>#1132</td>
