@@ -551,6 +551,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comment-une-adr-est-verifiee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comment une ADR est vérifiée
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quand-en-ecrire-une" class="md-nav__link">
     <span class="md-ellipsis">
       Quand en écrire une
@@ -1974,6 +1983,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#comment-une-adr-est-verifiee" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comment une ADR est vérifiée
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#quand-en-ecrire-une" class="md-nav__link">
     <span class="md-ellipsis">
       Quand en écrire une
@@ -2051,6 +2069,15 @@
 <li>une note de rappel opérationnelle (« attention au piège X ») : ces notes vivent ailleurs.</li>
 </ul>
 <p>On écrit une ADR quand un chantier prend une décision qu'un développeur futur <strong>pourrait raisonnablement remettre en cause</strong> faute d'en connaître les raisons : « pourquoi ne pas simplement comparer l'empreinte ? », « pourquoi une fenêtre courte plutôt qu'une moyenne ? ».</p>
+<h2 id="comment-une-adr-est-verifiee">Comment une ADR est vérifiée<a class="headerlink" href="#comment-une-adr-est-verifiee" title="Permanent link">&para;</a></h2>
+<p>Une décision qui n'est jamais reconfrontée au code se re-débat de la même façon qu'une décision oubliée. Chaque ADR déclare donc, dans son en-tête, <strong>comment on sait si elle est tenue</strong> :</p>
+<ul>
+<li><strong><code>certaine</code></strong> — un invariant qui se prouve. Un test (<code>DecisionsRespecteesTest</code>) ou un script déterministe échoue en CI si la règle est violée. L'en-tête nomme le test ou le script.</li>
+<li><strong><code>probable</code></strong> — pas de preuve possible, mais un script (<code>scripts/adr/NNNN-*.py</code>) liste des <strong>suspects</strong> qu'un humain trie. Le signal utile n'est pas « zéro » mais « aucun <strong>nouveau</strong> » : un <strong>cliquet</strong>, inscrit dans l'en-tête, borne la dette et fait rougir la CI si un cas s'ajoute.</li>
+<li><strong><code>humaine</code></strong> — aucun invariant mécanique. Le motif dit <strong>pourquoi</strong>. Une décision de méthode ou de comportement ne se prouve pas par un scan, et un test creux serait pire que rien. Quand un pattern reconnaissable existe malgré tout, une <strong>loupe</strong> (<code>scripts/adr/loupe-NNNN-*.py</code>) surface une <em>surface de revue</em> pour la passe humaine : elle ne bloque jamais, elle aide à ne rien oublier.</li>
+</ul>
+<p>Un garde-fou (<code>DocumentationAJourTest</code>) exige que <strong>chaque</strong> ADR déclare son niveau, et que le test, le script ou la loupe nommé <strong>existe vraiment</strong> : une ADR ne peut pas annoncer une garde disparue.</p>
+<p>Le <strong>rapport hebdomadaire</strong> (<code>scripts/adr/rapport.py</code>, workflow <code>rapport-adr</code>) agrège les cliquets et les loupes pour mesurer l'écart d'une semaine sur l'autre, et <strong>resserre</strong> automatiquement, par une PR, les cliquets dont la réalité est passée sous la marge. Resserrer est mécanique ; desserrer reste un geste humain.</p>
 <h2 id="quand-en-ecrire-une">Quand en écrire une<a class="headerlink" href="#quand-en-ecrire-une" title="Permanent link">&para;</a></h2>
 <p>Au fil d'un chantier, à la <strong>passe 3 (doc développeur)</strong> de sa <a href="../cycle-de-chantier/">clôture</a> : chaque décision structurante prise pendant le chantier donne une ADR. La <strong>passe 10 (bilan)</strong> s'y réfère plutôt que de dupliquer le raisonnement.</p>
 <h2 id="le-numero-dune-adr-est-celui-de-son-chantier">Le numéro d'une ADR est celui de son chantier<a class="headerlink" href="#le-numero-dune-adr-est-celui-de-son-chantier" title="Permanent link">&para;</a></h2>
