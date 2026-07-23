@@ -1737,6 +1737,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2465-une-adr-declare-comment-elle-est-verifiee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2465 · Une ADR déclare comment elle est vérifiée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2433-un-dossier-de-transformes-s-importe-par-reference/" class="md-nav__link">
         
   
@@ -2475,6 +2496,7 @@ chantier a introduit un <strong>nouveau pattern d'extension</strong> que les fut
 <p>Toute <strong>décision structurante</strong> prise pendant le chantier - un choix d'architecture ou de domaine qu'un
 développeur futur pourrait raisonnablement remettre en cause faute d'en connaître les raisons - donne une
 <strong><a href="../decisions/">ADR</a></strong> : une par décision, immuable, expliquant le pourquoi.</p>
+<p>Chaque ADR <strong>déclare comment elle est vérifiée</strong> (<a href="../decisions/2465-une-adr-declare-comment-elle-est-verifiee/">ADR 2465</a>) : une puce <code>- **Vérification** : certaine | probable | humaine — &lt;référence&gt;</code> dans son en-tête, au même titre que <code>Statut</code> et <code>Chantier</code>. Un garde-fou fait rougir la CI si elle manque, ou si le test/script nommé n'existe pas. <code>certaine</code> nomme un test ou script déterministe ; <code>probable</code> nomme un script de suspects et son <strong>cliquet</strong> ; <code>humaine</code> donne le motif, et peut adjoindre une <strong>loupe</strong>. Voir la section « Comment une ADR est vérifiée » de l'<a href="../decisions/">index des décisions</a>.</p>
 <h3 id="4-passe-de-doc-utilisateur">4. Passe de doc utilisateur<a class="headerlink" href="#4-passe-de-doc-utilisateur" title="Permanent link">&para;</a></h3>
 <p>Documenter le chantier pour les <strong>utilisateurs</strong> dans le site produit (<code>docs/</code>), avec <strong>autant de
 captures que nécessaire</strong>. Les aperçus sont régénérés en CI : ajouter/mettre à jour les classes
