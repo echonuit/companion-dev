@@ -2197,13 +2197,32 @@ publication.</p>
 <td>—</td>
 </tr>
 <tr>
-<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/devcontainer-image.yml">devcontainer-image.yml</a></td>
-<td>push <code>solution</code></td>
-<td>Build/push de l'image devcontainer</td>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/api-live.yml">api-live.yml</a></td>
+<td>hebdomadaire (lundi) + manuel</td>
+<td>Contrat de l'API Vigie-Chiro, <strong>en lecture seule</strong> ; sépare « jeton mort » (warning) de « contrat cassé » (rouge)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/flatpak.yml">flatpak.yml</a></td>
+<td>release</td>
+<td>Paquet Flatpak (cf. plus bas)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/winget.yml">winget.yml</a></td>
+<td>release</td>
+<td>Soumission winget (inerte sans <code>WINGET_TOKEN</code>)</td>
 <td>—</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">L'image devcontainer pré-buildée a été retirée</p>
+<p>Un workflow <code>devcontainer-image.yml</code> publiait une image sur GHCR pour accélérer le démarrage des
+Codespaces. Il se déclenchait sur une branche <code>solution</code> <strong>absente de ce dépôt</strong> : il n'a jamais
+tourné et l'image n'a jamais existé, si bien que le conteneur ne pouvait plus se construire.
+Le <code>.devcontainer/</code> reconstruit désormais depuis son <code>Dockerfile</code> et ses features (#2388).</p>
+</div>
 <div class="admonition info">
 <p class="admonition-title">Workflows « dormants »</p>
 <p>Pages et release ne s'activent que via des <strong>variables de dépôt</strong> (<code>ENABLE_PAGES</code>,
