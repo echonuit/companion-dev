@@ -2295,13 +2295,13 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>lancer-traitement-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;] [--forcer]</code></td>
 <td>#984, #1261, #1265</td>
-<td><code>DepotVigieChiro.lancerTraitement</code> (<code>POST /participations/{id}/compute</code>) — équivalent du bouton « Lancer la participation ». <code>0</code> <strong>dès lors que le traitement est en route</strong> (accepté <strong>ou</strong> déjà en cours : la commande est idempotente), <code>1</code> sinon. Une nuit <strong>déjà analysée n'est pas relancée</strong> : le serveur détruirait ses observations pour les recalculer, sans pouvoir les régénérer (audio absent d'un dépôt en archives, #1244) — <code>--forcer</code> lève cette garde, typiquement après un échec</td>
+<td><code>DepotVigieChiro.lancerTraitement</code> (<code>POST /participations/{id}/compute</code>) — équivalent du bouton « Lancer la participation ». <code>0</code> <strong>dès lors que le traitement est en route</strong> (accepté <strong>ou</strong> déjà en cours : la commande est idempotente), <code>1</code> si le serveur a refusé la relance, <code>2</code> pour un refus métier en amont (dépôt indisponible, aucune participation liée au passage — rendu par le handler central, #2294). Une nuit <strong>déjà analysée n'est pas relancée</strong> : le serveur détruirait ses observations pour les recalculer, sans pouvoir les régénérer (audio absent d'un dépôt en archives, #1244) — <code>--forcer</code> lève cette garde, typiquement après un échec</td>
 </tr>
 <tr>
 <td><code>etat-traitement-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;]</code></td>
 <td>#1265</td>
-<td><code>SuiviTraitement.relever</code> (lecture seule : <code>GET /participations/{id}</code> → bloc <code>traitement</code>, et <strong>mise à jour du cache local</strong> #1262). Codes <strong>faits pour un script</strong> : <code>0</code> terminé, <code>3</code> planifié/en cours/nouvel essai, <code>2</code> en échec, <code>4</code> jamais lancé, <code>1</code> erreur technique</td>
+<td><code>SuiviTraitement.relever</code> (lecture seule : <code>GET /participations/{id}</code> → bloc <code>traitement</code>, et <strong>mise à jour du cache local</strong> #1262). Codes <strong>faits pour un script</strong> : <code>0</code> terminé, <code>3</code> planifié/en cours/nouvel essai, <code>1</code> en échec côté serveur, <code>4</code> jamais lancé, <code>2</code> <strong>indisponible</strong> (on n'a pas pu demander : nuit non déposée, jeton absent, plateforme injoignable — refus métier rendu par le handler central, #2294)</td>
 </tr>
 <tr>
 <td><code>reinitialiser-depot</code></td>
@@ -2313,7 +2313,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>supprimer-passage</code></td>
 <td><code>--passage &lt;id&gt; [--confirmer]</code></td>
 <td>#2278</td>
-<td><code>ServicePassage.supprimer</code> — équivalent du bouton « Supprimer » de la fiche passage. <strong>Destructif</strong> : chiffre d'abord la perte (séquences, validations Tadarida menacées) puis, <strong>sans <code>--confirmer</code>, ne touche à rien et sort en <code>2</code></strong>. Un passage <strong>déposé</strong> ou introuvable est refusé par le métier (code <code>1</code>). La cascade s'arrête à la base : les fichiers de la nuit restent sur le disque</td>
+<td><code>ServicePassage.supprimer</code> — équivalent du bouton « Supprimer » de la fiche passage. <strong>Destructif</strong> : chiffre d'abord la perte (séquences, validations Tadarida menacées) puis, <strong>sans <code>--confirmer</code>, ne touche à rien et sort en <code>2</code></strong>. Un passage <strong>déposé</strong> ou introuvable est refusé par le métier (code <code>2</code> : état intact). La cascade s'arrête à la base : les fichiers de la nuit restent sur le disque</td>
 </tr>
 <tr>
 <td><code>verifier-depot-vigiechiro</code></td>
@@ -2331,7 +2331,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>publier-corrections-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;]</code></td>
 <td>#723, #1838</td>
-<td><code>PublicationCorrections.publier</code> (un PATCH par observation publiable : taxon + certitude + ancrage ; idempotente, code 1 si refus). <strong>Acquiert d'abord l'ancrage qui manque</strong> (#1838) quand la nuit est rattachée à une participation : une nuit importée par CSV (#1565) n'en porte pas, ses corrections seraient sinon toutes écartées. Le rapatriement peut durer ; son avancement va sur la <strong>sortie d'erreur</strong>, la sortie standard restant réservée au bilan. Une nuit déjà ancrée n'en paie pas le coût</td>
+<td><code>PublicationCorrections.publier</code> (un PATCH par observation publiable : taxon + certitude + ancrage ; idempotente ; code <code>1</code> si au moins un envoi est refusé par le serveur (échec partiel de publication), code <code>2</code> si la publication est indisponible dans ce contexte, fonctionnalité désactivée (refus métier, état intact)). <strong>Acquiert d'abord l'ancrage qui manque</strong> (#1838) quand la nuit est rattachée à une participation : une nuit importée par CSV (#1565) n'en porte pas, ses corrections seraient sinon toutes écartées. Le rapatriement peut durer ; son avancement va sur la <strong>sortie d'erreur</strong>, la sortie standard restant réservée au bilan. Une nuit déjà ancrée n'en paie pas le coût</td>
 </tr>
 <tr>
 <td><code>reactiver</code></td>
@@ -2471,8 +2471,9 @@ appellent les services.</p>
 <li><strong>Erreurs</strong> : les erreurs de parsing (commande inconnue, argument requis manquant) sont reformulées en
   français et sortent en code <code>2</code> ; une
   <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/cli/model/ErreurUsage.java"><code>ErreurUsage</code></a>
-  levée dans la logique (ex. point introuvable) sort aussi en <code>2</code> ; toute autre exception métier en <code>1</code>
-  (message seul, jamais la trace).</li>
+  levée dans la logique (ex. point introuvable) sort aussi en <code>2</code> ; un <strong>refus métier</strong>
+  (<code>RegleMetierException</code> ou l'<code>IllegalArgumentException</code> des validateurs) sort en <code>2</code> (état intact) ; toute
+  autre exception (échec inattendu, état incertain) en <code>1</code> (message seul, jamais la trace).</li>
 </ul>
 <h3 id="workspace-surchargeable">Workspace surchargeable<a class="headerlink" href="#workspace-surchargeable" title="Permanent link">&para;</a></h3>
 <p>Comme l'IHM, la CLI travaille dans un <strong>workspace</strong> (qui contient la base <code>vigiechiro.db</code>). L'option
@@ -2494,11 +2495,11 @@ défaut est <code>&lt;Documents&gt;/VigieChiro-Companion</code>.</p>
 </tr>
 <tr>
 <td><code>1</code></td>
-<td>échec d'exécution (règle métier refusée, accès aux données, E/S)</td>
+<td>échec d'exécution : accès aux données, E/S, incident inattendu (état <strong>incertain</strong>)</td>
 </tr>
 <tr>
 <td><code>2</code></td>
-<td>mauvaise invocation (commande inconnue, argument requis manquant ou mal formé) <strong>ou refus d'agir</strong></td>
+<td>mauvaise invocation (commande inconnue, argument requis manquant ou mal formé) <strong>ou refus</strong> (règle métier, ou garde destructive : état <strong>intact</strong>, rien n'a été fait)</td>
 </tr>
 </tbody>
 </table>

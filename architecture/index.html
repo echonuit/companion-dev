@@ -2101,10 +2101,11 @@ par un (le quoi, le pourquoi ici, et les principes servis).</p>
 <a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   └── outils/                  ·   harnais de capture d&#39;écran (ApercuFx...)
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── sites/        passage/       importation/   qualification/   lot/
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── validation/   multisite/     diagnostic/    bibliotheque/   recherche/   ← les 10 fonctionnalités
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>│
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── cli/                         ← interface en ligne de commande (import/export scriptables)
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>└── perf/outils/                 ← bancs de mesure de performance
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── validation/   multisite/     diagnostic/    bibliotheque/    recherche/
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── analyse/      audio/         audit/         connexion/       maj/          ← les 15 features
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>├── cli/                         ← interface en ligne de commande (import/export scriptables)
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>└── perf/outils/                 ← bancs de mesure de performance
 </code></pre></div>
 <p>Les deux dernières entrées sont des <strong>surfaces transverses</strong>, documentées à part :
 <a href="../cli/"><code>cli/</code></a> (seconde façade <em>headless</em> sur le métier) et
@@ -2245,9 +2246,8 @@ publie un <strong>contrat</strong> <code>Ouvrir*</code> dans <code>commun.view</
 <a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
 </code></pre></div>
 <p>Ainsi <code>sites</code> ouvre M-Passage <strong>sans dépendre de <code>passage.view</code></strong> : la règle ArchUnit
-<code>pas_de_dependance_inter_feature_vers_la_vue</code> reste respectée. Tous les contrats existants :
-<code>OuvrirSite</code>, <code>OuvrirPassage</code>, <code>OuvrirVerification</code>, <code>OuvrirImportation</code>, <code>OuvrirLot</code>,
-<code>OuvrirValidation</code>, <code>OuvrirDiagnostic</code>.</p>
+<code>pas_de_dependance_inter_feature_vers_la_vue</code> reste respectée. La <strong>liste de référence</strong> des contrats
+<code>Ouvrir*</code> (<strong>10</strong>) est maintenue à un seul endroit : <a href="../navigation/#ouvrir-une-autre-feature-sans-en-dependre">Navigation</a>.</p>
 <h2 id="persistance">Persistance<a class="headerlink" href="#persistance" title="Permanent link">&para;</a></h2>
 <p><strong>SQLite</strong> (fichier <code>vigiechiro.db</code> dans l'espace de travail <strong>par défaut</strong>, relocalisable via l'onglet
 « Emplacements » des réglages, cf. <a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>), via des <strong>DAO</strong> écrits en
@@ -2258,8 +2258,8 @@ appliquées par
 sur la <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence"><code>SourceDeDonnees</code></a>.</p>
 <p>Le cœur du domaine est l'<strong>agrégat « nuit de capture »</strong> (feature <code>passage</code>), qui avance dans un
 <strong>workflow à états</strong> :</p>
-<p><code>IMPORTE → TRANSFORME → VERIFIE → PRET_A_DEPOSER → DEPOSE</code></p>
-<p>Le détail des entités, des 19 tables et de la correspondance avec le <strong>MCD du brief</strong> est sur
+<p><code>IMPORTE → TRANSFORME → VERIFIE → PRET_A_DEPOSER → DEPOT_EN_COURS → DEPOSE</code> (6 états, cf. <code>StatutWorkflow</code>)</p>
+<p>Le détail des entités, des tables (<strong>28</strong> au schéma courant, 19 à l'origine en <code>V01</code>) et de la correspondance avec le <strong>MCD du brief</strong> est sur
 <a href="../modele-de-donnees/">Modèle de données et domaine</a> ; le <strong>mécanisme</strong> d'accès (DAO, transactions,
 migrations) sur <a href="../persistance/">Persistance</a>.</p>
 <h2 id="injection-de-dependances">Injection de dépendances<a class="headerlink" href="#injection-de-dependances" title="Permanent link">&para;</a></h2>

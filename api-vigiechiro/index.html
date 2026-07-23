@@ -2498,6 +2498,31 @@ la sonde live <code>refus_serveur_est_un_refuse_explicite</code> verrouille que 
 <td><code>/participations/{id}/compute</code> (corps <code>{}</code>)</td>
 <td>déclenche le <strong>traitement serveur</strong> (Tadarida) de la participation déposée</td>
 </tr>
+<tr>
+<td>GET</td>
+<td><code>/grille_stoc/cercle?lng&amp;lat&amp;r</code></td>
+<td>mailles du carroyage national autour d'un point</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/participations/{id}/pieces_jointes</code></td>
+<td>pièces jointes d'une participation (audio déposé)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/fichiers/{id}/acces</code></td>
+<td>URL d'accès (S3 signé) d'un fichier déposé</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/donnees/{id}/observations/{indice}</code></td>
+<td>pousse une <strong>correction d'observation</strong> (taxon + certitude)</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/donnees/{id}/observations/{indice}/messages</code></td>
+<td>ajoute un <strong>message</strong> au fil de discussion d'une observation</td>
+</tr>
 </tbody>
 </table>
 <h3 id="objet-participation-schema-canonique">Objet <code>participation</code> (schéma canonique)<a class="headerlink" href="#objet-participation-schema-canonique" title="Permanent link">&para;</a></h3>

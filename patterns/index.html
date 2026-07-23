@@ -2087,7 +2087,7 @@ observables, pas de logique concrète). Frontières <strong>garanties par ArchUn
 accidentel d'une instance et aux bugs d'égalité (comparaison par référence).</p>
 <p><strong>La solution.</strong> Modéliser le domaine en <strong><code>record</code> immuables</strong> : champs finaux, égalité <strong>par
 valeur</strong>, aucun setter. Pour « modifier », on <strong>crée</strong> une nouvelle instance.</p>
-<p><strong>Dans cette application.</strong> Le domaine est quasi entièrement en records (<strong>≈ 70</strong> : <code>Passage</code>, <code>Site</code>,
+<p><strong>Dans cette application.</strong> Le domaine est quasi entièrement en records (<strong>plus de 250</strong> : <code>Passage</code>, <code>Site</code>,
 <code>SequenceDEcoute</code>, <code>Observation</code>…). Les DAO <strong>construisent</strong> ces records ligne par ligne via un
 <code>RowMapper</code>, et les ViewModels les exposent dans des <code>ObservableList</code>.</p>
 <p><strong>Principes.</strong> Immuabilité (sûreté en lecture, raisonnement local) et <strong>SRP</strong> (l'entité ne porte que
@@ -2329,7 +2329,7 @@ historiques).</p>
 <p><strong>La solution.</strong> Plutôt que le Singleton « maison » (constructeur privé + champ statique, difficile à
 tester et à substituer), on <strong>délègue l'unicité au conteneur</strong> : <code>@Singleton</code> Guice.</p>
 <p><strong>Dans cette application.</strong> <code>SourceDeDonnees</code>, <code>Navigateur</code>, les <code>Navigation*</code> et la <strong>plupart des providers
-de DAO et de services</strong> des features sont <code>@Singleton</code> (~70 bindings) : une seule instance par
+de DAO et de services</strong> des features sont <code>@Singleton</code> (plus de 130 déclarations) : une seule instance par
 injecteur, mais <strong>toujours injectée</strong> (donc remplaçable en test).</p>
 <p><strong>Principes.</strong> Évite l'<strong>état statique global</strong> tout en restant <strong>testable</strong> : l'unicité est une
 décision de <strong>câblage</strong>, pas une contrainte gravée dans la classe.</p>
@@ -2354,9 +2354,8 @@ l'appelant dépend de l'<strong>abstraction</strong>, jamais de l'implémentatio
     NavigationPassage ..|&gt; OuvrirPassage : implémente
     note for OuvrirPassage "dans le socle commun.view"</code></pre>
 <p><strong>Principes.</strong> <strong>DIP</strong> (les deux features dépendent du contrat, pas l'une de l'autre) et <strong>OCP</strong>
-(brancher une nouvelle implémentation sans modifier l'appelant). Tous les contrats : <code>OuvrirSite</code>,
-<code>OuvrirPassage</code>, <code>OuvrirVerification</code>, <code>OuvrirImportation</code>, <code>OuvrirLot</code>, <code>OuvrirValidation</code>,
-<code>OuvrirDiagnostic</code>. Voir aussi <a href="../navigation/#ouvrir-une-autre-feature-sans-en-dependre">Navigation</a>.</p>
+(brancher une nouvelle implémentation sans modifier l'appelant). La <strong>liste de référence</strong> des contrats
+<code>Ouvrir*</code> (<strong>10</strong>) est maintenue à un seul endroit : <a href="../navigation/#ouvrir-une-autre-feature-sans-en-dependre">Navigation</a>.</p>
 <hr />
 <h2 id="facade-navigation">Facade (<code>Navigation*</code>)<a class="headerlink" href="#facade-navigation" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Ouvrir un écran demande plusieurs gestes : charger le FXML, brancher la

@@ -2115,8 +2115,9 @@ transforme l'association N:N <strong>Retenir</strong> (Sélection ↔ Séquence)
 <h2 id="le-schema-physique-sqlite">Le schéma physique (SQLite)<a class="headerlink" href="#le-schema-physique-sqlite" title="Permanent link">&para;</a></h2>
 <p>Le <strong>schéma physique</strong> est plus proche de la machine. On le donne en notation <strong>pattes-de-corbeille</strong>
 (IE / <em>crow's foot</em>, celle de Mermaid) : relations binaires, clés étrangères explicites. C'est la
-traduction du MCD ci-dessus. 19 tables, créées par
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/resources/db/migration/V01__schema.sql"><code>V01__schema.sql</code></a>,
+traduction du MCD ci-dessus. <strong>19 tables à l'origine</strong>, créées par
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/resources/db/migration/V01__schema.sql"><code>V01__schema.sql</code></a> ;
+le schéma courant en compte <strong>28</strong> après les migrations ultérieures (<code>V02</code>→<code>V30</code>),
 clés étrangères <strong><code>ON DELETE CASCADE</code></strong> (supprimer un passage emporte sa session, ses séquences, ses
 observations…).</p>
 <pre class="mermaid"><code>erDiagram
