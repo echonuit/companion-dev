@@ -1852,6 +1852,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="La documentation est tenue par un test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancrer-un-chiffre-les-balises-dinventaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ancrer un chiffre : les balises d'inventaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -2155,6 +2170,21 @@
       La documentation est tenue par un test
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="La documentation est tenue par un test">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ancrer-un-chiffre-les-balises-dinventaire" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ancrer un chiffre : les balises d'inventaire
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -2589,6 +2619,11 @@ pas ici, pour ne pas diverger), et elle ne peut que <strong>rétrécir</strong> 
 <td>La <code>nav</code> de <code>mkdocs.yml</code> <strong>et</strong> le tableau de <code>docs/ecrans/index.md</code></td>
 <td>Une page que le site ne publie pas, ou qu'on ne peut atteindre depuis l'index de sa section</td>
 </tr>
+<tr>
+<td>Les <strong>chiffres balisés</strong> <code>&lt;!--inv:clé--&gt;N&lt;!--/inv--&gt;</code> (#2385)</td>
+<td>L'<strong>inventaire réel du code</strong> (contrats <code>Ouvrir*</code>, états de <code>StatutWorkflow</code>, features, sous-commandes)</td>
+<td>Un décompte <strong>figé dans la prose</strong> qui dérive après un ajout : « 43 sous-commandes » quand le code en câble 44</td>
+</tr>
 </tbody>
 </table>
 <p>Deux détails qui comptent :</p>
@@ -2600,6 +2635,48 @@ pas ici, pour ne pas diverger), et elle ne peut que <strong>rétrécir</strong> 
   <code>audio</code> aussi) : il faut le <strong>dire</strong>. Le compilateur force donc à choisir une fiche, et le test refuse
   qu'elle soit absente.</li>
 </ul>
+<h4 id="ancrer-un-chiffre-les-balises-dinventaire">Ancrer un chiffre : les balises d'inventaire<a class="headerlink" href="#ancrer-un-chiffre-les-balises-dinventaire" title="Permanent link">&para;</a></h4>
+<p>Certains nombres de la doc <strong>décrivent le code</strong> : le nombre de contrats <code>Ouvrir*</code>, d'états du workflow,
+de features, de sous-commandes CLI. Écrits en dur, ils <strong>dérivent</strong> au premier ajout (un contrat de plus,
+un état de plus) sans que rien ne rougisse. Une <strong>balise d'inventaire</strong> les ancre à un décompte que le
+test recalcule. On écrit le nombre entre deux commentaires :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>l&#39;application compte <span class="gs">**&lt;!--inv:features--&gt;N&lt;!--/inv--&gt; features**</span> métier
+</code></pre></div>
+<p>où <code>N</code> est le chiffre (<code>15</code> aujourd'hui). Un commentaire HTML <strong>ne s'affiche pas</strong> : la phrase se lit
+« 15 features » comme avant, mais <code>chaque_chiffre_balise_egale_l_inventaire_reel</code> relit <code>N</code> et le
+confronte au code. Une divergence fait <strong>rougir la CI</strong>, le message portant le vrai chiffre. Clés
+reconnues :</p>
+<table>
+<thead>
+<tr>
+<th>Clé</th>
+<th>Décompte réel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ouvrir</code></td>
+<td>fichiers <code>commun/view/Ouvrir*.java</code></td>
+</tr>
+<tr>
+<td><code>etats-workflow</code></td>
+<td>valeurs de l'enum <code>StatutWorkflow</code></td>
+</tr>
+<tr>
+<td><code>features</code></td>
+<td>dossiers de <code>fr.univ_amu.iut</code> hors <code>commun</code>, <code>cli</code>, <code>perf</code></td>
+</tr>
+<tr>
+<td><code>cli</code></td>
+<td>sous-commandes câblées dans <code>CommandeRacine</code></td>
+</tr>
+</tbody>
+</table>
+<p>Poser une balise sur une <strong>clé non listée</strong> échoue aussi : on ajoute d'abord la clé et son décompte au
+test (une clé = un fait que le code sait recalculer). Et le test exige qu'<strong>au moins une</strong> balise subsiste
+par clé, pour qu'un inventaire ne perde pas discrètement son ancre. Enfin, <code>aucune_commande_documentee_n_a_disparu_de_la_cli</code>
+fait le trajet <strong>inverse</strong> du tableau CLI : une commande décrite dans <code>cli.md</code> mais <strong>absente</strong> du câblage
+(renommée, supprimée) fait rougir tout autant.</p>
 <h2 id="les-outils-qualite">Les outils qualité<a class="headerlink" href="#les-outils-qualite" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -2676,11 +2753,11 @@ c'est lui qui bloque la CI. Or, laissée par défaut, l'extension applique le pr
 <p>Le réglage qui les réaligne <strong>ne peut pas être versionné</strong> : <code>sonarlint.rules</code> est de scope
 <code>application</code>, donc VS Code le lit <strong>uniquement</strong> depuis les réglages utilisateur et ignore
 silencieusement un bloc placé dans <code>.vscode/settings.json</code>. À recopier dans ses réglages personnels :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">&quot;sonarlint.rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">    </span><span class="nt">&quot;java:S107&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constructorMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="nt">&quot;java:S3776&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="nt">&quot;java:S106&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&quot;sonarlint.rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">&quot;java:S107&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constructorMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">&quot;java:S3776&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="nt">&quot;java:S106&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="p">}</span>
 </code></pre></div>
 <p>Trois points à ne pas redécouvrir :</p>
 <ul>
@@ -2706,9 +2783,9 @@ l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 <li>
 <p><strong>PIT</strong> (<code>-Pmutation</code>) évalue si les tests <strong>détectent</strong> des mutations du code. Lent sur tout le
   dépôt, mais <strong>rapide ciblé</strong> sur la classe qu'on vient d'écrire - et c'est ainsi qu'il sert le mieux :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
 </code></pre></div>
 </li>
 </ul>
@@ -2716,10 +2793,10 @@ l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 reprend pas l'<code>argLine</code> de Surefire : sans elles, PIT lance ses minions sans <code>glass.platform=Headless</code>,
 la suite ne démarre pas et l'outil s'arrête sur « <em>tests did not pass without mutation</em> ». On les lui
 donne à la main :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.commun.view.Modales<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.commun.view.ModalesTest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">    </span>-DjvmArgs<span class="o">=</span><span class="s2">&quot;-Dglass.platform=Headless,-Dprism.order=sw,-Djava.awt.headless=true,-Dtestfx.robot=glass,--enable-native-access=ALL-UNNAMED&quot;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.commun.view.Modales<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.commun.view.ModalesTest<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span>-DjvmArgs<span class="o">=</span><span class="s2">&quot;-Dglass.platform=Headless,-Dprism.order=sw,-Djava.awt.headless=true,-Dtestfx.robot=glass,--enable-native-access=ALL-UNNAMED&quot;</span>
 </code></pre></div>
 <p>PIT couvre donc aussi la couche <code>view</code>, ce que l'échec brut laissait croire impossible.</p>
 <p>⚠️ <strong>Lire le rapport, pas le résumé.</strong> <code>target/pit-reports/mutations.xml</code> écrit ses attributs en

@@ -2253,7 +2253,7 @@ dépendent tous deux (jamais l'un de l'autre).</p>
 <li><code>PassageModule</code> la <strong>binde</strong> : <code>bind(OuvrirPassage.class).to(NavigationPassage.class);</code>.</li>
 <li><code>sites</code> <strong>injecte</strong> <code>OuvrirPassage</code> et appelle <code>ouvrir(...)</code> — sans jamais voir <code>passage.view</code>.</li>
 </ol>
-<p>Contrats existants (<strong>10</strong>, la liste de référence : <code>commun/view/Ouvrir*.java</code>) : <code>OuvrirAnalyse</code>,
+<p>Contrats existants (<strong><!--inv:ouvrir-->10<!--/inv--></strong>, la liste de référence : <code>commun/view/Ouvrir*.java</code>) : <code>OuvrirAnalyse</code>,
 <code>OuvrirAudio</code>, <code>OuvrirDiagnostic</code>, <code>OuvrirImportation</code>, <code>OuvrirLot</code>, <code>OuvrirMultisite</code>, <code>OuvrirPassage</code>,
 <code>OuvrirSite</code>, <code>OuvrirValidation</code>, <code>OuvrirVerification</code>.</p>
 <h2 id="cartes-daccueil-et-compteurs">Cartes d'accueil et compteurs<a class="headerlink" href="#cartes-daccueil-et-compteurs" title="Permanent link">&para;</a></h2>

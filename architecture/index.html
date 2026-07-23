@@ -2102,7 +2102,7 @@ par un (le quoi, le pourquoi ici, et les principes servis).</p>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── sites/        passage/       importation/   qualification/   lot/
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── validation/   multisite/     diagnostic/    bibliotheque/    recherche/
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── analyse/      audio/         audit/         connexion/       maj/          ← les 15 features
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── analyse/      audio/         audit/         connexion/       maj/          ← les features métier
 <a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│
 <a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>├── cli/                         ← interface en ligne de commande (import/export scriptables)
 <a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>└── perf/outils/                 ← bancs de mesure de performance
@@ -2110,6 +2110,8 @@ par un (le quoi, le pourquoi ici, et les principes servis).</p>
 <p>Les deux dernières entrées sont des <strong>surfaces transverses</strong>, documentées à part :
 <a href="../cli/"><code>cli/</code></a> (seconde façade <em>headless</em> sur le métier) et
 <a href="../performance/"><code>perf/outils/</code></a> (bancs de mesure des objectifs O3/O5).</p>
+<p>Entre le socle et ces surfaces, l'application compte <strong><!--inv:features-->15<!--/inv--> features</strong> métier
+(chacune un dossier autonome sous <code>fr.univ_amu.iut</code>, hors <code>commun</code>, <code>cli</code> et <code>perf</code>).</p>
 <h2 id="les-4-couches-dune-fonctionnalite">Les 4 couches d'une fonctionnalité<a class="headerlink" href="#les-4-couches-dune-fonctionnalite" title="Permanent link">&para;</a></h2>
 <p>Chaque feature (ex. <code>sites/</code>) suit le même découpage, <strong>du métier vers l'IHM</strong> :</p>
 <table>
@@ -2258,7 +2260,7 @@ appliquées par
 sur la <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence"><code>SourceDeDonnees</code></a>.</p>
 <p>Le cœur du domaine est l'<strong>agrégat « nuit de capture »</strong> (feature <code>passage</code>), qui avance dans un
 <strong>workflow à états</strong> :</p>
-<p><code>IMPORTE → TRANSFORME → VERIFIE → PRET_A_DEPOSER → DEPOT_EN_COURS → DEPOSE</code> (6 états, cf. <code>StatutWorkflow</code>)</p>
+<p><code>IMPORTE → TRANSFORME → VERIFIE → PRET_A_DEPOSER → DEPOT_EN_COURS → DEPOSE</code> (<!--inv:etats-workflow-->6<!--/inv--> états, cf. <code>StatutWorkflow</code>)</p>
 <p>Le détail des entités, des tables (<strong>28</strong> au schéma courant, 19 à l'origine en <code>V01</code>) et de la correspondance avec le <strong>MCD du brief</strong> est sur
 <a href="../modele-de-donnees/">Modèle de données et domaine</a> ; le <strong>mécanisme</strong> d'accès (DAO, transactions,
 migrations) sur <a href="../persistance/">Persistance</a>.</p>
