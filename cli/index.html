@@ -2409,6 +2409,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td>Le <strong>fil d'échange avec le validateur</strong> du MNHN. Sans <code>--message</code>, le <strong>lit</strong> (le fil vient de la base, rafraîchi à chaque import). Avec, <strong>y répond</strong> — ⚠️ <strong>écriture définitive</strong> : le serveur ajoute par <code>$push</code> et n'offre aucune route de suppression. <code>--confirmer</code> est donc obligatoire, et le message n'est écrit localement <strong>qu'après</strong> que le serveur l'a accepté</td>
 </tr>
 <tr>
+<td><code>emplacements</code></td>
+<td><code>[--definir-travail &lt;dir&gt;] [--definir-base &lt;dir&gt;] [--reinitialiser] [--json]</code></td>
+<td>#1038</td>
+<td>Parité CLI de l'onglet « Emplacements » (<a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>) : <code>ServiceEmplacements</code>. Sans option, <strong>affiche</strong> où vivent le dossier de travail et la base (et leurs défauts). <code>--definir-*</code> <strong>sonde</strong> chaque dossier (un fichier ou un dossier non inscriptible est refusé, code <code>1</code>) puis <strong>écrit</strong> le choix ; <code>--reinitialiser</code> l'efface. Ne déplace <strong>rien</strong> : change le pointeur lu au prochain démarrage, pas les données - une base pointée vers un dossier vide démarre neuve. <code>--reinitialiser</code> et <code>--definir-*</code> sont exclusifs</td>
+</tr>
+<tr>
 <td><code>--help</code> / <code>-h</code>, <code>--version</code> / <code>-V</code>, ou aucun argument</td>
 <td>—</td>
 <td>—</td>
