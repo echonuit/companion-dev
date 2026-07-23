@@ -2020,7 +2020,9 @@ seule.</p>
 </div>
 <h2 id="la-source-de-donnees">La source de données<a class="headerlink" href="#la-source-de-donnees" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence/SourceDeDonnees.java"><code>SourceDeDonnees</code></a>
-est l'<strong>unique</strong> classe qui connaît l'URL JDBC (<code>jdbc:sqlite:&lt;workspace&gt;/vigiechiro.db</code>). Bindée en
+est l'<strong>unique</strong> classe qui connaît l'URL JDBC (<code>jdbc:sqlite:</code> + <code>Workspace.cheminBaseDeDonnees()</code>,
+soit <code>&lt;workspace&gt;/vigiechiro.db</code> <strong>par défaut</strong>, ou l'emplacement choisi dans l'onglet « Emplacements »,
+cf. <a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>). Bindée en
 <strong>singleton</strong> Guice, elle fournit des <code>Connection</code> ; DAO, unité de travail et migration la reçoivent
 et ignorent tout du driver.</p>
 <div class="admonition note">
@@ -2048,7 +2050,11 @@ en fait foi : il en contient aujourd'hui bien plus que trois.</p>
    haut.</li>
 <li><strong>Ajoutez son nom au tableau <code>MIGRATIONS</code></strong> de <code>MigrationSchema</code> - <strong>l'ordre fait foi</strong>.</li>
 </ol>
-<p><code>App</code> appelle <code>MigrationSchema.migrer()</code> au démarrage ; les tests le font sur leur base jetable.</p>
+<p><code>App</code> migre <strong>avant de composer l'injecteur</strong> (<code>Amorcage.migrerPuisComposer()</code>) : les drapeaux de
+fonctionnalités sont ainsi lus dans une base à jour, ce qui a fermé le piège dormant #2187
+(<a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>). La CLI migre de
+même avant de composer, mais <strong>seulement si la base existe déjà</strong> (une aide ne doit créer aucun
+fichier). Les tests migrent sur leur base jetable.</p>
 </div>
 <h2 id="remplacer-la-base-sous-une-application-vivante">Remplacer la base sous une application vivante<a class="headerlink" href="#remplacer-la-base-sous-une-application-vivante" title="Permanent link">&para;</a></h2>
 <p>Trois gestes remplacent le fichier de base <strong>à chaud</strong> : la <strong>restauration</strong> (<code>ServiceSauvegarde.restaurer</code>,</p>

@@ -2228,7 +2228,8 @@ publie un <strong>contrat</strong> <code>Ouvrir*</code> dans <code>commun.view</
 <code>OuvrirSite</code>, <code>OuvrirPassage</code>, <code>OuvrirVerification</code>, <code>OuvrirImportation</code>, <code>OuvrirLot</code>,
 <code>OuvrirValidation</code>, <code>OuvrirDiagnostic</code>.</p>
 <h2 id="persistance">Persistance<a class="headerlink" href="#persistance" title="Permanent link">&para;</a></h2>
-<p><strong>SQLite</strong> (fichier <code>vigiechiro.db</code> dans l'espace de travail), via des <strong>DAO</strong> écrits en
+<p><strong>SQLite</strong> (fichier <code>vigiechiro.db</code> dans l'espace de travail <strong>par défaut</strong>, relocalisable via l'onglet
+« Emplacements » des réglages, cf. <a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>), via des <strong>DAO</strong> écrits en
 <code>PreparedStatement</code> (<strong>pas d'ORM</strong>). Le schéma évolue par <strong>migrations versionnées</strong>
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/src/main/resources/db/migration"><code>src/main/resources/db/migration/V0x__*.sql</code></a>,
 appliquées par

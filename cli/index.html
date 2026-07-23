@@ -2412,7 +2412,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>emplacements</code></td>
 <td><code>[--definir-travail &lt;dir&gt;] [--definir-base &lt;dir&gt;] [--reinitialiser] [--json]</code></td>
 <td>#1038</td>
-<td>Parité CLI de l'onglet « Emplacements » (<a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>) : <code>ServiceEmplacements</code>. Sans option, <strong>affiche</strong> où vivent le dossier de travail et la base (et leurs défauts). <code>--definir-*</code> <strong>sonde</strong> chaque dossier (un fichier ou un dossier non inscriptible est refusé, code <code>1</code>) puis <strong>écrit</strong> le choix ; <code>--reinitialiser</code> l'efface. Ne déplace <strong>rien</strong> : change le pointeur lu au prochain démarrage, pas les données - une base pointée vers un dossier vide démarre neuve. <code>--reinitialiser</code> et <code>--definir-*</code> sont exclusifs</td>
+<td>Parité CLI de l'onglet « Emplacements » (<a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>) : <code>ServiceEmplacements</code>. Sans option, <strong>affiche</strong> où vivent le dossier de travail et la base (et leurs défauts). <code>--definir-*</code> <strong>sonde</strong> chaque dossier (un fichier ou un dossier non inscriptible est refusé, code <code>2</code> : rien n'est écrit) puis <strong>écrit</strong> le choix ; <code>--reinitialiser</code> l'efface. Ne déplace <strong>rien</strong> : change le pointeur lu au prochain démarrage, pas les données - une base pointée vers un dossier vide démarre neuve. <code>--reinitialiser</code> et <code>--definir-*</code> sont exclusifs (code <code>2</code>)</td>
 </tr>
 <tr>
 <td><code>--help</code> / <code>-h</code>, <code>--version</code> / <code>-V</code>, ou aucun argument</td>
@@ -2481,7 +2481,8 @@ rien toucher. C'est volontairement <strong>distinct de <code>1</code></strong> �
 <code>2</code>, il est <strong>intact</strong>, et un script peut s'arrêter sans avoir à vérifier quoi que ce soit. Le message
 de refus part sur <strong>stderr</strong>, pour ne pas se mêler au compte rendu.</p>
 <p>Suivent cette règle : <code>supprimer-passage</code>, <code>importer --ecraser</code>, <code>restaurer</code>, <code>reset-guide --executer</code>,
-<code>discussion</code>, <code>sauvegarder</code> (incomplète). <code>restaurer</code> rendait <code>1</code> sur stdout jusqu'à #2294 — la
+<code>discussion</code>, <code>sauvegarder</code> (incomplète), <code>emplacements</code> (dossier refusé par la sonde, options
+exclusives : rien n'est écrit). <code>restaurer</code> rendait <code>1</code> sur stdout jusqu'à #2294 — la
 convention n'était écrite nulle part, et c'est ainsi qu'elle a dérivé.</p>
 <p><code>deposer-vigiechiro</code> étend la convention : <code>0</code> <strong>seulement si le dépôt est complet</strong> ; <code>1</code> si des
 fichiers restent à reprendre (relancer la même commande ne re-téléverse que les manquants). Le jeton
