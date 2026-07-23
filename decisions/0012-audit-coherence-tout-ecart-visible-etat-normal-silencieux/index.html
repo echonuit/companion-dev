@@ -2026,6 +2026,7 @@
 <ul>
 <li><strong>Statut</strong> : Accepté — rétroactif</li>
 <li><strong>Chantier</strong> : EPIC #1154 (cohérence disque ↔ base ↔ serveur)</li>
+<li><strong>Vérification</strong> : humaine — que l'audit rende tout écart visible mais qu'un état normal ne crie pas est une règle de restitution, jugée en revue et par les tests d'audit</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Trois représentations d'une nuit coexistent : les <strong>fichiers</strong> sur le disque, la <strong>base</strong> locale, et le <strong>serveur</strong> VigieChiro. Rien ne garantissait qu'elles restent en correspondance - surtout au <strong>renommage</strong> d'un passage (changement d'année ou de numéro → re-préfixage de tous les fichiers). Il fallait pouvoir <strong>auditer</strong> ces correspondances. Mais un audit qui hurle au moindre écart est aussi inutile qu'un audit muet : s'il traite un utilisateur qui a <strong>volontairement</strong> libéré de la place comme s'il avait <strong>corrompu</strong> ses données, on cesse de l'écouter.</p>
