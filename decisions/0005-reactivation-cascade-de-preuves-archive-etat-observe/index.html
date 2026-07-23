@@ -2026,6 +2026,7 @@
 <ul>
 <li><strong>Statut</strong> : Accepté — rétroactif</li>
 <li><strong>Chantier</strong> : EPIC #1297 (passage archivé) ; cascade #1309, empreinte #1299</li>
+<li><strong>Vérification</strong> : certaine — <code>DecisionsRespecteesTest#archive_n_est_pas_un_statut_de_workflow</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Un passage dont l'audio a quitté le disque (place libérée, dépôt par ZIP - cf. <a href="../0006-depot-zip-par-defaut-perte-audio-serveur-assumee/">ADR 0006</a>) n'est pas un passage <strong>cassé</strong>. On veut pouvoir le <strong>réactiver</strong> en réimportant les fichiers d'origine, sans jamais rebrancher sur le <strong>mauvais</strong> audio (un homonyme redécoupé produirait des observations scientifiquement fausses <strong>et silencieuses</strong>). Exiger une empreinte cryptographique réglerait l'identité, mais <strong>condamnerait</strong> tous les passages déjà archivés : ils n'en ont pas, et leurs fichiers sont partis.</p>
