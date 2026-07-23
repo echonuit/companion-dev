@@ -2026,6 +2026,7 @@
 <ul>
 <li><strong>Statut</strong> : Accepté — rétroactif</li>
 <li><strong>Chantier</strong> : EPIC #1284 (faire parler le transport HTTP)</li>
+<li><strong>Vérification</strong> : humaine — un appel réseau qui contourne ReponseApi ne se distingue pas par motif d'un utilitaire du paquet api ; vérifié en revue</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le client VigieChiro peut échouer de plusieurs façons <strong>distinctes</strong>, qu'il faut traiter différemment : l'utilisateur n'est <strong>pas connecté</strong>, la plateforme est <strong>injoignable</strong> (timeout, réseau), ou elle <strong>refuse</strong> (422, 4xx/5xx avec un corps). Modéliser tout cela par un retour « nul ou liste vide » ou par des exceptions hétérogènes noyait ces cas : un <code>null</code> silencieux passait pour une absence de données, un reset guidé se lançait alors qu'il ne pourrait rien repeupler, etc.</p>

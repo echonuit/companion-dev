@@ -2026,6 +2026,7 @@
 <ul>
 <li><strong>Statut</strong> : Accepté — rétroactif</li>
 <li><strong>Chantier</strong> : CLI socle #619/#659 ; parité #1304 ; passe 2 du cycle de chantier</li>
+<li><strong>Vérification</strong> : humaine — la parité CLI/IHM est une passe de clôture (passe 2), une obligation de processus, pas un invariant du code à un instant donné</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'application a une IHM JavaFX, mais aussi une <strong>CLI</strong> (<code>fr.univ_amu.iut.cli</code>, picocli). Le risque, quand deux surfaces coexistent, est qu'elles <strong>divergent</strong> : une capacité ajoutée à l'IHM (archiver, réactiver, reconstruire, diagnostiquer…) reste inaccessible en ligne de commande, et l'automatisation, les tests de bout en bout et la recette scriptée s'appauvrissent.</p>
