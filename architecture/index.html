@@ -1652,6 +1652,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2385-la-doc-chiffree-est-adossee-au-code/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2385 · La doc chiffrée est adossée au code
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2270,7 +2291,7 @@ publie un <strong>contrat</strong> <code>Ouvrir*</code> dans <code>commun.view</
 </code></pre></div>
 <p>Ainsi <code>sites</code> ouvre M-Passage <strong>sans dépendre de <code>passage.view</code></strong> : la règle ArchUnit
 <code>pas_de_dependance_inter_feature_vers_la_vue</code> reste respectée. La <strong>liste de référence</strong> des contrats
-<code>Ouvrir*</code> (<strong>10</strong>) est maintenue à un seul endroit : <a href="../navigation/#ouvrir-une-autre-feature-sans-en-dependre">Navigation</a>.</p>
+<code>Ouvrir*</code> (<strong><!--inv:ouvrir-->10<!--/inv--></strong>) est maintenue à un seul endroit : <a href="../navigation/#ouvrir-une-autre-feature-sans-en-dependre">Navigation</a>.</p>
 <h2 id="persistance">Persistance<a class="headerlink" href="#persistance" title="Permanent link">&para;</a></h2>
 <p><strong>SQLite</strong> (fichier <code>vigiechiro.db</code> dans l'espace de travail <strong>par défaut</strong>, relocalisable via l'onglet
 « Emplacements » des réglages, cf. <a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>), via des <strong>DAO</strong> écrits en
