@@ -2288,20 +2288,20 @@ réactivable si les fichiers d'origine reparaissent.</p>
   suffit à distinguer deux WAV différents, dont les en-têtes et les premières trames diffèrent.
   Elle est posée <strong>à l'import</strong> (<code>TransformationAudio</code>) ; les nuits déjà importées se rattrapent
   avec <code>retro-empreintes</code> (<code>BackfillEmpreintes</code>).</li>
-<li><strong><code>V24__archivage_passage.sql</code></strong> : <code>recording_session.archived_at</code>. <strong>Colonne vestigiale</strong> : le
-  geste d'archivage a été retiré (<a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">ADR 0048</a>),
-  plus personne ne l'écrit ni ne la lit. La disponibilité de l'audio s'<strong>observe</strong> sur le disque
-  (<code>DisponibiliteAudio</code>, cf. <a href="../patterns/#etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine">patterns</a>).
-  Son retrait effectif est une migration à venir.</li>
-<li><strong><code>V25__purge_originaux_declaree.sql</code></strong> : <code>recording_session.originals_purged_at</code>, également
-  <strong>vestigiale</strong>. Le geste de purge a été retiré et l'audit ne contrôle plus les bruts : ce sont
-  des copies <strong>optionnelles</strong> de ré-analyse
-  (<a href="../decisions/0036-la-copie-des-bruts-est-une-option/">ADR 0036</a>), absentes de la plupart des
-  nuits, donc leur absence est l'état normal.</li>
+<li><strong><code>V24__archivage_passage.sql</code></strong> : avait ajouté <code>recording_session.archived_at</code>. Le geste
+  d'archivage a été retiré (<a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">ADR 0048</a>) :
+  la disponibilité de l'audio s'<strong>observe</strong> sur le disque (<code>DisponibiliteAudio</code>, cf.
+  <a href="../patterns/#etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine">patterns</a>). Devenue
+  morte, la colonne a été <strong>retirée par <code>V31</code></strong> (#2429).</li>
+<li><strong><code>V25__purge_originaux_declaree.sql</code></strong> : avait ajouté <code>recording_session.originals_purged_at</code>. Le
+  geste de purge a été retiré et l'audit ne contrôle plus les bruts : ce sont des copies
+  <strong>optionnelles</strong> de ré-analyse (<a href="../decisions/0036-la-copie-des-bruts-est-une-option/">ADR 0036</a>),
+  absentes de la plupart des nuits, donc leur absence est l'état normal. Colonne également <strong>retirée
+  par <code>V31</code></strong> (#2429).</li>
 </ul>
 <p>Ces deux marqueurs répondaient à la même question : <em>pourquoi</em> l'audio manque. La réponse ne
 change plus rien - <strong>l'utilisateur possède ses fichiers</strong>, leur absence n'est jamais une
-corruption. Ils ne sont plus ni écrits ni lus ; leur retrait effectif est une migration à venir.</p>
+corruption. N'étant plus ni écrits ni lus, ils ont été <strong>retirés du schéma par <code>V31</code></strong> (#2429).</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Validation d'expert (V26, EPIC #1154)</p>
