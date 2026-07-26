@@ -2478,6 +2478,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>ProjectionsAudioDao.lignesAudioDuPassage</code> + <code>ExportObservationsCsv</code></td>
 </tr>
 <tr>
+<td><code>exporter-activite</code></td>
+<td><code>--passage &lt;id&gt; --sortie &lt;fichier&gt; [--tranche 15\|30\|60] [--format csv]</code></td>
+<td>#2352</td>
+<td><code>ServiceActivite.contactsDuPassage</code> + <code>AgregationActivite.parEspece</code> + <code>ExportActiviteCsv</code>. Facette <strong>données</strong> de la courbe d'activité (pendant CLI de l'export image de l'IHM), rattachée à la nuit biologique. <strong>Non gouvernée par le flag <code>activite-nuit</code></strong> : l'agrégation est une capacité stable de <code>analyse</code>, seule la vue est expérimentale</td>
+</tr>
+<tr>
 <td><code>audit-coherence</code></td>
 <td><code>[--passage &lt;id&gt;] [--json] [--online] [--token &lt;jeton&gt;]</code></td>
 <td>#1133, #1254, #1347</td>
