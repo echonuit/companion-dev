@@ -2271,6 +2271,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>ServiceCampagne</code> (lecture) : les campagnes de suivi, de la plus récente à la plus ancienne</td>
 </tr>
 <tr>
+<td><code>rattacher-campagne</code></td>
+<td><code>--passage &lt;id&gt; [--campagne &lt;id&gt;]</code></td>
+<td>#2355</td>
+<td><code>ServiceCampagne.rattacherPassage</code> : rattache un passage à une campagne, ou l'en <strong>détache</strong> si <code>--campagne</code> est omis. Supprimer la campagne détache aussi (<code>ON DELETE SET NULL</code>)</td>
+</tr>
+<tr>
 <td><code>lister-passages</code></td>
 <td><code>[--json]</code></td>
 <td>P5</td>
