@@ -2165,15 +2165,16 @@ par un (le quoi, le pourquoi ici, et les principes servis).</p>
 <a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│
 <a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── sites/        passage/       importation/   qualification/   lot/
 <a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── validation/   multisite/     diagnostic/    bibliotheque/    recherche/
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── analyse/      audio/         audit/         connexion/       maj/          ← les features métier
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>│
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>├── cli/                         ← interface en ligne de commande (import/export scriptables)
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>└── perf/outils/                 ← bancs de mesure de performance
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── analyse/      audio/         audit/         connexion/       maj/
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── saison/                                                     ← les features métier
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>├── cli/                         ← interface en ligne de commande (import/export scriptables)
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>└── perf/outils/                 ← bancs de mesure de performance
 </code></pre></div>
 <p>Les deux dernières entrées sont des <strong>surfaces transverses</strong>, documentées à part :
 <a href="../cli/"><code>cli/</code></a> (seconde façade <em>headless</em> sur le métier) et
 <a href="../performance/"><code>perf/outils/</code></a> (bancs de mesure des objectifs O3/O5).</p>
-<p>Entre le socle et ces surfaces, l'application compte <strong><!--inv:features-->15<!--/inv--> features</strong> métier
+<p>Entre le socle et ces surfaces, l'application compte <strong><!--inv:features-->16<!--/inv--> features</strong> métier
 (chacune un dossier autonome sous <code>fr.univ_amu.iut</code>, hors <code>commun</code>, <code>cli</code> et <code>perf</code>).</p>
 <h2 id="les-4-couches-dune-fonctionnalite">Les 4 couches d'une fonctionnalité<a class="headerlink" href="#les-4-couches-dune-fonctionnalite" title="Permanent link">&para;</a></h2>
 <p>Chaque feature (ex. <code>sites/</code>) suit le même découpage, <strong>du métier vers l'IHM</strong> :</p>
