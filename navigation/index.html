@@ -2316,9 +2316,9 @@ dépendent tous deux (jamais l'un de l'autre).</p>
 <li><code>PassageModule</code> la <strong>binde</strong> : <code>bind(OuvrirPassage.class).to(NavigationPassage.class);</code>.</li>
 <li><code>sites</code> <strong>injecte</strong> <code>OuvrirPassage</code> et appelle <code>ouvrir(...)</code> — sans jamais voir <code>passage.view</code>.</li>
 </ol>
-<p>Contrats existants (<strong><!--inv:ouvrir-->10<!--/inv--></strong>, la liste de référence : <code>commun/view/Ouvrir*.java</code>) : <code>OuvrirAnalyse</code>,
-<code>OuvrirAudio</code>, <code>OuvrirDiagnostic</code>, <code>OuvrirImportation</code>, <code>OuvrirLot</code>, <code>OuvrirMultisite</code>, <code>OuvrirPassage</code>,
-<code>OuvrirSite</code>, <code>OuvrirValidation</code>, <code>OuvrirVerification</code>.</p>
+<p>Contrats existants (<strong><!--inv:ouvrir-->11<!--/inv--></strong>, la liste de référence : <code>commun/view/Ouvrir*.java</code>) : <code>OuvrirActivite</code>,
+<code>OuvrirAnalyse</code>, <code>OuvrirAudio</code>, <code>OuvrirDiagnostic</code>, <code>OuvrirImportation</code>, <code>OuvrirLot</code>, <code>OuvrirMultisite</code>,
+<code>OuvrirPassage</code>, <code>OuvrirSite</code>, <code>OuvrirValidation</code>, <code>OuvrirVerification</code>.</p>
 <h2 id="cartes-daccueil-et-compteurs">Cartes d'accueil et compteurs<a class="headerlink" href="#cartes-daccueil-et-compteurs" title="Permanent link">&para;</a></h2>
 <p>L'accueil agrège ce que <strong>chaque feature publie</strong> au conteneur (multibinding Guice, cf.
 <a href="../injection/">Injection</a>) : une <code>ActiviteAccueil</code> (la carte cliquable) et, le cas échéant, un
