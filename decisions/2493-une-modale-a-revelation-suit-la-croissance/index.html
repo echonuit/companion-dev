@@ -2110,7 +2110,7 @@
 <ul>
 <li><strong>Statut</strong> : Accepté — 2026-07-25</li>
 <li><strong>Chantier</strong> : #2493 (issu du fix connexion #2486, du patron #1534)</li>
-<li><strong>Vérification</strong> : probable — <code>scripts/adr/2493-modale-suit-croissance.py</code> (cliquet : 1)</li>
+<li><strong>Vérification</strong> : probable — <code>scripts/adr/2493-modale-suit-croissance.py</code> (cliquet : 0)</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Une modale est dimensionnée à son <strong>ouverture</strong>, sur le contenu visible à cet instant. Un bandeau de retour qui paraît <strong>ensuite</strong> - un message d'erreur de validation, un résultat de récupération GPS, un compte rendu serveur - agrandit la mise en page sans agrandir la fenêtre. Les boutons du bas (« Valider », « Créer », « Appliquer ») passent alors <strong>sous la ligne de flottaison</strong>, hors d'atteinte.</p>
@@ -2126,12 +2126,12 @@
 <ul>
 <li>Un retour qui paraît dans une modale n'y pousse plus les boutons de validation hors du cadre.</li>
 <li>La vérification est <code>probable</code>, pas <code>certaine</code> : « est-ce une modale ? » est approché par le nom du controller (<code>*Modale*Controller</code>), et un popup nommé autrement serait manqué ; « révèle-t-elle un bandeau qui pousse des boutons ? » se lit à l'intention. Un humain confirme les suspects.</li>
-<li>Le cliquet démarre à <strong>3</strong> (la dette trouvée à l'audit) et descend à mesure que les modales sont câblées. Deux l'ont été (ModalePoint, ModaleSite) ; <strong>RattachementModale reste à 1</strong> : sur cette grande modale, <code>sizeToScene</code> fait planter le rendu de la Headless Platform en test (<code>HeadlessWindow.blit</code>, IndexOutOfBounds). Le fix est correct en production mais bloqué en CI, d'où un report tracé - le cliquet à 1 le rend visible au lieu de le cacher.</li>
+<li>Le cliquet démarre à <strong>3</strong> (la dette trouvée à l'audit) et descend à mesure que les modales sont câblées : ModalePoint, ModaleSite, puis <strong>RattachementModale</strong> ; <strong>cliquet à 0</strong>. Cette dernière a demandé plus que le câblage (#2496) : à ~1017 px une fois le bandeau révélé, elle dépassait l'écran headless de test (figé à 1000×1000, <code>HeadlessWindow.blit</code> débordait) <strong>et</strong> les vrais petits écrans. La borner (corps défilant + pied épinglé, cf. alternatives) l'a ramenée sous l'écran ; le câblage y est alors devenu sûr et suffisant.</li>
 </ul>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Réserver la place du bandeau (managed=true figé).</strong> Un bandeau <code>wrapText</code> a une hauteur variable (1 à 3 lignes) : réserver une place fixe gaspille de l'espace quand il est vide, ou rogne quand il est haut. Faire suivre la croissance s'ajuste à la hauteur réelle.</li>
-<li><strong>Un <code>ScrollPane</code> autour du contenu de la modale.</strong> Déplace le problème : les boutons du bas passeraient sous une barre de défilement au lieu de disparaître. Une modale de saisie doit montrer ses actions, pas les faire défiler.</li>
+<li><strong>Un <code>ScrollPane</code> autour de <em>tout</em> le contenu de la modale.</strong> Déplace le problème : les boutons du bas passeraient sous une barre de défilement au lieu de disparaître. Une modale de saisie doit montrer ses actions, pas les faire défiler. La variante retenue pour une modale <strong>irréductiblement longue</strong> (RattachementModale, #2496) échappe à cette objection : seul le <strong>corps</strong> défile, le bandeau et le pied restent <strong>épinglés hors du défilement</strong>, donc toujours visibles. C'est l'exception, pas la règle : une modale qui tient sur un écran ne prend pas de <code>ScrollPane</code>.</li>
 <li><strong>Une <code>certaine</code> par test.</strong> « Cette classe est-elle une modale, et ce nœud pousse-t-il vraiment des boutons ? » demande un jugement ; un test déterministe se tromperait dans les deux sens. D'où <code>probable</code> avec un humain dans la boucle.</li>
 </ul>
 
