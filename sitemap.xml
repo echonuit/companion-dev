@@ -297,6 +297,10 @@
          <lastmod>2026-07-27</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/recette/</loc>
          <lastmod>2026-07-27</lastmod>
     </url>
@@ -322,6 +326,10 @@
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/sessions/s6-exploiter-piloter/</loc>
+         <lastmod>2026-07-27</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/recette/sessions/s8-recuperer-une-nuit/</loc>
          <lastmod>2026-07-27</lastmod>
     </url>
 </urlset>

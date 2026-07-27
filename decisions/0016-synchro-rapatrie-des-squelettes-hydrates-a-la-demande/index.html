@@ -1643,6 +1643,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2554 · La synchro amène chaque nuit à un niveau de complétude
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
         
   
@@ -1930,6 +1951,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S8 · Récupérer une nuit déposée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2192,7 +2234,7 @@
 
 <h1 id="adr-0016-la-synchro-rapatrie-les-nuits-en-squelettes-hydrates-a-la-demande">ADR 0016 — La synchro rapatrie les nuits en squelettes, hydratés à la demande<a class="headerlink" href="#adr-0016-la-synchro-rapatrie-les-nuits-en-squelettes-hydrates-a-la-demande" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-17, <strong>amendé</strong> par <a href="../0018-la-synchro-rapatrie-l-identite-de-la-nuit/">ADR 0018</a> (#1814) et <a href="../0019-ancrage-acquis-quand-il-sert/">ADR 0019</a> (#1838)</li>
+<li><strong>Statut</strong> : Accepté — 2026-07-17, <strong>amendé</strong> par <a href="../0018-la-synchro-rapatrie-l-identite-de-la-nuit/">ADR 0018</a> (#1814), <a href="../0019-ancrage-acquis-quand-il-sert/">ADR 0019</a> (#1838) et <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/">ADR 2554</a> (EPIC #2554)</li>
 <li><strong>Chantier</strong> : EPIC #1662 (refonte de la récupération d'une nuit)</li>
 <li><strong>Vérification</strong> : humaine — le rapatriement en squelettes hydratés à la demande est un comportement de synchro, non observable par un motif statique</li>
 </ul>
@@ -2202,6 +2244,14 @@
 paie désormais <strong>un</strong> détail par nuit <strong>nouvelle</strong> pour rapatrier son <strong>identité</strong> (enregistreur, météo,
 micro, fin de nuit) ; les observations et l'audio restent à l'hydratation. Le reste de cette décision
 (squelette léger, hydratation à la demande, remplacement à la reconstruction) tient toujours.</p>
+<p>[!NOTE]
+<strong>Amendement (ADR 2554)</strong> : la répartition « la reconstruction rapatrie les observations, la réactivation
+rebranche l'audio » ne tient plus. La question devient <strong>à quel niveau de complétude chaque nuit est
+amenée</strong> (structure → identité → <strong>contenu</strong>), et la synchro va jusqu'au contenu — pour toutes les nuits
+sans séquences, squelettes hérités compris. Le chiffrage qui justifiait de s'arrêter avant portait sur la
+pagination <code>donnees</code> ; le CSV (#1565) coûte deux GET. L'alternative « hydrater en place », écartée ici,
+est <strong>retenue</strong> sur le chemin de la réactivation (un écran est ouvert dessus, et un squelette porte des
+saisies manuelles). Voir <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/">ADR 2554</a>.</p>
 <p>[!NOTE]
 <strong>Amendement (ADR 0019)</strong> : la réactivation n'est plus le <strong>seul</strong> moment où l'ancrage s'acquiert. La
 publication des corrections le rapatrie elle-même quand il manque et que la nuit est rattachée : ancrage

@@ -1641,6 +1641,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2554 · La synchro amène chaque nuit à un niveau de complétude
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
         
   
@@ -1919,6 +1940,27 @@
   
   <span class="md-ellipsis">
     S6 · Exploiter et piloter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S8 · Récupérer une nuit déposée
   </span>
   
 
@@ -2330,6 +2372,19 @@ moyenne sur <strong>toute</strong> la fenêtre diluait un cri de quelques ms noy
 négatifs qui rendaient l'hydratation d'un vrai passage inopérante avant correction. Le <em>pourquoi</em> de ces
 deux choix est consigné en <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/">ADR 0001</a>
 (identité structurelle) et <a href="../decisions/0002-detection-acoustique-energie-de-pointe/">ADR 0002</a> (énergie de pointe).</p>
+<p><strong>Cas limite : la nuit <em>récupérée</em> et pas encore hydratée (EPIC #2554).</strong> Une nuit rapatriée par la
+synchro n'a ni audio <strong>ni séquences</strong> : il n'y a donc rien à confronter au dossier désigné, et la cascade
+n'a pas de prise. C'est un état distinct du passage reconstruit, qui a ses séquences mais pas ses fichiers.
+La réactivation le reconnaît et <strong>va d'abord chercher les observations</strong> (phase 0, <code>HydratationSquelette</code>,</p>
+<h1 id="2555-ce-sont-elles-qui-apportent-les-noms-et-lhorodatage-sur-lesquels-la-cascade-reconnait">2555) : ce sont elles qui apportent les <strong>noms</strong> et l'<strong>horodatage</strong> sur lesquels la cascade reconnaît<a class="headerlink" href="#2555-ce-sont-elles-qui-apportent-les-noms-et-lhorodatage-sur-lesquels-la-cascade-reconnait" title="Permanent link">&para;</a></h1>
+<p>ensuite les fichiers de <em>cette</em> nuit dans une carte qui en contient plusieurs. La suite est le chemin
+ci-dessus, inchangé.</p>
+<p>Deux points de conception s'y rattachent, consignés en
+<a href="../decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/">ADR 2554</a> : l'hydratation se
+fait <strong>en place</strong> (un écran est ouvert sur cet identifiant, et un squelette porte peut-être des saisies
+manuelles que la plateforme ignore), là où la reconstruction remplace la nuit ; et la source diffère selon
+l'appelant — le repli sur la pagination <code>donnees</code> est justifié sur <strong>une</strong> nuit désignée, jamais sur le
+balayage de compte de la synchro.</p>
 <p><strong>Principes.</strong> Fail-safe (ne pas pouvoir prouver = ne pas faire), <strong>honnêteté</strong> (dire <em>avec quelle
 force</em> on a conclu), et refus de la fausse alternative « preuve parfaite ou rien ».</p>
 <hr />

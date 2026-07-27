@@ -1565,6 +1565,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2554 · La synchro amène chaque nuit à un niveau de complétude
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
         
   
@@ -1843,6 +1864,27 @@
   
   <span class="md-ellipsis">
     S6 · Exploiter et piloter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S8 · Récupérer une nuit déposée
   </span>
   
 
@@ -2717,15 +2759,24 @@ l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 </code></pre></div>
 </li>
 </ul>
-<p><strong>Sur une classe de vue (TestFX), passer les options de la JVM headless.</strong> Le profil <code>mutation</code> ne
-reprend pas l'<code>argLine</code> de Surefire : sans elles, PIT lance ses minions sans <code>glass.platform=Headless</code>,
-la suite ne démarre pas et l'outil s'arrête sur « <em>tests did not pass without mutation</em> ». On les lui
-donne à la main :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.commun.view.Modales<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.commun.view.ModalesTest<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span>-DjvmArgs<span class="o">=</span><span class="s2">&quot;-Dglass.platform=Headless,-Dprism.order=sw,-Djava.awt.headless=true,-Dtestfx.robot=glass,--enable-native-access=ALL-UNNAMED&quot;</span>
+<p>⚠️ <strong><code>test-compile</code> n'est pas une commodité, c'est ce qui fait démarrer le minion.</strong> PIT hérite de
+l'<code>argLine</code> de Surefire, qui contient deux valeurs posées par des greffons liés à des <strong>phases</strong> :
+<code>@{jacocoArgLine}</code> (<code>jacoco:prepare-agent</code>) et <code>${net.bytebuddy:byte-buddy-agent:jar}</code>
+(<code>dependency:properties</code>, phase <code>initialize</code>). Invoquer le <strong>but seul</strong>
+(<code>./mvnw -Pmutation org.pitest:...:mutationCoverage</code>) n'exécute <strong>aucune</strong> phase : les deux restent
+littérales, le minion reçoit <code>-javaagent:${net.bytebuddy:byte-buddy-agent:jar}</code>, refuse de démarrer, et
+PIT ne rapporte que :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>PIT &gt;&gt; SEVERE : Coverage generator Minion exited abnormally due to MINION_DIED
 </code></pre></div>
+<p>Ce message <strong>ne dit pas</strong> la cause, et il est identique quelle que soit la classe visée - y compris une
+classe pure sans JavaFX ni SQLite. D'où la conclusion tentante, et fausse, que « PIT ne marche pas sur ce
+dépôt ». Il marche : toujours enchaîner une phase, comme dans les exemples ci-dessus.</p>
+<p><strong>Sur une classe de vue (TestFX), rien de plus à faire.</strong> Le profil <code>mutation</code> du <code>pom.xml</code> passe déjà
+les quatre propriétés headless au minion (<code>glass.platform=Headless</code>, <code>prism.order=sw</code>,
+<code>java.awt.headless=true</code>, <code>testfx.robot=glass</code>) : sans elles, PIT lançait ses minions hors headless et
+s'arrêtait sur « <em>tests did not pass without mutation</em> ». <strong>Ne pas</strong> les repasser à la main via
+<code>-DjvmArgs=…</code> : la ligne de commande <strong>remplace</strong> la liste du profil au lieu de s'y ajouter, et une liste
+incomplète ramène l'échec que le profil avait supprimé.</p>
 <p>PIT couvre donc aussi la couche <code>view</code>, ce que l'échec brut laissait croire impossible.</p>
 <p>⚠️ <strong>Lire le rapport, pas le résumé.</strong> <code>target/pit-reports/mutations.xml</code> écrit ses attributs en
 <strong>apostrophes simples</strong> (<code>status='SURVIVED'</code>). Un filtre écrit en guillemets doubles ne matche rien et
