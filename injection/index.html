@@ -460,6 +460,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Feature-flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Livrer un écran inachevé : conditionner l'accès, jamais les composants
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -1659,6 +1674,48 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2352 · La nuit se lit du crépuscule à l'aube
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2348-un-export-d-image-se-redessine-il-ne-se-capture-pas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2348 · Un export d'image se redessine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/" class="md-nav__link">
         
   
@@ -2092,6 +2149,21 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Feature-flags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants" class="md-nav__link">
+    <span class="md-ellipsis">
+      Livrer un écran inachevé : conditionner l'accès, jamais les composants
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -2235,7 +2307,7 @@ La <strong>catégorie</strong> décide de la <strong>désactivabilité</strong> 
 <td><code>EXPERIMENTALE</code></td>
 <td>oui</td>
 <td><strong>inactive</strong></td>
-<td>feature en cours de dev, mergée derrière un flag OFF</td>
+<td>fonctionnalité en construction, livrée sans être offerte</td>
 </tr>
 </tbody>
 </table>
@@ -2259,12 +2331,39 @@ retirer casserait l'injecteur (dépendance EAGER) ou un écran (contrat <code>Ou
 constructible.</p>
 </div>
 <p>Sont <code>OPTIONNELLE</code> (désactivables) : <code>import-vigiechiro</code> (aucun <code>Ouvrir*</code>, <code>OptionalBinder</code> vide dès
-l'origine) <strong>et</strong> les 6 feuilles autrefois couplées au runtime dont le contrat <code>Ouvrir*</code> a été
+l'origine), les 6 feuilles autrefois couplées au runtime dont le contrat <code>Ouvrir*</code> a été
 <strong>neutralisé</strong> (<code>OptionalBinder</code> vide côté consommateur + <code>setBinding</code> côté feuille, le consommateur
 masquant son point d'entrée si absent) : <code>diagnostic</code>, <code>lot</code>, <code>qualification</code>, <code>importation</code>, <code>analyse</code>,
-<code>recherche</code> (#1087). Le reste demeure <code>COEUR</code> : <code>sites</code>, <code>passage</code>, <code>validation</code>, <code>audio</code>,
+<code>recherche</code> (#1087), <strong>et</strong> <code>activite-nuit</code>, née <code>EXPERIMENTALE</code> le temps du chantier #2348 puis passée
+<code>OPTIONNELLE</code> à la clôture du lot #2352 — la bascule d'une feature achevée est le cas nominal, pas une
+exception. Le reste demeure <code>COEUR</code> : <code>sites</code>, <code>passage</code>, <code>validation</code>, <code>audio</code>,
 <code>bibliotheque</code>, <code>multisite</code>, <code>connexion</code>, <code>synchronisation-participation</code>, <code>depot-vigiechiro</code>
 (dépendances EAGER ; cf. <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a>).</p>
+<h3 id="livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants">Livrer un écran inachevé : conditionner l'accès, jamais les composants<a class="headerlink" href="#livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants" title="Permanent link">&para;</a></h3>
+<p>Un écran en cours de construction se livre volontiers sous une fonctionnalité <code>EXPERIMENTALE</code>
+(inactive par défaut) : les paliers intermédiaires rejoignent <code>main</code> sans qu'un écran à moitié fait
+apparaisse à l'utilisateur. La tentation est alors de placer <strong>tout</strong> l'écran dans ce module. C'est
+une impasse, et elle se paie en intégration continue.</p>
+<p><code>ChargementFxmlTest</code> charge <strong>chaque</strong> vue FXML avec l'injecteur complet par défaut. Si le ViewModel
+et le service de l'écran vivent dans le module conditionné, ils ne sont <strong>pas fournis</strong> quand la
+fonctionnalité est inactive : la vue devient inchargeable et la garde rougit. Le même piège attend
+chez le consommateur : un <code>Optional&lt;OuvrirX&gt;</code> n'est injectable que si un <code>OptionalBinder</code> <strong>de base</strong>
+est déclaré chez lui, faute de quoi l'<code>Optional</code> n'est pas « vide », il est <strong>introuvable</strong>.</p>
+<p>La répartition qui tient :</p>
+<ul>
+<li>le module <strong>conditionné</strong> ne porte que les <strong>points d'entrée</strong> : le contrat <code>Ouvrir*</code> (via
+  <code>setBinding</code>) et la carte d'accueil (<code>activite(...)</code>) ;</li>
+<li>les <strong>composants</strong> (ViewModel, service, DAO) vivent dans le module <strong>toujours actif</strong> de la
+  fonctionnalité ;</li>
+<li>le <strong>consommateur</strong> déclare le liant de base
+  <code>OptionalBinder.newOptionalBinder(binder(), OuvrirX.class)</code> sans <code>setBinding</code>, pour que l'<code>Optional</code>
+  soit injectable et vide quand la fonctionnalité est inactive.</li>
+</ul>
+<p>Corollaire en ligne de commande : une commande qui s'appuie sur ces composants n'a <strong>pas</strong> à être
+gouvernée par l'interrupteur de l'écran. Celui-ci gouverne un <strong>accès</strong>, pas une capacité de données —
+<code>exporter-activite</code> fonctionne que l'écran soit offert ou non (cf. <a href="../cli/">CLI</a>).</p>
+<p>Découpe illustrée par <code>analyse</code> : <code>AnalyseModule</code> (toujours actif) fournit <code>ActiviteViewModel</code> et
+<code>ServiceActivite</code> ; <code>ActiviteModule</code> ne porte que <code>OuvrirActivite</code> et la carte d'accueil.</p>
 <h2 id="ce-que-publie-un-module-de-feature">Ce que publie un module de feature<a class="headerlink" href="#ce-que-publie-un-module-de-feature" title="Permanent link">&para;</a></h2>
 <p>Un module de feature hérite de <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di/ModuleDeFeature.java"><code>ModuleDeFeature</code></a>
 (lui-même un <code>AbstractModule</code>), qui ajoute un petit <strong>DSL de contribution</strong> masquant le boilerplate des
