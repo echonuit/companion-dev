@@ -2045,6 +2045,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s6-exploiter-piloter/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    S6 · Exploiter et piloter
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -2664,6 +2685,30 @@ complémentaires : <strong>PIT ciblé</strong> sur les classes du chantier (<cod
 s'applique) et la <strong>mutation à la main</strong> pour ce que PIT ne mute pas - attribut d'annotation, câblage,
 FXML, sonde réseau. Le mode d'emploi et les quatre contre-exemples qui ont motivé la règle sont dans
 <a href="../tests-et-qualite/#un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge">Tests et qualité</a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Deux dispositifs qu'on saute quand on est pressé</p>
+<p>Ce sont <strong>toujours les deux mêmes</strong> qui manquent à l'appel, parce qu'ils demandent une commande de
+plus et qu'un écran vert donne déjà l'impression du travail fini. La passe 6 n'est pas close tant
+qu'ils n'ont pas tourné, ou que leur inapplicabilité n'est pas <strong>écrite</strong>.</p>
+<p><strong>PIT sur les classes du chantier</strong>, et sa lecture — pas son score :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>env<span class="w"> </span>-u<span class="w"> </span>DISPLAY<span class="w"> </span>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-DtargetClasses<span class="o">=</span><span class="s2">&quot;fr.univ_amu.iut.&lt;feature&gt;.model.*&quot;</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-DtargetTests<span class="o">=</span><span class="s2">&quot;fr.univ_amu.iut.&lt;feature&gt;.*&quot;</span>
+</code></pre></div>
+<p>Le pourcentage ne dit rien : ce sont les <strong>survivants</strong> qui parlent, et il faut les ouvrir un par
+un. Trois familles s'y mêlent, à ne pas confondre — un <strong>vrai trou</strong> (un test manque, on l'écrit),
+un <strong>défensif inatteignable</strong> (on l'assume, sans test creux), et un <strong>artefact de ciblage</strong> (la
+classe est couverte par un test qu'on a exclu de <code>targetTests</code> : on élargit et on remesure).
+Cibler les classes <strong>pures</strong> ; une façade de délégation ne produit que des survivants sans valeur.</p>
+<p><strong>Les E2E <code>bats</code> de la CLI</strong> (<code>src/test/bats/</code>), dès qu'une commande est ajoutée ou changée. Ils
+lancent le <strong>vrai fat-jar dans un processus</strong> : ils voient le packaging, l'analyse des arguments
+par picocli et les <strong>codes de sortie réels</strong>, que les tests Java in-process ne voient pas.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./mvnw<span class="w"> </span>-DskipTests<span class="w"> </span>package<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>bats<span class="w"> </span>src/test/bats
+</code></pre></div>
+<p>Deux niveaux, tous deux requis : <code>cli-surface.bats</code> (la commande <strong>existe</strong> et refuse une
+invocation vide) et <code>cli.bats</code> (elle <strong>fait ce qu'elle promet</strong> — fichier écrit, refus expliqué,
+code de sortie juste).</p>
+</div>
 <p><strong>Des E2E qui traversent, quitte à fusionner des scénarios.</strong> Un E2E ne vaut pas par le nombre
 d'assertions mais par ce qu'il <strong>traverse</strong>. Plusieurs parcours courts, qui bouchonnent chacun l'étape
 voisine, prouvent chacun une tranche et <strong>personne ne prouve la chaîne</strong> : les défauts se logent
@@ -2812,34 +2857,34 @@ cycle. Ce qui a tranché n'est pas un raisonnement plus fin, c'est d'être allé
 plateforme. Quand une suite est traitée, <strong>relire ce que le bilan en disait</strong> et le corriger s'il s'est
 trompé : une analyse fausse laissée en place oriente le chantier suivant.</p>
 <h2 id="modele-de-cloture-a-coller-dans-lepic">Modèle de clôture (à coller dans l'EPIC)<a class="headerlink" href="#modele-de-cloture-a-coller-dans-lepic" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="gu">## Ouverture de chantier</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="k">- [ ]</span> 0. Triage : issues ouvertes balayées <span class="gs">**par concept**</span>, EPIC vivants et issues « différées de <span class="ni">#N</span> » cherchés, rattachements décidés, titres/corps recadrés
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="k">- [ ]</span> 1. Cartographie de l&#39;existant (patterns réutilisables)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">- [ ]</span> 2. Plan (découpage, contraintes, risques, ordre des paliers)
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="k">- [ ]</span> 3. Issues créées et reliées à l&#39;EPIC
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="gu">## Clôture de chantier</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="k">- [ ]</span> 1. Audit d&#39;intégration (rebase sur <span class="sb">`main`</span>, points d&#39;accroche, régressions)
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="k">- [ ]</span> 2. Cohérence CLI ↔ UI (capacités métier exposées des deux côtés, ou « sans objet »)
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="k">- [ ]</span> 3. Doc développeur (dev-docs) à jour + ADR pour toute décision structurante (dev-docs/decisions/)
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="k">- [ ]</span> 4. Doc utilisateur (docs/) + captures
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="k">- [ ]</span> 5. Brief projet (<span class="sb">`brief/`</span>, dans la PR du chantier) répercuté si un élément de conception change
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, non-automatisable reporté en <span class="gs">**recette**</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l&#39;utilisateur**</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="k">- [ ]</span> 10. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gu">## Ouverture de chantier</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">- [ ]</span> 0. Triage : issues ouvertes balayées <span class="gs">**par concept**</span>, EPIC vivants et issues « différées de <span class="ni">#N</span> » cherchés, rattachements décidés, titres/corps recadrés
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">- [ ]</span> 1. Cartographie de l&#39;existant (patterns réutilisables)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">- [ ]</span> 2. Plan (découpage, contraintes, risques, ordre des paliers)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">- [ ]</span> 3. Issues créées et reliées à l&#39;EPIC
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="gu">## Clôture de chantier</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="k">- [ ]</span> 1. Audit d&#39;intégration (rebase sur <span class="sb">`main`</span>, points d&#39;accroche, régressions)
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">- [ ]</span> 2. Cohérence CLI ↔ UI (capacités métier exposées des deux côtés, ou « sans objet »)
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">- [ ]</span> 3. Doc développeur (dev-docs) à jour + ADR pour toute décision structurante (dev-docs/decisions/)
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">- [ ]</span> 4. Doc utilisateur (docs/) + captures
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">- [ ]</span> 5. Brief projet (<span class="sb">`brief/`</span>, dans la PR du chantier) répercuté si un élément de conception change
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, <span class="gs">**PIT ciblé**</span> (survivants lus un par un) et <span class="gs">**E2E `bats`**</span> si la CLI bouge, non-automatisable reporté en <span class="gs">**recette**</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l&#39;utilisateur**</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">- [ ]</span> 10. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
 </code></pre></div>
 <h2 id="modele-de-commencement-dissue-a-commenter-sur-lissue-avant-la-premiere-ligne-de-code">Modèle de commencement d'issue (à <strong>commenter sur l'issue</strong>, avant la première ligne de code)<a class="headerlink" href="#modele-de-commencement-dissue-a-commenter-sur-lissue-avant-la-premiere-ligne-de-code" title="Permanent link">&para;</a></h2>
 <p>À déposer en commentaire, <strong>et assigner l'issue</strong> dans la foulée.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="gs">**Pris par**</span> : chantier &lt;EPIC ou thème&gt; · branche <span class="sb">`&lt;nom-de-branche&gt;`</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="gs">**Ce qu&#39;il y a à faire**</span> : &lt;une phrase, dans les termes du problème&gt;
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="gs">**Pourquoi maintenant**</span> : &lt;ce qui la rend traitable ou urgente&gt;
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="gs">**Dans quelle continuité**</span> : &lt;le chantier d&#39;où elle vient, l&#39;issue qu&#39;elle suit, ce qu&#39;elle permet ensuite&gt;
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="gs">**Remède envisagé**</span> : &lt;la piste retenue, pour qu&#39;un désaccord se voie avant le code&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="gs">**Pris par**</span> : chantier &lt;EPIC ou thème&gt; · branche <span class="sb">`&lt;nom-de-branche&gt;`</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="gs">**Ce qu&#39;il y a à faire**</span> : &lt;une phrase, dans les termes du problème&gt;
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="gs">**Pourquoi maintenant**</span> : &lt;ce qui la rend traitable ou urgente&gt;
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="gs">**Dans quelle continuité**</span> : &lt;le chantier d&#39;où elle vient, l&#39;issue qu&#39;elle suit, ce qu&#39;elle permet ensuite&gt;
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="gs">**Remède envisagé**</span> : &lt;la piste retenue, pour qu&#39;un désaccord se voie avant le code&gt;
 </code></pre></div>
 <p>Et quand on s'arrête sans avoir fini — reporté, bloqué, abandonné :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gs">**Reposée**</span> : &lt;ce qui a été fait, ce qui bloque, ce qu&#39;il reste&gt;. Assignee retiré.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gs">**Reposée**</span> : &lt;ce qui a été fait, ce qui bloque, ce qu&#39;il reste&gt;. Assignee retiré.
 </code></pre></div>
 
 
