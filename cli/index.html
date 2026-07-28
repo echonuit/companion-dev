@@ -1670,6 +1670,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2358 · Un compte rendu chiffré tient ses règles par le type
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/" class="md-nav__link">
         
   
@@ -2490,7 +2511,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>importer</code></td>
 <td><code>--source &lt;dir&gt; --point &lt;id&gt; [--annee N] [--passage N] [--conserver-originaux \| --sans-originaux] [--ecraser]</code></td>
 <td>P2</td>
-<td><code>ServiceImport</code>. Le mode de conservation suit le <strong>réglage</strong> <code>import.conserver-originaux</code> (par défaut : <strong>pas de copie</strong>) ; les deux options le forcent pour un import ponctuel et s'excluent. Auparavant la commande conservait <strong>en dur</strong>, quel que soit le réglage (#2064). La sortie rapporte aussi le <strong>doublon de nuit</strong> et les <strong>anomalies du journal</strong> : l'écran les montre depuis #2044, la commande les taisait (#2004). <strong>Collision de numéro</strong> (#2278) : la perte est chiffrée (séquences, validations Tadarida) et, <strong>sans <code>--ecraser</code>, rien n'est importé</strong> — sortie <code>2</code>. Avec, <code>ServiceImport.ecraserEtImporter</code> sauvegarde d'abord, puis remplace la nuit existante</td>
+<td><code>ServiceImport</code>. Le mode de conservation suit le <strong>réglage</strong> <code>import.conserver-originaux</code> (par défaut : <strong>pas de copie</strong>) ; les deux options le forcent pour un import ponctuel et s'excluent. Auparavant la commande conservait <strong>en dur</strong>, quel que soit le réglage (#2064). La sortie rapporte aussi le <strong>doublon de nuit</strong> et les <strong>anomalies du journal</strong> : l'écran les montre depuis #2044, la commande les taisait (#2004). <strong>Collision de numéro</strong> (#2278) : la perte est chiffrée (séquences, validations Tadarida) et, <strong>sans <code>--ecraser</code>, rien n'est importé</strong> — sortie <code>2</code>. Avec, <code>ServiceImport.ecraserEtImporter</code> sauvegarde d'abord, puis remplace la nuit existante. <strong>Parité #2350</strong> : la sortie dit aussi les <strong>volumes lus / écrits</strong> (#2358, les mêmes chiffres que la bande de l'écran, sans les barres) et la <strong>participation Vigie-Chiro créée</strong> (#1488) — une écriture distante ne se découvre pas ailleurs</td>
 </tr>
 <tr>
 <td><code>importer-transformes</code></td>
@@ -2556,7 +2577,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>deposer-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;] [--archives\|--wav]</code></td>
 <td>#1043</td>
-<td><code>DepotVigieChiro.deposer</code> (moteur <strong>reprenable</strong> #982, téléversement <strong>parallèle</strong> #984). Défaut = <code>ChoixSourceDepot.pour</code>, <strong>le même choix que M-Lot</strong> : ZIP si présentes, sinon invite à les générer (étape 2), sinon repli WAV. <code>--archives</code>/<code>--wav</code> forcent l'un ou l'autre</td>
+<td><code>DepotVigieChiro.deposer</code> (moteur <strong>reprenable</strong> #982, téléversement <strong>parallèle</strong> #984). Défaut = <code>ChoixSourceDepot.pour</code>, <strong>le même choix que M-Lot</strong> : ZIP si présentes, sinon invite à les générer (étape 2), sinon repli WAV. <code>--archives</code>/<code>--wav</code> forcent l'un ou l'autre. <strong>Parité #2350</strong> : depuis le réessai gradué (#2354) une coupure momentanée n'échoue plus, elle <strong>attend</strong> ; la ligne <code>~ &lt;unité&gt; — nouvelle tentative dans N s</code> le dit, là où le silence faisait passer la temporisation pour un blocage</td>
 </tr>
 <tr>
 <td><code>lancer-traitement-vigiechiro</code></td>
