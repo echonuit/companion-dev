@@ -2584,9 +2584,9 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>exporter-activite</code></td>
-<td><code>--passage &lt;id&gt; --sortie &lt;fichier&gt; [--tranche 15\|30\|60] [--format csv]</code></td>
+<td><code>(--passage &lt;id&gt; \| --tout) --sortie &lt;fichier&gt; [--tranche 15\|30\|60] [--format csv]</code></td>
 <td>#2352</td>
-<td><code>ServiceActivite.contactsDuPassage</code> + <code>AgregationActivite.parEspece</code> + <code>ExportActiviteCsv</code>. Facette <strong>données</strong> de la courbe d'activité (pendant CLI de l'export image de l'IHM), rattachée à la nuit biologique. <strong>Non gouvernée par la fonctionnalité <code>activite-nuit</code></strong> : l'agrégation est une capacité stable de <code>analyse</code>, celle-ci ne gouvernant que l'accès à la vue</td>
+<td><code>ServiceActivite.contactsDuPassage</code> + <code>AgregationActivite.parEspece</code> + <code>ExportActiviteCsv</code>. Facette <strong>données</strong> de la courbe d'activité (pendant CLI de l'export image de l'IHM), rattachée à la nuit biologique. Une ligne par <strong>(carré, point, nuit, espèce, tranche)</strong> : chaque ligne porte son lieu, sans quoi un export couvrant plusieurs nuits ne se recouperait pas (#2613). <code>--tout</code> couvre la vue transverse de l'écran. <strong>Non gouvernée par la fonctionnalité <code>activite-nuit</code></strong> : l'agrégation est une capacité stable de <code>analyse</code>, celle-ci ne gouvernant que l'accès à la vue</td>
 </tr>
 <tr>
 <td><code>audit-coherence</code></td>
