@@ -1680,6 +1680,48 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2525 · Un fait booléen vit dans une table latérale
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2349 · Une dérivation automatique ne défait jamais une saisie manuelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
         
   
@@ -2306,13 +2348,16 @@ transforme l'association N:N <strong>Retenir</strong> (Sélection ↔ Séquence)
 (IE / <em>crow's foot</em>, celle de Mermaid) : relations binaires, clés étrangères explicites. C'est la
 traduction du MCD ci-dessus. <strong>19 tables à l'origine</strong>, créées par
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/resources/db/migration/V01__schema.sql"><code>V01__schema.sql</code></a> ;
-le schéma courant en compte <strong>28</strong> après les migrations ultérieures (<code>V02</code>→<code>V30</code>),
+le schéma courant en compte <strong>31</strong> après les migrations ultérieures (<code>V02</code>→<code>V35</code>),
 clés étrangères <strong><code>ON DELETE CASCADE</code></strong> (supprimer un passage emporte sa session, ses séquences, ses
 observations…).</p>
 <pre class="mermaid"><code>erDiagram
     user ||--o{ monitoring_site : "déclare"
     monitoring_site ||--o{ listening_point : "contient"
+    monitoring_site ||--o| site_tiers : "carré d'un tiers"
     listening_point ||--o{ passage : "accueille"
+    campagne ||--o{ passage : "regroupe"
+    passage ||--o| passage_opportuniste : "hors protocole"
     recorder ||--o{ passage : "enregistre"
     recorder ||--o{ microphone : "équipe"
     passage ||--|| recording_session : "produit"
@@ -2554,13 +2599,19 @@ quadruplet) réécrit des fichiers <strong>identiques au bit près</strong>.</p>
 <code>ModeValidation</code>. Chacune porte un <strong>libellé</strong> d'affichage, et les transitions de statut sont gardées
 par <a href="../patterns/#machine-a-etats-moteurworkflowpassage"><code>MoteurWorkflowPassage</code></a>.</p>
 <h2 id="regenerer-le-mcd-mocodo">Régénérer le MCD (Mocodo)<a class="headerlink" href="#regenerer-le-mcd-mocodo" title="Permanent link">&para;</a></h2>
-<p>Le MCD est <strong>versionné comme source</strong> (<a href="../assets/nuit-de-capture.mcd"><code>nuit-de-capture.mcd</code></a>, 16 entités
-+ 17 associations) et rendu avec <a href="https://www.mocodo.net/">Mocodo</a>, l'outil de référence pour le MCD
+<p>Le MCD est <strong>versionné comme source</strong> (<a href="../assets/nuit-de-capture.mcd"><code>nuit-de-capture.mcd</code></a>, 17 entités
++ 18 associations) et rendu avec <a href="https://www.mocodo.net/">Mocodo</a>, l'outil de référence pour le MCD
 Merise. Après modification de la source, régénérez le SVG :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>mocodo<span class="w">                       </span><span class="c1"># une fois</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>dev-docs/assets
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mocodo<span class="w"> </span>-i<span class="w"> </span>nuit-de-capture.mcd<span class="w"> </span>-t<span class="w"> </span>arrange:wide<span class="o">=</span><span class="m">8</span><span class="w"> </span>--colors<span class="w"> </span>ocean<span class="w">   </span><span class="c1"># agencement auto + dessin SVG</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>--<span class="w"> </span>nuit-de-capture.mcd<span class="w">      </span><span class="c1"># cf. ci-dessous : l&#39;agencement réécrit la source</span>
 </code></pre></div>
+<p>⚠️ <code>arrange</code> <strong>réécrit <code>nuit-de-capture.mcd</code></strong> sous sa forme agencée (les boîtes réparties en grille,
+entités et associations entremêlées). Cette forme est illisible à la relecture et impossible à
+compléter à la main : ce dépôt versionne donc la forme <strong>linéaire</strong> (toutes les entités, puis toutes
+les associations) et ne garde l'agencement que dans le SVG. D'où le <code>git checkout</code> ci-dessus, à faire
+<strong>après</strong> avoir vérifié que le SVG est correct.</p>
 <p><code>arrange:wide=8</code> agence les boîtes sur ~8 colonnes (essayez <code>wide=6</code>/<code>7</code> pour un autre format) et
 <code>--colors ocean</code> applique la palette (cohérente avec le thème indigo du site ; <code>mocodo --help</code> liste
 les palettes). Mocodo

@@ -1662,6 +1662,48 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2525 · Un fait booléen vit dans une table latérale
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2349 · Une dérivation automatique ne défait jamais une saisie manuelle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
         
   
@@ -2673,6 +2715,35 @@ fournit les opérations communes ; un DAO concret donne seulement <code>table()<
 <p><strong>Principes.</strong> <strong>DRY</strong> (la boucle <code>ResultSet</code> n'existe qu'une fois), <strong>OCP</strong> (un nouveau DAO <strong>étend</strong>
 sans modifier la base) et <strong>LSP</strong> (tout <code>DaoGenerique</code> concret est substituable à l'abstraction).</p>
 <hr />
+<h2 id="table-laterale-de-presence-un-fait-booleen-hors-du-record">Table latérale de présence (un fait booléen hors du record)<a class="headerlink" href="#table-laterale-de-presence-un-fait-booleen-hors-du-record" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Attacher un <strong>fait booléen</strong> à une entité centrale — « ce passage est opportuniste »,
+« ce carré appartient à un tiers », « ce passage a un relevé de micro ». Le réflexe est d'ajouter une
+colonne, donc une composante au record ; mais <code>Passage</code> est construit en <strong>plus d'une centaine
+d'endroits</strong> (<code>main</code> et <code>test</code> confondus) et <code>Site</code> en <strong>plus de quatre-vingts</strong>. À ce volume, une
+composante de plus propage un diff mécanique partout et ajoute un paramètre de même type qu'un voisin,
+échangeable en silence (cf. l'EPIC arité #2483). Les mesures datées sont dans l'ADR ci-dessous ; on ne
+les fige pas ici, où rien ne les garderait à jour.</p>
+<p><strong>La solution.</strong> Une table dont la <strong>clé primaire est la clé étrangère</strong> vers l'entité : la présence de
+la ligne porte le fait, son absence porte le cas courant.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">passage_opportuniste</span><span class="w"> </span><span class="p">(</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="n">passage_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">passage</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">);</span>
+</code></pre></div>
+<p>Le DAO étend <code>DaoGenerique&lt;Long, Long&gt;</code> — l'entité <strong>est</strong> la clé, seul le fait d'exister compte — et
+expose une API d'intention plutôt que le CRUD : <code>marquer</code> / <code>demarquer</code> / <code>definir(id, bool)</code> /
+<code>estX(id)</code>, plus un <strong><code>tousLesIds()</code></strong> de lecture groupée. <code>insert</code>/<code>update</code> du contrat <code>Dao</code> n'ont
+rien à écrire et délèguent au marquage idempotent (<code>ON CONFLICT DO NOTHING</code>).</p>
+<p><strong>La règle.</strong> Le <code>tousLesIds()</code> n'est pas un confort : dès qu'un service balaie plusieurs entités
+(R4 sur les voisins d'un point, décompte du solde), il lit <strong>une fois</strong> l'ensemble marqué au lieu de
+faire une requête par ligne. C'est la contrepartie du pattern : la lecture n'arrive plus « gratuitement »
+avec l'entité, il faut la prévoir.</p>
+<p><strong>Quand ne pas l'employer.</strong> Pour une entité construite en quelques endroits, la colonne reste plus
+simple et plus lisible. Le critère est le <strong>volume de sites de construction</strong> croisé avec la
+<strong>proportion de lignes concernées</strong> — un fait vrai pour la majorité des lignes ne gagne rien à sortir
+du record. Voir l'<a href="../decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/">ADR 2525</a>.</p>
+<p><strong>Occurrences.</strong> V10 <code>passage_equipment</code> (matériel du micro), V34 <code>passage_opportuniste</code>, V35
+<code>site_tiers</code>.</p>
+<hr />
 <h2 id="strategy-rowmapper-generation-de-selection">Strategy (<code>RowMapper</code>, génération de sélection)<a class="headerlink" href="#strategy-rowmapper-generation-de-selection" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Une partie d'un algorithme <strong>varie</strong> (comment lire une ligne ? comment choisir des
 séquences ?) alors que le reste est stable. Un <code>if/else</code> géant serait fragile et fermé.</p>
@@ -2684,8 +2755,8 @@ ou passée au client.</p>
   (<code>@FunctionalInterface</code>) : « transformer <strong>une</strong> ligne en entité » varie par DAO (souvent une
   lambda) ; l'itération reste dans <code>DaoGenerique</code>.</li>
 </ul>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nd">@FunctionalInterface</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">RowMapper</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nd">@FunctionalInterface</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">RowMapper</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">T</span><span class="w"> </span><span class="nf">mapper</span><span class="p">(</span><span class="n">ResultSet</span><span class="w"> </span><span class="n">rs</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">SQLException</span><span class="p">;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <ul>
 <li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/qualification/model/GenerateurSelection.java"><code>GenerateurSelection</code></a> :
@@ -2904,21 +2975,21 @@ de navigation.</p>
 </ol>
 <p>Le refus métier y gagne aussi : il s'affiche <strong>dans</strong> la modale, à côté du champ fautif, <strong>sans perdre la
 saisie</strong> - là où l'alerte d'après coup obligeait à tout ressaisir.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// Écran : un champ final par porteur, un accesseur par porteur.</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ConfirmateurModifiable</span><span class="w"> </span><span class="n">confirmateur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ConfirmateurModifiable</span><span class="p">();</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">NotificateurModifiable</span><span class="w"> </span><span class="n">notificateur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotificateurModifiable</span><span class="p">();</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">confirmateur</span><span class="p">.</span><span class="na">confirmer</span><span class="p">(</span><span class="s">&quot;Supprimer ce site et ses points d&#39;écoute ?&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="p">}</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">viewModel</span><span class="p">.</span><span class="na">supprimerSite</span><span class="p">();</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="n">notificateur</span><span class="p">.</span><span class="na">notifier</span><span class="p">(</span><span class="n">NiveauNotification</span><span class="p">.</span><span class="na">INFORMATION</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Site supprimé&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;…&quot;</span><span class="p">);</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="c1">// Test de vue : le geste devient cliquable, et vérifiable JUSQU&#39;À SON EFFET.</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">   </span><span class="c1">// pas « un mock a été appelé » : la ligne a disparu</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// Écran : un champ final par porteur, un accesseur par porteur.</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ConfirmateurModifiable</span><span class="w"> </span><span class="n">confirmateur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ConfirmateurModifiable</span><span class="p">();</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kd">private</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">NotificateurModifiable</span><span class="w"> </span><span class="n">notificateur</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">NotificateurModifiable</span><span class="p">();</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">confirmateur</span><span class="p">.</span><span class="na">confirmer</span><span class="p">(</span><span class="s">&quot;Supprimer ce site et ses points d&#39;écoute ?&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="p">}</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="n">viewModel</span><span class="p">.</span><span class="na">supprimerSite</span><span class="p">();</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="n">notificateur</span><span class="p">.</span><span class="na">notifier</span><span class="p">(</span><span class="n">NiveauNotification</span><span class="p">.</span><span class="na">INFORMATION</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Site supprimé&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;…&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="c1">// Test de vue : le geste devient cliquable, et vérifiable JUSQU&#39;À SON EFFET.</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">   </span><span class="c1">// pas « un mock a été appelé » : la ligne a disparu</span>
 </code></pre></div>
 <p><strong>La règle.</strong> Jamais de <code>new Alert(...)</code>, de <code>FileChooser</code> ni de <code>DirectoryChooser</code> dans un contrôleur
 ou une action. Et surtout, la formulation générale - c'est elle qui compte, pas la liste des ports :</p>
@@ -2978,11 +3049,11 @@ doit dépendre d'aucune feature</strong> (règle <code>ArchitectureTest.features
 que les enums de <code>commun.model</code>. Pour un statut <strong>propre à une feature</strong> (<code>Fraicheur</code> côté sites,
 <code>StatutObservation</code> côté validation…), le mapping statut → classe CSS reste <strong>côté feature</strong>, et l'on
 passe cette fonction au générique <code>cellule(Function)</code> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">// sites : la vue mappe son enum</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">colStatut</span><span class="p">.</span><span class="na">setCellFactory</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ColonneBadge</span><span class="p">.</span><span class="na">cellule</span><span class="p">(</span><span class="n">LignePassage</span><span class="p">::</span><span class="n">statutClasseCss</span><span class="p">));</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// audio : FormatLigneAudio.classeBadgeStatut(StatutObservation) -&gt; &quot;badge-observation-…&quot;</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">col</span><span class="p">.</span><span class="na">statut</span><span class="p">().</span><span class="na">setCellFactory</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="n">ColonneBadge</span><span class="p">.</span><span class="na">cellule</span><span class="p">(</span><span class="n">ligne</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">FormatLigneAudio</span><span class="p">.</span><span class="na">classeBadgeStatut</span><span class="p">(</span><span class="n">ligne</span><span class="p">.</span><span class="na">statut</span><span class="p">())));</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// sites : la vue mappe son enum</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">colStatut</span><span class="p">.</span><span class="na">setCellFactory</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">ColonneBadge</span><span class="p">.</span><span class="na">cellule</span><span class="p">(</span><span class="n">LignePassage</span><span class="p">::</span><span class="n">statutClasseCss</span><span class="p">));</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">// audio : FormatLigneAudio.classeBadgeStatut(StatutObservation) -&gt; &quot;badge-observation-…&quot;</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="n">col</span><span class="p">.</span><span class="na">statut</span><span class="p">().</span><span class="na">setCellFactory</span><span class="p">(</span><span class="n">c</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">    </span><span class="n">ColonneBadge</span><span class="p">.</span><span class="na">cellule</span><span class="p">(</span><span class="n">ligne</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">FormatLigneAudio</span><span class="p">.</span><span class="na">classeBadgeStatut</span><span class="p">(</span><span class="n">ligne</span><span class="p">.</span><span class="na">statut</span><span class="p">())));</span>
 </code></pre></div>
 <p>Les classes CSS correspondantes (<code>.badge-observation-*</code>, <code>.badge-frais/tiede/froid</code>) vivent quand même
 dans <code>design.css</code> : ce ne sont que des <strong>chaînes</strong>, aucune dépendance de code de <code>commun</code> vers la feature.</p>
@@ -3002,9 +3073,9 @@ signale pas tout seul : il se voit sur les <strong>aperçus régénérés en CI<
 produit ne s'affichent pas du tout.</p>
 <p><strong>La solution.</strong> Un <a href="https://kordamp.org/ikonli/"><code>FontIcon</code></a> (pack FontAwesome 5) dans le <code>&lt;graphic&gt;</code>
 du nœud, et le texte reste du texte :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;Label</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;Reconstruire un passage manquant&quot;</span><span class="w"> </span><span class="na">styleClass=</span><span class="s">&quot;titre-page&quot;</span><span class="nt">&gt;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">&lt;graphic&gt;&lt;FontIcon</span><span class="w"> </span><span class="na">iconLiteral=</span><span class="s">&quot;fas-cloud&quot;</span><span class="w"> </span><span class="na">styleClass=</span><span class="s">&quot;titre-page-icone&quot;</span><span class="nt">/&gt;&lt;/graphic&gt;</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">&lt;/Label&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nt">&lt;Label</span><span class="w"> </span><span class="na">text=</span><span class="s">&quot;Reconstruire un passage manquant&quot;</span><span class="w"> </span><span class="na">styleClass=</span><span class="s">&quot;titre-page&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span><span class="nt">&lt;graphic&gt;&lt;FontIcon</span><span class="w"> </span><span class="na">iconLiteral=</span><span class="s">&quot;fas-cloud&quot;</span><span class="w"> </span><span class="na">styleClass=</span><span class="s">&quot;titre-page-icone&quot;</span><span class="nt">/&gt;&lt;/graphic&gt;</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="nt">&lt;/Label&gt;</span>
 </code></pre></div>
 <p><strong>Où passe la frontière.</strong> Ce qui <strong>désigne une action ou un objet</strong> est une icône ; ce qui <strong>vit dans
 une phrase</strong> reste un caractère. Mécaniquement, par bloc Unicode : les flèches (U+2190-U+21FF) et les
@@ -3061,13 +3132,13 @@ vivaient en boutons ou dans le ☰, jamais sous le curseur. Le chantier #1792 a 
 compose et referme toujours la liste par « Colonnes… ».</p>
 <p><strong>La grammaire du menu, stable d'un écran à l'autre.</strong> L'ordre porte du sens ; on ne le réarrange pas
 au gré des écrans :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Action principale de la ligne     (miroir du double-clic)
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>Actions secondaires               (Vigie-Chiro, auditer…)
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>──────────
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>Validation ▸                      (sous-menu, si l&#39;écran valide)
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>Copier ▸
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>──────────
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>Colonnes…                         (toujours en dernier)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Action principale de la ligne     (miroir du double-clic)
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>Actions secondaires               (Vigie-Chiro, auditer…)
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>──────────
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Validation ▸                      (sous-menu, si l&#39;écran valide)
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>Copier ▸
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>──────────
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>Colonnes…                         (toujours en dernier)
 </code></pre></div>
 <p><strong>Le double-clic est le miroir de l'action principale</strong>, jamais une action qu'on ne trouve nulle part
 ailleurs : il n'a aucune affordance propre, donc tout ce qu'il déclenche doit rester atteignable par un
@@ -3188,9 +3259,9 @@ session » doit être <strong>atomique</strong> : si la 2ᵉ échoue, la 1ʳᵉ 
 annulé (rollback).</p>
 <p><strong>Dans cette application.</strong> <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence/UniteDeTravail.java"><code>UniteDeTravail</code></a>
 exécute un bloc sur <strong>une seule connexion</strong> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">uniteDeTravail</span><span class="p">.</span><span class="na">executer</span><span class="p">(</span><span class="n">connexion</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="c1">// plusieurs écritures... une exception =&gt; rollback</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="p">});</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">uniteDeTravail</span><span class="p">.</span><span class="na">executer</span><span class="p">(</span><span class="n">connexion</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="c1">// plusieurs écritures... une exception =&gt; rollback</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="p">});</span>
 </code></pre></div>
 <pre class="mermaid"><code>sequenceDiagram
     participant S as Service
