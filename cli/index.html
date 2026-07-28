@@ -2752,9 +2752,9 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>lister-observations</code></td>
-<td><code>--passage &lt;id&gt; [--statut ..] [--taxon ..] [--douteux] [--reference] [--certitude ..] [--json]</code></td>
+<td><code>--passage &lt;id&gt; [--statut ..] [--taxon ..] [--douteux] [--reference] [--a-enjeu] [--certitude ..] [--json]</code></td>
 <td>#1311</td>
-<td><strong>La surface de découverte de la revue.</strong> Liste les observations d'un passage avec leur <strong>identifiant</strong>, l'avis de Tadarida, le vôtre, celui du validateur, le statut et les drapeaux. Sans elle, les gestes de revue (et <code>discussion</code>) sont aveugles : rien ne donnait les identifiants. Ses filtres sont <strong>exactement</strong> ceux des gestes (<code>SelectionObservations</code> partagé) : ce qu'elle montre est ce qu'ils toucheraient</td>
+<td><strong>La surface de découverte de la revue.</strong> Liste les observations d'un passage avec leur <strong>identifiant</strong>, l'avis de Tadarida, le vôtre, celui du validateur, le statut et les drapeaux. Sans elle, les gestes de revue (et <code>discussion</code>) sont aveugles : rien ne donnait les identifiants. Ses filtres sont <strong>exactement</strong> ceux des gestes (<code>SelectionObservations</code> partagé) : ce qu'elle montre est ce qu'ils toucheraient. <code>--a-enjeu</code> (#2353) ne garde que les <strong>espèces prioritaires</strong> du Plan National d'Actions Chiroptères, et le drapeau <code>enjeu</code> les signale dans la sortie (champ <code>aEnjeu</code> en JSON)</td>
 </tr>
 <tr>
 <td><code>valider-observations</code></td>
