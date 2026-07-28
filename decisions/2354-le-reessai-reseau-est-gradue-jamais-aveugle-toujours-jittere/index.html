@@ -2412,6 +2412,17 @@
 <li>Endormissement et aléa sont <strong>injectés</strong> (<code>Temporisateur</code>, source d'aléa) : les tests de la politique sont déterministes et instantanés, sans vraie attente ni réseau.</li>
 <li>Pendant un réessai, l'utilisateur voit une <strong>mention discrète</strong> (« nouvelle tentative dans N s »), portée par le hook <code>Suivi</code> : ni silence trompeur, ni bandeau d'erreur pour un incident absorbé (décision #2350). Le câblage de ce hook vers le canal de statut vient au lot de câblage.</li>
 </ul>
+<blockquote>
+<p><strong>Amendement (#2619, 2026-07-28).</strong> Le pare-chocs ne servait que les <strong>écritures</strong> du dépôt. Depuis que
+la synchronisation balaie tout un compte (#2557), une coupure d'une seconde fait ressortir une nuit
+« non récupérée » là où la politique existait déjà, testée, à côté. Le réessai s'applique désormais au
+<strong>point de passage unique</strong> de toutes les émissions.</p>
+<p>Profil retenu pour les lectures : <strong><code>PREMIER_PLAN</code></strong>. Ce n'est pas un choix par défaut mais une
+conséquence de la règle 2 : dans ce produit, aucune lecture n'est un sondage automatique (« on
+n'interroge le serveur que quand l'utilisateur le demande », #1338), donc il y a <strong>toujours quelqu'un
+qui attend</strong>. Le jour où une tâche périodique apparaîtra, elle devra demander <code>ARRIERE_PLAN</code>
+explicitement - c'est elle qui amplifierait un incident en insistant, pas un écran.</p>
+</blockquote>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Tout rejouer, sans classer.</strong> Rejouerait un <code>4xx</code> (jamais valide au second essai) et, pire, un <code>POST</code> non idempotent (doublon serveur). Le tri par <code>ReponseApi</code> <strong>et</strong> l'arbitrage d'idempotence à l'appel l'excluent.</li>
