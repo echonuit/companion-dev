@@ -2384,24 +2384,25 @@
 <thead>
 <tr>
 <th>Profil</th>
-<th>Quand</th>
 <th>Comportement</th>
+<th>À choisir quand</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>PREMIER_PLAN</code></td>
-<td>quelqu'un attend devant l'écran</td>
+<td><code>INSISTANT</code></td>
 <td>plusieurs tentatives, backoff exponentiel plafonné</td>
+<td>quelqu'un attend une réponse</td>
 </tr>
 <tr>
-<td><code>ARRIERE_PLAN</code></td>
-<td>relevé d'état, tâche périodique</td>
+<td><code>BREF</code></td>
 <td>une tentative supplémentaire au plus</td>
+<td>c'est un sondage périodique, qui repassera</td>
 </tr>
 </tbody>
 </table>
 <p>La distinction n'est pas cosmétique : un relevé d'état qui insiste transforme une lenteur serveur en rafale de requêtes et <strong>amplifie</strong> l'incident qu'il prétend absorber.</p>
+<p>Les profils sont nommés d'après <strong>ce qu'ils font</strong>, la situation qui les motive vivant dans la colonne de droite. C'est délibéré : nommés d'après la situation (<code>PREMIER_PLAN</code> / <code>ARRIERE_PLAN</code>, jusqu'à #2682), ils obligeaient chaque appelant à justifier qu'il était bien « au premier plan » avant de pouvoir insister - l'amendement #2619 ci-dessous a dû y consacrer un paragraphe entier, et le code un commentaire de quatre lignes. Un appelant doit pouvoir dire « j'insiste » ; c'est la documentation du profil qui dit quand ce choix est le bon.</p>
 <p><strong>3. Toujours jitterée, <code>Retry-After</code> faisant autorité.</strong> La temporisation porte un aléa (jitter égal : moitié fixe pour que le délai croisse, moitié aléatoire) : sans lui, plusieurs unités qui échouent ensemble retentent ensemble et la rafale se reforme. Et quand le serveur envoie <code>Retry-After</code>, c'est <strong>lui</strong> qui fait autorité, pas notre backoff.</p>
 <h3 id="ce-que-la-politique-ne-decide-pas-lidempotence">Ce que la politique NE décide pas : l'idempotence<a class="headerlink" href="#ce-que-la-politique-ne-decide-pas-lidempotence" title="Permanent link">&para;</a></h3>
 <p><code>estReessayable()</code> dit qu'une réponse <strong>autorise techniquement</strong> un nouvel essai. Il ne dit <strong>pas</strong> que l'opération est <strong>sûre</strong> à rejouer. Un <code>POST</code> de création dont l'envoi expire (<code>Injoignable</code>) a pu aboutir côté serveur : le rejouer créerait un doublon. La <strong>sûreté</strong> au rejeu est donc arbitrée <strong>appel par appel</strong> par l'appelant, qui n'enveloppe de réessai que ce qui est idempotent (GET, <code>PUT</code> S3 - même clé, même objet -, <code>PATCH</code> avec <code>If-Match</code>) ou rendu tel. La politique fournit le mécanisme ; le périmètre reste une décision d'appelant, documentée là où elle se prend.</p>
@@ -2417,10 +2418,10 @@
 la synchronisation balaie tout un compte (#2557), une coupure d'une seconde fait ressortir une nuit
 « non récupérée » là où la politique existait déjà, testée, à côté. Le réessai s'applique désormais au
 <strong>point de passage unique</strong> de toutes les émissions.</p>
-<p>Profil retenu pour les lectures : <strong><code>PREMIER_PLAN</code></strong>. Ce n'est pas un choix par défaut mais une
+<p>Profil retenu pour les lectures : <strong><code>INSISTANT</code></strong>. Ce n'est pas un choix par défaut mais une
 conséquence de la règle 2 : dans ce produit, aucune lecture n'est un sondage automatique (« on
 n'interroge le serveur que quand l'utilisateur le demande », #1338), donc il y a <strong>toujours quelqu'un
-qui attend</strong>. Le jour où une tâche périodique apparaîtra, elle devra demander <code>ARRIERE_PLAN</code>
+qui attend</strong>. Le jour où une tâche périodique apparaîtra, elle devra demander <code>BREF</code>
 explicitement - c'est elle qui amplifierait un incident en insistant, pas un écran.</p>
 </blockquote>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
