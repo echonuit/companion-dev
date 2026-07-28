@@ -2826,7 +2826,11 @@ simple et plus lisible. Le critère est le <strong>volume de sites de constructi
 <strong>proportion de lignes concernées</strong> — un fait vrai pour la majorité des lignes ne gagne rien à sortir
 du record. Voir l'<a href="../decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/">ADR 2525</a>.</p>
 <p><strong>Occurrences.</strong> V10 <code>passage_equipment</code> (matériel du micro), V34 <code>passage_opportuniste</code>, V35
-<code>site_tiers</code>.</p>
+<code>site_tiers</code>, V36 <code>taxon_prioritaire</code> (espèces à enjeu de conservation, #2353).</p>
+<p>La dernière ajoute une raison que les trois autres n'avaient pas : sa liste vient d'une <strong>source
+externe datée</strong> — le Plan National d'Actions Chiroptères 2016-2025 — et <strong>sera remplacée</strong> quand le
+plan le sera. Une table latérale se remplace d'un <code>DELETE</code> suivi d'un <code>INSERT</code>, sans toucher au
+référentiel taxonomique qu'elle annote. Voir l'<a href="../decisions/2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/">ADR 2353</a>.</p>
 <hr />
 <h2 id="strategy-rowmapper-generation-de-selection">Strategy (<code>RowMapper</code>, génération de sélection)<a class="headerlink" href="#strategy-rowmapper-generation-de-selection" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Une partie d'un algorithme <strong>varie</strong> (comment lire une ligne ? comment choisir des
