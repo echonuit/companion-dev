@@ -3534,6 +3534,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td>Sans <code>--executer</code> : <strong>lecture seule</strong> — ce que deviendrait l'audio de chaque nuit si l'on repartait d'une base neuve (disque / serveur / <strong>perdu</strong>), code <code>2</code> dès qu'une nuit est en « perdu », pour qu'un script puisse refuser d'enchaîner. Avec <code>--executer</code> : <code>ServiceReset</code> mène la procédure (sauvegarde complète → base neuve → repeuplement depuis VigieChiro → audit final). Il <strong>refuse de démarrer</strong> si la perte n'est pas acceptée, <strong>ou si VigieChiro ne répond pas</strong> — une base neuve qu'on ne peut pas repeupler est une destruction sèche. Dans les deux cas, la base reste <strong>intacte</strong></td>
 </tr>
 <tr>
+<td><code>synthetiser-passage</code></td>
+<td><code>--passage &lt;id&gt; [--carre ..] [--milieu ..] [--validees-seulement] [--format csv\|json] [--sortie &lt;f&gt;]</code></td>
+<td>#2351</td>
+<td><strong>Facette CLI de M-Synthese.</strong> Contacts par espèce et <strong>classe d'activité</strong> au regard du référentiel ACTICHIRO, avec les quantiles retenus. Même <code>ServiceSynthese</code> que l'écran : mêmes règles de repli, même résultat — une synthèse qui différerait d'une surface à l'autre serait pire qu'absente. Le <strong>contexte, l'avertissement et la citation</strong> sont écrits en tête du CSV (lignes <code>#</code>) et dans un objet <code>contexte</code> en JSON : la source est libre d'usage <strong>avec citation obligatoire</strong>, et un avertissement resté à l'écran ne prévient personne qui ouvre le fichier</td>
+</tr>
+<tr>
 <td><code>lister-observations</code></td>
 <td><code>--passage &lt;id&gt; [--statut ..] [--taxon ..] [--douteux] [--reference] [--a-enjeu] [--certitude ..] [--json]</code></td>
 <td>#1311</td>
