@@ -2206,6 +2206,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2581 — Un état qui décide de l'affichage se déclare
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre/" class="md-nav__link">
         
   
@@ -3317,7 +3345,13 @@ appliquées par
 sur la <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence"><code>SourceDeDonnees</code></a>.</p>
 <p>Le cœur du domaine est l'<strong>agrégat « nuit de capture »</strong> (feature <code>passage</code>), qui avance dans un
 <strong>workflow à états</strong> :</p>
-<p><code>IMPORTE → TRANSFORME → VERIFIE → PRET_A_DEPOSER → DEPOT_EN_COURS → DEPOSE</code> (<!--inv:etats-workflow-->6<!--/inv--> états, cf. <code>StatutWorkflow</code>)</p>
+<p><code>IMPORTE → TRANSFORME → VERIFIE → PRET_A_DEPOSER → DEPOT_EN_COURS → DEPOSE</code>
+(<!--inv:etats-workflow-->7<!--/inv--> états, cf. <code>StatutWorkflow</code>)</p>
+<p>Le septième, <code>RECUPERE</code>, est <strong>hors de cette file</strong> : c'est une nuit que la synchronisation a
+rapatriée de Vigie-Chiro (#2581), donc qui n'a franchi aucune de ces étapes. Sa seule suite est
+<code>DEPOSE</code>, quand la réactivation lui rend son audio. Voir
+<a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/">ADR 2581</a> pour la règle qui
+distingue un état <strong>observé</strong> d'un état <strong>déclaré</strong>.</p>
 <p>Le détail des entités, des tables et de la correspondance avec le <strong>MCD du brief</strong> est sur
 <a href="../modele-de-donnees/">Modèle de données et domaine</a> ; le <strong>mécanisme</strong> d'accès (DAO, transactions,
 migrations) sur <a href="../persistance/">Persistance</a>.</p>
