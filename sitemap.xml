@@ -2,358 +2,358 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://companion-dev.echonuit.fr/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/ajouter-une-fonctionnalite/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/api-vigiechiro/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/architecture/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/captures/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/ci-cd-release/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/cli/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/cycle-de-chantier/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/glossaire/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/injection/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/modele-de-donnees/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/navigation/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/observabilite/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/patterns/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/performance/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/persistance/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/securite/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/tests-et-qualite/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0001-reactivation-passage-reconstruit-identite-structurelle/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0002-detection-acoustique-energie-de-pointe/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0003-feature-plugin-desactivable-ports-optionnels/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0004-cross-feature-sans-cycle-ports-commun/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0007-retours-http-type-scelle-reponse-api/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0008-aucun-echec-silencieux-severite-a-l-emission/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0009-la-nuit-est-l-unite-bornee-a-midi/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0010-dialogues-bloquants-sont-des-ports/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0011-transformation-audio-pilotee-par-le-log/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0013-ancrage-passage-relie-a-sa-participation/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0014-parite-cli-ihm/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0015-generateur-deterministe-cartes-sd-recette/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0017-origine-d-un-point-etat-porte-pas-deduit/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0019-ancrage-acquis-quand-il-sert/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0021-double-clic-miroir-qui-rend-compte/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0022-le-verbe-dit-le-sens-de-l-echange/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0025-une-capture-passe-par-le-code-de-production/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0027-une-attente-porte-toujours-un-nom/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0028-un-etat-n-est-pas-un-compte-rendu/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0031-un-retour-n-est-pas-un-compte-rendu/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0032-le-plan-precede-l-ecriture/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0033-la-fenetre-borne-le-disque/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0034-la-forme-du-depot-se-choisit/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0036-la-copie-des-bruts-est-une-option/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0038-l-echelle-de-severite-a-quatre-niveaux/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0039-une-barre-de-statut-est-neutre/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0040-le-sujet-de-commit-est-une-syntaxe/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0041-un-check-requis-gouverne-la-branche/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0042-un-apercu-qui-ment-est-refuse/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0043-la-mesure-fait-foi-en-ci/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0046-une-classe-css-a-une-seule-feuille/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2348-un-export-d-image-se-redessine-il-ne-se-capture-pas/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2385-la-doc-chiffree-est-adossee-au-code/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2433-un-dossier-de-transformes-s-importe-par-reference/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2465-une-adr-declare-comment-elle-est-verifiee/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2493-une-modale-a-revelation-suit-la-croissance/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/fixtures/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/sessions/s1-premier-contact/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/sessions/s2-importer/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/sessions/s3-verifier/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/sessions/s4-deposer-suivre/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/sessions/s6-exploiter-piloter/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/recette/sessions/s8-recuperer-une-nuit/</loc>
-         <lastmod>2026-07-28</lastmod>
+         <lastmod>2026-07-29</lastmod>
     </url>
 </urlset>
