@@ -2619,6 +2619,23 @@ précisément les deux propriétés qui ont motivé la conception séquentielle
 <li>Les mêmes gestes en ligne de commande : <code>vigiechiro traiter-passages --action televerser --passage
     … --json</code> rend le même verdict par passage, et un code de sortie non nul si l'un a échoué.</li>
 </ol>
+<p><em>Bloc F · Les deux mécanismes de lot, l'un après l'autre (#2755)</em></p>
+<blockquote>
+<p>Ces trois cases existent parce qu'une affirmation du bilan de l'EPIC #2349 n'est <strong>pas</strong> vérifiée : que
+les deux mécanismes de traitement groupé cohabitent sans se gêner. Ils sont dans le <strong>même menu ☰</strong>, à
+quatre entrées d'intervalle, et rafraîchissent la <strong>même table</strong> par deux chemins qui ne se connaissent
+pas. Aucun test ne les joue à la suite, et aucun ne le peut aujourd'hui : cliquer une entrée de lot
+ouvre une vraie fenêtre de progression, que <code>TraitementLot</code> n'expose pas aux tests.</p>
+</blockquote>
+<ol>
+<li>« Compléter une nuit récupérée… » sur deux nuits, puis <strong>fermer la modale</strong> : les deux nuits
+    complétées apparaissent dans le tableau de « Carte &amp; passages », avec leur statut réel.</li>
+<li>Enchaîner <strong>sans quitter l'écran</strong> : cocher ces deux nuits, « Préparer le dépôt des 2 lignes
+    cochées… ». L'annonce les compte comme <strong>éligibles</strong> (et non « déjà déposé » ni « pas encore
+    vérifié ») - c'est-à-dire que le tableau qu'on vient de rafraîchir dit la vérité.</li>
+<li>L'inverse : lancer un lot, puis rouvrir « Compléter une nuit récupérée… » <strong>sans quitter l'écran</strong>.
+    La liste des nuits à compléter est celle d'après le lot, pas celle d'avant.</li>
+</ol>
 <h3 id="metadonnees-ce-que-la-plateforme-affiche-vraiment-1828-1844-1845">Métadonnées : ce que la plateforme affiche vraiment (#1828, #1844, #1845)<a class="headerlink" href="#metadonnees-ce-que-la-plateforme-affiche-vraiment-1828-1844-1845" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>Ces cases ne sont <strong>pas automatisables</strong> : elles se jouent sur la <strong>fiche web</strong> de la participation,
