@@ -3019,6 +3019,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Surface applicative">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hotes-sortants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hôtes sortants
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3107,6 +3124,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Surface applicative">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#hotes-sortants" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Hôtes sortants
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3219,6 +3253,57 @@ n'est conservé.</p>
 <li><strong>Accès natifs cadrés</strong> : sous Java 25 (accès natif strict), seuls les modules concernés sont
   autorisés (<code>--enable-native-access=javafx.graphics</code>, <code>--enable-native-access=org.xerial.sqlitejdbc</code>).</li>
 </ul>
+<h3 id="hotes-sortants">Hôtes sortants<a class="headerlink" href="#hotes-sortants" title="Permanent link">&para;</a></h3>
+<p>Tous les appels réseau de l'application, exhaustivement - chacun <strong>best-effort</strong> (une panne dégrade
+un confort, jamais un geste métier), sauf l'API VigieChiro qui porte le cœur des échanges :</p>
+<table>
+<thead>
+<tr>
+<th>Hôte</th>
+<th>Usage</th>
+<th>Authentifié</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>API VigieChiro (Eve)</td>
+<td>sites, participations, résultats, dépôt d'une nuit</td>
+<td>token de session</td>
+</tr>
+<tr>
+<td>URLs S3 pré-signées</td>
+<td>téléchargement / téléversement des fichiers son</td>
+<td>signature dans l'URL</td>
+</tr>
+<tr>
+<td><code>archive-api.open-meteo.com</code></td>
+<td>pré-remplissage météo d'un passage</td>
+<td>non</td>
+</tr>
+<tr>
+<td><code>api.gbif.org</code></td>
+<td>clé d'usage des fiches d'espèces</td>
+<td>non</td>
+</tr>
+<tr>
+<td><code>geo.api.gouv.fr</code></td>
+<td>commune d'un point d'écoute depuis son GPS (#2791, ADR 2791)</td>
+<td>non</td>
+</tr>
+<tr>
+<td><code>api.github.com</code></td>
+<td>détection d'une nouvelle version</td>
+<td>non</td>
+</tr>
+<tr>
+<td>tuiles OpenStreetMap (Gluon Maps)</td>
+<td>fond de carte des sites</td>
+<td>non</td>
+</tr>
+</tbody>
+</table>
+<p>Hors ligne, l'application reste pleinement utilisable : ces enrichissements se taisent, et la
+commune des points se comble plus tard (<code>rattraper-communes</code>, ou les déclencheurs de l'IHM).</p>
 <h2 id="chaine-dapprovisionnement">Chaîne d'approvisionnement<a class="headerlink" href="#chaine-dapprovisionnement" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Dependabot</strong> propose mensuellement les mises à jour <code>maven</code> et <code>github-actions</code> ; les bumps sont
