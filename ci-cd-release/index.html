@@ -3290,7 +3290,7 @@
 
 
 <h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
-<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->11<!--/inv--> workflows et le processus de
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->12<!--/inv--> workflows et le processus de
 publication.</p>
 <h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
 <table>
@@ -3360,7 +3360,13 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/mutation-hebdo.yml">mutation-hebdo.yml</a></td>
 <td>hebdomadaire (lundi) + manuel</td>
-<td>Mesure de mutation PIT sur le dépôt : bilan dans le résumé du job, rapport détaillé en artefact</td>
+<td>Mesure de mutation PIT sur les paquets <code>model</code>, <strong>E2E exclus</strong> : bilan dans le résumé du job, rapport détaillé en artefact</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/mutation-ihm.yml">mutation-ihm.yml</a></td>
+<td>mensuel (le 8) + manuel</td>
+<td>Mesure de mutation PIT sur les vues d'<strong>une feature par tour</strong> (rotation sans état, cycle de 15 mois), <strong>E2E exclus</strong></td>
 <td>—</td>
 </tr>
 <tr>
