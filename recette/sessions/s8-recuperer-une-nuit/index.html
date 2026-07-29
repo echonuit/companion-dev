@@ -3173,7 +3173,8 @@
 <blockquote>
 <p><strong>Écran propriétaire</strong> : aucun en propre — la session traverse <strong>Connexion</strong>, <strong>Mes sites</strong>, <strong>Toutes
 mes nuits</strong> et la <strong>fiche passage</strong>.
-<strong>Features</strong> : reconstruction-passages, passage, sites, connexion. · <strong>Statut : à jouer.</strong>
+<strong>Features</strong> : reconstruction-passages, passage, sites, connexion, lot, multisite, saison.
+· <strong>Statut : à jouer.</strong>
 Retour à la <a href="../../">méthode</a>.</p>
 </blockquote>
 <h2 id="objectif">Objectif<a class="headerlink" href="#objectif" title="Permanent link">&para;</a></h2>
@@ -3222,6 +3223,27 @@ vraie carte SD soit reconnue.</p>
 <li>« Réactiver ce passage » est <strong>actif</strong> (c'est le défaut d'origine du chantier).</li>
 <li>Les heures de la nuit sont marquées <strong>attestées par les enregistrements</strong>, pas « déclarées ».</li>
 </ol>
+<p><strong>Étape 4 bis · Ce que le statut « Récupéré » change (EPIC #2581)</strong></p>
+<p>Le bandeau annonce <strong>« Récupéré »</strong>, pas « Déposé ». Chaque case ci-dessous est un geste dont la réponse
+a changé : à jouer une par une, l'œil sur le motif affiché autant que sur l'état du bouton.</p>
+<ol>
+<li>La pastille de statut est <strong>violette</strong>, distincte du bleu de « Déposé ».</li>
+<li><strong>Aucune frise</strong> de workflow : une seule étape, « Récupéré ». Les jalons Importé / Transformé /
+    Vérifié ne sont pas affichés comme franchis.</li>
+<li>La carte mise en avant est <strong>« Réactiver ce passage »</strong>.</li>
+<li><strong>Supprimer</strong> est <strong>actif</strong>. Le survol dit ce qu'il enlève (la copie locale) et ce qu'il laisse (la
+    participation).</li>
+<li><strong>Vérifier</strong> est <strong>grisé</strong>, et le motif dit « cette nuit vient de Vigie-Chiro, où elle est déjà
+    déposée : son verdict s'y décide » — et <strong>non</strong> « cette nuit est déposée ».</li>
+<li><strong>Annuler le dépôt</strong> est <strong>visible mais désactivé</strong>, avec son motif. Il ne doit ni disparaître ni
+    être cliquable.</li>
+<li><strong>Modifier le passage</strong> ouvre la modale, mais l'année et le n° y sont <strong>verrouillés</strong>.</li>
+<li><strong>Sons &amp; validation</strong> est <strong>ouvert</strong> : les observations s'écoutent et se valident dès maintenant.</li>
+<li>Sur <strong>Carte &amp; passages</strong>, la vue <strong>« À réactiver »</strong> liste cette nuit, et le tri par statut la range
+    <strong>avec</strong> les nuits déposées, pas après elles.</li>
+<li>Sur <strong>Ma saison</strong>, sa case est <strong>remplie</strong> : le protocole est tenu pour cette nuit-là.</li>
+<li>La vue <strong>« Résultats à importer »</strong> la voit toujours : son état d'analyse se relève normalement.</li>
+</ol>
 <p><strong>Étape 5 · Réactiver depuis la carte SD</strong></p>
 <ol>
 <li>Désigner la carte : <strong>aucune question</strong> n'est posée à ce moment. Sur une carte qui ne contient que
@@ -3231,6 +3253,10 @@ vraie carte SD soit reconnue.</p>
 <li>La modale de réactivation montre ses <strong>deux barres de phase</strong>.</li>
 <li>À la fin, « Audio » passe à <strong>COMPLETE (N / N)</strong> et la nuit est <strong>écoutable</strong>.</li>
 <li>Ouvrir une séquence : le son correspond bien à l'observation affichée.</li>
+<li><strong>Le statut est passé à « Déposé »</strong> : la nuit a rejoint les nuits ordinaires, elle sort de la vue
+    « À réactiver », et « Annuler le dépôt » redevient actif. C'est la seule transition que le moteur
+    autorise depuis « Récupéré » — et elle ne doit se produire <strong>que</strong> si de l'audio est effectivement
+    revenu : une réactivation infructueuse laisse la nuit en « Récupéré ».</li>
 </ol>
 <p><strong>Étape 6 · Le rattrapage</strong></p>
 <ol>
@@ -3238,8 +3264,17 @@ vraie carte SD soit reconnue.</p>
 <li>L'état de liste ne prétend plus qu'elles « n'existent pas sur cette machine ».</li>
 <li>Compléter une nuit : elle disparaît de la liste et gagne ses observations.</li>
 </ol>
+<p><strong>Étape 7 · La migration, sur une base qui a déjà servi (EPIC #2581)</strong></p>
+<ol>
+<li>Ouvrir une base <strong>antérieure</strong> au chantier, portant des nuits rapatriées en « Déposé ». Après
+    migration, elles portent <strong>« Récupéré »</strong> — et <strong>elles seules</strong> : une nuit que vous aviez déposée
+    garde « Déposé », même rattachée à sa participation.</li>
+<li>Le carré 130711 est le bon terrain : ses quatre nuits ont été rapatriées avant ce chantier.</li>
+</ol>
 <h2 id="ce-que-la-session-doit-mesurer">Ce que la session doit mesurer<a class="headerlink" href="#ce-que-la-session-doit-mesurer" title="Permanent link">&para;</a></h2>
 <ul>
+<li><strong>La lisibilité du statut</strong> : « Récupéré » se comprend-il sans explication, ou faut-il lire la doc ?
+  C'est le seul juge de l'EPIC #2581 — le reste est tenu par des tests.</li>
 <li><strong>Durée</strong> de la première synchronisation, et nombre de nuits traitées. Repère mesuré au banc :
   10,5 s pour 2 nuits (≈ 9 000 séquences, 24 542 observations). C'est ce chiffre qui a permis d'écarter
   un bornage du balayage ; s'il ne tient pas en usage réel, la décision est à rouvrir.</li>
