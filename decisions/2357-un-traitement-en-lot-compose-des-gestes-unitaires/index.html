@@ -10,28 +10,28 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/architecture/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/">
       
       
-        <link rel="prev" href="..">
+        <link rel="prev" href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/">
       
       
-        <link rel="next" href="../patterns/">
+        <link rel="next" href="../2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/">
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
-        <title>Architecture - VigieChiro Companion · Doc développeur</title>
+        <title>2357 · Un traitement en lot compose des gestes unitaires - VigieChiro Companion · Doc développeur</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -50,9 +50,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -78,7 +78,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#architecture" class="md-skip">
+        <a href="#adr-2357-un-traitement-en-lot-compose-des-gestes-unitaires-il-nen-invente-pas-un-nouveau" class="md-skip">
           Aller au contenu
         </a>
       
@@ -94,7 +94,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="En-tête">
-    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+    <a href="../.." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture
+              2357 · Un traitement en lot compose des gestes unitaires
             
           </span>
         </div>
@@ -229,7 +229,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+    <a href="../.." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -259,7 +259,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -274,6 +274,1315 @@
     
       
       
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../architecture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Architecture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns et principes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../navigation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Navigation et chrome
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../persistance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Persistance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../modele-de-donnees/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Modèle de données et domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../glossaire/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Glossaire du domaine
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../injection/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Injection (Guice)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ajouter-une-fonctionnalite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ajouter une fonctionnalité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../cycle-de-chantier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Cycle de vie d'un chantier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Décisions (ADR)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            Décisions (ADR)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Journal
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0001 · Réactivation d'un passage reconstruit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0002 · Détection acoustique de pointe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0003 · Feature = plugin désactivable
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0004 · Cross-feature sans cycle
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0005 · Cascade de preuves, archivé = état observé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0006 · Dépôt par ZIP par défaut
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0007 · Retours HTTP scellés (ReponseApi)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0008 · Aucun échec silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0009 · La nuit comme unité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0010 · Dialogues bloquants = ports
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0011 · Transformation pilotée par le log
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0012 · Audit : tout écart visible, un état normal silencieux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0013 · Ancrage passage ↔ participation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0014-parite-cli-ihm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0014 · Parité CLI ↔ IHM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0015 · Cartes SD de recette : générateur déterministe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0016 · Squelettes hydratés à la demande
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0017 · Origine d'un point (état porté)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0018 · La synchro rapatrie l'identité de la nuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0019 · L'ancrage s'acquiert quand il sert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0020 · Écrire sur la plateforme : ne rien inventer, ne rien effacer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0021 · Le double-clic est un miroir qui rend compte
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0022 · Le verbe dit le sens de l'échange
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0023 · Bandeau par défaut, modal si irréversible
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0024 · Les heures d'une nuit viennent de ses preuves
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0025 · Une capture passe par le code de production
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0026 · Le nommage des tranches est une étape du pipeline
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0027 · Une attente porte toujours un nom
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0028 · Un état n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0031 · Un retour n'est pas un compte rendu
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0032-le-plan-precede-l-ecriture/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0032 · Le plan précède l'écriture
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0033-la-fenetre-borne-le-disque/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0033 · La fenêtre borne le disque
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0034 · La forme du dépôt se choisit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0035 · Un pictogramme est une icône
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0036 · La copie des bruts est une option
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0037 · Une barre d'actions plie
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0038 · Quatre niveaux de sévérité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0039 · Une barre de statut est neutre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0040 · Le sujet de commit est une syntaxe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0041 · Un check requis gouverne la branche
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0042 · Un aperçu qui ment est refusé
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0043 · La mesure fait foi en CI
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0044 · Le mécanisme de parallélisme suit la nature de l'attente
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0045 · L'UpgradeCode Windows est une constante d'identité
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0046 · Une classe CSS a une seule feuille
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0047 · L'identité de distribution est le projet Echonuit
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    0048 · L'utilisateur possède ses fichiers, l'app observe
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1038-la-configuration-d-amorcage-vit-hors-de-la-base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1038 · La configuration d'amorçage vit hors de la base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1881 · Le numéro d'une ADR est celui de son chantier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2465-une-adr-declare-comment-elle-est-verifiee/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2465 · Une ADR déclare comment elle est vérifiée
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2493-une-modale-a-revelation-suit-la-croissance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2493 · Une modale à révélation suit la croissance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2554 · La synchro amène chaque nuit à un niveau de complétude
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
   
   
     
@@ -292,7 +1601,7 @@
           
   
   <span class="md-ellipsis">
-    Architecture
+    2357 · Un traitement en lot compose des gestes unitaires
   </span>
   
 
@@ -303,7 +1612,7 @@
         
   
   <span class="md-ellipsis">
-    Architecture
+    2357 · Un traitement en lot compose des gestes unitaires
   </span>
   
 
@@ -325,54 +1634,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#carte-du-code" class="md-nav__link">
+  <a href="#contexte" class="md-nav__link">
     <span class="md-ellipsis">
-      Carte du code
+      Contexte
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-4-couches-dune-fonctionnalite" class="md-nav__link">
+  <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
-      Les 4 couches d'une fonctionnalité
+      Décision
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-regles-darchitecture-sont-des-tests" class="md-nav__link">
+  <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
-      Les règles d'architecture sont des tests
+      Conséquences
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation-et-decouplage-inter-feature" class="md-nav__link">
+  <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
-      Navigation et découplage inter-feature
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#persistance" class="md-nav__link">
-    <span class="md-ellipsis">
-      Persistance
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#injection-de-dependances" class="md-nav__link">
-    <span class="md-ellipsis">
-      Injection de dépendances
+      Alternatives écartées
     </span>
   </a>
   
@@ -385,221 +1676,6 @@
     </li>
   
 
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../patterns/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Patterns et principes
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../navigation/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Navigation et chrome
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../persistance/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Persistance
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../modele-de-donnees/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Modèle de données et domaine
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../glossaire/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Glossaire du domaine
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../injection/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Injection (Guice)
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../ajouter-une-fonctionnalite/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Ajouter une fonctionnalité
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../cycle-de-chantier/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Cycle de vie d'un chantier
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    
-    
-    
-    
-    <li class="md-nav__item md-nav__item--nested">
-      
-        
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
-        
-          
-          <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
-            
-  
-  <span class="md-ellipsis">
-    Décisions (ADR)
-  </span>
-  
-
-            <span class="md-nav__icon md-icon"></span>
-          </label>
-        
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_11">
-            <span class="md-nav__icon md-icon"></span>
-            Décisions (ADR)
-          </label>
-          <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Journal
-  </span>
-  
-
-      </a>
-    </li>
-  
-
               
             
               
@@ -609,1099 +1685,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0001 · Réactivation d'un passage reconstruit
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0002 · Détection acoustique de pointe
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0003 · Feature = plugin désactivable
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0004 · Cross-feature sans cycle
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0005 · Cascade de preuves, archivé = état observé
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0006 · Dépôt par ZIP par défaut
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0007 · Retours HTTP scellés (ReponseApi)
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0008 · Aucun échec silencieux
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0009 · La nuit comme unité
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0010 · Dialogues bloquants = ports
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0011 · Transformation pilotée par le log
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0012 · Audit : tout écart visible, un état normal silencieux
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0013 · Ancrage passage ↔ participation
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0014-parite-cli-ihm/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0014 · Parité CLI ↔ IHM
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0015 · Cartes SD de recette : générateur déterministe
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0016 · Squelettes hydratés à la demande
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0017 · Origine d'un point (état porté)
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0018 · La synchro rapatrie l'identité de la nuit
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0019 · L'ancrage s'acquiert quand il sert
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0020 · Écrire sur la plateforme : ne rien inventer, ne rien effacer
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0021 · Le double-clic est un miroir qui rend compte
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0022 · Le verbe dit le sens de l'échange
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0023 · Bandeau par défaut, modal si irréversible
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0024 · Les heures d'une nuit viennent de ses preuves
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0025 · Une capture passe par le code de production
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0026 · Le nommage des tranches est une étape du pipeline
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0027 · Une attente porte toujours un nom
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0028 · Un état n'est pas un compte rendu
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0031 · Un retour n'est pas un compte rendu
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0032-le-plan-precede-l-ecriture/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0032 · Le plan précède l'écriture
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0033-la-fenetre-borne-le-disque/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0033 · La fenêtre borne le disque
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0034 · La forme du dépôt se choisit
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0035 · Un pictogramme est une icône
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0036 · La copie des bruts est une option
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0037 · Une barre d'actions plie
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0038 · Quatre niveaux de sévérité
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0039 · Une barre de statut est neutre
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0040 · Le sujet de commit est une syntaxe
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0041 · Un check requis gouverne la branche
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0042 · Un aperçu qui ment est refusé
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0043 · La mesure fait foi en CI
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0044 · Le mécanisme de parallélisme suit la nature de l'attente
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0045 · L'UpgradeCode Windows est une constante d'identité
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0046 · Une classe CSS a une seule feuille
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0047 · L'identité de distribution est le projet Echonuit
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    0048 · L'utilisateur possède ses fichiers, l'app observe
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    1038 · La configuration d'amorçage vit hors de la base
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    1881 · Le numéro d'une ADR est celui de son chantier
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/2465-une-adr-declare-comment-elle-est-verifiee/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    2465 · Une ADR déclare comment elle est vérifiée
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/2493-une-modale-a-revelation-suit-la-croissance/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    2493 · Une modale à révélation suit la croissance
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    2554 · La synchro amène chaque nuit à un niveau de complétude
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    2357 · Un traitement en lot compose des gestes unitaires
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
+      <a href="../2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1722,7 +1706,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre/" class="md-nav__link">
+      <a href="../2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1743,7 +1727,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/" class="md-nav__link">
+      <a href="../2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1764,7 +1748,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/" class="md-nav__link">
+      <a href="../2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1785,7 +1769,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/" class="md-nav__link">
+      <a href="../2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1806,7 +1790,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
+      <a href="../2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1827,7 +1811,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2348-un-export-d-image-se-redessine-il-ne-se-capture-pas/" class="md-nav__link">
+      <a href="../2348-un-export-d-image-se-redessine-il-ne-se-capture-pas/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1848,7 +1832,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/" class="md-nav__link">
+      <a href="../2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1869,7 +1853,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/" class="md-nav__link">
+      <a href="../2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1890,7 +1874,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2433-un-dossier-de-transformes-s-importe-par-reference/" class="md-nav__link">
+      <a href="../2433-un-dossier-de-transformes-s-importe-par-reference/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1911,7 +1895,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2385-la-doc-chiffree-est-adossee-au-code/" class="md-nav__link">
+      <a href="../2385-la-doc-chiffree-est-adossee-au-code/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1974,7 +1958,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/" class="md-nav__link">
+      <a href="../../recette/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1995,7 +1979,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/fixtures/" class="md-nav__link">
+      <a href="../../recette/fixtures/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2016,7 +2000,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s1-premier-contact/" class="md-nav__link">
+      <a href="../../recette/sessions/s1-premier-contact/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2037,7 +2021,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s2-importer/" class="md-nav__link">
+      <a href="../../recette/sessions/s2-importer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2058,7 +2042,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s3-verifier/" class="md-nav__link">
+      <a href="../../recette/sessions/s3-verifier/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2079,7 +2063,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
+      <a href="../../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2100,7 +2084,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s6-exploiter-piloter/" class="md-nav__link">
+      <a href="../../recette/sessions/s6-exploiter-piloter/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2121,7 +2105,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
+      <a href="../../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2149,7 +2133,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cli/" class="md-nav__link">
+      <a href="../../cli/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2169,7 +2153,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tests-et-qualite/" class="md-nav__link">
+      <a href="../../tests-et-qualite/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2189,7 +2173,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-vigiechiro/" class="md-nav__link">
+      <a href="../../api-vigiechiro/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2209,7 +2193,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance/" class="md-nav__link">
+      <a href="../../performance/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2229,7 +2213,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../observabilite/" class="md-nav__link">
+      <a href="../../observabilite/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2249,7 +2233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../captures/" class="md-nav__link">
+      <a href="../../captures/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2269,7 +2253,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ci-cd-release/" class="md-nav__link">
+      <a href="../../ci-cd-release/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2289,7 +2273,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../securite/" class="md-nav__link">
+      <a href="../../securite/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2329,54 +2313,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#carte-du-code" class="md-nav__link">
+  <a href="#contexte" class="md-nav__link">
     <span class="md-ellipsis">
-      Carte du code
+      Contexte
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-4-couches-dune-fonctionnalite" class="md-nav__link">
+  <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
-      Les 4 couches d'une fonctionnalité
+      Décision
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-regles-darchitecture-sont-des-tests" class="md-nav__link">
+  <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
-      Les règles d'architecture sont des tests
+      Conséquences
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#navigation-et-decouplage-inter-feature" class="md-nav__link">
+  <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
-      Navigation et découplage inter-feature
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#persistance" class="md-nav__link">
-    <span class="md-ellipsis">
-      Persistance
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#injection-de-dependances" class="md-nav__link">
-    <span class="md-ellipsis">
-      Injection de dépendances
+      Alternatives écartées
     </span>
   </a>
   
@@ -2397,7 +2363,7 @@
                   
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/architecture.md" title="Editer cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires.md" title="Editer cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -2406,209 +2372,100 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/architecture.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="architecture">Architecture<a class="headerlink" href="#architecture" title="Permanent link">&para;</a></h1>
-<p>L'application est <strong>locale</strong> (base SQLite fichier, sans serveur), en <strong>JavaFX 26 / Java 25</strong>, injectée
-par <strong>Guice 7</strong>. L'organisation est en <strong>paquet-par-fonctionnalité</strong> : chaque écran/parcours vit dans
-<strong>son propre paquet</strong>, qui contient lui-même ses <strong>4 couches MVVM</strong>.</p>
-<div class="admonition tip">
-<p class="admonition-title">Les patrons derrière cette architecture</p>
-<p>Chaque choix (MVVM, contrats, DAO, Template Method…) applique un <strong>patron de conception</strong> au
-service des principes <strong>SOLID</strong>. La page <strong><a href="../patterns/">Patterns et principes</a></strong> les détaille un
-par un (le quoi, le pourquoi ici, et les principes servis).</p>
-</div>
-<h2 id="carte-du-code">Carte du code<a class="headerlink" href="#carte-du-code" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>src/main/java/fr/univ_amu/iut/
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>├── App.java                     ← point d&#39;entrée JavaFX (amorçage Guice + chrome)
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>├── module-info.java             ← module JPMS « vigiechiro » (open module)
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>│
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>├── commun/                      ← LE SOCLE partagé par toutes les fonctionnalités
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>│   ├── persistence/             ·   infrastructure DAO (SQLite, transactions, migrations)
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>│   ├── model/                   ·   domaine transverse (Horloge, Prefixe, Verdict, Statut...)
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>│   ├── viewmodel/               ·   état observable du chrome (NavigationViewModel...)
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│   ├── view/                    ·   chrome (MainView, Navigateur) + contrats Ouvrir* / RafraichirAuRetour
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>│   ├── di/                      ·   racine de composition Guice (RacineInjecteur, modules socle)
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>│   └── outils/                  ·   harnais de capture d&#39;écran (ApercuFx...)
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>│
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>├── sites/        passage/       importation/   qualification/   lot/
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>├── validation/   multisite/     diagnostic/    bibliotheque/    recherche/
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>├── analyse/      audio/         audit/         connexion/       maj/
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>├── saison/                                                     ← les features métier
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>│
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>├── cli/                         ← interface en ligne de commande (import/export scriptables)
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>└── perf/outils/                 ← bancs de mesure de performance
-</code></pre></div>
-<p>Les deux dernières entrées sont des <strong>surfaces transverses</strong>, documentées à part :
-<a href="../cli/"><code>cli/</code></a> (seconde façade <em>headless</em> sur le métier) et
-<a href="../performance/"><code>perf/outils/</code></a> (bancs de mesure des objectifs O3/O5).</p>
-<p>Entre le socle et ces surfaces, l'application compte <strong><!--inv:features-->16<!--/inv--> features</strong> métier
-(chacune un dossier autonome sous <code>fr.univ_amu.iut</code>, hors <code>commun</code>, <code>cli</code> et <code>perf</code>).</p>
-<h2 id="les-4-couches-dune-fonctionnalite">Les 4 couches d'une fonctionnalité<a class="headerlink" href="#les-4-couches-dune-fonctionnalite" title="Permanent link">&para;</a></h2>
-<p>Chaque feature (ex. <code>sites/</code>) suit le même découpage, <strong>du métier vers l'IHM</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>Sous-paquet</th>
-<th>Rôle</th>
-<th>Règle clé</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>model/</code></td>
-<td>Entités (records), services, et <code>model/dao/</code> (accès SQLite)</td>
-<td><strong>Aucune</strong> dépendance JavaFX (réutilisable, testable seul)</td>
-</tr>
-<tr>
-<td><code>viewmodel/</code></td>
-<td>État observable + logique de présentation</td>
-<td>Importe <strong><code>javafx.beans</code></strong> uniquement, <strong>jamais</strong> <code>javafx.scene/fxml/stage</code></td>
-</tr>
-<tr>
-<td><code>view/</code></td>
-<td><code>Controller</code> + <code>*.fxml</code> + <code>*.css</code></td>
-<td>Se <strong>lie</strong> aux propriétés du ViewModel ; ne parle <strong>jamais</strong> à la base</td>
-</tr>
-<tr>
-<td><code>di/</code></td>
-<td>Le module Guice qui assemble la feature</td>
-<td>Publie ses services/VM au conteneur</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition note">
-<p class="admonition-title">Le sens MVVM</p>
-<p>Le <code>model</code> ignore l'IHM ; le <code>viewmodel</code> porte l'état en <strong>propriétés observables</strong>
-(<code>IntegerProperty</code>, <code>ObservableList</code>…) sans toucher aux composants graphiques ; la <code>view</code>
-<strong>observe</strong> le viewmodel par <em>data binding</em> JavaFX.</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">Une feature peut être <em>sans écran</em></p>
-<p>Toutes n'ont pas les 4 couches. <code>recherche/</code> (#144) est une feature <strong>de service</strong> : <code>model</code> + <code>di</code>
-seulement, <strong>pas de <code>view</code></strong>. La recherche globale est exposée par un contrat
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/model/RechercheGlobale.java"><code>commun.model.RechercheGlobale</code></a>
-(<em>Separated Interface</em>), implémenté par <code>recherche.model.ServiceRechercheGlobale</code> qui <strong>agrège</strong>
-les autres features, et <strong>surfacé par le chrome</strong> (la barre de recherche de <code>MainView</code>) plutôt que
-par un écran dédié.</p>
-</div>
-<h2 id="les-regles-darchitecture-sont-des-tests">Les règles d'architecture sont des tests<a class="headerlink" href="#les-regles-darchitecture-sont-des-tests" title="Permanent link">&para;</a></h2>
-<p>Ces frontières ne sont pas qu'une convention : elles sont <strong>vérifiées automatiquement</strong> par
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/architecture/ArchitectureTest.java"><strong>ArchUnit</strong></a>.
-Casser une frontière fait <strong>échouer la CI</strong>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Sauf si la dépendance se réduit à une constante</p>
-<p>ArchUnit lit le <strong>bytecode</strong>, et une dépendance qui ne consiste qu'en une <strong>constante compile-time</strong>
-n'y laisse aucune trace : le compilateur inline la valeur, le <code>.class</code> ne cite jamais la classe qui la
-déclarait (JLS 13.1). Toutes les règles ci-dessous sont aveugles à ce cas — ce n'est pas un faux négatif
-isolé mais une <strong>catégorie</strong>, qui vaut pour toute <code>String</code>, <code>int</code> ou <code>boolean</code> constant.</p>
-<p>Le cas s'est produit : une commande CLI a cité le <code>viewmodel</code> d'une feature pour une clé de réglage
-sans qu'aucune règle ne bronche (<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/2181">#2181</a>).
-D'où un <strong>doublon au niveau des sources</strong>, <code>IsolationFeatureSourcesTest</code>, qui lit l'<code>import</code> dans le
-<code>.java</code> — présent quoi qu'en fasse le compilateur. Mesuré : en réintroduisant volontairement une telle
-dépendance, les six règles ArchUnit restent <strong>vertes</strong> et ce test échoue.</p>
-<p>Il ne couvre que la règle d'<strong>isolation inter-feature</strong>. Un vert d'ArchUnit dit donc « aucune dépendance
-<strong>dans le bytecode</strong> », pas « aucune dépendance ».</p>
-</div>
-<table>
-<thead>
-<tr>
-<th>Test</th>
-<th>Ce qu'il garantit</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>model_sans_javafx</code></td>
-<td>Aucun paquet <code>..model..</code> ne dépend de <code>javafx..</code> (le métier reste réutilisable).</td>
-</tr>
-<tr>
-<td><code>persistance_sans_javafx</code></td>
-<td><code>commun.persistence</code> et <code>..model.dao..</code> ignorent JavaFX.</td>
-</tr>
-<tr>
-<td><code>viewmodel_sans_javafx_ui</code></td>
-<td>Un <code>..viewmodel..</code> n'importe pas <code>javafx.scene/fxml/stage</code> (<code>javafx.beans</code> OK).</td>
-</tr>
-<tr>
-<td><code>view_sans_jdbc</code></td>
-<td>Un <code>..view..</code> ne touche jamais <code>..model.dao..</code> ni <code>java.sql..</code> : il passe par les VM/services.</td>
-</tr>
-<tr>
-<td><code>features_sans_cycle</code></td>
-<td>Les slices <code>fr.univ_amu.iut.(*)</code> sont <strong>sans cycle</strong> (hors racine de composition <code>commun.di</code>).</td>
-</tr>
-<tr>
-<td><code>pas_de_dependance_inter_feature_vers_la_vue</code></td>
-<td>Une feature ne dépend pas du <code>view</code>/<code>viewmodel</code> d'une <strong>autre</strong> feature (le socle <code>commun</code> est partagé).</td>
-</tr>
-</tbody>
-</table>
-<h2 id="navigation-et-decouplage-inter-feature">Navigation et découplage inter-feature<a class="headerlink" href="#navigation-et-decouplage-inter-feature" title="Permanent link">&para;</a></h2>
-<p>Le chrome (fenêtre + zone centrale + fil d'Ariane) est porté par le socle
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/src/main/java/fr/univ_amu/iut/commun/view"><code>commun.view</code></a> :</p>
+<h1 id="adr-2357-un-traitement-en-lot-compose-des-gestes-unitaires-il-nen-invente-pas-un-nouveau">ADR 2357 — Un traitement en lot compose des gestes unitaires, il n'en invente pas un nouveau<a class="headerlink" href="#adr-2357-un-traitement-en-lot-compose-des-gestes-unitaires-il-nen-invente-pas-un-nouveau" title="Permanent link">&para;</a></h1>
 <ul>
-<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/Navigateur.java"><code>Navigateur</code></a>
-  pilote la zone centrale et l'historique (pile d'écrans <code>EtapeNavigation</code>). Les écrans restent
-  <strong>vivants</strong> au retour (état préservé).</li>
-<li>Contrats <strong>optionnels</strong> qu'un écran peut implémenter sur son controller :
-  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/GardeQuitter.java"><code>GardeQuitter</code></a>
-  (confirmer la sortie si saisie non enregistrée),
-  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/EmplacementNavigation.java"><code>EmplacementNavigation</code></a>
-  (fil d'Ariane hiérarchique),
-  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/RafraichirAuRetour.java"><code>RafraichirAuRetour</code></a>
-  (recharger ses données quand on y revient).</li>
+<li><strong>Statut</strong> : Accepté — 2026-07-28</li>
+<li><strong>Chantier</strong> : #2357 (lot 3 de l'EPIC #2349)</li>
+<li><strong>Vérification</strong> : certaine — <code>MoteurTraitementGroupeTest#annulation_apres_le_passage_courant</code></li>
 </ul>
-<p><strong>Comment une feature en ouvre une autre sans en dépendre</strong> (inversion de dépendance) : le socle
-publie un <strong>contrat</strong> <code>Ouvrir*</code> dans <code>commun.view</code>, la feature cible l'<strong>implémente</strong> via sa classe
-<code>Navigation*</code> (bindée par son module Guice), et la feature appelante l'obtient <strong>par injection</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// commun/view/OuvrirPassage.java — le CONTRAT (dans le socle)</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">OuvrirPassage</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ouvrir</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">idPassage</span><span class="p">,</span><span class="w"> </span><span class="n">ContexteSite</span><span class="w"> </span><span class="n">contexte</span><span class="p">);</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">// passage/view/NavigationPassage.java — l&#39;IMPLÉMENTATION (dans la feature passage)</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nd">@Singleton</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NavigationPassage</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">OuvrirPassage</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ouvrir</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">idPassage</span><span class="p">,</span><span class="w"> </span><span class="n">ContexteSite</span><span class="w"> </span><span class="n">contexte</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">        </span><span class="n">FXMLLoader</span><span class="w"> </span><span class="n">loader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">FXMLLoader</span><span class="p">(</span><span class="n">NavigationPassage</span><span class="p">.</span><span class="na">class</span><span class="p">.</span><span class="na">getResource</span><span class="p">(</span><span class="s">&quot;Passage.fxml&quot;</span><span class="p">));</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="n">loader</span><span class="p">.</span><span class="na">setControllerFactory</span><span class="p">(</span><span class="n">injector</span><span class="p">::</span><span class="n">getInstance</span><span class="p">);</span><span class="w">          </span><span class="c1">// controller injecté par Guice</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="n">Parent</span><span class="w"> </span><span class="n">vue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">load</span><span class="p">();</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">        </span><span class="p">((</span><span class="n">PassageController</span><span class="p">)</span><span class="w"> </span><span class="n">loader</span><span class="p">.</span><span class="na">getController</span><span class="p">()).</span><span class="na">ouvrirSur</span><span class="p">(</span><span class="n">idPassage</span><span class="p">,</span><span class="w"> </span><span class="n">contexte</span><span class="p">);</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="w">        </span><span class="n">navigateur</span><span class="p">.</span><span class="na">empiler</span><span class="p">(</span><span class="n">vue</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;passage&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">controleur</span><span class="p">.</span><span class="na">libelleFil</span><span class="p">(),</span><span class="w"> </span><span class="n">controleur</span><span class="p">);</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="p">}</span>
-</code></pre></div>
-<p>Ainsi <code>sites</code> ouvre M-Passage <strong>sans dépendre de <code>passage.view</code></strong> : la règle ArchUnit
-<code>pas_de_dependance_inter_feature_vers_la_vue</code> reste respectée. La <strong>liste de référence</strong> des contrats
-<code>Ouvrir*</code> (<strong><!--inv:ouvrir-->11<!--/inv--></strong>) est maintenue à un seul endroit : <a href="../navigation/#ouvrir-une-autre-feature-sans-en-dependre">Navigation</a>.</p>
-<h2 id="persistance">Persistance<a class="headerlink" href="#persistance" title="Permanent link">&para;</a></h2>
-<p><strong>SQLite</strong> (fichier <code>vigiechiro.db</code> dans l'espace de travail <strong>par défaut</strong>, relocalisable via l'onglet
-« Emplacements » des réglages, cf. <a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>), via des <strong>DAO</strong> écrits en
-<code>PreparedStatement</code> (<strong>pas d'ORM</strong>). Le schéma évolue par <strong>migrations versionnées</strong>
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/src/main/resources/db/migration"><code>src/main/resources/db/migration/V0x__*.sql</code></a>,
-appliquées par
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence"><code>MigrationSchema</code></a>
-sur la <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence"><code>SourceDeDonnees</code></a>.</p>
-<p>Le cœur du domaine est l'<strong>agrégat « nuit de capture »</strong> (feature <code>passage</code>), qui avance dans un
-<strong>workflow à états</strong> :</p>
-<p><code>IMPORTE → TRANSFORME → VERIFIE → PRET_A_DEPOSER → DEPOT_EN_COURS → DEPOSE</code> (<!--inv:etats-workflow-->6<!--/inv--> états, cf. <code>StatutWorkflow</code>)</p>
-<p>Le détail des entités, des tables et de la correspondance avec le <strong>MCD du brief</strong> est sur
-<a href="../modele-de-donnees/">Modèle de données et domaine</a> ; le <strong>mécanisme</strong> d'accès (DAO, transactions,
-migrations) sur <a href="../persistance/">Persistance</a>.</p>
-<h2 id="injection-de-dependances">Injection de dépendances<a class="headerlink" href="#injection-de-dependances" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di"><code>RacineInjecteur</code></a>
-assemble le socle + tous les modules <code>*/di/*Module.java</code> des features. Les <code>Controller</code> FXML sont
-eux aussi <strong>injectés</strong> via une <code>controllerFactory</code> posée sur le <code>FXMLLoader</code>. Certaines valeurs
-transverses sont fournies par binding nommé (ex. <code>@Named("idUtilisateurCourant")</code>, l'utilisateur
-courant de l'application mono-utilisateur).</p>
-<hr />
-<p>Pour mettre tout cela en pratique, suivez <strong><a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a></strong>.</p>
+<blockquote>
+<p>Le contrat d'annulation est celui qui rend le reste tenable, et c'est le seul qui se prouve d'un
+test. Les autres conséquences ont les leurs, dans la même veine :
+<code>LancementCalculGroupeTest#ne_force_jamais</code> et <code>ImportResultatsGroupeTest</code> tiennent l'absence des
+options destructrices, <code>TraitementLotTest#annonce_les_ecartes_avant_de_lancer</code> tient l'annonce
+préalable, et <code>TraiterPassagesTest#ecartes_annonces_sans_etre_tentes</code> la tient côté terminal.</p>
+</blockquote>
+<h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
+<p>Rentrer de terrain avec six cartes SD, c'est six fois la même suite de gestes : préparer le dépôt,
+téléverser, déclencher le calcul, importer les résultats. L'écran « Carte &amp; passages » les proposait
+une nuit à la fois, depuis la fiche de chacune.</p>
+<p>La tentation, en écrivant le lot, est d'en faire un <strong>geste neuf</strong> : un moteur de lot qui saurait
+téléverser, une modale qui suivrait la progression, un plafond de parallélisme accordé au nombre de
+nuits. C'est ainsi qu'on se retrouve avec deux chemins pour un même dépôt, dont un seul est éprouvé.</p>
+<p>Trois éléments du socle existaient pourtant déjà, et disaient quoi faire : <code>Confirmateur</code> pour annoncer,
+<code>SuiviOperation</code> pour exécuter avec barre et bouton « Annuler », <code>Notificateur</code> pour rendre compte.</p>
+<h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p><strong>Un lot applique N fois un geste qui existe déjà, et n'ajoute que ce qui relève du nombre.</strong></p>
+<p>Le geste reste celui de la nuit unique, avec ses règles et ses garde-fous. Ce que le lot ajoute est
+l'ordonnancement, l'annonce préalable et le compte rendu — rien d'autre. Cinq conséquences en découlent,
+et chacune est un endroit où l'on serait tenté de faire autrement.</p>
+<p><strong>1. Le moteur est séquentiel, et le plafond de parallélisme reste celui d'un passage.</strong>
+<code>DepotVigieChiro</code> téléverse déjà cinq unités de front, plafond calqué sur le front web
+(<code>max_concurrent_uploads</code>). Lancer N passages en même temps multiplierait ce plafond par N et
+transformerait un confort en rafale que le serveur rejette. Le parallélisme reste <strong>à l'intérieur</strong> d'un
+passage, jamais entre eux — ce qui n'est pas une omission mais le respect de la borne de politesse
+décrite par l'<a href="../0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/">ADR 0044</a>.</p>
+<p><strong>2. L'éligibilité est locale, peu coûteuse, et consultée avant de partir.</strong> Chaque <code>ActionGroupee</code>
+porte la sienne (<code>motifNonEligible</code>), lue sur l'état déjà en base : statut du dépôt, rattachement à une
+participation, présence de résultats. Elle ne joint <strong>jamais</strong> la plateforme — elle est appelée sur
+<strong>toute</strong> la sélection avant le premier geste, et vingt allers-retours réseau pour afficher une annonce
+seraient un défaut, pas une précaution. Ce qui exige le réseau ressort donc en <strong>échec avec son motif</strong>,
+pas en écart.</p>
+<p><strong>3. L'annulation s'arrête entre deux passages.</strong> Le jeton est consulté <strong>avant</strong> chaque passage, jamais
+pendant : un passage commencé va au bout, un passage non commencé est rendu <code>NON_TRAITE</code>. Chaque nuit est
+donc <strong>soit dans son état d'avant, soit dans son état d'après, jamais entre les deux</strong> — c'est ce qui rend
+un lot interrompu reprenable, et c'est tenu par construction plutôt que par vigilance. Le téléversement
+fait exception en passant aussi le jeton au dépôt, et c'est légitime : <code>DEPOT_EN_COURS</code> avec son plan
+persisté est un état <strong>nommé et reprenable</strong>, pas un entre-deux.</p>
+<p><strong>4. Un échec n'arrête pas le lot.</strong> L'action qui lève est enregistrée avec son motif, et le suivant est
+tenté. Rentrer avec six cartes et voir cinq nuits abandonnées parce que la première a échoué serait le
+contraire du service rendu.</p>
+<p><strong>5. Les options destructrices ne sont pas exposées en lot.</strong> <code>--forcer</code> (relancer un calcul) et
+<code>--remplacer</code> (réimporter un jeu de résultats) existent sur les gestes unitaires, où un humain décide
+pour <strong>une</strong> nuit en connaissance de cause. Les actions groupées ne les portent pas, et rien ne permet de
+les activer : un recalcul détruit les observations d'une nuit déposée en archives (l'audio n'y est pas
+conservé, #1244), et un remplacement touche à ce que l'observateur a validé. Vingt d'un coup ne serait
+pas un service.</p>
+<h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<p><strong>Ajouter une action de lot est un exercice cadré</strong> : implémenter <code>ActionGroupee</code> (libellé, éligibilité
+locale, exécution), la lier par <code>OptionalBinder</code> sous son nom depuis la feature qui la possède, et
+l'entrée de menu apparaît. Absente — feature désactivée — l'entrée <strong>disparaît</strong> au lieu de rester grisée
+sans recours (<a href="../0003-feature-plugin-desactivable-ports-optionnels/">ADR 0003</a>). Le moteur n'a rien à
+savoir de plus.</p>
+<p><strong>Le geste entier se teste sans écran.</strong> N'employer que des ports injectables plutôt qu'inventer une
+modale rend le lot vérifiable <strong>jusqu'à son effet</strong>, headless. Une modale dédiée aurait été plus riche —
+le journal ligne à ligne pendant l'exécution — et intestable au même prix. Le journal existe malgré tout :
+il est remis à <code>SuiviOperation</code>, préfixé du passage concerné.</p>
+<p><strong>La ligne de commande en hérite gratuitement.</strong> Le moteur et les actions ne connaissent aucune surface :
+<code>traiter-passages</code> les réutilise tels quels (<a href="../0014-parite-cli-ihm/">ADR 0014</a>). Ce qu'elle apporte n'est
+pas la boucle — un terminal sait boucler — mais <strong>l'écran d'éligibilité</strong>, que rien d'autre n'expose.</p>
+<p><strong>Un motif d'échec est rédigé par la surface, pas par le moteur.</strong> Le moteur reçoit sa rédaction
+(<code>GesteAttendu::message</code> pour l'application, <code>GesteAttenduCli::message</code> pour le terminal) : sans cela, un
+jeton expiré au septième passage donnerait treize lignes disant ce qui manque et aucune disant quoi faire
+(<a href="../2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/">ADR 2635</a>).</p>
+<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Paralléliser entre les passages</strong>, avec un plafond global réparti. Séduisant sur le papier : six
+  nuits à téléverser vont six fois plus vite. En pratique il faut alors partager une borne entre des
+  gestes qui ne se connaissent pas, et le premier « optimiseur » qui la desserrera n'aura aucun moyen de
+  savoir ce qu'elle protégeait. La séquentialité rend la borne évidente : c'est celle d'un passage.</li>
+<li><strong>Déduire l'éligibilité de l'échec</strong>, sans annonce préalable. Moins de code, et l'information est la
+  même — sauf qu'elle arrive trop tard : téléverser crée une participation côté plateforme avant de
+  refuser trois lignes plus loin. On aurait laissé des traces distantes pour des nuits qu'on savait
+  refuser.</li>
+<li><strong>Une modale dédiée au lot</strong>, avec son journal et sa progression détaillée. Meilleure expérience,
+  effectivement — mais elle n'aurait été éprouvée par aucun test headless, sur un geste qui touche à
+  vingt nuits d'un coup. Le compromis a été assumé dans l'autre sens.</li>
+<li><strong>Un moteur qui sait faire les quatre gestes</strong>, plutôt qu'un moteur aveugle et quatre actions. C'est le
+  chemin qui produit deux implémentations du dépôt, dont une seule est maintenue.</li>
+</ul>
 
 
 
@@ -2644,7 +2501,7 @@ courant de l'application mono-utilisateur).</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Précédent: Vue d&#39;ensemble">
+          <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 2554 · La synchro amène chaque nuit à un niveau de complétude">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2654,20 +2511,20 @@ courant de l'application mono-utilisateur).</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                Vue d'ensemble
+                2554 · La synchro amène chaque nuit à un niveau de complétude
               </div>
             </div>
           </a>
         
         
           
-          <a href="../patterns/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Patterns et principes">
+          <a href="../2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 2635 · Un refus dit ce qui manque, la surface dit quoi faire">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                Patterns et principes
+                2635 · Un refus dit ce qui manque, la surface dit quoi faire
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2705,10 +2562,10 @@ courant de l'application mono-utilisateur).</p>
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}}</script>
     
     
-      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
     
   </body>

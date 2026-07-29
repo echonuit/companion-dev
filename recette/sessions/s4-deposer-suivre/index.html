@@ -1586,6 +1586,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2357 · Un traitement en lot compose des gestes unitaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../decisions/2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
         
   
@@ -2040,6 +2061,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#traitement-en-lot-ce-quun-seul-poste-ne-peut-pas-prouver-2357" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traitement en lot : ce qu'un seul poste ne peut pas prouver (#2357)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#metadonnees-ce-que-la-plateforme-affiche-vraiment-1828-1844-1845" class="md-nav__link">
     <span class="md-ellipsis">
       Métadonnées : ce que la plateforme affiche vraiment (#1828, #1844, #1845)
@@ -2362,6 +2392,15 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#traitement-en-lot-ce-quun-seul-poste-ne-peut-pas-prouver-2357" class="md-nav__link">
+    <span class="md-ellipsis">
+      Traitement en lot : ce qu'un seul poste ne peut pas prouver (#2357)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#metadonnees-ce-que-la-plateforme-affiche-vraiment-1828-1844-1845" class="md-nav__link">
     <span class="md-ellipsis">
       Métadonnées : ce que la plateforme affiche vraiment (#1828, #1844, #1845)
@@ -2548,6 +2587,37 @@ conservé). La CLI, elle, refuse. À filmer dans le bloc A sur un passage marqu�
     état connu.</li>
 <li>Fermer/rouvrir l'application : le dernier état connu est réaffiché avec sa date, sans réseau.</li>
 <li><strong>Noter l'identifiant de la participation</strong> (nettoyage manuel éventuel + matériau de S5).</li>
+</ol>
+<h3 id="traitement-en-lot-ce-quun-seul-poste-ne-peut-pas-prouver-2357">Traitement en lot : ce qu'un seul poste ne peut pas prouver (#2357)<a class="headerlink" href="#traitement-en-lot-ce-quun-seul-poste-ne-peut-pas-prouver-2357" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Ces cases ne sont <strong>pas automatisables</strong>. Les tests éprouvent le lot avec des actions doublées, sur
+une base en mémoire : ils prouvent l'ordonnancement, jamais qu'une vraie rafale reste <strong>polie</strong> avec
+la plateforme, ni qu'un lot interrompu au milieu d'un vrai téléversement se <strong>reprend</strong>. Ce sont
+précisément les deux propriétés qui ont motivé la conception séquentielle
+(<a href="../../../decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/">ADR 2357</a>).</p>
+</blockquote>
+<p><em>Bloc E · Un lot de trois nuits, pour de vrai</em></p>
+<ol>
+<li>Cocher trois nuits (Ctrl+clic) : les quatre entrées de lot du menu ☰ s'activent et annoncent
+    « des 3 lignes cochées ».</li>
+<li>« Préparer le dépôt des 3 lignes cochées… » : l'annonce dit <strong>3 sur 3</strong>, aucune écartée.</li>
+<li>Rejouer la même action : l'annonce dit <strong>0 sur 3</strong>, les trois écartées « dépôt déjà préparé », et
+    « Rien ne sera fait » ; renoncer ne touche rien.</li>
+<li>Cocher une nuit déjà déposée avec deux nuits prêtes : l'annonce <strong>nomme</strong> la déposée et son motif.</li>
+<li>« Téléverser les 3 lignes cochées… » : le débit observé reste celui d'<strong>une</strong> nuit (5 unités de
+    front, pas 15). À mesurer côté réseau, c'est le seul endroit où cela se voit.</li>
+<li><strong>Annuler</strong> en cours de téléversement de la deuxième nuit : le lot s'arrête, la deuxième reste en
+    « Dépôt en cours », la troisième est <strong>intacte</strong> (statut inchangé).</li>
+<li>Relancer le même lot : la deuxième <strong>reprend</strong> là où elle s'était arrêtée, la troisième part
+    normalement, aucune archive n'est renvoyée deux fois.</li>
+<li>Le compte rendu final donne <strong>une ligne par nuit</strong>, dans l'ordre de la sélection.</li>
+<li><strong>Débrancher le réseau</strong> avant « Importer les résultats des 3 lignes cochées… » : les trois
+    remontent en échec avec un motif qui dit quoi faire (« Connectez-vous depuis le menu ☰ … »), et le
+    lot va au bout au lieu de s'arrêter à la première.</li>
+<li>« Déclencher le calcul » sur une nuit déjà analysée : elle ressort en <strong>échec</strong> avec « relancer
+    effacerait les observations », jamais recalculée.</li>
+<li>Les mêmes gestes en ligne de commande : <code>vigiechiro traiter-passages --action televerser --passage
+    … --json</code> rend le même verdict par passage, et un code de sortie non nul si l'un a échoué.</li>
 </ol>
 <h3 id="metadonnees-ce-que-la-plateforme-affiche-vraiment-1828-1844-1845">Métadonnées : ce que la plateforme affiche vraiment (#1828, #1844, #1845)<a class="headerlink" href="#metadonnees-ce-que-la-plateforme-affiche-vraiment-1828-1844-1845" title="Permanent link">&para;</a></h3>
 <blockquote>

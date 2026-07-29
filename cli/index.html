@@ -1586,6 +1586,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2357 · Un traitement en lot compose des gestes unitaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
         
   
@@ -2653,6 +2674,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;]</code></td>
 <td>#1265</td>
 <td><code>SuiviTraitement.relever</code> (lecture seule : <code>GET /participations/{id}</code> → bloc <code>traitement</code>, et <strong>mise à jour du cache local</strong> #1262). Codes <strong>faits pour un script</strong> : <code>0</code> terminé, <code>3</code> planifié/en cours/nouvel essai, <code>1</code> en échec côté serveur, <code>4</code> jamais lancé, <code>2</code> <strong>indisponible</strong> (on n'a pas pu demander : nuit non déposée, jeton absent, plateforme injoignable — refus métier rendu par le handler central, #2294)</td>
+</tr>
+<tr>
+<td><code>traiter-passages</code></td>
+<td><code>--action &lt;preparer-depot\|televerser\|importer-resultats\|declencher-calcul&gt; --passage &lt;id&gt; [--passage &lt;id&gt;…] [--json]</code></td>
+<td>#2357</td>
+<td><code>MoteurTraitementGroupe</code> sur les quatre <a href="../patterns/"><code>ActionGroupee</code></a> — équivalent du menu « Traiter la sélection » de « Carte &amp; passages ». Ce qu'une boucle shell ne sait pas faire : <strong>savoir à l'avance lesquels sont éligibles</strong> (les règles lisent l'état du dépôt, le rattachement et la présence de résultats, rien de tout cela n'étant dans <code>lister-passages</code>). Les écartés sont annoncés avec leur motif <strong>sans être tentés</strong>, un échec <strong>n'arrête pas</strong> les suivants, chaque passage a sa ligne. <strong>Ni <code>--forcer</code> ni <code>--remplacer</code></strong> : les actions groupées ne les exposent pas, un recalcul détruisant les observations d'un dépôt en archives et un remplacement touchant à ce que l'observateur a validé — vingt d'un coup ne serait pas un service. <code>0</code> si aucun échec (les <strong>écartés</strong> en font partie : rejouer un lot déjà traité est le cas <strong>idempotent</strong>, comme <code>lancer-traitement-vigiechiro</code> sur « déjà en cours »), <code>1</code> si au moins un passage a échoué, <code>2</code> pour un refus en amont (fonctionnalité désactivée, identifiant inconnu)</td>
 </tr>
 <tr>
 <td><code>reinitialiser-depot</code></td>

@@ -1662,6 +1662,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2357 · Un traitement en lot compose des gestes unitaires
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
         
   
@@ -3125,6 +3146,54 @@ doit vérifier : <em>on ne prévient pas après coup ce qu'on a déjà empêché
 <p><strong>Et ce qu'aucun test ne verra jamais.</strong> Trois défauts de ce chantier n'ont été trouvés qu'en <strong>regardant
 une capture</strong> : un libellé tronqué, un emoji qui ne se rend pas (#700), une réplique de dialogue qui avait
 <strong>dérivé du vrai écran</strong>. Un geste testé n'est pas un écran regardé - <a href="../captures/">rendez la capture, et ouvrez-la</a>.</p>
+<h2 id="action-groupee-actiongroupee-socle-commun">Action groupée (<code>ActionGroupee</code>, socle <code>commun</code>)<a class="headerlink" href="#action-groupee-actiongroupee-socle-commun" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Rentrer de terrain avec six cartes SD, c'est six fois la même suite de gestes. Écrire un
+« mode lot » qui saurait téléverser produit une <strong>seconde</strong> implémentation du dépôt, dont une seule est
+maintenue.</p>
+<p><strong>La solution.</strong> Un moteur <strong>aveugle</strong> et des actions <strong>fines</strong>. <code>MoteurTraitementGroupe</code> ne connaît aucun
+métier : il applique une <code>ActionGroupee</code> à une liste de <code>CiblePassage</code> et rend une <code>IssueTraitement</code> par
+passage. Chaque action porte trois choses, et rien de plus :</p>
+<table>
+<thead>
+<tr>
+<th>Ce que porte une <code>ActionGroupee</code></th>
+<th>Ce que cela sert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>libelle()</code></td>
+<td>l'entrée de menu, le titre du suivi, l'en-tête du compte rendu</td>
+</tr>
+<tr>
+<td><code>motifNonEligible(cible)</code></td>
+<td>l'<strong>annonce préalable</strong> : ce qui sera écarté, et pourquoi, avant de partir</td>
+</tr>
+<tr>
+<td><code>executer(cible, jeton)</code></td>
+<td>le geste lui-même, celui de la nuit unique</td>
+</tr>
+</tbody>
+</table>
+<p>L'éligibilité est <strong>locale et peu coûteuse</strong> : elle est consultée sur <strong>toute</strong> la sélection avant le
+premier geste, et vingt allers-retours réseau pour afficher une annonce seraient un défaut. Ce qui exige
+le réseau ressort donc en <strong>échec avec son motif</strong>, pas en écart.</p>
+<p><strong>Comment on en ajoute une.</strong> Implémenter <code>ActionGroupee</code> dans la feature qui possède le geste, la lier
+par <code>OptionalBinder</code> sous son nom (<code>action.&lt;geste&gt;</code>), et l'entrée de menu apparaît. Feature désactivée,
+l'entrée <strong>disparaît</strong> au lieu de rester grisée sans recours (<a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/">ADR 0003</a>) :
+c'est le patron déjà suivi par « Compléter une nuit récupérée » et « Relever l'état des analyses ». Le
+consommateur (<code>MultisiteModule</code>) déclare les optionnels vides, chaque feature propriétaire pose le sien.</p>
+<p><strong>Ce que le moteur garantit, et qu'on ne réécrit pas.</strong> Il est <strong>séquentiel</strong> : le plafond de parallélisme
+reste celui d'un passage. Il consulte le jeton <strong>entre</strong> deux passages, si bien que chaque nuit est soit
+avant, soit après, jamais entre les deux. Un échec <strong>n'arrête pas</strong> le lot. Et il ne <strong>formate</strong> pas les
+motifs d'échec : il applique la rédaction que la surface lui donne
+(<a href="../decisions/2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/">ADR 2635</a>). Le raisonnement
+complet et les alternatives écartées sont dans
+l'<a href="../decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/">ADR 2357</a>.</p>
+<p><strong>Deux surfaces, un seul moteur.</strong> L'écran orchestre avec les trois ports de dialogue ci-dessus
+(<code>Confirmateur</code> pour annoncer, <code>SuiviOperation</code> pour exécuter, <code>Notificateur</code> pour rendre compte) ; la
+commande <code>traiter-passages</code> réutilise les mêmes actions. Ce que la ligne de commande apporte n'est pas la
+boucle, un terminal sachant boucler, mais <strong>l'écran d'éligibilité</strong>, que rien d'autre n'expose.</p>
 <h2 id="ecrans-de-donnees-densite-badge-filtres-socle-design-partage">Écrans de données : densité, badge, filtres (socle design partagé)<a class="headerlink" href="#ecrans-de-donnees-densite-badge-filtres-socle-design-partage" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Les onze écrans sont nés à des moments différents, sans référentiel de design commun :
 tables plus ou moins denses, statuts tantôt en texte coloré tantôt en pastille, chaque feature
