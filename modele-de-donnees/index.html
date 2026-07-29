@@ -2535,6 +2535,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2791-la-commune-se-derive-du-gps-et-s-attache-au-point/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2791 · La commune se dérive du GPS et s'attache au point
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3253,7 +3281,7 @@ accents), <strong>SQL</strong> (anglais).</p>
 <tr>
 <td>C3 · Point d'écoute</td>
 <td><code>PointDEcoute</code></td>
-<td><code>listening_point</code></td>
+<td><code>listening_point</code> (+ table latérale <code>point_commune</code>, V38)</td>
 </tr>
 <tr>
 <td>C4 · Enregistreur</td>
@@ -3324,6 +3352,16 @@ accents), <strong>SQL</strong> (anglais).</p>
 </table>
 <p>S'ajoutent des tables techniques : <code>saved_view</code> (vues sauvegardées de M-Multisite) et <code>schema_version</code>
 (suivi des <a href="../persistance/#les-migrations-de-schema">migrations</a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Commune d'un point (V38, #2791)</p>
+<p>Depuis <code>V38__commune_du_point.sql</code>, la table latérale <code>point_commune</code> porte la commune d'un
+point d'écoute (<code>commune_name</code> + <code>commune_insee</code>), dérivée une fois de ses coordonnées GPS via
+l'API Géo puis persistée. L'<strong>absence de ligne</strong> dit « commune non résolue » (point sans GPS,
+hors ligne à la création) : le rattrapage la comblera. La commune s'attache au <strong>point</strong>, jamais
+au carré - un carré de 10 km peut chevaucher plusieurs communes. Département et région ne sont
+pas stockés : ils se dérivent du code INSEE via <code>RegionsFrancaises</code> (ADR 2791, alignée sur
+l'ADR 2351).</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Ancrage plateforme et certitude observateur (V21, #1139)</p>
 <p>Depuis <code>V21__observation_ancrage_certitude.sql</code>, la table <code>observation</code> porte trois colonnes
