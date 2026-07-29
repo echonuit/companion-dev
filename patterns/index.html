@@ -4437,7 +4437,17 @@ La logique est <strong>isolée</strong> de l'énum
     TRANSFORME --&gt; VERIFIE
     VERIFIE --&gt; PRET_A_DEPOSER
     PRET_A_DEPOSER --&gt; DEPOSE
-    DEPOSE --&gt; [*]</code></pre>
+    DEPOSE --&gt; [*]
+    [*] --&gt; RECUPERE
+    RECUPERE --&gt; DEPOSE</code></pre>
+<p><strong>Une entrée hors file</strong> (#2581). <code>RECUPERE</code> est le statut d'une nuit <strong>rapatriée</strong> de Vigie-Chiro : elle
+n'a franchi aucune des étapes ci-dessus, elle est arrivée par une autre porte. Elle est donc <strong>hors de
+<code>ORDRE</code></strong>, et le moteur lui accorde une seule transition — <code>RECUPERE → DEPOSE</code>, quand la réactivation lui
+rend son audio. <code>suivant(RECUPERE)</code> est <strong>vide</strong> : sa suite dépend d'un événement, pas d'une place dans la
+file. Voir <a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/">ADR 2581</a>.</p>
+<p>⚠️ <strong>Le rang de tri n'est pas l'<code>ordinal()</code>.</strong> <code>RECUPERE</code> est déclaré <strong>en dernier</strong> dans l'énum, pour ne
+pas décaler les comparaisons existantes (« au moins vérifié »). Trier sur <code>ordinal()</code> le rangerait donc
+après « Déposé », par pur effet de bord de ce choix : <code>StatutWorkflow.rangDeProgression()</code> existe pour ça.</p>
 <p><strong>Principes.</strong> <strong>SRP</strong> (les règles de transition ne polluent ni l'énum ni les services) et un <strong>point
 de vérité unique</strong> pour l'avancement d'une nuit.</p>
 <hr />
