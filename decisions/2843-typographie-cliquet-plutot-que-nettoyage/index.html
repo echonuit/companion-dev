@@ -3185,7 +3185,7 @@
 <ul>
 <li><strong>Statut</strong> : Accepté — 2026-07-29</li>
 <li><strong>Chantier</strong> : #2843, suite de la clôture du chantier #2348 et de #2813</li>
-<li><strong>Vérification</strong> : probable — <code>scripts/adr/2843-tiret-cadratin.py</code> (cliquet : 1037)</li>
+<li><strong>Vérification</strong> : probable — <code>scripts/adr/2843-tiret-cadratin.py</code> (cliquet : 1036)</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>La règle « pas de tiret cadratin » est écrite <strong>deux fois</strong> dans le dépôt :</p>
@@ -3202,7 +3202,8 @@
 <p>C'est un choix contre l'alternative apparemment plus généreuse d'un compteur unique couvrant aussi la documentation. Deux populations dans un seul nombre peuvent se <strong>masquer</strong> : un nettoyage de vingt lignes de documentation compenserait vingt régressions dans le code, le total resterait stable, et le verdict resterait vert. Le garde mentirait alors dans le sens rassurant, ce qui est pire que pas de garde du tout.</p>
 <p>Une seule population, un seul nombre, aucun angle mort.</p>
 <p><strong>4. Une zone nettoyée passe du cliquet à la tolérance zéro.</strong> Cette ADR annonçait d'abord que la documentation aurait « son propre cliquet ». C'était mal formulé : un cliquet sur une zone déjà au plancher est inutilement faible, et il resterait masquable tant qu'une autre zone comptée avec elle serait, elle, loin du plancher. Une zone nettoyée n'a plus besoin d'une marge, elle a besoin d'un refus.</p>
-<p><code>docs/</code> est nettoyée depuis #2365 : la vérification y compte <strong>zéro</strong> cadratin de prose, et le script échoue à la première rechute.</p>
+<p><code>docs/</code> et <code>brief/</code> sont nettoyées depuis #2365 : la vérification y compte <strong>zéro</strong> cadratin de prose, et le script échoue à la première rechute.</p>
+<p>Les zones nettoyées vivent dans une <strong>liste déclarative</strong> du script (<code>ZONES_NETTOYEES</code>). Ajouter une tranche revient à ajouter <strong>une ligne</strong>, et c'est délibéré : chaque tranche du chantier touche ce même script, donc une insertion d'une ligne se résout sans réfléchir là où un bloc de code aurait sérialisé les tranches.</p>
 <p><strong>5. Ce qui est cité n'est pas de la prose.</strong> Un cadratin entre <strong>guillemets français</strong> ou entre <strong>chevrons de code</strong> est une citation : le glyphe de valeur absente que la documentation décrit, ou un libellé de l'application qu'une fiche d'écran reproduit fidèlement. Une seule règle couvre les deux, là où deux listes d'exceptions auraient dérivé séparément.</p>
 <p>C'est aussi ce qui a révélé que <strong><code>docs/</code> n'est pas indépendante des chaînes Java</strong> : <code>docs/ecrans/sites.md</code> cite le libellé <code>« GPS manquant — placer sur la carte »</code>, écrit tel quel dans <code>CartesPointsSite</code>. Corriger la documentation seule l'aurait fait diverger du produit. Ce cadratin partira avec la tranche des chaînes Java, où le libellé et sa documentation changeront ensemble.</p>
 <p><strong>3. La vérification reste « probable ».</strong> Un tiret cadratin peut être cité légitimement : un commentaire qui explique la règle, une chaîne qui reproduit un texte externe. Aucun motif ne sait faire cette différence, c'est un humain qui tranche, extrait en main.</p>
