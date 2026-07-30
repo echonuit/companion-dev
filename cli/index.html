@@ -3622,6 +3622,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>ProjectionsAudioDao.lignesAudioDuPassage</code> + <code>ExportObservationsCsv</code></td>
 </tr>
 <tr>
+<td><code>exporter-sons</code></td>
+<td><code>(--passage &lt;id&gt; \| --espece &lt;code&gt;) --sortie &lt;zip&gt;</code></td>
+<td>#2795</td>
+<td><code>ProjectionsAudioDao.lignesAudioDuPassage</code> / <code>lignesAudioDeLEspece</code> + <code>ExportObservationsEtSons</code> (#2792). Parité CLI du geste « Exporter les observations et les sons » de la vue audio (#2793) : archive <code>observations.csv</code> + <code>sons/&lt;session&gt;/&lt;fichier&gt;</code>, sons introuvables comptés sans bloquer. <code>--passage</code> couvre le même sous-ensemble qu'<code>exporter-observations</code> (CSV identique) et refuse un passage inconnu (code 2) ; <code>--espece</code> couvre l'espèce sur tous les passages de l'utilisateur, tous statuts, et une espèce sans observation produit une archive au CSV d'en-têtes seuls</td>
+</tr>
+<tr>
 <td><code>exporter-activite</code></td>
 <td><code>(--passage &lt;id&gt; \| --tout) --sortie &lt;fichier&gt; [--tranche 15\|30\|60] [--format csv]</code></td>
 <td>#2352</td>
