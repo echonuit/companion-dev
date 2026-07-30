@@ -3203,18 +3203,18 @@
   
 
 
-<h1 id="adr-0022-le-verbe-dun-geste-dit-le-sens-reel-de-lechange">ADR 0022 — Le verbe d'un geste dit le sens réel de l'échange<a class="headerlink" href="#adr-0022-le-verbe-dun-geste-dit-le-sens-reel-de-lechange" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0022-le-verbe-dun-geste-dit-le-sens-reel-de-lechange">ADR 0022 - Le verbe d'un geste dit le sens réel de l'échange<a class="headerlink" href="#adr-0022-le-verbe-dun-geste-dit-le-sens-reel-de-lechange" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-18</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-18</li>
 <li><strong>Chantier</strong> : #1855, #1866 (suites de l'EPIC #1662 et du chantier #1838)</li>
-<li><strong>Vérification</strong> : humaine — que le verbe d'un geste dise le sens réel de l'échange porte sur le vocabulaire de l'IHM, qu'aucun motif ne juge</li>
+<li><strong>Vérification</strong> : humaine - que le verbe d'un geste dise le sens réel de l'échange porte sur le vocabulaire de l'IHM, qu'aucun motif ne juge</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'application et la plateforme s'échangent des données dans les deux sens, par une dizaine de gestes différents. Le mot qui nomme chacun de ces gestes est la <strong>seule</strong> indication que l'utilisateur a sur ce qui va se passer : il ne voit ni la requête, ni la direction, ni ce qui sera écrit chez qui.</p>
 <p>Deux fois, à deux chantiers d'écart, ce mot a menti.</p>
 <p><strong>#1855.</strong> Deux boutons s'appelaient « Synchroniser depuis VigieChiro » alors qu'aucun ne pousse quoi que ce soit : celui de la modale tire météo, micro et enregistreur ; celui de Mes sites tire sites, points et passages. « Synchroniser » annonce un échange bidirectionnel. Le défaut est devenu criant quand #1839 a posé un vrai « Envoyer vers VigieChiro » juste à côté du premier : deux boutons voisins, l'un qui reçoit et l'autre qui envoie, portaient des verbes qui ne disaient pas la différence.</p>
 <p><strong>#1838.</strong> Une phase de progression s'appelait « Ancrage des observations <strong>sur</strong> VigieChiro… » pour un traitement qui <strong>télécharge</strong> des identifiants. Le libellé était partagé avec la réactivation (#1571) et figurait déjà dans une capture : le chantier n'avait pas créé le défaut, il l'avait propagé.</p>
-<p>Entre les deux, rien n'a signalé la récidive. La règle posée par #1855 existait, elle était juste, et elle vivait <strong>uniquement dans le corps d'un message de commit</strong> — un endroit que personne ne relit.</p>
+<p>Entre les deux, rien n'a signalé la récidive. La règle posée par #1855 existait, elle était juste, et elle vivait <strong>uniquement dans le corps d'un message de commit</strong> : un endroit que personne ne relit.</p>
 <p>Une troisième question est alors revenue (#1866) : le menu ☰ de « Sons &amp; validation » dit « <strong>Importer</strong> depuis VigieChiro… » là où Mes sites dit « <strong>Récupérer</strong> depuis VigieChiro ». Même plateforme, même direction, deux verbes. Est-ce le même défaut ? Non, et la raison mérite d'être écrite : c'est précisément ce qui distingue une incohérence d'une distinction utile.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>1. Le verbe dit le sens réel de l'échange.</strong> Un geste qui ne fait que recevoir ne s'appelle pas « synchroniser ». Le verbe porte l'action, le complément porte la direction : « Récupérer <strong>depuis</strong> VigieChiro », « Envoyer <strong>vers</strong> VigieChiro ». Un verbe qui promet plus que le geste est un défaut, même quand la direction est correcte par ailleurs.</p>
@@ -3225,7 +3225,7 @@
 <ul>
 <li>« Importer / Réimporter depuis VigieChiro » <strong>reste</strong>. Ce n'est pas une exception tolérée par lassitude : c'est l'application de la règle 2. La question ne se rouvre pas au prochain chantier qui touchera ce menu.</li>
 <li>La commande CLI <code>synchroniser-vigiechiro</code> était le dernier résidu du vocabulaire écarté par #1855 : elle devient <code>recuperer-vigiechiro</code>, l'ancien nom restant comme <strong>alias</strong> pour ne pas casser les scripts existants (la parité CLI ↔ IHM de l'<a href="../0014-parite-cli-ihm/">ADR 0014</a> porte aussi sur les mots).</li>
-<li>Un libellé partagé par deux gestes se change <strong>en plusieurs endroits</strong> : la source, la doc utilisateur, la fiche de recette, et la capture qui le montre. #1838 a livré le remède structurel — quand deux gestes partagent un libellé, il vit dans <strong>une constante</strong> (<code>AcquisitionAncrage.LIBELLE</code>) et non dans deux chaînes jumelles. Sans quoi le renommage se fait une fois sur deux, et rien ne le dit.</li>
+<li>Un libellé partagé par deux gestes se change <strong>en plusieurs endroits</strong> : la source, la doc utilisateur, la fiche de recette, et la capture qui le montre. #1838 a livré le remède structurel, quand deux gestes partagent un libellé, il vit dans <strong>une constante</strong> (<code>AcquisitionAncrage.LIBELLE</code>) et non dans deux chaînes jumelles. Sans quoi le renommage se fait une fois sur deux, et rien ne le dit.</li>
 <li>Les termes vus par l'utilisateur sont désormais définis dans le <a href="https://companion.echonuit.fr/glossaire/">glossaire utilisateur</a> ; leur sens interne, dans le <a href="../../glossaire/">glossaire du domaine</a>. Une divergence entre les deux reste un défaut de vocabulaire à corriger, comme le pose déjà ce dernier.</li>
 </ul>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>

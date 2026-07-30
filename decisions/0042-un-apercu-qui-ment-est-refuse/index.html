@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0042-un-apercu-qui-ment-est-refuse-et-lexception-se-declare-dans-la-vue">ADR 0042 — Un aperçu qui ment est refusé, et l'exception se déclare dans la vue<a class="headerlink" href="#adr-0042-un-apercu-qui-ment-est-refuse-et-lexception-se-declare-dans-la-vue" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0042-un-apercu-qui-ment-est-refuse-et-lexception-se-declare-dans-la-vue">ADR 0042 - Un aperçu qui ment est refusé, et l'exception se déclare dans la vue<a class="headerlink" href="#adr-0042-un-apercu-qui-ment-est-refuse-et-lexception-se-declare-dans-la-vue" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-20</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-20</li>
 <li><strong>Chantier</strong> : #2049, #1641, #1873, #1579, #2129</li>
-<li><strong>Vérification</strong> : certaine — <code>ApercuFxElisionTest#bouton_tronque_refuse</code></li>
+<li><strong>Vérification</strong> : certaine - <code>ApercuFxElisionTest#bouton_tronque_refuse</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Cinq issues ouvertes disaient la même chose sous cinq formes : « des libellés sont tronqués ». Toutes étaient nées d'une <strong>revue à l'œil</strong>, en passe 8 d'une clôture. Aucun test ne rougissait : un test vérifie qu'un bouton <strong>fait</strong> ce qu'il doit, il ne vérifie pas qu'on puisse <strong>lire</strong> ce qu'il dit.</p>
@@ -3238,11 +3238,11 @@
 <p><strong>1. <code>ApercuFx</code> refuse d'écrire un PNG déformé, il ne se contente pas d'avertir.</strong> Un avertissement dans un journal de CI que personne ne lit ne vaut pas mieux que le silence d'avant. Le refus arrête la chaîne de captures, donc il se traite.</p>
 <p>Le message nomme le libellé fautif et <strong>chiffre</strong> ce qui lui manque : sans le chiffre, la correction se cherche en tâtonnant.</p>
 <p><strong>2. Le critère porte sur le libellé, jamais sur la scène.</strong> Comparer la hauteur du contenu à celle de la scène ne marche pas : mesuré sur le Diagnostic, cet écart vaut 1,6 px sur un écran où <strong>rien</strong> n'est élidé, ses conteneurs extensibles absorbant la place sans rien perdre. Pire, mesurée en hauteur <strong>préférée</strong>, une carte annonce 767 580 px de débordement. Un libellé comprimé, lui, occupe moins de hauteur que celle qu'il demanderait pour la largeur dont il dispose : c'est local, vérifiable, et sans faux positif.</p>
-<p><strong>3. Le déficit ne se supprime pas, il se déplace — et on choisit sur qui.</strong> Figer tous les contrôles d'une barre ne fait pas rentrer son contenu : cela le fait déborder. Il faut donc désigner un porteur. La règle : <strong>un sélecteur ou une métadonnée avant un libellé d'action</strong>. Un mode se relit au déroulé, un nom de fichier se relit dans la table d'à côté ; un bouton coupé ne se relit nulle part.</p>
+<p><strong>3. Le déficit ne se supprime pas, il se déplace, et on choisit sur qui.</strong> Figer tous les contrôles d'une barre ne fait pas rentrer son contenu : cela le fait déborder. Il faut donc désigner un porteur. La règle : <strong>un sélecteur ou une métadonnée avant un libellé d'action</strong>. Un mode se relit au déroulé, un nom de fichier se relit dans la table d'à côté ; un bouton coupé ne se relit nulle part.</p>
 <p><strong>4. L'exception se déclare dans la vue, par la classe CSS <code>abregeable</code>.</strong> Elle vit dans le FXML et non dans une liste tenue par l'outil, pour se lire <strong>à l'endroit où elle s'applique</strong>, par qui modifie la vue. C'est une classe <strong>marqueur</strong> : elle ne porte aucune règle de style, et ne doit pas être supprimée comme CSS morte. Elle s'hérite jusqu'aux libellés internes des contrôles composés (<code>ComboBox</code>, <code>MenuButton</code>), qu'un FXML ne peut pas marquer directement.</p>
 <p><strong>5. Un composant tiers est hors du contrôle.</strong> <code>AudioView</code> vient d'un artefact séparé : ses boutons de transport tronquent, et aucun FXML d'ici ne peut y remédier. Un verrou qui exige une correction impossible ne protège rien, il bloque. Ces défauts se traitent en amont (audio-view#56) et l'exclusion tombera quand ce sera publié.</p>
 <blockquote>
-<p><strong>Levée le 2026-07-20.</strong> audio-view#56 est corrigée (sa barre de transport est passée en <code>FlowPane</code>, elle plie au lieu de tronquer) et publiée en <strong>1.15.1</strong>. L'exclusion est <strong>retirée</strong> : le sous-arbre <code>AudioView</code> repasse sous le contrôle. Le principe énoncé ici reste valide et se réappliquera si un composant tiers redevient infixable d'ici — mais tant qu'une chaîne <em>peut</em> être verte, la rendre aveugle coûterait plus qu'elle ne rapporte : une régression amont ne se verrait plus.</p>
+<p><strong>Levée le 2026-07-20.</strong> audio-view#56 est corrigée (sa barre de transport est passée en <code>FlowPane</code>, elle plie au lieu de tronquer) et publiée en <strong>1.15.1</strong>. L'exclusion est <strong>retirée</strong> : le sous-arbre <code>AudioView</code> repasse sous le contrôle. Le principe énoncé ici reste valide et se réappliquera si un composant tiers redevient infixable d'ici, mais tant qu'une chaîne <em>peut</em> être verte, la rendre aveugle coûterait plus qu'elle ne rapporte : une régression amont ne se verrait plus.</p>
 </blockquote>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
@@ -3253,7 +3253,7 @@
 </ul>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
 <p><strong>Avertir sans bloquer.</strong> C'est l'état d'avant, sous un autre nom. Les cinq issues prouvent que ce qui n'arrête pas la chaîne n'est pas traité.</p>
-<p><strong>Élargir les scènes de capture jusqu'à ce que tout tienne.</strong> Fait disparaître le symptôme de l'image sans rien changer pour l'utilisateur qui travaille en fenêtre étroite — déjà écarté par <a href="../0037-une-barre-d-actions-plie-elle-ne-tronque-pas/">ADR 0037</a> pour #1701.</p>
+<p><strong>Élargir les scènes de capture jusqu'à ce que tout tienne.</strong> Fait disparaître le symptôme de l'image sans rien changer pour l'utilisateur qui travaille en fenêtre étroite : déjà écarté par <a href="../0037-une-barre-d-actions-plie-elle-ne-tronque-pas/">ADR 0037</a> pour #1701.</p>
 <p><strong>Une liste d'exceptions dans <code>ApercuFx</code>.</strong> Elle se serait périmée en silence : rien n'oblige qui modifie une vue à aller lire un outil de capture. La classe CSS est sous ses yeux.</p>
 
 

@@ -3203,21 +3203,21 @@
   
 
 
-<h1 id="adr-2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre-dans-le-lot">ADR 2614 — Une nuit hors protocole se filtre, au lieu de se fondre dans le lot<a class="headerlink" href="#adr-2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre-dans-le-lot" title="Permanent link">&para;</a></h1>
+<h1 id="adr-2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre-dans-le-lot">ADR 2614 - Une nuit hors protocole se filtre, au lieu de se fondre dans le lot<a class="headerlink" href="#adr-2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre-dans-le-lot" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-28</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-28</li>
 <li><strong>Chantier</strong> : #2614 (suite du lot 2 de l'EPIC #2348)</li>
-<li><strong>Vérification</strong> : certaine — <code>NatureNuitTest#un_passage_marque_est_une_participation_opportuniste</code></li>
+<li><strong>Vérification</strong> : certaine - <code>NatureNuitTest#un_passage_marque_est_une_participation_opportuniste</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Une <strong>participation opportuniste</strong> (#2525) est une nuit enregistrée sur le carré d'un tiers, quand l'occasion se présente. Elle porte exactement les mêmes données qu'une nuit du protocole, mais elle ne compte pas de la même façon : elle est exemptée de R3 (fenêtre calendaire) et de R4 (intervalle conseillé), et le solde de saison l'écarte de son décompte.</p>
-<p>Le marquage est arrivé <strong>pendant</strong> le lot 2, et l'écran d'activité, écrit en parallèle, ne l'a jamais connu. Résultat : dans les vues agrégées — Activité de la nuit, Espèces &amp; observations —, une nuit opportuniste s'ajoutait aux autres sans que rien ne le signale. Une courbe transverse mêlait alors des nuits comparables entre elles et des nuits qui ne le sont pas, et l'inventaire comptait sur le même pied une espèce vue sous protocole et une espèce vue au hasard d'un passage ailleurs.</p>
+<p>Le marquage est arrivé <strong>pendant</strong> le lot 2, et l'écran d'activité, écrit en parallèle, ne l'a jamais connu. Résultat : dans les vues agrégées (Activité de la nuit, Espèces &amp; observations), une nuit opportuniste s'ajoutait aux autres sans que rien ne le signale. Une courbe transverse mêlait alors des nuits comparables entre elles et des nuits qui ne le sont pas, et l'inventaire comptait sur le même pied une espèce vue sous protocole et une espèce vue au hasard d'un passage ailleurs.</p>
 <p>C'est un défaut d'intégration, pas d'implémentation : chaque morceau était juste, personne n'avait relié les deux.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>La nature de la nuit devient une dimension de filtre à part entière</strong>, offerte au menu « + Filtre » des deux écrans agrégés, avec deux lectures : « Protocole » et « Opportuniste ».</p>
 <p>Trois choix la précisent :</p>
 <ol>
-<li><strong>Un filtre, pas un décompte séparé.</strong> L'écran ne tranche pas à la place de l'utilisateur : les deux natures restent affichées ensemble par défaut, et c'est une question posée à la main — « et si je ne gardais que le protocole ? » — qui les sépare. Une exclusion d'office aurait caché des données sans le dire.</li>
+<li><strong>Un filtre, pas un décompte séparé.</strong> L'écran ne tranche pas à la place de l'utilisateur : les deux natures restent affichées ensemble par défaut, et c'est une question posée à la main (« et si je ne gardais que le protocole ? ») qui les sépare. Une exclusion d'office aurait caché des données sans le dire.</li>
 <li><strong>L'absence de marquage vaut « Protocole ».</strong> C'est le sens même de la table de présence <code>passage_opportuniste</code> (V34), où seule l'exception coûte une ligne. Une ligne sans passage rattaché suit la même règle plutôt que de disparaître des deux lectures : un filtre qui escamote en silence ce qu'il ne sait pas classer ment sur ce qu'il montre.</li>
 <li><strong>Un port de lecture distinct du port d'écriture.</strong> <code>NuitsOpportunistes</code> (lecture groupée) tient séparé de <code>MarquageOpportuniste</code> (écriture) : <code>importation</code>, qui ne fait que marquer, ne se voit pas offrir une lecture dont elle n'a que faire, et <code>analyse</code>, qui ne fait que lire, n'hérite pas d'un pouvoir d'écriture.</li>
 </ol>
@@ -3226,13 +3226,13 @@
 <ul>
 <li>La dimension existe sur <strong>les deux écrans</strong> avec les mêmes libellés : une nuit opportuniste se lit pareil, qu'on regarde une courbe ou un inventaire.</li>
 <li>Les deux écrans partagent désormais une fabrique de critère à valeur unique dans le socle (<code>CritereListe.simple</code>), pendant de <code>CritereListe.multiple</code> livré en #2615. La liste déroulante que chaque écran réécrivait pour lui-même disparaît.</li>
-<li>L'instantané est pris <strong>au chargement</strong>, pas à l'ouverture de la puce : marquer une nuit opportuniste depuis un autre écran ne se reflète qu'au prochain rafraîchissement de celui-ci. Acceptable — le marquage est un acte rare, posé à l'import ou au rattachement.</li>
-<li><strong>Aucun repère visuel</strong> n'est ajouté dans les listes, alors que l'issue l'envisageait. Les deux écrans agrègent : une ligne d'inventaire par espèce, une courbe par espèce, chacune pouvant recouvrir plusieurs nuits des deux natures. Un badge par ligne y désignerait un mélange, pas un fait. Le jour où une vue montrera la nuit elle-même comme ligne, la question se reposera — et se posera bien.</li>
+<li>L'instantané est pris <strong>au chargement</strong>, pas à l'ouverture de la puce : marquer une nuit opportuniste depuis un autre écran ne se reflète qu'au prochain rafraîchissement de celui-ci. Acceptable, le marquage est un acte rare, posé à l'import ou au rattachement.</li>
+<li><strong>Aucun repère visuel</strong> n'est ajouté dans les listes, alors que l'issue l'envisageait. Les deux écrans agrègent : une ligne d'inventaire par espèce, une courbe par espèce, chacune pouvant recouvrir plusieurs nuits des deux natures. Un badge par ligne y désignerait un mélange, pas un fait. Le jour où une vue montrera la nuit elle-même comme ligne, la question se reposera, et se posera bien.</li>
 </ul>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Exclure les nuits opportunistes par défaut.</strong> Cohérent avec le solde de saison, qui les écarte. Mais le solde répond à « ai-je rempli mes obligations ? », là où ces écrans répondent à « qu'ai-je entendu ? » — question à laquelle une nuit opportuniste répond aussi bien qu'une autre. Écarter d'office aurait retranché des observations réelles sans le dire.</li>
-<li><strong>Porter le drapeau dans la ligne</strong> (<code>ContactHoraire</code>, <code>ObservationAnalyse</code>). La dimension se lirait sans port ni instantané, au prix d'une composante de plus sur deux projections déjà larges, et d'un aller-retour en base à chaque projection — pour un fait vrai de la nuit, pas de la ligne. Écarté pour la raison même qui a mis ce fait dans une table latérale plutôt que dans <code>passage</code> (ADR 2525), et dans le sens de l'EPIC arité #2483.</li>
+<li><strong>Exclure les nuits opportunistes par défaut.</strong> Cohérent avec le solde de saison, qui les écarte. Mais le solde répond à « ai-je rempli mes obligations ? », là où ces écrans répondent à « qu'ai-je entendu ? » : question à laquelle une nuit opportuniste répond aussi bien qu'une autre. Écarter d'office aurait retranché des observations réelles sans le dire.</li>
+<li><strong>Porter le drapeau dans la ligne</strong> (<code>ContactHoraire</code>, <code>ObservationAnalyse</code>). La dimension se lirait sans port ni instantané, au prix d'une composante de plus sur deux projections déjà larges, et d'un aller-retour en base à chaque projection : pour un fait vrai de la nuit, pas de la ligne. Écarté pour la raison même qui a mis ce fait dans une table latérale plutôt que dans <code>passage</code> (ADR 2525), et dans le sens de l'EPIC arité #2483.</li>
 <li><strong>Injecter <code>PassageOpportunisteDao</code> directement dans <code>analyse</code>.</strong> Le plus court. Il aurait fait dépendre une feature du DAO d'une autre, là où les ponts existants (<code>CoordonneesPoint</code>, <code>MarquageOpportuniste</code>, <code>InventaireBrutsSource</code>) montrent l'usage : une interface étroite, qui dit ce qu'on prend et rien de plus.</li>
 <li><strong>Ajouter la lecture à <code>MarquageOpportuniste</code>.</strong> Un port au lieu de deux, mais un port que ses deux consommateurs n'utiliseraient qu'à moitié chacun, et qui donnerait à <code>analyse</code> le droit de marquer.</li>
 </ul>

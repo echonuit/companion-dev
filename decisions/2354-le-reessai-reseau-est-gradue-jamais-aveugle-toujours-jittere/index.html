@@ -3237,11 +3237,11 @@
   
 
 
-<h1 id="adr-2354-le-reessai-reseau-est-gradue-par-profil-jamais-aveugle-toujours-jittere">ADR 2354 — Le réessai réseau est gradué par profil, jamais aveugle, toujours jitteré<a class="headerlink" href="#adr-2354-le-reessai-reseau-est-gradue-par-profil-jamais-aveugle-toujours-jittere" title="Permanent link">&para;</a></h1>
+<h1 id="adr-2354-le-reessai-reseau-est-gradue-par-profil-jamais-aveugle-toujours-jittere">ADR 2354 - Le réessai réseau est gradué par profil, jamais aveugle, toujours jitteré<a class="headerlink" href="#adr-2354-le-reessai-reseau-est-gradue-par-profil-jamais-aveugle-toujours-jittere" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-26</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-26</li>
 <li><strong>Chantier</strong> : #2354 (lot 1 de l'EPIC #2350)</li>
-<li><strong>Vérification</strong> : certaine — <code>PolitiqueReessaiTest#refus_definitif_ne_reessaie_pas</code></li>
+<li><strong>Vérification</strong> : certaine - <code>PolitiqueReessaiTest#refus_definitif_ne_reessaie_pas</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le dépôt d'une nuit se fait souvent depuis le terrain, sur un partage de connexion mobile : une coupure d'une seconde y est normale, pas exceptionnelle. Or <code>commun/api/TransportVigieChiro</code> n'avait <strong>aucun réessai</strong>. Un paquet perdu pendant un <code>PUT</code> S3 de plusieurs dizaines de mégaoctets faisait échouer l'unité de dépôt.</p>

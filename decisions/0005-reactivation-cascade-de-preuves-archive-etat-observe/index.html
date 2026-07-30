@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0005-la-reactivation-se-verifie-par-une-cascade-de-preuves-archive-est-un-etat-observe-pas-un-statut">ADR 0005 — La réactivation se vérifie par une cascade de preuves ; « archivé » est un état observé, pas un statut<a class="headerlink" href="#adr-0005-la-reactivation-se-verifie-par-une-cascade-de-preuves-archive-est-un-etat-observe-pas-un-statut" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0005-la-reactivation-se-verifie-par-une-cascade-de-preuves-archive-est-un-etat-observe-pas-un-statut">ADR 0005 - La réactivation se vérifie par une cascade de preuves ; « archivé » est un état observé, pas un statut<a class="headerlink" href="#adr-0005-la-reactivation-se-verifie-par-une-cascade-de-preuves-archive-est-un-etat-observe-pas-un-statut" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — rétroactif, <strong>amendé</strong> par <a href="../0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">ADR 0048</a> (#1038)</li>
+<li><strong>Statut</strong> : Accepté - rétroactif, <strong>amendé</strong> par <a href="../0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">ADR 0048</a> (#1038)</li>
 <li><strong>Chantier</strong> : EPIC #1297 (passage archivé) ; cascade #1309, empreinte #1299</li>
-<li><strong>Vérification</strong> : certaine — <code>DecisionsRespecteesTest#archive_n_est_pas_un_statut_de_workflow</code></li>
+<li><strong>Vérification</strong> : certaine - <code>DecisionsRespecteesTest#archive_n_est_pas_un_statut_de_workflow</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Un passage dont l'audio a quitté le disque (place libérée, dépôt par ZIP - cf. <a href="../0006-depot-zip-par-defaut-perte-audio-serveur-assumee/">ADR 0006</a>) n'est pas un passage <strong>cassé</strong>. On veut pouvoir le <strong>réactiver</strong> en réimportant les fichiers d'origine, sans jamais rebrancher sur le <strong>mauvais</strong> audio (un homonyme redécoupé produirait des observations scientifiquement fausses <strong>et silencieuses</strong>). Exiger une empreinte cryptographique réglerait l'identité, mais <strong>condamnerait</strong> tous les passages déjà archivés : ils n'en ont pas, et leurs fichiers sont partis.</p>

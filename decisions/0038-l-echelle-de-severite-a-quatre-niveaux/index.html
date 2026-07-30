@@ -3225,11 +3225,11 @@
   
 
 
-<h1 id="adr-0038-lechelle-de-severite-compte-quatre-niveaux-et-son-ordre-de-declaration-porte-la-semantique">ADR 0038 — L'échelle de sévérité compte quatre niveaux, et son ordre de déclaration porte la sémantique<a class="headerlink" href="#adr-0038-lechelle-de-severite-compte-quatre-niveaux-et-son-ordre-de-declaration-porte-la-semantique" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0038-lechelle-de-severite-compte-quatre-niveaux-et-son-ordre-de-declaration-porte-la-semantique">ADR 0038 - L'échelle de sévérité compte quatre niveaux, et son ordre de déclaration porte la sémantique<a class="headerlink" href="#adr-0038-lechelle-de-severite-compte-quatre-niveaux-et-son-ordre-de-declaration-porte-la-semantique" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-19</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-19</li>
 <li><strong>Chantier</strong> : EPIC #1990 / sous-EPIC #2004 (#2045, #2050)</li>
-<li><strong>Vérification</strong> : certaine — <code>DecisionsRespecteesTest#l_echelle_de_severite_a_quatre_niveaux_dans_l_ordre</code></li>
+<li><strong>Vérification</strong> : certaine - <code>DecisionsRespecteesTest#l_echelle_de_severite_a_quatre_niveaux_dans_l_ordre</code></li>
 <li><strong>Applique</strong> : <a href="../0035-un-pictogramme-est-une-icone-pas-un-caractere/">ADR 0035</a> point 5, dont elle fournit le garde-fou.</li>
 <li><strong>Amendée le 2026-07-20</strong> (#2159) : le contexte ci-dessous était écrit depuis <strong>une</strong> des deux échelles de sévérité de l'application. Voir « Ce que cette ADR ignorait ».</li>
 </ul>
@@ -3237,7 +3237,7 @@
 <p><code>RetourOperation.Severite</code> comptait trois niveaux : <code>SUCCES</code>, <code>INFO</code>, <code>ERREUR</code>.</p>
 <p>Un <strong>avertissement</strong> n'y trouvait pas sa place. L'opération a abouti, mais quelque chose mérite l'attention : une nuit déjà importée qu'on réimporte quand même, un dossier mélangeant deux enregistreurs, un numéro de passage déjà pris. Ce n'est ni une information neutre, ni un échec.</p>
 <p>On aurait pu croire que ces cas avaient été <strong>rabattus</strong> sur <code>ERREUR</code> ou <code>INFO</code> faute de mieux. La revue des adoptants (#2050) montre l'inverse, et c'est plus instructif : ils ont <strong>quitté le type</strong>.</p>
-<p>Huit propriétés — neuf, une neuvième ayant été trouvée après coup — portaient leur sévérité sous forme de « ⚠ » écrit dans une chaîne libre, hors de <code>RetourOperation</code> :</p>
+<p>Huit propriétés (neuf, une neuvième ayant été trouvée après coup) portaient leur sévérité sous forme de « ⚠ » écrit dans une chaîne libre, hors de <code>RetourOperation</code> :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">avertissement</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="s">&quot;⚠ Le passage n° &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">numero</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot; existe déjà pour ce point en &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">annee</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="err">…</span><span class="p">);</span>
 </code></pre></div>
 <p>Une fois dehors, plus rien ne bornait leur forme. Trois d'entre elles y joignaient des <strong>listes entières</strong> ; une quatrième réduisait une collection à un booléen (« un ou plusieurs numéros sont déjà utilisés », alors que la boucle savait lesquels).</p>
@@ -3248,33 +3248,33 @@
 <code>ERREUR</code>, <code>AVERTISSEMENT</code>, <code>INFO</code> depuis sa création.</p>
 <p>Deux échelles coexistaient donc, l'une en <code>model</code>, l'autre en <code>viewmodel</code>, sans conversion, sans renvoi
 documentaire, sans mention de l'une dans l'autre. Cette ADR a été écrite depuis un seul des deux angles,
-faute d'avoir cherché l'autre — et son auteur venait pourtant de passer un chantier entier à traquer
+faute d'avoir cherché l'autre : et son auteur venait pourtant de passer un chantier entier à traquer
 exactement ce motif : <strong>deux vocabulaires pour un concept</strong>.</p>
 <p>Découvert le lendemain, en préparant le lot 3 de #2036 : <code>VerdictCarre</code> devait porter sa sévérité, et le
 choix fait pour lui décidait laquelle des deux échelles faisait autorité.</p>
 <p><strong>Ce que la décision devient.</strong> #2159 a posé <code>commun.model.Severite</code> comme échelle unique : les deux
 précédentes s'y adossent, et plus aucun <code>model</code> ne cite <code>viewmodel</code>. Les quatre points ci-dessous
-restent entièrement valables — ils portaient sur la <strong>forme</strong> de l'échelle (ses niveaux, son ordre, ses
+restent entièrement valables : ils portaient sur la <strong>forme</strong> de l'échelle (ses niveaux, son ordre, ses
 glyphes), pas sur sa localisation.</p>
-<p><strong>Ce que ça n'invalide pas.</strong> Le mécanisme décrit — huit propriétés sorties du type faute de pouvoir s'y
-ranger — est exact et documenté par #2050. Le niveau manquait bien <em>là où elles vivaient</em>.</p>
+<p><strong>Ce que ça n'invalide pas.</strong> Le mécanisme décrit : huit propriétés sorties du type faute de pouvoir s'y
+ranger : est exact et documenté par #2050. Le niveau manquait bien <em>là où elles vivaient</em>.</p>
 <p><strong>La leçon, qui vaut au-delà de ce cas.</strong> Chercher ce qui manque à un type demande de chercher d'abord
 s'il est seul de son espèce. Une analyse menée depuis un seul angle produit un constat vrai et une
-conclusion incomplète — et rien, dans le constat, ne signale qu'il manque un angle.</p>
+conclusion incomplète : et rien, dans le constat, ne signale qu'il manque un angle.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>1. <code>AVERTISSEMENT</code> s'insère entre <code>INFO</code> et <code>ERREUR</code>.</strong> L'opération a abouti ; quelque chose mérite l'attention sans être un échec.</p>
-<p><strong>2. L'ordre de déclaration porte la sévérité.</strong> <code>CompteRendu.severite()</code> prend le maximum par <code>ordinal()</code> : la position des constantes détermine quel constat qualifie un compte rendu entier. Réordonner l'énumération changerait ce comportement <strong>sans qu'aucun test existant ne rougisse</strong> — <code>SeveriteTest</code> l'épingle donc explicitement.</p>
+<p><strong>2. L'ordre de déclaration porte la sévérité.</strong> <code>CompteRendu.severite()</code> prend le maximum par <code>ordinal()</code> : la position des constantes détermine quel constat qualifie un compte rendu entier. Réordonner l'énumération changerait ce comportement <strong>sans qu'aucun test existant ne rougisse</strong>, <code>SeveriteTest</code> l'épingle donc explicitement.</p>
 <p><strong>3. L'erreur cède le triangle et prend le cercle barré.</strong> <code>fas-exclamation-triangle</code> est le glyphe usuel de l'avertissement. Deux niveaux distincts qui partagent une forme ne se distinguent plus quand la couleur manque, ce qui viderait de son sens la promesse de l'ADR 0035 point 5. <code>fas-times-circle</code> était déjà employé pour <code>ECHEC</code> dans <code>CelluleProgressionUnite</code> : le vocabulaire s'harmonise au lieu de se compliquer.</p>
-<p><strong>4. Une seule table de glyphes.</strong> <code>IconesSeverite</code> est la source unique, partagée par <code>BandeauRetour</code>, <code>VueCompteRendu</code> et <code>LibelleRetour</code>. Recopier la table aurait laissé trois surfaces libres de diverger — c'est le motif que l'ADR de #1974 a passé une PR à corriger sur les classes CSS, et qu'on a refait deux fois pendant ce chantier.</p>
+<p><strong>4. Une seule table de glyphes.</strong> <code>IconesSeverite</code> est la source unique, partagée par <code>BandeauRetour</code>, <code>VueCompteRendu</code> et <code>LibelleRetour</code>. Recopier la table aurait laissé trois surfaces libres de diverger : c'est le motif que l'ADR de #1974 a passé une PR à corriger sur les classes CSS, et qu'on a refait deux fois pendant ce chantier.</p>
 <p><strong>5. La sévérité est refusée en tête de message.</strong> Le constructeur compact de <code>RetourOperation</code> rejette un texte ouvrant par <code>⚠ ✓ ✗ ❌ ⛔ ✅ ❗</code>. C'est le garde-fou de l'ADR 0035 point 5 : sans lui, rien n'empêche un futur message de remettre le marqueur dans la chaîne, et le cycle recommence.</p>
-<p>La garde ne mord qu'en <strong>tête</strong> : un glyphe au milieu d'une phrase illustre, il n'usurpe pas la sévérité. Et elle ne couvre <strong>que</strong> ce type — les propriétés <code>String</code> ad hoc restent libres, ce que sa Javadoc dit explicitement. Une garde qui laisserait croire qu'elle protège plus large serait pire que pas de garde.</p>
+<p>La garde ne mord qu'en <strong>tête</strong> : un glyphe au milieu d'une phrase illustre, il n'usurpe pas la sévérité. Et elle ne couvre <strong>que</strong> ce type, les propriétés <code>String</code> ad hoc restent libres, ce que sa Javadoc dit explicitement. Une garde qui laisserait croire qu'elle protège plus large serait pire que pas de garde.</p>
 <p>Conformément à l'ADR 0035 point 6, elle ne concerne pas la CLI : un terminal ne rend pas de <code>FontIcon</code>, le caractère y est le seul moyen d'écrire un avertissement.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p>L'icône d'erreur change dans toute l'application. C'est visible et assumé : le triangle disait « attention » là où il fallait dire « raté ».</p>
-<p>Les neuf propriétés hors du type reviennent une par une (#2050). Quatre l'ont fait ; les autres sont soit des <strong>états</strong> — qui relèvent de l'ADR 0028 et non de ce type — soit sur un écran en refonte.</p>
+<p>Les neuf propriétés hors du type reviennent une par une (#2050). Quatre l'ont fait ; les autres sont soit des <strong>états</strong> (qui relèvent de l'ADR 0028 et non de ce type) soit sur un écran en refonte.</p>
 <h2 id="ce-que-la-mise-en-uvre-a-appris">Ce que la mise en œuvre a appris<a class="headerlink" href="#ce-que-la-mise-en-uvre-a-appris" title="Permanent link">&para;</a></h2>
 <p>Le niveau manquant ne s'est pas signalé par des messages mal classés, mais par une <strong>fuite hors du système</strong>. Quand un type ne sait pas exprimer un cas, le cas ne se plie pas au type : il en sort, et ce qui l'en empêchait cesse de s'appliquer. Chercher les niveaux manquants d'une énumération revient donc à chercher ce qui a <strong>contourné</strong> l'énumération, pas ce qui s'y est mal rangé.</p>
-<p>Et — leçon ajoutée par l'amendement — la fuite ne va pas toujours vers des chaînes libres. Elle peut aller vers <strong>une seconde énumération</strong>, dans une autre couche, qui règle le même problème sans le savoir. Celle-là ne se trouve pas en cherchant des glyphes : elle se trouve en cherchant des <strong>synonymes</strong>.</p>
+<p>Et, leçon ajoutée par l'amendement, la fuite ne va pas toujours vers des chaînes libres. Elle peut aller vers <strong>une seconde énumération</strong>, dans une autre couche, qui règle le même problème sans le savoir. Celle-là ne se trouve pas en cherchant des glyphes : elle se trouve en cherchant des <strong>synonymes</strong>.</p>
 
 
 

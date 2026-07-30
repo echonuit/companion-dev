@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0016-la-synchro-rapatrie-les-nuits-en-squelettes-hydrates-a-la-demande">ADR 0016 — La synchro rapatrie les nuits en squelettes, hydratés à la demande<a class="headerlink" href="#adr-0016-la-synchro-rapatrie-les-nuits-en-squelettes-hydrates-a-la-demande" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0016-la-synchro-rapatrie-les-nuits-en-squelettes-hydrates-a-la-demande">ADR 0016 - La synchro rapatrie les nuits en squelettes, hydratés à la demande<a class="headerlink" href="#adr-0016-la-synchro-rapatrie-les-nuits-en-squelettes-hydrates-a-la-demande" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-17, <strong>amendé</strong> par <a href="../0018-la-synchro-rapatrie-l-identite-de-la-nuit/">ADR 0018</a> (#1814), <a href="../2581-un-etat-qui-decide-de-l-affichage-se-declare/">ADR 2581</a> (#2581), <a href="../0019-ancrage-acquis-quand-il-sert/">ADR 0019</a> (#1838) et <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/">ADR 2554</a> (EPIC #2554)</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-17, <strong>amendé</strong> par <a href="../0018-la-synchro-rapatrie-l-identite-de-la-nuit/">ADR 0018</a> (#1814), <a href="../2581-un-etat-qui-decide-de-l-affichage-se-declare/">ADR 2581</a> (#2581), <a href="../0019-ancrage-acquis-quand-il-sert/">ADR 0019</a> (#1838) et <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/">ADR 2554</a> (EPIC #2554)</li>
 <li><strong>Chantier</strong> : EPIC #1662 (refonte de la récupération d'une nuit)</li>
-<li><strong>Vérification</strong> : humaine — le rapatriement en squelettes hydratés à la demande est un comportement de synchro, non observable par un motif statique</li>
+<li><strong>Vérification</strong> : humaine - le rapatriement en squelettes hydratés à la demande est un comportement de synchro, non observable par un motif statique</li>
 </ul>
 <blockquote>
 <p>[!NOTE]
@@ -3218,14 +3218,14 @@ micro, fin de nuit) ; les observations et l'audio restent à l'hydratation. Le r
 <p>[!NOTE]
 <strong>Amendement (ADR 2554)</strong> : la répartition « la reconstruction rapatrie les observations, la réactivation
 rebranche l'audio » ne tient plus. La question devient <strong>à quel niveau de complétude chaque nuit est
-amenée</strong> (structure → identité → <strong>contenu</strong>), et la synchro va jusqu'au contenu — pour toutes les nuits
+amenée</strong> (structure → identité → <strong>contenu</strong>), et la synchro va jusqu'au contenu : pour toutes les nuits
 sans séquences, squelettes hérités compris. Le chiffrage qui justifiait de s'arrêter avant portait sur la
 pagination <code>donnees</code> ; le CSV (#1565) coûte deux GET. L'alternative « hydrater en place », écartée ici,
 est <strong>retenue</strong> sur le chemin de la réactivation (un écran est ouvert dessus, et un squelette porte des
 saisies manuelles). Voir <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/">ADR 2554</a>.</p>
 <p>[!NOTE]
 <strong>Amendement (ADR 2581)</strong> : le squelette n'est plus créé « passage <strong>déposé</strong> et archivé ». Il porte
-désormais son propre statut, <code>RECUPERE</code> (« Récupéré »), hors de la file linéaire du workflow — il n'a
+désormais son propre statut, <code>RECUPERE</code> (« Récupéré »), hors de la file linéaire du workflow : il n'a
 franchi aucune de ses étapes. Le statut « Déposé » recouvrait deux situations dont les gardes, les
 gestes et l'affichage diffèrent : « nous avons déposé cette nuit » et « elle vient du serveur ». La
 conséquence « un squelette est un état <strong>bénin</strong> pour l'audit » tient toujours, et l'audit n'a d'ailleurs

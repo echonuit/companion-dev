@@ -3203,15 +3203,15 @@
   
 
 
-<h1 id="adr-2352-la-nuit-se-lit-du-crepuscule-a-laube-pas-de-minuit-a-minuit">ADR 2352 — La nuit se lit du crépuscule à l'aube, pas de minuit à minuit<a class="headerlink" href="#adr-2352-la-nuit-se-lit-du-crepuscule-a-laube-pas-de-minuit-a-minuit" title="Permanent link">&para;</a></h1>
+<h1 id="adr-2352-la-nuit-se-lit-du-crepuscule-a-laube-pas-de-minuit-a-minuit">ADR 2352 - La nuit se lit du crépuscule à l'aube, pas de minuit à minuit<a class="headerlink" href="#adr-2352-la-nuit-se-lit-du-crepuscule-a-laube-pas-de-minuit-a-minuit" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-26</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-26</li>
 <li><strong>Chantier</strong> : #2352 (lot 2 de l'EPIC #2348)</li>
-<li><strong>Vérification</strong> : certaine — <code>AgregationActiviteTest#l_export_date_ses_lignes_par_la_nuit_biologique</code></li>
+<li><strong>Vérification</strong> : certaine - <code>AgregationActiviteTest#l_export_date_ses_lignes_par_la_nuit_biologique</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Une nuit d'enregistrement chiroptère commence après le coucher du soleil et finit avant l'aube : elle est <strong>à cheval sur deux dates civiles</strong>. Le calendrier, lui, bascule à minuit — au milieu de l'objet qu'on observe.</p>
-<p>Cette collision n'est pas théorique. Découper l'activité par date civile coupe chaque nuit en deux moitiés qui atterrissent dans deux cases différentes : le pic de 23 h 40 dans la case du 21, la retombée de 00 h 20 dans celle du 22. Un axe horaire 0 h → 24 h produit alors une courbe en deux morceaux, l'un collé à droite, l'autre à gauche, entre lesquels l'œil doit reconstruire la continuité. La forme de la nuit — montée, pic, décroissance — devient illisible, alors que c'est précisément elle qui porte l'information que le comptage total efface.</p>
+<p>Une nuit d'enregistrement chiroptère commence après le coucher du soleil et finit avant l'aube : elle est <strong>à cheval sur deux dates civiles</strong>. Le calendrier, lui, bascule à minuit, au milieu de l'objet qu'on observe.</p>
+<p>Cette collision n'est pas théorique. Découper l'activité par date civile coupe chaque nuit en deux moitiés qui atterrissent dans deux cases différentes : le pic de 23 h 40 dans la case du 21, la retombée de 00 h 20 dans celle du 22. Un axe horaire 0 h → 24 h produit alors une courbe en deux morceaux, l'un collé à droite, l'autre à gauche, entre lesquels l'œil doit reconstruire la continuité. La forme de la nuit (montée, pic, décroissance) devient illisible, alors que c'est précisément elle qui porte l'information que le comptage total efface.</p>
 <p>Le même écueil guette hors de l'écran : un export qui daterait ses tranches par leur date civile mêlerait deux nuits dans un même regroupement de tableur.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>La nuit biologique est l'unité de lecture, et elle bascule à midi.</strong> Un instant appartient à la nuit du soir précédent tant qu'il est avant 12 h (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/model/Nuit.java"><code>Nuit#de</code></a>). Une capture à 02 h 00 le 22 juin appartient à la nuit du 21.</p>
@@ -3233,7 +3233,7 @@
 <ul>
 <li><strong>Un axe 0 h → 24 h.</strong> Le plus simple à écrire, et celui qui coupe la nuit en deux. Écarté pour la raison qui a motivé cette ADR.</li>
 <li><strong>Un axe calé sur les données</strong> (min/max des contacts). Chaque nuit occuperait toute la largeur, au prix de la comparabilité : deux nuits de durées différentes auraient la même longueur à l'écran, ce qui est exactement l'illusion qu'on veut éviter.</li>
-<li><strong>Un axe borné par le coucher et le lever réels.</strong> Séduisant, mais l'échelle changerait à chaque nuit — même problème que ci-dessus — et une nuit sans GPS n'aurait plus d'axe du tout.</li>
+<li><strong>Un axe borné par le coucher et le lever réels.</strong> Séduisant, mais l'échelle changerait à chaque nuit (même problème que ci-dessus) et une nuit sans GPS n'aurait plus d'axe du tout.</li>
 <li><strong>Rattacher la nuit par « date de la première séquence ».</strong> Marche tant qu'un enregistrement commence avant minuit ; une session démarrée à 00 h 15 basculerait la nuit entière d'un jour. La bascule à midi ne dépend pas de l'heure de démarrage.</li>
 </ul>
 

@@ -3225,32 +3225,32 @@
   
 
 
-<h1 id="adr-2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle">ADR 2349 — Une dérivation automatique ne défait jamais une saisie manuelle<a class="headerlink" href="#adr-2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle" title="Permanent link">&para;</a></h1>
+<h1 id="adr-2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle">ADR 2349 - Une dérivation automatique ne défait jamais une saisie manuelle<a class="headerlink" href="#adr-2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-27</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-27</li>
 <li><strong>Chantier</strong> : EPIC #2349 (du passage à la saison), décidé dans #2525</li>
-<li><strong>Vérification</strong> : certaine — <code>RapprochementNuitsOpportunistesTest#ne_demarque_jamais_une_saisie_manuelle</code></li>
+<li><strong>Vérification</strong> : certaine - <code>RapprochementNuitsOpportunistesTest#ne_demarque_jamais_une_saisie_manuelle</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Le chantier #2525 a donné <strong>trois voies</strong> pour déclarer qu'une participation est <em>opportuniste</em> (réalisée sur le carré d'un tiers, donc exemptée des règles R3/R4) : une case à l'import, une case dans la modale « Modifier le passage », et une <strong>dérivation automatique</strong> depuis l'API — le champ <code>site.observateur</code> comparé au profil connecté.</p>
+<p>Le chantier #2525 a donné <strong>trois voies</strong> pour déclarer qu'une participation est <em>opportuniste</em> (réalisée sur le carré d'un tiers, donc exemptée des règles R3/R4) : une case à l'import, une case dans la modale « Modifier le passage », et une <strong>dérivation automatique</strong> depuis l'API, le champ <code>site.observateur</code> comparé au profil connecté.</p>
 <p>La dérivation devait être <strong>rétroactive</strong> : à chaque synchronisation, les nuits déjà enregistrées sur un carré de tiers sont marquées, sans que l'observateur ait à les cocher une par une.</p>
 <p>Rétroactif suggère « aligner l'état sur la vérité du serveur », donc marquer <strong>et démarquer</strong>. C'est ce qui paraissait cohérent, et c'est un piège.</p>
-<p>Les deux voies manuelles existent précisément pour les cas que l'API <strong>ne peut pas</strong> trancher : une participation <strong>non connectée</strong>, dont le site local n'est lié à aucun site distant. Ces sites-là n'apparaissent <strong>jamais</strong> dans <code>site_tiers</code> — non parce qu'ils appartiennent à l'observateur, mais parce que la plateforme n'en sait rien. Un démarquage « tout ce qui n'est pas dans <code>site_tiers</code> » aurait donc effacé, à chaque synchronisation, exactement les saisies que ces voies servaient à recueillir.</p>
-<p>Le défaut aurait été silencieux : aucune erreur, aucun test rouge — juste des cases qui se décochent toutes seules entre deux sessions.</p>
+<p>Les deux voies manuelles existent précisément pour les cas que l'API <strong>ne peut pas</strong> trancher : une participation <strong>non connectée</strong>, dont le site local n'est lié à aucun site distant. Ces sites-là n'apparaissent <strong>jamais</strong> dans <code>site_tiers</code>, non parce qu'ils appartiennent à l'observateur, mais parce que la plateforme n'en sait rien. Un démarquage « tout ce qui n'est pas dans <code>site_tiers</code> » aurait donc effacé, à chaque synchronisation, exactement les saisies que ces voies servaient à recueillir.</p>
+<p>Le défaut aurait été silencieux : aucune erreur, aucun test rouge, juste des cases qui se décochent toutes seules entre deux sessions.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Un marquage dérivé d'une source externe ne retire jamais un marquage que l'utilisateur a pu poser à la main.</strong> La dérivation est à <strong>sens unique</strong> : elle ajoute, elle ne retranche pas.</p>
 <p>Concrètement, <code>RapprochementNuitsOpportunistes</code> (phase <code>DEPENDANTE</code>) marque les nuits des carrés de tiers et <strong>ne démarque rien</strong>, jamais.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p><strong>En bien.</strong> Les saisies manuelles survivent à toute synchronisation. La dérivation reste un <strong>confort</strong> — elle épargne des clics — et non une autorité qui écrase l'observateur.</p>
+<p><strong>En bien.</strong> Les saisies manuelles survivent à toute synchronisation. La dérivation reste un <strong>confort</strong> (elle épargne des clics) et non une autorité qui écrase l'observateur.</p>
 <p><strong>En moins bien, et assumé.</strong> Un carré qui vous est <strong>transféré</strong> garde ses anciennes nuits marquées opportunistes. C'est défendable au fond : ces nuits <strong>ont bien été réalisées</strong> alors que le carré appartenait à quelqu'un d'autre ; les démarquer réécrirait l'histoire. Mais c'est un choix, pas une évidence.</p>
-<p><strong>Ce que cela coûterait de faire autrement.</strong> Un démarquage automatique sûr exigerait de distinguer l'<strong>origine</strong> de chaque marquage (dérivé ou manuel) — une colonne de plus dans la table latérale, et une règle de préséance à tenir. Non fait : le besoin n'est pas démontré.</p>
+<p><strong>Ce que cela coûterait de faire autrement.</strong> Un démarquage automatique sûr exigerait de distinguer l'<strong>origine</strong> de chaque marquage (dérivé ou manuel), une colonne de plus dans la table latérale, et une règle de préséance à tenir. Non fait : le besoin n'est pas démontré.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <p><strong>Démarquer tout ce qui n'est pas dans <code>site_tiers</code>.</strong> Écartée : efface les saisies des participations non connectées, en silence. C'est le scénario qui a motivé cette ADR.</p>
-<p><strong>Démarquer uniquement les carrés vus par l'API et redevenus vôtres.</strong> Plus fin, et sans doute correct — mais il faut savoir distinguer « l'API dit que ce carré est à moi » de « l'API ne connaît pas ce carré ». Reporté faute de besoin réel, et parce que la distinction demande l'origine du marquage (voir ci-dessus).</p>
+<p><strong>Démarquer uniquement les carrés vus par l'API et redevenus vôtres.</strong> Plus fin, et sans doute correct : mais il faut savoir distinguer « l'API dit que ce carré est à moi » de « l'API ne connaît pas ce carré ». Reporté faute de besoin réel, et parce que la distinction demande l'origine du marquage (voir ci-dessus).</p>
 <p><strong>Ne rien dériver du tout, tout laisser manuel.</strong> Écartée : l'information existe côté plateforme, et la re-saisir à la main sur un historique entier est exactement le travail que le chantier voulait supprimer.</p>
 <h2 id="journal">Journal<a class="headerlink" href="#journal" title="Permanent link">&para;</a></h2>
 <ul>
-<li>2026-07-27 — Rédigée à la clôture (passe 3) du chantier #2349. La règle a été posée en implémentant #2525 et documentée dans le code de <code>RapprochementNuitsOpportunistes</code> avant d'être promue en ADR.</li>
+<li>2026-07-27 : Rédigée à la clôture (passe 3) du chantier #2349. La règle a été posée en implémentant #2525 et documentée dans le code de <code>RapprochementNuitsOpportunistes</code> avant d'être promue en ADR.</li>
 </ul>
 
 

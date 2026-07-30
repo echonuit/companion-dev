@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0009-la-nuit-soir-j-matin-j1-bornee-a-midi-est-lunite-de-traitement">ADR 0009 — La nuit (soir J → matin J+1, bornée à midi) est l'unité de traitement<a class="headerlink" href="#adr-0009-la-nuit-soir-j-matin-j1-bornee-a-midi-est-lunite-de-traitement" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0009-la-nuit-soir-j-matin-j1-bornee-a-midi-est-lunite-de-traitement">ADR 0009 - La nuit (soir J → matin J+1, bornée à midi) est l'unité de traitement<a class="headerlink" href="#adr-0009-la-nuit-soir-j-matin-j1-bornee-a-midi-est-lunite-de-traitement" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — rétroactif</li>
+<li><strong>Statut</strong> : Accepté - rétroactif</li>
 <li><strong>Chantier</strong> : import multi-nuits #664 ; EPIC #1696 (partition par nuit)</li>
-<li><strong>Vérification</strong> : humaine — que la nuit soit l'unité bornée à midi est une règle de calcul de fenêtre, non observable dans un motif statique</li>
+<li><strong>Vérification</strong> : humaine - que la nuit soit l'unité bornée à midi est une règle de calcul de fenêtre, non observable dans un motif statique</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Un déploiement de terrain couvre souvent <strong>plusieurs nuits</strong> sur une même carte SD, avec parfois <strong>un seul</strong> journal (THLog / LogPR) pour tout le déploiement. L'objet métier pertinent n'est pas « la carte » ni « la date calendaire » : c'est la <strong>nuit</strong> (le protocole nocturne va du soir <code>J</code> au matin <code>J+1</code>). Il fallait une <strong>frontière</strong> non ambiguë entre deux nuits consécutives, et que <strong>tout</strong> ce qui décrit une nuit lui soit propre.</p>

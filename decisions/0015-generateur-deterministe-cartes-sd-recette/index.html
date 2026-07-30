@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0015-cartes-sd-de-recette-specs-declaratives-generateur-deterministe">ADR 0015 — Cartes SD de recette : specs déclaratives + générateur déterministe<a class="headerlink" href="#adr-0015-cartes-sd-de-recette-specs-declaratives-generateur-deterministe" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0015-cartes-sd-de-recette-specs-declaratives-generateur-deterministe">ADR 0015 - Cartes SD de recette : specs déclaratives + générateur déterministe<a class="headerlink" href="#adr-0015-cartes-sd-de-recette-specs-declaratives-generateur-deterministe" title="Permanent link">&para;</a></h1>
 <ul>
 <li><strong>Statut</strong> : Accepté</li>
-<li><strong>Chantier</strong> : P5 — générateur de cartes SD de recette (#1749, #1758, #1767, #1769 ; contribue à #1363)</li>
-<li><strong>Vérification</strong> : certaine — <code>GenerationCartesSDCliquetTest#chaque_spec_produit_la_pathologie_attendue</code></li>
+<li><strong>Chantier</strong> : P5 - générateur de cartes SD de recette (#1749, #1758, #1767, #1769 ; contribue à #1363)</li>
+<li><strong>Vérification</strong> : certaine - <code>GenerationCartesSDCliquetTest#chaque_spec_produit_la_pathologie_attendue</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>La recette d'acceptation a besoin de <strong>cartes SD</strong> matérialisées sur disque (arbres <code>LogPR&lt;serie&gt;.txt</code> + <code>PaRecPR&lt;serie&gt;_THLog.csv</code> + <code>bruts/*.wav</code>) : l'opérateur glisse le dossier dans l'assistant d'import. Faites à la main, elles pesaient plusieurs centaines de méga-octets (~530 Mo), donc <strong>ni versionnables</strong> (binaire lourd, dépôt public et forké) <strong>ni rejouables</strong> (rien ne garantissait de les reconstruire à l'identique). Or la recette est désormais versionnée in-repo et vise le <strong>rejeu déterministe headless</strong>.</p>

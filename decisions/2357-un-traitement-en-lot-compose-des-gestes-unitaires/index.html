@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-2357-un-traitement-en-lot-compose-des-gestes-unitaires-il-nen-invente-pas-un-nouveau">ADR 2357 — Un traitement en lot compose des gestes unitaires, il n'en invente pas un nouveau<a class="headerlink" href="#adr-2357-un-traitement-en-lot-compose-des-gestes-unitaires-il-nen-invente-pas-un-nouveau" title="Permanent link">&para;</a></h1>
+<h1 id="adr-2357-un-traitement-en-lot-compose-des-gestes-unitaires-il-nen-invente-pas-un-nouveau">ADR 2357 - Un traitement en lot compose des gestes unitaires, il n'en invente pas un nouveau<a class="headerlink" href="#adr-2357-un-traitement-en-lot-compose-des-gestes-unitaires-il-nen-invente-pas-un-nouveau" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-28</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-28</li>
 <li><strong>Chantier</strong> : #2357 (lot 3 de l'EPIC #2349)</li>
-<li><strong>Vérification</strong> : certaine — <code>MoteurTraitementGroupeTest#annulation_apres_le_passage_courant</code></li>
+<li><strong>Vérification</strong> : certaine - <code>MoteurTraitementGroupeTest#annulation_apres_le_passage_courant</code></li>
 </ul>
 <blockquote>
 <p>Le contrat d'annulation est celui qui rend le reste tenable, et c'est le seul qui se prouve d'un
@@ -3228,23 +3228,23 @@ nuits. C'est ainsi qu'on se retrouve avec deux chemins pour un même dépôt, do
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Un lot applique N fois un geste qui existe déjà, et n'ajoute que ce qui relève du nombre.</strong></p>
 <p>Le geste reste celui de la nuit unique, avec ses règles et ses garde-fous. Ce que le lot ajoute est
-l'ordonnancement, l'annonce préalable et le compte rendu — rien d'autre. Cinq conséquences en découlent,
+l'ordonnancement, l'annonce préalable et le compte rendu : rien d'autre. Cinq conséquences en découlent,
 et chacune est un endroit où l'on serait tenté de faire autrement.</p>
 <p><strong>1. Le moteur est séquentiel, et le plafond de parallélisme reste celui d'un passage.</strong>
 <code>DepotVigieChiro</code> téléverse déjà cinq unités de front, plafond calqué sur le front web
 (<code>max_concurrent_uploads</code>). Lancer N passages en même temps multiplierait ce plafond par N et
 transformerait un confort en rafale que le serveur rejette. Le parallélisme reste <strong>à l'intérieur</strong> d'un
-passage, jamais entre eux — ce qui n'est pas une omission mais le respect de la borne de politesse
+passage, jamais entre eux : ce qui n'est pas une omission mais le respect de la borne de politesse
 décrite par l'<a href="../0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/">ADR 0044</a>.</p>
 <p><strong>2. L'éligibilité est locale, peu coûteuse, et consultée avant de partir.</strong> Chaque <code>ActionGroupee</code>
 porte la sienne (<code>motifNonEligible</code>), lue sur l'état déjà en base : statut du dépôt, rattachement à une
-participation, présence de résultats. Elle ne joint <strong>jamais</strong> la plateforme — elle est appelée sur
+participation, présence de résultats. Elle ne joint <strong>jamais</strong> la plateforme : elle est appelée sur
 <strong>toute</strong> la sélection avant le premier geste, et vingt allers-retours réseau pour afficher une annonce
 seraient un défaut, pas une précaution. Ce qui exige le réseau ressort donc en <strong>échec avec son motif</strong>,
 pas en écart.</p>
 <p><strong>3. L'annulation s'arrête entre deux passages.</strong> Le jeton est consulté <strong>avant</strong> chaque passage, jamais
 pendant : un passage commencé va au bout, un passage non commencé est rendu <code>NON_TRAITE</code>. Chaque nuit est
-donc <strong>soit dans son état d'avant, soit dans son état d'après, jamais entre les deux</strong> — c'est ce qui rend
+donc <strong>soit dans son état d'avant, soit dans son état d'après, jamais entre les deux</strong> : c'est ce qui rend
 un lot interrompu reprenable, et c'est tenu par construction plutôt que par vigilance. Le téléversement
 fait exception en passant aussi le jeton au dépôt, et c'est légitime : <code>DEPOT_EN_COURS</code> avec son plan
 persisté est un état <strong>nommé et reprenable</strong>, pas un entre-deux.</p>
@@ -3260,16 +3260,16 @@ pas un service.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p><strong>Ajouter une action de lot est un exercice cadré</strong> : implémenter <code>ActionGroupee</code> (libellé, éligibilité
 locale, exécution), la lier par <code>OptionalBinder</code> sous son nom depuis la feature qui la possède, et
-l'entrée de menu apparaît. Absente — feature désactivée — l'entrée <strong>disparaît</strong> au lieu de rester grisée
+l'entrée de menu apparaît. Absente (feature désactivée), l'entrée <strong>disparaît</strong> au lieu de rester grisée
 sans recours (<a href="../0003-feature-plugin-desactivable-ports-optionnels/">ADR 0003</a>). Le moteur n'a rien à
 savoir de plus.</p>
 <p><strong>Le geste entier se teste sans écran.</strong> N'employer que des ports injectables plutôt qu'inventer une
-modale rend le lot vérifiable <strong>jusqu'à son effet</strong>, headless. Une modale dédiée aurait été plus riche —
-le journal ligne à ligne pendant l'exécution — et intestable au même prix. Le journal existe malgré tout :
+modale rend le lot vérifiable <strong>jusqu'à son effet</strong>, headless. Une modale dédiée aurait été plus riche :
+le journal ligne à ligne pendant l'exécution, et intestable au même prix. Le journal existe malgré tout :
 il est remis à <code>SuiviOperation</code>, préfixé du passage concerné.</p>
 <p><strong>La ligne de commande en hérite gratuitement.</strong> Le moteur et les actions ne connaissent aucune surface :
 <code>traiter-passages</code> les réutilise tels quels (<a href="../0014-parite-cli-ihm/">ADR 0014</a>). Ce qu'elle apporte n'est
-pas la boucle — un terminal sait boucler — mais <strong>l'écran d'éligibilité</strong>, que rien d'autre n'expose.</p>
+pas la boucle (un terminal sait boucler), mais <strong>l'écran d'éligibilité</strong>, que rien d'autre n'expose.</p>
 <p><strong>Un motif d'échec est rédigé par la surface, pas par le moteur.</strong> Le moteur reçoit sa rédaction
 (<code>GesteAttendu::message</code> pour l'application, <code>GesteAttenduCli::message</code> pour le terminal) : sans cela, un
 jeton expiré au septième passage donnerait treize lignes disant ce qui manque et aucune disant quoi faire
@@ -3281,11 +3281,11 @@ jeton expiré au septième passage donnerait treize lignes disant ce qui manque 
   gestes qui ne se connaissent pas, et le premier « optimiseur » qui la desserrera n'aura aucun moyen de
   savoir ce qu'elle protégeait. La séquentialité rend la borne évidente : c'est celle d'un passage.</li>
 <li><strong>Déduire l'éligibilité de l'échec</strong>, sans annonce préalable. Moins de code, et l'information est la
-  même — sauf qu'elle arrive trop tard : téléverser crée une participation côté plateforme avant de
+  même, sauf qu'elle arrive trop tard : téléverser crée une participation côté plateforme avant de
   refuser trois lignes plus loin. On aurait laissé des traces distantes pour des nuits qu'on savait
   refuser.</li>
 <li><strong>Une modale dédiée au lot</strong>, avec son journal et sa progression détaillée. Meilleure expérience,
-  effectivement — mais elle n'aurait été éprouvée par aucun test headless, sur un geste qui touche à
+  effectivement : mais elle n'aurait été éprouvée par aucun test headless, sur un geste qui touche à
   vingt nuits d'un coup. Le compromis a été assumé dans l'autre sens.</li>
 <li><strong>Un moteur qui sait faire les quatre gestes</strong>, plutôt qu'un moteur aveugle et quatre actions. C'est le
   chemin qui produit deux implémentations du dépôt, dont une seule est maintenue.</li>

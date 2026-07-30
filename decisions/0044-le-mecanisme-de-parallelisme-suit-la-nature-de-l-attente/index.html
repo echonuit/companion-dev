@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0044-le-mecanisme-de-parallelisme-se-choisit-sur-la-nature-de-lattente-la-borne-se-chiffre-sur-autre-chose">ADR 0044 — Le mécanisme de parallélisme se choisit sur la nature de l'attente, la borne se chiffre sur autre chose<a class="headerlink" href="#adr-0044-le-mecanisme-de-parallelisme-se-choisit-sur-la-nature-de-lattente-la-borne-se-chiffre-sur-autre-chose" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0044-le-mecanisme-de-parallelisme-se-choisit-sur-la-nature-de-lattente-la-borne-se-chiffre-sur-autre-chose">ADR 0044 - Le mécanisme de parallélisme se choisit sur la nature de l'attente, la borne se chiffre sur autre chose<a class="headerlink" href="#adr-0044-le-mecanisme-de-parallelisme-se-choisit-sur-la-nature-de-lattente-la-borne-se-chiffre-sur-autre-chose" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-20</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-20</li>
 <li><strong>Chantier</strong> : #2040 (EPIC #2116)</li>
-<li><strong>Vérification</strong> : humaine — le choix du mécanisme de parallélisme selon la nature de l'attente est un jugement de conception, non observable dans le code. Loupe : <code>scripts/adr/loupe-0044-mecanisme-parallelisme.py</code></li>
+<li><strong>Vérification</strong> : humaine - le choix du mécanisme de parallélisme selon la nature de l'attente est un jugement de conception, non observable dans le code. Loupe : <code>scripts/adr/loupe-0044-mecanisme-parallelisme.py</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'application parallélise à sept endroits en production, par deux mécanismes différents :</p>
@@ -3245,7 +3245,7 @@ sert donc à rester <strong>poli</strong> avec la plateforme, pas à occuper les
 <p><strong>L'analyse d'ouverture de #2040 s'est trompée de suspect.</strong> Elle tenait la divergence de
 <code>DepotVigieChiro</code> pour justifiée (« travail bloquant réseau, plafond métier de 5 ») et celle de
 <code>CompacteurDepot</code> pour douteuse. C'est l'inverse : <code>CompacteurDepot</code> compresse en DEFLATE, du calcul
-pur, sur un pool calé sur <code>availableProcessors()</code> — le cas d'école de la règle. <code>DepotVigieChiro</code>
+pur, sur un pool calé sur <code>availableProcessors()</code> : le cas d'école de la règle. <code>DepotVigieChiro</code>
 attend le réseau sur des threads de plateforme, exactement ce que <code>PlateformeReconstruction</code> fait avec
 des fils virtuels. Le seul des deux qui s'écarte est celui que l'issue disait conforme.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
@@ -3326,7 +3326,7 @@ passe par lui. Le cas de <code>DepotVigieChiro</code> est la seule exception, et
 Un contributeur qui parallélise n'a plus à deviner laquelle des deux formes copier : il regarde si sa
 tâche attend ou si elle calcule.</p>
 <p><code>DepotVigieChiro:217</code> porte désormais une divergence <strong>motivée</strong>. Une divergence non écrite se propage
-par copie — c'est ainsi que trois copies du patron d'exécution parallèle ont pu coexister (#2039).</p>
+par copie : c'est ainsi que trois copies du patron d'exécution parallèle ont pu coexister (#2039).</p>
 <p>Cet ADR ne referme pas #2039 : documenter le choix du mécanisme ne dédouble pas les implantations.
 Il le rend en revanche jugeable, puisque la règle contre laquelle juger existe.</p>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>

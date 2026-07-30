@@ -3181,11 +3181,11 @@
   
 
 
-<h1 id="adr-0047-lidentite-de-distribution-est-le-projet-echonuit-distincte-de-lauteur-et-de-la-plateforme">ADR 0047 — L'identité de distribution est le projet Echonuit, distincte de l'auteur et de la plateforme<a class="headerlink" href="#adr-0047-lidentite-de-distribution-est-le-projet-echonuit-distincte-de-lauteur-et-de-la-plateforme" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0047-lidentite-de-distribution-est-le-projet-echonuit-distincte-de-lauteur-et-de-la-plateforme">ADR 0047 - L'identité de distribution est le projet Echonuit, distincte de l'auteur et de la plateforme<a class="headerlink" href="#adr-0047-lidentite-de-distribution-est-le-projet-echonuit-distincte-de-lauteur-et-de-la-plateforme" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-21</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-21</li>
 <li><strong>Chantier</strong> : #2240 (issu de #2213 winget, #2111 Flathub)</li>
-<li><strong>Vérification</strong> : certaine — <code>DecisionsRespecteesTest#l_installeur_porte_l_identite_echonuit</code></li>
+<li><strong>Vérification</strong> : certaine - <code>DecisionsRespecteesTest#l_installeur_porte_l_identite_echonuit</code></li>
 <li><strong>Fait évoluer</strong> : <a href="../0045-l-upgradecode-windows-est-une-constante-d-identite/">ADR 0045</a>, dont les exemples d'identifiant winget sont remplacés ; prolonge la logique de #2108.</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
@@ -3246,12 +3246,12 @@ build</strong>. Le garde-fou <code>NomDeLApplicationTest</code> fait respecter c
 motif passe de « PR Companion » à « Companion »).</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p><strong>Ce qu'on gagne.</strong> Une identité cohérente et non personnelle, invisible dans l'IHM (l'utilisateur voit
-le nom du produit, pas l'app-id), et <strong>découplée de l'org GitHub</strong> — le renommage d'org devient un
+le nom du produit, pas l'app-id), et <strong>découplée de l'org GitHub</strong> : le renommage d'org devient un
 geste libre, sans effet sur winget ni Flathub.</p>
 <p><strong>Ce qui est reporté (PR B).</strong> Le <code>--name</code> de jpackage reste « VigieChiro » : les <strong>noms d'artefacts</strong>
 (<code>VigieChiro-*.msi</code>…), les chemins d'installation, l'entrée « Ajout/Suppression de programmes » et
 l'<code>Exec</code>/<code>Icon</code> de l'AppImage ne changent <strong>pas</strong> dans cette première étape. Les renommer touche
-<code>release.yml</code>, les smoke-tests et les docs, et déplace l'entrée ARP — d'où une PR isolée. Tant qu'elle
+<code>release.yml</code>, les smoke-tests et les docs, et déplace l'entrée ARP : d'où une PR isolée. Tant qu'elle
 n'est pas faite, l'entrée ARP (« VigieChiro ») ne correspondra pas au <code>PackageName</code> winget
 (« VigieChiro Companion ») : à résorber <strong>avant</strong> la soumission winget.</p>
 <p><strong>Ce qui reste à faire hors dépôt.</strong> Créer l'org GitHub <code>echonuit</code> et configurer <code>echonuit.fr</code> (avant

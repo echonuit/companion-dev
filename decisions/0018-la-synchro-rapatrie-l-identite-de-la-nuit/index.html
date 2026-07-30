@@ -3203,16 +3203,16 @@
   
 
 
-<h1 id="adr-0018-la-synchro-rapatrie-aussi-lidentite-de-la-nuit">ADR 0018 — La synchro rapatrie aussi l'identité de la nuit<a class="headerlink" href="#adr-0018-la-synchro-rapatrie-aussi-lidentite-de-la-nuit" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0018-la-synchro-rapatrie-aussi-lidentite-de-la-nuit">ADR 0018 - La synchro rapatrie aussi l'identité de la nuit<a class="headerlink" href="#adr-0018-la-synchro-rapatrie-aussi-lidentite-de-la-nuit" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-18</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-18</li>
 <li><strong>Chantier</strong> : #1814 (suite de l'EPIC #1662)</li>
-<li><strong>Vérification</strong> : humaine — que la synchro pose l'identité réelle de la nuit relève du déroulé réseau, vérifié par les tests de synchro</li>
+<li><strong>Vérification</strong> : humaine - que la synchro pose l'identité réelle de la nuit relève du déroulé réseau, vérifié par les tests de synchro</li>
 <li><strong>Amende</strong> : <a href="../0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/">ADR 0016</a></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'ADR 0016 a fait des nuits rapatriées des <strong>squelettes ultra-légers</strong> : structure seule, <strong>aucun appel de détail par nuit</strong>, donc enregistreur « inconnu », sans météo ni micro. À l'usage réel (base neuve, une fois le bouton « Mes sites » réparé par #1808), la fiche du site affiche une <strong>colonne entière de « PR INCONNU »</strong>. Or l'enregistreur qui a produit la nuit est l'une des premières choses qu'un observateur cherche, et la plateforme <strong>la connaît</strong>.</p>
-<p>Cette information ne vit pas dans la <strong>liste</strong> des participations que lit la synchro, mais dans le <strong>détail par nuit</strong> (<code>GET /participations/#id</code>, dans sa <code>configuration</code>) — comme la météo, le micro et la fin de nuit. Seule la <strong>reconstruction complète</strong> la récupérait ; or elle télécharge au passage <strong>toutes les observations</strong>, dont l'enregistreur n'a nul besoin. Récupérer un numéro de série coûtait donc le prix d'une nuit entière.</p>
+<p>Cette information ne vit pas dans la <strong>liste</strong> des participations que lit la synchro, mais dans le <strong>détail par nuit</strong> (<code>GET /participations/#id</code>, dans sa <code>configuration</code>) : comme la météo, le micro et la fin de nuit. Seule la <strong>reconstruction complète</strong> la récupérait ; or elle télécharge au passage <strong>toutes les observations</strong>, dont l'enregistreur n'a nul besoin. Récupérer un numéro de série coûtait donc le prix d'une nuit entière.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>La synchro paie <strong>un appel de détail par nuit nouvelle</strong> et pose l'<strong>identité</strong> réelle de la nuit : numéro de série de l'enregistreur, météo, micro, fin de nuit. La nuit <strong>reste un squelette</strong> (0 séquence, toujours listée « à reconstruire ») : les observations et l'audio restent à la reconstruction.</p>
 <p>« Récupérer une nuit » se lit désormais en <strong>trois niveaux</strong> de complétude, alignés sur ce que chacun coûte :</p>
@@ -3261,7 +3261,7 @@
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Laisser tel quel</strong> (l'enregistreur ne revient qu'à la reconstruction complète). C'est ce que faisait 0016 : cela oblige à télécharger toutes les observations d'une nuit pour apprendre quel enregistreur l'a produite.</li>
-<li><strong>Un geste « compléter les métadonnées » à la demande</strong> (1 appel/nuit, sans observations, en étendant <code>SynchronisationParticipation#tirerDepuis</code>). Préserve la synchro ultra-légère, mais la table reste « PR INCONNU » tant qu'on n'a pas agi <strong>nuit par nuit</strong> — précisément la friction qui a motivé le chantier.</li>
+<li><strong>Un geste « compléter les métadonnées » à la demande</strong> (1 appel/nuit, sans observations, en étendant <code>SynchronisationParticipation#tirerDepuis</code>). Préserve la synchro ultra-légère, mais la table reste « PR INCONNU » tant qu'on n'a pas agi <strong>nuit par nuit</strong> : précisément la friction qui a motivé le chantier.</li>
 <li><strong>Re-tirer le détail de toutes les nuits à chaque synchro</strong> (et non des seules nuits nouvelles). Repaierait N appels à chaque fois pour une donnée qui ne bouge pas.</li>
 <li><strong>Tout rapatrier</strong> (structure + observations + audio), déjà écarté par 0016 : coût prohibitif, et impossible pour l'audio qu'un dépôt ZIP ne restitue pas (ADR 0006).</li>
 </ul>

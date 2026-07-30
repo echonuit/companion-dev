@@ -3203,17 +3203,17 @@
   
 
 
-<h1 id="adr-0037-une-barre-dactions-plie-elle-ne-tronque-pas-et-tout-texte-coupe-nest-pas-une-barre-qui-ne-plie-pas">ADR 0037 — Une barre d'actions plie, elle ne tronque pas ; et tout texte coupé n'est pas une barre qui ne plie pas<a class="headerlink" href="#adr-0037-une-barre-dactions-plie-elle-ne-tronque-pas-et-tout-texte-coupe-nest-pas-une-barre-qui-ne-plie-pas" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0037-une-barre-dactions-plie-elle-ne-tronque-pas-et-tout-texte-coupe-nest-pas-une-barre-qui-ne-plie-pas">ADR 0037 - Une barre d'actions plie, elle ne tronque pas ; et tout texte coupé n'est pas une barre qui ne plie pas<a class="headerlink" href="#adr-0037-une-barre-dactions-plie-elle-ne-tronque-pas-et-tout-texte-coupe-nest-pas-une-barre-qui-ne-plie-pas" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-20</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-20</li>
 <li><strong>Chantier</strong> : #2012, #2046 ; analyse de #1641, #1701, #1873, #1579</li>
-<li><strong>Vérification</strong> : probable — <code>scripts/adr/0037-slot-actions-hbox.py</code> (cliquet : 2)</li>
+<li><strong>Vérification</strong> : probable - <code>scripts/adr/0037-slot-actions-hbox.py</code> (cliquet : 2)</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Cinq issues ouvertes disaient la même chose : « des libellés sont tronqués ». Sur la fiche passage, <strong>sept boutons sur sept</strong> étaient coupés, dont « Supp… » pour une action destructrice — impossible à distinguer de « Supprimer les archives ».</p>
+<p>Cinq issues ouvertes disaient la même chose : « des libellés sont tronqués ». Sur la fiche passage, <strong>sept boutons sur sept</strong> étaient coupés, dont « Supp… » pour une action destructrice, impossible à distinguer de « Supprimer les archives ».</p>
 <p>Aucun test ne rougit là-dessus. Un test vérifie qu'un bouton <strong>fait</strong> ce qu'il doit ; il ne vérifie pas qu'on peut <strong>lire</strong> ce qu'il dit. Ces cinq issues sont toutes nées d'une revue visuelle.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>1. Le slot d'actions d'un écran est un <code>FlowPane</code>, pas une <code>HBox</code>.</strong> Une <code>HBox</code> ne renvoie <strong>jamais</strong> à la ligne : elle rétrécit ses enfants, et un <code>Button</code> trop étroit ellipse son texte. Le nombre d'actions d'un écran ne fait que croître au fil des fonctionnalités — le conteneur doit <strong>plier</strong>.</p>
+<p><strong>1. Le slot d'actions d'un écran est un <code>FlowPane</code>, pas une <code>HBox</code>.</strong> Une <code>HBox</code> ne renvoie <strong>jamais</strong> à la ligne : elle rétrécit ses enfants, et un <code>Button</code> trop étroit ellipse son texte. Le nombre d'actions d'un écran ne fait que croître au fil des fonctionnalités, le conteneur doit <strong>plier</strong>.</p>
 <p>Le slot partagé <code>entete-actions</code> (fiche passage, mes sites, fiche site) est passé en <code>FlowPane</code>, et la règle CSS troque <code>-fx-spacing</code> pour <code>-fx-hgap</code> / <code>-fx-vgap</code>. La fiche passage affiche désormais ses huit actions sur deux rangées, libellés entiers.</p>
 <p><strong>2. Un texte coupé n'a pas une cause mais deux, et le remède de l'une aggrave l'autre.</strong></p>
 <table>
@@ -3237,7 +3237,7 @@
 </tr>
 </tbody>
 </table>
-<p>Le second cas se reconnaît à la présence d'un <code>hgrow</code> : un <code>FlowPane</code> <strong>ne sait pas l'exprimer</strong>. Le convertir ferait perdre l'intention de mise en page — un <code>Region</code> ressort qui ancre des boutons à droite, un <code>FlowPane</code> de puces qui doit occuper la largeur restante — et déplacerait le défaut au lieu de le corriger.</p>
+<p>Le second cas se reconnaît à la présence d'un <code>hgrow</code> : un <code>FlowPane</code> <strong>ne sait pas l'exprimer</strong>. Le convertir ferait perdre l'intention de mise en page, un <code>Region</code> ressort qui ancre des boutons à droite, un <code>FlowPane</code> de puces qui doit occuper la largeur restante, et déplacerait le défaut au lieu de le corriger.</p>
 <p>C'est le cas de la barre de filtres de l'inventaire (#1873) et de la barre d'actions de « Sons &amp; validation » (#1641). Les deux tronquent, aucune des deux ne se répare par ce remède.</p>
 <p><strong>3. Le seul juge est la capture.</strong> Avant d'appliquer l'un ou l'autre, ouvrir l'aperçu, <strong>recadrer et agrandir</strong> ; puis regarder le FXML pour savoir lequel des deux mécanismes est en cause. L'ordre compte : la capture dit <strong>qu'il y a</strong> un défaut, le FXML dit <strong>lequel</strong>.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -3253,7 +3253,7 @@
 </ul>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
 <p><strong>Verser les actions secondaires dans un menu ☰</strong> (c'était la piste que je recommandais en ouvrant #2012). Elle <strong>détruit</strong> l'affordance construite par #789, #1300 et #1302 : un <code>MenuItem</code> désactivé ne reçoit pas le survol, donc pas d'infobulle, et l'idiome du projet veut alors que le motif passe <strong>dans le libellé</strong>. Or ces motifs sont des phrases entières (« Suppression impossible : ce passage est déposé sur Vigie-Chiro. Annulez d'abord le dépôt. »). Six actions déplacées, c'étaient six explications à réécrire en suffixes courts, avec perte.</p>
-<p>Le constat qui la fondait reste vrai : <strong>huit actions de même poids visuel en tête d'écran, ce n'est plus une barre, c'est une liste.</strong> Mais cela se traite en décidant lesquelles méritent d'être toujours visibles — une question de produit, pas de mise en page.</p>
+<p>Le constat qui la fondait reste vrai : <strong>huit actions de même poids visuel en tête d'écran, ce n'est plus une barre, c'est une liste.</strong> Mais cela se traite en décidant lesquelles méritent d'être toujours visibles, une question de produit, pas de mise en page.</p>
 <p><strong>Élargir la fenêtre de capture</strong> (autre piste de #1701). Elle fait disparaître le symptôme de l'aperçu sans rien changer pour l'utilisateur qui travaille sur un écran étroit.</p>
 
 

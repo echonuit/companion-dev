@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0004-pas-de-cycle-entre-features-les-ponts-passent-par-un-port-dans-commun">ADR 0004 — Pas de cycle entre features : les ponts passent par un port dans <code>commun</code><a class="headerlink" href="#adr-0004-pas-de-cycle-entre-features-les-ponts-passent-par-un-port-dans-commun" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0004-pas-de-cycle-entre-features-les-ponts-passent-par-un-port-dans-commun">ADR 0004 - Pas de cycle entre features : les ponts passent par un port dans <code>commun</code><a class="headerlink" href="#adr-0004-pas-de-cycle-entre-features-les-ponts-passent-par-un-port-dans-commun" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — rétroactif</li>
+<li><strong>Statut</strong> : Accepté - rétroactif</li>
 <li><strong>Chantier</strong> : garde-fou <code>ArchitectureTest.features_sans_cycle</code></li>
-<li><strong>Vérification</strong> : certaine — <code>DecisionsRespecteesTest#aucun_cycle_entre_les_features</code></li>
+<li><strong>Vérification</strong> : certaine - <code>DecisionsRespecteesTest#aucun_cycle_entre_les_features</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le graphe des paquets <code>fr.univ_amu.iut.*</code> doit rester <strong>sans cycle</strong> (<code>ArchitectureTest.features_sans_cycle</code>, via ArchUnit) : un cycle entre features rend le socle inintelligible et non-déclinable. Or il arrive qu'une feature A ait besoin d'une donnée que possède une feature B, alors que <strong>B dépend déjà de A</strong> - ajouter la dépendance inverse fermerait un cycle. Cas concret : <code>passage</code> a besoin des <strong>coordonnées d'un point d'écoute</strong>, qui vivent dans <code>sites</code> ; mais <code>sites</code> dépend déjà d'autres briques et le lien direct <code>passage → sites</code> était refusé par ArchUnit.</p>

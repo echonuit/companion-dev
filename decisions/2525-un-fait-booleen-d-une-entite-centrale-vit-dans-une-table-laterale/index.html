@@ -3225,11 +3225,11 @@
   
 
 
-<h1 id="adr-2525-un-fait-booleen-dune-entite-centrale-vit-dans-une-table-laterale-pas-dans-une-colonne">ADR 2525 — Un fait booléen d'une entité centrale vit dans une table latérale, pas dans une colonne<a class="headerlink" href="#adr-2525-un-fait-booleen-dune-entite-centrale-vit-dans-une-table-laterale-pas-dans-une-colonne" title="Permanent link">&para;</a></h1>
+<h1 id="adr-2525-un-fait-booleen-dune-entite-centrale-vit-dans-une-table-laterale-pas-dans-une-colonne">ADR 2525 - Un fait booléen d'une entité centrale vit dans une table latérale, pas dans une colonne<a class="headerlink" href="#adr-2525-un-fait-booleen-dune-entite-centrale-vit-dans-une-table-laterale-pas-dans-une-colonne" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-27</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-27</li>
 <li><strong>Chantier</strong> : #2525 (participations opportunistes), EPIC #2349</li>
-<li><strong>Vérification</strong> : humaine — le compromis se juge à la <strong>revue d'une migration</strong> : combien de sites de construction l'entité a-t-elle, et le fait concerne-t-il une minorité de lignes ? Aucun scan ne répond à la seconde question, et un test qui figerait le nombre de composantes d'un record serait un contrôle creux, cassé au premier ajout légitime.</li>
+<li><strong>Vérification</strong> : humaine - le compromis se juge à la <strong>revue d'une migration</strong> : combien de sites de construction l'entité a-t-elle, et le fait concerne-t-il une minorité de lignes ? Aucun scan ne répond à la seconde question, et un test qui figerait le nombre de composantes d'un record serait un contrôle creux, cassé au premier ajout légitime.</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Deux fois dans le même chantier, il a fallu attacher un <strong>fait booléen</strong> à une entité centrale : « ce passage est une participation opportuniste » (#2525), puis « ce carré appartient à un tiers » (#2525, dérivation API).</p>
@@ -3241,8 +3241,8 @@
 </ul>
 <p>Ces nombres bougent au fil des chantiers ; ce qui compte n'est pas leur valeur exacte mais leur <strong>ordre
 de grandeur</strong>, qui place ces deux records hors d'atteinte d'un ajout de composante bon marché.</p>
-<p>À ce volume, une composante de plus n'est pas une ligne de diff : c'est une propagation mécanique sur des dizaines de fichiers, et surtout un <strong>risque d'échange silencieux</strong> entre paramètres de même type — le défaut que l'<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/2483">EPIC #2483</a> traite en réduisant l'arité des constructions. Ajouter un booléen à <code>Passage</code> allait frontalement contre un chantier en cours.</p>
-<p>Un précédent existait, et il était documenté : la migration <strong>V10</strong> avait isolé le matériel du micro dans <code>passage_equipment</code> plutôt que d'alourdir <code>passage</code>, en écrivant explicitement la raison — « plutôt que d'alourdir l'entité centrale, construite en ~60 endroits ».</p>
+<p>À ce volume, une composante de plus n'est pas une ligne de diff : c'est une propagation mécanique sur des dizaines de fichiers, et surtout un <strong>risque d'échange silencieux</strong> entre paramètres de même type, le défaut que l'<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/2483">EPIC #2483</a> traite en réduisant l'arité des constructions. Ajouter un booléen à <code>Passage</code> allait frontalement contre un chantier en cours.</p>
+<p>Un précédent existait, et il était documenté : la migration <strong>V10</strong> avait isolé le matériel du micro dans <code>passage_equipment</code> plutôt que d'alourdir <code>passage</code>, en écrivant explicitement la raison, « plutôt que d'alourdir l'entité centrale, construite en ~60 endroits ».</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Un fait booléen porté par une entité centrale se stocke dans une table latérale de présence</strong>, dont la clé primaire est la clé étrangère vers l'entité :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">passage_opportuniste</span><span class="w"> </span><span class="p">(</span>
@@ -3250,7 +3250,7 @@ de grandeur</strong>, qui place ces deux records hors d'atteinte d'un ajout de c
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">);</span>
 </code></pre></div>
 <p>La <strong>présence de la ligne</strong> porte le fait ; son absence porte le cas courant, qui ne coûte alors aucun stockage. Le record et son DAO restent <strong>inchangés</strong>.</p>
-<p>Le DAO associé étend <code>DaoGenerique&lt;Long, Long&gt;</code> — l'entité <em>est</em> la clé, seul le fait d'exister compte — et expose une API d'intention : <code>marquer</code> / <code>demarquer</code> / <code>definir(id, bool)</code> / <code>estX(id)</code>, plus un <strong><code>tousLesIds()</code></strong> de lecture groupée. Ce dernier n'est pas un confort : sans lui, un service qui balaie N entités ferait N requêtes.</p>
+<p>Le DAO associé étend <code>DaoGenerique&lt;Long, Long&gt;</code> (l'entité <em>est</em> la clé, seul le fait d'exister compte) et expose une API d'intention : <code>marquer</code> / <code>demarquer</code> / <code>definir(id, bool)</code> / <code>estX(id)</code>, plus un <strong><code>tousLesIds()</code></strong> de lecture groupée. Ce dernier n'est pas un confort : sans lui, un service qui balaie N entités ferait N requêtes.</p>
 <p>Appliqué par <strong>V34</strong> (<code>passage_opportuniste</code>) et <strong>V35</strong> (<code>site_tiers</code>).</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p><strong>En bien.</strong> Les ~110 et ~81 sites de construction sont restés intacts. Le cas courant ne coûte rien. La suppression de l'entité nettoie le marquage (<code>ON DELETE CASCADE</code>), sans code.</p>
@@ -3262,7 +3262,7 @@ de grandeur</strong>, qui place ces deux records hors d'atteinte d'un ajout de c
 <p><strong>Un enum de statut élargi.</strong> Écartée : « opportuniste » n'est pas une étape du workflow d'un passage, c'est une qualité orthogonale. Les mélanger aurait multiplié les états et cassé les transitions existantes.</p>
 <h2 id="journal">Journal<a class="headerlink" href="#journal" title="Permanent link">&para;</a></h2>
 <ul>
-<li>2026-07-27 — Rédigée à la clôture (passe 3) du chantier #2349, après application dans V34 et V35.</li>
+<li>2026-07-27 : Rédigée à la clôture (passe 3) du chantier #2349, après application dans V34 et V35.</li>
 </ul>
 
 

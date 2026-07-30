@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0003-une-feature-est-un-plugin-desactivable-ses-dependances-entre-features-sont-des-ports-optionnels">ADR 0003 — Une feature est un plugin désactivable ; ses dépendances entre features sont des ports optionnels<a class="headerlink" href="#adr-0003-une-feature-est-un-plugin-desactivable-ses-dependances-entre-features-sont-des-ports-optionnels" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0003-une-feature-est-un-plugin-desactivable-ses-dependances-entre-features-sont-des-ports-optionnels">ADR 0003 - Une feature est un plugin désactivable ; ses dépendances entre features sont des ports optionnels<a class="headerlink" href="#adr-0003-une-feature-est-un-plugin-desactivable-ses-dependances-entre-features-sont-des-ports-optionnels" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — rétroactif (chantiers #923, #1057)</li>
+<li><strong>Statut</strong> : Accepté - rétroactif (chantiers #923, #1057)</li>
 <li><strong>Chantier</strong> : EPIC #923 (« feature = plugin ») et EPIC #1057 (feature-flags)</li>
-<li><strong>Vérification</strong> : humaine — la discipline du port optionnel (OptionalBinder, Optional<Port>) se juge en revue ; aucun motif ne distingue un port d'une dépendance en dur</li>
+<li><strong>Vérification</strong> : humaine - la discipline du port optionnel (OptionalBinder, Optional<Port>) se juge en revue ; aucun motif ne distingue un port d'une dépendance en dur</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'application est un <strong>socle</strong> (« package-by-feature ») destiné à être décliné : tous les écrans ne concernent pas tous les usages, et le projet pédagogique de la SAÉ demande de pouvoir <strong>retirer</strong> une feature sans laisser de trou ni de dépendance morte. Il fallait un mécanisme qui rende une feature <strong>activable/désactivable</strong> sans que ses voisines ne cassent quand elle est absente.</p>

@@ -3203,18 +3203,18 @@
   
 
 
-<h1 id="adr-0027-une-attente-porte-toujours-un-nom-et-cest-letape-qui-va-attendre-qui-le-pose">ADR 0027 — Une attente porte toujours un nom, et c'est l'étape qui va attendre qui le pose<a class="headerlink" href="#adr-0027-une-attente-porte-toujours-un-nom-et-cest-letape-qui-va-attendre-qui-le-pose" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0027-une-attente-porte-toujours-un-nom-et-cest-letape-qui-va-attendre-qui-le-pose">ADR 0027 - Une attente porte toujours un nom, et c'est l'étape qui va attendre qui le pose<a class="headerlink" href="#adr-0027-une-attente-porte-toujours-un-nom-et-cest-letape-qui-va-attendre-qui-le-pose" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-19</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-19</li>
 <li><strong>Chantier</strong> : #1931, #1935, #1940, #1946, #1951, #1959</li>
-<li><strong>Vérification</strong> : humaine — qu'aucune opération longue ne laisse l'écran muet est une propriété temporelle du déroulé, pas un invariant statique</li>
+<li><strong>Vérification</strong> : humaine - qu'aucune opération longue ne laisse l'écran muet est une propriété temporelle du déroulé, pas un invariant statique</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>La modale de réactivation montre deux barres depuis #1780, justement parce qu'une barre unique restait <strong>figée à 100 %</strong> pendant la phase d'ancrage : on ne savait pas si le travail continuait. Le principe était posé, mais seulement là où on l'avait regardé.</p>
 <p>Sur une nuit réelle de 2042 bruts, l'écran est resté <strong>plus de deux minutes</strong> sur <code>Régénération 2042/2042</code>, sans rien d'autre. Le silence n'était pas un temps mort : trois gestes s'y enchaînaient, dont aucun n'était annoncé.</p>
 <p>Deux erreurs successives ont été nécessaires pour trouver la règle.</p>
-<p><strong>La première</strong> : #1951 a nommé les étapes de fin de phase (« Vérification de l'audio disponible… », « Recherche de ce qu'il reste à récupérer… ») — sans rien changer pour l'utilisateur. Ces libellés étaient posés <strong>après</strong> le geste qui prenait le temps.</p>
-<p><strong>La seconde</strong> est plus intéressante : le fait que rien ne change a <strong>localisé</strong> le défaut. Puisque les libellés d'après ne s'affichaient jamais, l'attente était forcément avant eux. Elle était dans l'adoption des originaux d'une nuit reconstruite — près de 6700 ordres SQL auto-commités, soit autant de <code>fsync</code> (#1959).</p>
+<p><strong>La première</strong> : #1951 a nommé les étapes de fin de phase (« Vérification de l'audio disponible… », « Recherche de ce qu'il reste à récupérer… »), sans rien changer pour l'utilisateur. Ces libellés étaient posés <strong>après</strong> le geste qui prenait le temps.</p>
+<p><strong>La seconde</strong> est plus intéressante : le fait que rien ne change a <strong>localisé</strong> le défaut. Puisque les libellés d'après ne s'affichaient jamais, l'attente était forcément avant eux. Elle était dans l'adoption des originaux d'une nuit reconstruite, près de 6700 ordres SQL auto-commités, soit autant de <code>fsync</code> (#1959).</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>1. Aucune opération longue ne laisse l'écran muet.</strong> Tout intervalle où le travail continue sans qu'aucune barre ne bouge est un défaut, au même titre qu'une barre figée à 100 %. Ce que l'utilisateur ne peut pas distinguer d'un plantage doit être nommé.</p>
 <p><strong>2. Le libellé d'une étape est posé par celle qui va attendre, jamais par celle qui vient de finir.</strong> C'est la règle que #1951 a manquée : une étape émise après coup décrit un travail déjà fait, et laisse le suivant muet. Concrètement, l'émission précède l'appel qu'elle annonce.</p>
@@ -3222,7 +3222,7 @@
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">adopterOriginaux</span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">originaux</span><span class="p">,</span><span class="w"> </span><span class="n">resultat</span><span class="p">);</span><span class="w">   </span><span class="c1">// ← ce qui va prendre le temps</span>
 </code></pre></div>
 <p><strong>3. Une attente nommée est aussi un instrument de mesure.</strong> Quand on ignore où passe le temps, nommer les étapes coûte moins que d'instrumenter, et l'usage réel tranche en une exécution. C'est ce qui a désigné l'adoption : les deux minutes ne s'affichaient sur aucun des libellés posés, donc elles étaient avant.</p>
-<p><strong>4. Nommer ne dispense pas de corriger.</strong> Une attente de deux minutes reste une attente : le libellé la rend supportable, la transaction la fait disparaître. Les deux se font — dans cet ordre de découverte, pas de priorité.</p>
+<p><strong>4. Nommer ne dispense pas de corriger.</strong> Une attente de deux minutes reste une attente : le libellé la rend supportable, la transaction la fait disparaître. Les deux se font, dans cet ordre de découverte, pas de priorité.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Une revue de phase longue se lit dans les deux sens : « chaque barre bouge-t-elle ? » <strong>et</strong> « existe-t-il un intervalle entre deux barres ? ». Le second est le plus facile à oublier, parce qu'il n'apparaît sur aucun écran de test : les jeux d'essai sont trop petits pour que l'intervalle se voie.</li>
@@ -3231,7 +3231,7 @@
 </ul>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
 <p><strong>Une barre indéterminée pendant les temps morts.</strong> JavaFX la rend gratuitement (<code>progress = -1</code>), mais <code>ProgressionOperation.appliquer</code> retient <code>Math.max(fraction, point.fraction())</code> : une valeur négative serait avalée. Il aurait fallu ouvrir le contrat du socle pour un cas d'affichage ; le libellé sur barre pleine dit la même chose sans y toucher.</p>
-<p><strong>Une ligne d'étape dédiée, alimentée par un troisième canal.</strong> Sémantiquement le bon endroit — la ligne parle quand aucune barre ne le peut — mais il aurait fallu reprendre les <strong>12 implémentations</strong> de <code>ReactivationModaleController.Travail</code> pour un libellé. Reste le bon choix le jour où une étape n'appartient à aucune des deux phases.</p>
+<p><strong>Une ligne d'étape dédiée, alimentée par un troisième canal.</strong> Sémantiquement le bon endroit (la ligne parle quand aucune barre ne le peut), mais il aurait fallu reprendre les <strong>12 implémentations</strong> de <code>ReactivationModaleController.Travail</code> pour un libellé. Reste le bon choix le jour où une étape n'appartient à aucune des deux phases.</p>
 <p><strong>Mesurer d'abord, afficher ensuite.</strong> L'ordre inverse a été retenu : l'affichage est utile en soi et coûte deux lignes, alors qu'une instrumentation ne sert qu'une fois (décision 3).</p>
 
 

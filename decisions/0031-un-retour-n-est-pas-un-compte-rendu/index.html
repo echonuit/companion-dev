@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0031-un-retour-doperation-nest-pas-un-compte-rendu-le-mot-compte-rendu-se-libere-pour-lextensible">ADR 0031 — Un retour d'opération n'est pas un compte rendu : le mot « compte rendu » se libère pour l'extensible<a class="headerlink" href="#adr-0031-un-retour-doperation-nest-pas-un-compte-rendu-le-mot-compte-rendu-se-libere-pour-lextensible" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0031-un-retour-doperation-nest-pas-un-compte-rendu-le-mot-compte-rendu-se-libere-pour-lextensible">ADR 0031 - Un retour d'opération n'est pas un compte rendu : le mot « compte rendu » se libère pour l'extensible<a class="headerlink" href="#adr-0031-un-retour-doperation-nest-pas-un-compte-rendu-le-mot-compte-rendu-se-libere-pour-lextensible" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-19</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-19</li>
 <li><strong>Chantier</strong> : EPIC #1990 (#2000)</li>
-<li><strong>Vérification</strong> : humaine — distinguer un retour d'opération d'un compte rendu tient au sens du message, non à sa forme</li>
+<li><strong>Vérification</strong> : humaine - distinguer un retour d'opération d'un compte rendu tient au sens du message, non à sa forme</li>
 <li><strong>Amende</strong> : <a href="../0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/">ADR 0023</a> et <a href="../0028-un-etat-n-est-pas-un-compte-rendu/">ADR 0028</a>, sur le <strong>vocabulaire</strong> ; leurs décisions restent entières.</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
@@ -3271,7 +3271,7 @@
 <p>Les décisions de 0023 et 0028 restent valides : là où elles écrivent « compte rendu », lire <strong>retour d'opération</strong>.</p>
 <p><strong>2. Le critère est l'extensibilité, pas la longueur.</strong> Un message qui concatène une partie de longueur variable est un compte rendu, quelle que soit sa taille du jour. Le choix du véhicule se fait <strong>une fois</strong>, à la conception ; le contenu grandit ensuite.</p>
 <p><strong>3. Un compte rendu ne va jamais au bandeau.</strong> Le bandeau est une ligne : y loger un compte rendu revient à le tronquer, donc à retirer ce qui permet à l'utilisateur de savoir quoi faire. Un compte rendu qui atterrit dans un bandeau est <strong>mal routé</strong>, pas mal formaté.</p>
-<p><strong>4. Un compte rendu se reconnaît au premier coup d'œil.</strong> Il a <strong>un</strong> composant, identifiable comme tel partout où il apparaît. Un observateur qui enchaîne un import, un dépôt et une réactivation doit reconnaître la <strong>structure</strong> avant même de lire — c'est ce que quatre implémentations maison lui refusent aujourd'hui.</p>
+<p><strong>4. Un compte rendu se reconnaît au premier coup d'œil.</strong> Il a <strong>un</strong> composant, identifiable comme tel partout où il apparaît. Un observateur qui enchaîne un import, un dépôt et une réactivation doit reconnaître la <strong>structure</strong> avant même de lire : c'est ce que quatre implémentations maison lui refusent aujourd'hui.</p>
 <p><strong>5. Un compte rendu est structuré, pas assemblé.</strong> Il porte des <strong>rubriques</strong> nommées, pas une chaîne construite au <code>StringBuilder</code>. Le rapport d'inspection de l'import (<code>InspectionImportViewModel</code>) le fait déjà à la main : <code>resumeJournal</code>, <code>avertissementMelange</code>, <code>avertissementIncoherence</code>, <code>avertissementNuitExistante</code>, <code>messageErreur</code>.</p>
 <p>Ce que les rubriques débloquent et que le texte assemblé interdit : styler une section, en masquer une, l'indenter (#1987 est <strong>directement causée</strong> par le <code>Label</code> unique de la réactivation), et <strong>tester une rubrique</strong> sans chercher une sous-chaîne dans un pavé.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -3297,23 +3297,23 @@
 </tr>
 <tr>
 <td><code>messageErreur</code></td>
-<td>2 — <code>InspectionImportViewModel</code>, <code>ImportationViewModel</code></td>
+<td>2, <code>InspectionImportViewModel</code>, <code>ImportationViewModel</code></td>
 <td><strong>interdit</strong> par 0028 règle 3 : la sévérité dans le nom</td>
 </tr>
 <tr>
 <td><code>resume</code>, <code>recap</code>, <code>bilan</code></td>
-<td>6 — <code>AnalyseViewModel</code>, <code>AuditViewModel</code>, <code>LotViewModel</code>, <code>ReconstructionViewModel</code>, <code>MultisiteViewModel</code>, <code>RattachementViewModel</code></td>
+<td>6, <code>AnalyseViewModel</code>, <code>AuditViewModel</code>, <code>LotViewModel</code>, <code>ReconstructionViewModel</code>, <code>MultisiteViewModel</code>, <code>RattachementViewModel</code></td>
 <td>à classer : retour, compte rendu ou état ?</td>
 </tr>
 </tbody>
 </table>
-<p>Une ADR acceptée n'est pas une règle appliquée. Chacun de ces canaux doit être <strong>classé</strong> avant d'être renommé — c'est un jugement par cas, pas une substitution.</p>
+<p>Une ADR acceptée n'est pas une règle appliquée. Chacun de ces canaux doit être <strong>classé</strong> avant d'être renommé : c'est un jugement par cas, pas une substitution.</p>
 <p><strong><code>RattachementViewModel</code> est le cas à trancher en premier</strong> : il construit un <code>CompteRenduEnvoi</code> puis le publie <strong>au bandeau</strong>. Soit c'est un retour et son nom trompe, soit c'est un compte rendu et son routage est faux (#2003).</p>
-<p><strong>Les frontaliers existent déjà.</strong> <code>RecapImport</code> concatène <code>avertissements()</code>, de longueur variable, à une phrase bornée — dans la <em>vue</em>, donc intestable. Traité par le sous-EPIC #2004.</p>
+<p><strong>Les frontaliers existent déjà.</strong> <code>RecapImport</code> concatène <code>avertissements()</code>, de longueur variable, à une phrase bornée : dans la <em>vue</em>, donc intestable. Traité par le sous-EPIC #2004.</p>
 <p>Purement présentationnel côté IHM, mais <strong>pas sans objet côté CLI</strong> (<a href="../0014-parite-cli-ihm/">ADR 0014</a>) : <code>reactiver</code> rend le même compte rendu sans plafond d'affichage, et la migration ne doit pas désolidariser les deux surfaces.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <p><strong>Garder « compte rendu » pour le borné et inventer un mot pour l'extensible.</strong> C'eût évité de retoucher deux ADR acceptées. Mais le type s'appelle déjà <code>RetourOperation</code> : le vocabulaire aurait continué de diverger du code, et c'est précisément ce qui a produit #1964.</p>
-<p><strong>Étendre <code>RetourOperation</code> avec des rubriques optionnelles.</strong> Un seul type pour les deux natures, donc un seul canal, donc le bandeau par défaut — et la troncature silencieuse revient par la porte de derrière.</p>
+<p><strong>Étendre <code>RetourOperation</code> avec des rubriques optionnelles.</strong> Un seul type pour les deux natures, donc un seul canal, donc le bandeau par défaut : et la troncature silencieuse revient par la porte de derrière.</p>
 
 
 

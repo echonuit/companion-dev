@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0046-une-classe-css-a-une-seule-feuille-pour-maison">ADR 0046 — Une classe CSS a une seule feuille pour maison<a class="headerlink" href="#adr-0046-une-classe-css-a-une-seule-feuille-pour-maison" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0046-une-classe-css-a-une-seule-feuille-pour-maison">ADR 0046 - Une classe CSS a une seule feuille pour maison<a class="headerlink" href="#adr-0046-une-classe-css-a-une-seule-feuille-pour-maison" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-21</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-21</li>
 <li><strong>Chantier</strong> : #1974</li>
-<li><strong>Vérification</strong> : certaine — <code>DoublonsFeuillesDeStyleTest#chaque_classe_a_une_seule_feuille</code></li>
+<li><strong>Vérification</strong> : certaine - <code>DoublonsFeuillesDeStyleTest#chaque_classe_a_une_seule_feuille</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Les feuilles de style de l'application sont découpées par feature (<code>sites.css</code>, <code>qualification.css</code>…)
@@ -3216,11 +3216,11 @@ Rien n'empêchait un même nom de classe de vivre dans deux feuilles à la fois,
 sous <strong>trois formes</strong>, toutes rencontrées en #1974 :</p>
 <ul>
 <li><strong>la copie</strong> : <code>.message-erreur</code> recopié à l'identique dans cinq feuilles, <code>.field-label</code>,
-  <code>.field-hint</code>, <code>.menu-actions</code> en double. Chaque copie surchargeait sans rien changer — jusqu'au
+  <code>.field-hint</code>, <code>.menu-actions</code> en double. Chaque copie surchargeait sans rien changer : jusqu'au
   jour où l'une dérivait sans que l'autre suive ;</li>
 <li><strong>le code mort</strong> : <code>.fil-ariane</code> de la qualification, reliquat d'un breadcrumb déplacé dans le
   chrome, ne ciblant plus aucun élément ;</li>
-<li><strong>la collision</strong> : <code>.entete</code>, deux écrans sous un nom générique avec des paddings différents — et,
+<li><strong>la collision</strong> : <code>.entete</code>, deux écrans sous un nom générique avec des paddings différents, et,
   plus grave, <code>.carte-chevron</code>, dont la collision avec la classe de l'accueil (<code>-fx-opacity: 0</code>,
   révélée au survol) a rendu <strong>invisible</strong> le chevron d'invite des cartes de sites, depuis la création
   de la feature. Personne ne l'avait vu, parce que rien ne le testait.</li>
@@ -3240,7 +3240,7 @@ gagne de façon évidente, et le résultat dérive en silence.</p>
 présent dans deux feuilles</strong>. Il ne distingue pas la forme du défaut (copie, code mort, collision) :
 le nom en double est l'invariant, quelle qu'en soit la cause.</p>
 <p><strong>Une seule exception, structurelle : <code>.root</code>.</strong> <code>palette.css</code> y pose les jetons de couleur, <code>base.css</code>
-la police et le fond. La séparation est voulue — <code>palette.css</code> est chargée <strong>seule</strong> sur les scènes de
+la police et le fond. La séparation est voulue : <code>palette.css</code> est chargée <strong>seule</strong> sur les scènes de
 capture, sans <code>base.css</code>, précisément pour que les jetons se résolvent partout. Toute autre exception
 future s'inscrit dans la liste du test <strong>avec sa raison</strong>.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -3251,14 +3251,14 @@ ici : quand deux feuilles nomment la même chose, soit c'est une copie qui déri
 collision qui masque un bug. Le test transforme ce signal en garde-fou.</p>
 <p>Le <strong>coût</strong> est réel sur un cas : consolider <code>.menu-actions</code> (identique dans deux feuilles, posé par
 six écrans) l'a hissé dans <code>design.css</code>, ce qui applique son <code>font-size</code> à quatre écrans qui ne
-l'avaient pas — un décalage de layout d'environ 1px, imperceptible mais <strong>pas nul</strong>. Aucune résolution
+l'avaient pas : un décalage de layout d'environ 1px, imperceptible mais <strong>pas nul</strong>. Aucune résolution
 d'une classe partagée par plusieurs écrans n'est à zéro pixel ; la vérifier à la capture n'est pas
 optionnel.</p>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
 <p><strong>Interdire tout littéral égal à un jeton</strong>, tant qu'à faire de la cohérence. C'est un autre sujet
 (la tokenisation, cf. le cliquet de contraste de #322) : <code>#2c3e50</code> en littéral a un contraste parfait,
 le forcer au jeton est un chantier distinct. Ce test-ci ne vise que le <strong>nom en double</strong>.</p>
-<p><strong>Distinguer copie et collision dans le test.</strong> Tentant — une copie se corrige en supprimant, une
+<p><strong>Distinguer copie et collision dans le test.</strong> Tentant : une copie se corrige en supprimant, une
 collision en renommant. Mais le test n'a pas à savoir : les deux se soldent par « donne à cette classe
 une seule feuille », et un message unique est plus simple à suivre qu'une taxonomie.</p>
 

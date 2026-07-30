@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0033-une-fenetre-bornee-pas-un-pipeline-unitaire-et-deux-seuils-disque-au-lieu-dun">ADR 0033 — Une fenêtre bornée, pas un pipeline unitaire, et deux seuils disque au lieu d'un<a class="headerlink" href="#adr-0033-une-fenetre-bornee-pas-un-pipeline-unitaire-et-deux-seuils-disque-au-lieu-dun" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0033-une-fenetre-bornee-pas-un-pipeline-unitaire-et-deux-seuils-disque-au-lieu-dun">ADR 0033 - Une fenêtre bornée, pas un pipeline unitaire, et deux seuils disque au lieu d'un<a class="headerlink" href="#adr-0033-une-fenetre-bornee-pas-un-pipeline-unitaire-et-deux-seuils-disque-au-lieu-dun" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-19</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-19</li>
 <li><strong>Chantier</strong> : #1991 (lots #1993 à #1999)</li>
-<li><strong>Vérification</strong> : humaine — la fenêtre bornée et les deux seuils disque sont un choix d'architecture du dépôt, non réductible à un motif observable</li>
+<li><strong>Vérification</strong> : humaine - la fenêtre bornée et les deux seuils disque sont un choix d'architecture du dépôt, non réductible à un motif observable</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'analyse d'ouverture (#1930) proposait de replier le dépôt sur « pour chaque archive : la produire, la
@@ -3217,8 +3217,8 @@ compresse sur un thread par cœur, et <code>DepotVigieChiro</code> téléverse p
 calqué sur le front web). Ce qui était sérialisé, ce sont les deux <strong>phases entre elles</strong>, pas leur
 contenu.</p>
 <p>Un pipeline strictement unitaire aurait donc échangé un gain de recouvrement contre une perte de
-parallélisme, en sérialisant une compression aujourd'hui multi-cœurs. Sur les gros passages — ceux qui
-motivaient #769, de l'ordre de 4800 séquences — le remède aurait pu coûter plus cher que le mal.</p>
+parallélisme, en sérialisant une compression aujourd'hui multi-cœurs. Sur les gros passages : ceux qui
+motivaient #769, de l'ordre de 4800 séquences : le remède aurait pu coûter plus cher que le mal.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>1. Un producteur / consommateur borné, de fenêtre 2.</strong> Le pool de compression remplit une fenêtre de
 deux archives, le pool de téléversement la vide, et chaque archive est libérée dès qu'elle est <em>prouvée</em>
@@ -3226,7 +3226,7 @@ en ligne. Le pic disque passe de la somme des archives à environ 1,4 Go, sans r
 des deux phases.</p>
 <p><strong>2. La fenêtre est une constante interne, pas un réglage.</strong> Elle n'ajoute donc ni surface de
 configuration, ni axe de variation à couvrir en test. Si le besoin d'ajuster apparaît, il deviendra une
-issue — pas une option offerte par précaution.</p>
+issue : pas une option offerte par précaution.</p>
 <p><strong>3. La libération suit la preuve, jamais l'envoi.</strong> Elle est déclenchée par <code>uniteDeposee</code>, émis après
 le commit qui marque l'unité <code>depose</code>. Une archive en échec reste sur le disque.</p>
 <p><strong>4. Le parallélisme du moteur est plafonné par la source.</strong> Cinq téléversements de front rendraient la
@@ -3256,8 +3256,8 @@ caduc, il est <strong>dédoublé</strong> :</p>
 </tbody>
 </table>
 <p><code>AnticipationEspaceDisque</code> continue donc de dimensionner l'étape ② sur le volume total. Lui appliquer le
-seuil du pipeline la laisserait démarrer puis échouer à mi-parcours en laissant des archives partielles
-— exactement ce que #769 avait créé ce garde-fou pour empêcher.</p>
+seuil du pipeline la laisserait démarrer puis échouer à mi-parcours en laissant des archives partielles :
+exactement ce que #769 avait créé ce garde-fou pour empêcher.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p>Un disque trop petit pour l'ensemble du lot mais suffisant pour la fenêtre permet désormais un dépôt
 ZIP, là où il déclenchait auparavant un repli. Cette conséquence est la raison d'être de
@@ -3267,13 +3267,13 @@ laquelle l'IHM produisait un dépôt WAV.</p>
 devoir le retirer. Il n'exprimait pas une attente mais une <strong>exclusion mutuelle</strong> : les deux opérations
 écrivent le même <code>&lt;préfixe&gt;-N.zip</code> (<code>CompacteurDepot.ecrireArchive</code> et
 <code>SourceArchivesRegenerables.resoudre</code>), et les laisser se recouvrir corromprait des archives. Ce qui a
-disparu, c'est l'obligation de lancer l'étape ② d'abord — le stepper le dit désormais.</p>
+disparu, c'est l'obligation de lancer l'étape ② d'abord : le stepper le dit désormais.</p>
 <p>L'espace disque du choix de source passe par une couture injectable, sur le modèle de
 <code>CompacteurDepot.EspaceDisque</code> : sans elle, la bascule de seuil n'était vérifiable qu'au niveau
 arithmétique, jamais sur la décision elle-même.</p>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
 <p><strong>La fenêtre à une archive</strong>, telle que #1930 la décrivait. Elle minimise le pic disque mais sérialise
-la compression, au risque d'une régression de durée sur les gros passages — ceux-là mêmes que le
+la compression, au risque d'une régression de durée sur les gros passages : ceux-là mêmes que le
 chantier vise.</p>
 <p><strong>Une fenêtre réglable dans Réglages ▸ Dépôt.</strong> Plus honnête sur un poste contraint, mais elle ajoute un
 réglage, sa persistance, sa documentation et un axe de variation en test, pour un arbitrage que

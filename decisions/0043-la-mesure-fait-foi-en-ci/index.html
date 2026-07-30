@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0043-la-mesure-fait-foi-en-ci-pas-sur-le-poste-amende-0037">ADR 0043 — La mesure fait foi en CI, pas sur le poste (amende 0037)<a class="headerlink" href="#adr-0043-la-mesure-fait-foi-en-ci-pas-sur-le-poste-amende-0037" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0043-la-mesure-fait-foi-en-ci-pas-sur-le-poste-amende-0037">ADR 0043 - La mesure fait foi en CI, pas sur le poste (amende 0037)<a class="headerlink" href="#adr-0043-la-mesure-fait-foi-en-ci-pas-sur-le-poste-amende-0037" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-20</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-20</li>
 <li><strong>Chantier</strong> : #1641, #1873, #1579, #2129</li>
-<li><strong>Vérification</strong> : humaine — que la mesure fasse foi en CI plutôt qu'une observation locale est une discipline de méthode, non observable dans le code</li>
+<li><strong>Vérification</strong> : humaine - que la mesure fasse foi en CI plutôt qu'une observation locale est une discipline de méthode, non observable dans le code</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le harnais de capture mesure du texte. Or <strong>les polices d'un poste de développement et celles d'un runner de CI ne mesurent pas le texte à l'identique</strong>. Sur ce dépôt, l'écart observé va jusqu'à <strong>6 px</strong> par libellé.</p>
@@ -3219,7 +3219,7 @@
 <li><a href="../0037-une-barre-d-actions-plie-elle-ne-tronque-pas/">ADR 0037</a> affirme, en conséquence observée : « en convertissant <code>entete-actions</code>, le <strong>bandeau d'identité</strong> de la fiche site a cessé de tronquer ses cellules (« N° DE CA… » redevenu « N° DE CARRÉ ») ». <strong>C'était vrai sur la machine de son auteur, et faux en CI</strong>, où ces sept cellules coupaient encore libellés et valeurs. Le constat a été corrigé depuis, en resserrant leur marge intérieure.</li>
 </ol>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>1. Une observation visuelle locale est une hypothèse, pas un constat.</strong> Elle vaut pour orienter, jamais pour conclure. Toute affirmation de la forme « cet écran ne tronque plus » se vérifie sur un rendu de CI avant d'être écrite — dans une ADR, un bilan, ou le corps d'une issue.</p>
+<p><strong>1. Une observation visuelle locale est une hypothèse, pas un constat.</strong> Elle vaut pour orienter, jamais pour conclure. Toute affirmation de la forme « cet écran ne tronque plus » se vérifie sur un rendu de CI avant d'être écrite : dans une ADR, un bilan, ou le corps d'une issue.</p>
 <p><strong>2. Une correction de dimension prend une marge, elle ne vise pas le chiffre mesuré.</strong> Environ <strong>10 px</strong> au-delà du manque relevé. Une correction exacte est une correction qui repassera au rouge ailleurs.</p>
 <p><strong>3. Pour inventorier, un passage en mode rapport plutôt qu'une série d'allers-retours.</strong> Le verrou s'arrête au premier écran fautif, donc chaque itération contre la CI coûte une dizaine de minutes pour un seul défaut. Rendre le contrôle <strong>non bloquant</strong> le temps d'un unique passage donne la liste complète, mesurée là où elle fait foi. C'est ainsi que les 18 troncatures ont été obtenues d'un coup.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -3229,7 +3229,7 @@
 <li>Le verrou de <a href="../0042-un-apercu-qui-ment-est-refuse/">ADR 0042</a> tourne <strong>aussi</strong> en local, où il reste utile : ce qu'il y trouve est réel. Ce qu'il n'y trouve pas ne prouve rien.</li>
 </ul>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
-<p><strong>Relever la tolérance du verrou pour absorber l'écart de police</strong> (par exemple à 8 px). Cela rendrait la chaîne stable partout — et aveugle aux défauts de 2 à 6 px, qui sont la majorité de ceux trouvés. On préfère un verrou exigeant mesuré au bon endroit à un verrou permissif mesuré partout.</p>
+<p><strong>Relever la tolérance du verrou pour absorber l'écart de police</strong> (par exemple à 8 px). Cela rendrait la chaîne stable partout : et aveugle aux défauts de 2 à 6 px, qui sont la majorité de ceux trouvés. On préfère un verrou exigeant mesuré au bon endroit à un verrou permissif mesuré partout.</p>
 <p><strong>Figer la police du harnais</strong> (embarquer une fonte et l'imposer aux captures). Rendrait la mesure reproductible, mais ferait mentir les aperçus d'une autre façon : ils ne montreraient plus le rendu que l'utilisateur obtient sur son système. La piste reste ouverte si les allers-retours de CI deviennent coûteux.</p>
 
 

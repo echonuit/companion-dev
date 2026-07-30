@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0011-la-transformation-audio-est-pilotee-par-le-log-frequence-reelle-pas-par-len-tete-du-wav">ADR 0011 — La transformation audio est pilotée par le log (fréquence réelle), pas par l'en-tête du WAV<a class="headerlink" href="#adr-0011-la-transformation-audio-est-pilotee-par-le-log-frequence-reelle-pas-par-len-tete-du-wav" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0011-la-transformation-audio-est-pilotee-par-le-log-frequence-reelle-pas-par-len-tete-du-wav">ADR 0011 - La transformation audio est pilotée par le log (fréquence réelle), pas par l'en-tête du WAV<a class="headerlink" href="#adr-0011-la-transformation-audio-est-pilotee-par-le-log-frequence-reelle-pas-par-len-tete-du-wav" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — rétroactif</li>
+<li><strong>Statut</strong> : Accepté - rétroactif</li>
 <li><strong>Chantier</strong> : import Tadarida (unités CSV), bruts PR expansés (<code>FrequenceAcquisition</code>)</li>
-<li><strong>Vérification</strong> : humaine — que la transformation lise la fréquence dans le log et non l'en-tête WAV est un comportement, gardé par les tests de transformation</li>
+<li><strong>Vérification</strong> : humaine - que la transformation lise la fréquence dans le log et non l'en-tête WAV est un comportement, gardé par les tests de transformation</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Les enregistreurs Pettersson (PR) capturent en ultrasons puis écrivent un WAV dont l'<strong>en-tête ment volontairement</strong> : la fréquence d'échantillonnage y est notée à <strong>Fe/10</strong> (expansion temporelle ×10, pour rendre les cris audibles). La vraie fréquence d'<strong>acquisition</strong> (<code>Fe</code>), elle, n'est écrite que dans le <strong>journal</strong> de l'enregistreur (<code>Fe…kHz</code>). Or c'est cette fréquence réelle qui détermine le <strong>découpage en tranches de 5 secondes réelles</strong> et le nommage horodaté que Tadarida attend. Se fier à l'en-tête produirait des tranches fausses (dix fois trop longues) et des durées erronées.</p>

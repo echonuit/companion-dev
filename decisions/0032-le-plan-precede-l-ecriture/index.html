@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0032-le-plan-de-depot-precede-lecriture-des-archives">ADR 0032 — Le plan de dépôt précède l'écriture des archives<a class="headerlink" href="#adr-0032-le-plan-de-depot-precede-lecriture-des-archives" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0032-le-plan-de-depot-precede-lecriture-des-archives">ADR 0032 - Le plan de dépôt précède l'écriture des archives<a class="headerlink" href="#adr-0032-le-plan-de-depot-precede-lecriture-des-archives" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-19</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-19</li>
 <li><strong>Chantier</strong> : #1991 (lots #1993 à #1999)</li>
-<li><strong>Vérification</strong> : humaine — que le plan de dépôt précède l'écriture des archives est un ordonnancement du moteur, vérifié par ses tests, pas par un motif</li>
+<li><strong>Vérification</strong> : humaine - que le plan de dépôt précède l'écriture des archives est un ordonnancement du moteur, vérifié par ses tests, pas par un motif</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le moteur de dépôt consommait une <code>List&lt;Path&gt;</code> construite d'avance :</p>
@@ -3220,7 +3220,7 @@ archives, et deux phases sérialisées alors qu'elles pouvaient se recouvrir.</p
 <p>Cette dépendance était plus faible qu'il n'y paraissait. <code>PlanificateurArchives.partitionner</code> est un
 glouton à <strong>ordre préservé</strong> sur les tailles source, et <code>ecrireArchive</code> nomme ses sorties
 <code>&lt;préfixe&gt;-N.zip</code>. Le plan complet, <strong>noms compris</strong>, est donc calculable avant le moindre octet
-écrit — <code>ArchivePlanifiee</code> existait déjà pour ça, et son commentaire le disait : « ce que l'on connaît
+écrit, <code>ArchivePlanifiee</code> existait déjà pour ça, et son commentaire le disait : « ce que l'on connaît
 dès l'établissement du plan (avant toute écriture) ».</p>
 <p>Ce qui manquait n'était pas l'information, c'était la <strong>séparation</strong> entre « ce qu'il y a à déposer »
 et « où se trouve le fichier ».</p>
@@ -3237,7 +3237,7 @@ basculement n'a plus lieu.</p>
 <p><strong>3. Le plan porte l'empreinte de sa liste source.</strong> Le déterminisme de <code>partitionner</code> ne tient qu'à
 <strong>liste source inchangée</strong> : une séquence ajoutée, retirée ou re-transformée décale la partition, et
 l'archive <code>N</code> porterait le même nom pour un contenu différent. <code>EmpreinteLot</code> couvre le nom et la
-taille de chaque fichier dans l'ordre — exactement ce dont la partition dépend. Elle ne lit pas le
+taille de chaque fichier dans l'ordre : exactement ce dont la partition dépend. Elle ne lit pas le
 contenu : hacher des dizaines de gigaoctets à chaque pose de plan coûterait bien plus cher que le
 défaut évité.</p>
 <p><strong>4. Une empreinte qui a changé refuse la régénération.</strong> Le refus est explicite et nomme l'issue
@@ -3258,7 +3258,7 @@ l'écriture.</p>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
 <p><strong>Persister la composition de chaque archive</strong> (la liste des WAV qu'elle contient). Cela garantirait
 une régénération exacte même après modification du lot, mais duplique une information dérivable et
-alourdit le schéma. L'empreinte rend le défaut <em>impossible</em> plutôt que <em>réparable</em> — pour un cas qui ne
+alourdit le schéma. L'empreinte rend le défaut <em>impossible</em> plutôt que <em>réparable</em> : pour un cas qui ne
 devrait pas se produire, c'est le bon compromis.</p>
 <p><strong>S'appuyer sur le seul déterminisme, sans rien persister.</strong> C'est ce qui aurait été le plus simple, et
 c'est précisément le scénario où un lot modifié entre deux reprises produit une archive de même nom et

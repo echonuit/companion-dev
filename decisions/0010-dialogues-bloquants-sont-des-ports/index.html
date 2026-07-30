@@ -3203,11 +3203,11 @@
   
 
 
-<h1 id="adr-0010-les-dialogues-bloquants-confirmation-compte-rendu-sont-des-ports-injectables">ADR 0010 — Les dialogues bloquants (confirmation, compte rendu) sont des ports injectables<a class="headerlink" href="#adr-0010-les-dialogues-bloquants-confirmation-compte-rendu-sont-des-ports-injectables" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0010-les-dialogues-bloquants-confirmation-compte-rendu-sont-des-ports-injectables">ADR 0010 - Les dialogues bloquants (confirmation, compte rendu) sont des ports injectables<a class="headerlink" href="#adr-0010-les-dialogues-bloquants-confirmation-compte-rendu-sont-des-ports-injectables" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — rétroactif</li>
+<li><strong>Statut</strong> : Accepté - rétroactif</li>
 <li><strong>Chantier</strong> : #789/#790 (affordance et validation), socle occupation #1014, notificateur #1405</li>
-<li><strong>Vérification</strong> : probable — <code>scripts/adr/0010-dialogue-hors-port.py</code> (cliquet : 4)</li>
+<li><strong>Vérification</strong> : probable - <code>scripts/adr/0010-dialogue-hors-port.py</code> (cliquet : 4)</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Certains gestes exigent une <strong>interaction bloquante</strong> : confirmer une action destructrice, afficher un compte rendu que l'utilisateur doit acquitter. La voie évidente - <code>Alert.showAndWait()</code> appelé en dur dans un contrôleur - a deux défauts rédhibitoires :</p>

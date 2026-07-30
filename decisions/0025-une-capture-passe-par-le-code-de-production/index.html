@@ -3137,16 +3137,16 @@
   
 
 
-<h1 id="adr-0025-une-capture-passe-par-le-code-de-production-elle-ne-le-reconstruit-pas">ADR 0025 — Une capture passe par le code de production, elle ne le reconstruit pas<a class="headerlink" href="#adr-0025-une-capture-passe-par-le-code-de-production-elle-ne-le-reconstruit-pas" title="Permanent link">&para;</a></h1>
+<h1 id="adr-0025-une-capture-passe-par-le-code-de-production-elle-ne-le-reconstruit-pas">ADR 0025 - Une capture passe par le code de production, elle ne le reconstruit pas<a class="headerlink" href="#adr-0025-une-capture-passe-par-le-code-de-production-elle-ne-le-reconstruit-pas" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-18</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-18</li>
 <li><strong>Chantier</strong> : #1468, #1865 (suites de la clôture de #1838)</li>
-<li><strong>Vérification</strong> : humaine — qu'une capture appelle le code de production plutôt qu'un fac-similé est une discipline de conception, jugée en revue</li>
+<li><strong>Vérification</strong> : humaine - qu'une capture appelle le code de production plutôt qu'un fac-similé est une discipline de conception, jugée en revue</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Les captures d'écran de ce dépôt ne sont pas des illustrations : elles sont <strong>régénérées depuis le code</strong> à chaque évolution, et servent de documentation vivante de l'état réel de l'application. La <a href="../../cycle-de-chantier/">passe 8</a> de chaque clôture pose qu'« une conséquence visible qui n'a pas de capture n'est pas documentée : elle dérivera en silence ».</p>
 <p>Certaines surfaces résistent à ce principe. Un <code>Alert</code> se montre par <code>showAndWait</code>, qui <strong>bloque</strong> ; une modale de progression n'existe que le temps d'un travail ; un <code>MenuButton</code> n'expose pas la scène de son popup. Faute de pouvoir les obtenir, les outils de capture les <strong>reconstruisaient à l'identique</strong>.</p>
-<p><strong>Et « à l'identique » n'engage personne.</strong> #1468 l'a découvert en ouvrant les images : la documentation montrait des dialogues qui avaient <strong>dérivé du produit</strong>, jusqu'à une confirmation entière qui manquait. La reconstruction n'échoue jamais, ne rougit aucun test, et se périme silencieusement — exactement le défaut que les captures existent pour empêcher.</p>
+<p><strong>Et « à l'identique » n'engage personne.</strong> #1468 l'a découvert en ouvrant les images : la documentation montrait des dialogues qui avaient <strong>dérivé du produit</strong>, jusqu'à une confirmation entière qui manquait. La reconstruction n'échoue jamais, ne rougit aucun test, et se périme silencieusement, exactement le défaut que les captures existent pour empêcher.</p>
 <h1 id="1468-a-pose-le-remede-sur-un-cas-confirmationnavigationdialogue-1865-la-applique-trois-fois-de-plus-et-a-montre-que-cetait-une-regle-et-non-un-expedient-elle-netait-ecrite-nulle-part">1468 a posé le remède sur un cas (<code>ConfirmationNavigation.dialogue</code>). #1865 l'a appliqué trois fois de plus, et a montré que c'était une règle et non un expédient. Elle n'était écrite nulle part.<a class="headerlink" href="#1468-a-pose-le-remede-sur-un-cas-confirmationnavigationdialogue-1865-la-applique-trois-fois-de-plus-et-a-montre-que-cetait-une-regle-et-non-un-expedient-elle-netait-ecrite-nulle-part" title="Permanent link">&para;</a></h1>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>1. Une capture appelle le code que la production appelle.</strong> Elle n'assemble pas de fac-similé, même « à l'identique », même commenté comme tel.</p>

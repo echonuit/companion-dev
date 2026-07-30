@@ -3281,11 +3281,11 @@
   
 
 
-<h1 id="adr-2351-un-nombre-de-contacts-se-lit-contre-un-referentiel-cite-et-on-retient-le-plus-fiable-avant-le-plus-fin">ADR 2351 — Un nombre de contacts se lit contre un référentiel cité, et on retient le plus fiable avant le plus fin<a class="headerlink" href="#adr-2351-un-nombre-de-contacts-se-lit-contre-un-referentiel-cite-et-on-retient-le-plus-fiable-avant-le-plus-fin" title="Permanent link">&para;</a></h1>
+<h1 id="adr-2351-un-nombre-de-contacts-se-lit-contre-un-referentiel-cite-et-on-retient-le-plus-fiable-avant-le-plus-fin">ADR 2351 - Un nombre de contacts se lit contre un référentiel cité, et on retient le plus fiable avant le plus fin<a class="headerlink" href="#adr-2351-un-nombre-de-contacts-se-lit-contre-un-referentiel-cite-et-on-retient-le-plus-fiable-avant-le-plus-fin" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté — 2026-07-29</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-29</li>
 <li><strong>Chantier</strong> : #2351 (lot 1 de l'EPIC #2348)</li>
-<li><strong>Vérification</strong> : certaine — <code>ReferentielActiviteTest#precise_mais_peu_fiable_ecartee</code></li>
+<li><strong>Vérification</strong> : certaine - <code>ReferentielActiviteTest#precise_mais_peu_fiable_ecartee</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>« 718 contacts de Pipistrelle de Kuhl » ne veut rien dire pour qui n'a pas déjà en tête l'ordre de grandeur attendu. C'est la première question posée devant l'écran d'analyse, et le produit n'y répondait pas.</p>
@@ -3298,8 +3298,8 @@
 <p>C'est la <strong>seule</strong> source qui corresponde exactement au besoin : mêmes quatre classes, même pipeline TADARIDA, quantiles Q25/Q75/Q98 par espèce déclinés saison / région / habitat, avec un indicateur de fiabilité par déclinaison.</p>
 <p>Données ouvertes, <strong>libres d'usage avec citation obligatoire</strong>. La citation est donc exposée comme une constante du modèle et se recopie <strong>à l'écran</strong> et <strong>dans chaque export</strong>, avec l'avertissement qui l'accompagne. Un référentiel scientifique qui voyage sans sa source est une donnée orpheline : le lecteur n'a plus aucun moyen de contester ce qu'on lui affirme, ni même de savoir à quoi son nombre a été comparé.</p>
 <h3 id="2-le-repli-retient-la-premiere-declinaison-fiable-pas-la-plus-fine">2. Le repli retient la première déclinaison <strong>fiable</strong>, pas la plus fine<a class="headerlink" href="#2-le-repli-retient-la-premiere-declinaison-fiable-pas-la-plus-fine" title="Permanent link">&para;</a></h3>
-<p>On cherche du plus précis au plus général — milieu, puis région, puis national — et l'on <strong>s'arrête à la première déclinaison fiable</strong>. La colonne <code>confiance</code> de la source (<code>Très bonne</code>, <code>Bonne</code>, <code>Modérée</code>, <code>Faible</code>) n'est pas décorative : c'est elle qui arrête la descente.</p>
-<p>Douze nuits d'un habitat donné sont plus <strong>spécifiques</strong> que neuf mille nuits nationales, et beaucoup moins <strong>solides</strong>. Descendre vers le seuil peu fiable parce qu'il est plus précis produit une classe plus fausse, pas plus juste — et rien à l'écran ne distinguerait les deux.</p>
+<p>On cherche du plus précis au plus général (milieu, puis région, puis national) et l'on <strong>s'arrête à la première déclinaison fiable</strong>. La colonne <code>confiance</code> de la source (<code>Très bonne</code>, <code>Bonne</code>, <code>Modérée</code>, <code>Faible</code>) n'est pas décorative : c'est elle qui arrête la descente.</p>
+<p>Douze nuits d'un habitat donné sont plus <strong>spécifiques</strong> que neuf mille nuits nationales, et beaucoup moins <strong>solides</strong>. Descendre vers le seuil peu fiable parce qu'il est plus précis produit une classe plus fausse, pas plus juste : et rien à l'écran ne distinguerait les deux.</p>
 <p>Quand aucune déclinaison fiable n'existe, la plus précise des non fiables est rendue, <strong>marquée indicative</strong>. Ne rien dire ferait croire à une absence de données là où il n'y a qu'une incertitude assumée.</p>
 <h3 id="3-ce-qui-se-deduit-ce-qui-se-choisit-ce-qui-sabstient">3. Ce qui se déduit, ce qui se choisit, ce qui s'abstient<a class="headerlink" href="#3-ce-qui-se-deduit-ce-qui-se-choisit-ce-qui-sabstient" title="Permanent link">&para;</a></h3>
 <table>
@@ -3343,7 +3343,7 @@
 <li><strong>Repartir des publications d'origine</strong> pour recalculer les seuils. Traçable jusqu'au bout, mais c'est refaire un travail scientifique publié, avec le risque d'en diverger sans le savoir. Embarquer le dérivé publié <strong>en le citant</strong> garde le lien avec la source.</li>
 <li><strong>Retenir toujours la déclinaison la plus fine.</strong> Le réflexe naturel, et l'erreur que la colonne <code>confiance</code> existe pour éviter.</li>
 <li><strong>Deviner le milieu</strong> depuis les coordonnées du point (occupation du sol). Séduisant, mais un milieu deviné faux produit une classe fausse sans le signaler ; et le produit n'embarque aucune donnée d'occupation du sol.</li>
-<li><strong>Faire de la région un sélecteur explicite</strong>, comme le milieu. Envisagé tant que l'encodage du numéro de carré n'était pas confirmé — une déduction tirée de quelques exemples n'aurait pas suffi. La confirmation obtenue, la déduction est légitime, et elle épargne un choix à l'utilisateur à chaque nuit.</li>
+<li><strong>Faire de la région un sélecteur explicite</strong>, comme le milieu. Envisagé tant que l'encodage du numéro de carré n'était pas confirmé : une déduction tirée de quelques exemples n'aurait pas suffi. La confirmation obtenue, la déduction est légitime, et elle épargne un choix à l'utilisateur à chaque nuit.</li>
 </ul>
 
 
