@@ -3882,6 +3882,28 @@ en miroir).</p>
 <code>EcrivainZip</code> ; <code>CompacteurDepot</code> reste l'emballeur <strong>du dépôt</strong> (son nommage et son découpage sont un
 contrat de la plateforme, pas une variante d'options). La structure d'archive de l'export des sons
 (sous-dossier par session) est actée par l'ADR 2792.</p>
+<p><strong>Deux exports de sons, un seul comportement.</strong> L'export « observations + sons » (#2793) et l'export
+de la <strong>bibliothèque de sons de référence</strong> (P10) passent tous deux par cet écrivain, derrière la même
+modale annulable et le même bilan chiffré. Le second écrivait auparavant dans un <strong>dossier</strong>, de façon
+<strong>synchrone</strong>, en <strong>ignorant</strong> les fichiers absents : trois écarts qu'aucun test ne signalait, parce
+que rien n'obligeait deux gestes jumeaux à se ressembler. C'est le sens de l'harmonisation menée à la
+clôture de l'EPIC #2790 : le patron n'existe que si le second usage l'adopte.</p>
+<h2 id="critere-de-filtre-sur-liste-socle-communview">Critère de filtre sur liste (socle <code>commun.view</code>)<a class="headerlink" href="#critere-de-filtre-sur-liste-socle-communview" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Chaque écran à barre de filtres « à la Notion » (#470/#537) écrivait son éditeur de
+puce en liste déroulante à choix unique. Une puce à valeur unique ne sait dire ni « ces trois
+carrés », ni « tout sauf les chiroptères » (#2615) ; et le critère « Lieu » de la vue audio (#2794)
+confronte la même liste de valeurs cochées à <strong>quatre champs</strong> d'une ligne (commune, carré, point,
+site).</p>
+<p><strong>La solution.</strong> <code>CritereListe</code>, fabrique de <code>CritereFiltre</code> sur une dimension textuelle, en trois
+variantes : <code>simple</code> (liste déroulante, une valeur), <code>multiple</code> (cases à cocher, appartenance),
+<code>multipleParmi</code> (cases à cocher, la ligne portant <strong>plusieurs valeurs candidates</strong> passe dès que
+l'une est cochée - nom distinct, une surcharge de <code>multiple</code> aurait le même effacement). Sémantique
+partagée : <strong>rien de coché n'écarte rien</strong> (une puce fraîchement posée ne vide pas la vue), les
+valeurs offertes sont <strong>celles réellement présentes</strong>, calculées à l'ouverture de la puce, et l'état
+se mémorise/rejoue par les vues sauvegardées sans travail spécifique (<code>DescripteurCritere#valeurs</code>
+est déjà une liste).</p>
+<p><strong>La règle.</strong> Un nouveau critère sur dimension textuelle passe par <code>CritereListe</code> ; un éditeur écrit
+à la main ne se justifie que pour un type d'éditeur nouveau (curseur, plage horaire).</p>
 <h2 id="occupation-dun-ecran-pendant-un-traitement-long-socle-commun">Occupation d'un écran pendant un traitement long (socle <code>commun</code>)<a class="headerlink" href="#occupation-dun-ecran-pendant-un-traitement-long-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Un traitement lourd (agrégats, inspection de dossier, appel réseau) exécuté
 <strong>synchrone sur le fil JavaFX</strong> fige l'IHM sans feedback ; un <code>setCursor(WAIT)</code> n'y suffit pas, fil
@@ -4412,6 +4434,12 @@ et le plafond <code>GodClass</code> du portail qualité s'en trouve mieux.</p>
 la sévérité se décidant au point de jonction. <strong>Un collaborateur qui émet plusieurs natures</strong> reçoit la
 messagerie et choisit lui-même : la lui faire deviner ailleurs reviendrait à réinterpréter ses messages
 d'après leur texte.</p>
+<p><strong>Le patron du flux exposé.</strong> Quand un <strong>enchaînement complet</strong> (préparation, travail hors fil,
+restitutions par issue) pèse sur le ViewModel, il déménage dans un collaborateur que le VM construit
+et <strong>expose par un accesseur</strong> : <code>MultisiteViewModel.positionsEnAttente()</code> (la file du drag carte),
+<code>AudioViewModel.exports()</code> (<code>FluxExportsAudio</code>, #2793/#2794 : exports CSV et « observations +
+sons »). La vue pilote le collaborateur, qui parle au service et restitue par la messagerie du VM ;
+le VM garde l'orchestration d'écran, et le plafond <code>GodClass</code> cesse d'interdire les gestes riches.</p>
 <p><strong>Le piège à connaître.</strong> Un message de garde placé derrière un contrôle <strong>grisé sur la même condition</strong>
 n'est jamais lu par personne. Cinq cas de ce genre existent dans l'application (#1970) : la garde et le
 <code>disableProperty().bind(…)</code> testent le même prédicat. Aucun test ne le signale - c'est en essayant de
