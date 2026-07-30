@@ -3032,7 +3032,7 @@
   <a href="#put-donneesidobservationsindexmessages-poster-un-message-1418" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PUT /donnees/{id}/observations/{index}/messages — poster un message (#1418)
+        PUT /donnees/{id}/observations/{index}/messages : poster un message (#1418)
       
     </span>
   </a>
@@ -3417,7 +3417,7 @@
   <a href="#put-donneesidobservationsindexmessages-poster-un-message-1418" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PUT /donnees/{id}/observations/{index}/messages — poster un message (#1418)
+        PUT /donnees/{id}/observations/{index}/messages : poster un message (#1418)
       
     </span>
   </a>
@@ -3739,7 +3739,7 @@ la sonde live <code>refus_serveur_est_un_refuse_explicite</code> verrouille que 
 <tr>
 <td>GET</td>
 <td><code>/participations/{id}/donnees</code></td>
-<td>résultats Tadarida (paginé) — sert à l'import</td>
+<td>résultats Tadarida (paginé) : sert à l'import</td>
 </tr>
 <tr>
 <td>GET</td>
@@ -3820,13 +3820,13 @@ la sonde live <code>refus_serveur_est_un_refuse_explicite</code> verrouille que 
 <li><strong><code>meteo</code></strong> porte <code>vent</code> (<code>NUL|FAIBLE|MOYEN|FORT</code>), <code>couverture</code>
   (<code>0-25|25-50|50-75|75-100</code>) <strong>et les températures</strong> <code>temperature_debut</code> / <code>temperature_fin</code>,
   typées <strong><code>integer</code></strong> : un relevé décimal est <strong>refusé</strong>, il faut arrondir avant l'envoi (#1844).
-  <em>(Cette page a longtemps affirmé l'inverse — « pas de températures ». L'app ne les transportait
+  <em>(Cette page a longtemps affirmé l'inverse : « pas de températures ». L'app ne les transportait
   pas, ce qui a fait conclure à tort que le schéma ne les portait pas.)</em></li>
 <li><strong><code>configuration</code> est un dictionnaire libre, donc un piège</strong> : le <code>PATCH</code> le <strong>remplace en
   entier</strong>, et aucune clé n'est validée. D'où deux règles (<a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/">ADR 0020</a>) :
   partir de la configuration <strong>distante</strong> avant d'y superposer la nôtre (sinon on efface
   <code>micro0_numero_serie</code>, <code>micro1_*</code>, <code>canal_*</code>), et écrire le n° de série sous la clé <strong>que le
-  formulaire web lie</strong> — <code>detecteur_enregistreur_numero_serie</code>. L'app a longtemps poussé
+  formulaire web lie</strong> : <code>detecteur_enregistreur_numero_serie</code>. L'app a longtemps poussé
   <code>..._numserie</code> : accepté par le serveur, <strong>invisible</strong> sur la fiche web. La lecture accepte
   encore les deux ; l'écriture retire l'ancienne.</li>
 <li><strong><code>_etag</code></strong> est requis en en-tête <code>If-Match</code> pour tout <code>PATCH</code>/<code>PUT</code>/<code>DELETE</code> (concurrence Eve).</li>
@@ -3886,7 +3886,7 @@ vers VigieChiro » de Sons &amp; validation et la commande <code>publier-correct
 <p>Règles imposées par le handler (<code>donnees.py</code>, <code>edit_observation</code>) :</p>
 <ul>
 <li><strong>rôle <code>Observateur</code> + propriétaire de la donnée uniquement</strong> pour <code>observateur_*</code> (<code>403</code> sinon) ;
-  <code>validateur_taxon</code> / <code>validateur_probabilite</code> sont réservés Administrateur / Validateur — l'application
+  <code>validateur_taxon</code> / <code>validateur_probabilite</code> sont réservés Administrateur / Validateur : l'application
   ne peut donc <strong>que les lire</strong>, jamais les écrire (arbitrage #724, livré par #1417) ;</li>
 <li><strong><code>observateur_probabilite</code> est une énumération <code>SUR | PROBABLE | POSSIBLE</code></strong>, pas un flottant, et
   elle est <strong>obligatoire dès que <code>observateur_taxon</code> est envoyé</strong> (<code>422</code> sinon). <strong>Arbitrage tranché
@@ -3941,7 +3941,7 @@ porte, sur <strong>chaque observation</strong> :</p>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="s1">&#39;validateur_probabilite&#39;</span><span class="p">:</span>  <span class="n">choice</span><span class="p">([</span><span class="s1">&#39;SUR&#39;</span><span class="p">,</span> <span class="s1">&#39;PROBABLE&#39;</span><span class="p">,</span> <span class="s1">&#39;POSSIBLE&#39;</span><span class="p">]),</span>
 <a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="s1">&#39;messages&#39;</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span><span class="s1">&#39;message&#39;</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">&#39;auteur&#39;</span><span class="p">:</span> <span class="n">relation</span><span class="p">(</span><span class="s1">&#39;utilisateurs&#39;</span><span class="p">),</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="n">datetime</span><span class="p">}</span> <span class="p">],</span>
 </code></pre></div>
-<p>Ces champs arrivaient donc à <strong>chaque import</strong>, dans la même charge utile — et le parseur les jetait.
+<p>Ces champs arrivaient donc à <strong>chaque import</strong>, dans la même charge utile : et le parseur les jetait.
 L'application présentait la correction de l'observateur comme le dernier mot, alors qu'un expert avait pu
 la réviser sans qu'on le voie jamais.</p>
 <p>Points de contrat :</p>
@@ -3954,17 +3954,17 @@ la réviser sans qu'on le voie jamais.</p>
 <li>l'auteur revient tantôt <strong>brut</strong> (<code>"auteur": "5f3a…"</code>), tantôt <strong>résolu</strong> (<code>{"_id": "5f3a…", …}</code>) selon
   les projections : le parseur accepte les deux.</li>
 </ul>
-<h3 id="put-donneesidobservationsindexmessages-poster-un-message-1418"><code>PUT /donnees/{id}/observations/{index}/messages</code> — poster un message (#1418)<a class="headerlink" href="#put-donneesidobservationsindexmessages-poster-un-message-1418" title="Permanent link">&para;</a></h3>
+<h3 id="put-donneesidobservationsindexmessages-poster-un-message-1418"><code>PUT /donnees/{id}/observations/{index}/messages</code> : poster un message (#1418)<a class="headerlink" href="#put-donneesidobservationsindexmessages-poster-un-message-1418" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="err">PUT /donnees/6a4fcaa2842983a29ba25363/observations/0/messages</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="err">{ &quot;message&quot;: &quot;Médiane basse pour un Eptser, non ?&quot; }</span>
 </code></pre></div>
 <ul>
-<li>rôle <strong><code>Observateur</code></strong> : <code>_check_access_rights</code> laisse passer le <strong>propriétaire</strong> de la donnée — notre
+<li>rôle <strong><code>Observateur</code></strong> : <code>_check_access_rights</code> laisse passer le <strong>propriétaire</strong> de la donnée, notre
   jeton suffit (contrairement à l'avis de validateur, refusé en <code>403</code>) ;</li>
 <li><strong>ancrage positionnel</strong>, le même que la correction : <code>donnee._id</code> + indice <strong>brut</strong> ;</li>
 <li>corps à un seul champ ; tout ce qui n'est pas une chaîne → <code>422</code> ;</li>
 <li>ni <code>If-Match</code>, ni <code>_etag</code> : <strong>aucun contrôle de concurrence</strong>. Deux messages simultanés s'<strong>empilent</strong>,
-  ils ne s'écrasent pas — c'est le seul point rassurant de cette absence.</li>
+  ils ne s'écrasent pas : c'est le seul point rassurant de cette absence.</li>
 </ul>
 <div class="admonition danger">
 <p class="admonition-title">Un message posté ne se retire pas</p>
@@ -3972,7 +3972,7 @@ la réviser sans qu'on le voie jamais.</p>
 message</strong>. C'est une écriture <strong>définitive</strong>, sur des données que lit un validateur du MNHN. D'où,
 partout : une confirmation qui <strong>dit</strong> l'irréversibilité et <strong>cite</strong> le texte (on ne consent qu'à ce
 qu'on a compris), <code>--confirmer</code> obligatoire en CLI, et une <strong>fonctionnalité désactivable</strong>
-(<code>discuter-validateur</code>) — couper l'écriture laisse la lecture du fil intacte.</p>
+(<code>discuter-validateur</code>) : couper l'écriture laisse la lecture du fil intacte.</p>
 <p>Corollaire pour les probes : toute sonde <strong>live</strong> sur cette route est <strong>irréversible</strong>. C'est pourquoi
 elle exige <strong>trois</strong> verrous et non deux (<code>-Dvigiechiro.write=true</code> +
 <code>-Dvigiechiro.participationEssai=&lt;id&gt;</code> + <code>-Dvigiechiro.message=true</code>), vise la participation de
@@ -4029,7 +4029,7 @@ cf. <a href="../patterns/">Patterns</a>).</p>
 <p>Deux garde-fous s'exécutent au début de chaque dépôt (IHM et CLI) :</p>
 <ul>
 <li><strong>Pré-vol « la bonne nuit au bon endroit »</strong> : la participation liée est relue
-  (<code>GET /participations/{id}</code>) et comparée au passage local — même <strong>point</strong> (code localité) et même
+  (<code>GET /participations/{id}</code>) et comparée au passage local : même <strong>point</strong> (code localité) et même
   <strong>nuit</strong> (date UTC de <code>date_debut</code> : le mappeur pousse la date du passage telle quelle en UTC).
   Tout écart (point différent, nuit différente, participation injoignable) <strong>refuse le dépôt</strong> avec
   le détail, avant toute écriture. Porté par <code>SynchronisationParticipation.ecartsAvecDistant</code>.</li>
@@ -4038,7 +4038,7 @@ cf. <a href="../patterns/">Patterns</a>).</p>
   Limites : <code>donnees</code> n'existe qu'<strong>après traitement</strong> (un fichier téléversé mais pas encore traité
   sera re-téléversé, sans conséquence) ; les archives <strong>ZIP ne sont pas appariables</strong> par titre
   (contenu inconnu localement) ; il n'existe <strong>aucun inventaire lisible des uploads avant
-  traitement</strong> (<code>GET /fichiers</code> et <code>GET /participations/{id}/fichiers</code> → 403) — mais <strong>après</strong>
+  traitement</strong> (<code>GET /fichiers</code> et <code>GET /participations/{id}/fichiers</code> → 403) : mais <strong>après</strong>
   traitement, le journal (§ ci-dessous) en fournit un complet.</li>
 </ul>
 <h3 id="televersement-dun-fichier-et-declenchement-du-traitement-984">Téléversement d'un fichier et déclenchement du traitement (#984)<a class="headerlink" href="#televersement-dun-fichier-et-declenchement-du-traitement-984" title="Permanent link">&para;</a></h3>
@@ -4056,7 +4056,7 @@ cf. <a href="../patterns/">Patterns</a>).</p>
 <p class="admonition-title"><code>lien_participation</code> est obligatoire (le bug qui n'a jamais marché avant #984)</p>
 <p>Sans <code>lien_participation</code> à l'étape 1, le fichier est <strong>créé et téléversé sur S3 mais orphelin</strong> :
 il n'est <strong>rattaché à aucune participation</strong>, donc <code>compute</code> traite une participation vide et le
-journal serveur affiche <code>Extracting 0 zipped files</code>. Le symptôme est trompeur — l'IHM et la CLI
+journal serveur affiche <code>Extracting 0 zipped files</code>. Le symptôme est trompeur : l'IHM et la CLI
 voient trois requêtes réussies (201/200/200) et annoncent « Déposé », mais <strong>rien n'apparaît sur la
 plateforme</strong>. Le rattachement est résolu par <code>DepotVigieChiro.participationLiee(idPassage)</code> (lien
 <code>ENTITE_PASSAGE</code>) et propagé jusqu'à <code>creerFichier(titre, participationId)</code>.</p>
@@ -4070,7 +4070,7 @@ automatique après le dépôt</strong> : les fichiers sont sur S3, mais rien n'e
 appelé (par l'application ou depuis la page web de la participation).</p>
 <h3 id="le-traitement-serveur-apres-le-depot-epic-1259">Le traitement serveur, après le dépôt (EPIC #1259)<a class="headerlink" href="#le-traitement-serveur-apres-le-depot-epic-1259" title="Permanent link">&para;</a></h3>
 <p><strong><code>DEPOSE</code> n'est pas la fin.</strong> Une fois le compute lancé, la plateforme analyse la nuit ; les
-observations ne sont récupérables qu'à <code>FINI</code>. Avant, <code>GET /donnees</code> répond <strong>« 200, liste vide »</strong> —
+observations ne sont récupérables qu'à <code>FINI</code>. Avant, <code>GET /donnees</code> répond <strong>« 200, liste vide »</strong> :
 pas une erreur, un <strong>état</strong>.</p>
 <p><strong>Les cinq états</strong> (<code>participation.traitement.etat</code>, <code>resources/participations.py:73</code>) :</p>
 <table>
@@ -4115,7 +4115,7 @@ calcul démarre, <code>date_planification</code> <strong>disparaît</strong>. N'
 <p><strong>Un état SERVEUR, distinct du workflow local.</strong> <code>EtatTraitement</code> (<code>commun.api</code>) n'est <strong>pas</strong> une
 extension de <code>StatutWorkflow</code> : il ne nous appartient pas, il n'est <strong>pas monotone</strong> (une relance
 ramène <code>FINI</code> à <code>PLANIFIE</code>) et nous ne faisons que l'observer. <code>DEPOSE</code> reste donc l'état terminal du
-workflow local — même partition que <code>StatutPlateforme</code> côté sites.</p>
+workflow local : même partition que <code>StatutPlateforme</code> côté sites.</p>
 <p><strong>Un refus n'est pas un échec.</strong> <code>POST /compute</code> répond <code>400 «Already»</code> quand un traitement est déjà
 <code>PLANIFIE</code>/<code>EN_COURS</code> <strong>depuis moins de 24 h</strong> (<code>participations.py:231-237</code>). Plutôt que de décrypter
 son message, <code>TraitementVigieChiro.lancer</code> <strong>relit l'état</strong> : c'est lui qui fait foi. D'où
@@ -4124,12 +4124,12 @@ booléen aveugle.</p>
 <div class="admonition danger">
 <p class="admonition-title">Relancer un traitement DÉTRUIT les observations</p>
 <p>Le serveur <strong>supprime toutes les <code>donnees</code> avant de recalculer</strong> (<code>task_participation.py:726-731</code>),
-puis relit les WAV via <code>get_file_from_s3</code> — qui <strong>renvoie <code>None</code> sans lever</strong> quand le fichier n'a
+puis relit les WAV via <code>get_file_from_s3</code> : qui <strong>renvoie <code>None</code> sans lever</strong> quand le fichier n'a
 pas de <code>s3_id</code> (<code>fichiers.py:118-121</code>). Or sur un dépôt en <strong>archives ZIP</strong> (notre mode par défaut
 depuis #984), les WAV extraits n'ont <strong>jamais</strong> de <code>s3_id</code> (#1244) et les ZIP ont été supprimés de
 S3. Le recalcul rend donc une participation <strong>vide, définitivement</strong>.</p>
 <p>Vérifié en réel : un <code>compute</code> sur une participation <code>FINI</code> est <strong>accepté (HTTP 200)</strong>. <strong>Seule
-notre garde locale protège les données</strong> — <code>DepotVigieChiro.lancerTraitement(id, forcer)</code> refuse de
+notre garde locale protège les données</strong> : <code>DepotVigieChiro.lancerTraitement(id, forcer)</code> refuse de
 son propre chef, le bouton de M-Lot se verrouille, et le forçage n'existe qu'en ligne de commande
 (<code>lancer-traitement-vigiechiro --forcer</code>), là où il mérite d'être réfléchi.</p>
 </div>
@@ -4139,7 +4139,7 @@ après un lancement. Un calcul dure des dizaines de minutes et le site officiel 
 Le suivi scriptable, lui, passe par la CLI (<code>etat-traitement-vigiechiro</code>, codes <code>0</code> fini / <code>3</code> patiente
 / <code>2</code> échec / <code>4</code> jamais lancé), faite pour une boucle <code>until … ; [ $? -ne 3 ]</code>.</p>
 <p><strong>Le point de relevé unique</strong> est <code>commun.model.SuiviTraitement</code> : il interroge le serveur <strong>et</strong>
-alimente le cache. M-Lot, la modale de M-Passage et la CLI le partagent — il vit dans <code>commun</code> parce
+alimente le cache. M-Lot, la modale de M-Passage et la CLI le partagent : il vit dans <code>commun</code> parce
 qu'un <code>passage</code> qui dépendrait de <code>lot</code> fermerait un cycle qu'ArchUnit refuse.</p>
 <h3 id="journal-de-traitement-dune-participation-1132">Journal de traitement d'une participation (#1132)<a class="headerlink" href="#journal-de-traitement-dune-participation-1132" title="Permanent link">&para;</a></h3>
 <p>Le serveur trace le traitement de chaque participation dans un journal texte, accessible avec le
@@ -4151,10 +4151,10 @@ token en trois requêtes :</p>
    en-tête surnuméraire est refusé par S3).</li>
 </ol>
 <p>Contenu observé (participation canonique <code>6a4961f5…</code>, ~1 Mo) : extraction de chaque archive avec
-<strong>inventaire</strong> (<code>Archive contained: {'application/zip': 1, 'audio/wav': N}</code> — somme = 4806, le
+<strong>inventaire</strong> (<code>Archive contained: {'application/zip': 1, 'audio/wav': N}</code>, somme = 4806, le
 compte exact des <code>donnees</code>), <strong>chaque WAV nommé</strong> dans la sortie TadaridaD, suppression des zips de
 S3 après extraction, TadaridaD en <strong>expansion x10</strong>. C'est la <strong>vérification a posteriori</strong> d'un
-dépôt — la seule capable de vérifier un dépôt en <strong>ZIP</strong> — portée par <code>ClientVigieChiro
+dépôt (la seule capable de vérifier un dépôt en <strong>ZIP</strong>) portée par <code>ClientVigieChiro
 .journalTraitement</code>, <code>lot/model/VerificationDepot</code> et la commande CLI <code>verifier-depot-vigiechiro</code>.
 Même limite que <code>donnees</code> : le journal n'existe qu'après le passage du pipeline serveur.</p>
 <h3 id="pieces-jointes-et-csv-dobservations-1565-probe-1568">Pièces jointes et CSV d'observations (#1565, probe #1568)<a class="headerlink" href="#pieces-jointes-et-csv-dobservations-1565-probe-1568" title="Permanent link">&para;</a></h3>
@@ -4186,7 +4186,7 @@ régénère le CSV côté serveur ; inutile ici, le pipeline le produit déjà a
 <h3 id="verdicts-des-probes-decriture-executees-le-2026-07-11">Verdicts des probes d'écriture (exécutées le 2026-07-11)<a class="headerlink" href="#verdicts-des-probes-decriture-executees-le-2026-07-11" title="Permanent link">&para;</a></h3>
 <ul>
 <li><strong>ZIP (pilier B, #984)</strong> : <strong>verdict confirmé en réel.</strong> La plateforme accepte un <code>.zip</code>
-  (déclaration, <code>PUT</code> S3 <code>application/zip</code>, finalisation) <strong>et l'ingère</strong> — d'abord vérifié sur la
+  (déclaration, <code>PUT</code> S3 <code>application/zip</code>, finalisation) <strong>et l'ingère</strong> : d'abord vérifié sur la
   participation canonique <code>6a4961f5…</code> (déposée en zip via le site web, 4806 <code>donnees</code>), puis reproduit
   par <strong>notre chemin d'upload</strong> (API directe) sur une vraie nuit (<code>Car130711-2026-Pass2-Z41</code>, 04/07) :
   les 19 archives ZIP téléversées, <code>compute</code> lancé, WAV extraits et listés côté serveur. Le dépôt
@@ -4199,7 +4199,7 @@ régénère le CSV côté serveur ; inutile ici, le pipeline le produit déjà a
   mode de dépôt par défaut est cassé</strong>, et non, comme son libellé le laissait croire, qu'il faudrait
   revenir au WAV.</li>
 <li><strong>PATCH <code>/sites/{id}</code></strong> : <strong>HTTP 403</strong> pour un observateur → le <strong>push point→site est abandonné</strong> ;
-  le pull (<code>RapprochementSites</code>) reste la seule direction de synchronisation des sites — exécuté à la
+  le pull (<code>RapprochementSites</code>) reste la seule direction de synchronisation des sites : exécuté à la
   connexion, et rejouable <strong>à la demande</strong> depuis M-Sites (« Récupérer depuis VigieChiro », #1045,
   passerelle <code>SynchronisationSites</code> activée par <code>OptionalBinder</code>).</li>
 <li>
@@ -4242,7 +4242,7 @@ déposées avant #1844 existent bel et bien avec l'ancienne clé.</p>
 </li>
 </ul>
 <h3 id="methodes-autorisees-et-recuperation-exploration-du-2026-07-11-lecture-seule">Méthodes autorisées et récupération (exploration du 2026-07-11, lecture seule)<a class="headerlink" href="#methodes-autorisees-et-recuperation-exploration-du-2026-07-11-lecture-seule" title="Permanent link">&para;</a></h3>
-<p>Sondé via <code>OPTIONS</code> (en-tête <code>Allow</code>) avec un token d'observateur — <strong>aucune suppression testée</strong>.</p>
+<p>Sondé via <code>OPTIONS</code> (en-tête <code>Allow</code>) avec un token d'observateur : <strong>aucune suppression testée</strong>.</p>
 <table>
 <thead>
 <tr>
@@ -4255,7 +4255,7 @@ déposées avant #1844 existent bel et bien avec l'ancienne clé.</p>
 <tr>
 <td><code>/participations/{id}</code></td>
 <td><code>GET, PATCH, DELETE…</code></td>
-<td>PATCH <strong>fonctionne</strong> (sync modale) ; <strong>DELETE annoncé</strong> — une participation est supprimable par son propriétaire (non testé, destructif ; <code>If-Match</code> requis, convention Eve)</td>
+<td>PATCH <strong>fonctionne</strong> (sync modale) ; <strong>DELETE annoncé</strong> : une participation est supprimable par son propriétaire (non testé, destructif ; <code>If-Match</code> requis, convention Eve)</td>
 </tr>
 <tr>
 <td><code>/sites/{id}</code></td>
@@ -4291,14 +4291,14 @@ déposées avant #1844 existent bel et bien avec l'ancienne clé.</p>
 </table>
 <p><strong>Ce qui est récupérable depuis la plateforme</strong> (restauration possible, cf. issue dédiée) :</p>
 <ul>
-<li><strong>toutes ses participations</strong> (pagination <code>_meta</code> — attention : <code>mesSites()</code>/<code>mesParticipations()</code> ne
+<li><strong>toutes ses participations</strong> (pagination <code>_meta</code>, attention : <code>mesSites()</code>/<code>mesParticipations()</code> ne
   lisent aujourd'hui que la <strong>première page</strong>) ;</li>
 <li>pour chacune : son <strong>site complet embarqué</strong> (<code>localites</code> = les points) et son <code>point</code> (code
   localité) → sites/points reconstruisibles <strong>sans aucune donnée locale</strong> ;</li>
 <li>ses <strong>observations</strong> (<code>donnees</code> : titre du fichier + observations Tadarida) → rejouables dans
   l'application (import « depuis VigieChiro » existant).</li>
 </ul>
-<p><strong>Ce qui ne l'est pas</strong> : les <strong>WAV téléversés</strong> — aucun lien de téléchargement dans les <code>donnees</code>,
+<p><strong>Ce qui ne l'est pas</strong> : les <strong>WAV téléversés</strong>, aucun lien de téléchargement dans les <code>donnees</code>,
 collection <code>/fichiers</code> interdite en lecture. Les enregistrements audio d'origine n'existent que
 localement : la sauvegarde du workspace reste indispensable.</p>
 <div class="admonition note">

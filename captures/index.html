@@ -3357,7 +3357,7 @@ associe chaque vue FXML à ses aperçus.</p>
 <p>Les garde-fous ci-dessus vérifient qu'une capture <strong>existe</strong>. Celui-ci vérifie qu'elle <strong>ne ment
 pas</strong>. Il vit dans <code>ApercuFx</code>, au moment du rendu, et <strong>interrompt</strong> la chaîne : un aperçu déformé
 n'est pas écrit.</p>
-<p>L'application monte ses vues dans un <code>ScrollPane</code> permanent — ce qui déborde <strong>défile</strong>. La capture
+<p>L'application monte ses vues dans un <code>ScrollPane</code> permanent : ce qui déborde <strong>défile</strong>. La capture
 rend une scène de taille fixe et n'a pas ce recours : ce qui déborde se <strong>déforme</strong>, de deux façons
 que le message d'erreur distingue.</p>
 <table>
@@ -3383,7 +3383,7 @@ que le message d'erreur distingue.</p>
 </table>
 <p><strong><code>minWidth="-Infinity"</code></strong> est le remède le plus fréquent. La largeur <em>minimale</em> d'un <code>Labeled</code>
 autorise la troncature : une <code>HBox</code> en déficit rogne donc les libellés d'action plutôt que les
-sélecteurs et champs de recherche qui les entourent. Le figer inverse cette priorité — le déficit se
+sélecteurs et champs de recherche qui les entourent. Le figer inverse cette priorité : le déficit se
 reporte sur les voisins souples, qui se resserrent sans rien perdre de lisible.</p>
 <p>L'attribut se pose <strong>dans le FXML</strong>, sur le nœud qui est enfant direct du conteneur qui rogne (donc
 sur l'enveloppe <code>StackPane</code> quand le bouton en porte une). C'est un idiome répandu dans le dépôt,
@@ -3391,10 +3391,10 @@ notamment dans les modales.</p>
 <div class="admonition note">
 <p class="admonition-title">Pourquoi pas une classe CSS ?</p>
 <p>On ne peut pas. <code>-fx-min-width: -Infinity</code> <strong>parse sans erreur</strong> mais donne <code>-1.0</code>, c'est-à-dire
-<code>USE_COMPUTED_SIZE</code> — exactement le comportement qu'on cherche à éviter — au lieu de
+<code>USE_COMPUTED_SIZE</code> (exactement le comportement qu'on cherche à éviter) au lieu de
 <code>USE_PREF_SIZE</code>. Mesuré. L'attribut FXML est le seul moyen d'exprimer cette contrainte.</p>
 </div>
-<p><strong><code>abregeable</code></strong> est une classe CSS <strong>marqueur</strong>, sans règle de style — ne pas la supprimer comme
+<p><strong><code>abregeable</code></strong> est une classe CSS <strong>marqueur</strong>, sans règle de style : ne pas la supprimer comme
 CSS morte. Elle déclare, <em>dans la vue</em>, quel libellé porte le déficit : le figer partout ne fait pas
 rentrer le contenu d'une barre, cela le fait déborder. La règle est de désigner un sélecteur ou une
 métadonnée (qui se relisent ailleurs) plutôt qu'un libellé d'action (qui ne se relit nulle part). La
@@ -3402,7 +3402,7 @@ tolérance s'hérite jusqu'aux libellés internes des contrôles composés (<cod
 <p><strong>Le contrôle ne connaît pas d'exception par composant.</strong> Le sous-arbre d'<code>AudioView</code> a été exclu un
 temps, parce que sa barre de transport tronquait et qu'aucun FXML d'ici n'y pouvait rien. Le défaut a
 été corrigé en amont (audio-view#56, publié en 1.15.1) et l'exclusion retirée. Si un composant tiers
-redevenait infixable, la même mesure s'imposerait — mais tant qu'une chaîne <em>peut</em> être verte, mieux
+redevenait infixable, la même mesure s'imposerait : mais tant qu'une chaîne <em>peut</em> être verte, mieux
 vaut la garder voyante : une régression amont se signale alors d'elle-même.</p>
 <div class="admonition warning">
 <p class="admonition-title">Le poste de développement sous-mesure</p>
@@ -3416,10 +3416,10 @@ puisqu'il s'arrête au premier écran fautif. Voir
 <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/">ADR 0042</a>.</p>
 </div>
 <h3 id="capturer-un-dialogue-pre-enrouler-les-textes-longs">Capturer un dialogue : pré-enrouler les textes longs<a class="headerlink" href="#capturer-un-dialogue-pre-enrouler-les-textes-longs" title="Permanent link">&para;</a></h3>
-<p>Un dialogue se capture <strong>hors <code>showAndWait</code></strong> — on veut l'image, pas la modale bloquante. Dans cet
+<p>Un dialogue se capture <strong>hors <code>showAndWait</code></strong> : on veut l'image, pas la modale bloquante. Dans cet
 état, <strong>rien ne borne la largeur du contenu</strong> d'un <code>DialogPane</code> : un libellé <code>wrapText</code> long y garde
-sa largeur d'une ligne, déborde, et se fait couper par une ellipse. La mise en page ne le rattrape pas
-— imposer la largeur du dialogue ne se propage pas à son contenu, et la hauteur d'un libellé
+sa largeur d'une ligne, déborde, et se fait couper par une ellipse. La mise en page ne le rattrape pas :
+imposer la largeur du dialogue ne se propage pas à son contenu, et la hauteur d'un libellé
 enroulable se calcule à sa largeur <em>préférée</em>, pas à sa largeur réelle (mesuré en #2243).</p>
 <p>Le remède est <strong>à la source</strong> : pré-découper le texte aux espaces avant de rendre, sans en changer un
 mot.</p>
@@ -3432,7 +3432,7 @@ mot.</p>
 <p class="admonition-title">Le garde-fou ne voit pas cette troncature-là</p>
 <p>Le contrôle de fidélité ci-dessus <strong>ne l'attrape pas</strong> : sa mesure verticale retombe sur la même
 hauteur d'une ligne (l'écart vaut zéro), et sa mesure horizontale exclut par principe les libellés
-enroulables. Aucun contrôle géométrique ne referme ce trou de façon fiable — toute construction
+enroulables. Aucun contrôle géométrique ne referme ce trou de façon fiable : toute construction
 reproductible s'enroule correctement, ou déclenche déjà la mesure verticale (six essais instrumentés
 en #2265). <strong>Une capture de dialogue vert ne prouve donc pas que son texte long est lisible</strong> :
 l'ouvrir reste le seul contrôle, ce que fait la passe de revue visuelle.</p>

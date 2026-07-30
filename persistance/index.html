@@ -3238,7 +3238,7 @@ fichier). Les tests migrent sur leur base jetable.</p>
 <h1 id="148-la-restauration-complete-1346-et-la-base-neuve-baseneuverepartirdezero-1419">148), la <strong>restauration complète</strong> (#1346) et la <strong>base neuve</strong> (<code>BaseNeuve.repartirDeZero</code>, #1419).<a class="headerlink" href="#148-la-restauration-complete-1346-et-la-base-neuve-baseneuverepartirdezero-1419" title="Permanent link">&para;</a></h1>
 <p>Ce n'est pas un pari. La <a href="#la-source-de-donnees">source de données</a> <strong>n'a aucun pool</strong> : chaque opération
 ouvre puis ferme sa connexion, et <code>SourceDeDonnees</code> ne retient qu'une URL JDBC. Il n'y a donc aucune
-connexion longue à fermer — la prochaine ouvrira simplement le fichier neuf.</p>
+connexion longue à fermer : la prochaine ouvrira simplement le fichier neuf.</p>
 <p>Trois précautions, les mêmes pour les trois gestes :</p>
 <ul>
 <li>un <strong>filet</strong> est posé avant d'écraser (<code>vigiechiro.db.avant-restauration</code>, <code>…avant-reset</code>) : le geste
@@ -3251,7 +3251,7 @@ connexion longue à fermer — la prochaine ouvrira simplement le fichier neuf.<
 <div class="admonition warning">
 <p class="admonition-title">Ce que la base ne sait pas, c'est l'IHM qui doit le porter</p>
 <p>Une application graphique <strong>déjà ouverte</strong> garde en mémoire des écrans peuplés par l'<strong>ancienne</strong> base :
-ils afficheraient des fantômes. Le socle ne connaît pas d'IHM — c'est à l'appelant d'exiger un
+ils afficheraient des fantômes. Le socle ne connaît pas d'IHM : c'est à l'appelant d'exiger un
 redémarrage (ce que fait le reset : il ferme l'application après coup).</p>
 <p>Le piège est plus subtil qu'il n'y paraît, et il a été trouvé par un test E2E : <code>idUtilisateurCourant</code>
 est un <strong>singleton Guice déjà résolu</strong>. Après une base neuve, l'utilisateur local avait disparu de la

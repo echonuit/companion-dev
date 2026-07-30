@@ -3428,7 +3428,7 @@ retomberait <strong>en silence</strong> sur ses défauts.</p>
 <tr>
 <td><strong>CLI shell (bats)</strong></td>
 <td><code>src/test/bats/*.bats</code> (fixtures partagées <code>helper.bash</code>)</td>
-<td>La CLI <strong>empaquetée</strong> (fat-jar shadé), au niveau <strong>processus</strong> : arguments picocli, texte d'aide, <strong>codes de sortie</strong>, refus métier — ce que les tests Java in-process ne voient pas. <code>cli.bats</code> éprouve les commandes du chantier #1565 ; <code>cli-surface.bats</code> couvre le contrat <strong>hors-ligne de chaque</strong> sous-commande (aide, refus des options requises manquantes, exécution locale, refus sans jeton) ; <code>cli-reseau.bats</code> pointe le client sur un <strong>serveur stub</strong> (processus Python <code>stub_vigiechiro.py</code>) via la surcharge <code>VIGIECHIRO_URL</code> (<code>ConnexionModule#urlDeBase</code>) et prouve le chemin réseau <strong>sans jeton réel ni Internet</strong>. Reste à étoffer : contrats métier réseau sur fixtures Eve réalistes (#1592). Lancés en CI après le smoke-test du fat-jar (#1572, amorce).</td>
+<td>La CLI <strong>empaquetée</strong> (fat-jar shadé), au niveau <strong>processus</strong> : arguments picocli, texte d'aide, <strong>codes de sortie</strong>, refus métier, ce que les tests Java in-process ne voient pas. <code>cli.bats</code> éprouve les commandes du chantier #1565 ; <code>cli-surface.bats</code> couvre le contrat <strong>hors-ligne de chaque</strong> sous-commande (aide, refus des options requises manquantes, exécution locale, refus sans jeton) ; <code>cli-reseau.bats</code> pointe le client sur un <strong>serveur stub</strong> (processus Python <code>stub_vigiechiro.py</code>) via la surcharge <code>VIGIECHIRO_URL</code> (<code>ConnexionModule#urlDeBase</code>) et prouve le chemin réseau <strong>sans jeton réel ni Internet</strong>. Reste à étoffer : contrats métier réseau sur fixtures Eve réalistes (#1592). Lancés en CI après le smoke-test du fat-jar (#1572, amorce).</td>
 </tr>
 <tr>
 <td>Architecture (ArchUnit)</td>
@@ -3877,17 +3877,17 @@ introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindr
 </thead>
 <tbody>
 <tr>
-<td>« Java CI » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a>) — tests <strong>+ couverture</strong></td>
+<td>« Java CI » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a>), tests <strong>+ couverture</strong></td>
 <td><code>./mvnw -B verify -Djacoco.haltOnFailure=true</code></td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
-<td>« Quality gate » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a>) — formatage</td>
+<td>« Quality gate » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a>), formatage</td>
 <td><code>./mvnw -B spotless:check</code></td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
-<td>« Quality gate » — portail PMD</td>
+<td>« Quality gate », portail PMD</td>
 <td><code>./mvnw -B -Pquality-gate compile pmd:check</code></td>
 <td><strong>Oui</strong></td>
 </tr>

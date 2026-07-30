@@ -2965,7 +2965,7 @@
   <a href="#o5-couche-donnees" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O5 — couche données
+        O5 : couche données
       
     </span>
   </a>
@@ -2976,7 +2976,7 @@
   <a href="#o3-import-dune-nuit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O3 — import d'une nuit
+        O3 : import d'une nuit
       
     </span>
   </a>
@@ -3190,7 +3190,7 @@
   <a href="#o5-couche-donnees" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O5 — couche données
+        O5 : couche données
       
     </span>
   </a>
@@ -3201,7 +3201,7 @@
   <a href="#o3-import-dune-nuit" class="md-nav__link">
     <span class="md-ellipsis">
       
-        O3 — import d'une nuit
+        O3 : import d'une nuit
       
     </span>
   </a>
@@ -3282,9 +3282,9 @@
 <h1 id="performance-et-benchmarks">Performance et benchmarks<a class="headerlink" href="#performance-et-benchmarks" title="Permanent link">&para;</a></h1>
 <p>Deux objectifs qualité chiffrés encadrent les performances :</p>
 <ul>
-<li><strong>O5 — capacité</strong> : tenir une saison réaliste, de l'ordre de <strong>~1000 passages</strong> et <strong>~4031
+<li><strong>O5, capacité</strong> : tenir une saison réaliste, de l'ordre de <strong>~1000 passages</strong> et <strong>~4031
   observations</strong>, avec des écrans réactifs (sélection &lt; 100 ms, tri/filtre &lt; 200 ms) ;</li>
-<li><strong>O3 — tenue dans la durée</strong> : importer des <strong>nuits volumineuses</strong> sans dérive de temps ni de
+<li><strong>O3, tenue dans la durée</strong> : importer des <strong>nuits volumineuses</strong> sans dérive de temps ni de
   mémoire.</li>
 </ul>
 <p>Le dépôt fournit un <strong>banc de mesure</strong> (<code>fr.univ_amu.iut.perf.outils</code>) qui sert à la fois de <strong>premier
@@ -3321,7 +3321,7 @@ benchmark</strong> (calibrer les cibles sur la machine cible) et d'outil de <str
 <p>On les lance via <code>exec-maven-plugin</code>, avec le <strong>JDK 25 standard</strong> (comme la CI) ; les commandes
 complètes (avec les propriétés <code>-Dperf.*</code> de dimensionnement) sont dans le README du banc.</p>
 <h2 id="ce-que-mesurent-les-releves">Ce que mesurent les relevés<a class="headerlink" href="#ce-que-mesurent-les-releves" title="Permanent link">&para;</a></h2>
-<h3 id="o5-couche-donnees">O5 — couche données<a class="headerlink" href="#o5-couche-donnees" title="Permanent link">&para;</a></h3>
+<h3 id="o5-couche-donnees">O5 : couche données<a class="headerlink" href="#o5-couche-donnees" title="Permanent link">&para;</a></h3>
 <p>Les deux opérations critiques sont <strong>largement sous les cibles</strong> (facteur ~4 à ~10), grâce à l'index
 <code>idx_obs_results</code> posé en réponse au point #28 :</p>
 <table>
@@ -3347,7 +3347,7 @@ complètes (avec les propriétés <code>-Dperf.*</code> de dimensionnement) sont
 </table>
 <p>Sans l'index, la sélection faisait un <code>SCAN</code> (~75 ms froid) ; l'index la ramène à ~25 ms. Le gain est
 <strong>verrouillé par un test CI</strong> (non-régression du plan d'exécution).</p>
-<h3 id="o3-import-dune-nuit">O3 — import d'une nuit<a class="headerlink" href="#o3-import-dune-nuit" title="Permanent link">&para;</a></h3>
+<h3 id="o3-import-dune-nuit">O3 : import d'une nuit<a class="headerlink" href="#o3-import-dune-nuit" title="Permanent link">&para;</a></h3>
 <p>Le temps d'import <strong>croît linéairement</strong> avec la taille (débit ~stable 180-250 fichiers/s), la
 <strong>mémoire plafonne</strong> (~600-700 Mo pour ~1000-1500 fichiers) :</p>
 <table>

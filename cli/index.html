@@ -3387,7 +3387,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>modifier-campagne</code></td>
 <td><code>--campagne &lt;id&gt; --nom &lt;n&gt; --annee N [--commentaire ..]</code></td>
 <td>#2355</td>
-<td><code>ServiceCampagne.modifierCampagne</code> : corrige nom, année et commentaire. Sans elle, corriger une campagne obligeait à la supprimer — donc à détacher tous ses passages</td>
+<td><code>ServiceCampagne.modifierCampagne</code> : corrige nom, année et commentaire. Sans elle, corriger une campagne obligeait à la supprimer, donc à détacher tous ses passages</td>
 </tr>
 <tr>
 <td><code>rattacher-campagne</code></td>
@@ -3399,7 +3399,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>supprimer-campagne</code></td>
 <td><code>--campagne &lt;id&gt;</code></td>
 <td>#2355</td>
-<td><code>ServiceCampagne.supprimerCampagne</code> : supprime le <strong>regroupement</strong>, jamais les nuits — les passages rattachés sont détachés (<code>ON DELETE SET NULL</code>)</td>
+<td><code>ServiceCampagne.supprimerCampagne</code> : supprime le <strong>regroupement</strong>, jamais les nuits, les passages rattachés sont détachés (<code>ON DELETE SET NULL</code>)</td>
 </tr>
 <tr>
 <td><code>lister-passages</code></td>
@@ -3435,13 +3435,13 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>importer</code></td>
 <td><code>--source &lt;dir&gt; --point &lt;id&gt; [--annee N] [--passage N] [--conserver-originaux \| --sans-originaux] [--ecraser]</code></td>
 <td>P2</td>
-<td><code>ServiceImport</code>. Le mode de conservation suit le <strong>réglage</strong> <code>import.conserver-originaux</code> (par défaut : <strong>pas de copie</strong>) ; les deux options le forcent pour un import ponctuel et s'excluent. Auparavant la commande conservait <strong>en dur</strong>, quel que soit le réglage (#2064). La sortie rapporte aussi le <strong>doublon de nuit</strong> et les <strong>anomalies du journal</strong> : l'écran les montre depuis #2044, la commande les taisait (#2004). <strong>Collision de numéro</strong> (#2278) : la perte est chiffrée (séquences, validations Tadarida) et, <strong>sans <code>--ecraser</code>, rien n'est importé</strong> — sortie <code>2</code>. Avec, <code>ServiceImport.ecraserEtImporter</code> sauvegarde d'abord, puis remplace la nuit existante. <strong>Parité #2350</strong> : la sortie dit aussi les <strong>volumes lus / écrits</strong> (#2358, les mêmes chiffres que la bande de l'écran, sans les barres) et la <strong>participation Vigie-Chiro créée</strong> (#1488) — une écriture distante ne se découvre pas ailleurs</td>
+<td><code>ServiceImport</code>. Le mode de conservation suit le <strong>réglage</strong> <code>import.conserver-originaux</code> (par défaut : <strong>pas de copie</strong>) ; les deux options le forcent pour un import ponctuel et s'excluent. Auparavant la commande conservait <strong>en dur</strong>, quel que soit le réglage (#2064). La sortie rapporte aussi le <strong>doublon de nuit</strong> et les <strong>anomalies du journal</strong> : l'écran les montre depuis #2044, la commande les taisait (#2004). <strong>Collision de numéro</strong> (#2278) : la perte est chiffrée (séquences, validations Tadarida) et, <strong>sans <code>--ecraser</code>, rien n'est importé</strong>, sortie <code>2</code>. Avec, <code>ServiceImport.ecraserEtImporter</code> sauvegarde d'abord, puis remplace la nuit existante. <strong>Parité #2350</strong> : la sortie dit aussi les <strong>volumes lus / écrits</strong> (#2358, les mêmes chiffres que la bande de l'écran, sans les barres) et la <strong>participation Vigie-Chiro créée</strong> (#1488), une écriture distante ne se découvre pas ailleurs</td>
 </tr>
 <tr>
 <td><code>importer-transformes</code></td>
 <td><code>--dossier &lt;dir&gt; --point &lt;id&gt; [--annee N] [--passage N] [--referencer]</code></td>
 <td>#2433 (EPIC #2258)</td>
-<td><code>ServiceImportReference</code>. Crée un passage à partir d'un dossier de séquences <strong>déjà transformées</strong>, sans rejouer la transformation : l'original est un <strong>placeholder</strong> (pas de brut), l'identité (empreinte + taille) est calculée à l'inscription pour que la réactivation la revérifie au réveil. Par défaut <strong>copie</strong> les WAV dans l'espace de travail ; <strong><code>--referencer</code></strong> les laisse en place, la base pointe l'emplacement externe et aucun octet audio n'est recopié (<a href="../decisions/2433-un-dossier-de-transformes-s-importe-par-reference/">ADR 2433</a>). Série et date <strong>déduites des noms</strong> de fichiers. Refus métier (dossier introuvable, aucun WAV, point inconnu, quadruplet déjà pris) en sortie <code>2</code> — rien n'est créé, l'état est intact</td>
+<td><code>ServiceImportReference</code>. Crée un passage à partir d'un dossier de séquences <strong>déjà transformées</strong>, sans rejouer la transformation : l'original est un <strong>placeholder</strong> (pas de brut), l'identité (empreinte + taille) est calculée à l'inscription pour que la réactivation la revérifie au réveil. Par défaut <strong>copie</strong> les WAV dans l'espace de travail ; <strong><code>--referencer</code></strong> les laisse en place, la base pointe l'emplacement externe et aucun octet audio n'est recopié (<a href="../decisions/2433-un-dossier-de-transformes-s-importe-par-reference/">ADR 2433</a>). Série et date <strong>déduites des noms</strong> de fichiers. Refus métier (dossier introuvable, aucun WAV, point inconnu, quadruplet déjà pris) en sortie <code>2</code>, rien n'est créé, l'état est intact</td>
 </tr>
 <tr>
 <td><code>importer-tadarida</code></td>
@@ -3501,37 +3501,37 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>deposer-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;] [--archives\|--wav]</code></td>
 <td>#1043</td>
-<td><code>DepotVigieChiro.deposer</code> (moteur <strong>reprenable</strong> #982, téléversement <strong>parallèle</strong> #984). Défaut = <code>ChoixSourceDepot.pour</code>, <strong>le même choix que M-Lot</strong> : ZIP si présentes, sinon invite à les générer (étape 2), sinon repli WAV. <code>--archives</code>/<code>--wav</code> forcent l'un ou l'autre. <strong>Parité #2350</strong> : depuis le réessai gradué (#2354) une coupure momentanée n'échoue plus, elle <strong>attend</strong> ; la ligne <code>~ &lt;unité&gt; — nouvelle tentative dans N s</code> le dit, là où le silence faisait passer la temporisation pour un blocage</td>
+<td><code>DepotVigieChiro.deposer</code> (moteur <strong>reprenable</strong> #982, téléversement <strong>parallèle</strong> #984). Défaut = <code>ChoixSourceDepot.pour</code>, <strong>le même choix que M-Lot</strong> : ZIP si présentes, sinon invite à les générer (étape 2), sinon repli WAV. <code>--archives</code>/<code>--wav</code> forcent l'un ou l'autre. <strong>Parité #2350</strong> : depuis le réessai gradué (#2354) une coupure momentanée n'échoue plus, elle <strong>attend</strong> ; la ligne <code>~ &lt;unité&gt;, nouvelle tentative dans N s</code> le dit, là où le silence faisait passer la temporisation pour un blocage</td>
 </tr>
 <tr>
 <td><code>lancer-traitement-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;] [--forcer]</code></td>
 <td>#984, #1261, #1265</td>
-<td><code>DepotVigieChiro.lancerTraitement</code> (<code>POST /participations/{id}/compute</code>) — équivalent du bouton « Lancer la participation ». <code>0</code> <strong>dès lors que le traitement est en route</strong> (accepté <strong>ou</strong> déjà en cours : la commande est idempotente), <code>1</code> si le serveur a refusé la relance, <code>2</code> pour un refus métier en amont (dépôt indisponible, aucune participation liée au passage — rendu par le handler central, #2294). Une nuit <strong>déjà analysée n'est pas relancée</strong> : le serveur détruirait ses observations pour les recalculer, sans pouvoir les régénérer (audio absent d'un dépôt en archives, #1244) — <code>--forcer</code> lève cette garde, typiquement après un échec</td>
+<td><code>DepotVigieChiro.lancerTraitement</code> (<code>POST /participations/{id}/compute</code>), équivalent du bouton « Lancer la participation ». <code>0</code> <strong>dès lors que le traitement est en route</strong> (accepté <strong>ou</strong> déjà en cours : la commande est idempotente), <code>1</code> si le serveur a refusé la relance, <code>2</code> pour un refus métier en amont (dépôt indisponible, aucune participation liée au passage, rendu par le handler central, #2294). Une nuit <strong>déjà analysée n'est pas relancée</strong> : le serveur détruirait ses observations pour les recalculer, sans pouvoir les régénérer (audio absent d'un dépôt en archives, #1244), <code>--forcer</code> lève cette garde, typiquement après un échec</td>
 </tr>
 <tr>
 <td><code>etat-traitement-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;]</code></td>
 <td>#1265</td>
-<td><code>SuiviTraitement.relever</code> (lecture seule : <code>GET /participations/{id}</code> → bloc <code>traitement</code>, et <strong>mise à jour du cache local</strong> #1262). Codes <strong>faits pour un script</strong> : <code>0</code> terminé, <code>3</code> planifié/en cours/nouvel essai, <code>1</code> en échec côté serveur, <code>4</code> jamais lancé, <code>2</code> <strong>indisponible</strong> (on n'a pas pu demander : nuit non déposée, jeton absent, plateforme injoignable — refus métier rendu par le handler central, #2294)</td>
+<td><code>SuiviTraitement.relever</code> (lecture seule : <code>GET /participations/{id}</code> → bloc <code>traitement</code>, et <strong>mise à jour du cache local</strong> #1262). Codes <strong>faits pour un script</strong> : <code>0</code> terminé, <code>3</code> planifié/en cours/nouvel essai, <code>1</code> en échec côté serveur, <code>4</code> jamais lancé, <code>2</code> <strong>indisponible</strong> (on n'a pas pu demander : nuit non déposée, jeton absent, plateforme injoignable, refus métier rendu par le handler central, #2294)</td>
 </tr>
 <tr>
 <td><code>traiter-passages</code></td>
 <td><code>--action &lt;preparer-depot\|televerser\|importer-resultats\|declencher-calcul&gt; --passage &lt;id&gt; [--passage &lt;id&gt;…] [--json]</code></td>
 <td>#2357</td>
-<td><code>MoteurTraitementGroupe</code> sur les quatre <a href="../patterns/"><code>ActionGroupee</code></a> — équivalent du menu « Traiter la sélection » de « Carte &amp; passages ». Ce qu'une boucle shell ne sait pas faire : <strong>savoir à l'avance lesquels sont éligibles</strong> (les règles lisent l'état du dépôt, le rattachement et la présence de résultats, rien de tout cela n'étant dans <code>lister-passages</code>). Les écartés sont annoncés avec leur motif <strong>sans être tentés</strong>, un échec <strong>n'arrête pas</strong> les suivants, chaque passage a sa ligne. <strong>Ni <code>--forcer</code> ni <code>--remplacer</code></strong> : les actions groupées ne les exposent pas, un recalcul détruisant les observations d'un dépôt en archives et un remplacement touchant à ce que l'observateur a validé — vingt d'un coup ne serait pas un service. <code>0</code> si aucun échec (les <strong>écartés</strong> en font partie : rejouer un lot déjà traité est le cas <strong>idempotent</strong>, comme <code>lancer-traitement-vigiechiro</code> sur « déjà en cours »), <code>1</code> si au moins un passage a échoué, <code>2</code> pour un refus en amont (fonctionnalité désactivée, identifiant inconnu)</td>
+<td><code>MoteurTraitementGroupe</code> sur les quatre <a href="../patterns/"><code>ActionGroupee</code></a>, équivalent du menu « Traiter la sélection » de « Carte &amp; passages ». Ce qu'une boucle shell ne sait pas faire : <strong>savoir à l'avance lesquels sont éligibles</strong> (les règles lisent l'état du dépôt, le rattachement et la présence de résultats, rien de tout cela n'étant dans <code>lister-passages</code>). Les écartés sont annoncés avec leur motif <strong>sans être tentés</strong>, un échec <strong>n'arrête pas</strong> les suivants, chaque passage a sa ligne. <strong>Ni <code>--forcer</code> ni <code>--remplacer</code></strong> : les actions groupées ne les exposent pas, un recalcul détruisant les observations d'un dépôt en archives et un remplacement touchant à ce que l'observateur a validé, vingt d'un coup ne serait pas un service. <code>0</code> si aucun échec (les <strong>écartés</strong> en font partie : rejouer un lot déjà traité est le cas <strong>idempotent</strong>, comme <code>lancer-traitement-vigiechiro</code> sur « déjà en cours »), <code>1</code> si au moins un passage a échoué, <code>2</code> pour un refus en amont (fonctionnalité désactivée, identifiant inconnu)</td>
 </tr>
 <tr>
 <td><code>reinitialiser-depot</code></td>
 <td><code>--passage &lt;id&gt;</code></td>
 <td>#984</td>
-<td><code>ServiceLot.reinitialiserDepot</code> (efface le plan <code>depot_unite</code>, retour « Prêt à déposer » ; <strong>local</strong>, archives ZIP et lien de participation conservés) — équivalent du bouton « Réinitialiser le dépôt »</td>
+<td><code>ServiceLot.reinitialiserDepot</code> (efface le plan <code>depot_unite</code>, retour « Prêt à déposer » ; <strong>local</strong>, archives ZIP et lien de participation conservés) : équivalent du bouton « Réinitialiser le dépôt »</td>
 </tr>
 <tr>
 <td><code>supprimer-passage</code></td>
 <td><code>--passage &lt;id&gt; [--confirmer]</code></td>
 <td>#2278</td>
-<td><code>ServicePassage.supprimer</code> — équivalent du bouton « Supprimer » de la fiche passage. <strong>Destructif</strong> : chiffre d'abord la perte (séquences, validations Tadarida menacées) puis, <strong>sans <code>--confirmer</code>, ne touche à rien et sort en <code>2</code></strong>. Un passage <strong>déposé</strong> ou introuvable est refusé par le métier (code <code>2</code> : état intact). La cascade s'arrête à la base : les fichiers de la nuit restent sur le disque</td>
+<td><code>ServicePassage.supprimer</code>, équivalent du bouton « Supprimer » de la fiche passage. <strong>Destructif</strong> : chiffre d'abord la perte (séquences, validations Tadarida menacées) puis, <strong>sans <code>--confirmer</code>, ne touche à rien et sort en <code>2</code></strong>. Un passage <strong>déposé</strong> ou introuvable est refusé par le métier (code <code>2</code> : état intact). La cascade s'arrête à la base : les fichiers de la nuit restent sur le disque</td>
 </tr>
 <tr>
 <td><code>verifier-depot-vigiechiro</code></td>
@@ -3555,7 +3555,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>reactiver</code></td>
 <td><code>--passage &lt;id&gt; --source &lt;dir&gt; [--referencer] [--json]</code></td>
 <td>#1302, #1406, #1571, #2255</td>
-<td><code>ServiceReactivationPassage.reactiver</code> : rebranche les fichiers retrouvés, <strong>fichier par fichier</strong>, via la <a href="../patterns/#cascade-de-preuves-verification-graduee-refuser-plutot-que-se-tromper">cascade de preuves</a>. Le dossier est <strong>reconnu</strong>, pas déclaré : s'il ne contient que les <strong>bruts</strong>, les séquences sont <strong>régénérées</strong> (transformation déterministe) puis vérifiées comme n'importe quel candidat — la voie empruntée est dite (champ <code>voie</code> en JSON). Non destructive et <strong>idempotente</strong>. <code>0</code> si l'audio redevient complet, <code>1</code> s'il reste partiel (les écarts sont énumérés). Sur un passage <strong>reconstruit</strong> (observations sans ancrage), acquiert en plus l'<strong>ancrage plateforme</strong> par ré-import des <code>donnees</code> (#1571) pour rendre les corrections publiables — <strong>le seul cas où <code>reactiver</code> touche le réseau</strong>. Avec <strong><code>--referencer</code></strong> (#2255), <strong>rien n'est copié</strong> : la base pointe les fichiers là où ils vivent (NAS, disque externe, dossier de travail). La nuit devient muette si ce support n'est plus joignable et redevient écoutable quand il revient, l'identité étant revérifiée (#2254). Les tranches <strong>régénérées</strong> depuis les bruts restent copiées : elles sont produites par l'application, pas par l'utilisateur</td>
+<td><code>ServiceReactivationPassage.reactiver</code> : rebranche les fichiers retrouvés, <strong>fichier par fichier</strong>, via la <a href="../patterns/#cascade-de-preuves-verification-graduee-refuser-plutot-que-se-tromper">cascade de preuves</a>. Le dossier est <strong>reconnu</strong>, pas déclaré : s'il ne contient que les <strong>bruts</strong>, les séquences sont <strong>régénérées</strong> (transformation déterministe) puis vérifiées comme n'importe quel candidat, la voie empruntée est dite (champ <code>voie</code> en JSON). Non destructive et <strong>idempotente</strong>. <code>0</code> si l'audio redevient complet, <code>1</code> s'il reste partiel (les écarts sont énumérés). Sur un passage <strong>reconstruit</strong> (observations sans ancrage), acquiert en plus l'<strong>ancrage plateforme</strong> par ré-import des <code>donnees</code> (#1571) pour rendre les corrections publiables, <strong>le seul cas où <code>reactiver</code> touche le réseau</strong>. Avec <strong><code>--referencer</code></strong> (#2255), <strong>rien n'est copié</strong> : la base pointe les fichiers là où ils vivent (NAS, disque externe, dossier de travail). La nuit devient muette si ce support n'est plus joignable et redevient écoutable quand il revient, l'identité étant revérifiée (#2254). Les tranches <strong>régénérées</strong> depuis les bruts restent copiées : elles sont produites par l'application, pas par l'utilisateur</td>
 </tr>
 <tr>
 <td><code>reconstruire-passage</code></td>
@@ -3609,7 +3609,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>sauvegarder</code></td>
 <td><code>[--complet] [--dossier &lt;dir&gt;]</code></td>
 <td>#148, #1346</td>
-<td><code>ServiceSauvegarde</code> : instantané cohérent de la base (<code>VACUUM INTO</code>). <code>--complet</code> emporte <strong>aussi l'audio</strong> (dossiers de session) — c'est la <strong>seule sauvegarde qui protège vraiment</strong>, la plateforme ne rendant pas l'audio d'un dépôt en archives. Le bilan <strong>dit ce qui n'a pas pu être copié</strong> (carte SD non montée) et sort en <code>2</code> : une sauvegarde qu'on croit complète et qui ne l'est pas vaut moins que pas de sauvegarde</td>
+<td><code>ServiceSauvegarde</code> : instantané cohérent de la base (<code>VACUUM INTO</code>). <code>--complet</code> emporte <strong>aussi l'audio</strong> (dossiers de session), c'est la <strong>seule sauvegarde qui protège vraiment</strong>, la plateforme ne rendant pas l'audio d'un dépôt en archives. Le bilan <strong>dit ce qui n'a pas pu être copié</strong> (carte SD non montée) et sort en <code>2</code> : une sauvegarde qu'on croit complète et qui ne l'est pas vaut moins que pas de sauvegarde</td>
 </tr>
 <tr>
 <td><code>restaurer</code></td>
@@ -3621,13 +3621,13 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>reset-guide</code></td>
 <td><code>[--json] [--executer --confirmer [--accepter-perte] [--sauvegarde &lt;dir&gt;]]</code></td>
 <td>#1151, #1419</td>
-<td>Sans <code>--executer</code> : <strong>lecture seule</strong> — ce que deviendrait l'audio de chaque nuit si l'on repartait d'une base neuve (disque / serveur / <strong>perdu</strong>), code <code>2</code> dès qu'une nuit est en « perdu », pour qu'un script puisse refuser d'enchaîner. Avec <code>--executer</code> : <code>ServiceReset</code> mène la procédure (sauvegarde complète → base neuve → repeuplement depuis VigieChiro → audit final). Il <strong>refuse de démarrer</strong> si la perte n'est pas acceptée, <strong>ou si VigieChiro ne répond pas</strong> — une base neuve qu'on ne peut pas repeupler est une destruction sèche. Dans les deux cas, la base reste <strong>intacte</strong></td>
+<td>Sans <code>--executer</code> : <strong>lecture seule</strong>, ce que deviendrait l'audio de chaque nuit si l'on repartait d'une base neuve (disque / serveur / <strong>perdu</strong>), code <code>2</code> dès qu'une nuit est en « perdu », pour qu'un script puisse refuser d'enchaîner. Avec <code>--executer</code> : <code>ServiceReset</code> mène la procédure (sauvegarde complète → base neuve → repeuplement depuis VigieChiro → audit final). Il <strong>refuse de démarrer</strong> si la perte n'est pas acceptée, <strong>ou si VigieChiro ne répond pas</strong>, une base neuve qu'on ne peut pas repeupler est une destruction sèche. Dans les deux cas, la base reste <strong>intacte</strong></td>
 </tr>
 <tr>
 <td><code>synthetiser-passage</code></td>
 <td><code>--passage &lt;id&gt; [--carre ..] [--milieu ..] [--validees-seulement] [--format csv\|json] [--sortie &lt;f&gt;]</code></td>
 <td>#2351</td>
-<td><strong>Facette CLI de M-Synthese.</strong> Contacts par espèce et <strong>classe d'activité</strong> au regard du référentiel ACTICHIRO, avec les quantiles retenus. Même <code>ServiceSynthese</code> que l'écran : mêmes règles de repli, même résultat — une synthèse qui différerait d'une surface à l'autre serait pire qu'absente. Le <strong>contexte, l'avertissement et la citation</strong> sont écrits en tête du CSV (lignes <code>#</code>) et dans un objet <code>contexte</code> en JSON : la source est libre d'usage <strong>avec citation obligatoire</strong>, et un avertissement resté à l'écran ne prévient personne qui ouvre le fichier</td>
+<td><strong>Facette CLI de M-Synthese.</strong> Contacts par espèce et <strong>classe d'activité</strong> au regard du référentiel ACTICHIRO, avec les quantiles retenus. Même <code>ServiceSynthese</code> que l'écran : mêmes règles de repli, même résultat, une synthèse qui différerait d'une surface à l'autre serait pire qu'absente. Le <strong>contexte, l'avertissement et la citation</strong> sont écrits en tête du CSV (lignes <code>#</code>) et dans un objet <code>contexte</code> en JSON : la source est libre d'usage <strong>avec citation obligatoire</strong>, et un avertissement resté à l'écran ne prévient personne qui ouvre le fichier</td>
 </tr>
 <tr>
 <td><code>lister-observations</code></td>
@@ -3669,7 +3669,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>discussion</code></td>
 <td><code>--observation &lt;id&gt; [--message &lt;texte&gt; --confirmer]</code></td>
 <td>#1417, #1418</td>
-<td>Le <strong>fil d'échange avec le validateur</strong> du MNHN. Sans <code>--message</code>, le <strong>lit</strong> (le fil vient de la base, rafraîchi à chaque import). Avec, <strong>y répond</strong> — ⚠️ <strong>écriture définitive</strong> : le serveur ajoute par <code>$push</code> et n'offre aucune route de suppression. <code>--confirmer</code> est donc obligatoire, et le message n'est écrit localement <strong>qu'après</strong> que le serveur l'a accepté</td>
+<td>Le <strong>fil d'échange avec le validateur</strong> du MNHN. Sans <code>--message</code>, le <strong>lit</strong> (le fil vient de la base, rafraîchi à chaque import). Avec, <strong>y répond</strong>, ⚠️ <strong>écriture définitive</strong> : le serveur ajoute par <code>$push</code> et n'offre aucune route de suppression. <code>--confirmer</code> est donc obligatoire, et le message n'est écrit localement <strong>qu'après</strong> que le serveur l'a accepté</td>
 </tr>
 <tr>
 <td><code>emplacements</code></td>
@@ -3741,12 +3741,12 @@ défaut est <code>&lt;Documents&gt;/VigieChiro-Companion</code>.</p>
 </table>
 <p><strong><code>2</code> dit aussi « j'ai refusé, je n'ai rien fait ».</strong> Les commandes <strong>destructives</strong> exigent un drapeau
 explicite (<code>--confirmer</code>, <code>--ecraser</code>) : sans lui, elles <strong>chiffrent la perte</strong> et sortent en <code>2</code> sans
-rien toucher. C'est volontairement <strong>distinct de <code>1</code></strong> — après un <code>1</code>, l'état est incertain ; après un
+rien toucher. C'est volontairement <strong>distinct de <code>1</code></strong> : après un <code>1</code>, l'état est incertain ; après un
 <code>2</code>, il est <strong>intact</strong>, et un script peut s'arrêter sans avoir à vérifier quoi que ce soit. Le message
 de refus part sur <strong>stderr</strong>, pour ne pas se mêler au compte rendu.</p>
 <p>Suivent cette règle : <code>supprimer-passage</code>, <code>importer --ecraser</code>, <code>restaurer</code>, <code>reset-guide --executer</code>,
 <code>discussion</code>, <code>sauvegarder</code> (incomplète), <code>emplacements</code> (dossier refusé par la sonde, options
-exclusives : rien n'est écrit). <code>restaurer</code> rendait <code>1</code> sur stdout jusqu'à #2294 — la
+exclusives : rien n'est écrit). <code>restaurer</code> rendait <code>1</code> sur stdout jusqu'à #2294, la
 convention n'était écrite nulle part, et c'est ainsi qu'elle a dérivé.</p>
 <p><code>deposer-vigiechiro</code> étend la convention : <code>0</code> <strong>seulement si le dépôt est complet</strong> ; <code>1</code> si des
 fichiers restent à reprendre (relancer la même commande ne re-téléverse que les manquants). Le jeton
@@ -3761,15 +3761,15 @@ traitement serveur : il faut l'appeler explicitement.</p>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span>vigiechiro<span class="w"> </span>verifier-depot-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="w">   </span><span class="c1"># après le calcul serveur</span>
 </code></pre></div>
 <p>Le calcul serveur dure des dizaines de minutes (Tadarida tourne sur une ferme de calcul distante).
-L'application ne <strong>surveille</strong> jamais la plateforme d'elle-même — le site officiel ne le fait pas
-davantage — mais un script, lui, peut l'interroger à son rythme. C'est le rôle des codes de retour
+L'application ne <strong>surveille</strong> jamais la plateforme d'elle-même : le site officiel ne le fait pas
+davantage : mais un script, lui, peut l'interroger à son rythme. C'est le rôle des codes de retour
 d'<code>etat-traitement-vigiechiro</code>, le <code>3</code> signifiant « patiente » :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># attendre la fin du calcul, puis importer les observations</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">until</span><span class="w"> </span>vigiechiro<span class="w"> </span>etat-traitement-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="p">;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">300</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>vigiechiro<span class="w"> </span>importer-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span>
 </code></pre></div>
 <p>En cas de dépôt à refaire de zéro (unités marquées déposées à tort), <code>reinitialiser-depot --passage 9</code>
-efface le plan local et ramène le passage à « Prêt à déposer » — les archives et la participation sont
+efface le plan local et ramène le passage à « Prêt à déposer » : les archives et la participation sont
 conservées, le dépôt suivant re-téléverse tout.</p>
 <p><code>executer(...)</code> <strong>ne fait pas</strong> <code>System.exit</code> (il <em>renvoie</em> le code) : c'est ce qui le rend testable.
 Seul <code>main()</code> traduit le code en <code>System.exit</code>. La base est <strong>migrée au démarrage</strong> (idempotent) avant

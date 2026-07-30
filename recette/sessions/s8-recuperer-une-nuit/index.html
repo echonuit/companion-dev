@@ -3227,7 +3227,7 @@
 
 <h1 id="s8-recuperer-une-nuit-deposee">S8 · Récupérer une nuit déposée<a class="headerlink" href="#s8-recuperer-une-nuit-deposee" title="Permanent link">&para;</a></h1>
 <blockquote>
-<p><strong>Écran propriétaire</strong> : aucun en propre — la session traverse <strong>Connexion</strong>, <strong>Mes sites</strong>, <strong>Toutes
+<p><strong>Écran propriétaire</strong> : aucun en propre, la session traverse <strong>Connexion</strong>, <strong>Mes sites</strong>, <strong>Toutes
 mes nuits</strong> et la <strong>fiche passage</strong>.
 <strong>Features</strong> : reconstruction-passages, passage, sites, connexion, lot, multisite, saison.
 · <strong>Statut : à jouer.</strong>
@@ -3290,7 +3290,7 @@ a changé : à jouer une par une, l'œil sur le motif affiché autant que sur l'
 <li><strong>Supprimer</strong> est <strong>actif</strong>. Le survol dit ce qu'il enlève (la copie locale) et ce qu'il laisse (la
     participation).</li>
 <li><strong>Vérifier</strong> est <strong>grisé</strong>, et le motif dit « cette nuit vient de Vigie-Chiro, où elle est déjà
-    déposée : son verdict s'y décide » — et <strong>non</strong> « cette nuit est déposée ».</li>
+    déposée : son verdict s'y décide », et <strong>non</strong> « cette nuit est déposée ».</li>
 <li><strong>Annuler le dépôt</strong> est <strong>visible mais désactivé</strong>, avec son motif. Il ne doit ni disparaître ni
     être cliquable.</li>
 <li><strong>Modifier le passage</strong> ouvre la modale, mais l'année et le n° y sont <strong>verrouillés</strong>.</li>
@@ -3311,7 +3311,7 @@ a changé : à jouer une par une, l'œil sur le motif affiché autant que sur l'
 <li>Ouvrir une séquence : le son correspond bien à l'observation affichée.</li>
 <li><strong>Le statut est passé à « Déposé »</strong> : la nuit a rejoint les nuits ordinaires, elle sort de la vue
     « À réactiver », et « Annuler le dépôt » redevient actif. C'est la seule transition que le moteur
-    autorise depuis « Récupéré » — et elle ne doit se produire <strong>que</strong> si de l'audio est effectivement
+    autorise depuis « Récupéré » : et elle ne doit se produire <strong>que</strong> si de l'audio est effectivement
     revenu : une réactivation infructueuse laisse la nuit en « Récupéré ».</li>
 </ol>
 <p><strong>Étape 6 · Le rattrapage</strong></p>
@@ -3323,14 +3323,14 @@ a changé : à jouer une par une, l'œil sur le motif affiché autant que sur l'
 <p><strong>Étape 7 · La migration, sur une base qui a déjà servi (EPIC #2581)</strong></p>
 <ol>
 <li>Ouvrir une base <strong>antérieure</strong> au chantier, portant des nuits rapatriées en « Déposé ». Après
-    migration, elles portent <strong>« Récupéré »</strong> — et <strong>elles seules</strong> : une nuit que vous aviez déposée
+    migration, elles portent <strong>« Récupéré »</strong>, et <strong>elles seules</strong> : une nuit que vous aviez déposée
     garde « Déposé », même rattachée à sa participation.</li>
 <li>Le carré 130711 est le bon terrain : ses quatre nuits ont été rapatriées avant ce chantier.</li>
 </ol>
 <h2 id="ce-que-la-session-doit-mesurer">Ce que la session doit mesurer<a class="headerlink" href="#ce-que-la-session-doit-mesurer" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>La lisibilité du statut</strong> : « Récupéré » se comprend-il sans explication, ou faut-il lire la doc ?
-  C'est le seul juge de l'EPIC #2581 — le reste est tenu par des tests.</li>
+  C'est le seul juge de l'EPIC #2581 : le reste est tenu par des tests.</li>
 <li><strong>Durée</strong> de la première synchronisation, et nombre de nuits traitées. Repère mesuré au banc :
   10,5 s pour 2 nuits (≈ 9 000 séquences, 24 542 observations). C'est ce chiffre qui a permis d'écarter
   un bornage du balayage ; s'il ne tient pas en usage réel, la décision est à rouvrir.</li>

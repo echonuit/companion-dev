@@ -3260,7 +3260,7 @@ comment ces concepts deviennent des records Java et des tables SQL.</p>
 il réalise des <strong>passages</strong> (une nuit). Un passage est la <strong>racine d'agrégat</strong> : il possède une
 <strong>session d'enregistrement</strong> (les enregistrements originaux copiés de la carte SD, les séquences
 d'écoute ralenties ×10, le journal du capteur, le relevé climatique), une <strong>sélection d'écoute</strong> pour
-la vérification, et — après dépôt — des <strong>résultats d'identification</strong> Tadarida (les <strong>observations</strong>,
+la vérification, et (après dépôt) des <strong>résultats d'identification</strong> Tadarida (les <strong>observations</strong>,
 classées par <strong>taxon</strong>).</p>
 <p>C'est cet agrégat qui avance dans le <a href="../patterns/#machine-a-etats-moteurworkflowpassage">workflow à états</a>
 <code>Importé → … → Déposé</code>, plus <code>Récupéré</code> pour les nuits rapatriées de Vigie-Chiro, qui n'entrent
@@ -3467,7 +3467,7 @@ corruption. N'étant plus ni écrits ni lus, ils ont été <strong>retirés du s
 </div>
 <div class="admonition note">
 <p class="admonition-title">Validation d'expert (V26, EPIC #1154)</p>
-<p><strong><code>V26__validation_expert.sql</code></strong> fait entrer en base le <strong>troisième avis</strong> — et la discussion qui
+<p><strong><code>V26__validation_expert.sql</code></strong> fait entrer en base le <strong>troisième avis</strong> : et la discussion qui
 l'entoure.</p>
 <p>VigieChiro distingue trois avis sur une même détection : Tadarida <strong>propose</strong> (<code>taxon_tadarida</code>),
 l'observateur <strong>corrige</strong> (<code>taxon_observer</code>), le validateur du MNHN <strong>tranche</strong>. Le troisième arrivait
@@ -3480,7 +3480,7 @@ réviser sans qu'on le voie jamais.</p>
   souche, la clé étrangère ramènerait le code à <code>NULL</code> et l'application <strong>tairait l'avis qui fait
   autorité</strong>.</li>
 <li><code>observation_message</code> : le <strong>fil de discussion</strong> (1-N, cascade sur <code>observation</code>). <code>rank_in_thread</code>
-  fige l'ordre du serveur — l'ajout s'y faisant par <code>$push</code>, cet ordre <strong>est</strong> l'ordre chronologique,
+  fige l'ordre du serveur : l'ajout s'y faisant par <code>$push</code>, cet ordre <strong>est</strong> l'ordre chronologique,
   plus fiable qu'un tri sur des dates que le serveur ne garantit pas toutes.
   <code>author_platform_id</code> est un <strong>objectid</strong>, jamais un nom.</li>
 </ul>
@@ -3498,17 +3498,17 @@ vite (<strong>384 kHz</strong>), donc <strong>inaudible</strong>. L'import le tr
 l'<strong>ordre des opérations reproduit fidèlement la chaîne Vigie-Chiro/Tadarida</strong> (condition pour que
 l'<code>observations.csv</code>, produit sur les mêmes séquences, se raccroche à l'audio) :</p>
 <ol>
-<li><strong>Découper à 5 s réelles</strong> — au <strong>rythme source</strong> (<code>5 × frequenceSource</code> trames), et <strong>non</strong> au rythme
+<li><strong>Découper à 5 s réelles</strong> : au <strong>rythme source</strong> (<code>5 × frequenceSource</code> trames), et <strong>non</strong> au rythme
    de sortie. Une séquence porte donc 5 s de l'enregistrement d'origine (la dernière peut être plus
    courte). Nombre de séquences pour une durée <code>D</code> : <code>ceil(D / 5)</code>.</li>
-<li><strong>Expanser ×10</strong> — en <strong>réinterprétant</strong> le rythme d'échantillonnage (<code>frequenceSortie = source / 10</code>,
+<li><strong>Expanser ×10</strong> : en <strong>réinterprétant</strong> le rythme d'échantillonnage (<code>frequenceSortie = source / 10</code>,
    ex. 38 400 Hz) : <strong>aucun échantillon n'est recalculé</strong>, les mêmes octets PCM sont conservés. Une
    séquence de 5 s réelles devient <strong>50 s à l'écoute</strong>, dans la bande audible.</li>
 </ol>
 <div class="admonition warning">
 <p class="admonition-title">Piège corrigé</p>
 <p>Découper <em>après</em> l'expansion et au rythme de <strong>sortie</strong> donnait des séquences de <strong>0,5 s réelles</strong>
-(10× trop courtes), désalignées des temps de l'<code>observations.csv</code> — qui sont en <strong>secondes réelles
+(10× trop courtes), désalignées des temps de l'<code>observations.csv</code> : qui sont en <strong>secondes réelles
 dans une séquence de 5 s</strong>. On découpe donc bien à 5 s <strong>au rythme source</strong>.</p>
 </div>
 <div class="admonition note">
@@ -3525,7 +3525,7 @@ les valeurs existantes (<code>WHERE duration_s IS NOT NULL</code>, <code>origina
 </div>
 <p><strong>Nommage horodaté (clé de jointure).</strong> Chaque séquence porte l'<strong>heure réelle de son début</strong> :
 l'horodatage de l'original (<code>_AAAAMMJJ_HHMMSS</code>) <strong>décalé</strong> de <code>index × 5 s</code>, suivi d'un <code>_000</code>
-systématique — et non un index <code>_000</code>, <code>_001</code>… Exemple : <code>…_20260422_225849.wav</code> →
+systématique, et non un index <code>_000</code>, <code>_001</code>… Exemple : <code>…_20260422_225849.wav</code> →
 <code>…_225849_000</code>, <code>…_225854_000</code>, <code>…_225859_000</code>… C'est exactement le nom que porte l'<code>observations.csv</code>,
 et <code>ServiceValidation</code> <strong>relie une observation à sa séquence par ce nom</strong> (sans extension).</p>
 <p><strong>Collisions.</strong> Des enregistrements peuvent se <strong>chevaucher sur la grille de 5 s</strong> : la séquence de
@@ -3534,7 +3534,7 @@ enregistrement plus récent (<code>…_225342</code>, dont la tête vise aussi <
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/importation/model/ReconciliationNoms.java"><code>ReconciliationNoms</code></a>
 tranche de façon <strong>déterministe</strong> : le <strong>plus ancien enregistrement garde le <code>_000</code></strong> (c'est ce que
 référence l'<code>observations.csv</code>), le perdant passe en <strong><code>_001</code></strong> (disponible à l'écoute, sans
-observation associée — <strong>aucune donnée perdue</strong>). Comme le découpage est parallèle
+observation associée : <strong>aucune donnée perdue</strong>). Comme le découpage est parallèle
 (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/importation/model/DecoupageParallele.java"><code>DecoupageParallele</code></a>),
 chaque original écrit d'abord dans un <strong>dossier temporaire propre</strong>, puis les noms définitifs sont
 attribués en une passe séquentielle qui déplace les fichiers vers <code>transformes/</code>.</p>

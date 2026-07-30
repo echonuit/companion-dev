@@ -3295,7 +3295,7 @@ pas. Le filet d'exceptions non capturées d'<code>App</code>
 <p>Le filet ci-dessus couvre les <strong>tâches</strong> ; il ne voyait pas le <strong>réseau</strong>. Le journal ne portait aucune
 ligne mentionnant <code>participation</code>, <code>PATCH</code> ni le moindre statut HTTP. Face à « l'application dit
 <em>envoyées</em>, la plateforme n'affiche rien » (#1844), il ne permettait de trancher <strong>aucune</strong> hypothèse :
-le diagnostic a dû se faire en lisant les sources du serveur et du front — hors de portée d'un
+le diagnostic a dû se faire en lisant les sources du serveur et du front : hors de portée d'un
 utilisateur, et impossible sur le terrain.</p>
 <p><code>TransportVigieChiro</code> consigne désormais chaque échange : <strong>méthode, chemin, issue, durée</strong>. Le point
 d'instrumentation est le filet commun <code>emettre</code>, qui voit déjà passer GET, POST, PATCH et PUT et trie
@@ -3336,13 +3336,13 @@ consigne lui-même.</p>
 </tbody>
 </table>
 <p>Le <strong>corps d'un refus</strong> est consigné, tronqué à 300 caractères : c'est l'explication du serveur
-(<code>_issues</code>, « invalid field »…), l'élément le plus diagnostique qui soit — et précisément ce qui
+(<code>_issues</code>, « invalid field »…), l'élément le plus diagnostique qui soit : et précisément ce qui
 manquait pour comprendre #1844.</p>
 <div class="admonition warning">
 <p class="admonition-title">Ce qu'un journal ne doit jamais contenir</p>
 <p>Le jeton et les en-têtes ne sont <strong>jamais</strong> journalisés, ni le corps envoyé. L'<strong>URL complète</strong>
 non plus : une URL S3 <strong>pré-signée porte sa signature dans sa requête</strong>. On journalise donc le
-<strong>chemin seul</strong> — la fuite est réglée par construction, pas par vigilance. Un journal doit pouvoir
+<strong>chemin seul</strong> : la fuite est réglée par construction, pas par vigilance. Un journal doit pouvoir
 être joint à un signalement d'anomalie sans divulguer de secret (cf. <a href="../securite/">Sécurité</a>).</p>
 </div>
 <h2 id="acces-utilisateur">Accès utilisateur<a class="headerlink" href="#acces-utilisateur" title="Permanent link">&para;</a></h2>
@@ -3356,7 +3356,7 @@ montrent désormais un <strong>voile d'occupation</strong> ou un repère « … 
 <a href="../patterns/">Patterns et principes</a>), et les deux callbacks d'échec muets sont traités - l'un routé
 vers le filet d'erreurs de son écran, l'autre <em>fire-and-forget</em> assumé à la fermeture de la modale mais
 <strong>journalisé</strong> au point de passage.</p>
-<p>Cette page a ensuite conclu, pendant un temps, qu'aucune dette d'observabilité ne restait — alors que
+<p>Cette page a ensuite conclu, pendant un temps, qu'aucune dette d'observabilité ne restait : alors que
 la <strong>couche réseau était muette</strong> (§ « Les échanges avec l'API »). La leçon vaut d'être gardée : un
 audit d'observabilité ne prouve rien sur ce qu'il n'a pas pensé à regarder. La question utile n'est pas
 « mes journaux couvrent-ils mes échecs ? » mais « <strong>face à ce symptôme, le journal me permet-il de

@@ -3337,12 +3337,12 @@ Casser une frontière fait <strong>échouer la CI</strong>.</p>
 <p class="admonition-title">Sauf si la dépendance se réduit à une constante</p>
 <p>ArchUnit lit le <strong>bytecode</strong>, et une dépendance qui ne consiste qu'en une <strong>constante compile-time</strong>
 n'y laisse aucune trace : le compilateur inline la valeur, le <code>.class</code> ne cite jamais la classe qui la
-déclarait (JLS 13.1). Toutes les règles ci-dessous sont aveugles à ce cas — ce n'est pas un faux négatif
+déclarait (JLS 13.1). Toutes les règles ci-dessous sont aveugles à ce cas : ce n'est pas un faux négatif
 isolé mais une <strong>catégorie</strong>, qui vaut pour toute <code>String</code>, <code>int</code> ou <code>boolean</code> constant.</p>
 <p>Le cas s'est produit : une commande CLI a cité le <code>viewmodel</code> d'une feature pour une clé de réglage
 sans qu'aucune règle ne bronche (<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/2181">#2181</a>).
 D'où un <strong>doublon au niveau des sources</strong>, <code>IsolationFeatureSourcesTest</code>, qui lit l'<code>import</code> dans le
-<code>.java</code> — présent quoi qu'en fasse le compilateur. Mesuré : en réintroduisant volontairement une telle
+<code>.java</code>, présent quoi qu'en fasse le compilateur. Mesuré : en réintroduisant volontairement une telle
 dépendance, les six règles ArchUnit restent <strong>vertes</strong> et ce test échoue.</p>
 <p>Il ne couvre que la règle d'<strong>isolation inter-feature</strong>. Un vert d'ArchUnit dit donc « aucune dépendance
 <strong>dans le bytecode</strong> », pas « aucune dépendance ».</p>
@@ -3399,12 +3399,12 @@ dépendance, les six règles ArchUnit restent <strong>vertes</strong> et ce test
 <p><strong>Comment une feature en ouvre une autre sans en dépendre</strong> (inversion de dépendance) : le socle
 publie un <strong>contrat</strong> <code>Ouvrir*</code> dans <code>commun.view</code>, la feature cible l'<strong>implémente</strong> via sa classe
 <code>Navigation*</code> (bindée par son module Guice), et la feature appelante l'obtient <strong>par injection</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// commun/view/OuvrirPassage.java — le CONTRAT (dans le socle)</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// commun/view/OuvrirPassage.java : le CONTRAT (dans le socle)</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">interface</span> <span class="nc">OuvrirPassage</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">void</span><span class="w"> </span><span class="nf">ouvrir</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">idPassage</span><span class="p">,</span><span class="w"> </span><span class="n">ContexteSite</span><span class="w"> </span><span class="n">contexte</span><span class="p">);</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">}</span>
 <a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">// passage/view/NavigationPassage.java — l&#39;IMPLÉMENTATION (dans la feature passage)</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="c1">// passage/view/NavigationPassage.java : l&#39;IMPLÉMENTATION (dans la feature passage)</span>
 <a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nd">@Singleton</span>
 <a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">NavigationPassage</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">OuvrirPassage</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">ouvrir</span><span class="p">(</span><span class="n">Long</span><span class="w"> </span><span class="n">idPassage</span><span class="p">,</span><span class="w"> </span><span class="n">ContexteSite</span><span class="w"> </span><span class="n">contexte</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>

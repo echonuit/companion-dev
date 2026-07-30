@@ -3419,7 +3419,7 @@ dépendent tous deux (jamais l'un de l'autre).</p>
 <li>La feature <code>passage</code> l'<strong>implémente</strong> dans <code>NavigationPassage</code> (charge le FXML via la
    <code>controllerFactory</code> Guice, appelle <code>controleur.ouvrirSur(...)</code>, puis <code>navigateur.empiler(...)</code>).</li>
 <li><code>PassageModule</code> la <strong>binde</strong> : <code>bind(OuvrirPassage.class).to(NavigationPassage.class);</code>.</li>
-<li><code>sites</code> <strong>injecte</strong> <code>OuvrirPassage</code> et appelle <code>ouvrir(...)</code> — sans jamais voir <code>passage.view</code>.</li>
+<li><code>sites</code> <strong>injecte</strong> <code>OuvrirPassage</code> et appelle <code>ouvrir(...)</code> : sans jamais voir <code>passage.view</code>.</li>
 </ol>
 <p>Contrats existants (<strong><!--inv:ouvrir-->12<!--/inv--></strong>, la liste de référence : <code>commun/view/Ouvrir*.java</code>) : <code>OuvrirActivite</code>,
 <code>OuvrirAnalyse</code>, <code>OuvrirAudio</code>, <code>OuvrirDiagnostic</code>, <code>OuvrirImportation</code>, <code>OuvrirLot</code>, <code>OuvrirMultisite</code>,

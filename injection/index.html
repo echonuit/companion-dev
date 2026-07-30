@@ -3381,7 +3381,7 @@ l'origine), les 6 feuilles autrefois couplées au runtime dont le contrat <code>
 <strong>neutralisé</strong> (<code>OptionalBinder</code> vide côté consommateur + <code>setBinding</code> côté feuille, le consommateur
 masquant son point d'entrée si absent) : <code>diagnostic</code>, <code>lot</code>, <code>qualification</code>, <code>importation</code>, <code>analyse</code>,
 <code>recherche</code> (#1087), <strong>et</strong> <code>activite-nuit</code>, née <code>EXPERIMENTALE</code> le temps du chantier #2348 puis passée
-<code>OPTIONNELLE</code> à la clôture du lot #2352 — la bascule d'une feature achevée est le cas nominal, pas une
+<code>OPTIONNELLE</code> à la clôture du lot #2352 : la bascule d'une feature achevée est le cas nominal, pas une
 exception. Le reste demeure <code>COEUR</code> : <code>sites</code>, <code>passage</code>, <code>validation</code>, <code>audio</code>,
 <code>bibliotheque</code>, <code>multisite</code>, <code>connexion</code>, <code>synchronisation-participation</code>, <code>depot-vigiechiro</code>
 (dépendances EAGER ; cf. <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a>).</p>
@@ -3406,7 +3406,7 @@ est déclaré chez lui, faute de quoi l'<code>Optional</code> n'est pas « vide 
   soit injectable et vide quand la fonctionnalité est inactive.</li>
 </ul>
 <p>Corollaire en ligne de commande : une commande qui s'appuie sur ces composants n'a <strong>pas</strong> à être
-gouvernée par l'interrupteur de l'écran. Celui-ci gouverne un <strong>accès</strong>, pas une capacité de données —
+gouvernée par l'interrupteur de l'écran. Celui-ci gouverne un <strong>accès</strong>, pas une capacité de données :
 <code>exporter-activite</code> fonctionne que l'écran soit offert ou non (cf. <a href="../cli/">CLI</a>).</p>
 <p>Découpe illustrée par <code>analyse</code> : <code>AnalyseModule</code> (toujours actif) fournit <code>ActiviteViewModel</code> et
 <code>ServiceActivite</code> ; <code>ActiviteModule</code> ne porte que <code>OuvrirActivite</code> et la carte d'accueil.</p>

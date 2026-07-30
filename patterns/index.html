@@ -3354,7 +3354,7 @@ ci-dessus, inchangé.</p>
 <a href="../decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/">ADR 2554</a> : l'hydratation se
 fait <strong>en place</strong> (un écran est ouvert sur cet identifiant, et un squelette porte peut-être des saisies
 manuelles que la plateforme ignore), là où la reconstruction remplace la nuit ; et la source diffère selon
-l'appelant — le repli sur la pagination <code>donnees</code> est justifié sur <strong>une</strong> nuit désignée, jamais sur le
+l'appelant : le repli sur la pagination <code>donnees</code> est justifié sur <strong>une</strong> nuit désignée, jamais sur le
 balayage de compte de la synchro.</p>
 <p><strong>Principes.</strong> Fail-safe (ne pas pouvoir prouver = ne pas faire), <strong>honnêteté</strong> (dire <em>avec quelle
 force</em> on a conclu), et refus de la fausse alternative « preuve parfaite ou rien ».</p>
@@ -3368,7 +3368,7 @@ devient « aucun résultat », et une panne au milieu d'une pagination rend un <
 pire que le vide. L'appelant ne peut ni informer l'utilisateur, ni décider correctement.</p>
 <p><strong>La solution.</strong> Un type scellé qui rend l'issue <strong>exhaustive à la compilation</strong> :
 <code>ReponseApi&lt;T&gt;</code> = <code>Succes(valeur)</code> / <code>NonConnecte</code> / <code>Injoignable(cause)</code> / <code>Refuse(statut, corps)</code>.
-Un <code>switch</code> qui oublie une branche ne compile pas — la famille de bugs #1277, c'est « un cas auquel
+Un <code>switch</code> qui oublie une branche ne compile pas : la famille de bugs #1277, c'est « un cas auquel
 personne n'a pensé ». Le comportement commun vit dans les variantes par <strong>override</strong> (<code>enOptionnel</code>,
 <code>transformer</code>, <code>lireAvec</code>, <code>puis</code>, <code>echec</code>), jamais par <code>switch (this)</code>. Là où le silence reste le
 comportement <strong>voulu</strong>, c'est l'appelant qui le choisit, explicitement : <code>enOptionnel()</code>.</p>
@@ -3387,7 +3387,7 @@ la faire), et un <strong>vocabulaire unique</strong> des messages d'échec (<cod
 <h2 id="le-verdict-porte-son-message-resultat-scelle-message-par-variante">Le verdict porte son message (résultat scellé, message par variante)<a class="headerlink" href="#le-verdict-porte-son-message-resultat-scelle-message-par-variante" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Une opération à plusieurs issues renvoie souvent un rapport « à trous » :
 <code>(boolean succes, String motif, Rapport rapport)</code>, dont l'appelant doit deviner quels champs sont
-renseignés dans quel cas. Chaque appelant re-tricote alors le même <code>if</code> — et chaque <strong>surface</strong> (IHM,
+renseignés dans quel cas. Chaque appelant re-tricote alors le même <code>if</code> : et chaque <strong>surface</strong> (IHM,
 CLI) invente sa propre phrase pour dire la même chose. Les deux finissent par diverger.</p>
 <p><strong>La solution.</strong> Un type <strong>scellé</strong> dont chaque variante porte <strong>ce qui la caractérise</strong>, et <strong>sait le
 dire</strong>. Le message n'est pas dans l'appelant : il est dans le verdict.</p>
@@ -3402,7 +3402,7 @@ dire</strong>. Le message n'est pas dans l'appelant : il est dans le verdict.</p
 </code></pre></div>
 <p>L'IHM <strong>affiche</strong> <code>enClair()</code>, la CLI <strong>affiche</strong> <code>enClair()</code> et sort sur <code>codeSortie()</code>. Aucune des deux
 ne traduit un état en phrase : la parité CLI ↔ IHM est <strong>structurelle</strong>, pas maintenue à la main.</p>
-<p><strong>Dans cette application.</strong> <code>VerdictCarre</code> (#733 : <code>Concorde</code> / <code>Diverge</code> / <code>HorsGrille</code> / <code>Indisponible</code> — dont
+<p><strong>Dans cette application.</strong> <code>VerdictCarre</code> (#733 : <code>Concorde</code> / <code>Diverge</code> / <code>HorsGrille</code> / <code>Indisponible</code>, dont
 le message <strong>vide</strong> exprime le silence hors ligne) et <code>ResultatReset</code> (#1419). Même famille que
 <a href="#issue-dappel-triee-le-transport-ne-parle-plus-par-silence">l'issue d'appel triée</a>, appliquée aux
 <strong>opérations locales</strong> plutôt qu'au transport : exhaustivité par le compilateur, comportement par
@@ -3410,15 +3410,15 @@ le message <strong>vide</strong> exprime le silence hors ligne) et <code>Resulta
 <hr />
 <h2 id="refuser-avant-de-detruire-lordre-des-garde-fous-est-la-garantie">Refuser avant de détruire (l'ordre des garde-fous est la garantie)<a class="headerlink" href="#refuser-avant-de-detruire-lordre-des-garde-fous-est-la-garantie" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Une opération destructrice qui vérifie ses conditions <strong>au fil de l'eau</strong> laisse, au
-premier obstacle, un état <strong>à moitié détruit</strong> — le pire des deux mondes. Et l'utilisateur, lui, ne
+premier obstacle, un état <strong>à moitié détruit</strong> : le pire des deux mondes. Et l'utilisateur, lui, ne
 distingue plus « ça a refusé » de « ça a planté en route ».</p>
 <p><strong>La solution.</strong> Tous les refus <strong>avant</strong> la première écriture, et un refus qui <strong>le dit</strong> : <em>rien n'a été
 modifié</em>. L'ordre des étapes n'est pas une commodité de lecture, c'est <strong>la garantie</strong>.</p>
 <p>Le reset guidé (#1419) en est le cas d'école :</p>
 <ol>
-<li><strong>dire ce qu'on perdrait</strong> — une nuit dont l'audio n'est ni sur le disque ni sur le serveur est perdue
+<li><strong>dire ce qu'on perdrait</strong> : une nuit dont l'audio n'est ni sur le disque ni sur le serveur est perdue
    pour de bon ; sans acceptation <strong>explicite</strong>, on s'arrête là ;</li>
-<li><strong>vérifier que la plateforme répond</strong> — la base neuve se <strong>repeuple depuis le serveur</strong> : le détruire
+<li><strong>vérifier que la plateforme répond</strong>, la base neuve se <strong>repeuple depuis le serveur</strong> : le détruire
    alors qu'il est injoignable laisserait un workspace <strong>vide</strong>. Aucune sauvegarde ne rendrait ça
    acceptable, et c'est le garde-fou décisif ;</li>
 <li><strong>sauvegarder</strong> ; 4. <strong>base neuve</strong> ; 5. <strong>repeupler</strong> ; 6. <strong>auditer</strong>.</li>
@@ -3429,7 +3429,7 @@ refus, un message que l'observateur <strong>croirait envoyé</strong> et que le 
 <p><strong>Corollaires.</strong></p>
 <ul>
 <li>Une <strong>confirmation nomme ce qu'on perd</strong> : elle énumère les nuits, ou cite le texte qui va partir. Un
-  « êtes-vous sûr ? » générique n'est <strong>pas un consentement</strong> — on ne consent qu'à ce qu'on a lu. C'est ce
+  « êtes-vous sûr ? » générique n'est <strong>pas un consentement</strong> : on ne consent qu'à ce qu'on a lu. C'est ce
   message-là que le test vérifie, pas le fait qu'un dialogue s'ouvre.</li>
 <li>Une <strong>écriture définitive mérite d'être désactivable</strong>. <code>discuter-validateur</code> (#1418) est une
   fonctionnalité à part de la lecture du fil : couper l'écriture laisse la lecture intacte. Lire est sans
@@ -3467,7 +3467,7 @@ même fonctionnalité dans tout le projet : pour modifier un écran, on touche p
 <p><strong>Dans cette application.</strong> Les 10 features sont des paquets autonomes ; le socle <code>commun/</code> porte le partagé
 (chrome, persistance, DI). On ouvre, modifie ou supprime une feature sans naviguer ailleurs.</p>
 <p><strong>Principes.</strong> <strong>Forte cohésion / faible couplage</strong> ; <strong>OCP</strong> à l'échelle du produit (ajouter une
-feature ≈ ajouter un paquet, sans toucher aux autres — garanti par
+feature ≈ ajouter un paquet, sans toucher aux autres : garanti par
 <code>pas_de_dependance_inter_feature_vers_la_vue</code>).</p>
 <hr />
 <h2 id="injection-de-dependances-composition-root">Injection de dépendances + Composition Root<a class="headerlink" href="#injection-de-dependances-composition-root" title="Permanent link">&para;</a></h2>
@@ -3511,7 +3511,7 @@ décision de <strong>câblage</strong>, pas une contrainte gravée dans la class
 <hr />
 <h2 id="separated-interface-contrats-ouvrir">Separated Interface (contrats <code>Ouvrir*</code>)<a class="headerlink" href="#separated-interface-contrats-ouvrir" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Si <code>sites</code> appelait directement <code>passage.view.NavigationPassage</code>, les features
-seraient <strong>couplées</strong> entre elles — impossible de les faire évoluer indépendamment (et la règle
+seraient <strong>couplées</strong> entre elles : impossible de les faire évoluer indépendamment (et la règle
 ArchUnit l'interdit).</p>
 <p><strong>La solution.</strong> Publier une <strong>interface dans le socle</strong>, l'implémenter dans la feature cible :
 l'appelant dépend de l'<strong>abstraction</strong>, jamais de l'implémentation. La dépendance est <strong>inversée</strong>.</p>
@@ -3575,7 +3575,7 @@ l'extension</strong> (une nouvelle carte = un nouveau binding, zéro ligne touch
 <strong>auto-découverts</strong> par <code>RacineInjecteur</code> (<code>ServiceLoader&lt;ModuleDeFeature&gt;</code>, cf.
 <a href="../injection/#la-racine-de-composition">Injection</a>). Une feature complète (DAO, services, carte,
 compteur, réglages, entrée de menu) s'ajoute donc <strong>sans toucher une seule ligne du socle ni de la
-racine de composition</strong> — juste un <code>XxxModule extends ModuleDeFeature</code> déclaré comme service.</p>
+racine de composition</strong> : juste un <code>XxxModule extends ModuleDeFeature</code> déclaré comme service.</p>
 <hr />
 <h2 id="interfaces-de-role-fines-isp">Interfaces de rôle fines (ISP)<a class="headerlink" href="#interfaces-de-role-fines-isp" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Une grosse interface « écran » avec <em>garde de sortie + fil d'Ariane + rafraîchissement
@@ -3645,7 +3645,7 @@ fournit les opérations communes ; un DAO concret donne seulement <code>table()<
 sans modifier la base) et <strong>LSP</strong> (tout <code>DaoGenerique</code> concret est substituable à l'abstraction).</p>
 <hr />
 <h2 id="table-laterale-de-presence-un-fait-booleen-hors-du-record">Table latérale de présence (un fait booléen hors du record)<a class="headerlink" href="#table-laterale-de-presence-un-fait-booleen-hors-du-record" title="Permanent link">&para;</a></h2>
-<p><strong>Le problème.</strong> Attacher un <strong>fait booléen</strong> à une entité centrale — « ce passage est opportuniste »,
+<p><strong>Le problème.</strong> Attacher un <strong>fait booléen</strong> à une entité centrale : « ce passage est opportuniste »,
 « ce carré appartient à un tiers », « ce passage a un relevé de micro ». Le réflexe est d'ajouter une
 colonne, donc une composante au record ; mais <code>Passage</code> est construit en <strong>plus d'une centaine
 d'endroits</strong> (<code>main</code> et <code>test</code> confondus) et <code>Site</code> en <strong>plus de quatre-vingts</strong>. À ce volume, une
@@ -3658,7 +3658,7 @@ la ligne porte le fait, son absence porte le cas courant.</p>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="n">passage_id</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">passage</span><span class="p">(</span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">CASCADE</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">);</span>
 </code></pre></div>
-<p>Le DAO étend <code>DaoGenerique&lt;Long, Long&gt;</code> — l'entité <strong>est</strong> la clé, seul le fait d'exister compte — et
+<p>Le DAO étend <code>DaoGenerique&lt;Long, Long&gt;</code> (l'entité <strong>est</strong> la clé, seul le fait d'exister compte) et
 expose une API d'intention plutôt que le CRUD : <code>marquer</code> / <code>demarquer</code> / <code>definir(id, bool)</code> /
 <code>estX(id)</code>, plus un <strong><code>tousLesIds()</code></strong> de lecture groupée. <code>insert</code>/<code>update</code> du contrat <code>Dao</code> n'ont
 rien à écrire et délèguent au marquage idempotent (<code>ON CONFLICT DO NOTHING</code>).</p>
@@ -3668,12 +3668,12 @@ faire une requête par ligne. C'est la contrepartie du pattern : la lecture n'ar
 avec l'entité, il faut la prévoir.</p>
 <p><strong>Quand ne pas l'employer.</strong> Pour une entité construite en quelques endroits, la colonne reste plus
 simple et plus lisible. Le critère est le <strong>volume de sites de construction</strong> croisé avec la
-<strong>proportion de lignes concernées</strong> — un fait vrai pour la majorité des lignes ne gagne rien à sortir
+<strong>proportion de lignes concernées</strong> : un fait vrai pour la majorité des lignes ne gagne rien à sortir
 du record. Voir l'<a href="../decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/">ADR 2525</a>.</p>
 <p><strong>Occurrences.</strong> V10 <code>passage_equipment</code> (matériel du micro), V34 <code>passage_opportuniste</code>, V35
 <code>site_tiers</code>, V36 <code>taxon_prioritaire</code> (espèces à enjeu de conservation, #2353).</p>
 <p>La dernière ajoute une raison que les trois autres n'avaient pas : sa liste vient d'une <strong>source
-externe datée</strong> — le Plan National d'Actions Chiroptères 2016-2025 — et <strong>sera remplacée</strong> quand le
+externe datée</strong> (le Plan National d'Actions Chiroptères 2016-2025) et <strong>sera remplacée</strong> quand le
 plan le sera. Une table latérale se remplace d'un <code>DELETE</code> suivi d'un <code>INSERT</code>, sans toucher au
 référentiel taxonomique qu'elle annote. Voir l'<a href="../decisions/2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/">ADR 2353</a>.</p>
 <hr />
@@ -3694,7 +3694,7 @@ ou passée au client.</p>
 <ul>
 <li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/qualification/model/GenerateurSelection.java"><code>GenerateurSelection</code></a> :
   <code>selectionner(sequences, methode, taille)</code> choisit un sous-ensemble selon la <code>MethodeSelection</code>
-  (répartition temporelle vs aléatoire vs manuel) — une <strong>règle pure</strong>, sans base ni IHM.</li>
+  (répartition temporelle vs aléatoire vs manuel) : une <strong>règle pure</strong>, sans base ni IHM.</li>
 </ul>
 <pre class="mermaid"><code>classDiagram
     class RowMapper {
@@ -3704,7 +3704,7 @@ ou passée au client.</p>
     class DaoGenerique
     DaoGenerique o-- RowMapper : utilise (stratégie)</code></pre>
 <p><strong>Principes.</strong> <strong>OCP</strong> (ajouter une stratégie sans modifier l'appelant), <strong>SRP</strong> (chaque stratégie est
-une règle isolée, <strong>testable sans persistance ni IHM</strong> — objectif réutilisation O6).</p>
+une règle isolée, <strong>testable sans persistance ni IHM</strong> : objectif réutilisation O6).</p>
 <hr />
 <h2 id="table-de-suivi-par-unite-socle-commun">Table de suivi par unité (socle <code>commun</code>)<a class="headerlink" href="#table-de-suivi-par-unite-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Trois opérations longues (génération d'archives #820, import par fichier #947, dépôt
@@ -3724,7 +3724,7 @@ alimenté depuis des fils d'arrière-plan, parfois dans le désordre (travail pa
   traduit les événements en mutations observables.</li>
 </ul>
 <p><strong>La règle.</strong> Toute nouvelle opération longue « par unité » réutilise ce socle : définir l'interface
-d'événements (+ <code>inerte()</code>), la ligne et le pilote spécialisés, le relais fil JavaFX — jamais une
+d'événements (+ <code>inerte()</code>), la ligne et le pilote spécialisés, le relais fil JavaFX : jamais une
 table ad hoc.</p>
 <h2 id="occupation-dun-ecran-pendant-un-traitement-long-socle-commun">Occupation d'un écran pendant un traitement long (socle <code>commun</code>)<a class="headerlink" href="#occupation-dun-ecran-pendant-un-traitement-long-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Un traitement lourd (agrégats, inspection de dossier, appel réseau) exécuté
@@ -3785,9 +3785,9 @@ s'annulent, le socle étend <code>ExecuteurTache</code> sans toucher aux écrans
 l'annulation : le jeton appartenant à l'appelant, le test l'<strong>annule avant de déclencher</strong>
 l'opération et vérifie l'arrêt propre au premier point de contrôle (callback <code>annule</code>, ni succès ni
 échec) - c'est le contrat coopératif qui est testé, la simultanéité réelle relevant de l'E2E.</p>
-<p><strong>La règle.</strong> Toute opération longue d'un écran passe par le socle — <code>IndicateurOccupation</code> (voile) pour
+<p><strong>La règle.</strong> Toute opération longue d'un écran passe par le socle : <code>IndicateurOccupation</code> (voile) pour
 les traitements brefs, <code>SuiviProgression</code> (fenêtre ou panneau intégré) quand l'avancement mérite d'être
-montré et l'opération annulée — l'échec étant routé vers le filet d'erreurs de l'écran (#795), jamais un
+montré et l'opération annulée : l'échec étant routé vers le filet d'erreurs de l'écran (#795), jamais un
 <code>Thread.ofVirtual()</code> + <code>runLater</code> recopié à la main, y compris pour la progression et l'annulation
 (surcharges ci-dessus). Le déport écran par
 écran (EPIC #793 puis reliquat #1316) est <strong>terminé</strong> : plus aucun <code>Thread.ofVirtual</code> ne vit hors du
@@ -4088,15 +4088,15 @@ bouton à icône qui n'a pas dit son nom. Le raisonnement complet est dans
   se pose <strong>à côté</strong> du champ, ou pas du tout.</li>
 </ul>
 <p><strong>La règle.</strong> Aucun pictogramme littéral dans un FXML : <code>PictogrammesFxmlTest</code> échoue dessus. La
-<strong>CLI</strong> est hors sujet — une console ne rend pas de <code>FontIcon</code>, <code>⚠</code> y est le seul moyen d'écrire un
+<strong>CLI</strong> est hors sujet : une console ne rend pas de <code>FontIcon</code>, <code>⚠</code> y est le seul moyen d'écrire un
 avertissement. Les libellés bâtis <strong>en Java</strong> (#1564) ont été repris depuis : les glyphes de
 <strong>sévérité</strong> par #2036 puis #2188/#2221, qui les font dériver du type plutôt que de les écrire.</p>
 <p><strong>Un pictogramme d'état n'est pas une sévérité, mais il se pose pareil.</strong> La colonne « Écouté » de la
-qualification rendait <code>ecoutee() ? "✓" : "○"</code> — deux pictogrammes dans une chaîne, qui ne disent
+qualification rendait <code>ecoutee() ? "✓" : "○"</code>, deux pictogrammes dans une chaîne, qui ne disent
 pourtant aucune sévérité (ce ✓ veut dire « écouté », pas « succès »). <code>MarqueurEcoute</code> les <strong>pose</strong> par
 un <code>cellFactory</code>, comme la colonne badge de verdict : la <strong>forme</strong> distingue les deux états (un <code>CHECK</code>
 plein, un cercle creux), la couleur reste neutre. Choisir un glyphe <strong>différent</strong> de celui de la
-sévérité est délibéré — réutiliser <code>CHECK_CIRCLE</code> aurait fait lire « succès » là où on dit « fait »
+sévérité est délibéré : réutiliser <code>CHECK_CIRCLE</code> aurait fait lire « succès » là où on dit « fait »
 (#2237).</p>
 <h2 id="actions-de-ligne-dune-table-double-clic-et-menu-contextuel-socle-commun">Actions de ligne d'une table : double-clic et menu contextuel (socle <code>commun</code>)<a class="headerlink" href="#actions-de-ligne-dune-table-double-clic-et-menu-contextuel-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Les neuf tables de l'application ont grandi séparément, et leurs gestes avaient
@@ -4298,7 +4298,7 @@ pied. Il est présentationnel pur et n'appartient à aucune feature.</p>
 </table>
 <p><strong>Ce que le type garantit, et qu'il ne faut donc pas re-vérifier à la main</strong> (<a href="../decisions/2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/">ADR 2358</a>) :</p>
 <ul>
-<li>la <strong>largeur</strong> d'un segment est <em>liée</em> à sa fraction — aucun endroit où poser une largeur à la main,
+<li>la <strong>largeur</strong> d'un segment est <em>liée</em> à sa fraction : aucun endroit où poser une largeur à la main,
   donc aucun endroit où l'échelle puisse mentir ;</li>
 <li>une <strong>ventilation non exhaustive est refusée à la construction</strong>, en nommant le reliquat. Un « autres »
   silencieux masquerait exactement ce qu'on cherche ;</li>
@@ -4314,12 +4314,12 @@ pied. Il est présentationnel pur et n'appartient à aucune feature.</p>
    apprend à ne plus regarder les alertes.</li>
 <li><strong>La bande vit dans des largeurs très différentes</strong> (900 px sous l'écran d'import, ~560 px dans une
    modale) : les libellés s'enroulent, la légende <strong>reflue</strong>, et ce qui assume de s'abréger le déclare
-   par <code>abregeable</code>. C'est le garde-fou anti-troncature des captures qui l'a imposé — deux fois, dont
+   par <code>abregeable</code>. C'est le garde-fou anti-troncature des captures qui l'a imposé : deux fois, dont
    une en intégration continue seulement, ses métriques de police différant de neuf pixels par entrée.</li>
 </ol>
 <p><strong>Quand ne PAS l'employer.</strong> Un bilan qui n'a rien à ventiler garde le compte rendu textuel : un passage
 <em>reconstruit</em> n'a pas subi de réactivation, et une barre « 0 sur 30 » y ferait croire à une tentative qui
-a échoué. Et là où une <strong>commande en ligne</strong> rend le même bilan, le textuel reste — un terminal ne
+a échoué. Et là où une <strong>commande en ligne</strong> rend le même bilan, le textuel reste : un terminal ne
 dessine pas de barres.</p>
 <h2 id="unit-of-work-unitedetravail">Unit of Work (<code>UniteDeTravail</code>)<a class="headerlink" href="#unit-of-work-unitedetravail" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Par défaut, chaque écriture DAO s'auto-commit. Mais « créer un passage <strong>et</strong> sa
@@ -4473,7 +4473,7 @@ observables, pas de logique).</p>
 <p class="admonition-title">API fluente (le « builder » le plus proche)</p>
 <p>Les liaisons s'écrivent souvent avec l'<strong>API fluente</strong> de JavaFX :
 <code>Bindings.when(cond).then(a).otherwise(b)</code>, <code>Bindings.createStringBinding(...)</code>. C'est un
-<em>builder</em> conditionnel <strong>fourni par la bibliothèque</strong> — pas un patron Builder que nous
+<em>builder</em> conditionnel <strong>fourni par la bibliothèque</strong> : pas un patron Builder que nous
 implémentons. Le projet n'a d'ailleurs <strong>pas de Builder maison</strong> : les entités sont des <code>record</code>
 immuables (cf. <em>Objets-valeurs</em>), qui rendraient un builder superflu.</p>
 </div>
@@ -4510,7 +4510,7 @@ La logique est <strong>isolée</strong> de l'énum
     RECUPERE --&gt; DEPOSE</code></pre>
 <p><strong>Une entrée hors file</strong> (#2581). <code>RECUPERE</code> est le statut d'une nuit <strong>rapatriée</strong> de Vigie-Chiro : elle
 n'a franchi aucune des étapes ci-dessus, elle est arrivée par une autre porte. Elle est donc <strong>hors de
-<code>ORDRE</code></strong>, et le moteur lui accorde une seule transition — <code>RECUPERE → DEPOSE</code>, quand la réactivation lui
+<code>ORDRE</code></strong>, et le moteur lui accorde une seule transition : <code>RECUPERE → DEPOSE</code>, quand la réactivation lui
 rend son audio. <code>suivant(RECUPERE)</code> est <strong>vide</strong> : sa suite dépend d'un événement, pas d'une place dans la
 file. Voir <a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/">ADR 2581</a>.</p>
 <p>⚠️ <strong>Le rang de tri n'est pas l'<code>ordinal()</code>.</strong> <code>RECUPERE</code> est déclaré <strong>en dernier</strong> dans l'énum, pour ne
@@ -4555,7 +4555,7 @@ de vérité unique</strong> pour l'avancement d'une nuit.</p>
 visibles dans le code.</p>
 <h3 id="loi-de-demeter-ne-parle-qua-tes-amis-proches">Loi de Déméter (« ne parle qu'à tes amis proches »)<a class="headerlink" href="#loi-de-demeter-ne-parle-qua-tes-amis-proches" title="Permanent link">&para;</a></h3>
 <p>Un objet ne devrait appeler que les méthodes de <strong>lui-même</strong>, de ses <strong>paramètres</strong>, de ce qu'il
-<strong>crée</strong> et de ses <strong>champs directs</strong> — pas de chaîne <code>a.getB().getC().faire()</code>.</p>
+<strong>crée</strong> et de ses <strong>champs directs</strong> : pas de chaîne <code>a.getB().getC().faire()</code>.</p>
 <p><strong>Ici.</strong> La vue se lie à <code>vm.titreProperty()</code> (un collaborateur <strong>direct</strong>), jamais à
 <code>vm.modele().site().nom()</code>. Les contrats <code>Ouvrir*</code> reçoivent un <code>ContexteSite</code> / <code>ContextePassage</code>
 (données <strong>passées en paramètre</strong>) plutôt que de fouiller dans l'écran appelant. Et <code>view_sans_jdbc</code>
@@ -4579,7 +4579,7 @@ premier utilisateur (aucune machinerie d'authentification construite « au cas o
 transition est interdite, au lieu d'exposer l'ordre pour que chaque appelant le re-teste.</p>
 <h3 id="composition-plutot-quheritage">Composition plutôt qu'héritage<a class="headerlink" href="#composition-plutot-quheritage" title="Permanent link">&para;</a></h3>
 <p><strong>Ici.</strong> Le chrome <strong>compose</strong> des capacités via de petites interfaces optionnelles (ISP) détectées à
-l'exécution, et l'injection <strong>compose</strong> le graphe d'objets — au lieu d'une hiérarchie de classes
+l'exécution, et l'injection <strong>compose</strong> le graphe d'objets : au lieu d'une hiérarchie de classes
 profonde. (<code>DaoGenerique</code> reste un héritage <strong>assumé</strong>, limité au Template Method.)</p>
 <h3 id="convention-plutot-que-configuration">Convention plutôt que configuration<a class="headerlink" href="#convention-plutot-que-configuration" title="Permanent link">&para;</a></h3>
 <p><strong>Ici.</strong> Les <code>.fxml</code>/<code>.css</code> à côté de leur controller, les paquets de test en <strong>miroir</strong> de la
