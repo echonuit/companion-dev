@@ -2093,6 +2093,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2802 · Un texte qu'on n'a pas écrit se borne à son entrée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/" class="md-nav__link">
         
   
@@ -2907,6 +2935,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#toute-ecriture-declare-ce-quun-rejeu-lui-ferait-2677" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toute écriture déclare ce qu'un rejeu lui ferait (#2677)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#le-transport-dit-ce-quil-est-advenu-de-chaque-appel-1284" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3281,6 +3320,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#toute-ecriture-declare-ce-quun-rejeu-lui-ferait-2677" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toute écriture déclare ce qu'un rejeu lui ferait (#2677)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#le-transport-dit-ce-quil-est-advenu-de-chaque-appel-1284" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3588,6 +3638,40 @@ aussi dans Postman pour l'exploration interactive).</p>
 <h2 id="ce-que-nous-savons-de-lapi">Ce que nous savons de l'API<a class="headerlink" href="#ce-que-nous-savons-de-lapi" title="Permanent link">&para;</a></h2>
 <p>Base : <code>https://vigiechiro.herokuapp.com/api/v1</code>. Auth : <code>Authorization: Basic base64("&lt;token&gt;:")</code> (token en
 <em>username</em>, mot de passe vide).</p>
+<h3 id="toute-ecriture-declare-ce-quun-rejeu-lui-ferait-2677">Toute écriture déclare ce qu'un rejeu lui ferait (#2677)<a class="headerlink" href="#toute-ecriture-declare-ce-quun-rejeu-lui-ferait-2677" title="Permanent link">&para;</a></h3>
+<p>Le réessai gradué est posé au <strong>point de passage unique</strong> des émissions : toute lecture en bénéficie
+sans câblage. Les écritures y passent aussi, et c'est le piège - un <code>POST</code> de création rejoué crée une
+<strong>seconde ressource</strong>. Le mode de panne n'est pas exotique : la requête arrive, le serveur agit, et
+c'est la <strong>réponse</strong> qui se perd.</p>
+<p><code>TransportVigieChiro.ecrire(…)</code> exige donc un <code>Rejeu</code> :</p>
+<table>
+<thead>
+<tr>
+<th>Valeur</th>
+<th>Quand</th>
+<th>Exemples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>AUTORISE</code></td>
+<td>rejouer redonne le même état <strong>et</strong> la même réponse</td>
+<td>correction d'observation (valeur absolue), suppression, demande d'URL de partie</td>
+</tr>
+<tr>
+<td><code>INTERDIT</code></td>
+<td>rejouer <strong>duplique</strong> ou <strong>trompe</strong></td>
+<td><code>POST</code> de création, message empilé par <code>$push</code>, <code>PATCH</code> protégé par <code>If-Match</code></td>
+</tr>
+</tbody>
+</table>
+<p>⚠ <strong>Une règle par verbe HTTP serait fausse.</strong> <code>PUT /donnees/…/messages</code> <strong>empile</strong> côté serveur : un
+<code>PUT</code> peut parfaitement ne pas être idempotent. Et le <code>PATCH</code> avec <code>If-Match</code> ne duplique pas, mais
+rejoué après un succès dont la réponse s'est perdue il revient en <code>412</code> - l'utilisateur lirait « échec »
+sur une modification qui a bien eu lieu. L'arbitrage est <strong>par appel</strong>, écrit à côté de lui.</p>
+<p><strong>En ajoutant une écriture</strong>, choisissez la valeur et dites pourquoi en commentaire : c'est ce
+commentaire, pas la valeur, qui servira au prochain qui se demandera si l'API a gagné une clé
+d'idempotence.</p>
 <h3 id="le-transport-dit-ce-quil-est-advenu-de-chaque-appel-1284">Le transport dit ce qu'il est advenu de chaque appel (#1284)<a class="headerlink" href="#le-transport-dit-ce-quil-est-advenu-de-chaque-appel-1284" title="Permanent link">&para;</a></h3>
 <p>Toutes les méthodes de <code>ClientVigieChiro</code> rendent une <strong>issue triée</strong> (<code>ReponseApi&lt;T&gt;</code>, sealed) :</p>
 <table>

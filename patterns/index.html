@@ -2184,6 +2184,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2802 · Un texte qu'on n'a pas écrit se borne à son entrée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/" class="md-nav__link">
         
   
@@ -4170,6 +4198,18 @@ les mélange finit par mentir. L'EPIC #1870 a migré onze écrans et en a trouv�
 <p>⚠ <strong>Le mot « compte rendu » a changé de sens</strong> avec l'<a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/">ADR 0031</a>. Il désignait ici ce qui s'appelle désormais <strong>retour d'opération</strong>. Le critère qui les sépare n'est pas la longueur actuelle mais l'<strong>extensibilité</strong> : un message qui concatène une partie variable est déjà un compte rendu, et un compte rendu n'a <strong>jamais</strong> sa place dans un bandeau - l'y loger revient à le tronquer.</p>
 <p><strong>Comment choisir.</strong> Si ce qu'il y a à dire peut grandir - une liste de refus, de fichiers, de passages -
 c'est un compte rendu. Si c'est une phrase dont la forme est connue d'avance, c'est un retour.</p>
+<p><strong>Et d'où vient le texte ?</strong> Le critère précédent regarde ce qu'on dit ; celui-ci regarde <strong>qui l'a
+écrit</strong>, et il est indépendant.</p>
+<p>Un retour est <strong>borné</strong> par définition - c'est ce qui le sépare d'un compte rendu. Mais rien ne borne
+un message d'exception venu du pilote SQLite ou d'une réponse serveur, et le bandeau <strong>ne tronque
+pas</strong> : son libellé porte <code>wrapText</code>, donc un long message enroule et fait grandir le bandeau. Mesuré :
+379 caractères le portent de 46 à 86 px, 625 à 186 px.</p>
+<p>La règle est donc : <strong>ce qui vient d'ailleurs se borne à sa porte d'entrée</strong>, qui est aussi le seul
+endroit où on peut l'enrichir. <code>RetourOperation.erreur(Throwable)</code> ajoute le geste attendu (ADR 2635)
+puis borne ; <code>erreur(String)</code> laisse passer entier, parce que nous l'avons écrit.</p>
+<p>⚠ <strong>Passer <code>refus.getMessage()</code> contourne les deux.</strong> C'est ce que faisaient dix-sept appels, dont
+quatorze perdaient au passage le « où le régler ». <code>MessageExterneBorneTest</code> refuse désormais cette
+forme, en lisant le source. Voir <a href="../decisions/2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/">ADR 2802</a>.</p>
 <p>Un état et un compte rendu ne partagent <strong>jamais</strong> de propriété, et un compte rendu ne se <strong>déduit</strong>
 jamais d'un statut : le même statut est atteint en agissant <em>et</em> en ouvrant un écran déjà dans cet
 état, et seul le premier mérite d'être rapporté. Voir

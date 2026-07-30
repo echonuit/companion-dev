@@ -2093,6 +2093,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../decisions/2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2802 · Un texte qu'on n'a pas écrit se borne à son entrée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/" class="md-nav__link">
         
   
@@ -3430,10 +3458,19 @@ précisément les deux propriétés qui ont motivé la conception séquentielle
 <li><strong>Débrancher le réseau</strong> avant « Importer les résultats des 3 lignes cochées… » : les trois
     remontent en échec avec un motif qui dit quoi faire (« Connectez-vous depuis le menu ☰ … »), et le
     lot va au bout au lieu de s'arrêter à la première.</li>
-<li>« Déclencher le calcul » sur une nuit déjà analysée : elle ressort en <strong>échec</strong> avec « relancer
-    effacerait les observations », jamais recalculée.</li>
-<li>Les mêmes gestes en ligne de commande : <code>vigiechiro traiter-passages --action televerser --passage
-    … --json</code> rend le même verdict par passage, et un code de sortie non nul si l'un a échoué.</li>
+<li>
+<p><strong>Réseau très dégradé</strong> (bridage à quelques dizaines de ko/s, ou coupures brèves répétées), pour
+    provoquer de vraies <strong>temporisations de reprise</strong> : pendant l'attente affichée « nouvelle tentative
+    dans N s », cliquer <strong>Annuler</strong>. La main doit revenir <strong>sans attendre la fin du décompte</strong>.</p>
+<p>C'est le seul endroit où cette propriété s'observe. Les tests injectent un temporisateur factice
+qui n'attend pas : ils prouvent que l'attente est <strong>découpée</strong> et que le renoncement est <strong>lu</strong>
+entre deux tranches, jamais que la latence ressentie sur un vrai réseau reste acceptable
+(#2686, tranches de 200 ms).
+52. « Déclencher le calcul » sur une nuit déjà analysée : elle ressort en <strong>échec</strong> avec « relancer
+effacerait les observations », jamais recalculée.
+53. Les mêmes gestes en ligne de commande : <code>vigiechiro traiter-passages --action televerser --passage
+… --json</code> rend le même verdict par passage, et un code de sortie non nul si l'un a échoué.</p>
+</li>
 </ol>
 <p><em>Bloc F · Les deux mécanismes de lot, l'un après l'autre (#2755)</em></p>
 <blockquote>
