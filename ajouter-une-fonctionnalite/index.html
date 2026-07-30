@@ -3733,9 +3733,9 @@ pour afficher un spectrogramme réel dans la capture.</p>
 <ul>
 <li>formatage <strong>Spotless / Palantir Java Format</strong> (le <em>hook</em> pre-commit s'en charge ; sinon
   <code>./mvnw spotless:apply</code>) ;</li>
-<li>doc-comments <strong>Markdown <code>///</code></strong> (JEP 467), pas de <code>/** */</code> HTML ;</li>
+<li>doc-comments <strong>Markdown <code>///</code></strong> (JEP 467), pas de <code>/** */</code> HTML, gardé par <code>ConventionsDEcritureTest</code> ;</li>
 <li><strong>noms de classes en français</strong>, sans accents dans les identifiants (<code>Navigateur</code>, <code>Passage</code>,
-  <code>EtapeNavigation</code>…) ;</li>
+  <code>EtapeNavigation</code>…), gardé par <code>ConventionsDEcritureTest</code> ;</li>
 <li><strong>pas de tiret cadratin</strong> : tiret simple, deux-points ou virgule. La règle vaut <strong>partout</strong> (doc,
   commentaires, chaînes affichées, styles, scripts, ateliers), et un garde la fait respecter
   (<a href="../decisions/2843-typographie-cliquet-plutot-que-nettoyage/">ADR 2843</a>). Le glyphe reste permis là
