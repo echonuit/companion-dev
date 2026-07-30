@@ -3787,9 +3787,16 @@ fini : le job a été <strong>tué à 300 minutes pile</strong>, après 335 unit
 lenteur d'un test qui l'a tué, c'est le <strong>volume</strong> - 4 657 mutants à quelques secondes chacun font cinq
 heures quelle que soit la finesse des tests. Un paquet seul, en revanche, tient sans peine :
 <code>saison.model</code> a rendu 86 mutants et <strong>97 % de détection en 12 minutes</strong>, sans expiration.</p>
-<p>Les deux plus gros paquets (<code>commun</code>, 96 classes ; <code>passage</code>, 93) ne sont pas garantis pour autant, et ce
-n'est pas mesuré. Les deux premiers tours du cycle le diront ; s'ils débordent, la maille descendra d'un
-cran <strong>sur eux seuls</strong>.</p>
+<p><strong>Le plus gros paquet tient, et confortablement.</strong> <code>commun.model</code> (96 classes) a été mesuré : <strong>2 h 35</strong>
+sur les 5 heures de budget, 746 mutants, <strong>92 % de détection</strong>. L'extrapolation à partir de <code>saison</code>
+donnait 4 h 45 - elle était pessimiste d'un facteur deux, parce que le coût se compte en <strong>mutants</strong>, pas
+en classes : le périmètre entier en produisait 4 657, <code>commun.model</code> seulement 746.</p>
+<p>Reste <code>passage</code> (93 classes) comme seul inconnu, et il devrait se comporter comme <code>commun</code>. La maille n'a
+donc <strong>pas</strong> à descendre d'un cran.</p>
+<p>À noter, parce que cela contre-indique une maille plus fine : le <strong>calcul de couverture est un coût fixe</strong>
+payé à chaque tour, autour de 14 minutes quelle que soit la taille du paquet - 12 minutes sur les 12 de
+<code>saison</code>, 14 sur les 155 de <code>commun</code>. Découper davantage ferait payer ce préambule plus souvent, pour un
+rendement moindre.</p>
 <p><strong>Pourquoi <code>commun.api</code> est écarté côté tests.</strong> Nuance qui compte : ce n'est pas une classe mutée, c'est
 la suite du <strong>réessai gradué</strong> (<a href="../decisions/2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/">ADR 2354</a>),
 la plus lente du dépôt (5,5 s). Son sujet est l'<strong>attente</strong> : tout mutant qui fait boucler le réessai une
