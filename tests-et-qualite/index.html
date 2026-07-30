@@ -3773,7 +3773,14 @@ s'arrêtait sur « <em>tests did not pass without mutation</em> ». <strong>Ne p
 <code>-DjvmArgs=…</code> : la ligne de commande <strong>remplace</strong> la liste du profil au lieu de s'y ajouter, et une liste
 incomplète ramène l'échec que le profil avait supprimé.</p>
 <p>PIT couvre donc aussi la couche <code>view</code>, ce que l'échec brut laissait croire impossible.</p>
-<p><strong>Deux mesures tournent toutes seules</strong>, et leurs périmètres ne se recouvrent pas. Les deux sont <strong>non
+<p><strong>Deux mesures tournent toutes seules, chaque nuit</strong>, et leurs périmètres ne se recouvrent pas.</p>
+<p>Elles étaient hebdomadaire et mensuelle : les cycles complets prenaient <strong>17 semaines</strong> et <strong>15 mois</strong>.
+Quinze mois, pour les vues d'une feature, c'est plus long que le chantier qui y introduirait une
+régression. En quotidien les mêmes cycles prennent <strong>17 et 15 jours</strong>, et le dépôt étant public, les
+minutes d'Actions sont illimitées sur les runners standard : la fréquence ne coûte que du temps machine.</p>
+<p>Deux limites à garder en tête. La rotation est <strong>aveugle au diff</strong> : elle avance d'un paquet par jour quoi
+qu'on ait touché, donc elle mesure plus souvent, pas plus juste. Et un bilan quotidien que personne ne lit
+vaut moins qu'un bilan hebdomadaire qu'on lit - la fréquence ne crée pas l'attention. Les deux sont <strong>non
 bloquantes</strong>, comme le rapport ADR dont elles sont le calque : un survivant n'est pas un défaut mais une
 <strong>question</strong> posée à un humain, et bloquer une fusion là-dessus ferait cocher au hasard.</p>
 <table>
@@ -3787,14 +3794,14 @@ bloquantes</strong>, comme le rapport ADR dont elles sont le calque : un surviva
 </thead>
 <tbody>
 <tr>
-<td><code>mutation-hebdo.yml</code></td>
-<td>chaque lundi, <strong>un paquet par tour</strong> (cycle de 17 semaines)</td>
+<td><code>mutation-model.yml</code></td>
+<td>chaque nuit (3 h UTC), <strong>un paquet par tour</strong> (cycle de 17 jours)</td>
 <td><code>fr.univ_amu.iut.&lt;feature&gt;.model.*</code></td>
 <td>tous, <strong>sauf</strong> <code>e2e</code> et <code>commun.api</code></td>
 </tr>
 <tr>
 <td><code>mutation-ihm.yml</code></td>
-<td>le 8 du mois, <strong>une feature par tour</strong> (cycle de 15 mois)</td>
+<td>chaque nuit (5 h UTC), <strong>une feature par tour</strong> (cycle de 15 jours)</td>
 <td><code>fr.univ_amu.iut.&lt;feature&gt;.view.*</code></td>
 <td>ceux de la feature, <strong>sauf</strong> <code>e2e</code></td>
 </tr>
