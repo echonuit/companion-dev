@@ -3228,17 +3228,17 @@ porte <code>wrapText</code>, donc rien n'est tronqué - un long message <strong>
 <tr>
 <td>refus métier écrit par nous</td>
 <td>58 car.</td>
-<td>46 px</td>
+<td>56 px</td>
 </tr>
 <tr>
 <td>échec HTTP typique</td>
 <td>125 car.</td>
-<td>46 px</td>
+<td>56 px</td>
 </tr>
 <tr>
 <td>message de pilote SQLite rappelant sa requête</td>
 <td>379 car.</td>
-<td><strong>86 px</strong></td>
+<td><strong>106 px</strong></td>
 </tr>
 <tr>
 <td>collage arbitraire dans un champ de saisie</td>
@@ -3247,6 +3247,13 @@ porte <code>wrapText</code>, donc rien n'est tronqué - un long message <strong>
 </tr>
 </tbody>
 </table>
+<blockquote>
+<p><strong>Chiffres corrigés en 2026-07-30 (#2897).</strong> Les premiers avaient été relevés sur une <strong>imitation</strong> du
+bandeau : l'outil de mesure montait un <code>Label</code> dans un <code>HBox</code> aux bonnes classes CSS sans passer par
+<code>BandeauRetour.installer</code>, donc sans l'icône de sévérité ni le bouton de fermeture. Ces deux enfants
+prennent 104 px de largeur : le libellé réel s'enroule plus tôt et le bandeau est plus haut. La
+conclusion ne change pas - c'est même pire que ce qui avait été mesuré.</p>
+</blockquote>
 <p>En triant les dix-sept par <strong>origine du texte</strong>, un second défaut est apparu, plus coûteux : quatorze
 passaient <code>refus.getMessage()</code> au lieu du <code>Throwable</code>, et court-circuitaient donc [<code>GesteAttendu</code>] -
 l'enrichissement « où le régler » que l'<a href="../2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/">ADR 2635</a>
