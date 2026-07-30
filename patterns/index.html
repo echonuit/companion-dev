@@ -2576,6 +2576,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2792-l-archive-d-export-range-les-sons-par-session/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2792 · L'archive d'export range les sons par session
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2843-typographie-cliquet-plutot-que-nettoyage/" class="md-nav__link">
         
   
@@ -2834,6 +2862,34 @@
     
   
     S4 · Déposer et suivre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s5-valider/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S5 · Valider
   
 
     
@@ -3754,6 +3810,22 @@ alimenté depuis des fils d'arrière-plan, parfois dans le désordre (travail pa
 <p><strong>La règle.</strong> Toute nouvelle opération longue « par unité » réutilise ce socle : définir l'interface
 d'événements (+ <code>inerte()</code>), la ligne et le pilote spécialisés, le relais fil JavaFX : jamais une
 table ad hoc.</p>
+<h2 id="ecrivain-zip-generaliste-socle-commun">Écrivain ZIP généraliste (socle <code>commun</code>)<a class="headerlink" href="#ecrivain-zip-generaliste-socle-commun" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Deux emballeurs ZIP coexistaient : <code>CompacteurDepot</code> (sémantique dépôt : nommage
+<code>-N.zip</code>, plafond 700 Mo, découpage) et le besoin d'archives quelconques (export « observations +
+sons » #2792, et tout export futur). Recopier la boucle <code>putNextEntry</code>/<code>Files.copy</code> disperserait les
+mêmes exigences : mémoire bornée, annulation, pas d'archive partielle.</p>
+<p><strong>La solution.</strong> <code>commun.model.EcrivainZip</code> (#2792), statique et sans JavaFX : <code>ecrire(destination,
+entrées texte, entrées fichier, progression, jeton)</code> renvoie la taille écrite. Deux natures d'entrées
+(<code>EntreeTexte</code> pour un contenu déjà en mémoire - un CSV -, <code>EntreeFichier</code> copiée <strong>en flux</strong>), le
+<a href="#occupation-dun-écran-pendant-un-traitement-long-socle-commun">JetonAnnulation</a> vérifié <strong>avant chaque
+entrée</strong> avec re-vérification finale, la progression émise entrée par entrée (« Archive : X / N ·
+nom »), et l'archive <strong>partielle supprimée</strong> sur échec comme sur annulation (patron <code>ExtracteurZip</code>,
+en miroir).</p>
+<p><strong>La règle.</strong> Toute nouvelle archive « assemblée » (un manifeste + des fichiers) passe par
+<code>EcrivainZip</code> ; <code>CompacteurDepot</code> reste l'emballeur <strong>du dépôt</strong> (son nommage et son découpage sont un
+contrat de la plateforme, pas une variante d'options). La structure d'archive de l'export des sons
+(sous-dossier par session) est actée par l'ADR 2792.</p>
 <h2 id="occupation-dun-ecran-pendant-un-traitement-long-socle-commun">Occupation d'un écran pendant un traitement long (socle <code>commun</code>)<a class="headerlink" href="#occupation-dun-ecran-pendant-un-traitement-long-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Un traitement lourd (agrégats, inspection de dossier, appel réseau) exécuté
 <strong>synchrone sur le fil JavaFX</strong> fige l'IHM sans feedback ; un <code>setCursor(WAIT)</code> n'y suffit pas, fil
