@@ -3823,6 +3823,20 @@ seul côté crée une asymétrie et une dette invisibles.</p>
 <code>fr.univ_amu.iut.cli.commande</code> signale une capacité présente d'un seul côté. La CLI et l'IHM
 partagent les mêmes services : la parité se joue au niveau des services exposés, pas du code d'IHM.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Confronter des inventaires, pas des exemples</p>
+<p>Vérifier qu'<em>un</em> geste a son équivalent CLI produit une <strong>parité de façade</strong> : vraie sur le cas
+qu'on a regardé, fausse dès qu'on resserre le filtre comme on le fait en vrai. Ce qui se compare,
+ce sont <strong>deux listes</strong> - tous les critères que l'écran offre face à toutes les options que la
+commande accepte.</p>
+<p>Vécu à la clôture de l'EPIC #2790 : la passe avait constaté que l'export ZIP existait des deux
+côtés et que le critère « Lieu » manquait en CLI. Elle s'était arrêtée là. Une question d'usage
+posée après coup - « et à plus de 90 % de confiance ? » - a montré que la puce « Proba » manquait
+aussi, et que la dette annoncée était donc à moitié décrite (#2971).</p>
+<p>Corollaire : quand l'option existe déjà sous un nom <strong>voisin</strong>, la lire avant de conclure. En CLI,
+<code>--certitude</code> désigne la certitude déclarée par l'observateur, pas la probabilité Tadarida ; deux
+notions qui se ressemblent à l'oral et n'ont rien à voir dans les données.</p>
+</div>
 <h3 id="3-passe-de-doc-developpeur">3. Passe de doc développeur<a class="headerlink" href="#3-passe-de-doc-developpeur" title="Permanent link">&para;</a></h3>
 <p>Mettre à jour le <strong>site dev</strong> (<code>dev-docs/</code>, publié sous <code>…/dev/</code>) pour que l'architecture décrite
 colle au code livré : <a href="../architecture/">Architecture</a>, <a href="../patterns/">Patterns et principes</a>,
