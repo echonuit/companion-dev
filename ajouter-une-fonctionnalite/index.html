@@ -2736,6 +2736,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2941-un-cliquet-s-apprend-en-l-appliquant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2941 · Un cliquet s'apprend en l'appliquant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3680,7 +3708,11 @@ pour afficher un spectrogramme réel dans la capture.</p>
 <li>doc-comments <strong>Markdown <code>///</code></strong> (JEP 467), pas de <code>/** */</code> HTML ;</li>
 <li><strong>noms de classes en français</strong>, sans accents dans les identifiants (<code>Navigateur</code>, <code>Passage</code>,
   <code>EtapeNavigation</code>…) ;</li>
-<li><strong>pas de tiret cadratin</strong> dans la doc et les commentaires : tiret simple ou deux-points.</li>
+<li><strong>pas de tiret cadratin</strong> : tiret simple, deux-points ou virgule. La règle vaut <strong>partout</strong> (doc,
+  commentaires, chaînes affichées, styles, scripts, ateliers), et un garde la fait respecter
+  (<a href="../decisions/2843-typographie-cliquet-plutot-que-nettoyage/">ADR 2843</a>). Le glyphe reste permis là
+  où il <strong>est</strong> la donnée plutôt qu'une ponctuation : la valeur absente (<code>Formats.VALEUR_ABSENTE</code>), un
+  libellé de l'application <strong>cité</strong> entre guillemets français, une classe de caractères d'analyseur.</li>
 </ul>
 <p><strong>Commits</strong> : <a href="https://www.conventionalcommits.org/fr/">Conventional Commits</a> <strong>en français</strong>, le
 <em>scope</em> étant le nom de la feature ou du domaine (<code>feat(passage): …</code>). Le <strong>type</strong> pilote la version
