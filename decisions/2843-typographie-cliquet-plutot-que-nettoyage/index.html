@@ -3213,7 +3213,7 @@
 <ul>
 <li><strong>Statut</strong> : Accepté - 2026-07-29</li>
 <li><strong>Chantier</strong> : #2843, suite de la clôture du chantier #2348 et de #2813</li>
-<li><strong>Vérification</strong> : probable - <code>scripts/adr/2843-tiret-cadratin.py</code> (cliquet : 275)</li>
+<li><strong>Vérification</strong> : probable - <code>scripts/adr/2843-tiret-cadratin.py</code> (cliquet : 2)</li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>La règle « pas de tiret cadratin » est écrite <strong>deux fois</strong> dans le dépôt :</p>
@@ -3231,6 +3231,12 @@
 <p>Une seule population, un seul nombre, aucun angle mort.</p>
 <p><strong>4. Une zone nettoyée passe du cliquet à la tolérance zéro.</strong> Cette ADR annonçait d'abord que la documentation aurait « son propre cliquet ». C'était mal formulé : un cliquet sur une zone déjà au plancher est inutilement faible, et il resterait masquable tant qu'une autre zone comptée avec elle serait, elle, loin du plancher. Une zone nettoyée n'a plus besoin d'une marge, elle a besoin d'un refus.</p>
 <p><code>docs/</code>, <code>brief/</code>, <code>dev-docs/</code> et <strong><code>src/main/java</code></strong> sont nettoyées depuis #2365 : la vérification y compte <strong>zéro</strong> cadratin de prose, et le script échoue à la première rechute. Le cliquet ne porte donc plus que sur <code>src/test/java</code>.</p>
+<p><code>src/test/java</code> est nettoyée à son tour, et son plancher vaut <strong>2</strong>, pas zéro. Un plancher nommé n'est pas un reste de travail, c'est pourquoi il est écrit ici :</p>
+<ul>
+<li><code>DocumentationAJourTest</code> compile une classe de caractères acceptant <strong>les deux formes</strong> d'en-tête d'ADR, le tiret simple et le cadratin. C'est le troisième analyseur de cette forme, avec <code>_commun.py</code> et <code>resserre_cliquets.py</code> ;</li>
+<li><code>SiteDetailViewModelTest</code> affirme <code>« — à vérifier »</code>, la valeur <strong>composée</strong> que l'écran affiche.</li>
+</ul>
+<p>Aucune des deux n'est couverte par une forme citée, et les y faire entrer coûterait plus que le gain. Un motif épargnant tout littéral commençant par le glyphe serait trop permissif ; et recomposer l'attente du test depuis <code>Formats.VALEUR_ABSENTE</code> changerait ce que ce test <strong>épingle</strong>, au détour d'une passe de typographie. Un cliquet de 2 refuse la troisième occurrence exactement comme une tolérance zéro refuse la première.</p>
 <p>La promotion se fait <strong>dans la tranche qui amène la zone à zéro</strong>, pas plus tard. Différer, c'est ouvrir une fenêtre où l'arbre est propre et où rien ne le garde : la première rechute y passerait sans bruit, et le cliquet, ayant encore sa marge, resterait vert.</p>
 <p>Une zone peut porter une <strong>extension</strong> : un arbre de sources se garde exactement comme un arbre de documentation. Ce qui rend cette généralisation risquée, c'est qu'un motif mal apparié à son arbre (<code>*.md</code> sur <code>src/main/java</code>) rapporterait « 0 cadratin de prose » <strong>à jamais</strong>, avec la forme exacte du succès. Une zone qui ne balaie <strong>aucun fichier</strong> lève donc, et le garde-fou des scripts vérifie ce refus : rien d'autre ne distingue une zone propre d'une zone jamais regardée.</p>
 <p>Les zones nettoyées vivent dans une <strong>liste déclarative</strong> du script (<code>ZONES_NETTOYEES</code>). Ajouter une tranche revient à ajouter <strong>une ligne</strong>, et c'est délibéré : chaque tranche du chantier touche ce même script, donc une insertion d'une ligne se résout sans réfléchir là où un bloc de code aurait sérialisé les tranches.</p>
