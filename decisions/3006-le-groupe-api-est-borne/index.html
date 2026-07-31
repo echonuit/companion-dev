@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/0041-un-check-requis-gouverne-la-branche/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3006-le-groupe-api-est-borne/">
       
       
-        <link rel="prev" href="../0040-le-sujet-de-commit-est-une-syntaxe/">
+        <link rel="prev" href="../2843-typographie-cliquet-plutot-que-nettoyage/">
       
       
-        <link rel="next" href="../0042-un-apercu-qui-ment-est-refuse/">
+        <link rel="next" href="../2867-une-dette-se-tient-par-un-cliquet/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>0041 · Un check requis gouverne la branche - VigieChiro Companion · Doc développeur</title>
+        <title>3006 · Le groupe api est borné - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0041-un-check-requis-ne-gouverne-pas-les-pr-il-gouverne-la-branche" class="md-skip">
+        <a href="#adr-3006-le-groupe-api-est-borne-et-ne-dispense-pas-des-commandes-metier" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              0041 · Un check requis gouverne la branche
+              3006 · Le groupe api est borné
             
           </span>
         </div>
@@ -1672,37 +1672,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    0041 · Un check requis gouverne la branche
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
         
   
   
@@ -1718,59 +1691,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -2620,10 +2540,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3006-le-groupe-api-est-borne/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3006 · Le groupe api est borné
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -2639,6 +2586,131 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-la-frontiere-passe-par-la-structure-pas-par-une-convention-de-nom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. La frontière passe par la structure, pas par une convention de nom
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lecture-seule-et-les-pieges-connus-deviennent-des-refus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Lecture seule, et les pièges connus deviennent des refus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-lechappatoire-est-bornee-par-une-regle-pas-par-la-bonne-volonte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. L'échappatoire est bornée par une règle, pas par la bonne volonté
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-discretion-assumee-et-sa-contrepartie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Discrétion assumée, et sa contrepartie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-les-sondes-ne-passent-pas-par-notre-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Les sondes ne passent pas par notre client
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-ecartees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives écartées
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3303,6 +3375,67 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-la-frontiere-passe-par-la-structure-pas-par-une-convention-de-nom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. La frontière passe par la structure, pas par une convention de nom
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-lecture-seule-et-les-pieges-connus-deviennent-des-refus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Lecture seule, et les pièges connus deviennent des refus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-lechappatoire-est-bornee-par-une-regle-pas-par-la-bonne-volonte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. L'échappatoire est bornée par une règle, pas par la bonne volonté
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-discretion-assumee-et-sa-contrepartie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Discrétion assumée, et sa contrepartie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-les-sondes-ne-passent-pas-par-notre-client" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Les sondes ne passent pas par notre client
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3310,6 +3443,17 @@
     <span class="md-ellipsis">
       
         Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-ecartees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives écartées
       
     </span>
   </a>
@@ -3333,7 +3477,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/0041-un-check-requis-gouverne-la-branche.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3006-le-groupe-api-est-borne.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -3342,84 +3486,76 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/0041-un-check-requis-gouverne-la-branche.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3006-le-groupe-api-est-borne.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-0041-un-check-requis-ne-gouverne-pas-les-pr-il-gouverne-la-branche">ADR 0041 - Un check requis ne gouverne pas les PR, il gouverne la branche<a class="headerlink" href="#adr-0041-un-check-requis-ne-gouverne-pas-les-pr-il-gouverne-la-branche" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3006-le-groupe-api-est-borne-et-ne-dispense-pas-des-commandes-metier">ADR 3006 - Le groupe <code>api</code> est borné, et ne dispense pas des commandes métier<a class="headerlink" href="#adr-3006-le-groupe-api-est-borne-et-ne-dispense-pas-des-commandes-metier" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - 2026-07-20</li>
-<li><strong>Chantier</strong> : EPIC #2104 / lot 1 (#2106)</li>
-<li><strong>Vérification</strong> : humaine - que le contrôle de titre reste informatif et gouverne la branche, pas la PR, est un choix de configuration GitHub, pas un invariant du code</li>
-<li><strong>Complète</strong> : <a href="../0040-le-sujet-de-commit-est-une-syntaxe/">ADR 0040</a>, en disant <strong>jusqu'où</strong> le contrôle qu'elle institue doit aller.</li>
+<li><strong>Statut</strong> : Accepté - 2026-07-31</li>
+<li><strong>Chantier</strong> : #3006 (lot 4 de l'EPIC #2999)</li>
+<li><strong>Vérification</strong> : certaine - <code>ArchitectureTest#lecture_brute_reservee_au_groupe_api</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>L'<a href="../0040-le-sujet-de-commit-est-une-syntaxe/">ADR 0040</a> institue un contrôle du titre de PR, après
-que la publication du dépôt se soit arrêtée deux jours en silence. La question restée ouverte était
-son <strong>degré</strong> : informatif, ou bloquant ?</p>
-<p>Il a été rendu <strong>bloquant</strong> (ruleset de dépôt <code>titre-de-pr-conforme</code>, check requis <code>titre</code>). En une
-heure, il a cassé <strong>deux</strong> automatismes - les deux chemins par lesquels ce dépôt écrit sur <code>main</code> :</p>
-<table>
-<thead>
-<tr>
-<th>Chemin</th>
-<th>Symptôme</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>PR d'aperçus (<code>capture-vues.yml</code>)</td>
-<td><code>BLOCKED</code>, <strong>aucun check rapporté</strong></td>
-</tr>
-<tr>
-<td>Push du CHANGELOG (<code>semantic-release</code>)</td>
-<td><code>GH013 … Required status check "titre" is expected</code>, push rejeté</td>
-</tr>
-</tbody>
-</table>
-<p>La cause commune est la même règle de GitHub : <strong>aucun workflow n'est déclenché par un événement
-produit avec le <code>GITHUB_TOKEN</code></strong> (sans quoi une action pourrait se relancer indéfiniment). Le check
-requis ne peut donc jamais rapporter sur ce que produit l'automatisation - et un check requis muet
-<strong>bloque pour toujours</strong>.</p>
-<p>Le second cas est le plus instructif, à deux titres. D'abord parce qu'il <strong>a arrêté la publication</strong>,
-c'est-à-dire exactement ce que le chantier venait de réparer : trois releases ont échoué d'affilée.
-Ensuite parce qu'il montre que la portée d'un check requis dépasse les pull requests : un <strong>push
-direct</strong> est soumis aux mêmes règles.</p>
-<p>Le premier cas a d'ailleurs été corrigé sans que le second soit vu, alors qu'ils relèvent du même
-mécanisme sous deux formes. Corriger le chemin qu'on a sous les yeux ne dit rien des autres.</p>
-<p>La dérogation qu'on attendrait est fermée : ajouter <code>github-actions</code> aux contournements d'un ruleset
-<strong>de dépôt</strong> échoue en <code>422</code> - <code>Actor GitHub Actions integration must be part of the ruleset source or
-owner organization</code>. Seul un ruleset <strong>d'organisation</strong> l'accepterait, au prix d'une configuration qui
-déborde le dépôt.</p>
+<p>Pour établir un fait sur les données réelles (un même code de point est-il porté par plusieurs
+carrés ?), il a fallu écrire du <code>curl</code> à la main : la CLI exposait des gestes métier, jamais l'API
+elle-même. Le porteur a demandé les <strong>deux</strong> surfaces - des commandes qui répondent, et un tuyau pour
+explorer.</p>
+<p>Le risque est connu : <code>ClientVigieChiro</code> n'a de valeur que parce qu'il <strong>nomme</strong> les points d'accès et
+encode, une fois pour toutes, ce qu'il faut savoir avant d'appeler - le plafond de pagination
+(<code>max_results &gt; 100</code> → <code>422</code>, cause de #1277), l'ordre inversé des coordonnées, le filtre <code>where=</code> que
+le serveur accepte puis ignore. Un tuyau générique posé à côté rend tout ce savoir à la tête de
+l'utilisateur.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>Le contrôle du titre reste informatif.</strong> Il rougit sur un titre non conforme, et cette information
-suffit : c'est ainsi qu'il a attrapé la PR #2122 le jour même de sa mise en place, dont le titre a été
-corrigé dans la minute.</p>
-<p>Deux raisons, pas une.</p>
-<p><strong>1. Le bénéfice du blocage était faible.</strong> Le dépôt a un mainteneur unique, qui dispose de toute
-façon du contournement administrateur : le blocage n'empêchait donc personne de fusionner en rouge, il
-ne faisait que déplacer le geste.</p>
-<p><strong>2. Le coût était réel et mesuré.</strong> Deux automatismes cassés, dont la chaîne de publication, en une
-heure.</p>
-<p><strong>Avant de rendre un check obligatoire, inventorier tous les chemins d'écriture vers <code>main</code></strong> - PR
-humaines, PR de bot, pushes directs d'automatismes - et se demander, pour chacun, <strong>comment le check y
-rapportera</strong>. Un chemin sans réponse est un blocage permanent.</p>
+<h3 id="1-la-frontiere-passe-par-la-structure-pas-par-une-convention-de-nom">1. La frontière passe par la structure, pas par une convention de nom<a class="headerlink" href="#1-la-frontiere-passe-par-la-structure-pas-par-une-convention-de-nom" title="Permanent link">&para;</a></h3>
+<p>Ce qui vit <strong>sous <code>api</code></strong> parle le langage de l'API - chemins, pages, <code>_items</code> - et rend le corps tel
+quel. Ce qui vit <strong>au premier niveau</strong> parle celui du produit - sites, carrés, points - et rend des
+projections, un recensement, un dénominateur. Le suffixe <code>-vigiechiro</code> continue d'y distinguer le
+distant du local (<code>lister-sites</code> contre <code>lister-sites-vigiechiro</code>).</p>
+<h3 id="2-lecture-seule-et-les-pieges-connus-deviennent-des-refus">2. Lecture seule, et les pièges connus deviennent des refus<a class="headerlink" href="#2-lecture-seule-et-les-pieges-connus-deviennent-des-refus" title="Permanent link">&para;</a></h3>
+<p>Aucun verbe configurable : <code>GET</code> uniquement (ADR 0020). Et <code>api lire</code> <strong>refuse avant d'émettre</strong> un
+chemin portant <code>max_results</code> au-delà de 100, ou un <code>where=</code>. C'est la condition qui rend l'échappatoire
+acceptable : elle rend la main sur les <strong>chemins</strong>, pas sur les <strong>pièges</strong>. Le second refus est le plus
+important - une requête avec <code>where=</code> réussit, ne filtre rien, et laisse croire le contraire.</p>
+<h3 id="3-lechappatoire-est-bornee-par-une-regle-pas-par-la-bonne-volonte">3. L'échappatoire est bornée par une règle, pas par la bonne volonté<a class="headerlink" href="#3-lechappatoire-est-bornee-par-une-regle-pas-par-la-bonne-volonte" title="Permanent link">&para;</a></h3>
+<p><code>ClientVigieChiro.lectureBrute</code> est la seule méthode qui ne nomme pas ce qu'elle lit.
+<code>ArchitectureTest#lecture_brute_reservee_au_groupe_api</code> interdit de l'appeler hors du groupe <code>api</code> :
+une capacité nouvelle passe par une méthode <strong>nommée</strong>, jamais par le tuyau. Sans cette règle, le
+groupe deviendrait le chemin de moindre résistance, et la couche qui protège tout le monde cesserait
+de grandir.</p>
+<h3 id="4-discretion-assumee-et-sa-contrepartie">4. Discrétion assumée, et sa contrepartie<a class="headerlink" href="#4-discretion-assumee-et-sa-contrepartie" title="Permanent link">&para;</a></h3>
+<p>Les sous-commandes d'<code>api</code> ne sont <strong>ni comptées ni détaillées</strong> dans le catalogue utilisateur : une
+seule ligne pour le groupe dans <code>dev-docs/cli.md</code>, le détail dans <code>dev-docs/api-vigiechiro.md</code>. Un bas
+niveau discret est aussi un bas niveau que rien ne surveille : la contrepartie est que le groupe reste
+strictement borné et <strong>ne grossit pas sans décision</strong>.</p>
+<h3 id="5-les-sondes-ne-passent-pas-par-notre-client">5. Les sondes ne passent pas par notre client<a class="headerlink" href="#5-les-sondes-ne-passent-pas-par-notre-client" title="Permanent link">&para;</a></h3>
+<p><strong>Ce qui teste l'API se passe de notre client ; ce qui teste notre client passe par lui.</strong> Les sondes
+de <code>ContratApiVigieChiroLiveTest</code> interrogent l'API en REST-assured direct, avec validation de schéma :
+c'est ce qui leur permet de distinguer « l'API a changé » de « notre code a changé ». Les réécrire via
+la CLI rendrait le vérificateur dépendant de ce qu'il vérifie - et deux d'entre elles deviendraient
+<strong>inécrivables</strong>, puisque <code>api lire</code> refuse précisément les requêtes qu'elles vérifient.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p><strong>Ce qu'on garde.</strong> Le signal, à l'endroit et au moment utiles. Et le filet de l'ADR 0040 : le parser
-élargi de <code>.releaserc.json</code> fait qu'un titre non conforme fusionné par mégarde <strong>publie quand même</strong>,
-au lieu de re-figer la version.</p>
-<p><strong>Ce qu'on perd.</strong> Rien n'empêche techniquement de fusionner une PR au titre rouge. C'est assumé :
-l'information est visible, et l'ignorer est un choix, non un accident silencieux - ce qui était le
-défaut d'origine.</p>
-<p><strong>Ce qui reste, et qu'on aurait pu retirer.</strong> <code>capture-vues.yml</code> publie lui-même son check <code>titre</code>.
-Ce mécanisme est né du besoin de débloquer, disparu depuis ; il est conservé parce qu'il se justifie
-seul : sans lui, une PR d'aperçus ne serait validée par <strong>rien</strong>.</p>
-<p><strong>Si le blocage redevient souhaitable</strong>, la voie est un ruleset <strong>d'organisation</strong> restreint à ce
-dépôt, avec l'application GitHub Actions en contournement - qui couvrirait les deux chemins d'un coup.
-C'est une modification de configuration d'organisation, à décider comme telle.</p>
+<ul>
+<li>L'exploration arbitraire reste possible sans quitter le produit, et sans qu'un script jetable
+  reparte en Python.</li>
+<li><code>api ressources</code> affiche la carte ([CatalogueApi], ADR du lot 0) et sait la confronter au serveur
+  (<code>--sonder</code>) : la découvrabilité, qui était le vrai manque, ne dépend plus de la mémoire de qui a lu
+  le source.</li>
+<li>Toute écriture reste hors du groupe. Le jour où elle se justifierait, ce serait une décision à
+  prendre, pas une option à ajouter.</li>
+</ul>
+<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Le tuyau générique seul</strong> : il transporte la question au lieu d'y répondre. « Z1 est-il partagé ? »
+  redemande un comptage à la main, exactement ce que le chantier voulait supprimer.</li>
+<li><strong>Les commandes métier seules</strong> : un point d'accès non projeté redevient inatteignable sans écrire
+  du code, et l'exploration repart dans un terminal séparé.</li>
+<li><strong>Un sous-menu par ressource</strong> (<code>api sites</code>, <code>api participations</code>…) : redondant avec <code>api lire</code>, et
+  chaque ressource nouvelle demanderait une commande de plus pour zéro capacité supplémentaire.</li>
+</ul>
 
 
 
@@ -3455,7 +3591,7 @@ C'est une modification de configuration d'organisation, à décider comme telle.
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../0040-le-sujet-de-commit-est-une-syntaxe/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 0040 · Le sujet de commit est une syntaxe">
+          <a href="../2843-typographie-cliquet-plutot-que-nettoyage/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 2843 · La typographie se tient par un cliquet">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -3465,20 +3601,20 @@ C'est une modification de configuration d'organisation, à décider comme telle.
                 Précédent
               </span>
               <div class="md-ellipsis">
-                0040 · Le sujet de commit est une syntaxe
+                2843 · La typographie se tient par un cliquet
               </div>
             </div>
           </a>
         
         
           
-          <a href="../0042-un-apercu-qui-ment-est-refuse/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 0042 · Un aperçu qui ment est refusé">
+          <a href="../2867-une-dette-se-tient-par-un-cliquet/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 2867 · Une dette se tient par un cliquet">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                0042 · Un aperçu qui ment est refusé
+                2867 · Une dette se tient par un cliquet
               </div>
             </div>
             <div class="md-footer__button md-icon">

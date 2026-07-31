@@ -2656,6 +2656,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3006-le-groupe-api-est-borne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3006 · Le groupe api est borné
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2867-une-dette-se-tient-par-un-cliquet/" class="md-nav__link">
         
   
@@ -3788,6 +3816,11 @@
 <td><a href="2792-l-archive-d-export-range-les-sons-par-session/">2792</a></td>
 <td>L'archive d'export « observations + sons » est un <strong>contrat</strong> : <code>observations.csv</code> à la racine (octet-identique à l'export CSV seul), sons dédupliqués sous <code>sons/&lt;dossier-session&gt;/</code> (suffixe <code>-s&lt;id&gt;</code> seulement en collision), son introuvable compté jamais bloquant, pas de manifeste séparé (le CSV fait foi)</td>
 <td>#2792 (lot A de l'EPIC #2790)</td>
+</tr>
+<tr>
+<td><a href="3006-le-groupe-api-est-borne/">3006</a></td>
+<td>Le groupe <code>api</code> de la CLI est <strong>borné</strong> : lecture seule, pièges connus traduits en <strong>refus avant émission</strong> (<code>max_results &gt; 100</code>, <code>where=</code> ignoré), échappatoire <code>lectureBrute</code> réservée au groupe <strong>par une règle d'architecture</strong>, sous-commandes volontairement discrètes en contrepartie de quoi le groupe ne grossit pas sans décision. Et : ce qui teste l'API se passe de notre client, ce qui teste notre client passe par lui</td>
+<td>#3006 (lot 4 de l'EPIC #2999)</td>
 </tr>
 <tr>
 <td><a href="2843-typographie-cliquet-plutot-que-nettoyage/">2843</a></td>

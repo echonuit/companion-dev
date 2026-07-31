@@ -2541,6 +2541,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3006-le-groupe-api-est-borne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3006 · Le groupe api est borné
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2867-une-dette-se-tient-par-un-cliquet/" class="md-nav__link">
         
   
@@ -3522,6 +3550,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>[--json] [--token &lt;jeton&gt;]</code></td>
 <td>#3005</td>
 <td><code>ClientVigieChiro.mesParticipations</code>. Vos nuits déposées, <strong>avec leur identifiant</strong> : c'est lui que réclament <code>importer-vigiechiro --participation</code> et <code>reconstruire-passage --participation</code>, et qu'aucune commande ne donnait. <code>reconstruire-passage</code> sans argument ne liste que les participations <strong>orphelines</strong> ; une nuit déjà rattachée n'apparaissait nulle part</td>
+</tr>
+<tr>
+<td><code>api</code></td>
+<td><code>lire --chemin &lt;chemin&gt; [--page &lt;n&gt;]</code>, <code>ressources [--sonder]</code></td>
+<td>#3006</td>
+<td><strong>Interrogation brute de l'API, en lecture seule.</strong> Groupe volontairement discret : ses sous-commandes ne sont pas détaillées ici (elles parlent le langage de l'API, pas celui du produit) - le détail vit dans <a href="../api-vigiechiro/">api-vigiechiro.md</a>. <code>lire</code> refuse <strong>avant d'émettre</strong> les deux pièges qui ne préviennent pas (<code>max_results</code> au-delà de 100, <code>where=</code> que le serveur ignore) ; <code>ressources</code> affiche la carte des lectures et sait la confronter au serveur. Aucune écriture : <a href="../decisions/3006-le-groupe-api-est-borne/">ADR 3006</a></td>
 </tr>
 <tr>
 <td><code>creer-campagne</code></td>
