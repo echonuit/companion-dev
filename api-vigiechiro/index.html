@@ -3924,7 +3924,10 @@ d'idempotence.</p>
 </tbody>
 </table>
 <p>Règles d'accompagnement : la <strong>pagination Eve est tout-ou-rien</strong> (une panne page 3 rend l'issue, pas
-les pages 1-2) ; <code>max_results</code> est plafonné à 100 (au-delà Eve <strong>rejette</strong> : <code>422</code>, cause de #1277) et
+les pages 1-2), et <strong>l'épuisement du garde-fou en fait partie</strong> : un parcours arrêté au plafond de
+pages rend un <code>Injoignable</code>, jamais les pages déjà lues (#3046, sans quoi un préfixe passerait pour
+une collection entière). La borne <em>choisie</em> par un appelant est un autre sujet : elle passe par
+<code>parcourirBorne</code>, qui rend un <code>LotPagine</code> disant s'il a tout lu ; <code>max_results</code> est plafonné à 100 (au-delà Eve <strong>rejette</strong> : <code>422</code>, cause de #1277) et
 la sonde live <code>refus_serveur_est_un_refuse_explicite</code> verrouille que ce refus reste un <code>Refuse</code> ; la
 <strong>garde anti-purge</strong> des rapprocheurs et la garde <strong>anti-relance</strong> du dépôt (fail-safe : état illisible
 = pas de lancement sans <code>--forcer</code>) s'appuient sur cette distinction. Patron détaillé :
