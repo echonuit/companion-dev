@@ -3735,7 +3735,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>exporter-sons</code></td>
-<td><code>(--passage &lt;id&gt; \| --espece &lt;code&gt;) --sortie &lt;zip&gt; [--lieu &lt;lieu&gt;]…</code></td>
+<td><code>(--passage &lt;id&gt; \| --espece &lt;code&gt;) --sortie &lt;zip&gt; [--lieu &lt;lieu&gt;]… [--proba-min &lt;0..1&gt;]</code></td>
 <td>#2795</td>
 <td><code>ProjectionsAudioDao.lignesAudioDuPassage</code> / <code>lignesAudioDeLEspece</code> + <code>ExportObservationsEtSons</code> (#2792). Parité CLI du geste « Exporter les observations et les sons » de la vue audio (#2793) : archive <code>observations.csv</code> + <code>sons/&lt;session&gt;/&lt;fichier&gt;</code>, sons introuvables comptés sans bloquer. <code>--passage</code> couvre le même sous-ensemble qu'<code>exporter-observations</code> (CSV identique) et refuse un passage inconnu (code 2) ; <code>--espece</code> couvre l'espèce sur tous les passages de l'utilisateur, tous statuts, et une espèce sans observation produit une archive au CSV d'en-têtes seuls</td>
 </tr>
@@ -3777,7 +3777,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>lister-observations</code></td>
-<td><code>--passage &lt;id&gt; [--statut ..] [--taxon ..] [--douteux] [--reference] [--a-enjeu] [--certitude ..] [--json] [--lieu &lt;lieu&gt;]…</code></td>
+<td><code>--passage &lt;id&gt; [--statut ..] [--taxon ..] [--douteux] [--reference] [--a-enjeu] [--certitude ..] [--json] [--lieu &lt;lieu&gt;]… [--proba-min &lt;0..1&gt;]</code></td>
 <td>#1311</td>
 <td><strong>La surface de découverte de la revue.</strong> Liste les observations d'un passage avec leur <strong>identifiant</strong>, l'avis de Tadarida, le vôtre, celui du validateur, le statut et les drapeaux. Sans elle, les gestes de revue (et <code>discussion</code>) sont aveugles : rien ne donnait les identifiants. Ses filtres sont <strong>exactement</strong> ceux des gestes (<code>SelectionObservations</code> partagé) : ce qu'elle montre est ce qu'ils toucheraient. <code>--a-enjeu</code> (#2353) ne garde que les <strong>espèces prioritaires</strong> du Plan National d'Actions Chiroptères, et le drapeau <code>enjeu</code> les signale dans la sortie (champ <code>aEnjeu</code> en JSON)</td>
 </tr>
@@ -3936,6 +3936,22 @@ et obligatoires (on ne pose pas un geste sans dire sur quoi), portées par la cl
 <code>lister-observations --passage 3 --statut NON_TOUCHEE</code> <strong>montre</strong> est <strong>exactement</strong> ce que
 <code>valider-observations --passage 3 --statut NON_TOUCHEE</code> <strong>touche</strong>. On regarde, puis on agit - et c'est
 mécanique, pas promis.</p>
+<div class="admonition note">
+<p class="admonition-title"><code>--proba-min</code> : l'échelle, et la détection sans probabilité</p>
+<p>Garde les détections dont la probabilité Tadarida <strong>atteint</strong> le seuil, et <strong>conserve celles qui
+n'en ont pas</strong> : une absence de probabilité n'est pas une mauvaise probabilité, et l'écarter
+perdrait précisément une ligne à revoir. C'est la règle de la puce « Proba », reprise telle quelle.</p>
+<p><strong>L'échelle est 0 à 1, pas le pourcentage de l'écran.</strong> <code>lister-observations</code> imprime déjà
+<code>probTadarida</code> brut (<code>0.74</code>) : entrée et sortie d'un même appel parlent ainsi la même langue.
+<code>--proba-min 90</code>, réflexe du pourcentage, est <strong>refusé</strong> (code 2) avec l'unité rappelée, plutôt que
+borné en silence, ce qui rendrait zéro ligne sans dire pourquoi.</p>
+<p>Un résultat <strong>vide</strong> n'est pas un refus ici, contrairement à <code>--lieu</code> : un seuil est un nombre, il
+ne peut pas désigner ce qui n'existe pas, et « aucune détection au-dessus de 0,99 » est une réponse.</p>
+<p>Mais une réponse <strong>muette</strong> : c'est le seul filtre qui puisse légitimement tout écarter sans rien
+dire de ce qu'on a raté. Quand le seuil vide le lot, la commande nomme donc la <strong>meilleure
+probabilité présente</strong> (« la plus sûre du lot est à 0,74 : abaissez le seuil pour l'atteindre »),
+ce qui apprend du même coup que le lot n'était pas vide et de combien descendre.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title"><code>--lieu</code> : ce qu'il couvre, et ce qu'il ne couvre pas</p>
 <p>Répétable, il retient les observations dont la <strong>commune</strong>, le <strong>carré</strong> ou le <strong>nom de site</strong>
