@@ -3518,6 +3518,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>ClientVigieChiro.sitesPlateforme</code> / <code>ClientVigieChiro.mesSites</code>. Interroge le <strong>catalogue de la plateforme</strong> (20 517 sites) ou vos sites. <code>--recenser</code> compte les sites par <strong>code de point</strong> : c'est ainsi qu'on établit qu'un code comme <code>Z1</code> est porté par des centaines de carrés (#2993). Chaque sortie porte son <strong>dénominateur</strong> (« 300 lus sur 20517 annoncés, 3 pages sur 206 ») et signale les sites <strong>sans point ponctuel</strong> (transects routiers, dont les localités sont des lignes) : un échantillon ne doit jamais passer pour un recensement. Les filtres sont appliqués <strong>chez nous</strong>, ce backend ignorant <code>where=</code> en silence</td>
 </tr>
 <tr>
+<td><code>lister-participations-vigiechiro</code></td>
+<td><code>[--json] [--token &lt;jeton&gt;]</code></td>
+<td>#3005</td>
+<td><code>ClientVigieChiro.mesParticipations</code>. Vos nuits déposées, <strong>avec leur identifiant</strong> : c'est lui que réclament <code>importer-vigiechiro --participation</code> et <code>reconstruire-passage --participation</code>, et qu'aucune commande ne donnait. <code>reconstruire-passage</code> sans argument ne liste que les participations <strong>orphelines</strong> ; une nuit déjà rattachée n'apparaissait nulle part</td>
+</tr>
+<tr>
 <td><code>creer-campagne</code></td>
 <td><code>--nom &lt;n&gt; [--annee N] [--commentaire ..]</code></td>
 <td>#2355</td>
