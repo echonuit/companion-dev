@@ -3512,6 +3512,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>ServiceSites</code> (lecture)</td>
 </tr>
 <tr>
+<td><code>lister-sites-vigiechiro</code></td>
+<td><code>[--portee mes\|plateforme] [--pages &lt;n&gt; \| --tout] [--point &lt;code&gt;] [--carre &lt;n&gt;] [--recenser] [--json] [--token &lt;jeton&gt;]</code></td>
+<td>#3003</td>
+<td><code>ClientVigieChiro.sitesPlateforme</code> / <code>ClientVigieChiro.mesSites</code>. Interroge le <strong>catalogue de la plateforme</strong> (20 517 sites) ou vos sites. <code>--recenser</code> compte les sites par <strong>code de point</strong> : c'est ainsi qu'on établit qu'un code comme <code>Z1</code> est porté par des centaines de carrés (#2993). Chaque sortie porte son <strong>dénominateur</strong> (« 300 lus sur 20517 annoncés, 3 pages sur 206 ») et signale les sites <strong>sans point ponctuel</strong> (transects routiers, dont les localités sont des lignes) : un échantillon ne doit jamais passer pour un recensement. Les filtres sont appliqués <strong>chez nous</strong>, ce backend ignorant <code>where=</code> en silence</td>
+</tr>
+<tr>
 <td><code>creer-campagne</code></td>
 <td><code>--nom &lt;n&gt; [--annee N] [--commentaire ..]</code></td>
 <td>#2355</td>
