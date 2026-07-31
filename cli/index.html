@@ -3735,7 +3735,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>exporter-sons</code></td>
-<td><code>(--passage &lt;id&gt; \| --espece &lt;code&gt;) --sortie &lt;zip&gt;</code></td>
+<td><code>(--passage &lt;id&gt; \| --espece &lt;code&gt;) --sortie &lt;zip&gt; [--lieu &lt;lieu&gt;]…</code></td>
 <td>#2795</td>
 <td><code>ProjectionsAudioDao.lignesAudioDuPassage</code> / <code>lignesAudioDeLEspece</code> + <code>ExportObservationsEtSons</code> (#2792). Parité CLI du geste « Exporter les observations et les sons » de la vue audio (#2793) : archive <code>observations.csv</code> + <code>sons/&lt;session&gt;/&lt;fichier&gt;</code>, sons introuvables comptés sans bloquer. <code>--passage</code> couvre le même sous-ensemble qu'<code>exporter-observations</code> (CSV identique) et refuse un passage inconnu (code 2) ; <code>--espece</code> couvre l'espèce sur tous les passages de l'utilisateur, tous statuts, et une espèce sans observation produit une archive au CSV d'en-têtes seuls</td>
 </tr>
@@ -3777,7 +3777,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>lister-observations</code></td>
-<td><code>--passage &lt;id&gt; [--statut ..] [--taxon ..] [--douteux] [--reference] [--a-enjeu] [--certitude ..] [--json]</code></td>
+<td><code>--passage &lt;id&gt; [--statut ..] [--taxon ..] [--douteux] [--reference] [--a-enjeu] [--certitude ..] [--json] [--lieu &lt;lieu&gt;]…</code></td>
 <td>#1311</td>
 <td><strong>La surface de découverte de la revue.</strong> Liste les observations d'un passage avec leur <strong>identifiant</strong>, l'avis de Tadarida, le vôtre, celui du validateur, le statut et les drapeaux. Sans elle, les gestes de revue (et <code>discussion</code>) sont aveugles : rien ne donnait les identifiants. Ses filtres sont <strong>exactement</strong> ceux des gestes (<code>SelectionObservations</code> partagé) : ce qu'elle montre est ce qu'ils toucheraient. <code>--a-enjeu</code> (#2353) ne garde que les <strong>espèces prioritaires</strong> du Plan National d'Actions Chiroptères, et le drapeau <code>enjeu</code> les signale dans la sortie (champ <code>aEnjeu</code> en JSON)</td>
 </tr>
@@ -3936,6 +3936,21 @@ et obligatoires (on ne pose pas un geste sans dire sur quoi), portées par la cl
 <code>lister-observations --passage 3 --statut NON_TOUCHEE</code> <strong>montre</strong> est <strong>exactement</strong> ce que
 <code>valider-observations --passage 3 --statut NON_TOUCHEE</code> <strong>touche</strong>. On regarde, puis on agit - et c'est
 mécanique, pas promis.</p>
+<div class="admonition note">
+<p class="admonition-title"><code>--lieu</code> : ce qu'il couvre, et ce qu'il ne couvre pas</p>
+<p>Répétable, il retient les observations dont la <strong>commune</strong>, le <strong>carré</strong> ou le <strong>nom de site</strong>
+correspond, en correspondance <strong>partielle</strong> et insensible à la casse comme aux accents : <code>--lieu aix</code>
+trouve « Aix-en-Provence ». À l'écran on coche dans une liste fermée, en ligne de commande on tape à
+l'aveugle, sans rien pour rappeler l'orthographe.</p>
+<p><strong>Le point n'en fait pas partie</strong>, contrairement à la puce « Lieu » de l'écran. Le schéma pose
+<code>UNIQUE(site_id, code)</code> : un code seul (« A1 », « Z1 ») désigne autant de lieux qu'il y a de carrés.
+L'écran s'en tire en l'affichant qualifié (« 640380 · A1 »), ce qui suppose une liste sous les yeux ;
+<code>--lieu A1</code> rouvrirait le défaut sans que rien ne le montre. Le point restera atteignable par un
+croisement <code>--carre</code> / <code>--point</code>.</p>
+<p>Un lieu <strong>sans correspondance</strong> est un <strong>refus</strong> (code 2) qui nomme les lieux présents, jamais une
+archive vide en code 0 : un script enchaînerait sans voir la faute de frappe, et l'expert recevrait
+une archive creuse.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Viser un passage sans filtre exige <code>--confirmer</code></p>
 <p><code>--passage 3</code> <strong>seul</strong>, c'est <strong>toutes</strong> les observations du passage - des centaines. Un filtre oublié
