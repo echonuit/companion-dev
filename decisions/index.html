@@ -2789,6 +2789,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3053-une-capture-exige-son-libelle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3053 · Une capture exige son libellé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3874,6 +3902,11 @@
 <td><a href="3018-un-outil-compose-depuis-la-racine/">3018</a></td>
 <td>Un outil (capture, banc, graine) compose son injecteur depuis <strong><code>RacineInjecteur.modules()</code></strong> et s'adapte par <code>Modules.override</code>, jamais en retirant de la liste : un injecteur amputé et une fonctionnalité désactivée produisent le <strong>même écran</strong>, donc la règle ne peut pas tenir par la vigilance. Une substitution reste acceptable seulement si elle est <strong>étroite</strong> et qu'elle <strong>est le sujet</strong> de l'aperçu</td>
 <td>#3018, finit #2669 et #333</td>
+</tr>
+<tr>
+<td><a href="3053-une-capture-exige-son-libelle/">3053</a></td>
+<td>Quand un outil de capture désigne un contrôle par son <strong>libellé</strong>, il <strong>exige</strong> de le trouver et <strong>lève en nommant les libellés présents</strong> : l'abstention (<code>findFirst().ifPresent</code>) produit l'aperçu <strong>sans le geste</strong>, publié sous une légende affirmant le contraire. Repli de l'<a href="0025-une-capture-passe-par-le-code-de-production/">ADR 0025</a> §4 là où la constante ne peut pas être partagée (catalogues package-private)</td>
+<td>#3053, clôture des suites de #2967</td>
 </tr>
 </tbody>
 </table>
