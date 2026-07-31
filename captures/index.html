@@ -3208,6 +3208,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Un outil de capture par écran : Capture*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linjecteur-se-compose-depuis-la-racine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'injecteur se compose depuis la racine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3379,6 +3396,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Un outil de capture par écran : Capture*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#linjecteur-se-compose-depuis-la-racine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'injecteur se compose depuis la racine
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3506,6 +3540,28 @@ par <code>ApercuFx</code>. Souvent en <strong>deux états</strong> (vide / peupl
 <p class="admonition-title">Déterminisme = règle d'or</p>
 <p>Les PNG sont <strong>versionnés</strong> : un rendu non déterministe salirait le dépôt à chaque CI. Signaux de
 synthèse (cf. <code>SonDemo</code>), pas d'horodatage réel, attente explicite des chargements asynchrones.</p>
+</div>
+<h3 id="linjecteur-se-compose-depuis-la-racine">L'injecteur se compose depuis la racine<a class="headerlink" href="#linjecteur-se-compose-depuis-la-racine" title="Permanent link">&para;</a></h3>
+<p>Un outil compose <strong><code>RacineInjecteur.modules()</code></strong>, la liste que l'application elle-même assemble, et
+s'adapte par <code>Modules.override(racine).with(…)</code> - jamais en énumérant un sous-ensemble de modules.</p>
+<p>C'est une règle, pas une préférence, et elle est <strong>gardée</strong> : <code>CliquetInjecteurALaMainTest</code> fait rougir
+la CI dès qu'un outil assemble sa propre liste. La raison est dans l'<a href="../decisions/3018-un-outil-compose-depuis-la-racine/">ADR 3018</a> :
+un injecteur amputé et une <strong>fonctionnalité désactivée</strong> produisent le même écran, puisque le contrôleur
+masque sa surface exactement comme on le lui demande quand le flag est coupé. Une capture amputée n'a
+donc pas l'air cassée - elle a l'air d'une capture d'un produit configuré autrement. Quatre écrans sont
+partis dans la documentation sans leur ligne Campagne avant que ce soit vu.</p>
+<p>Les surcharges légitimes sont celles qui rendent l'exécution <strong>déterministe ou observable</strong>
+(<code>ModuleCaptureCommun.executeursSynchrones()</code>, horloge figée), et celle qui <strong>est le sujet</strong> de la
+capture - par exemple un référentiel vide, quand l'aperçu montre précisément cet état.</p>
+<div class="admonition warning">
+<p class="admonition-title">Composer depuis la racine ne suffit pas si l'on bouchonne le service</p>
+<p>Un outil peut très bien composer la totalité de l'application, puis substituer un service entier
+dont les lectures rendent des lignes écrites en dur : il compose tout et ne montre rien. Les deux
+aperçus de la Synthèse ont vécu ainsi, et affichaient <strong>deux états que le produit ne peut pas
+produire</strong> plus un contexte à trois affirmations contradictoires (#3018).</p>
+<p>Une capture <strong>sème sa donnée</strong> et laisse le produit calculer. Quand un état n'est pas atteignable
+autrement, la bonne réponse est souvent une <strong>couture</strong> côté production - faire d'une dépendance
+cachée un collaborateur - et non un bouchon côté outil.</p>
 </div>
 <h2 id="la-regeneration-en-ci">La régénération en CI<a class="headerlink" href="#la-regeneration-en-ci" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/capture-screenshots.sh"><code>capture-screenshots.sh</code></a>
