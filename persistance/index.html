@@ -451,6 +451,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Les migrations de schéma">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#une-migration-passe-entiere-ou-pas-du-tout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Une migration passe entière, ou pas du tout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3413,6 +3430,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Les migrations de schéma">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#une-migration-passe-entiere-ou-pas-du-tout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Une migration passe entière, ou pas du tout
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3506,6 +3540,10 @@ en fait foi : il en contient aujourd'hui bien plus que trois (<!--inv:migrations
    migration présente</strong> dans le dossier - <strong>surtout pas</strong> <code>V04</code>, le compteur est déjà bien plus
    haut.</li>
 <li><strong>Ajoutez son nom au tableau <code>MIGRATIONS</code></strong> de <code>MigrationSchema</code> - <strong>l'ordre fait foi</strong>.</li>
+<li><strong>N'y mettez ni <code>PRAGMA</code>, ni <code>VACUUM</code>, ni <code>BEGIN</code>/<code>COMMIT</code> explicite</strong> : le script s'exécute
+   dans une transaction (voir ci-dessous), et ces trois-là n'y survivent pas. Un <code>PRAGMA</code> y est
+   silencieusement sans effet, ce qui est le pire des trois. Une migration qui en aurait
+   réellement besoin doit d'abord changer <code>MigrationSchema.appliquer</code>.</li>
 </ol>
 <p><code>App</code> migre <strong>avant de composer l'injecteur</strong> (<code>Amorcage.migrerPuisComposer()</code>) : les drapeaux de
 fonctionnalités sont ainsi lus dans une base à jour, ce qui a fermé le piège dormant #2187
@@ -3513,6 +3551,18 @@ fonctionnalités sont ainsi lus dans une base à jour, ce qui a fermé le piège
 même avant de composer, mais <strong>seulement si la base existe déjà</strong> (une aide ne doit créer aucun
 fichier). Les tests migrent sur leur base jetable.</p>
 </div>
+<h3 id="une-migration-passe-entiere-ou-pas-du-tout">Une migration passe entière, ou pas du tout<a class="headerlink" href="#une-migration-passe-entiere-ou-pas-du-tout" title="Permanent link">&para;</a></h3>
+<p>Chaque script et l'inscription de sa version dans <code>schema_version</code> sont portés par <strong>une seule
+transaction</strong> (<code>MigrationSchema.appliquer</code>, via l'<a href="#transactions">unité de travail</a>). Une coupure au
+milieu d'un script ne laisse donc <strong>rien</strong> derrière elle : ni table à moitié créée, ni colonne
+ajoutée sans sa version.</p>
+<p>Cette garantie n'est pas un confort, c'est ce qui permet de <strong>relancer</strong>. Les scripts ne sont pas
+idempotents pris un par un (<code>V01</code> ne pose aucun <code>IF NOT EXISTS</code>, <code>V26</code> enchaîne deux <code>ADD COLUMN</code>) :
+si une panne en laissait la moitié appliquée, le lancement suivant rejouerait le script depuis le
+début et buterait sur la première instruction déjà passée. L'application ne redémarrerait plus, sans
+qu'aucun message ne dise pourquoi (#2728).</p>
+<p>Le message d'échec, lui, <strong>situe</strong> la panne : le fichier, le rang de l'instruction et son début. Un
+« no such column » de SQLite laisserait sinon relire tout le script pour trouver où.</p>
 <h2 id="remplacer-la-base-sous-une-application-vivante">Remplacer la base sous une application vivante<a class="headerlink" href="#remplacer-la-base-sous-une-application-vivante" title="Permanent link">&para;</a></h2>
 <p>Trois gestes remplacent le fichier de base <strong>à chaud</strong> : la <strong>restauration</strong> (<code>ServiceSauvegarde.restaurer</code>,</p>
 <h1 id="148-la-restauration-complete-1346-et-la-base-neuve-baseneuverepartirdezero-1419">148), la <strong>restauration complète</strong> (#1346) et la <strong>base neuve</strong> (<code>BaseNeuve.repartirDeZero</code>, #1419).<a class="headerlink" href="#148-la-restauration-complete-1346-et-la-base-neuve-baseneuverepartirdezero-1419" title="Permanent link">&para;</a></h1>
@@ -3593,6 +3643,11 @@ transforme une ligne de <code>ResultSet</code> en entité (un <code>record</code
 résilience O7). Les erreurs SQL sont remontées en
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence/DataAccessException.java"><code>DataAccessException</code></a>
 (non vérifiée).</p>
+<p>Une <code>SQLException</code> nue, qui arrive du pilote sans contexte, est <strong>située</strong> par l'unité de travail.
+En revanche, un bloc qui lève lui-même une <code>DataAccessException</code> la voit <strong>propagée telle quelle</strong> :
+elle nomme déjà ce qui a échoué et dans quel état la base se retrouve, et la réemballer mettrait un
+« Transaction annulée » générique devant le message qui renseigne. Le rollback a lieu dans les deux
+cas.</p>
 <hr />
 <p>Les DAO et services sont assemblés par Guice : voir <strong><a href="../injection/">Injection (Guice)</a></strong>.</p>
 
