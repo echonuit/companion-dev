@@ -2709,6 +2709,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3068-le-determinisme-porte-sur-ce-que-le-produit-rend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3068 · Le déterminisme porte sur ce que le produit rend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3053-une-capture-exige-son-libelle/" class="md-nav__link">
         
   
@@ -3296,6 +3324,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#lexception-assumee-les-tuiles-openstreetmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'exception assumée : les tuiles OpenStreetMap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#linjecteur-se-compose-depuis-la-racine" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3484,6 +3523,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#lexception-assumee-les-tuiles-openstreetmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'exception assumée : les tuiles OpenStreetMap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#linjecteur-se-compose-depuis-la-racine" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3624,7 +3674,24 @@ par <code>ApercuFx</code>. Souvent en <strong>deux états</strong> (vide / peupl
 <p class="admonition-title">Déterminisme = règle d'or</p>
 <p>Les PNG sont <strong>versionnés</strong> : un rendu non déterministe salirait le dépôt à chaque CI. Signaux de
 synthèse (cf. <code>SonDemo</code>), pas d'horodatage réel, attente explicite des chargements asynchrones.</p>
+<p>La règle porte sur <strong>ce que le produit rend</strong>. Une entrée <strong>extérieure</strong> au dépôt n'y est pas
+soumise : voir l'exception des tuiles ci-dessous, qui est la seule.</p>
 </div>
+<h4 id="lexception-assumee-les-tuiles-openstreetmap">L'exception assumée : les tuiles OpenStreetMap<a class="headerlink" href="#lexception-assumee-les-tuiles-openstreetmap" title="Permanent link">&para;</a></h4>
+<p>Les quatre aperçus qui montrent la carte (<code>apercu-multisite</code>, <code>-filtre</code>, <code>-edition</code>, <code>-carte-pleine</code>)
+<strong>varient légèrement d'un build à l'autre</strong>, sans qu'aucun code ne change.</p>
+<p>C'est mesuré, pas supposé : <strong>0,34 %</strong> des pixels (2 302 sur 682 000), confinés au panneau de carte, en
+tracés fins de routes. Une tuile absente en ferait 65 000 - il ne s'agit donc pas d'un chargement
+incomplet, mais du <strong>rendu servi par OpenStreetMap</strong>, qui n'est pas identique à chaque requête.</p>
+<p>Aucune attente ne corrige cela, et ça a été vérifié : la condition de stabilité est satisfaite, et
+porter la quiétude exigée de 0,75 s à 3 s ne change rien (#3068).</p>
+<p><strong>Arbitrage : on garde la dépendance.</strong> Ces captures valent parce qu'elles montrent une <strong>vraie</strong> carte,
+au même titre que les autres montrent de vraies données depuis une base semée. Figer la source de tuiles
+rendrait l'image plus stable et moins vraie. La variabilité résiduelle est minime et n'affecte aucun
+élément produit par le dépôt.</p>
+<p>Ce qui vient de <strong>nous</strong> reste donc strictement déterministe, et c'est là-dessus que la règle d'or
+s'applique. Le corollaire pratique : sur ces quatre fichiers, un diff de captures n'est pas un signal -
+la revue se fait à l'œil, pas au <code>cmp</code>.</p>
 <h3 id="linjecteur-se-compose-depuis-la-racine">L'injecteur se compose depuis la racine<a class="headerlink" href="#linjecteur-se-compose-depuis-la-racine" title="Permanent link">&para;</a></h3>
 <p>Un outil compose <strong><code>RacineInjecteur.modules()</code></strong>, la liste que l'application elle-même assemble, et
 s'adapte par <code>Modules.override(racine).with(…)</code> - jamais en énumérant un sous-ensemble de modules.</p>
