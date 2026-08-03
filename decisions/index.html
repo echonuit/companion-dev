@@ -2936,6 +2936,62 @@
   
   
     <li class="md-nav__item">
+      <a href="2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2727 · Une restauration vérifie en place
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2729-un-script-publie-ne-se-modifie-plus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2729 · Un script publié ne se modifie plus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2731-un-seul-processus-par-workspace/" class="md-nav__link">
         
   
@@ -4057,6 +4113,16 @@
 <td><a href="3053-une-capture-exige-son-libelle/">3053</a></td>
 <td>Quand un outil de capture désigne un contrôle par son <strong>libellé</strong>, il <strong>exige</strong> de le trouver et <strong>lève en nommant les libellés présents</strong> : l'abstention (<code>findFirst().ifPresent</code>) produit l'aperçu <strong>sans le geste</strong>, publié sous une légende affirmant le contraire. Repli de l'<a href="0025-une-capture-passe-par-le-code-de-production/">ADR 0025</a> §4 là où la constante ne peut pas être partagée (catalogues package-private)</td>
 <td>#3053, clôture des suites de #2967</td>
+</tr>
+<tr>
+<td><a href="2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/">2727</a></td>
+<td>Une restauration complète <strong>vérifie la sauvegarde en place</strong> (pas de zone temporaire : restaurer 40 Go par-dessus 40 Go demanderait 80 Go libres) et replace un dossier <strong>à son emplacement d'origine s'il existe encore</strong>, sinon dans le dossier de travail. <strong>Les six tables à chemin</strong> suivent, pas seulement <code>root_path</code> : ne réécrire que la racine donne une base qui paraît juste et une application qui ne trouve plus rien</td>
+<td>#2727, lot 1 de #2720</td>
+</tr>
+<tr>
+<td><a href="2729-un-script-publie-ne-se-modifie-plus/">2729</a></td>
+<td>Un script de migration <strong>publié ne se modifie plus</strong> : son empreinte SHA-256 est inscrite avec sa version, et une dérive est un <strong>refus</strong> au démarrage, pas un avertissement. L'empreinte porte sur les <strong>instructions</strong>, pas sur le texte du fichier : un refus faux use plus vite la confiance qu'une alerte manquée</td>
+<td>#2729, lot 1 de #2720</td>
 </tr>
 <tr>
 <td><a href="2731-un-seul-processus-par-workspace/">2731</a></td>
