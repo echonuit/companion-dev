@@ -466,6 +466,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#un-filet-avant-chaque-montee-de-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un filet avant chaque montée de version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#un-script-publie-ne-se-modifie-plus" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3484,6 +3495,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#un-filet-avant-chaque-montee-de-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un filet avant chaque montée de version
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#un-script-publie-ne-se-modifie-plus" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3616,6 +3638,22 @@ début et buterait sur la première instruction déjà passée. L'application ne
 qu'aucun message ne dise pourquoi (#2728).</p>
 <p>Le message d'échec, lui, <strong>situe</strong> la panne : le fichier, le rang de l'instruction et son début. Un
 « no such column » de SQLite laisserait sinon relire tout le script pour trouver où.</p>
+<h3 id="un-filet-avant-chaque-montee-de-version">Un filet avant chaque montée de version<a class="headerlink" href="#un-filet-avant-chaque-montee-de-version" title="Permanent link">&para;</a></h3>
+<p>Une migration est le seul moment où l'application <strong>transforme la base sans que l'utilisateur l'ait
+demandé</strong> : il ouvre l'application après une mise à jour, et le schéma change. Avant d'appliquer la
+première migration en attente, la base est donc mise à l'abri dans
+<code>&lt;workspace&gt;/sauvegardes/vigiechiro-avant-migration-V&lt;nn&gt;.db</code>, là où la restauration propose de
+chercher (#2729).</p>
+<p>L'atomicité de la section précédente protège d'une <strong>panne</strong> ; le filet protège aussi d'une migration
+qui <strong>réussit</strong> en faisant autre chose que prévu, ce qu'aucune transaction ne rattrape.</p>
+<p>Deux cas où il n'y a rien à faire : aucune migration en attente (le lancement ordinaire n'accumule
+pas de copies), et une base qui ne portait encore aucune version. Ce second cas est la <strong>création</strong>
+de la base, pas sa montée de version.</p>
+<p>Si le filet ne peut pas être posé (dossier inaccessible, disque plein), <strong>la migration n'a pas
+lieu</strong> : avancer sans lui reviendrait à ne le promettre que quand il ne sert à rien.</p>
+<p>L'instantané est produit par <code>InstantaneBase</code> (<code>VACUUM INTO</code>), que partagent les trois usages :
+sauvegarde de routine, sauvegarde complète et filet. Il vit à part de <code>ServiceSauvegarde</code> parce que
+le migrateur en a besoin et que le service, lui, appelle déjà le migrateur.</p>
 <h3 id="un-script-publie-ne-se-modifie-plus">Un script publié ne se modifie plus<a class="headerlink" href="#un-script-publie-ne-se-modifie-plus" title="Permanent link">&para;</a></h3>
 <p>Une migration appliquée <strong>ne se rejoue jamais</strong> : sa version est inscrite, le migrateur passe. Donc
 si on modifie son script après coup (rebase, correction bien intentionnée), les bases qui l'ont subi
