@@ -2933,6 +2933,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2731-un-seul-processus-par-workspace/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2731 · Un seul processus par dossier de travail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3817,6 +3845,45 @@ l'affichent. Un geste qui déplace des gigaoctets et corrige la base ne peut pas
 remet dans le workspace et non à sa place, puisque sa place n'existe plus. Le compte rendu le
 dit, et la base pointe vers l'endroit réel.</p>
 </div>
+<h2 id="un-seul-processus-ecrit-dans-un-dossier-de-travail">Un seul processus écrit dans un dossier de travail<a class="headerlink" href="#un-seul-processus-ecrit-dans-un-dossier-de-travail" title="Permanent link">&para;</a></h2>
+<p><code>VerrouWorkspace</code> pose un <strong>verrou de fichier système</strong> sur <code>&lt;workspace&gt;/.verrou</code> (#2731). Le PID et
+l'horodatage y sont écrits pour le <strong>message</strong>, jamais pour la décision : c'est le système qui
+tranche, et c'est lui qui <strong>relâche</strong> le verrou quand le processus meurt, de sorte qu'un plantage ne
+condamne pas le dossier de travail.</p>
+<p>Qui le prend, et pour combien de temps :</p>
+<table>
+<thead>
+<tr>
+<th>Qui</th>
+<th>Portée</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>l'application graphique</td>
+<td>toute la durée de son exécution : c'est elle l'occupante</td>
+</tr>
+<tr>
+<td>la migration</td>
+<td>seulement si elle a <strong>réellement</strong> quelque chose à appliquer</td>
+</tr>
+<tr>
+<td>la restauration (simple et complète), la remise à zéro</td>
+<td>le temps de l'opération</td>
+</tr>
+<tr>
+<td>les commandes de lecture</td>
+<td>jamais</td>
+</tr>
+</tbody>
+</table>
+<p>La nuance sur la migration est délibérée : une commande de lecture lancée pendant que l'IHM tourne ne
+migre rien, et la faire échouer sur un verrou lui coûterait plus que la protection ne lui rapporte.</p>
+<p>Un processus qui détient déjà le verrou <strong>ne se bloque pas lui-même</strong> : une restauration lancée
+depuis l'IHM réutilise le verrou de l'IHM, et sa fin ne le relâche pas.</p>
+<p>Le choix du mécanisme et celui de <strong>refuser</strong> la seconde instance plutôt que de la basculer en
+lecture seule sont motivés dans l'<a href="../decisions/2731-un-seul-processus-par-workspace/">ADR 2731</a>, qui
+dit aussi ce que le verrou <strong>ne</strong> protège pas.</p>
 <h2 id="le-patron-dao">Le patron DAO<a class="headerlink" href="#le-patron-dao" title="Permanent link">&para;</a></h2>
 <p>Pas d'ORM : des <strong>DAO</strong> en <code>PreparedStatement</code>. La base technique
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence/DaoGenerique.java"><code>DaoGenerique&lt;T, ID&gt;</code></a>
