@@ -3746,6 +3746,49 @@ dossier). Un manifeste <strong>présent mais abîmé</strong>, en revanche, est 
 traiter comme absent ferait silencieusement moins bien que promis, sur la seule sauvegarde dont
 on ait la preuve qu'elle a un problème.</p>
 </div>
+<h2 id="une-restauration-complete-est-verifiee-puis-basculee">Une restauration complète est vérifiée, puis basculée<a class="headerlink" href="#une-restauration-complete-est-verifiee-puis-basculee" title="Permanent link">&para;</a></h2>
+<p><code>ServiceSauvegarde.restaurerComplet</code> s'appuie sur le manifeste pour tenir la promesse en entier
+(#2727), dans cet ordre :</p>
+<ol>
+<li><strong>vérifier</strong> chaque dossier de la sauvegarde contre l'inventaire du manifeste ;</li>
+<li><strong>restaurer la base</strong> (avec son filet <code>vigiechiro.db.avant-restauration</code>) ;</li>
+<li><strong>replacer</strong> les dossiers ;</li>
+<li><strong>réécrire les chemins persistés</strong> en une transaction.</li>
+</ol>
+<div class="admonition danger">
+<p class="admonition-title"><code>root_path</code> n'est pas le seul chemin en base</p>
+<p>Chaque original, chaque séquence d'écoute, le journal du capteur, le relevé climatique et le CSV
+Tadarida portent leur chemin <strong>absolu</strong> : six tables au total (<code>ReecritureRacineSession</code>, dont
+l'inventaire a été confronté aux colonnes <code>*_path</code> des 38 migrations). Ne réécrire que la racine
+donne une base qui <strong>paraît</strong> corrigée et une application qui ne retrouve plus un seul fichier.</p>
+<p>Ce piège n'est pas théorique : c'est l'état dans lequel cette fonctionnalité a d'abord été
+écrite. Les tests Java relisaient <code>root_path</code> et concluaient au succès ; l'E2E <code>bats</code> qui restaure
+sur une autre machine puis demande <code>reset-guide</code> a répondu <strong>PERDU</strong>. Un test qui vérifie ce qu'on
+a écrit ne remplace pas un test qui demande à l'application si elle s'y retrouve.</p>
+<p>⚠️ <code>RattachementDao.reprefixerChemins</code> applique la même règle pour un autre besoin (renommer une
+session rattachée), sans pouvoir partager ce code : le socle ne peut pas dépendre d'une feature.
+Une septième table à chemin devra donc être ajoutée <strong>aux deux endroits</strong>.</p>
+</div>
+<p>L'ordre est le point important : une seule discordance à l'étape 1 annule tout <strong>avant que rien
+n'ait été touché</strong>. La vérification passait auparavant après la bascule, ce qui revenait à découvrir
+le problème une fois la base remplacée.</p>
+<p>Où revient un dossier : <strong>à son emplacement d'origine s'il existe encore et qu'il est inscriptible</strong>,
+sinon dans le workspace, sous son nom d'origine. Le critère est que le dossier existe, et non que son
+parent soit créable : <code>/mnt/disque-a</code> est un point de montage <strong>vide</strong> quand le disque n'est pas
+branché, et le juger « créable » y déverserait des gigaoctets sur le disque système, que le montage
+du vrai disque masquerait ensuite.</p>
+<p>Dans les deux cas <code>root_path</code> désigne l'endroit réel, ce qui est toute la correction : la base
+restaurée ne pointe plus vers des dossiers absents.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ce que la restauration dit, et pourquoi elle le dit</p>
+<p><code>BilanRestauration</code> porte ce qui a changé de place et ce que la sauvegarde ne contenait pas (une
+nuit dont la racine était inaccessible au moment de la copie, #1346). Les deux surfaces
+l'affichent. Un geste qui déplace des gigaoctets et corrige la base ne peut pas se contenter de
+« restauré » : l'utilisateur ne saurait ni où sont ses nuits, ni laquelle manque.</p>
+<p>Conséquence assumée du critère ci-dessus : restaurer une nuit qu'on vient de <strong>supprimer</strong> la
+remet dans le workspace et non à sa place, puisque sa place n'existe plus. Le compte rendu le
+dit, et la base pointe vers l'endroit réel.</p>
+</div>
 <h2 id="le-patron-dao">Le patron DAO<a class="headerlink" href="#le-patron-dao" title="Permanent link">&para;</a></h2>
 <p>Pas d'ORM : des <strong>DAO</strong> en <code>PreparedStatement</code>. La base technique
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/persistence/DaoGenerique.java"><code>DaoGenerique&lt;T, ID&gt;</code></a>

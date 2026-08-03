@@ -3945,9 +3945,9 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>restaurer</code></td>
-<td><code>--sauvegarde &lt;chemin&gt; [--complet] --confirmer</code></td>
+<td><code>&lt;chemin&gt; [--complet] --confirmer</code></td>
 <td>#148, #1346</td>
-<td><code>ServiceSauvegarde.restaurer</code> / <code>restaurerComplet</code> : remet la base (et, avec <code>--complet</code>, les dossiers de session). <strong>Écrase l'état local</strong> : <code>--confirmer</code> est obligatoire. La base courante est mise de côté (<code>vigiechiro.db.avant-restauration</code>)</td>
+<td><code>ServiceSauvegarde.restaurer</code> / <code>restaurerComplet</code> : remet la base (et, avec <code>--complet</code>, les dossiers de son, <strong>remis là où ils étaient</strong>, avec les <code>root_path</code> corrigés et un compte rendu de ce qui a changé de place, #2727). <strong>Écrase l'état local</strong> : <code>--confirmer</code> est obligatoire. La base courante est mise de côté (<code>vigiechiro.db.avant-restauration</code>)</td>
 </tr>
 <tr>
 <td><code>reset-guide</code></td>
