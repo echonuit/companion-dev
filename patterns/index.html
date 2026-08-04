@@ -2912,6 +2912,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3099-une-puce-preselectionnee-annonce-ce-quelle-filtre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3099 · Une puce présélectionnée annonce ce qu'elle filtre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
         
   
@@ -4185,6 +4213,72 @@ se mémorise/rejoue par les vues sauvegardées sans travail spécifique (<code>D
 est déjà une liste).</p>
 <p><strong>La règle.</strong> Un nouveau critère sur dimension textuelle passe par <code>CritereListe</code> ; un éditeur écrit
 à la main ne se justifie que pour un type d'éditeur nouveau (curseur, plage horaire).</p>
+<h3 id="les-quatre-briques-ajoutees-par-le-chantier-3092">Les quatre briques ajoutées par le chantier #3092<a class="headerlink" href="#les-quatre-briques-ajoutees-par-le-chantier-3092" title="Permanent link">&para;</a></h3>
+<p>Le socle a gagné quatre composants partagés. Les recopier serait exactement la duplication que ce
+chantier a supprimée.</p>
+<table>
+<thead>
+<tr>
+<th>Brique</th>
+<th>Ce qu'elle porte</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ClesCriteres</code></td>
+<td>les <strong>clés partagées</strong> entre écrans, et le concept de chacune</td>
+</tr>
+<tr>
+<td><code>LibellesCriteres</code></td>
+<td>comment un critère <strong>se nomme à l'écran</strong>, à partir de sa clé</td>
+</tr>
+<tr>
+<td><code>CritereBooleen</code></td>
+<td>la puce <strong>sans éditeur</strong>, dont la seule présence filtre</td>
+</tr>
+<tr>
+<td><code>CritereLieu</code></td>
+<td>le critère géographique, <strong>dimensions en paramètre</strong></td>
+</tr>
+<tr>
+<td><code>ValeursPresentes</code></td>
+<td>les valeurs <strong>distinctes, non nulles et triées</strong> d'une dimension</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Clés et libellés sont deux préoccupations distinctes</strong>, et volontairement séparés.
+<code>ClesCriteres</code> est un <strong>contrat</strong> : une clé y est le nom sous lequel une vue mémorisée se sérialise
+(<code>vue_sauvegardee</code>), donc la changer rendrait caduques les vues enregistrées. Une clé propre à un seul
+écran n'y a pas sa place. <code>LibellesCriteres</code> est de la <strong>présentation</strong>, et doit couvrir <strong>toutes</strong> les
+clés : un écran qui rend compte d'un critère qu'il n'offre pas nomme précisément celles qu'il ne
+connaît pas.</p>
+<p>⚠️ Un catalogue ne réécrit <strong>jamais</strong> une clé partagée en littéral : <code>ClesCriteresTest</code> le refuse. Sans
+cette garde, un cinquième écran nommerait « lieux » ce que quatre autres nomment « lieu », ou deux
+écrans nommeraient deux concepts « statut » - ce qui était arrivé.</p>
+<p><strong>Renommer une clé</strong> sans casser les vues déjà enregistrées passe par <code>CritereFiltre.nomsHerites()</code>
+(défaut vide) : le critère déclare les noms qu'il a portés, et <code>critereParNom</code> les accepte. Aucune
+migration de base. Ce n'est <strong>pas</strong> un fourre-tout : n'y mettre que des noms réellement portés, sinon
+le compte rendu de restauration deviendrait muet sur de vraies clés inconnues.</p>
+<h3 id="les-domaines-sont-cascades">Les domaines sont cascadés<a class="headerlink" href="#les-domaines-sont-cascades" title="Permanent link">&para;</a></h3>
+<p>Depuis #3095, la liste de valeurs d'une puce se calcule sur les lignes que les <strong>autres</strong> critères
+laissent passer, via <code>Filtres.saufLui(cle)</code>, et se recalcule <strong>à l'ouverture</strong> du menu.</p>
+<p>⚠️ <strong>Le piège</strong> : passer la <code>FilteredList</code> de l'écran fait s'auto-effondrer la puce. Cette liste est
+déjà filtrée par <strong>tous</strong> les critères, y compris celui qu'on peuple : une fois « Aix » coché, le menu
+n'offrirait plus qu'« Aix », et l'on ne pourrait jamais cocher une seconde commune. Un critère à
+domaine consomme donc <code>saufLui</code>, jamais la liste affichée.</p>
+<p>Une valeur cochée devenue impossible <strong>reste cochée et visible</strong>, marquée <code>valeur-hors-jeu</code>. La retirer
+relâcherait le filtre en silence, et l'écran montrerait plus que ce qu'il annonce.</p>
+<p>Les dimensions d'un critère se classent en trois familles, et le classement se justifie en commentaire
+à côté du câblage : <strong>facette</strong> (cascade), <strong>sélecteur</strong> (ne cascade pas, sous peine de retirer du menu
+ce vers quoi on veut naviguer), <strong>énumération fixe</strong> (sans objet). Le raisonnement complet est dans
+l'<a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/">ADR 3095</a>.</p>
+<h3 id="une-restauration-rend-toujours-compte">Une restauration rend toujours compte<a class="headerlink" href="#une-restauration-rend-toujours-compte" title="Permanent link">&para;</a></h3>
+<p><code>GestionnaireFiltres.restaurer</code> rend un <code>ResteDeRestauration</code> : les <strong>valeurs</strong> qu'aucun critère n'a su
+replacer, et les <strong>critères</strong> absents du catalogue. Les deux causes sont distinguées parce qu'elles
+n'appellent pas la même réaction - une valeur disparue tient aux données, un critère absent à l'écran.</p>
+<p>Il existe <strong>trois</strong> chemins de restauration, et tous trois doivent lire ce retour : les vues
+sauvegardées, le transport d'un écran à l'autre (#476) et la mémoire de session (#484). En ignorer un
+laisse l'écran filtrer moins large qu'annoncé, sans rien dire.</p>
 <h2 id="occupation-dun-ecran-pendant-un-traitement-long-socle-commun">Occupation d'un écran pendant un traitement long (socle <code>commun</code>)<a class="headerlink" href="#occupation-dun-ecran-pendant-un-traitement-long-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Un traitement lourd (agrégats, inspection de dossier, appel réseau) exécuté
 <strong>synchrone sur le fil JavaFX</strong> fige l'IHM sans feedback ; un <code>setCursor(WAIT)</code> n'y suffit pas, fil
