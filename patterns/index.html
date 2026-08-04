@@ -3080,6 +3080,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2732 · On n'écrit pas plus que ce qui est déclaré
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
         
   
@@ -4297,6 +4325,35 @@ faisaient déjà.</p>
 <code>CopieInterruptible</code> : un <code>transferTo</code> ou un <code>Files.copy</code> dans une opération annulable est un bouton
 « Annuler » qui ment. Le corollaire vaut pour la progression : un compteur « X / N unités » ne suffit
 pas quand <strong>une</strong> unité peut durer des minutes.</p>
+<h2 id="un-fichier-secrit-dun-seul-coup-socle-commun">Un fichier s'écrit d'un seul coup (socle <code>commun</code>)<a class="headerlink" href="#un-fichier-secrit-dun-seul-coup-socle-commun" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème, deux fois.</strong> Un <code>writeString</code> interrompu laisse un fichier <strong>tronqué</strong>, et son lecteur
+en tire une conclusion fausse : un <code>connexion.json</code> coupé se lit « non connecté » (une déconnexion
+inexpliquée plutôt qu'une erreur), un manifeste de sauvegarde coupé fait <strong>refuser</strong> une sauvegarde par
+ailleurs intacte.</p>
+<p>Et pour un <strong>secret</strong>, écrire puis restreindre les permissions laisse en plus une <strong>fenêtre</strong> : entre
+les deux appels, le fichier existe avec celles de l'umask, souvent <code>644</code>. Elle se rouvre à <strong>chaque
+création</strong> du fichier - donc à chaque reconnexion, puisque se déconnecter le supprime (#2735).</p>
+<p><strong>La solution.</strong> <code>commun.model.EcritureAtomique</code> écrit dans un temporaire du <strong>même dossier</strong>, puis le
+déplace sur la cible par un <code>ATOMIC_MOVE</code> : un lecteur voit l'ancien contenu ou le nouveau, <strong>jamais un
+fichier tronqué</strong>. Deux points d'entrée, et le choix dit ce qu'on écrit :</p>
+<ul>
+<li><code>ecrire(cible, contenu)</code> pour ce qui n'est pas un secret - le manifeste de sauvegarde, un export ;</li>
+<li><code>ecrireSecret(cible, contenu)</code> pour un secret : le temporaire est <strong>créé d'emblée</strong> restreint au
+  propriétaire, donc le secret n'existe à aucun instant dans un fichier plus permissif que lui.</li>
+</ul>
+<p>⚠️ <strong>Sur les JDK actuels, les deux donnent le même fichier</strong>, et c'est mesuré : <code>Files.createTempFile</code>
+sans attribut crée déjà <code>rw-------</code>. Ce qui les distingue est la <strong>garantie</strong>, pas le résultat observé -
+<code>ecrireSecret</code> l'exige et la garderait si le JDK changeait son défaut. C'est aussi pourquoi PIT ne peut
+pas distinguer les deux chemins : équivalence par construction, pas couverture manquante.</p>
+<p><strong>La règle, et son garde.</strong> Toute écriture d'un secret sur disque passe par <code>ecrireSecret</code>.
+<code>SecretsEcritsProtegesTest</code> l'exige en lisant le <strong>source</strong> : les classes porteuses de secret ne
+doivent contenir aucun <code>Files.write*</code> ni <code>newOutputStream</code>. Ce garde est structurel <strong>par nécessité</strong> -
+la fenêtre est un état <em>intermédiaire</em>, et après coup les deux façons d'écrire laissent exactement le
+même fichier à <code>600</code>. Aucun test d'état final ne les distingue ; sans le garde, un retour en arrière
+ne ferait rougir personne.</p>
+<p>Pour l'<strong>atomicité seule</strong>, il n'y a pas de garde équivalent, et c'est proportionné : un manifeste
+tronqué se fait refuser par la restauration, qui le valide déjà (#2726). Le défaut se voit ; celui d'un
+secret ne se voit pas.</p>
 <p><strong>Deux exports de sons, un seul comportement.</strong> L'export « observations + sons » (#2793) et l'export
 de la <strong>bibliothèque de sons de référence</strong> (P10) passent tous deux par cet écrivain, derrière la même
 modale annulable et le même bilan chiffré. Le second écrivait auparavant dans un <strong>dossier</strong>, de façon

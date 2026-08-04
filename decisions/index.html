@@ -3104,6 +3104,34 @@
   
   
     <li class="md-nav__item">
+      <a href="2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2732 · On n'écrit pas plus que ce qui est déclaré
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
         
   
@@ -4240,6 +4268,11 @@
 <td><a href="2731-un-seul-processus-par-workspace/">2731</a></td>
 <td><strong>Un seul processus écrit</strong> dans un dossier de travail, garanti par un <strong>verrou de fichier système</strong> (que l'OS relâche à la mort du processus) et non par un fichier de PID (dont la validité n'a pas de réponse portable). La seconde instance graphique est <strong>refusée</strong> et non basculée en lecture seule : ce mode n'existe nulle part et le livrer à moitié serait pire. La CLI ne verrouille que ses opérations exclusives, pour ne pas casser l'usage scriptable</td>
 <td>#2731, lot 1 de #2720</td>
+</tr>
+<tr>
+<td><a href="2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/">2732</a></td>
+<td>La décompression est bornée par <strong>deux</strong> gardes - l'inventaire <strong>annoncé</strong> avant le premier octet, les octets <strong>réellement</strong> écrits pendant la copie - qui tiennent ensemble une garantie unique : <em>on n'écrit jamais plus que ce qui a été déclaré, et on n'accepte jamais une déclaration qui ne tient pas</em>. <strong>Pas de plafond de taux de compression</strong> : une carte SD de recette se décompresse ≈ 140 fois et un enregistrement silencieux bien plus, or l'audio silencieux et une bombe sont les mêmes octets</td>
+<td>#2732, lot 2 de #2720</td>
 </tr>
 <tr>
 <td><a href="2736-le-clair-est-assume-et-annonce/">2736</a></td>

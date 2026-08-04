@@ -2989,6 +2989,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2732 · On n'écrit pas plus que ce qui est déclaré
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
         
   
@@ -3834,6 +3862,10 @@ d'instrumentation est le filet commun <code>emettre</code>, qui voit déjà pass
 leur issue en <code>ReponseApi</code> (<a href="../decisions/0007-retours-http-type-scelle-reponse-api/">ADR 0007</a>) : un
 seul endroit pour tout couvrir. Le dépôt S3, qui ne passe pas par lui (corps binaire, délai long), se
 consigne lui-même.</p>
+<p><strong>Ce qui est consigné vit dans <code>commun.api.JournalEchange</code></strong> (#2734) : la sévérité, le résumé, la
+cause lisible et la troncature du corps d'un refus. Le transport <strong>émet</strong> et appelle ; il ne décide
+plus de la forme du journal. Chercher « comment se fabrique cette ligne » mène donc à <code>JournalEchange</code>,
+pas au transport.</p>
 <p>La sévérité se décide <strong>à l'émission</strong>
 (<a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/">ADR 0008</a>) :</p>
 <table>

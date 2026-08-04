@@ -2987,6 +2987,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2732 · On n'écrit pas plus que ce qui est déclaré
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
         
   
@@ -3889,7 +3917,7 @@ données d'exemple ou de test.</p>
   <strong>ACL du profil utilisateur</strong> : le dossier de travail vit sous le profil, dont les autres comptes non
   administrateurs n'ont pas la clé. Protection réelle, mais <strong>de nature différente</strong>, et c'est pourquoi
   elle est écrite plutôt que sous-entendue.</p>
-<p>L'écriture passe par <code>commun.model.EcritureProtegee</code> (#2735), et non plus par un <code>writeString</code>
+<p>L'écriture passe par <code>commun.model.EcritureAtomique</code> (#2735), et non plus par un <code>writeString</code>
 suivi d'un <code>chmod</code>. La différence n'est pas cosmétique : restreindre <strong>après</strong> avoir écrit laisse
 une fenêtre pendant laquelle le fichier existe avec les permissions de l'umask, souvent <code>644</code>. Elle
 se rouvrait à chaque <strong>création</strong> du fichier, donc à chaque reconnexion, puisque se déconnecter le
@@ -4003,9 +4031,10 @@ ne tient pas.</strong></p>
 <div class="admonition note">
 <p class="admonition-title">Pourquoi il n'y a pas de plafond de taux de compression</p>
 <p>C'est le garde classique contre les bombes ZIP. Il a été écrit ici, puis <strong>retiré</strong> : il ne sépare
-pas les deux populations dans ce domaine. Les fixtures de recette produites par le générateur de
-cartes SD se décompressent <strong>137 fois</strong>, et un enregistrement réellement silencieux fait bien
-davantage : de l'audio silencieux et une bombe sont <strong>les mêmes octets</strong>.</p>
+pas les deux populations dans ce domaine. Une carte SD du générateur de recette se décompresse
+<strong>environ 140 fois</strong>, la nuit synthétique des parcours E2E <strong>137 fois</strong>, et un enregistrement
+réellement silencieux fait bien davantage : de l'audio silencieux et une bombe sont <strong>les mêmes
+octets</strong>.</p>
 <p>Il n'ajoutait rien à la garantie ci-dessus. Un taux énorme ne nuit que s'il aboutit à beaucoup
 d'octets écrits, ce que le total annoncé, le contrôle d'espace disque et le second garde bornent
 déjà. Le conserver, c'était payer des refus injustifiés pour une protection qu'on avait par

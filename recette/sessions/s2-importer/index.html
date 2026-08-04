@@ -2989,6 +2989,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../decisions/2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2732 · On n'écrit pas plus que ce qui est déclaré
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../decisions/2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
         
   
@@ -3862,6 +3890,24 @@ alignés sur l'écran actuel, à confirmer au re-jeu.</em></p>
     d'un import à l'autre (écran transitoire, assumé).
     « 🗑 Écraser et réimporter » ; « Écraser » enchaîne deux confirmations (principe, puis liste de ce
     qui sera supprimé).</li>
+</ol>
+<p><strong>Bloc · Décompression d'une grosse archive (#2733)</strong> : non automatisable (perception du temps réel).
+Nécessite une archive dont <strong>une seule entrée</strong> dépasse le gigaoctet - une nuit non découpée, ou un
+<code>.zip</code> fabriqué pour l'occasion. Les tests couvrent le mécanisme sur quelques mégaoctets ; ce qui se
+vérifie ici est ce qu'un humain <strong>ressent</strong>.</p>
+<ol>
+<li>Pendant la décompression d'un fichier de plusieurs Go, le <strong>volume écrit défile</strong> à côté du nom du
+    fichier, alors que le compteur « X / N fichiers » reste immobile.</li>
+<li>« Annuler » pendant ce fichier arrête la décompression <strong>sans attendre la fin du fichier</strong> : le
+    retour à l'état neutre est perçu comme immédiat, pas au bout de plusieurs minutes.</li>
+<li>Après cette annulation, aucun dossier <code>import-zip-*</code> ne subsiste dans le dossier de travail.</li>
+</ol>
+<p><strong>Bloc · Archive refusée (#2732)</strong> : automatisé au niveau unitaire, à confirmer <strong>à l'écran</strong> - c'est
+la lisibilité du bandeau qui se juge ici, pas la règle.</p>
+<ol>
+<li>Une archive dont le contenu décompressé dépasse la place disponible est refusée <strong>avant</strong> que quoi
+    que ce soit ne soit écrit ; le bandeau donne les deux volumes (nécessaire, disponible).</li>
+<li>Le bandeau du refus est lisible <strong>en entier</strong> : la phrase qui dit quoi faire n'est pas tronquée.</li>
 </ol>
 <h2 id="verdict-par-axe-derniere-passe">Verdict par axe (dernière passe)<a class="headerlink" href="#verdict-par-axe-derniere-passe" title="Permanent link">&para;</a></h2>
 <table>
