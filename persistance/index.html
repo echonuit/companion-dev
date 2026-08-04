@@ -3905,9 +3905,16 @@ donne une base qui <strong>paraît</strong> corrigée et une application qui ne 
 écrite. Les tests Java relisaient <code>root_path</code> et concluaient au succès ; l'E2E <code>bats</code> qui restaure
 sur une autre machine puis demande <code>reset-guide</code> a répondu <strong>PERDU</strong>. Un test qui vérifie ce qu'on
 a écrit ne remplace pas un test qui demande à l'application si elle s'y retrouve.</p>
-<p>⚠️ <code>RattachementDao.reprefixerChemins</code> applique la même règle pour un autre besoin (renommer une
-session rattachée), sans pouvoir partager ce code : le socle ne peut pas dépendre d'une feature.
-Une septième table à chemin devra donc être ajoutée <strong>aux deux endroits</strong>.</p>
+<p>L'inventaire de ces tables vit à <strong>un seul endroit</strong>, <code>TablesAChemin</code> (#3133). Il était écrit deux
+fois, ici et dans <code>RattachementDao.reprefixerChemins</code>, qui applique la même règle pour renommer
+une session rattachée : la septième table aurait été ajoutée à un endroit sur deux. Le socle ne
+peut pas dépendre d'une feature, mais une feature dépend du socle, et cet inventaire est de la
+connaissance de <strong>schéma</strong>.</p>
+<p>Ce que chacun <strong>fait</strong> de chaque table lui reste propre : le socle réenracine, la feature
+réenracine <strong>et</strong> renomme les noms logiques.</p>
+<p><code>TablesACheminTest</code> confronte cette liste aux colonnes de chemin déclarées par les 38 migrations.
+C'est le second filet, et il attrape autre chose que la déduplication : une <strong>migration</strong> qui
+ajoute une colonne de chemin à une table de plus, et que personne ne pense à inscrire.</p>
 </div>
 <p>L'ordre est le point important : une seule discordance à l'étape 1 annule tout <strong>avant que rien
 n'ait été touché</strong>. La vérification passait auparavant après la bascule, ce qui revenait à découvrir
