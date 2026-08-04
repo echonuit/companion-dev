@@ -4258,6 +4258,18 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>ServiceSauvegarde.restaurer</code> / <code>restaurerComplet</code> : remet la base (et, avec <code>--complet</code>, les dossiers de son, <strong>remis là où ils étaient</strong>, avec les <code>root_path</code> corrigés et un compte rendu de ce qui a changé de place, #2727). <strong>Écrase l'état local</strong> : <code>--confirmer</code> est obligatoire. La base courante est mise de côté (<code>vigiechiro.db.avant-restauration</code>)</td>
 </tr>
 <tr>
+<td><code>lister-sauvegardes</code></td>
+<td><code>[--dossier &lt;d&gt;] [--json]</code></td>
+<td>#3197</td>
+<td><code>InventaireSauvegardes.lire</code>. Ce que <code>sauvegardes/</code> contient : nom, date, taille, et le <strong>total</strong>. L'application y écrit un filet complet avant <strong>chaque</strong> migration de schéma et n'en supprime jamais aucun - délibérément (ADR 0048 : le filet appartient à l'utilisateur), mais jusqu'ici sans que rien ne dise combien il y en avait ni ce qu'ils pesaient. La commande <strong>observe</strong> : elle ne purge rien et ne conseille rien. Les sauvegardes complètes étant des <strong>dossiers</strong>, leur taille est celle de leur contenu - un inventaire qui ne verrait que les fichiers mentirait là où le chiffre compte</td>
+</tr>
+<tr>
+<td><code>supprimer-sauvegarde</code></td>
+<td><code>--nom &lt;nom&gt; [--dossier &lt;d&gt;] --confirmer</code></td>
+<td>#3197</td>
+<td>Le ménage que la doc conseille, <strong>explicitement demandé</strong>. Même parade que <code>supprimer-passage</code> : sans <code>--confirmer</code>, la commande <strong>chiffre la perte et ne touche à rien</strong>, sortie <code>2</code>. Un nom inconnu est une <strong>erreur d'usage</strong>, pas un succès silencieux : croire avoir supprimé ce qu'on n'a pas touché est précisément ce qu'on veut éviter</td>
+</tr>
+<tr>
 <td><code>reset-guide</code></td>
 <td><code>[--json] [--executer --confirmer [--accepter-perte] [--sauvegarde &lt;dir&gt;]]</code></td>
 <td>#1151, #1419</td>
