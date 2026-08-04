@@ -4325,6 +4325,21 @@ faisaient déjà.</p>
 <code>CopieInterruptible</code> : un <code>transferTo</code> ou un <code>Files.copy</code> dans une opération annulable est un bouton
 « Annuler » qui ment. Le corollaire vaut pour la progression : un compteur « X / N unités » ne suffit
 pas quand <strong>une</strong> unité peut durer des minutes.</p>
+<p><strong>Trois adoptions, trouvées l'une après l'autre.</strong> La décompression (#2733), l'écriture d'archive - son
+jumeau, trouvé le jour même parce que la doc affirmait que les deux se suivaient « en miroir » - puis
+la <strong>copie d'un enregistrement</strong> à l'import (#3221), repérée par la passe d'harmonisation du lot</p>
+<h1 id="2722-la-troisieme-etait-la-plus-discrete-et-la-plus-frequentee-une-nuit-simporte-bien-plus-souvent">2722. La troisième était la plus discrète et la plus fréquentée : une nuit s'importe bien plus souvent<a class="headerlink" href="#2722-la-troisieme-etait-la-plus-discrete-et-la-plus-frequentee-une-nuit-simporte-bien-plus-souvent" title="Permanent link">&para;</a></h1>
+<p>qu'elle ne s'archive.</p>
+<p><strong>Et le corollaire qu'on oublie : ce qui <em>vérifie</em> doit s'interrompre aussi.</strong> La copie protégée relit
+sa destination pour en comparer l'empreinte (garantie R9). Lire 5 Go pour un SHA-256 prend aussi
+longtemps que les copier : rendre la copie annulable sans rendre sa vérification annulable ne réglerait
+qu'à moitié - le bouton répondrait, puis l'application resterait sourde. D'où
+<code>Empreintes.sha256Hex(fichier, jeton)</code>.</p>
+<p>Au passage, la copie protégée est passée de <strong>trois lectures complètes à deux</strong> :
+<code>Empreintes.enComptantLEmpreinte</code> calcule l'empreinte de la source <strong>pendant</strong> la copie, au lieu de la
+demander à sa propre lecture. La relecture de la destination, elle, reste : comparer les octets qu'on
+vient d'écrire à eux-mêmes ne prouverait rien, alors que les relire du disque constate un disque plein
+ou une écriture tronquée.</p>
 <h2 id="un-fichier-secrit-dun-seul-coup-socle-commun">Un fichier s'écrit d'un seul coup (socle <code>commun</code>)<a class="headerlink" href="#un-fichier-secrit-dun-seul-coup-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème, deux fois.</strong> Un <code>writeString</code> interrompu laisse un fichier <strong>tronqué</strong>, et son lecteur
 en tire une conclusion fausse : un <code>connexion.json</code> coupé se lit « non connecté » (une déconnexion
