@@ -3604,6 +3604,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#les-url-pre-signees-sont-verifiees-avant-detre-suivies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les URL pré-signées sont vérifiées avant d'être suivies
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -3715,6 +3726,17 @@
     <span class="md-ellipsis">
       
         Hôtes sortants
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-url-pre-signees-sont-verifiees-avant-detre-suivies" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les URL pré-signées sont vérifiées avant d'être suivies
       
     </span>
   </a>
@@ -3919,7 +3941,7 @@ un confort, jamais un geste métier), sauf l'API VigieChiro qui porte le cœur d
 <td>token de session</td>
 </tr>
 <tr>
-<td>URLs S3 pré-signées</td>
+<td><code>*.s3.amazonaws.com</code> (URLs pré-signées)</td>
 <td>téléchargement / téléversement des fichiers son</td>
 <td>signature dans l'URL</td>
 </tr>
@@ -3952,6 +3974,30 @@ un confort, jamais un geste métier), sauf l'API VigieChiro qui porte le cœur d
 </table>
 <p>Hors ligne, l'application reste pleinement utilisable : ces enrichissements se taisent, et la
 commune des points se comble plus tard (<code>rattraper-communes</code>, ou les déclencheurs de l'IHM).</p>
+<h3 id="les-url-pre-signees-sont-verifiees-avant-detre-suivies">Les URL pré-signées sont vérifiées avant d'être suivies<a class="headerlink" href="#les-url-pre-signees-sont-verifiees-avant-detre-suivies" title="Permanent link">&para;</a></h3>
+<p>Une URL pré-signée est le seul endroit où <strong>le serveur décide où partent les données</strong> : c'est elle
+qu'on télécharge, et c'est vers elle que montent les enregistrements d'une nuit. Elle partait telle
+quelle dans <code>URI.create</code> (#2734) : une API compromise ou mal configurée pouvait donc les envoyer
+ailleurs, éventuellement en clair.</p>
+<p><code>commun.api.UrlSigneeAdmise</code> la confronte à deux règles <strong>avant</strong> d'ouvrir la moindre connexion :</p>
+<ul>
+<li><strong><code>https</code> obligatoire</strong>, sans échappatoire. Le serveur code le schéma en dur
+  (<code>vigiechiro-api/vigiechiro/resources/fichiers.py:188</code>) : une URL en clair ne vient pas du chemin
+  nominal.</li>
+<li><strong>hôte admis</strong> : <code>s3.amazonaws.com</code> ou l'un de ses sous-domaines. La comparaison exige le <strong>point de
+  séparation</strong> : <code>bucket.s3.amazonaws.com</code> passe, <code>s3.amazonaws.com.pirate.net</code> non, alors qu'un
+  <code>endsWith</code> naïf l'aurait admis.</li>
+</ul>
+<p>Le refus n'est pas réessayé (<code>ReponseApi.Refuse</code> hors 429/5xx) : insister ne rendra pas une URL
+inattendue acceptable.</p>
+<p><strong>L'allowlist reste visible et ouvrable.</strong> Le serveur sait renvoyer autre chose : quand
+<code>DEV_FAKE_S3_URL</code> est configuré (<code>fichiers.py:125</code>), l'URL signée devient cette valeur suivie du nom
+d'objet. Une liste figée rendrait l'application inutilisable contre une instance de développement.
+D'où la propriété système <code>vigiechiro.s3.hotes</code>, qui <strong>remplace</strong> la liste, et un message de refus qui
+nomme l'hôte observé <strong>et</strong> la propriété : un changement d'hébergement doit être une ligne à ajouter,
+pas un mur.</p>
+<p>Une <strong>sonde live</strong> (<code>ContratApiVigieChiroLiveTest</code>, hors CI) confronte l'allowlist à l'URL que la
+plateforme sert vraiment : si l'hébergement change, elle rougit là plutôt que chez un utilisateur.</p>
 <h2 id="chaine-dapprovisionnement">Chaîne d'approvisionnement<a class="headerlink" href="#chaine-dapprovisionnement" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Dependabot</strong> propose mensuellement les mises à jour <code>maven</code> et <code>github-actions</code> ; les bumps sont
