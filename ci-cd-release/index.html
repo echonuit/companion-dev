@@ -3752,6 +3752,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#loutillage-de-publication-est-fige-et-repete-a-blanc-2738" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'outillage de publication est figé, et répété à blanc (#2738)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dependances" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3933,6 +3944,17 @@
     <span class="md-ellipsis">
       
         Épinglage des actions et conteneurs (#2737)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#loutillage-de-publication-est-fige-et-repete-a-blanc-2738" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'outillage de publication est figé, et répété à blanc (#2738)
       
     </span>
   </a>
@@ -4394,6 +4416,50 @@ forme même du défaut corrigé. Pour résoudre un tag :</p>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
+<h2 id="loutillage-de-publication-est-fige-et-repete-a-blanc-2738">L'outillage de publication est figé, et répété à blanc (#2738)<a class="headerlink" href="#loutillage-de-publication-est-fige-et-repete-a-blanc-2738" title="Permanent link">&para;</a></h2>
+<p><code>semantic-release</code> et ses greffons vivent dans
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/.github/release"><code>.github/release/</code></a>,
+avec <strong>package.json + lockfile versionnés</strong>, installés par <code>npm ci</code>.</p>
+<p><strong>Ce qui n'allait pas.</strong> Le job de publication faisait <code>npx --yes -p semantic-release@24 …</code> <strong>au
+moment de publier</strong>, dans un job autorisé à écrire contenus, issues et PR. La résolution de versions
+se faisait à chaque exécution : un greffon compromis entre deux runs se serait exécuté avec les droits
+de publication sans qu'aucun diff du dépôt ne l'ait montré.</p>
+<p><strong>Deux configurations, et la seconde dérive de la première.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Fichier</th>
+<th>Greffons</th>
+<th>Usage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.releaserc.json</code> (racine)</td>
+<td>les 5</td>
+<td>la publication, lancée <strong>depuis la racine</strong></td>
+</tr>
+<tr>
+<td><code>.github/release/release.config.js</code></td>
+<td>les 2 de <strong>calcul</strong></td>
+<td>la répétition à blanc des PR</td>
+</tr>
+</tbody>
+</table>
+<p>La configuration d'analyse <strong>importe</strong> celle du dépôt et n'en garde que les greffons qui lisent : elle
+ne recopie donc pas les <code>parserOpts</code> (ceux qui tolèrent « <code>fix(ci) : sujet</code> », espace avant les
+deux-points). Une copie divergerait, et la version calculée en vérification ne serait plus celle que la
+publication calculera.</p>
+<p><strong>La répétition à blanc</strong>, job <code>outillage-release</code> de <code>lint.yml</code>, à chaque PR : <code>npm ci</code>, une assertion
+sur la dérivation de la configuration, puis <code>semantic-release --dry-run</code>. Elle existe parce que
+<code>release.yml</code> ne se déclenche qu'au <strong>push sur <code>main</code></strong> : aucune CI de PR ne traversait la chaîne de
+publication, donc une erreur d'installation ou de configuration ne se serait vue qu'à la <strong>prochaine
+release</strong>, sur un dépôt qui publie à chaque fusion.</p>
+<p>Elle ne peut pas publier : <code>--dry-run</code> n'écrit rien, et la configuration d'analyse n'embarque <strong>aucun</strong>
+greffon d'écriture.</p>
+<p>⚠️ <strong>Le binaire se lance depuis la racine pour publier</strong> (<code>./.github/release/node_modules/.bin/semantic-release</code>) :
+c'est <code>.releaserc.json</code> qui fait alors foi. Lancé <strong>depuis <code>.github/release/</code></strong>, c'est la configuration
+d'analyse que cosmiconfig trouve en premier. Les deux ont été vérifiées en local, greffon par greffon.</p>
 <h2 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">&para;</a></h2>
 <p>Les mises à jour sont proposées par <strong>Dependabot</strong>
 (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>),
