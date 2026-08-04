@@ -4192,6 +4192,12 @@ de refus part sur <strong>stderr</strong>, pour ne pas se mêler au compte rendu
 <code>discussion</code>, <code>sauvegarder</code> (incomplète), <code>emplacements</code> (dossier refusé par la sonde, options
 exclusives : rien n'est écrit). <code>restaurer</code> rendait <code>1</code> sur stdout jusqu'à #2294, la
 convention n'était écrite nulle part, et c'est ainsi qu'elle a dérivé.</p>
+<p><strong>Les refus de la couche persistance en font partie depuis #3146</strong> : un fichier qui n'est pas une
+base, une sauvegarde écrite par une version plus récente, un manifeste abîmé, un dossier de travail
+occupé. Tous sont émis <strong>avant</strong> la moindre écriture, et sortaient pourtant en <code>1</code>, avec une pile.
+Ils portent maintenant <code>RefusAvantEcriture</code>, que le gestionnaire d'erreurs classe avec les autres
+refus. Une <code>DataAccessException</code> ordinaire, elle, reste un incident : sa pile est l'information
+utile.</p>
 <p><code>deposer-vigiechiro</code> étend la convention : <code>0</code> <strong>seulement si le dépôt est complet</strong> ; <code>1</code> si des
 fichiers restent à reprendre (relancer la même commande ne re-téléverse que les manquants). Le jeton
 vient de <code>--token</code>, sinon de la variable d'environnement <code>VIGIECHIRO_TOKEN</code>, sinon de la <strong>connexion
