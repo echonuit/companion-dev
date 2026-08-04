@@ -2980,6 +2980,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2736 · Le clair est assumé et annoncé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3571,6 +3599,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ce-qui-nest-pas-protege-et-pourquoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui n'est pas protégé, et pourquoi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#surface-applicative" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3692,6 +3731,17 @@
     <span class="md-ellipsis">
       
         Secrets et identifiants
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-qui-nest-pas-protege-et-pourquoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui n'est pas protégé, et pourquoi
       
     </span>
   </a>
@@ -3849,7 +3899,9 @@ interruption, que le lecteur traduisait en « non connecté » sans rien dire.</
 <p>Ce garde est <strong>structurel</strong> (<code>SecretsEcritsProtegesTest</code>), parce que la fenêtre est un état
 intermédiaire : après coup, les deux façons d'écrire laissent le même fichier à <code>600</code>, et aucun test
 d'état final ne les distingue.</p>
-<p>Un durcissement supplémentaire (chiffrement au repos / coffre système) est arbitré dans #2736.
+<p><strong>Il n'y aura pas de coffre système</strong> : l'<a href="../decisions/2736-le-clair-est-assume-et-annonce/">ADR 2736</a>
+l'a tranché. Ranger le jeton au coffre pendant que les <strong>localisations d'espèces protégées</strong> restent
+en clair dans la base du même dossier déplacerait la serrure sans déplacer la porte.
 - <strong>Un journal doit pouvoir être joint à un signalement</strong> (#1845). L'utilisateur est invité à envoyer
   ses journaux avec un rapport d'anomalie : ils ne doivent donc porter <strong>ni le jeton, ni les en-têtes,
   ni le corps envoyé</strong>. Ils ne portent pas non plus l'<strong>URL complète</strong> d'un dépôt S3 : une URL
@@ -3860,6 +3912,49 @@ d'état final ne les distingue.</p>
   les aperçus).</p>
 </li>
 </ul>
+<h2 id="ce-qui-nest-pas-protege-et-pourquoi">Ce qui n'est pas protégé, et pourquoi<a class="headerlink" href="#ce-qui-nest-pas-protege-et-pourquoi" title="Permanent link">&para;</a></h2>
+<p>Une page de sécurité qui n'énumère que ses protections se lit comme une promesse. Voici la liste
+complémentaire, celle des <strong>non-protections assumées</strong> (<a href="../decisions/2736-le-clair-est-assume-et-annonce/">ADR 2736</a>).</p>
+<table>
+<thead>
+<tr>
+<th>Ce qui reste en clair</th>
+<th>Où</th>
+<th>Pourquoi c'est assumé</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Les <strong>localisations</strong> des points d'écoute et des gîtes</td>
+<td><code>vigiechiro.db</code>, dossier de travail</td>
+<td>Chiffrer le workspace demanderait une clé, dont aucun emplacement n'est bon (cf. ci-dessous). Le dossier appartient à l'utilisateur (ADR 0048)</td>
+</tr>
+<tr>
+<td>Le <strong>jeton</strong> de session</td>
+<td><code>connexion.json</code>, restreint à <code>600</code></td>
+<td>Session de ~14 jours, révocable ; un attaquant local qui le lit lit tout aussi bien la base d'à côté</td>
+</tr>
+<tr>
+<td>Les <strong>sauvegardes</strong> (base + audio)</td>
+<td>là où l'utilisateur les range</td>
+<td>Une sauvegarde chiffrée dont on perd la clé est perdue <strong>au moment précis où elle sert</strong></td>
+</tr>
+<tr>
+<td>Les <strong>exports</strong> (CSV, sons)</td>
+<td>fichier choisi par l'utilisateur</td>
+<td>Ils sont faits pour être ouverts ailleurs : les chiffrer les rendrait inutilisables</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Pourquoi la clé est le vrai obstacle.</strong> Dérivée d'un mot de passe, elle transforme la sauvegarde en
+piège. Stockée à côté de l'archive, elle ne protège de rien. Confiée à un coffre système, elle rend la
+sauvegarde illisible depuis une autre machine - ce qui est justement son usage.</p>
+<p><strong>Ce qui est fait à la place</strong> : l'application <strong>annonce</strong> ce que ses archives emportent, plutôt que de
+décider à la place de l'utilisateur où elles peuvent être rangées (#3212).</p>
+<p>⚠️ <strong>Ce que cela suppose du contexte</strong> : le produit vise le <strong>poste personnel</strong> d'un naturaliste, pas
+un terminal partagé en environnement hostile. Un poste compromis expose les données locales et le
+jeton. Si le produit venait à stocker un secret <strong>ré-utilisable ailleurs</strong> (mot de passe, clé d'API
+personnelle), ou si la plateforme délivrait un jeton de longue durée, l'arbitrage serait à rouvrir.</p>
 <h2 id="surface-applicative">Surface applicative<a class="headerlink" href="#surface-applicative" title="Permanent link">&para;</a></h2>
 <p>L'application est <strong>locale</strong> : pas de serveur entrant, pas de port ouvert. Elle appelle en revanche
 l'<strong>API VigieChiro</strong> (lecture des sites/participations/résultats et dépôt d'une nuit) authentifiée par
