@@ -2940,6 +2940,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3157-un-carre-a-un-identifiant-et-une-etiquette/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3157 · Un carré a un identifiant et une étiquette
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3158-une-valeur-memorisee-se-rattrape-par-dimension/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3158 · Une valeur mémorisée se rattrape par dimension
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
         
   
@@ -4223,8 +4279,7 @@ clôture de l'EPIC #2790 : le patron n'existe que si le second usage l'adopte.</
 <p><strong>Le problème.</strong> Chaque écran à barre de filtres « à la Notion » (#470/#537) écrivait son éditeur de
 puce en liste déroulante à choix unique. Une puce à valeur unique ne sait dire ni « ces trois
 carrés », ni « tout sauf les chiroptères » (#2615) ; et le critère « Lieu » de la vue audio (#2794)
-confronte la même liste de valeurs cochées à <strong>quatre champs</strong> d'une ligne (commune, carré, point,
-site).</p>
+confronte la même liste de valeurs cochées à <strong>plusieurs champs</strong> d'une ligne (commune, carré, point).</p>
 <p><strong>La solution.</strong> <code>CritereListe</code>, fabrique de <code>CritereFiltre</code> sur une dimension textuelle, en trois
 variantes : <code>simple</code> (liste déroulante, une valeur), <code>multiple</code> (cases à cocher, appartenance),
 <code>multipleParmi</code> (cases à cocher, la ligne portant <strong>plusieurs valeurs candidates</strong> passe dès que
@@ -4268,6 +4323,18 @@ chantier a supprimée.</p>
 </tr>
 </tbody>
 </table>
+<p><strong>Trois niveaux géographiques, pas quatre</strong> (<a href="../decisions/3157-un-carre-a-un-identifiant-et-une-etiquette/">ADR 3157</a>) :
+la commune, le carré et le point. Ce qui ressemblait à une quatrième dimension, le « site », est le
+<strong>nom convivial du carré</strong> - <code>monitoring_site</code> porte les deux colonnes sur la même ligne - et les deux
+tiennent dans une seule entrée, « 640380 · Vallon ». <code>CritereLieu.carres</code> et <code>CritereLieu.points</code>
+écrivent cette règle une fois pour les quatre écrans ; l'écriture partagée vit en
+<code>commun.model.LieuQualifie</code>, la <strong>ligne de commande</strong> devant la lire aussi (<code>FiltreLieu</code>), et un modèle
+ne pouvant pas dépendre d'une vue.</p>
+<p><strong>Une dimension qui change d'écriture déclare de quel côté</strong> (<a href="../decisions/3158-une-valeur-memorisee-se-rattrape-par-dimension/">ADR 3158</a>).
+Une vue mémorise le <strong>texte</strong> coché : requalifier une entrée le rend introuvable. Le socle demande donc
+au critère ce que la valeur désigne, plutôt que de comparer des chaînes qu'il ne sait pas interpréter.
+Le piège, s'il fallait le refaire : chercher un segment <strong>n'importe où</strong> ne rattrape jamais un carré,
+puisque le point est qualifié par lui.</p>
 <p><strong>Clés et libellés sont deux préoccupations distinctes</strong>, et volontairement séparés.
 <code>ClesCriteres</code> est un <strong>contrat</strong> : une clé y est le nom sous lequel une vue mémorisée se sérialise
 (<code>vue_sauvegardee</code>), donc la changer rendrait caduques les vues enregistrées. Une clé propre à un seul
