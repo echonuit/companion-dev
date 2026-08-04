@@ -2931,6 +2931,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3222 · Une entrée externe se lit sous plafond
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
         
   
@@ -3689,6 +3717,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#le-meme-raisonnement-en-memoire-3222" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le même raisonnement, en mémoire (#3222)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#hotes-sortants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3821,6 +3860,17 @@
     <span class="md-ellipsis">
       
         Archives ZIP : le seul fichier arbitraire que l'application ouvre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-meme-raisonnement-en-memoire-3222" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le même raisonnement, en mémoire (#3222)
       
     </span>
   </a>
@@ -4078,6 +4128,52 @@ dans l'écran Réglages : un naturaliste n'a pas à choisir un plafond d'entrée
 refus qui nomme la limite atteinte et l'échappatoire.</p>
 <p>⚠️ Ces bornes protègent l'<strong>import par l'IHM</strong>, seul chemin qui accepte aujourd'hui une archive : la
 CLI ne prend qu'un dossier.</p>
+<h3 id="le-meme-raisonnement-en-memoire-3222">Le même raisonnement, en mémoire (#3222)<a class="headerlink" href="#le-meme-raisonnement-en-memoire-3222" title="Permanent link">&para;</a></h3>
+<p>Ce que #2732 a posé sur le disque, #3222 le pose sur la <strong>mémoire</strong> : six lectures chargeaient une
+entrée externe <strong>entière</strong> avant de savoir si elle était exploitable - trois clients HTTP (plateforme
+VigieChiro, GBIF, API Géo) et trois lecteurs de fichiers de la carte (journal du capteur par ses deux
+portes, relevé climatique).</p>
+<p>Même paire de gardes, pour la même raison : <strong>ce qui annonce sa taille est refusé avant d'être lu</strong>
+(<code>Files.size</code> pour un fichier, <code>Content-Length</code> pour une réponse), <strong>ce qui ne l'annonce pas est compté
+pendant la lecture</strong> (une réponse en encodage par blocs n'a pas de <code>Content-Length</code>, et un plafond
+vérifié après avoir tout chargé ne protège de rien : la mémoire est déjà prise).</p>
+<p>Les plafonds viennent d'une <strong>mesure sur la carte réelle</strong> <code>Car640380-2026-Pass2-Z1</code>, pas d'une
+intuition - c'est la leçon du plafond de taux de compression retiré ci-dessus :</p>
+<table>
+<thead>
+<tr>
+<th>Ce qui est lu</th>
+<th>Mesuré sur une nuit réelle</th>
+<th>Plafond</th>
+<th>Marge</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fichier de la carte (journal, relevé)</td>
+<td>1 862 o (22 lignes)</td>
+<td><strong>32 Mio</strong> (<code>vigiechiro.import.journal.max-octets</code>)</td>
+<td>17 000 fois une nuit, 70 fois une saison de dix ans</td>
+</tr>
+<tr>
+<td>Corps d'une réponse HTTP</td>
+<td>446 Kio (CSV d'observations, 4 032 lignes)</td>
+<td><strong>64 Mio</strong> (<code>vigiechiro.reseau.corps.max-octets</code>)</td>
+<td>147 fois le plus gros corps mesuré</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Le journal de saison n'existe pas</p>
+<p>La crainte qui motivait l'issue était une carte laissée en place toute une saison. La mesure l'a
+corrigée : le journal consigne des <strong>événements de session</strong> (démarrage, mode, batterie, veille),
+pas un enregistrement par fichier - 22 lignes pour une nuit qui a produit 4 031 observations. Une
+saison de 250 nuits pèse ~465 Ko, dix ans ~4,7 Mo.</p>
+</div>
+<p>Côté réseau, un dépassement devient un <code>ReponseApi.Refuse</code>, <strong>jamais</strong> un <code>Injoignable</code> : un
+<code>Injoignable</code> serait rejoué par la politique de reprise (#2354), et réémettre une requête dont la
+réponse est trop grosse la redonne trop grosse. Détail par <a href="../decisions/3222-une-entree-externe-se-lit-sous-plafond/">ADR
+3222</a>.</p>
 <h3 id="hotes-sortants">Hôtes sortants<a class="headerlink" href="#hotes-sortants" title="Permanent link">&para;</a></h3>
 <p>Tous les appels réseau de l'application, exhaustivement - chacun <strong>best-effort</strong> (une panne dégrade
 un confort, jamais un geste métier), sauf l'API VigieChiro qui porte le cœur des échanges :</p>
