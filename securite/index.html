@@ -3978,7 +3978,10 @@ complémentaire, celle des <strong>non-protections assumées</strong> (<a href="
 piège. Stockée à côté de l'archive, elle ne protège de rien. Confiée à un coffre système, elle rend la
 sauvegarde illisible depuis une autre machine - ce qui est justement son usage.</p>
 <p><strong>Ce qui est fait à la place</strong> : l'application <strong>annonce</strong> ce que ses archives emportent, plutôt que de
-décider à la place de l'utilisateur où elles peuvent être rangées (#3212).</p>
+décider à la place de l'utilisateur où elles peuvent être rangées (#3212). La phrase vit dans
+<code>ServiceSauvegarde.CE_QU_ELLE_EMPORTE</code> et sa variante complète : <strong>une seule source pour les deux
+surfaces</strong>, l'IHM la disant dans sa confirmation ou son compte rendu, la CLI sur sa sortie standard.
+Deux copies d'un même avertissement divergent (ADR 0014).</p>
 <p>⚠️ <strong>Ce que cela suppose du contexte</strong> : le produit vise le <strong>poste personnel</strong> d'un naturaliste, pas
 un terminal partagé en environnement hostile. Un poste compromis expose les données locales et le
 jeton. Si le produit venait à stocker un secret <strong>ré-utilisable ailleurs</strong> (mot de passe, clé d'API
