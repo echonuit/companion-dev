@@ -3892,7 +3892,7 @@ imposée aux trois :</p>
 </tr>
 <tr>
 <td>Sons &amp; validation</td>
-<td><strong>tiret</strong></td>
+<td><strong>tiret</strong> (<code>Formats.VALEUR_ABSENTE</code>)</td>
 <td>toutes les colonnes de contexte de cette table marquent l'absence ainsi</td>
 </tr>
 <tr>
@@ -3904,6 +3904,10 @@ imposée aux trois :</p>
 </table>
 <p>Uniformiser aurait demandé de changer des colonnes que le lot ne touchait pas, pour une cohérence que
 personne ne perçoit : ces tables ne se lisent pas côte à côte.</p>
+<p>Le dépôt dit « tiret » par habitude, mais le caractère est un <strong>cadratin</strong> (<code>Formats.VALEUR_ABSENTE</code>,
+U+2014), appliqué par <code>FormatLigneAudio.ouTiret</code>. Qui écrira le test qui manque (#3236) comparera donc
+à cette constante, jamais à un tiret d'imprimerie tapé à la main : les deux se ressemblent à l'écran et
+ne sont pas le même caractère.</p>
 <h2 id="decision-3-sur-la-revue-audio-cest-du-contexte">Décision 3 : sur la revue audio, c'est du contexte<a class="headerlink" href="#decision-3-sur-la-revue-audio-cest-du-contexte" title="Permanent link">&para;</a></h2>
 <p>Sur Sons &amp; validation, la commune rejoint le groupe <strong>passage / carré / point / date</strong>, masqué quand la
 source cible un <strong>unique passage</strong> : toutes les lignes y partagent la commune de son point, et la
