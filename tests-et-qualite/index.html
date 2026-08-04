@@ -4062,7 +4062,7 @@ pas ici, pour ne pas diverger), et elle ne peut que <strong>rétrécir</strong> 
 </tr>
 <tr>
 <td>Les <strong>chiffres balisés</strong> <code>&lt;!--inv:clé--&gt;N&lt;!--/inv--&gt;</code> (#2385)</td>
-<td>L'<strong>inventaire réel du code</strong> (contrats <code>Ouvrir*</code>, états de <code>StatutWorkflow</code>, features, sous-commandes)</td>
+<td>L'<strong>inventaire réel du code</strong> (contrats <code>Ouvrir*</code>, états de <code>StatutWorkflow</code>, features, sous-commandes, <strong>catalogues de critères de filtre</strong>)</td>
 <td>Un décompte <strong>figé dans la prose</strong> qui dérive après un ajout : « 43 sous-commandes » quand le code en câble 44</td>
 </tr>
 </tbody>
@@ -4111,8 +4111,43 @@ reconnues :</p>
 <td><code>cli</code></td>
 <td>sous-commandes câblées dans <code>CommandeRacine</code></td>
 </tr>
+<tr>
+<td><code>workflows-ci</code></td>
+<td>fichiers <code>.yml</code> de <code>.github/workflows</code></td>
+</tr>
+<tr>
+<td><code>migrations</code></td>
+<td>fichiers <code>V*.sql</code> de <code>db/migration</code></td>
+</tr>
+<tr>
+<td><code>criteres-validation</code></td>
+<td>fabriques <code>CritereFiltre</code> de <code>CriteresAudio</code></td>
+</tr>
+<tr>
+<td><code>criteres-analyse</code></td>
+<td>fabriques <code>CritereFiltre</code> de <code>CriteresAnalyse</code></td>
+</tr>
+<tr>
+<td><code>criteres-activite</code></td>
+<td>fabriques <code>CritereFiltre</code> de <code>CriteresActivite</code></td>
+</tr>
+<tr>
+<td><code>criteres-multisite</code></td>
+<td>fabriques <code>CritereFiltre</code> de <code>CriteresMultisite</code></td>
+</tr>
+<tr>
+<td><code>criteres-audit</code></td>
+<td>fabriques <code>CritereFiltre</code> de <code>CriteresAudit</code></td>
+</tr>
 </tbody>
 </table>
+<p>Les cinq clés <code>criteres-*</code> (#3105) comptent les fabriques par <strong>nom distinct</strong> : plusieurs catalogues
+offrent des surcharges du même critère (<code>groupe</code>, <code>heure</code>), qui restent <strong>une seule puce</strong> à l'écran.
+La réflexion s'arrête au type de retour, sans rien invoquer : pas de toolkit JavaFX, pas de données.</p>
+<p>Ces cinq-là existent parce que la dérive s'était déjà produite : « Douteux » et « Non identifiés »
+ont vécu deux paliers sans figurer dans <code>validation.md</code>, et un commentaire de <code>FiltresVuesAudio</code>
+annonçait deux critères là où le code en câblait dix. Un décompte réécrit en prose finit toujours par
+mentir - la règle est donc de <strong>nommer la source</strong> dans un commentaire, et d'ancrer le <strong>nombre</strong> ici.</p>
 <p>Poser une balise sur une <strong>clé non listée</strong> échoue aussi : on ajoute d'abord la clé et son décompte au
 test (une clé = un fait que le code sait recalculer). Et le test exige qu'<strong>au moins une</strong> balise subsiste
 par clé, pour qu'un inventaire ne perde pas discrètement son ancre. Enfin, <code>aucune_commande_documentee_n_a_disparu_de_la_cli</code>
