@@ -3752,6 +3752,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linventaire-des-dependances-livrees-et-sa-surveillance-2740" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'inventaire des dépendances livrées, et sa surveillance (#2740)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#les-droits-de-publication-sont-declares-par-job-2739" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3962,6 +3973,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#linventaire-des-dependances-livrees-et-sa-surveillance-2740" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'inventaire des dépendances livrées, et sa surveillance (#2740)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#les-droits-de-publication-sont-declares-par-job-2739" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4028,7 +4050,7 @@
 
 
 <h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
-<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->12<!--/inv--> workflows et le processus de
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->13<!--/inv--> workflows et le processus de
 publication.</p>
 <h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
 <table>
@@ -4438,6 +4460,57 @@ forme même du défaut corrigé. Pour résoudre un tag :</p>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
+<h2 id="linventaire-des-dependances-livrees-et-sa-surveillance-2740">L'inventaire des dépendances livrées, et sa surveillance (#2740)<a class="headerlink" href="#linventaire-des-dependances-livrees-et-sa-surveillance-2740" title="Permanent link">&para;</a></h2>
+<p>Le fat-jar embarque toutes les dépendances résolues par Maven. Leur état de vulnérabilité n'était
+vérifié nulle part : ni nous ni personne ne pouvait affirmer l'absence de CVE connue.</p>
+<p><strong>Le SBOM</strong> : <code>cyclonedx-maven-plugin</code> produit <code>target/sbom.json</code> (CycloneDX 1.6) à la phase <code>package</code>,
+et il est <strong>joint à chaque Release</strong>, à côté des SHA-256, sous le nom <code>sbom-vX.Y.Z.json</code>.</p>
+<p>Il décrit ce qui est <strong>livré</strong> : portées <code>compile</code> et <code>runtime</code>, jamais <code>test</code>. Y mettre JUnit, AssertJ
+et Mockito ferait alerter un scanner sur des paquets qu'aucun utilisateur n'exécute. <strong>25 composants</strong>
+au moment de la mise en place.</p>
+<p><strong>La surveillance</strong> : le workflow <code>securite-dependances.yml</code> reconstruit le SBOM et le scanne (grype),
+à trois moments qui répondent à trois questions différentes :</p>
+<table>
+<thead>
+<tr>
+<th>Déclenchement</th>
+<th>La question</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>schedule</code> (lundi 6 h UTC)</td>
+<td>une vulnérabilité publiée cette nuit touche-t-elle du code que nous n'avons pas modifié ?</td>
+</tr>
+<tr>
+<td><code>pull_request</code> sur <code>pom.xml</code></td>
+<td>est-ce qu'on <strong>introduit</strong> une dépendance vulnérable ?</td>
+</tr>
+<tr>
+<td><code>workflow_dispatch</code></td>
+<td>vérification à la demande, avant une release</td>
+</tr>
+</tbody>
+</table>
+<p>Le seuil bloque à partir de <strong>haute</strong>, et ce choix tient à une mesure : le premier scan a rendu
+<strong>zéro</strong> composant vulnérable. Au moment où l'inventaire est propre, être strict ne coûte rien - et
+c'est le seul moment où on peut l'être sans avoir d'abord à trier une dette existante. Un seuil posé
+au-dessus d'un lot d'alertes déjà présentes ne bloque jamais rien.</p>
+<div class="admonition note">
+<p class="admonition-title">Ce que le premier scan a trouvé, et comment il a été traité</p>
+<p>Une seule dépendance en défaut : <code>com.google.guava:guava</code> <strong>31.0.1-jre</strong>, qui n'est pas une
+dépendance de ce projet - elle arrive par <strong>Guice 7</strong>. Deux avis, tous deux sur la création de
+fichiers temporaires et corrigés en 32.0.0 : GHSA-5mg8-w23w-74h3 (faible) et GHSA-7g45-4rm6-3mm3
+(modéré).</p>
+<p><strong>L'exposition réelle est nulle</strong> : le code applicatif n'importe aucune classe Guava, donc
+n'appelle ni <code>com.google.common.io.Files.createTempDir</code> ni <code>FileBackedOutputStream</code>. Guava est
+quand même contrainte à <code>33.4.8-jre</code> dans le <code>dependencyManagement</code> : un inventaire qui signale ce
+qu'on ne corrige pas cesse d'être lu.</p>
+<p>⚠️ <strong>Le premier <code>grep</code> de vérification était faux</strong> : <code>Files.createTempDir</code> correspond aussi au
+début de <code>Files.createTempDirectory</code>, celui du <strong>JDK</strong>, employé par les outils de capture. Il
+annonçait trois appels là où il n'y en avait aucun. La question « est-ce que ça nous concerne ? »
+se pose sur les <strong>imports</strong>, pas sur la ressemblance des noms.</p>
+</div>
 <h2 id="les-droits-de-publication-sont-declares-par-job-2739">Les droits de publication sont déclarés par job (#2739)<a class="headerlink" href="#les-droits-de-publication-sont-declares-par-job-2739" title="Permanent link">&para;</a></h2>
 <p>Le plancher du workflow de release est en <strong>lecture seule</strong> ; chaque job déclare ce qu'il lui faut de
 plus.</p>
