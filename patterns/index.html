@@ -4368,6 +4368,28 @@ n'appellent pas la même réaction - une valeur disparue tient aux données, un 
 <p>Il existe <strong>trois</strong> chemins de restauration, et tous trois doivent lire ce retour : les vues
 sauvegardées, le transport d'un écran à l'autre (#476) et la mémoire de session (#484). En ignorer un
 laisse l'écran filtrer moins large qu'annoncé, sans rien dire.</p>
+<h3 id="poser-le-socle-sur-un-cinquieme-ecran-3100">Poser le socle sur un cinquième écran (#3100)<a class="headerlink" href="#poser-le-socle-sur-un-cinquieme-ecran-3100" title="Permanent link">&para;</a></h3>
+<p>L'« Audit de cohérence » a rejoint les quatre tables exploratoires. Le travail utile a été d'<strong>installer
+la barre</strong>, pas d'inventer quoi que ce soit : <code>FiltresVuesAudit</code> reprend trait pour trait le découpage de
+<code>FiltresVuesAudio</code> et de <code>FiltresVuesActivite</code> (nœuds du FXML regroupés en objet-paramètre, gestionnaire
+de filtres, vues, mémoire de session). Trois points valent d'être notés, parce qu'ils se reposeront au
+sixième écran :</p>
+<ul>
+<li><strong>Ses clés restent chez lui.</strong> <code>gravite</code>, <code>categorie</code> et <code>passage</code> ne sont partagées avec aucun autre
+  écran : elles vivent dans <code>CriteresAudit</code>, pas dans <code>ClesCriteres</code>, dont le contrat ne porte que les
+  clés réellement communes. ⚠️ <code>categorie</code> n'a <strong>rien à voir</strong> avec le <code>groupe</code> taxonomique des autres
+  écrans - c'est précisément la collision que <code>ClesCriteres</code> existe pour empêcher.</li>
+<li><strong>Un écran doit pouvoir rendre compte avant de recevoir des filtres.</strong> Celui-ci n'avait aucun bandeau
+  de retour. Le lui ajouter n'était pas de la décoration : sans lui, la mémoire de session aurait remis
+  des filtres amputés <strong>en silence</strong>. Un écran qu'on branche sur le socle gagne son <code>BandeauRetour</code> en
+  même temps que sa barre, jamais après.</li>
+<li><strong>Une valeur mémorisée y survit moins bien qu'ailleurs.</strong> Relancer l'audit renouvelle les constats :
+  les passages offerts changent d'une visite à l'autre. Ce qui est l'exception sur les autres écrans est
+  ici la règle, et c'est ce qui rend le compte rendu (#3093) indispensable plutôt que confortable.</li>
+</ul>
+<p><strong>Aucune vue par défaut</strong>, contrairement aux quatre autres. Une vue « Bloquants seulement » se dessine
+sur une distribution de gravités réelle, que la base de démonstration ne produit pas encore (#3169) : la
+proposer sans l'avoir vue à l'œuvre serait deviner ce que l'observateur regarde en premier.</p>
 <h2 id="occupation-dun-ecran-pendant-un-traitement-long-socle-commun">Occupation d'un écran pendant un traitement long (socle <code>commun</code>)<a class="headerlink" href="#occupation-dun-ecran-pendant-un-traitement-long-socle-commun" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Un traitement lourd (agrégats, inspection de dossier, appel réseau) exécuté
 <strong>synchrone sur le fil JavaFX</strong> fige l'IHM sans feedback ; un <code>setCursor(WAIT)</code> n'y suffit pas, fil
