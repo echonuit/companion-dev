@@ -3752,6 +3752,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-droits-de-publication-sont-declares-par-job-2739" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les droits de publication sont déclarés par job (#2739)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#loutillage-de-publication-est-fige-et-repete-a-blanc-2738" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3944,6 +3955,17 @@
     <span class="md-ellipsis">
       
         Épinglage des actions et conteneurs (#2737)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-droits-de-publication-sont-declares-par-job-2739" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les droits de publication sont déclarés par job (#2739)
       
     </span>
   </a>
@@ -4416,6 +4438,44 @@ forme même du défaut corrigé. Pour résoudre un tag :</p>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
+<h2 id="les-droits-de-publication-sont-declares-par-job-2739">Les droits de publication sont déclarés par job (#2739)<a class="headerlink" href="#les-droits-de-publication-sont-declares-par-job-2739" title="Permanent link">&para;</a></h2>
+<p>Le plancher du workflow de release est en <strong>lecture seule</strong> ; chaque job déclare ce qu'il lui faut de
+plus.</p>
+<table>
+<thead>
+<tr>
+<th>Job</th>
+<th>Ce qu'il fait</th>
+<th>Droits</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>release</code></td>
+<td>tag, Release, commentaires sur les issues et PR que la version referme</td>
+<td><code>contents</code> + <code>issues</code> + <code>pull-requests</code></td>
+</tr>
+<tr>
+<td><code>installers</code></td>
+<td><code>gh release upload</code>, après compilation et <strong>jpackage sur trois systèmes</strong></td>
+<td><code>contents</code></td>
+</tr>
+<tr>
+<td><code>publish</code></td>
+<td><code>gh release edit --draft=false</code></td>
+<td><code>contents</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Ce qui n'allait pas</strong> : un <strong>seul</strong> bloc <code>permissions</code> au niveau du workflow accordait les trois
+droits en écriture aux trois jobs. La matrice d'installeurs - le job le plus exposé, qui compile et
+empaquette - pouvait donc écrire des issues et des pull requests, ce dont elle n'a jamais eu l'usage.</p>
+<p>Les trois autres workflows à droits d'écriture (<code>adr-rapport</code>, <code>capture-vues</code>, <code>flatpak</code>) sont
+<strong>mono-job</strong> et utilisent réellement chacun des leurs : leur bloc au niveau workflow est déjà, de
+fait, un bloc par job.</p>
+<p>⚠️ <strong>Ce que cela ne fait pas</strong> : <code>semantic-release</code> s'exécute toujours dans un job en écriture. L'en
+sortir suppose de réimplémenter en <code>git</code> + <code>gh</code> ce que font ses greffons d'écriture ; l'arbitrage est
+posé sur #2739.</p>
 <h2 id="loutillage-de-publication-est-fige-et-repete-a-blanc-2738">L'outillage de publication est figé, et répété à blanc (#2738)<a class="headerlink" href="#loutillage-de-publication-est-fige-et-repete-a-blanc-2738" title="Permanent link">&para;</a></h2>
 <p><code>semantic-release</code> et ses greffons vivent dans
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/.github/release"><code>.github/release/</code></a>,
