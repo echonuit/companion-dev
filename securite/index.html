@@ -3583,6 +3583,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#archives-zip-le-seul-fichier-arbitraire-que-lapplication-ouvre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archives ZIP : le seul fichier arbitraire que l'application ouvre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#hotes-sortants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3687,6 +3698,17 @@
   
     <nav class="md-nav" aria-label="Surface applicative">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#archives-zip-le-seul-fichier-arbitraire-que-lapplication-ouvre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Archives ZIP : le seul fichier arbitraire que l'application ouvre
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#hotes-sortants" class="md-nav__link">
@@ -3813,6 +3835,58 @@ n'est conservé.</p>
 <li><strong>Accès natifs cadrés</strong> : sous Java 25 (accès natif strict), seuls les modules concernés sont
   autorisés (<code>--enable-native-access=javafx.graphics</code>, <code>--enable-native-access=org.xerial.sqlitejdbc</code>).</li>
 </ul>
+<h3 id="archives-zip-le-seul-fichier-arbitraire-que-lapplication-ouvre">Archives ZIP : le seul fichier arbitraire que l'application ouvre<a class="headerlink" href="#archives-zip-le-seul-fichier-arbitraire-que-lapplication-ouvre" title="Permanent link">&para;</a></h3>
+<p>Choisir un <code>.zip</code> comme source d'import fait ouvrir à l'application un fichier dont <strong>rien ne garantit
+la provenance</strong>. Deux bornes l'encadrent, et elles répondent à deux menaces différentes.</p>
+<p><strong>En chemins</strong>, la garde « zip-slip » : une entrée dont le chemin s'évaderait du dossier d'extraction
+(<code>../../.ssh/authorized_keys</code>) est refusée. Le chemin résolu est normalisé puis confronté à la racine
+d'extraction.</p>
+<p><strong>En ressources</strong> (#2732, <code>BornesExtraction</code>), parce qu'une archive n'a pas besoin de s'évader pour
+nuire : il lui suffit de remplir le disque, sur lequel vit aussi la base SQLite du workspace. Deux
+gardes, et le second existe parce que le premier se ferait berner :</p>
+<table>
+<thead>
+<tr>
+<th>Quand</th>
+<th>Sur quoi</th>
+<th>Ce qu'il attrape</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Avant le premier octet écrit</td>
+<td>l'inventaire <strong>annoncé</strong> (répertoire central, lu sans décompresser)</td>
+<td>nombre d'entrées, taille d'une entrée, total, espace disque disponible avec marge</td>
+</tr>
+<tr>
+<td>Pendant la copie</td>
+<td>les octets <strong>réellement</strong> écrits</td>
+<td>l'archive qui écrit plus qu'elle n'annonçait, c'est-à-dire la bombe ZIP, qui ment précisément sur ce que le premier garde lit</td>
+</tr>
+</tbody>
+</table>
+<p>Le second garde n'a besoin d'aucune constante : il confronte l'archive à <strong>sa propre déclaration</strong>,
+celle sur laquelle l'espace disque vient d'être validé. Ensemble, les deux tiennent une garantie
+simple : <strong>on n'écrit jamais plus que ce qui a été déclaré, et on n'accepte jamais une déclaration qui
+ne tient pas.</strong></p>
+<div class="admonition note">
+<p class="admonition-title">Pourquoi il n'y a pas de plafond de taux de compression</p>
+<p>C'est le garde classique contre les bombes ZIP. Il a été écrit ici, puis <strong>retiré</strong> : il ne sépare
+pas les deux populations dans ce domaine. Les fixtures de recette produites par le générateur de
+cartes SD se décompressent <strong>137 fois</strong>, et un enregistrement réellement silencieux fait bien
+davantage : de l'audio silencieux et une bombe sont <strong>les mêmes octets</strong>.</p>
+<p>Il n'ajoutait rien à la garantie ci-dessus. Un taux énorme ne nuit que s'il aboutit à beaucoup
+d'octets écrits, ce que le total annoncé, le contrôle d'espace disque et le second garde bornent
+déjà. Le conserver, c'était payer des refus injustifiés pour une protection qu'on avait par
+ailleurs.</p>
+</div>
+<p>Les défauts sont larges (une nuit de terrain fait quelques milliers de fichiers et une dizaine de
+gigaoctets) et chacun se surcharge par propriété système (<code>vigiechiro.import.zip.max-entrees</code>,
+<code>…max-octets-par-entree</code>, <code>…max-octets-total</code>, <code>…marge-disque-octets</code>). Il n'y a <strong>pas</strong> de réglage
+dans l'écran Réglages : un naturaliste n'a pas à choisir un plafond d'entrées. C'est le message de
+refus qui nomme la limite atteinte et l'échappatoire.</p>
+<p>⚠️ Ces bornes protègent l'<strong>import par l'IHM</strong>, seul chemin qui accepte aujourd'hui une archive : la
+CLI ne prend qu'un dossier.</p>
 <h3 id="hotes-sortants">Hôtes sortants<a class="headerlink" href="#hotes-sortants" title="Permanent link">&para;</a></h3>
 <p>Tous les appels réseau de l'application, exhaustivement - chacun <strong>best-effort</strong> (une panne dégrade
 un confort, jamais un geste métier), sauf l'API VigieChiro qui porte le cœur des échanges :</p>
