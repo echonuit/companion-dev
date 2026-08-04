@@ -3741,6 +3741,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#epinglage-des-actions-et-conteneurs-2737" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Épinglage des actions et conteneurs (#2737)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dependances" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -3911,6 +3922,17 @@
     <span class="md-ellipsis">
       
         Flatpak (#2111)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#epinglage-des-actions-et-conteneurs-2737" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Épinglage des actions et conteneurs (#2737)
       
     </span>
   </a>
@@ -4348,6 +4370,30 @@ corrige au build - et c'est la <strong>première</strong> édition qu'il fait, c
 fichier à chaque appel et échouerait avant d'y arriver. Le <code>.deb</code> installé normalement, lui, garde
 cette catégorie fautive.</p>
 </div>
+<h2 id="epinglage-des-actions-et-conteneurs-2737">Épinglage des actions et conteneurs (#2737)<a class="headerlink" href="#epinglage-des-actions-et-conteneurs-2737" title="Permanent link">&para;</a></h2>
+<p>Chaque <code>uses:</code> désigne un <strong>contenu</strong>, jamais un nom : une action est figée sur un <strong>SHA de commit</strong>,
+un conteneur sur un <strong>digest</strong>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
+</code></pre></div>
+<p><strong>Pourquoi, alors qu'un tag semble suffire.</strong> Un tag est déplaçable. <code>actions/checkout@v7</code> peut être
+repointé sur un autre commit sans que rien ne bouge chez nous : ce qui s'exécute dans nos workflows
+changerait alors sans qu'aucun commit ne le dise. Un numéro plus précis n'y change rien - <code>@v5.6.0</code>
+<strong>ressemble</strong> à une version figée, c'est un tag comme un autre.</p>
+<p>C'est le prérequis du reste du lot : une attestation de provenance atteste d'un binaire produit par un
+code qu'on ne saurait pas identifier, et un SBOM décrit une construction non reproductible.</p>
+<p><strong>Le commentaire de version est obligatoire</strong>, et la garde le vérifie : sans lui, plus personne ne sait
+quelle version tourne, et une mise à jour Dependabot n'aurait rien de lisible à modifier.</p>
+<p><strong>Épingler ne gèle rien.</strong> Dependabot met à jour un SHA épinglé <strong>et</strong> son commentaire. On échange une
+mise à jour invisible contre une mise à jour qui passe par une PR.</p>
+<p><strong>La garde</strong> : <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/verifie-epinglage.sh"><code>verifie-epinglage.sh</code></a>,
+dans le job <code>lint</code>. Elle refuse toute référence non figée <strong>et</strong> tout SHA sans commentaire de version.
+Sans elle, la prochaine action ajoutée le serait par tag et l'épinglage se déferait en silence - la
+forme même du défaut corrigé. Pour résoudre un tag :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+</code></pre></div>
 <h2 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">&para;</a></h2>
 <p>Les mises à jour sont proposées par <strong>Dependabot</strong>
 (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>),
