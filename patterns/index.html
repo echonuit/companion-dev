@@ -2856,6 +2856,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2861-une-donnee-de-point-ne-se-montre-pas-sur-une-ligne-agregee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2861 · Une donnée de point ne se montre pas sur une ligne agrégée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3082-designer-refuse-qualifier-rend-vide/" class="md-nav__link">
         
   
@@ -4815,6 +4843,28 @@ dans <code>design.css</code> : ce ne sont que des <strong>chaînes</strong>, auc
 jamais une densité ni une pastille ad hoc. Un statut de <code>commun.model</code> passe par <code>ColonneBadge.classe</code> ;
 un statut de feature reçoit un <code>classeBadge</code>/<code>classeCss</code> <strong>côté feature</strong> (jamais une surcharge dans
 <code>commun</code>, sous peine de cycle).</p>
+<h3 id="ajouter-une-colonne-la-question-precede-la-donnee">Ajouter une colonne : la question précède la donnée<a class="headerlink" href="#ajouter-une-colonne-la-question-precede-la-donnee" title="Permanent link">&para;</a></h3>
+<p>Avant de poser une colonne, la question n'est pas « la donnée est-elle disponible ? » mais <strong>« a-t-elle
+un sens sur cette ligne-là ? »</strong> (<a href="../decisions/2861-une-donnee-de-point-ne-se-montre-pas-sur-une-ligne-agregee/">ADR 2861</a>).</p>
+<p>Une donnée du <strong>point</strong> (sa commune, ses coordonnées, son enregistreur) ne s'affiche que sur une table
+dont <strong>une ligne porte un point</strong>. Sur une table qui <strong>agrège</strong> - la table des carrés, celle des espèces
+- la cellule devrait choisir parmi plusieurs valeurs, et un carré de 10 km chevauchant deux communes la
+ferait mentir d'autant plus discrètement qu'elle aurait l'air juste.</p>
+<p>Le critère se vérifie mécaniquement : <strong>prendre la valeur de la première ligne du groupe donne-t-il la
+même chose que prendre celle de n'importe quelle autre ?</strong> <code>AgregationAnalyse</code> pose ainsi le <strong>nom du
+site</strong> sur une ligne de la table des carrés, en lisant la première observation - licite, puisque le
+groupe <em>est</em> un carré. La commune, elle, varie à l'intérieur d'un carré.</p>
+<p>Deux corollaires, appris en posant la même colonne sur trois tables :</p>
+<ul>
+<li><strong>la marque d'absence est locale.</strong> Une valeur non résolue est un état normal, et ce qui s'affiche
+  alors suit la convention de <em>sa</em> table (cellule vide ici, tiret là) plutôt qu'une règle imposée aux
+  trois : ces tables ne se lisent pas côte à côte, et uniformiser aurait demandé de toucher des colonnes
+  hors périmètre ;</li>
+<li><strong>le contexte se masque quand il devient constant.</strong> Sur un écran dont la source peut cibler un seul
+  passage (<code>ColonnesAudio.adapterAuContexte</code>), les colonnes qui décrivent ce passage disparaissent :
+  elles porteraient la même valeur sur toutes les lignes. Une colonne ajoutée à ce groupe doit y être
+  inscrite, sans quoi elle reste seule à s'afficher là où ses voisines s'effacent.</li>
+</ul>
 <h2 id="icones-dihm-un-pictogramme-se-pose-il-ne-secrit-pas">Icônes d'IHM : un pictogramme se pose, il ne s'écrit pas<a class="headerlink" href="#icones-dihm-un-pictogramme-se-pose-il-ne-secrit-pas" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Les libellés portaient leurs pictogrammes <strong>en toutes lettres</strong> dans le <code>text</code> des
 FXML : <code>♻ Réactivation</code>, <code>☰</code>, <code>📤 Exporter…</code>. Un caractère dépend des <strong>polices installées</strong> sur la
