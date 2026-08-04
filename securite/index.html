@@ -3808,21 +3808,35 @@ données d'exemple ou de test.</p>
 <ul>
 <li><strong>Aucun secret n'est versionné</strong> : pas de clé d'API, de jeton ni de mot de passe dans le dépôt, y
   compris dans un test, une capture ou une base SQLite.</li>
-<li><strong>Token de session VigieChiro</strong> : depuis l'intégration API (#716), l'app enregistre un <strong>token de
+<li>
+<p><strong>Token de session VigieChiro</strong> : depuis l'intégration API (#716), l'app enregistre un <strong>token de
   session</strong> (fourni par la plateforme, péremption ~14 jours) dans <strong><code>connexion.json</code></strong> à la racine du
   workspace. Ce fichier est un <strong>artefact local</strong>, <strong>ignoré par git</strong> (<code>.gitignore</code>), jamais versionné.
-  À l'écriture, le fichier est <strong>restreint au propriétaire</strong> (POSIX <code>600</code>) sur les systèmes qui le
-  supportent, pour qu'un autre compte de la machine ne puisse pas lire le token (sans objet sous
-  Windows, où le fichier reste protégé par les ACL du profil). Un durcissement supplémentaire
-  (chiffrement au repos / keychain OS) reste suivi dans #1140.</li>
-<li><strong>Un journal doit pouvoir être joint à un signalement</strong> (#1845). L'utilisateur est invité à envoyer
+  Le fichier est <strong>restreint au propriétaire</strong> (POSIX <code>600</code>) sur les systèmes qui le supportent, pour
+  qu'un autre compte de la machine ne puisse pas lire le token. Sous Windows, il reste protégé par les
+  <strong>ACL du profil utilisateur</strong> : le dossier de travail vit sous le profil, dont les autres comptes non
+  administrateurs n'ont pas la clé. Protection réelle, mais <strong>de nature différente</strong>, et c'est pourquoi
+  elle est écrite plutôt que sous-entendue.</p>
+<p>L'écriture passe par <code>commun.model.EcritureProtegee</code> (#2735), et non plus par un <code>writeString</code>
+suivi d'un <code>chmod</code>. La différence n'est pas cosmétique : restreindre <strong>après</strong> avoir écrit laisse
+une fenêtre pendant laquelle le fichier existe avec les permissions de l'umask, souvent <code>644</code>. Elle
+se rouvrait à chaque <strong>création</strong> du fichier, donc à chaque reconnexion, puisque se déconnecter le
+supprime. Le secret n'atterrit désormais que dans un fichier <strong>créé déjà restreint</strong>, déplacé sur sa
+cible par un <code>ATOMIC_MOVE</code> - ce qui corrige au passage un <code>connexion.json</code> tronqué par une
+interruption, que le lecteur traduisait en « non connecté » sans rien dire.</p>
+<p>Ce garde est <strong>structurel</strong> (<code>SecretsEcritsProtegesTest</code>), parce que la fenêtre est un état
+intermédiaire : après coup, les deux façons d'écrire laissent le même fichier à <code>600</code>, et aucun test
+d'état final ne les distingue.</p>
+<p>Un durcissement supplémentaire (chiffrement au repos / coffre système) est arbitré dans #2736.
+- <strong>Un journal doit pouvoir être joint à un signalement</strong> (#1845). L'utilisateur est invité à envoyer
   ses journaux avec un rapport d'anomalie : ils ne doivent donc porter <strong>ni le jeton, ni les en-têtes,
   ni le corps envoyé</strong>. Ils ne portent pas non plus l'<strong>URL complète</strong> d'un dépôt S3 : une URL
   pré-signée <strong>porte sa signature dans sa requête</strong>, et journaliser le <strong>chemin seul</strong> règle la fuite
-  par construction plutôt que par vigilance (cf. <a href="../observabilite/">Observabilité</a>).</li>
-<li>Les workflows GitHub Actions tournent au <strong>moindre privilège</strong> (<code>maven.yml</code> : <code>permissions: contents:
+  par construction plutôt que par vigilance (cf. <a href="../observabilite/">Observabilité</a>).
+- Les workflows GitHub Actions tournent au <strong>moindre privilège</strong> (<code>maven.yml</code> : <code>permissions: contents:
   read</code>). N'élargir que là où c'est nécessaire (<code>contents: write</code> pour <code>capture-vues.yml</code>, qui pousse
-  les aperçus).</li>
+  les aperçus).</p>
+</li>
 </ul>
 <h2 id="surface-applicative">Surface applicative<a class="headerlink" href="#surface-applicative" title="Permanent link">&para;</a></h2>
 <p>L'application est <strong>locale</strong> : pas de serveur entrant, pas de port ouvert. Elle appelle en revanche
