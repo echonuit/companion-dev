@@ -3206,6 +3206,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/2744-la-publication-part-a-heure-fixe/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2744 · La publication part à heure fixe
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -3864,6 +3892,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#la-publication-part-a-heure-fixe-2744" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La publication part à heure fixe (#2744)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#les-artefacts-publies-portent-une-attestation-de-provenance-2742" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4128,6 +4167,17 @@
     <span class="md-ellipsis">
       
         Épinglage des actions et conteneurs (#2737)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-publication-part-a-heure-fixe-2744" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La publication part à heure fixe (#2744)
       
     </span>
   </a>
@@ -4672,6 +4722,16 @@ forme même du défaut corrigé. Pour résoudre un tag :</p>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
+<h2 id="la-publication-part-a-heure-fixe-2744">La publication part à heure fixe (#2744)<a class="headerlink" href="#la-publication-part-a-heure-fixe-2744" title="Permanent link">&para;</a></h2>
+<p><code>release.yml</code> ne se déclenche plus au push sur <code>main</code> mais <strong>le mercredi à 6 h UTC</strong>, plus
+<code>workflow_dispatch</code> pour un correctif urgent.</p>
+<p><strong>Pourquoi</strong> : au push, le dépôt publiait 3 à 37 fois par jour - 497 tags, jusqu'à 31 dans la même
+journée. Ces versions n'étaient pas vides (95 % de <code>feat</code> et <code>fix</code> sur les 120 dernières) mais
+<strong>atomisées</strong> : une version = un changement, donc aucune validable par la recette (#1363) ni
+descriptible. La cadence pesait par ailleurs sur une décision en aval : elle compte parmi les raisons du
+déclenchement manuel de winget et Flathub - sans en être la principale, le paquet n'étant pas encore
+accepté sur Flathub (#2191).</p>
+<p>Détail et alternatives écartées : <a href="../decisions/2744-la-publication-part-a-heure-fixe/">ADR 2744</a>.</p>
 <h2 id="les-artefacts-publies-portent-une-attestation-de-provenance-2742">Les artefacts publiés portent une attestation de provenance (#2742)<a class="headerlink" href="#les-artefacts-publies-portent-une-attestation-de-provenance-2742" title="Permanent link">&para;</a></h2>
 <p><code>actions/attest-build-provenance</code> s'applique à chaque artefact de <code>target/dist</code> (installeurs et
 archives portables) et au SBOM, dans le job <code>installers</code>.</p>
