@@ -3985,17 +3985,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#dependances" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dépendances
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4267,17 +4256,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#dependances" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dépendances
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4469,7 +4447,8 @@ sont les <strong>21 tests eux-mêmes</strong>, qui lancent chacun un JVM sur le 
 ici ne rapporte rien - l'hypothèse a été faite, mesurée, et démentie.</p>
 </div>
 <h2 id="la-release-semantic-release-jpackage">La release (semantic-release + jpackage)<a class="headerlink" href="#la-release-semantic-release-jpackage" title="Permanent link">&para;</a></h2>
-<p>À chaque push sur <code>main</code>, <strong><a href="https://semantic-release.gitbook.io">semantic-release</a></strong> analyse les
+<p>À chaque <strong>train de publication</strong> - le mercredi à 6 h UTC, ou sur déclenchement manuel (#2744) -
+<strong><a href="https://semantic-release.gitbook.io">semantic-release</a></strong> analyse les
 <strong><a href="https://www.conventionalcommits.org/fr/">Conventional Commits</a></strong> pour calculer la version, créer le
 tag <code>vX.Y.Z</code> et la <strong>Release GitHub</strong> (en brouillon), et mettre à jour <code>CHANGELOG.md</code> (format
 <a href="https://keepachangelog.com/fr/">Keep a Changelog</a>). Puis une <strong>matrice</strong> construit les installeurs
@@ -4946,9 +4925,9 @@ deux-points). Une copie divergerait, et la version calculée en vérification ne
 publication calculera.</p>
 <p><strong>La répétition à blanc</strong>, job <code>outillage-release</code> de <code>lint.yml</code>, à chaque PR : <code>npm ci</code>, une assertion
 sur la dérivation de la configuration, puis <code>semantic-release --dry-run</code>. Elle existe parce que
-<code>release.yml</code> ne se déclenche qu'au <strong>push sur <code>main</code></strong> : aucune CI de PR ne traversait la chaîne de
-publication, donc une erreur d'installation ou de configuration ne se serait vue qu'à la <strong>prochaine
-release</strong>, sur un dépôt qui publie à chaque fusion.</p>
+<strong>aucune CI de PR ne traverse <code>release.yml</code></strong> : il se déclenchait alors au push sur <code>main</code>, et depuis</p>
+<h1 id="2744-il-part-au-train-du-mercredi-dans-les-deux-cas-une-erreur-dinstallation-ou-de-configuration">2744 il part au train du mercredi. Dans les deux cas, une erreur d'installation ou de configuration<a class="headerlink" href="#2744-il-part-au-train-du-mercredi-dans-les-deux-cas-une-erreur-dinstallation-ou-de-configuration" title="Permanent link">&para;</a></h1>
+<p>ne se verrait qu'à la <strong>prochaine release</strong>.</p>
 <p>Elle ne peut pas publier : <code>--dry-run</code> n'écrit rien, et la configuration d'analyse n'embarque <strong>aucun</strong>
 greffon d'écriture.</p>
 <p>⚠️ <strong>Le binaire se lance depuis la racine pour publier</strong> (<code>./.github/release/node_modules/.bin/semantic-release</code>) :
