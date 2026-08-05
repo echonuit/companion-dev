@@ -3188,6 +3188,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3269-un-ensemble-vide-se-constate-avant-de-filtrer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3269 · Un ensemble vide se constate avant de filtrer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
         
   
@@ -4567,6 +4595,11 @@
 <td><a href="2745-une-vue-riche-se-decoupe-en-sous-vues/">2745</a></td>
 <td>Une vue trop riche se découpe en <strong>sous-vues</strong> (<code>fx:include</code> + contrôleur dédié), pas en extractions de méthodes : <code>NcssCount</code> compte les <strong>déclarations de champs</strong>, et les 82 champs <code>@FXML</code> du contrôleur audio pesaient <strong>67</strong> de ses 199 points quand vider ses deux plus grosses méthodes n'en rendait que 32. Et la sous-vue <strong>reçoit son ViewModel du parent</strong> : se l'injecter lui en donne un <strong>second</strong>, <code>AudioViewModel</code> étant non-singleton - l'écran se chargeait sans rien signaler, table vide et actions sans effet</td>
 <td>#2745, lot 4 de #2720</td>
+</tr>
+<tr>
+<td><a href="3269-un-ensemble-vide-se-constate-avant-de-filtrer/">3269</a></td>
+<td>Une commande qui filtre constate un <strong>ensemble source vide AVANT</strong> d'appliquer le moindre critère, et rend un résultat vide <strong>en succès</strong> dans le format demandé. Sinon un critère qui <strong>désigne</strong> (ADR 3082) refuse la valeur tapée - « Lieux présents : aucun », code 2 - alors qu'elle n'y est pour rien : il n'y a rien du tout, et n'importe quelle valeur aurait produit le même refus. Trois situations à ne pas confondre : rien en base, rien après filtrage, valeur absente. Corollaire de test : semer <strong>à la demande</strong>, un <code>@BeforeEach</code> qui sème toujours rend ce défaut structurellement intestable</td>
+<td>#3269, clôture des suites du chantier #3092</td>
 </tr>
 </tbody>
 </table>

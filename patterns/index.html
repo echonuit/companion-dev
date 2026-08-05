@@ -3164,6 +3164,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3269-un-ensemble-vide-se-constate-avant-de-filtrer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3269 · Un ensemble vide se constate avant de filtrer
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
         
   
@@ -4764,7 +4792,9 @@ le dit : « Effacer tous les filtres », sans « et le tri ».</p>
 s'est généralisé : un cas d'école de divergence par ancienneté, qu'aucun test ne signale.</p>
 <h3 id="les-filtres-existent-aussi-en-ligne-de-commande">Les filtres existent aussi en ligne de commande<a class="headerlink" href="#les-filtres-existent-aussi-en-ligne-de-commande" title="Permanent link">&para;</a></h3>
 <p>Un critère d'écran qui répond à une question métier a son équivalent en ligne de commande, à la même
-sémantique (<a href="../decisions/0014-parite-cli-ihm/">ADR 0014</a>). L'état à la clôture de #3092 :</p>
+sémantique (<a href="../decisions/0014-parite-cli-ihm/">ADR 0014</a>). L'état à la clôture des <strong>suites</strong> de #3092,
+mesuré sur le <strong>binaire</strong> (<code>&lt;commande&gt; --help</code>) et non sur les sources - les options d'une commande
+peuvent vivre dans un <code>@Mixin</code>, qu'un relevé par <code>grep</code> sur la classe ne voit pas :</p>
 <table>
 <thead>
 <tr>
@@ -4792,22 +4822,32 @@ sémantique (<a href="../decisions/0014-parite-cli-ihm/">ADR 0014</a>). L'état 
 <tr>
 <td>Ma saison</td>
 <td><code>solde-saison</code></td>
-<td>2 / 2</td>
+<td>4 / 4</td>
 </tr>
 <tr>
 <td>Carte &amp; passages</td>
 <td><code>lister-passages</code></td>
-<td><strong>0 / 7</strong></td>
+<td>7 / 7</td>
 </tr>
 <tr>
 <td>Espèces &amp; observations</td>
-<td><em>aucune</em></td>
-<td><strong>sans jumelle</strong></td>
+<td><code>lister-especes</code>, <code>lister-carres</code></td>
+<td>5 / 5</td>
 </tr>
 </tbody>
 </table>
-<p>Les deux dernières lignes sont une dette <strong>antérieure</strong> au chantier, rendue visible en confrontant les
-inventaires complets plutôt que des exemples.</p>
+<p>Les six écrans sont à parité. Les deux dernières lignes valaient <strong>0 / 7</strong> et <strong>sans jumelle</strong> à la
+clôture de #3092 : une dette <strong>antérieure</strong> au chantier, rendue visible en confrontant les inventaires
+complets plutôt que des exemples, et soldée par ses suites (#3269).</p>
+<p>Deux réserves, que le tableau ne montre pas :</p>
+<ul>
+<li>Le critère <strong>Lieu</strong> a trois dimensions à l'écran (commune, carré, point) et <strong>deux</strong> en ligne de
+  commande : un code de point seul désignerait autant de lieux qu'il y a de carrés. Écart assumé, porté
+  par la clôture de #3151.</li>
+<li>L'asymétrie existe aussi <strong>dans l'autre sens</strong>, qu'un inventaire écran → CLI rate par construction :
+  <code>lister-observations --certitude</code> filtre sur la certitude observateur, dont l'écran n'a <strong>aucune
+  puce</strong>.</li>
+</ul>
 <p>Quand la règle est la même des deux côtés, elle s'écrit <strong>une fois</strong> dans <code>model</code> : <code>FiltresLieu</code> pour le
 lieu, <code>FiltresSaison</code> pour la recherche et le « reste à faire ». Un catalogue de <code>view</code> qui garderait sa
 propre copie finirait par diverger - c'est arrivé le jour même où #3219 a ajouté la recherche par nom de
