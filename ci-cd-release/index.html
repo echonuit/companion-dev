@@ -3881,6 +3881,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toute garde de CI porte sa propre preuve (#2947, #3293)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#epinglage-des-actions-et-conteneurs-2737" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4145,6 +4156,17 @@
     <span class="md-ellipsis">
       
         Flatpak (#2111)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toute garde de CI porte sa propre preuve (#2947, #3293)
       
     </span>
   </a>
@@ -4677,6 +4699,69 @@ corrige au build - et c'est la <strong>première</strong> édition qu'il fait, c
 fichier à chaque appel et échouerait avant d'y arriver. Le <code>.deb</code> installé normalement, lui, garde
 cette catégorie fautive.</p>
 </div>
+<h2 id="toute-garde-de-ci-porte-sa-propre-preuve-2947-3293">Toute garde de CI porte sa propre preuve (#2947, #3293)<a class="headerlink" href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" title="Permanent link">&para;</a></h2>
+<p>Une garde qui <strong>accepte à tort ne rougit pas</strong> : elle passe au vert, sur un dépôt propre, exactement
+comme si elle faisait son travail. C'est le seul type de défaut qui se présente sous la forme d'un
+succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-test</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Garde</th>
+<th>Ce qu'elle vérifie</th>
+<th>Où elle tourne</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>verifie-titre-pr.sh</code></td>
+<td>Conventional Commits, cadratin, élision sans apostrophe</td>
+<td><code>titre-pr.yml</code></td>
+</tr>
+<tr>
+<td><code>verifie-epinglage.sh</code></td>
+<td>actions figées sur un SHA, aucune divergence de version</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>verifie-jeton.sh</code></td>
+<td>aucun jeton VigieChiro en clair</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>check-captures.sh</code></td>
+<td>chaque vue a une capture, chaque capture existe et est présentée</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>check-capture-mains.sh</code></td>
+<td>chaque outil de capture est enregistré dans <code>MAINS</code></td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>check-doc-images.sh</code></td>
+<td>chaque capture citée par la doc existe et est déclarée</td>
+<td><code>docs.yml</code></td>
+</tr>
+<tr>
+<td><code>scripts/adr/verifie_scripts.py</code></td>
+<td>les scripts cités par les ADR</td>
+<td><code>lint.yml</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Le modèle vient de #2947</strong> (<code>verifie-titre-pr.sh</code>) et il est le bon : le script <strong>se réinvoque
+lui-même</strong> sur un cas connu, donc le cas de test et le chemin réel sont le même code <strong>par
+construction</strong>. Les gardes qui balaient une arborescence l'appliquent en rendant leur racine
+surchargeable par variable d'environnement, et en montant un bac jetable.</p>
+<p>Deux exigences, apprises de ce qui a failli passer :</p>
+<ul>
+<li><strong>Des contrôles négatifs.</strong> Une règle qui refuse tout est aussi inutile qu'une règle qui accepte
+  tout. Chaque auto-test contient des cas qui doivent <strong>rester verts</strong> - un <code>.fxml</code> hors d'un dossier
+  <code>view/</code>, un <code>Capture*</code> sans <code>main</code>, une capture que la doc ne cite pas.</li>
+<li><strong>Éprouver l'auto-test lui-même.</strong> En neutralisant une règle, le cas correspondant doit rougir - et
+  <strong>lui seul</strong>. Vécu pendant #3293 : une première tentative de neutralisation n'avait rien modifié, et
+  le vert obtenu ne prouvait rien.</li>
+</ul>
 <h2 id="epinglage-des-actions-et-conteneurs-2737">Épinglage des actions et conteneurs (#2737)<a class="headerlink" href="#epinglage-des-actions-et-conteneurs-2737" title="Permanent link">&para;</a></h2>
 <p>Chaque <code>uses:</code> désigne un <strong>contenu</strong>, jamais un nom : une action est figée sur un <strong>SHA de commit</strong>,
 un conteneur sur un <strong>digest</strong>.</p>
