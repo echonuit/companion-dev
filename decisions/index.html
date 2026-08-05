@@ -3349,6 +3349,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2745-une-vue-riche-se-decoupe-en-sous-vues/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2745 · Une vue riche se découpe en sous-vues
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4534,6 +4562,11 @@
 <td><a href="2744-la-publication-part-a-heure-fixe/">2744</a></td>
 <td>La publication part <strong>à heure fixe</strong> (mercredi 6 h UTC) et non à chaque fusion. Le dépôt publiait 3 à 37 fois par jour, jusqu'à <strong>31 versions</strong> dans la même journée - non pas des versions vides (95 % de <code>feat</code> et <code>fix</code>) mais <strong>atomisées</strong> : une version = un changement, donc aucune validable par la recette ni descriptible. La cadence pesait déjà sur une décision en aval, comptée parmi les raisons du déclenchement manuel de winget et Flathub</td>
 <td>#2744, lot 3 de #2720</td>
+</tr>
+<tr>
+<td><a href="2745-une-vue-riche-se-decoupe-en-sous-vues/">2745</a></td>
+<td>Une vue trop riche se découpe en <strong>sous-vues</strong> (<code>fx:include</code> + contrôleur dédié), pas en extractions de méthodes : <code>NcssCount</code> compte les <strong>déclarations de champs</strong>, et les 82 champs <code>@FXML</code> du contrôleur audio pesaient <strong>67</strong> de ses 199 points quand vider ses deux plus grosses méthodes n'en rendait que 32. Et la sous-vue <strong>reçoit son ViewModel du parent</strong> : se l'injecter lui en donne un <strong>second</strong>, <code>AudioViewModel</code> étant non-singleton - l'écran se chargeait sans rien signaler, table vide et actions sans effet</td>
+<td>#2745, lot 4 de #2720</td>
 </tr>
 </tbody>
 </table>
