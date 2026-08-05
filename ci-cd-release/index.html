@@ -3864,6 +3864,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-artefacts-publies-portent-une-attestation-de-provenance-2742" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les artefacts publiés portent une attestation de provenance (#2742)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#linventaire-des-dependances-livrees-et-sa-surveillance-2740" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4117,6 +4128,17 @@
     <span class="md-ellipsis">
       
         Épinglage des actions et conteneurs (#2737)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-artefacts-publies-portent-une-attestation-de-provenance-2742" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les artefacts publiés portent une attestation de provenance (#2742)
       
     </span>
   </a>
@@ -4650,6 +4672,25 @@ forme même du défaut corrigé. Pour résoudre un tag :</p>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
+<h2 id="les-artefacts-publies-portent-une-attestation-de-provenance-2742">Les artefacts publiés portent une attestation de provenance (#2742)<a class="headerlink" href="#les-artefacts-publies-portent-une-attestation-de-provenance-2742" title="Permanent link">&para;</a></h2>
+<p><code>actions/attest-build-provenance</code> s'applique à chaque artefact de <code>target/dist</code> (installeurs et
+archives portables) et au SBOM, dans le job <code>installers</code>.</p>
+<p><strong>Ce que ça ajoute aux SHA-256 déjà publiés</strong> : l'empreinte prouve qu'un fichier est <em>identique à
+celui publié</em>, elle ne dit rien de <strong>qui</strong> l'a produit - et elle est publiée au même endroit que le
+fichier, donc sa confiance vaut celle qu'on accorde à la page du projet. L'attestation lie le binaire
+à un <strong>commit</strong> et à une <strong>exécution</strong> de ce workflow, et se vérifie contre <strong>Sigstore</strong>, hors de notre
+portée.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
+</code></pre></div>
+<p><strong>Elle est produite sur la sortie de build, avant tout téléversement</strong>, pour la même raison que
+l'empreinte : une corruption survenue au téléversement se retrouverait sinon <em>attestée</em>. Les <code>.sha256</code>
+sont exclus - attester une empreinte de trois lignes n'apprend rien.</p>
+<p><strong>Les deux droits ajoutés au job sont bornés</strong> : <code>id-token: write</code> ne sert qu'à prouver à Sigstore qui
+construit, <code>attestations: write</code> n'écrit que dans le magasin d'attestations du dépôt. Ni l'un ni
+l'autre ne touche au code, aux issues ou aux pull requests - le moindre privilège de #2739 tient.</p>
+<p>⚠️ <strong>Elle ne remplace pas la signature des installeurs</strong> (#2112, EPIC #2104) : la signature parle aux
+systèmes d'exploitation (SmartScreen, Gatekeeper), l'attestation parle à qui veut auditer. Les deux
+sont complémentaires, aucune ne rend l'autre inutile.</p>
 <h2 id="linventaire-des-dependances-livrees-et-sa-surveillance-2740">L'inventaire des dépendances livrées, et sa surveillance (#2740)<a class="headerlink" href="#linventaire-des-dependances-livrees-et-sa-surveillance-2740" title="Permanent link">&para;</a></h2>
 <p>Le fat-jar embarque toutes les dépendances résolues par Maven. Leur état de vulnérabilité n'était
 vérifié nulle part : ni nous ni personne ne pouvait affirmer l'absence de CVE connue.</p>
