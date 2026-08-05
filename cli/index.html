@@ -4353,7 +4353,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>audit-coherence</code></td>
-<td><code>[--passage &lt;id&gt;] [--gravite &lt;niveau&gt;] [--categorie &lt;nature&gt;] [--json] [--online] [--token &lt;jeton&gt;]</code></td>
+<td><code>[--passage &lt;id&gt;] [--gravite &lt;niveau&gt;] [--categorie &lt;nature&gt;] [--contient &lt;texte&gt;] [--json] [--online] [--token &lt;jeton&gt;]</code></td>
 <td>#1133, #1254, #1347</td>
 <td><code>ServiceAuditCoherence</code> : confronte <strong>disque, base et serveur</strong>. <code>--gravite</code> et <code>--categorie</code> sont les <strong>deux puces</strong> de l'écran « Audit de cohérence » (#3100), portées ici à la clôture de #3092 ; chacune retient une valeur <strong>exacte</strong>. ⚠️ Elles filtrent <strong>l'affichage seul</strong> : le <strong>code de sortie continue de juger le rapport entier</strong>, sans quoi <code>--gravite INFO</code> sur un workspace abîmé rendrait <code>0</code> et un script d'intégration conclurait que tout va bien. Sans <code>--passage</code>, audite tout le workspace ; avec, une seule nuit (utile après l'avoir réparée). <code>--online</code> ajoute les constats qui demandent le réseau (dépôts, points). <code>0</code> ssi aucun constat d'erreur</td>
 </tr>
