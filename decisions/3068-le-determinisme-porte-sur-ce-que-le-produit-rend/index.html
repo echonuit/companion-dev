@@ -2793,6 +2793,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#revision-du-2026-08-05-la-decision-tient-les-chiffres-non" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Révision du 2026-08-05 : la décision tient, les chiffres non
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4000,6 +4011,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#revision-du-2026-08-05-la-decision-tient-les-chiffres-non" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Révision du 2026-08-05 : la décision tient, les chiffres non
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4082,30 +4104,75 @@ règle d'or sans réserve : <em>un rendu non déterministe salirait le dépôt �
 <tr>
 <th></th>
 <th></th>
+<th>Revu le 2026-08-05</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Ampleur</td>
 <td><strong>0,34 %</strong> des pixels (2 302 sur 682 000)</td>
+<td>médiane <strong>1,22 %</strong>, maximum <strong>2,51 %</strong></td>
+</tr>
+<tr>
+<td>Portée</td>
+<td><strong>quatre</strong> aperçus</td>
+<td><strong>seize</strong></td>
 </tr>
 <tr>
 <td>Localisation</td>
 <td>le panneau de carte, <strong>exclusivement</strong></td>
+<td>confirmée</td>
 </tr>
 <tr>
 <td>Forme</td>
 <td>tracés <strong>fins de routes</strong> - une tuile absente ferait 65 000 px</td>
+<td>confirmée</td>
 </tr>
 <tr>
 <td>Quiétude portée de 0,75 s à 3 s</td>
 <td><strong>aucun effet</strong></td>
+<td>confirmé</td>
 </tr>
 </tbody>
 </table>
 <p>Le résidu ne vient donc pas d'un chargement incomplet, mais du <strong>rendu servi par OpenStreetMap</strong>, qui
 n'est pas identique à chaque requête. Aucune attente ne le corrigera : la condition de stabilité est
 satisfaite, et les pixels diffèrent quand même.</p>
+<h2 id="revision-du-2026-08-05-la-decision-tient-les-chiffres-non">Révision du 2026-08-05 : la décision tient, les chiffres non<a class="headerlink" href="#revision-du-2026-08-05-la-decision-tient-les-chiffres-non" title="Permanent link">&para;</a></h2>
+<p>Reprise à la demande, en instruisant la piste « figer les tuiles » que ce document avait écartée. Trois
+corrections, et une confirmation.</p>
+<p><strong>La portée était sous-estimée : seize aperçus, pas quatre.</strong> Aux quatre de <code>multisite</code> s'ajoutent
+<code>apercu-analyse-carte</code>, les huit aperçus d'import (dont l'assistant porte une bande cartographique en
+bas de page) et les deux modales de point.</p>
+<p><strong>L'amplitude aussi.</strong> Matrice des écarts entre les <strong>30</strong> versions successives d'<code>apercu-analyse-carte</code>,
+soit 435 paires : médiane <strong>1,22 %</strong>, maximum <strong>2,51 %</strong>. Le 0,34 % venait d'un échantillon plus étroit.</p>
+<p><strong>Le mécanisme est plus précis que « le rendu n'est pas identique à chaque requête ».</strong> Il est
+<strong>discret</strong> : sur les 137 tuiles présentes dans les caches laissés par les exécutions, <strong>85 ont des
+octets différents d'un cache à l'autre</strong>, avec 2 à 4 versions distinctes pour un même chemin. Chaque
+tuile ayant un petit nombre de variantes, la composition n'a qu'un <strong>nombre fini d'états</strong> - ce que la
+matrice montre : 18 états distincts pour 30 versions, dont un revenant <strong>sept fois</strong> à des dates non
+consécutives. Un rendu aléatoire à chaque requête ne produirait jamais deux captures identiques au bit
+près à des semaines d'écart.</p>
+<p><strong>La décision, elle, est confirmée</strong>, et pour une raison de plus que celles écrites en 2026-08-01. Les
+frontières de modules la rendent coûteuse à défaire :</p>
+<ul>
+<li><code>com.gluonhq.maps</code> <strong>exporte</strong> <code>com.gluonhq.maps.tile</code> et <strong>utilise</strong> <code>TileRetriever</code> comme service :
+  le point d'extension est donc bien public ;</li>
+<li>mais le paquet d'implémentation (<code>com.gluonhq.impl.maps.tile.osm</code>) n'est <strong>pas exporté</strong>. Fournir
+  notre propre retriever ne permettrait pas de <strong>déléguer</strong> au retriever réseau de Gluon : il faudrait
+  réimplémenter téléchargement et cache ;</li>
+<li>et <code>provides</code> s'applique à <strong>toute l'application</strong>, pas seulement aux outils de capture. On
+  remplacerait un composant de l'application <strong>livrée</strong> pour un besoin de <strong>documentation</strong> ;</li>
+<li>la voie douce - rediriger le cache de Gluon vers un dossier stable - est fermée elle aussi :
+  <code>com.gluonhq.attach.storage</code> n'exporte son paquet d'implémentation qu'au module <code>attach.util</code>.</li>
+</ul>
+<p>⚠️ Une révision de cette ADR <strong>ne serait pas absurde</strong> le jour où l'une de ces contraintes tombe (un
+point d'injection du retriever côté application, ou un <code>StorageService</code> configurable). Le « non » est
+motivé par un rapport coût/bénéfice, pas par un principe.</p>
+<p><strong>Ce qui change en pratique</strong> : depuis #3359, la CI ne <strong>committe</strong> plus les écarts sous 4 % sur ces
+seize aperçus. On garde la source vivante et sa variabilité ; on cesse simplement d'en faire un commit,
+une PR et un conflit à chaque exécution. Le corollaire de 2026-08-01 - « sur ces fichiers, un diff n'est
+pas un signal » - reste vrai, et devient enfin sans conséquence sur l'historique.</p>
 <p>⚠️ Un défaut <strong>distinct</strong> existait au même endroit, et a été corrigé : l'attente des tuiles était un
 délai fixe de six secondes, donc une course contre le réseau. Une capture pouvait partir avec des tuiles
 <strong>manquantes</strong> - un fond absent, pas une nuance de rendu. C'est désormais une condition sur l'état du
@@ -4134,7 +4201,15 @@ la source de tuiles rendrait l'image plus stable et <strong>moins vraie</strong>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Figer la source de tuiles</strong> (cache versionné, serveur unique). Rend les captures reproductibles au
-  prix de ce qui fait leur valeur : elles cesseraient de montrer la carte que l'utilisateur voit.</li>
+  prix de ce qui fait leur valeur : elles cesseraient de montrer la carte que l'utilisateur voit.
+  <strong>Réexaminé le 2026-08-05</strong> et écarté de nouveau, avec un motif technique supplémentaire : les
+  frontières de modules obligeraient à remplacer le <code>TileRetriever</code> de l'<strong>application livrée</strong> pour un
+  besoin de documentation (voir la révision plus haut). L'instantané lui-même serait pourtant bon marché</li>
+<li><strong>137 tuiles, 2,4 Mo</strong> - ce n'est donc pas son poids qui l'écarte.</li>
+<li><strong>Substituer une image pré-rendue à la carte, dans les outils de capture seulement.</strong> Déterminisme
+  total et zéro impact sur l'application, mais la capture cesserait de traverser le vrai composant
+  carte : exactement ce que l'<a href="../3018-un-outil-compose-depuis-la-racine/">ADR 3018</a> a fait cesser pour
+  les données fabriquées.</li>
 <li><strong>Retirer le fond de carte des captures.</strong> Même objection, en pire : l'écran perdrait ce qu'il est.</li>
 <li><strong>Ne rien écrire et continuer.</strong> C'était l'état de départ. Une règle d'or que quatre fichiers
   enfreignent sans que ce soit dit n'est plus une règle : elle apprend surtout à ignorer les règles.</li>
