@@ -3024,6 +3024,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3168-un-audit-qui-ne-peut-pas-trancher-montre-sans-juger/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3168 · Un audit qui ne peut pas trancher montre sans juger
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4876,7 +4904,7 @@ un statut de feature reçoit un <code>classeBadge</code>/<code>classeCss</code> 
 un sens sur cette ligne-là ? »</strong> (<a href="../decisions/2861-une-donnee-de-point-ne-se-montre-pas-sur-une-ligne-agregee/">ADR 2861</a>).</p>
 <p>Une donnée du <strong>point</strong> (sa commune, ses coordonnées, son enregistreur) ne s'affiche que sur une table
 dont <strong>une ligne porte un point</strong>. Sur une table qui <strong>agrège</strong> - la table des carrés, celle des espèces
-- la cellule devrait choisir parmi plusieurs valeurs, et un carré de 10 km chevauchant deux communes la
+- la cellule devrait choisir parmi plusieurs valeurs, et un carré de 2 km chevauchant deux communes la
 ferait mentir d'autant plus discrètement qu'elle aurait l'air juste.</p>
 <p>Le critère se vérifie mécaniquement : <strong>prendre la valeur de la première ligne du groupe donne-t-il la
 même chose que prendre celle de n'importe quelle autre ?</strong> <code>AgregationAnalyse</code> pose ainsi le <strong>nom du
@@ -4893,6 +4921,30 @@ groupe <em>est</em> un carré. La commune, elle, varie à l'intérieur d'un carr
   elles porteraient la même valeur sur toutes les lignes. Une colonne ajoutée à ce groupe doit y être
   inscrite, sans quoi elle reste seule à s'afficher là où ses voisines s'effacent.</li>
 </ul>
+<h2 id="confronter-deux-lectures-dune-meme-donnee">Confronter deux lectures d'une même donnée<a class="headerlink" href="#confronter-deux-lectures-dune-meme-donnee" title="Permanent link">&para;</a></h2>
+<p>Quand une donnée se <strong>dérive de deux sources</strong> qui peuvent se contredire, l'écart mérite d'être montré :
+il est invisible sinon. C'est le rôle de l'<strong>audit de cohérence</strong>, et le patron se répète
+(<a href="../decisions/3168-un-audit-qui-ne-peut-pas-trancher-montre-sans-juger/">ADR 3168</a>, premier cas : le
+département d'un point, lu par son carré et par sa commune).</p>
+<p><strong>Une classe par confrontation</strong>, collaboratrice de <code>ServiceAuditCoherence</code> comme <code>BalayageDisque</code> et
+<code>AuditEnLigne</code>, branchée dans <code>auditerTout()</code>. Une catégorie s'ajoute à <code>CategorieConstat</code> et rejoint
+d'elle-même les puces de filtre, construites sur <code>values()</code>.</p>
+<p>Trois règles, apprises sur le premier cas :</p>
+<ul>
+<li><strong>la sévérité est un contrat de sortie, pas une couleur.</strong> <code>audit-coherence</code> rend <code>1</code> dès qu'un constat
+  est en erreur. Un écart dont le cas <strong>normal</strong> est d'exister doit donc être <code>INFO</code>, sinon la commande
+  échoue sur une base saine et les scripts qui l'appellent cassent ;</li>
+<li><strong>montrer n'est pas trier.</strong> Si l'audit ne dispose pas de quoi départager l'écart légitime du suspect,
+  il émet le même constat pour les deux et le dit. Un tri approximatif serait pire que pas de tri : il
+  ferait croire les faux positifs déjà écartés, et les vrais cesseraient d'être lus ;</li>
+<li><strong>s'abstenir plutôt qu'affirmer.</strong> Deux écritures qu'on ne sait pas comparer ne divergent pas. Un carré
+  corse porte <code>20</code> là où l'INSEE écrit <code>2A</code>/<code>2B</code> : comparer les chaînes telles quelles ferait de chaque
+  point corse une divergence. <code>RegionsFrancaises.memeDepartement</code> n'affirme que les écarts qu'elle sait
+  <strong>démontrer</strong>.</li>
+</ul>
+<p><strong>Où le constat vit.</strong> Sur la <strong>portée de ce qu'il décrit</strong>, pas sur celle de ce qui l'a déclenché. Un
+écart de topologie (un point, un carré) sort de l'audit <strong>global</strong> ; l'audit ciblé d'une nuit
+(<code>auditerPassage</code>) le répéterait à chaque passage du même point sans rien apprendre.</p>
 <h2 id="icones-dihm-un-pictogramme-se-pose-il-ne-secrit-pas">Icônes d'IHM : un pictogramme se pose, il ne s'écrit pas<a class="headerlink" href="#icones-dihm-un-pictogramme-se-pose-il-ne-secrit-pas" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Les libellés portaient leurs pictogrammes <strong>en toutes lettres</strong> dans le <code>text</code> des
 FXML : <code>♻ Réactivation</code>, <code>☰</code>, <code>📤 Exporter…</code>. Un caractère dépend des <strong>polices installées</strong> sur la
