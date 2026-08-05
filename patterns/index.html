@@ -4807,7 +4807,7 @@ peuvent vivre dans un <code>@Mixin</code>, qu'un relevé par <code>grep</code> s
 <tr>
 <td>Sons &amp; validation</td>
 <td><code>lister-observations</code></td>
-<td>10 / 10</td>
+<td>11 / 11</td>
 </tr>
 <tr>
 <td>Activité de la nuit</td>
@@ -4839,15 +4839,13 @@ peuvent vivre dans un <code>@Mixin</code>, qu'un relevé par <code>grep</code> s
 <p>Les six écrans sont à parité. Les deux dernières lignes valaient <strong>0 / 7</strong> et <strong>sans jumelle</strong> à la
 clôture de #3092 : une dette <strong>antérieure</strong> au chantier, rendue visible en confrontant les inventaires
 complets plutôt que des exemples, et soldée par ses suites (#3269).</p>
-<p>Deux réserves, que le tableau ne montre pas :</p>
-<ul>
-<li>Le critère <strong>Lieu</strong> a trois dimensions à l'écran (commune, carré, point) et <strong>deux</strong> en ligne de
-  commande : un code de point seul désignerait autant de lieux qu'il y a de carrés. Écart assumé, porté
-  par la clôture de #3151.</li>
-<li>L'asymétrie existe aussi <strong>dans l'autre sens</strong>, qu'un inventaire écran → CLI rate par construction :
-  <code>lister-observations --certitude</code> filtre sur la certitude observateur, dont l'écran n'a <strong>aucune
-  puce</strong>.</li>
-</ul>
+<p>Une réserve, que le tableau ne montre pas : le critère <strong>Lieu</strong> a trois dimensions à l'écran (commune,
+carré, point) et <strong>deux</strong> en ligne de commande, un code de point seul désignant autant de lieux qu'il y
+a de carrés. Écart assumé, porté par la clôture de #3151.</p>
+<p>⚠️ <strong>Lire l'inventaire dans les deux sens.</strong> La question habituelle - <em>chaque critère de l'écran a-t-il
+son option ?</em> - rate par construction l'asymétrie inverse. C'est ainsi qu'on a trouvé
+<code>lister-observations --certitude</code>, qui filtrait sans que l'écran offre la puce correspondante (#3336,
+livrée : Sons &amp; validation passe de 10 à 11 critères). Rien ne dit que ce soit la dernière.</p>
 <p>Quand la règle est la même des deux côtés, elle s'écrit <strong>une fois</strong> dans <code>model</code> : <code>FiltresLieu</code> pour le
 lieu, <code>FiltresSaison</code> pour la recherche et le « reste à faire ». Un catalogue de <code>view</code> qui garderait sa
 propre copie finirait par diverger - c'est arrivé le jour même où #3219 a ajouté la recherche par nom de

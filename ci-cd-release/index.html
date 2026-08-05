@@ -5081,6 +5081,34 @@ sur la dérivation de la configuration, puis <code>semantic-release --dry-run</c
 <p>ne se verrait qu'à la <strong>prochaine release</strong>.</p>
 <p>Elle ne peut pas publier : <code>--dry-run</code> n'écrit rien, et la configuration d'analyse n'embarque <strong>aucun</strong>
 greffon d'écriture.</p>
+<p>⚠️ <strong>Ce qu'elle prouve dépend du déclencheur</strong> (#3345), et il faut le savoir avant de lire son vert :</p>
+<table>
+<thead>
+<tr>
+<th>Déclencheur</th>
+<th>Jusqu'où va <code>semantic-release</code></th>
+<th>Ce que le vert dit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>pull_request</code></td>
+<td>s'arrête sur « triggered by a pull request », <strong>après</strong> avoir chargé les greffons</td>
+<td>l'outillage s'installe, les greffons se chargent</td>
+</tr>
+<tr>
+<td><code>push</code> sur <code>main</code></td>
+<td>va jusqu'à l'analyse de l'historique et au calcul de version</td>
+<td><strong>le contrôle est réel</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Le job déclare <code>contents: write</code> <strong>pour lui seul</strong>, alors qu'il n'écrit rien : <code>semantic-release</code>
+vérifie qu'il <em>pourrait</em> pousser un tag dès <code>verifyConditions</code>, y compris en <code>--dry-run</code>. Sous le
+plancher <code>contents: read</code> du workflow il échouait donc sur <code>main</code> par <code>EGITNOPERMISSION</code>, <strong>sauf</strong>
+quand un checkout devenu obsolète le faisait sortir plus tôt : le vert signifiait alors « contrôle
+sauté ». Ce cas de sortie anticipée subsiste les jours de fusion dense ; le <code>concurrency</code> du workflow
+le borne sans le supprimer.</p>
 <p>⚠️ <strong>Le binaire se lance depuis la racine pour publier</strong> (<code>./.github/release/node_modules/.bin/semantic-release</code>) :
 c'est <code>.releaserc.json</code> qui fait alors foi. Lancé <strong>depuis <code>.github/release/</code></strong>, c'est la configuration
 d'analyse que cosmiconfig trouve en premier. Les deux ont été vérifiées en local, greffon par greffon.</p>
