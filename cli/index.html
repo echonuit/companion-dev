@@ -4177,9 +4177,9 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>lister-passages</code></td>
-<td><code>[--carre &lt;n&gt;] [--annee &lt;a&gt;] [--statut &lt;s&gt;] [--verdict &lt;v&gt;] [--json]</code></td>
+<td><code>[--carre &lt;n&gt;] [--lieu &lt;texte&gt;…] [--annee &lt;a&gt;] [--statut &lt;s&gt;] [--verdict &lt;v&gt;] [--analyse &lt;e&gt;] [--campagne &lt;nom&gt;] [--json]</code></td>
 <td>P5, #3269</td>
-<td><code>RegistrePassages</code> (lecture). Les quatre filtres sont ceux de l'écran « Carte &amp; passages » et passent par le <strong>même prédicat</strong> (<code>FiltresMultisite</code>, un record dont <code>accepte</code> ignore les critères non renseignés) : aucune règle n'est réécrite. Un filtre qui ne retient rien le <strong>dit</strong>, au lieu d'afficher « Aucun passage enregistré » sur une base qui en porte. ⚠️ Trois critères de l'écran manquent encore : <strong>Lieu</strong>, <strong>Analyse</strong> et <strong>Campagne</strong>. Ce n'est pas un choix d'ergonomie mais une limite des <strong>données</strong> : la ligne que <code>RegistrePassages</code> compose ne porte ni la commune du point, ni l'état d'analyse, ni la campagne du passage. Les ajouter demande d'étendre cette lecture, pas d'ajouter une option</td>
+<td><code>RegistrePassages</code> (lecture). Les <strong>sept</strong> filtres sont ceux de l'écran « Carte &amp; passages » et passent par le <strong>même prédicat</strong> (<code>FiltresMultisite</code>, un record dont <code>accepte</code> ignore les critères non renseignés) ; <code>--lieu</code> lit <code>FiltresLieu</code>, comme <code>lister-observations</code>. Aucune règle n'est réécrite. ⚠️ <code>--analyse</code> porte un état <strong>déduit</strong> (<code>EtatAnalyse.deduire</code>) et non lu : « Déposé » sans relevé vaut <code>JAMAIS_RELEVE</code>, « Importé » vaut <code>SANS_OBJET</code>. Une base sans aucun passage le dit <strong>avant</strong> tout filtrage : sinon <code>--lieu</code> refuserait le lieu (ADR 3082) là où la vérité est qu'il n'y a rien. Un filtre qui ne retient rien le <strong>dit</strong> aussi</td>
 </tr>
 <tr>
 <td><code>solde-saison</code></td>
