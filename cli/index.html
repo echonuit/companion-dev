@@ -4456,6 +4456,18 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><strong>La surface de découverte de la revue.</strong> Liste les observations d'un passage avec leur <strong>identifiant</strong>, l'avis de Tadarida, le vôtre, celui du validateur, le statut et les drapeaux. Sans elle, les gestes de revue (et <code>discussion</code>) sont aveugles : rien ne donnait les identifiants. Ses filtres sont <strong>exactement</strong> ceux des gestes (<code>SelectionObservations</code> partagé) : ce qu'elle montre est ce qu'ils toucheraient. <code>--a-enjeu</code> (#2353) ne garde que les <strong>espèces prioritaires</strong> du Plan National d'Actions Chiroptères, et le drapeau <code>enjeu</code> les signale dans la sortie (champ <code>aEnjeu</code> en JSON)</td>
 </tr>
 <tr>
+<td><code>lister-especes</code></td>
+<td><code>[--statut &lt;s&gt;] [--taxon-parent &lt;t&gt;] [--lieu &lt;texte&gt;…] [--nature protocole\|opportuniste] [--a-enjeu] [--format csv\|json] [--sortie &lt;f&gt;]</code></td>
+<td>#3269</td>
+<td><strong>Facette CLI de l'inventaire par espèce</strong> d'« Espèces &amp; observations ». Même <code>AgregationAnalyse.parEspece</code> que l'écran et <strong>mêmes colonnes que son export</strong> : le tableau ne peut pas dire une chose ici et une autre là. Les cinq critères sont ceux de la barre à puces, mais posés en <strong>fragments tapés</strong> (partiels, insensibles à la casse et aux accents) là où l'écran fait cocher dans une liste : c'est l'écart assumé de <code>FiltresAnalyse</code> avec le catalogue de la vue. Le <strong>point</strong> n'est pas filtrable (un code seul désigne autant de lieux qu'il y a de carrés). Une base sans aucune observation se constate <strong>avant</strong> tout filtrage : sinon <code>--lieu</code> refuserait le lieu (ADR 3082) là où la vérité est qu'il n'y a rien</td>
+</tr>
+<tr>
+<td><code>lister-carres</code></td>
+<td><code>[mêmes filtres que lister-especes] [--format csv\|json] [--sortie &lt;f&gt;]</code></td>
+<td>#3269</td>
+<td><strong>Facette CLI de l'inventaire par carré</strong> du même écran : la <strong>richesse</strong> en espèces et les détections, par carré prospecté. Répond à « où » quand sa jumelle répond à « quoi » - deux commandes plutôt qu'une à <code>--regrouper</code>, parce que leurs colonnes n'ont rien en commun et qu'un script ne doit pas avoir à deviner celles qu'il recevra. La richesse suit la sélection, comme à l'écran : <code>--a-enjeu</code> donne la richesse <strong>en espèces prioritaires</strong>, <code>--statut VALIDEE</code> celle qu'on peut défendre</td>
+</tr>
+<tr>
 <td><code>valider-observations</code></td>
 <td><code>(--observation &lt;ids&gt; \| --passage &lt;id&gt; [filtres] [--confirmer])</code></td>
 <td>R15, #1311</td>
