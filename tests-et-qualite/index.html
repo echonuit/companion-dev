@@ -3073,6 +3073,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3361-la-typographie-est-embarquee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3361 · La typographie est embarquée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4117,8 +4145,25 @@ headless vient de <code>glass.platform=Headless</code>, pas de TestFX. Le <code>
   désormais <code>byte-buddy-agent</code> en <code>-javaagent</code> via <code>maven-dependency-plugin:properties</code>
   (<code>${net.bytebuddy:byte-buddy-agent:jar}</code> dans l'<code>argLine</code>) : plus d'auto-attachement, prêt pour
   le JDK 26.</li>
-<li><strong><code>sun.misc.Unsafe</code></strong> <em>(à surveiller)</em> : le warning vient de <strong>Guava</strong> (transitif), pas du code
-  du projet. Il disparaîtra avec une montée de version de Guava ; rien à faire ici pour l'instant.</li>
+<li>
+<p><strong><code>sun.misc.Unsafe</code></strong> <em>(à surveiller)</em> : le warning ne vient <strong>pas</strong> du code du projet, mais il ne
+  vient pas non plus de Guava. <strong>Mesuré le 2026-08-06</strong> (#2747), sur JDK 25.0.3, en lançant <code>AppTest</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>WARNING: sun.misc.Unsafe::staticFieldBase has been called by
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>         com.google.inject.internal.aop.HiddenClassDefiner (guice-7.0.0.jar)
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
+</code></pre></div>
+<p>C'est <strong>Guice 7.0.0</strong>, dans la génération de proxys AOP. La version précédente de cette page
+accusait Guava : c'est cette erreur qui a fait attendre une montée de Guava, laquelle a bien eu
+lieu (33.4.8-jre, #2740) <strong>sans rien changer</strong> - elle ne pouvait pas.</p>
+<p>⚠️ <strong>Ce n'est pas « rien à faire pour l'instant », c'est une échéance.</strong> La JEP 498 retirera
+l'accès, et <code>--sun-misc-unsafe-memory-access=allow</code> (posé au <code>pom.xml</code> pour <code>javafx:run</code> et le
+lanceur jpackage, et au manifeste Flatpak) ne fait que la repousser. Le jour où le drapeau
+disparaît, l'application ne démarre plus.</p>
+<p><strong>Ce qui la lèverait</strong> : une version de Guice qui cesse d'utiliser <code>Unsafe</code>. 7.0.0 est la
+dernière publiée ; Dependabot suit la dépendance et proposera la montée. Le drapeau se retire
+<strong>le jour où ce warning cesse d'apparaître</strong>, et pas avant : le vérifier se fait en une
+commande, <code>./mvnw test -Dtest=AppTest</code> puis chercher « sun.misc.Unsafe » dans la sortie.</p>
+</li>
 </ul>
 </div>
 <div class="admonition danger">
@@ -4127,7 +4172,7 @@ headless vient de <code>glass.platform=Headless</code>, pas de TestFX. Le <code>
 ce dernier embarque JavaFX 25, masque les jars Maven FX 26 et fait échouer le headless
 (<code>NPE com.sun.glass.ui.PlatformFactory.getPlatformFactory()</code> : la Headless Platform n'existe qu'en
 FX 26). Comme la CI :
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
 </code></pre></div></p>
 </div>
 <h3 id="lecran-headless-est-fige-a-10001000">L'écran headless est figé à 1000×1000<a class="headerlink" href="#lecran-headless-est-fige-a-10001000" title="Permanent link">&para;</a></h3>
@@ -4137,9 +4182,9 @@ propriété ni variable d'environnement ne le change, et le framebuffer est un <
 <code>1000*1000*4</code> octets alloué une fois pour toutes.</p>
 <p>Conséquence : une fenêtre qui, une fois affichée, <strong>dépasse 1000 px</strong> - typiquement une modale qui
 grandit quand un bandeau se révèle et que <code>sizeToScene</code> la redimensionne - fait <strong>déborder</strong> le rendu :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>java.lang.IndexOutOfBoundsException
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    at com.sun.glass.ui.headless.HeadlessWindow.blit(HeadlessWindow.java:333)
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    at javafx.stage.Window.sizeToScene(...)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>java.lang.IndexOutOfBoundsException
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    at com.sun.glass.ui.headless.HeadlessWindow.blit(HeadlessWindow.java:333)
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    at javafx.stage.Window.sizeToScene(...)
 </code></pre></div>
 <p>C'est un artefact du <strong>test</strong>, pas un défaut de production : un vrai écran (≥ 1000 px) et un vrai
 gestionnaire de fenêtres n'ont pas ce framebuffer figé.</p>
@@ -4155,19 +4200,19 @@ systématiquement.</strong></p>
 framebuffer au bootstrap du test (le <code>stride</code> reste à 1000, on ajoute des lignes). En test, JavaFX
 est chargé dans le <strong>module sans nom</strong> (classpath, <code>useModulePath=false</code>), donc la réflexion
 atteint le champ privé <strong>sans <code>--add-opens</code></strong> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">/// Agrandit le framebuffer de la Headless Platform (lignes seulement, stride inchangé).</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="c1">/// À appeler sur le fil JavaFX, après le démarrage du toolkit et avant tout rendu.</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1">/// DERNIER RECOURS : couple le test aux internes de glass. À éviter si la fenêtre peut être bornée.</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">agrandirEcranHeadless</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lignes</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ReflectiveOperationException</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="n">Object</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&quot;com.sun.glass.ui.Application&quot;</span><span class="p">)</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">      </span><span class="p">.</span><span class="na">getMethod</span><span class="p">(</span><span class="s">&quot;GetApplication&quot;</span><span class="p">).</span><span class="na">invoke</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">app</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">  </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">reflect</span><span class="p">.</span><span class="na">Field</span><span class="w"> </span><span class="n">champ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app</span><span class="p">.</span><span class="na">getClass</span><span class="p">().</span><span class="na">getDeclaredField</span><span class="p">(</span><span class="s">&quot;frameBuffer&quot;</span><span class="p">);</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">  </span><span class="n">champ</span><span class="p">.</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">  </span><span class="n">champ</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">app</span><span class="p">,</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">nio</span><span class="p">.</span><span class="na">ByteBuffer</span><span class="p">.</span><span class="na">allocate</span><span class="p">(</span><span class="mi">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lignes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">));</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">/// Agrandit le framebuffer de la Headless Platform (lignes seulement, stride inchangé).</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">/// À appeler sur le fil JavaFX, après le démarrage du toolkit et avant tout rendu.</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">/// DERNIER RECOURS : couple le test aux internes de glass. À éviter si la fenêtre peut être bornée.</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">agrandirEcranHeadless</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lignes</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ReflectiveOperationException</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="n">Object</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&quot;com.sun.glass.ui.Application&quot;</span><span class="p">)</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="p">.</span><span class="na">getMethod</span><span class="p">(</span><span class="s">&quot;GetApplication&quot;</span><span class="p">).</span><span class="na">invoke</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">app</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">reflect</span><span class="p">.</span><span class="na">Field</span><span class="w"> </span><span class="n">champ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app</span><span class="p">.</span><span class="na">getClass</span><span class="p">().</span><span class="na">getDeclaredField</span><span class="p">(</span><span class="s">&quot;frameBuffer&quot;</span><span class="p">);</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="n">champ</span><span class="p">.</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="n">champ</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">app</span><span class="p">,</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">nio</span><span class="p">.</span><span class="na">ByteBuffer</span><span class="p">.</span><span class="na">allocate</span><span class="p">(</span><span class="mi">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lignes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">));</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">}</span>
 </code></pre></div>
 <p>Validé pendant #2496 : sur <code>RattachementModale</code> câblée, <code>agrandirEcranHeadless(3000)</code> rend ses
 12 tests verts au lieu du <code>blit</code> qui débordait. <strong>Coûts</strong> : ~<code>1000 * lignes * 4</code> octets par fork ;
@@ -4183,8 +4228,8 @@ bloqué de figer le build indéfiniment. <strong>Ils ne mesurent rien</strong> :
 code est lent, seulement que la machine n'a pas rendu la main à temps.</p>
 <p>Les deux valeurs sont posées dans le <code>pom.xml</code> à <strong>120 s</strong>, et non laissées aux défauts de TestFX
 (30 s et 60 s) :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">&lt;testfx.setup.timeout&gt;</span>120000<span class="nt">&lt;/testfx.setup.timeout&gt;</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">&lt;testfx.launch.timeout&gt;</span>120000<span class="nt">&lt;/testfx.launch.timeout&gt;</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;testfx.setup.timeout&gt;</span>120000<span class="nt">&lt;/testfx.setup.timeout&gt;</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">&lt;testfx.launch.timeout&gt;</span>120000<span class="nt">&lt;/testfx.launch.timeout&gt;</span>
 </code></pre></div>
 <p>Ce n'est pas un confort. Les défauts de TestFX supposent une JVM seule sur sa machine, alors que la
 suite lance <strong>une JVM par coeur</strong> (<code>surefire.forkCount=1C</code>) sur un runner partagé. Les deux décisions
@@ -4217,7 +4262,7 @@ dégradation observée, et un vrai interblocage est toujours coupé en deux minu
 <div class="admonition warning">
 <p class="admonition-title">Un <code>» Timeout</code> en CI ne se lit pas comme un échec de test</p>
 <p>Surefire l'affiche sous cette forme, sans distinguer une assertion fausse d'une attente expirée :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>SonsValidationViewTest.basculer_reference » Timeout
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>SonsValidationViewTest.basculer_reference » Timeout
 </code></pre></div>
 <p>La trace le tranche en trois lignes : <code>ApplicationExtension.beforeEach</code> puis
 <code>FxToolkit.setupApplication</code> puis <code>WaitForAsyncUtils.waitFor</code> signifient que <strong>le test n'a jamais
@@ -4294,12 +4339,12 @@ passage et sa nuit, réimporter par-dessus les validations de l'observateur. Et 
 <a href="../patterns/#les-dialogues-dune-action-sont-des-ports-socle-commun">Patrons</a>).
 Un test de geste les remplace par des doubles, <strong>déclenche</strong> l'action, et vérifie <strong>ce qui s'est
 passé</strong> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">confirmations</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">confirme</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">     </span><span class="c1">// l&#39;effet, pas « un mock a été appelé »</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">confirmations</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">confirme</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">     </span><span class="c1">// l&#39;effet, pas « un mock a été appelé »</span>
 </code></pre></div>
 <p>Trois exigences, dans l'ordre d'importance :</p>
 <ol>
@@ -4328,14 +4373,14 @@ un emoji qui ne se rend pas (#700), et une <strong>réplique</strong> de dialogu
 différents (#1258).</p>
 <p>Ce n'était pas de la rigueur, c'était du <strong>bruit</strong> : le test parlait de la plomberie au lieu de parler de
 ce qu'il vérifie. Et chaque migration de schéma coûtait autant de retouches que de copies.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">JeuDeDonneesPassage</span><span class="w"> </span><span class="n">jeu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JeuDeDonneesPassage</span><span class="p">.</span><span class="na">dans</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">        </span><span class="p">.</span><span class="na">carre</span><span class="p">(</span><span class="s">&quot;130711&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">        </span><span class="p">.</span><span class="na">point</span><span class="p">(</span><span class="s">&quot;Z41&quot;</span><span class="p">)</span>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">        </span><span class="p">.</span><span class="na">semer</span><span class="p">();</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="kt">long</span><span class="w"> </span><span class="n">douteuse</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservation</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">);</span>
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="kt">long</span><span class="w"> </span><span class="n">validee</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationValidee</span><span class="p">(</span><span class="s">&quot;Nyclei&quot;</span><span class="p">);</span>
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="kt">long</span><span class="w"> </span><span class="n">corrigee</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationCorrigee</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pippip&quot;</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">JeuDeDonneesPassage</span><span class="w"> </span><span class="n">jeu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JeuDeDonneesPassage</span><span class="p">.</span><span class="na">dans</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">        </span><span class="p">.</span><span class="na">carre</span><span class="p">(</span><span class="s">&quot;130711&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="p">.</span><span class="na">point</span><span class="p">(</span><span class="s">&quot;Z41&quot;</span><span class="p">)</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="p">.</span><span class="na">semer</span><span class="p">();</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
+<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="kt">long</span><span class="w"> </span><span class="n">douteuse</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservation</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">);</span>
+<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="kt">long</span><span class="w"> </span><span class="n">validee</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationValidee</span><span class="p">(</span><span class="s">&quot;Nyclei&quot;</span><span class="p">);</span>
+<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="kt">long</span><span class="w"> </span><span class="n">corrigee</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationCorrigee</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pippip&quot;</span><span class="p">);</span>
 </code></pre></div>
 <p>Valeurs par défaut : utilisateur <code>u-1</code>, carré <code>640380</code>, point <code>A1</code>, enregistreur <code>SN-1</code> - celles que les
 tests utilisaient déjà. Tout se surcharge avant <code>semer()</code>.</p>
@@ -4417,7 +4462,7 @@ pas ici, pour ne pas diverger), et elle ne peut que <strong>rétrécir</strong> 
 de features, de sous-commandes CLI. Écrits en dur, ils <strong>dérivent</strong> au premier ajout (un contrat de plus,
 un état de plus) sans que rien ne rougisse. Une <strong>balise d'inventaire</strong> les ancre à un décompte que le
 test recalcule. On écrit le nombre entre deux commentaires :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>l&#39;application compte <span class="gs">**&lt;!--inv:features--&gt;N&lt;!--/inv--&gt; features**</span> métier
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>l&#39;application compte <span class="gs">**&lt;!--inv:features--&gt;N&lt;!--/inv--&gt; features**</span> métier
 </code></pre></div>
 <p>où <code>N</code> est le chiffre (<code>15</code> aujourd'hui). Un commentaire HTML <strong>ne s'affiche pas</strong> : la phrase se lit
 « 15 features » comme avant, mais <code>chaque_chiffre_balise_egale_l_inventaire_reel</code> relit <code>N</code> et le
@@ -4565,11 +4610,11 @@ c'est lui qui bloque la CI. Or, laissée par défaut, l'extension applique le pr
 <p>Le réglage qui les réaligne <strong>ne peut pas être versionné</strong> : <code>sonarlint.rules</code> est de scope
 <code>application</code>, donc VS Code le lit <strong>uniquement</strong> depuis les réglages utilisateur et ignore
 silencieusement un bloc placé dans <code>.vscode/settings.json</code>. À recopier dans ses réglages personnels :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nt">&quot;sonarlint.rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nt">&quot;java:S107&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constructorMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">&quot;java:S3776&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="nt">&quot;java:S106&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">&quot;sonarlint.rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nt">&quot;java:S107&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constructorMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">&quot;java:S3776&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">&quot;java:S106&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">}</span>
 </code></pre></div>
 <p>Trois points à ne pas redécouvrir :</p>
 <ul>
@@ -4595,9 +4640,9 @@ l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 <li>
 <p><strong>PIT</strong> (<code>-Pmutation</code>) évalue si les tests <strong>détectent</strong> des mutations du code. Lent sur tout le
   dépôt, mais <strong>rapide ciblé</strong> sur la classe qu'on vient d'écrire - et c'est ainsi qu'il sert le mieux :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
 </code></pre></div>
 </li>
 </ul>
@@ -4608,7 +4653,7 @@ l'<code>argLine</code> de Surefire, qui contient deux valeurs posées par des gr
 (<code>./mvnw -Pmutation org.pitest:...:mutationCoverage</code>) n'exécute <strong>aucune</strong> phase : les deux restent
 littérales, le minion reçoit <code>-javaagent:${net.bytebuddy:byte-buddy-agent:jar}</code>, refuse de démarrer, et
 PIT ne rapporte que :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>PIT &gt;&gt; SEVERE : Coverage generator Minion exited abnormally due to MINION_DIED
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>PIT &gt;&gt; SEVERE : Coverage generator Minion exited abnormally due to MINION_DIED
 </code></pre></div>
 <p>Ce message <strong>ne dit pas</strong> la cause, et il est identique quelle que soit la classe visée - y compris une
 classe pure sans JavaFX ni SQLite. D'où la conclusion tentante, et fausse, que « PIT ne marche pas sur ce
@@ -4705,7 +4750,7 @@ greffon <strong>commercial</strong> (arcmutate). Les options <code>historyInputF
 au descripteur du greffon Maven, mais les passer sans lui ne les fait pas ignorer : PIT <strong>refuse de
 démarrer</strong>. Le descripteur dit que l'option existe, pas que la fonction est là (#2768).</p>
 <p>Le même bilan se lit en local, sur n'importe quel rapport :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>python3<span class="w"> </span>scripts/qualite/rapport_mutation.py<span class="w"> </span>--markdown
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>python3<span class="w"> </span>scripts/qualite/rapport_mutation.py<span class="w"> </span>--markdown
 </code></pre></div>
 <p>Il trie les classes par nombre de survivants plutôt que d'afficher un pourcentage : le score situe, la
 liste travaille.</p>

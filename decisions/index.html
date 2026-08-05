@@ -3188,6 +3188,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3361-la-typographie-est-embarquee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3361 · La typographie est embarquée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4613,6 +4641,11 @@
 <td><a href="3168-un-audit-qui-ne-peut-pas-trancher-montre-sans-juger/">3168</a></td>
 <td>Le departement d un point se lit <strong>deux fois</strong> (par son carre, par sa commune) et les deux lectures peuvent se contredire. L audit <strong>montre l ecart sans le trier</strong> : il n a ni la geometrie du carre ni la distance au bord, et un tri approximatif ferait croire les faux positifs deja ecartes. La severite <strong>INFO</strong> est un <strong>contrat de sortie</strong> - un AVERTISSEMENT ferait rendre 1 a audit-coherence sur le cas normal. Et deux ecritures qu on ne sait pas departager (Corse <code>20</code>/<code>2A</code>, outre-mer <code>97</code>/<code>971</code>) ne divergent pas : la comparaison <strong>s abstient</strong></td>
 <td>#3168, lot 4 du chantier #3151</td>
+</tr>
+<tr>
+<td><a href="3361-la-typographie-est-embarquee/">3361</a></td>
+<td><code>base.css</code> nommait trois polices dont <strong>aucune n est installee</strong>, ni sur un poste ni sur le runner : les deux retombaient sur <code>sans-serif</code>, un ALIAS que chaque systeme resout a sa facon. Le produit heritait donc de la typographie de la machine - trois allers-retours avec le garde de troncature, et surtout deux utilisateurs voyant des rendus differents sans qu aucun garde ne le voie. Noto Sans est <strong>embarquee</strong> (OFL 1.1, 1 Mo), chargee aux DEUX points d entree - l application et les 41 outils de capture</td>
+<td>#3361, suite de #3151</td>
 </tr>
 <tr>
 <td><a href="3222-une-entree-externe-se-lit-sous-plafond/">3222</a></td>
