@@ -3333,6 +3333,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="La conséquence qui n&#39;était pas prévue, et qu&#39;il faut connaître">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-second-cas-plus-piegeux-les-porteurs-de-ladr-0010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le second cas, plus piégeux : les porteurs de l'ADR 0010
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-cest-la-panne-de-ladr-3018-a-un-autre-etage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pourquoi c'est la panne de l'ADR 3018, à un autre étage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -3952,6 +3980,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="La conséquence qui n&#39;était pas prévue, et qu&#39;il faut connaître">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-second-cas-plus-piegeux-les-porteurs-de-ladr-0010" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le second cas, plus piégeux : les porteurs de l'ADR 0010
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-cest-la-panne-de-ladr-3018-a-un-autre-etage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pourquoi c'est la panne de l'ADR 3018, à un autre étage
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4013,7 +4069,7 @@
 <ul>
 <li><strong>Statut</strong> : Accepté - 2026-08-05</li>
 <li><strong>Chantier</strong> : #2745, lot 4 (#2724) du chantier de dette #2720</li>
-<li><strong>Vérification</strong> : certaine - <code>DecisionsRespecteesTest#une_sous_vue_ne_s_injecte_pas_son_modele</code></li>
+<li><strong>Vérification</strong> : certaine - <code>DecisionsRespecteesTest#une_sous_vue_ne_se_procure_pas_ce_qui_doit_etre_unique</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p><code>SonsValidationController</code> vivait à <strong>199 de NCSS pour un plafond de 200</strong>. Une instruction de plus
@@ -4070,7 +4126,12 @@ n'a pas été inventée pour l'occasion.</p>
 gestionnaire de colonnes) reste câblé par le parent, qui obtient ce dont il a besoin par des
 accesseurs. Une sous-vue n'est pas une frontière étanche : c'est un regroupement de nœuds.</p>
 <h2 id="la-consequence-qui-netait-pas-prevue-et-quil-faut-connaitre">La conséquence qui n'était pas prévue, et qu'il faut connaître<a class="headerlink" href="#la-consequence-qui-netait-pas-prevue-et-quil-faut-connaitre" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>Une sous-vue ne doit pas injecter son ViewModel : elle le reçoit de son parent.</strong></p>
+<p>⚠️ <strong>Une sous-vue ne se procure rien de ce qui doit être unique : elle le reçoit de son parent.</strong></p>
+<blockquote>
+<p><em>Règle élargie le 2026-08-05 (#3335).</em> Elle a d'abord été écrite « une sous-vue ne doit pas injecter
+son <strong>ViewModel</strong> », d'après le seul cas rencontré. Le ViewModel n'en est qu'un ; le <strong>porteur de
+dialogue</strong> en est un autre, et il est plus piégeux (voir plus bas).</p>
+</blockquote>
 <p>Le premier découpage donnait au sous-contrôleur un constructeur <code>@Inject</code> prenant <code>AudioViewModel</code>,
 par symétrie avec son parent. <code>FXMLLoader</code> propage bien la <code>controllerFactory</code> Guice aux inclusions,
 donc <strong>cela a fonctionné</strong> : la classe s'est construite, la vue s'est chargée, l'écran s'est affiché.</p>
@@ -4086,6 +4147,23 @@ disait « Expected size: 2 but was: 0 ».</p>
 sous-vue vit dans cette méthode plutôt que dans un <code>initialize()</code>. L'ordre le permet : JavaFX charge
 les inclusions et appelle leurs <code>initialize()</code> <strong>avant</strong> celui du parent, si bien que le champ
 <code>&lt;fx:id&gt;Controller</code> est disponible quand le parent s'initialise.</p>
+<h3 id="le-second-cas-plus-piegeux-les-porteurs-de-ladr-0010">Le second cas, plus piégeux : les porteurs de l'ADR 0010<a class="headerlink" href="#le-second-cas-plus-piegeux-les-porteurs-de-ladr-0010" title="Permanent link">&para;</a></h3>
+<p><a href="../0010-dialogues-bloquants-sont-des-ports/">L'ADR 0010</a> fait des dialogues bloquants des <strong>ports
+injectables</strong>, pour qu'un test les remplace. Ce qu'elle ne disait pas, la question ne se posant pas
+avant les sous-vues : <strong>un port n'est un point de substitution que s'il est unique.</strong></p>
+<p>Un test parent écrit <code>controleur.confirmateur().definir(stub)</code>. Si une sous-vue avait le sien, le
+double ne s'y appliquerait pas : sous TestFX headless, le <code>showAndWait()</code> figerait le test, ou celui-ci
+passerait en ne vérifiant rien.</p>
+<p>Et ce cas <strong>échappe à la détection par <code>@Inject</code></strong> : le dépôt ne fabrique pas ces porteurs par
+injection mais en initialiseur de champ, <code>new ConfirmateurModifiable()</code>. C'est pourquoi la garde
+cherche les deux formes.</p>
+<h3 id="pourquoi-cest-la-panne-de-ladr-3018-a-un-autre-etage">Pourquoi c'est la panne de l'ADR 3018, à un autre étage<a class="headerlink" href="#pourquoi-cest-la-panne-de-ladr-3018-a-un-autre-etage" title="Permanent link">&para;</a></h3>
+<p><a href="../3018-un-outil-compose-depuis-la-racine/">L'ADR 3018</a> constate qu'« un injecteur amputé et une
+fonctionnalité désactivée produisent le même écran ». La forme est identique ici : un composant <strong>se
+procure</strong> localement ce qu'il aurait dû <strong>recevoir</strong>, l'injecteur satisfait la demande sans broncher,
+et le résultat n'a pas l'air cassé - il a l'air d'un produit configuré autrement.</p>
+<p>3018 en tire que ce genre de règle « ne peut pas tenir par la vigilance ». C'est la raison pour
+laquelle celle-ci est gardée plutôt qu'écrite.</p>
 <h2 id="le-prix">Le prix<a class="headerlink" href="#le-prix" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Une indirection de plus</strong> pour lire l'écran : la table ne se trouve plus dans le FXML parent.
