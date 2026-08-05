@@ -3791,6 +3791,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#analyse-statique-de-securite-et-detection-de-secrets-2741" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analyse statique de sécurité, et détection de secrets (#2741)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analyse statique de sécurité, et détection de secrets (#2741)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-detection-de-secrets-nest-pas-dans-le-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La détection de secrets n'est pas dans le code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#les-droits-de-publication-sont-declares-par-job-2739" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4012,6 +4040,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#analyse-statique-de-securite-et-detection-de-secrets-2741" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Analyse statique de sécurité, et détection de secrets (#2741)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Analyse statique de sécurité, et détection de secrets (#2741)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-detection-de-secrets-nest-pas-dans-le-code" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La détection de secrets n'est pas dans le code
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#les-droits-de-publication-sont-declares-par-job-2739" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4078,7 +4134,7 @@
 
 
 <h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
-<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->13<!--/inv--> workflows et le processus de
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->14<!--/inv--> workflows et le processus de
 publication.</p>
 <h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
 <table>
@@ -4539,6 +4595,33 @@ début de <code>Files.createTempDirectory</code>, celui du <strong>JDK</strong>,
 annonçait trois appels là où il n'y en avait aucun. La question « est-ce que ça nous concerne ? »
 se pose sur les <strong>imports</strong>, pas sur la ressemblance des noms.</p>
 </div>
+<h2 id="analyse-statique-de-securite-et-detection-de-secrets-2741">Analyse statique de sécurité, et détection de secrets (#2741)<a class="headerlink" href="#analyse-statique-de-securite-et-detection-de-secrets-2741" title="Permanent link">&para;</a></h2>
+<p>Le dépôt est <strong>public</strong> depuis #169. <code>codeql.yml</code> cherche ce que ni PMD ni les tests ne cherchent :
+des <strong>chemins de données</strong> - une entrée qui atteint une commande, un chemin de fichier, une requête -
+plutôt que des règles de style ou de structure. Sur <code>main</code>, sur les PR, et <strong>planifié</strong> le lundi : les
+requêtes CodeQL évoluent, une base de code inchangée peut devenir signalable sans qu'un commit l'ait
+touchée.</p>
+<p>Deux choix qui méritent d'être dits :</p>
+<ul>
+<li><strong>Le build est explicite</strong>, pas <code>autobuild</code>. Ce projet a des exigences que la détection automatique
+  ne devine pas (JDK 25, JavaFX 26 en dépendances Maven) - et un <code>autobuild</code> qui échoue rend une
+  analyse <strong>vide</strong>, c'est-à-dire un vert qui ne veut rien dire.</li>
+<li><strong>Jeu de requêtes <code>security-extended</code></strong> : le dépôt refuse déjà les <code>@SuppressWarnings</code> pour taire un
+  avertissement qualité ; le même esprit veut qu'on voie d'abord tout ce qui est signalable, quitte à
+  trier ensuite. Trier veut dire <strong>distinguer vrai positif et bruit</strong>, jamais supprimer en masse.</li>
+</ul>
+<h3 id="la-detection-de-secrets-nest-pas-dans-le-code">La détection de secrets n'est pas dans le code<a class="headerlink" href="#la-detection-de-secrets-nest-pas-dans-le-code" title="Permanent link">&para;</a></h3>
+<p>Elle est dans les <strong>réglages du dépôt</strong>, et l'état constaté est : <code>secret_scanning</code>,
+<code>secret_scanning_push_protection</code>, <code>secret_scanning_non_provider_patterns</code> et
+<code>secret_scanning_validity_checks</code> <strong>tous désactivés</strong> (seul <code>dependabot_security_updates</code> est actif).</p>
+<p>C'est ce que #2741 vise en premier : un jeton VigieChiro committé par mégarde - ils circulent en local
+pour les sondes d'API et les scripts, avec 14 jours de validité - ne serait détecté par rien.</p>
+<p>⚠️ <strong><code>push_protection</code> a un effet visible</strong> : un <code>git push</code> contenant un secret détecté est <strong>refusé</strong>.
+C'est l'intérêt du réglage, et c'est aussi ce qui surprend un contributeur au mauvais moment ; il se
+décide, il ne se subit pas.</p>
+<p><code>gitleaks-action</code> comme filet <strong>indépendant</strong> de GitHub reste possible, mais demande une clé de licence
+<strong>gratuite</strong> pour les dépôts d'organisation (<code>echonuit</code> en est une) : c'est un secret de dépôt à
+obtenir, donc une décision, pas une ligne de YAML.</p>
 <h2 id="les-droits-de-publication-sont-declares-par-job-2739">Les droits de publication sont déclarés par job (#2739)<a class="headerlink" href="#les-droits-de-publication-sont-declares-par-job-2739" title="Permanent link">&para;</a></h2>
 <p>Le plancher du workflow de release est en <strong>lecture seule</strong> ; chaque job déclare ce qu'il lui faut de
 plus.</p>
