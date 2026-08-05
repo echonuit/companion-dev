@@ -3133,28 +3133,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -3970,28 +3948,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -4069,13 +4025,30 @@ répéterait à chaque nuit du même point sans jamais rien apprendre de neuf.</
 côtés du balayage des dossiers orphelins, l'autre contrôle de portée non-passage.</p>
 <h2 id="decision-4-deux-ecritures-quon-ne-sait-pas-departager-ne-divergent-pas">Décision 4 : deux écritures qu'on ne sait pas départager ne divergent pas<a class="headerlink" href="#decision-4-deux-ecritures-quon-ne-sait-pas-departager-ne-divergent-pas" title="Permanent link">&para;</a></h2>
 <p>Les deux lectures ne s'écrivent pas dans le même alphabet : un carré corse porte <code>20</code> là où l'INSEE
-écrit <code>2A</code>/<code>2B</code>, et l'outre-mer porte <code>97</code> contre <code>971</code>. Comparer les chaînes telles quelles ferait de
-<strong>chaque point corse</strong> une divergence.</p>
-<p><code>RegionsFrancaises.memeDepartement</code> rend donc <code>true</code> dans ces cas, et <strong>c'est une abstention, pas une
-équivalence</strong> : <code>20</code> ne dit pas laquelle des deux Corses, <code>97</code> ne dit pas lequel des six départements
-d'outre-mer. La méthode n'affirme que les écarts qu'elle sait <strong>démontrer</strong>.</p>
+écrit <code>2A</code>/<code>2B</code>. Comparer les chaînes telles quelles ferait de <strong>chaque point corse</strong> une divergence.</p>
+<p><code>RegionsFrancaises.memeDepartement</code> rend donc <code>true</code> dans ce cas, et <strong>c'est une abstention, pas une
+équivalence</strong> : <code>20</code> ne dit pas laquelle des deux Corses. La méthode n'affirme que les écarts qu'elle
+sait <strong>démontrer</strong>.</p>
 <p>C'est le même principe que la décision 1, appliqué un cran plus bas : entre se taire et affirmer sans
 savoir, un outil de diagnostic se tait.</p>
+<div class="admonition warning">
+<p class="admonition-title">Corrigé le 2026-08-05 : l'outre-mer ne s'écrit pas comme cette ADR le croyait (#3298)</p>
+<p>Cette décision affirmait aussi que « l'outre-mer porte <code>97</code> contre <code>971</code> », et fondait là-dessus une
+seconde abstention. <strong>C'était une supposition sur le numérotage, et elle est fausse.</strong></p>
+<p>Le recensement du catalogue de la plateforme - 20 572 sites, page par page - donne pour préfixes de
+carré hors <code>01</code>-<code>95</code> : <code>00</code> (307 carrés), <code>98</code> (313), <code>99</code> (127), <code>96</code> (1). <strong>Aucun <code>97</code>.</strong> Les
+carrés d'outre-mer sont numérotés <code>00xxxx</code> : <code>000294</code> est à Saint-Joseph, <code>001293</code> à Salazie.</p>
+<p>L'abstention protégeait donc une écriture qui n'existe pas, pendant que le cas réel produisait une
+divergence <strong>systématiquement fausse</strong> : <code>00</code> ne sera jamais égal à <code>974</code>, et aucune vérification de
+terrain n'aurait pu la faire taire.</p>
+<p>Le remède ne touche pas au principe, qui reste juste : il le déplace d'un cran. Un préfixe qui ne
+<strong>désigne pas</strong> de département ne porte <strong>pas de lecture du tout</strong>
+([RegionDuCarre#departement] rend vide, via <code>RegionsFrancaises.estUnDepartement</code>), et l'audit se tait
+comme devant un numéro trop court. Il n'y a plus deux écritures à départager : il n'y en a qu'une.</p>
+<p>Ce que l'épisode enseigne dépasse le correctif : les trois autres décisions de cette ADR reposent sur
+des faits <strong>observés dans le code</strong>, celle-ci reposait sur un format <strong>supposé</strong>. C'est la mesure de</p>
+<h1 id="3257-faite-sur-les-donnees-reelles-qui-la-mise-au-jour-pas-une-relecture">3257, faite sur les données réelles, qui l'a mise au jour - pas une relecture.<a class="headerlink" href="#3257-faite-sur-les-donnees-reelles-qui-la-mise-au-jour-pas-une-relecture" title="Permanent link">&para;</a></h1>
+</div>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>La règle « les deux premiers chiffres du numéro sont le département » vit désormais en <strong>un seul
