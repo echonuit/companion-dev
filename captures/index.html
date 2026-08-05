@@ -3891,6 +3891,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="La régénération en CI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-bruit-des-cartes-et-pourquoi-on-cesse-de-le-committer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le bruit des cartes, et pourquoi on cesse de le committer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4107,6 +4124,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="La régénération en CI">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-bruit-des-cartes-et-pourquoi-on-cesse-de-le-committer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le bruit des cartes, et pourquoi on cesse de le committer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4244,11 +4278,19 @@ synthèse (cf. <code>SonDemo</code>), pas d'horodatage réel, attente explicite 
 soumise : voir l'exception des tuiles ci-dessous, qui est la seule.</p>
 </div>
 <h4 id="lexception-assumee-les-tuiles-openstreetmap">L'exception assumée : les tuiles OpenStreetMap<a class="headerlink" href="#lexception-assumee-les-tuiles-openstreetmap" title="Permanent link">&para;</a></h4>
-<p>Les quatre aperçus qui montrent la carte (<code>apercu-multisite</code>, <code>-filtre</code>, <code>-edition</code>, <code>-carte-pleine</code>)
-<strong>varient légèrement d'un build à l'autre</strong>, sans qu'aucun code ne change.</p>
-<p>C'est mesuré, pas supposé : <strong>0,34 %</strong> des pixels (2 302 sur 682 000), confinés au panneau de carte, en
-tracés fins de routes. Une tuile absente en ferait 65 000 - il ne s'agit donc pas d'un chargement
-incomplet, mais du <strong>rendu servi par OpenStreetMap</strong>, qui n'est pas identique à chaque requête.</p>
+<p>Les aperçus qui montrent une carte <strong>varient d'un build à l'autre</strong>, sans qu'aucun code ne change. Ils
+sont <strong>seize</strong>, pas quatre : aux quatre de <code>multisite</code> s'ajoutent <code>apercu-analyse-carte</code>, les huit
+aperçus d'import (dont l'assistant porte une bande cartographique en bas) et les deux modales de point.
+La liste exhaustive vit dans <code>filtrer-bruit-cartes.sh</code>.</p>
+<p>C'est mesuré, pas supposé - et le chiffre a été <strong>revu à la hausse</strong> en cartographiant les écarts entre
+les <strong>30</strong> versions successives d'<code>apercu-analyse-carte</code> (2026-08-05, 435 paires) : médiane <strong>1,22 %</strong>,
+maximum <strong>2,51 %</strong>. Le <strong>0,34 %</strong> annoncé auparavant venait d'un échantillon plus étroit et
+sous-estimait l'amplitude réelle. Une tuile absente en ferait 9,5 % : il ne s'agit donc pas d'un
+chargement incomplet, mais du <strong>rendu servi par OpenStreetMap</strong>, qui n'est pas identique à chaque
+requête.</p>
+<p>⚠️ Cette même matrice montre que les versions <strong>n'errent pas au hasard</strong> : 30 versions se réduisent à
+<strong>18 états distincts</strong>, dont un revenant <strong>7 fois</strong> à des dates non consécutives. La variation est donc
+<strong>discrète</strong>, ce qu'un bruit de rendu continu ne produirait jamais.</p>
 <p>Aucune attente ne corrige cela, et ça a été vérifié : la condition de stabilité est satisfaite, et
 porter la quiétude exigée de 0,75 s à 3 s ne change rien (#3068).</p>
 <p><strong>Arbitrage : on garde la dépendance.</strong> Ces captures valent parce qu'elles montrent une <strong>vraie</strong> carte,
@@ -4256,8 +4298,9 @@ au même titre que les autres montrent de vraies données depuis une base semée
 rendrait l'image plus stable et moins vraie. La variabilité résiduelle est minime et n'affecte aucun
 élément produit par le dépôt.</p>
 <p>Ce qui vient de <strong>nous</strong> reste donc strictement déterministe, et c'est là-dessus que la règle d'or
-s'applique. Le corollaire pratique : sur ces quatre fichiers, un diff de captures n'est pas un signal -
-la revue se fait à l'œil, pas au <code>cmp</code>.</p>
+s'applique. Le corollaire pratique : sur ces seize fichiers, un diff de captures n'est pas un signal -
+la revue se fait à l'œil, pas au <code>cmp</code>. Depuis, la CI cesse d'ailleurs de <strong>committer</strong> ces écarts sous
+le seuil : voir <a href="#le-bruit-des-cartes-et-pourquoi-on-cesse-de-le-committer">Le bruit des cartes</a>.</p>
 <h3 id="linjecteur-se-compose-depuis-la-racine">L'injecteur se compose depuis la racine<a class="headerlink" href="#linjecteur-se-compose-depuis-la-racine" title="Permanent link">&para;</a></h3>
 <p>Un outil compose <strong><code>RacineInjecteur.modules()</code></strong>, la liste que l'application elle-même assemble, et
 s'adapte par <code>Modules.override(racine).with(…)</code> - jamais en énumérant un sous-ensemble de modules.</p>
@@ -4296,9 +4339,43 @@ que les images en ligne suivent le code.</p>
     Dev-&gt;&gt;Main: push (code d'un écran modifié)
     Main-&gt;&gt;CV: déclenche
     CV-&gt;&gt;CV: capture-screenshots.sh (Capture* en headless)
+    CV-&gt;&gt;CV: filtrer-bruit-cartes.sh (rend les cartes inchangées)
     CV-&gt;&gt;Main: commit des apercu-*.png [skip ci]
     CV--&gt;&gt;Docs: workflow_run (terminé)
     Docs-&gt;&gt;Docs: rebuild + republie le site</code></pre>
+<h3 id="le-bruit-des-cartes-et-pourquoi-on-cesse-de-le-committer">Le bruit des cartes, et pourquoi on cesse de le committer<a class="headerlink" href="#le-bruit-des-cartes-et-pourquoi-on-cesse-de-le-committer" title="Permanent link">&para;</a></h3>
+<p>Les aperçus qui portent un fond OpenStreetMap changent à <strong>presque chaque exécution</strong> sans qu'aucun
+code n'ait bougé. Mesuré sur les 30 derniers commits d'aperçus : <code>apercu-analyse-carte.png</code> a changé
+<strong>28 fois</strong>, <code>apercu-multisite-carte-pleine.png</code> <strong>27</strong>, les huit aperçus d'import <strong>18</strong>. L'écart est
+sub-perceptible : deux versions consécutives ouvertes côte à côte sont indiscernables.</p>
+<p>Trois coûts, dont le dernier est le seul qui compte vraiment : l'historique se remplit de commits qui
+ne disent rien ; les PR d'aperçus <strong>conflictent entre elles</strong> en permanence (les PNG sont binaires,
+git ne sait pas les fusionner) ; et le jour où une <strong>vraie</strong> régression touche une de ces images, elle
+devient indiscernable du bruit.</p>
+<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/filtrer-bruit-cartes.sh"><code>filtrer-bruit-cartes.sh</code></a>
+rend leur version committée aux aperçus de carte dont l'écart reste <strong>sous 4 %</strong>. Il ne cherche pas à
+rendre les tuiles déterministes - elles sont une entrée <strong>extérieure</strong> au dépôt, et l'ADR 3068 a
+tranché qu'on ne les figerait pas : une carte figée serait plus stable et <strong>moins vraie</strong>. Il cesse
+seulement de committer l'insignifiant.</p>
+<p>⚠️ <strong>La tolérance ne vaut que pour une liste explicite.</strong> Partout ailleurs, le moindre pixel reste
+committé, et c'est délibéré : sur un plein écran de 1080x640, une puce ajoutée pèse <strong>0,6 %</strong>, un
+libellé corrigé bien moins. Un seuil <strong>global</strong> aurait avalé ces changements-là, c'est-à-dire
+exactement ceux que la galerie existe pour montrer.</p>
+<p>Le seuil se mesure des deux côtés. Le bruit a été <strong>cartographié</strong> : matrice des écarts entre les
+<strong>30</strong> versions successives d'<code>apercu-analyse-carte</code>, soit 435 paires. Médiane <strong>1,22 %</strong>, maximum
+<strong>2,51 %</strong>, toutes sous 3 %. (L'ADR 3068 annonçait 0,34 % : un sous-estimé, mesuré sur un échantillon
+plus étroit.) En face, une tuile réellement différente pèse <strong>9,5 %</strong> sur cet aperçu, encore <strong>4,4 %</strong>
+sur le cas le plus défavorable, où la carte n'occupe qu'une bande. <strong>4 %</strong> laisse donc un point de
+marge au-dessus du bruit observé, en restant sous le coût d'une vraie tuile.</p>
+<p><strong>Ce que la matrice apprend d'autre, et qui vaut pour la suite</strong> : les versions ne <em>dérivent</em> pas,
+elles <strong>oscillent</strong> entre un nombre fini d'états - 18 états distincts pour 30 versions, dont un qui
+revient <strong>7 fois</strong> à des dates non consécutives. Un bruit de rendu continu ne produirait jamais deux
+versions identiques au bit près à des semaines d'intervalle. La cause est donc <strong>discrète</strong>, ce qui
+rend un instantané de tuiles servi localement d'autant plus pertinent : il ferait s'effondrer cet
+ensemble sur un seul état.</p>
+<p>⚠️ <code>apercu-passage-rattachement.png</code> bouge aussi (10 fois sur 30) et n'est <strong>pas</strong> dans la liste :
+<code>CapturePassage</code> ne monte aucune carte. Son instabilité a donc une autre cause, <strong>non élucidée</strong>, et
+lui appliquer cette tolérance masquerait des changements qui ne sont pas du bruit de tuiles.</p>
 <h2 id="les-garde-fous-de-presence">Les garde-fous de présence<a class="headerlink" href="#les-garde-fous-de-presence" title="Permanent link">&para;</a></h2>
 <p>Deux scripts vérifient qu'aucune vue ne vit sans aperçu, et qu'aucune page ne pointe une image
 absente (lancés en CI) :</p>
