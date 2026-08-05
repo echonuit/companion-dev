@@ -2963,6 +2963,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3151 · Un écran n'offre pas ce qu'il ne montre pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3157-un-carre-a-un-identifiant-et-une-etiquette/" class="md-nav__link">
         
   
@@ -4048,6 +4076,15 @@
 <code>CritereLieuTest#deux_entrees_candidates_ne_rattrapent_rien</code> : le garde des ADR n'accepte qu'une
 référence, la décision en a deux.</p>
 </blockquote>
+<div class="admonition note">
+<p class="admonition-title">Sa jumelle : la <strong>clé</strong>, quand celle-ci porte sur la <strong>valeur</strong></p>
+<p>Une vue sauvegardée persiste deux choses, et deux ADR nées la même semaine en traitent une chacune :
+la <strong>clé</strong> du critère (<code>lieu</code>, <code>statut</code>) est un contrat de sérialisation
+(<a href="../3096-une-cle-de-critere-est-un-contrat-de-serialisation/">ADR 3096</a>, chantier #3092), et la
+<strong>valeur</strong> cochée se rattrape par dimension (celle-ci, chantier #3151). Écrites en parallèle, elles
+ne se citaient pas ; le rapprochement a été fait à la clôture de #3151. Les lire ensemble avant de
+toucher à <code>vue_sauvegardee</code>.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Une vue sauvegardée persiste les valeurs cochées <strong>en clair</strong> : c'est par ce texte que
 <code>CritereListe.restaurerValeurs</code> retrouve l'entrée à recocher. <strong>Requalifier</strong> une entrée rend donc
