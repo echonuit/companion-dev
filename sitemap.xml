@@ -413,7 +413,19 @@
          <lastmod>2026-08-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3092-un-filtre-ne-change-que-ce-quon-regarde/</loc>
+         <lastmod>2026-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3093-une-restauration-rend-compte-de-deux-causes/</loc>
+         <lastmod>2026-08-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/</loc>
+         <lastmod>2026-08-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation/</loc>
          <lastmod>2026-08-05</lastmod>
     </url>
     <url>

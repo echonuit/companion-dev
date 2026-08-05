@@ -2995,6 +2995,90 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3092-un-filtre-ne-change-que-ce-quon-regarde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3092 · Un filtre ne change que ce qu'on regarde
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3093-une-restauration-rend-compte-de-deux-causes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3093 · Une restauration rend compte de deux causes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3096 · Une clé de critère est un contrat de sérialisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/" class="md-nav__link">
         
   
@@ -4109,6 +4193,38 @@ feature, cle, …)</code> (le controller injecte <code>DepotDispositionColonnes<
 (#623) capturent aussi les colonnes, passez un <code>AdaptateurColonnes</code> à <code>GestionnaireVues</code> :
 <code>GestionnaireColonnes.adaptateurMonoTable(cle, table, colonnes)</code> pour une table, ou un adaptateur à
 plusieurs entrées de map pour une vue multi-tables.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tables exploratoires : la barre de filtres du socle</p>
+<p>Si votre table <strong>explore un corpus</strong> (par opposition au détail d'un seul objet), elle prend la barre
+« à la Notion » plutôt qu'un filtre écrit à la main. Six écrans la portent ; en écrire un septième à
+la main serait la duplication que le chantier #3092 a supprimée.</p>
+<p>Cinq gestes, dans cet ordre :</p>
+<ol>
+<li>le <strong>ViewModel</strong> expose deux listes - <code>trucs()</code> (tout) et <code>trucsFiltres()</code> (une <code>FilteredList</code>) -
+   plus son <code>Filtres&lt;Truc&gt;</code> ;</li>
+<li>la <strong>table</strong> se pose sur une <code>SortedList</code> <strong>par-dessus</strong> la liste filtrée, comparateur lié à celui
+   de la table. ⚠️ Une <code>FilteredList</code> posée nue est <strong>non modifiable</strong> : <code>TableView</code> renonce alors à
+   trier et <strong>vide son <code>sortOrder</code> en silence</strong> ;</li>
+<li>un <strong>catalogue</strong> <code>CriteresMaFeature</code> déclare les critères (<code>CritereListe</code>, <code>CritereBooleen</code>,
+   <code>CritereLieu</code>) ; les clés <strong>partagées</strong> viennent de <code>ClesCriteres</code>, les clés propres restent chez
+   vous (<a href="../decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation/">ADR 3096</a>) ;</li>
+<li>un collaborateur <code>FiltresVuesMaFeature</code> assemble barre, vues mémorisées et mémoire de session -
+   le contrôleur lui passe les nœuds du FXML regroupés, ce qui le garde sous le plafond <code>GodClass</code> ;</li>
+<li>le FXML gagne la barre <strong>et le bandeau de retour</strong> : sans lui, la mémoire de session remettrait
+   des filtres amputés en silence
+   (<a href="../decisions/3093-une-restauration-rend-compte-de-deux-causes/">ADR 3093</a>).</li>
+</ol>
+<p>Deux règles à ne pas rater, parce qu'elles ne font rougir aucun test :</p>
+<ul>
+<li>le <strong>domaine</strong> d'une puce se calcule sur <code>filtres().saufLui(CLE)</code>, jamais sur la liste affichée -
+  sinon la puce s'auto-effondre sur la valeur déjà cochée
+  (<a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/">ADR 3095</a>) ;</li>
+<li>si l'écran porte un <strong>verdict ou un résumé</strong> sur l'ensemble, il se calcule sur la liste <strong>non
+  filtrée</strong> (<a href="../decisions/3092-un-filtre-ne-change-que-ce-quon-regarde/">ADR 3092</a>).</li>
+</ul>
+<p>Enfin, le décompte des critères s'ancre dans la fiche d'écran par une balise
+<code>&lt;!--inv:criteres-mafeature--&gt;N&lt;!--/inv--&gt;</code>, et la clé s'ajoute à <code>DocumentationAJourTest</code>.</p>
 </div>
 <h2 id="5-le-module-guice-di-lauto-decouverte">5. Le module Guice (<code>di/</code>) + l'auto-découverte<a class="headerlink" href="#5-le-module-guice-di-lauto-decouverte" title="Permanent link">&para;</a></h2>
 <p>Un module qui publie service/VM, <strong>hérité de <code>ModuleDeFeature</code></strong> (le DSL du socle) :</p>

@@ -2821,6 +2821,90 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3092-un-filtre-ne-change-que-ce-quon-regarde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3092 · Un filtre ne change que ce qu'on regarde
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3093-une-restauration-rend-compte-de-deux-causes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3093 · Une restauration rend compte de deux causes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3096 · Une clé de critère est un contrat de sérialisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/" class="md-nav__link">
         
   
@@ -4071,9 +4155,9 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>solde-saison</code></td>
-<td><code>[--annee N] [--format texte\|csv\|json]</code></td>
+<td><code>[--annee N] [--campagne &lt;nom&gt;] [--lieu &lt;texte&gt;] [--reste-a-faire] [--format texte\|csv\|json]</code></td>
 <td>#2356</td>
-<td><code>ServiceSoldeSaison</code> (lecture) : ce qu'il reste à faire, point par point, pour une saison (règles R3/R4 restituées). Même décompte que l'écran « Ma saison » (service partagé, parité IHM/CLI). <code>texte</code> par défaut, <code>csv</code>/<code>json</code> scriptables</td>
+<td><code>ServiceSoldeSaison</code> (lecture) : ce qu'il reste à faire, point par point, pour une saison (règles R3/R4 restituées). <code>--lieu</code> et <code>--reste-a-faire</code> sont les <strong>deux filtres de l'écran</strong> « Ma saison » (#3103), portés ici à la clôture de #3092 et lus sur la même écriture (<code>FiltresSaison</code>). Ils ne touchent <strong>que la liste des points</strong> : l'en-tête continue d'annoncer le solde de la <strong>saison entière</strong>, comme à l'écran. Un filtre qui ne retient rien le <strong>dit</strong>. Même décompte que l'écran « Ma saison » (service partagé, parité IHM/CLI). <code>texte</code> par défaut, <code>csv</code>/<code>json</code> scriptables</td>
 </tr>
 <tr>
 <td><code>statut-passage</code></td>
@@ -4269,9 +4353,9 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>audit-coherence</code></td>
-<td><code>[--passage &lt;id&gt;] [--json] [--online] [--token &lt;jeton&gt;]</code></td>
+<td><code>[--passage &lt;id&gt;] [--gravite &lt;niveau&gt;] [--categorie &lt;nature&gt;] [--json] [--online] [--token &lt;jeton&gt;]</code></td>
 <td>#1133, #1254, #1347</td>
-<td><code>ServiceAuditCoherence</code> : confronte <strong>disque, base et serveur</strong>. Sans <code>--passage</code>, audite tout le workspace ; avec, une seule nuit (utile après l'avoir réparée). <code>--online</code> ajoute les constats qui demandent le réseau (dépôts, points). <code>0</code> ssi aucun constat d'erreur</td>
+<td><code>ServiceAuditCoherence</code> : confronte <strong>disque, base et serveur</strong>. <code>--gravite</code> et <code>--categorie</code> sont les <strong>deux puces</strong> de l'écran « Audit de cohérence » (#3100), portées ici à la clôture de #3092 ; chacune retient une valeur <strong>exacte</strong>. ⚠️ Elles filtrent <strong>l'affichage seul</strong> : le <strong>code de sortie continue de juger le rapport entier</strong>, sans quoi <code>--gravite INFO</code> sur un workspace abîmé rendrait <code>0</code> et un script d'intégration conclurait que tout va bien. Sans <code>--passage</code>, audite tout le workspace ; avec, une seule nuit (utile après l'avoir réparée). <code>--online</code> ajoute les constats qui demandent le réseau (dépôts, points). <code>0</code> ssi aucun constat d'erreur</td>
 </tr>
 <tr>
 <td><code>sauvegarder</code></td>

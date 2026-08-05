@@ -2912,6 +2912,90 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3092-un-filtre-ne-change-que-ce-quon-regarde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3092 · Un filtre ne change que ce qu'on regarde
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3093-une-restauration-rend-compte-de-deux-causes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3093 · Une restauration rend compte de deux causes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3096 · Une clé de critère est un contrat de sérialisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/" class="md-nav__link">
         
   
@@ -4512,7 +4596,7 @@ la commune, le carré et le point. Ce qui ressemblait à une quatrième dimensio
 <strong>nom convivial du carré</strong> - <code>monitoring_site</code> porte les deux colonnes sur la même ligne - et les deux
 tiennent dans une seule entrée, « 640380 · Vallon ». <code>CritereLieu.carres</code> et <code>CritereLieu.points</code>
 écrivent cette règle une fois pour les quatre écrans ; l'écriture partagée vit en
-<code>commun.model.LieuQualifie</code>, la <strong>ligne de commande</strong> devant la lire aussi (<code>FiltreLieu</code>), et un modèle
+<code>commun.model.LieuQualifie</code>, la <strong>ligne de commande</strong> devant la lire aussi (<code>FiltresLieu</code>), et un modèle
 ne pouvant pas dépendre d'une vue.</p>
 <p><strong>Une dimension qui change d'écriture déclare de quel côté</strong> (<a href="../decisions/3158-une-valeur-memorisee-se-rattrape-par-dimension/">ADR 3158</a>).
 Une vue mémorise le <strong>texte</strong> coché : requalifier une entrée le rend introuvable. Le socle demande donc
@@ -4552,6 +4636,126 @@ n'appellent pas la même réaction - une valeur disparue tient aux données, un 
 <p>Il existe <strong>trois</strong> chemins de restauration, et tous trois doivent lire ce retour : les vues
 sauvegardées, le transport d'un écran à l'autre (#476) et la mémoire de session (#484). En ignorer un
 laisse l'écran filtrer moins large qu'annoncé, sans rien dire.</p>
+<h3 id="les-filtres-de-model-deux-roles-une-convention-de-nom">Les filtres de <code>model</code> : deux rôles, une convention de nom<a class="headerlink" href="#les-filtres-de-model-deux-roles-une-convention-de-nom" title="Permanent link">&para;</a></h3>
+<p>Six classes <code>Filtres*</code> vivent en <code>model</code>, hors du socle de vue. L'audit d'harmonisation de la clôture
+de #3092 a montré qu'elles ne relèvent pas de trois idiomes, comme leur forme le laissait croire, mais
+de <strong>deux rôles</strong>, et que seul leur <strong>nommage</strong> divergeait.</p>
+<table>
+<thead>
+<tr>
+<th>Rôle</th>
+<th>Forme</th>
+<th>Classes</th>
+<th>Consommé par</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Prédicat composable</strong></td>
+<td>objet chaînable + <code>accepte(ligne)</code></td>
+<td><code>FiltresMultisite</code></td>
+<td>un service <strong>et</strong> un catalogue d'écran</td>
+</tr>
+<tr>
+<td><strong>Application à une liste</strong></td>
+<td><code>parX(List, critère) → List</code></td>
+<td><code>FiltresActivite</code>, <code>FiltresRevue</code>, <code>FiltresLieu</code>, <code>FiltresProbabilite</code>, <code>FiltresSaison</code></td>
+<td>la <strong>ligne de commande</strong></td>
+</tr>
+</tbody>
+</table>
+<p>La différence est légitime et se garde : un écran a besoin d'un <code>Predicate</code> à poser dans son
+<code>Filtres&lt;T&gt;</code>, une commande a besoin d'une liste déjà réduite. Les convertir toutes à une seule forme
+ferait porter à l'une le coût de l'autre.</p>
+<p><strong>Ce qui, lui, ne se justifiait pas</strong>, et a été aligné : deux classes portaient un nom <strong>singulier</strong> et
+une méthode <code>appliquer</code> là où les autres portent un pluriel et un verbe qui dit <strong>sur quoi</strong> l'on
+filtre. <code>FiltreLieu.appliquer</code> est devenu <code>FiltresLieu.parLieu</code>, <code>FiltreProbabilite.appliquer</code> est
+devenu <code>FiltresProbabilite.parSeuilMinimal</code>. Un nom qui dit son critère se lit sans ouvrir la classe.</p>
+<p><strong>Une règle lue des deux côtés s'écrit dans <code>model</code>.</strong> <code>FiltresLieu</code> et <code>FiltresSaison</code> sont lues par
+la ligne de commande <strong>et</strong> par un catalogue d'écran ; un catalogue de <code>view</code> qui garderait sa propre
+copie finirait par diverger - c'est arrivé le jour même où #3219 a ajouté la recherche par nom de carré
+à « Ma saison ».</p>
+<p>⚠️ La comparaison de texte insensible à la casse et aux accents vit dans
+<code>commun.model.NormalisationTexte.contient</code>, et nulle part ailleurs. Six catalogues en avaient
+re-déclaré une copie privée identique - dont deux écrites par ce chantier même. La méthode partagée
+<strong>normalise elle-même</strong> l'aiguille et refuse une aiguille <strong>vide</strong>, là où les copies laissaient tout
+passer.</p>
+<h3 id="la-memoire-de-session-separe-les-filtres-du-tri">La mémoire de session sépare les filtres du tri<a class="headerlink" href="#la-memoire-de-session-separe-les-filtres-du-tri" title="Permanent link">&para;</a></h3>
+<p><code>MemoireFiltres</code> (#3098) retient l'état d'un écran d'une visite à l'autre, en <strong>deux mémoires
+distinctes</strong> :</p>
+<ul>
+<li><code>installer(ecran, ancrage, gestionnaireFiltres, compteRendu)</code> retient les <strong>filtres</strong>, un jeu par
+  écran. L'<code>ancrage</code> est n'importe quel nœud : il sert d'horloge de sortie, pas de contenu ;</li>
+<li><code>memoriserTri(ecran, table)</code> retient le <strong>tri</strong>, repéré par le <code>fx:id</code> de la table. Un écran en
+  appelle autant que de tables, un écran sans table n'en appelle aucune.</li>
+</ul>
+<p><strong>Pourquoi deux.</strong> La première version en supposait une seule, un tri par écran. La réalité mesurée :
+« Sons &amp; validation » a une table, « Carte &amp; passages » une, « Espèces &amp; observations » <strong>trois</strong>, et
+« Activité de la nuit » <strong>aucune</strong> - c'est un graphe. Une mémoire unique aurait confondu les trois
+tables de l'analyse et réclamé une table à un écran qui n'en a pas.</p>
+<p>⚠️ La restauration des filtres <strong>rend compte</strong> de ce qu'elle n'a pas su replacer : c'est le chemin le
+plus discret des trois, puisque personne n'a rien demandé
+(<a href="../decisions/3093-une-restauration-rend-compte-de-deux-causes/">ADR 3093</a>).</p>
+<h3 id="tout-effacer-est-un-geste-pas-un-bouton">« Tout effacer » est un geste, pas un bouton<a class="headerlink" href="#tout-effacer-est-un-geste-pas-un-bouton" title="Permanent link">&para;</a></h3>
+<p>Les cinq écrans à barre nomment ce geste <strong>de la même façon</strong> et lui font faire <strong>la même chose</strong> :
+retirer les filtres, effacer le tri de la table, et <strong>oublier</strong> ce que la mémoire de session
+s'apprêtait à remettre. Sans le troisième volet, les filtres qu'on vient d'effacer reviennent à la
+réouverture, et le bouton paraît n'avoir pas pris.</p>
+<p>Un écran sans table (« Activité de la nuit ») n'efface évidemment pas de tri, et son <code>accessibleText</code>
+le dit : « Effacer tous les filtres », sans « et le tri ».</p>
+<p>⚠️ « Carte &amp; passages » a porté le libellé « Réinitialiser » jusqu'à la clôture de #3092 - le geste y
+était pourtant déjà identique. C'est l'écran <strong>d'origine</strong> du geste, resté sous l'ancien nom quand il
+s'est généralisé : un cas d'école de divergence par ancienneté, qu'aucun test ne signale.</p>
+<h3 id="les-filtres-existent-aussi-en-ligne-de-commande">Les filtres existent aussi en ligne de commande<a class="headerlink" href="#les-filtres-existent-aussi-en-ligne-de-commande" title="Permanent link">&para;</a></h3>
+<p>Un critère d'écran qui répond à une question métier a son équivalent en ligne de commande, à la même
+sémantique (<a href="../decisions/0014-parite-cli-ihm/">ADR 0014</a>). L'état à la clôture de #3092 :</p>
+<table>
+<thead>
+<tr>
+<th>Écran</th>
+<th>Commande jumelle</th>
+<th>Parité</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Sons &amp; validation</td>
+<td><code>lister-observations</code></td>
+<td>10 / 10</td>
+</tr>
+<tr>
+<td>Activité de la nuit</td>
+<td><code>exporter-activite</code></td>
+<td>5 / 5</td>
+</tr>
+<tr>
+<td>Audit de cohérence</td>
+<td><code>audit-coherence</code></td>
+<td>3 / 3</td>
+</tr>
+<tr>
+<td>Ma saison</td>
+<td><code>solde-saison</code></td>
+<td>2 / 2</td>
+</tr>
+<tr>
+<td>Carte &amp; passages</td>
+<td><code>lister-passages</code></td>
+<td><strong>0 / 7</strong></td>
+</tr>
+<tr>
+<td>Espèces &amp; observations</td>
+<td><em>aucune</em></td>
+<td><strong>sans jumelle</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Les deux dernières lignes sont une dette <strong>antérieure</strong> au chantier, rendue visible en confrontant les
+inventaires complets plutôt que des exemples.</p>
+<p>Quand la règle est la même des deux côtés, elle s'écrit <strong>une fois</strong> dans <code>model</code> : <code>FiltresLieu</code> pour le
+lieu, <code>FiltresSaison</code> pour la recherche et le « reste à faire ». Un catalogue de <code>view</code> qui garderait sa
+propre copie finirait par diverger - c'est arrivé le jour même où #3219 a ajouté la recherche par nom de
+carré.</p>
 <h3 id="poser-le-socle-sur-un-cinquieme-ecran-3100">Poser le socle sur un cinquième écran (#3100)<a class="headerlink" href="#poser-le-socle-sur-un-cinquieme-ecran-3100" title="Permanent link">&para;</a></h3>
 <p>L'« Audit de cohérence » a rejoint les quatre tables exploratoires. Le travail utile a été d'<strong>installer
 la barre</strong>, pas d'inventer quoi que ce soit : <code>FiltresVuesAudit</code> reprend trait pour trait le découpage de

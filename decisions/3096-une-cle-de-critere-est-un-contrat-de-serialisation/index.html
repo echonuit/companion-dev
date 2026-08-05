@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/injection/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation/">
       
       
-        <link rel="prev" href="../glossaire/">
+        <link rel="prev" href="../3093-une-restauration-rend-compte-de-deux-causes/">
       
       
-        <link rel="next" href="../ajouter-une-fonctionnalite/">
+        <link rel="next" href="../3095-un-domaine-se-calcule-sans-son-propre-critere/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Injection (Guice) - VigieChiro Companion · Doc développeur</title>
+        <title>3096 · Une clé de critère est un contrat de sérialisation - VigieChiro Companion · Doc développeur</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#injection-guice" class="md-skip">
+        <a href="#adr-3096-une-cle-de-critere-est-un-contrat-de-serialisation-un-concept-un-endroit-et-un-renommage-sans-migration" class="md-skip">
           Aller au contenu
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="En-tête">
-    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+    <a href="../.." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Injection (Guice)
+              3096 · Une clé de critère est un contrat de sérialisation
             
           </span>
         </div>
@@ -234,7 +234,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+    <a href="../.." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -264,7 +264,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -291,7 +291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
+      <a href="../../architecture/" class="md-nav__link">
         
   
   
@@ -318,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../patterns/" class="md-nav__link">
+      <a href="../../patterns/" class="md-nav__link">
         
   
   
@@ -345,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../navigation/" class="md-nav__link">
+      <a href="../../navigation/" class="md-nav__link">
         
   
   
@@ -372,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../persistance/" class="md-nav__link">
+      <a href="../../persistance/" class="md-nav__link">
         
   
   
@@ -399,7 +399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../modele-de-donnees/" class="md-nav__link">
+      <a href="../../modele-de-donnees/" class="md-nav__link">
         
   
   
@@ -426,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../glossaire/" class="md-nav__link">
+      <a href="../../glossaire/" class="md-nav__link">
         
   
   
@@ -450,37 +450,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Injection (Guice)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../injection/" class="md-nav__link">
         
   
   
@@ -496,109 +469,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#la-racine-de-composition" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        La racine de composition
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#feature-flags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Feature-flags
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Feature-flags">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Livrer un écran inachevé : conditionner l'accès, jamais les composants
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-publie-un-module-de-feature" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que publie un module de feature
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#des-controllers-fxml-injectes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Des controllers FXML injectés
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#valeurs-transverses-bindings-nommes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Valeurs transverses : bindings nommés
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#defaut-dinjection-surchargeable-implementedby" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Défaut d'injection surchargeable (@ImplementedBy)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -610,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ajouter-une-fonctionnalite/" class="md-nav__link">
+      <a href="../../ajouter-une-fonctionnalite/" class="md-nav__link">
         
   
   
@@ -637,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cycle-de-chantier/" class="md-nav__link">
+      <a href="../../cycle-de-chantier/" class="md-nav__link">
         
   
   
@@ -661,18 +531,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -693,7 +565,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
@@ -711,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -739,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
+      <a href="../0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
         
   
   
@@ -767,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
+      <a href="../0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
         
   
   
@@ -795,7 +667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
+      <a href="../0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
         
   
   
@@ -823,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
+      <a href="../0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
         
   
   
@@ -851,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
+      <a href="../0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
         
   
   
@@ -879,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
+      <a href="../0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
         
   
   
@@ -907,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
+      <a href="../0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
         
   
   
@@ -935,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
+      <a href="../0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
         
   
   
@@ -963,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
+      <a href="../0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
         
   
   
@@ -991,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
+      <a href="../0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
         
   
   
@@ -1019,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
+      <a href="../0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
         
   
   
@@ -1047,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
+      <a href="../0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
         
   
   
@@ -1075,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
+      <a href="../0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
         
   
   
@@ -1103,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0014-parite-cli-ihm/" class="md-nav__link">
+      <a href="../0014-parite-cli-ihm/" class="md-nav__link">
         
   
   
@@ -1131,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
+      <a href="../0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
         
   
   
@@ -1159,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
+      <a href="../0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
         
   
   
@@ -1187,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
+      <a href="../0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
         
   
   
@@ -1215,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
+      <a href="../0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
         
   
   
@@ -1243,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
+      <a href="../0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
         
   
   
@@ -1271,7 +1143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
+      <a href="../0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
         
   
   
@@ -1299,7 +1171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
+      <a href="../0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
         
   
   
@@ -1327,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
+      <a href="../0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
         
   
   
@@ -1355,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
+      <a href="../0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
         
   
   
@@ -1383,7 +1255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
+      <a href="../0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
         
   
   
@@ -1411,7 +1283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
+      <a href="../0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
         
   
   
@@ -1439,7 +1311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
+      <a href="../0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
         
   
   
@@ -1467,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
+      <a href="../0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
         
   
   
@@ -1495,7 +1367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
+      <a href="../0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
         
   
   
@@ -1523,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
+      <a href="../0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
         
   
   
@@ -1551,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0032-le-plan-precede-l-ecriture/" class="md-nav__link">
+      <a href="../0032-le-plan-precede-l-ecriture/" class="md-nav__link">
         
   
   
@@ -1579,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0033-la-fenetre-borne-le-disque/" class="md-nav__link">
+      <a href="../0033-la-fenetre-borne-le-disque/" class="md-nav__link">
         
   
   
@@ -1607,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
+      <a href="../0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
         
   
   
@@ -1635,7 +1507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
+      <a href="../0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
         
   
   
@@ -1663,7 +1535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
+      <a href="../0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
         
   
   
@@ -1691,7 +1563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
+      <a href="../0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
         
   
   
@@ -1719,7 +1591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
+      <a href="../0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
         
   
   
@@ -1747,7 +1619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
+      <a href="../0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
         
   
   
@@ -1775,7 +1647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
+      <a href="../0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
         
   
   
@@ -1803,7 +1675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
+      <a href="../0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
         
   
   
@@ -1831,7 +1703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
+      <a href="../0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
         
   
   
@@ -1859,7 +1731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
+      <a href="../0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
         
   
   
@@ -1887,7 +1759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
+      <a href="../0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
         
   
   
@@ -1915,7 +1787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
+      <a href="../0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
         
   
   
@@ -1943,7 +1815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
+      <a href="../0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
         
   
   
@@ -1971,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
+      <a href="../0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
         
   
   
@@ -1999,7 +1871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
+      <a href="../0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
         
   
   
@@ -2027,7 +1899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/" class="md-nav__link">
+      <a href="../1038-la-configuration-d-amorcage-vit-hors-de-la-base/" class="md-nav__link">
         
   
   
@@ -2055,7 +1927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/" class="md-nav__link">
+      <a href="../1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/" class="md-nav__link">
         
   
   
@@ -2083,7 +1955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2465-une-adr-declare-comment-elle-est-verifiee/" class="md-nav__link">
+      <a href="../2465-une-adr-declare-comment-elle-est-verifiee/" class="md-nav__link">
         
   
   
@@ -2111,7 +1983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2493-une-modale-a-revelation-suit-la-croissance/" class="md-nav__link">
+      <a href="../2493-une-modale-a-revelation-suit-la-croissance/" class="md-nav__link">
         
   
   
@@ -2139,7 +2011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
+      <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
         
   
   
@@ -2167,7 +2039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/" class="md-nav__link">
+      <a href="../2357-un-traitement-en-lot-compose-des-gestes-unitaires/" class="md-nav__link">
         
   
   
@@ -2195,7 +2067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
+      <a href="../2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
         
   
   
@@ -2223,7 +2095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/" class="md-nav__link">
+      <a href="../2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/" class="md-nav__link">
         
   
   
@@ -2251,7 +2123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/" class="md-nav__link">
+      <a href="../2581-un-etat-qui-decide-de-l-affichage-se-declare/" class="md-nav__link">
         
   
   
@@ -2279,7 +2151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre/" class="md-nav__link">
+      <a href="../2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre/" class="md-nav__link">
         
   
   
@@ -2307,7 +2179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/" class="md-nav__link">
+      <a href="../2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/" class="md-nav__link">
         
   
   
@@ -2335,7 +2207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2351-un-nombre-de-contacts-se-lit-contre-un-referentiel-cite/" class="md-nav__link">
+      <a href="../2351-un-nombre-de-contacts-se-lit-contre-un-referentiel-cite/" class="md-nav__link">
         
   
   
@@ -2363,7 +2235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/" class="md-nav__link">
+      <a href="../2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/" class="md-nav__link">
         
   
   
@@ -2391,7 +2263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/" class="md-nav__link">
+      <a href="../2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/" class="md-nav__link">
         
   
   
@@ -2419,7 +2291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
+      <a href="../2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
         
   
   
@@ -2447,7 +2319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2348-un-export-d-image-se-redessine-il-ne-se-capture-pas/" class="md-nav__link">
+      <a href="../2348-un-export-d-image-se-redessine-il-ne-se-capture-pas/" class="md-nav__link">
         
   
   
@@ -2475,7 +2347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/" class="md-nav__link">
+      <a href="../2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/" class="md-nav__link">
         
   
   
@@ -2503,7 +2375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/" class="md-nav__link">
+      <a href="../2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/" class="md-nav__link">
         
   
   
@@ -2531,7 +2403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2433-un-dossier-de-transformes-s-importe-par-reference/" class="md-nav__link">
+      <a href="../2433-un-dossier-de-transformes-s-importe-par-reference/" class="md-nav__link">
         
   
   
@@ -2559,7 +2431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2385-la-doc-chiffree-est-adossee-au-code/" class="md-nav__link">
+      <a href="../2385-la-doc-chiffree-est-adossee-au-code/" class="md-nav__link">
         
   
   
@@ -2587,7 +2459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2791-la-commune-se-derive-du-gps-et-s-attache-au-point/" class="md-nav__link">
+      <a href="../2791-la-commune-se-derive-du-gps-et-s-attache-au-point/" class="md-nav__link">
         
   
   
@@ -2615,7 +2487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2792-l-archive-d-export-range-les-sons-par-session/" class="md-nav__link">
+      <a href="../2792-l-archive-d-export-range-les-sons-par-session/" class="md-nav__link">
         
   
   
@@ -2643,7 +2515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2843-typographie-cliquet-plutot-que-nettoyage/" class="md-nav__link">
+      <a href="../2843-typographie-cliquet-plutot-que-nettoyage/" class="md-nav__link">
         
   
   
@@ -2671,7 +2543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3006-le-groupe-api-est-borne/" class="md-nav__link">
+      <a href="../3006-le-groupe-api-est-borne/" class="md-nav__link">
         
   
   
@@ -2699,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2867-une-dette-se-tient-par-un-cliquet/" class="md-nav__link">
+      <a href="../2867-une-dette-se-tient-par-un-cliquet/" class="md-nav__link">
         
   
   
@@ -2727,7 +2599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2951-une-exclusion-nomme-son-repreneur/" class="md-nav__link">
+      <a href="../2951-une-exclusion-nomme-son-repreneur/" class="md-nav__link">
         
   
   
@@ -2755,7 +2627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2941-un-cliquet-s-apprend-en-l-appliquant/" class="md-nav__link">
+      <a href="../2941-un-cliquet-s-apprend-en-l-appliquant/" class="md-nav__link">
         
   
   
@@ -2783,7 +2655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3018-un-outil-compose-depuis-la-racine/" class="md-nav__link">
+      <a href="../3018-un-outil-compose-depuis-la-racine/" class="md-nav__link">
         
   
   
@@ -2811,7 +2683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3048-la-parite-dune-sortie-machine-est-de-dire/" class="md-nav__link">
+      <a href="../3048-la-parite-dune-sortie-machine-est-de-dire/" class="md-nav__link">
         
   
   
@@ -2839,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3068-le-determinisme-porte-sur-ce-que-le-produit-rend/" class="md-nav__link">
+      <a href="../3068-le-determinisme-porte-sur-ce-que-le-produit-rend/" class="md-nav__link">
         
   
   
@@ -2867,7 +2739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3053-une-capture-exige-son-libelle/" class="md-nav__link">
+      <a href="../3053-une-capture-exige-son-libelle/" class="md-nav__link">
         
   
   
@@ -2895,7 +2767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2861-une-donnee-de-point-ne-se-montre-pas-sur-une-ligne-agregee/" class="md-nav__link">
+      <a href="../2861-une-donnee-de-point-ne-se-montre-pas-sur-une-ligne-agregee/" class="md-nav__link">
         
   
   
@@ -2923,7 +2795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3082-designer-refuse-qualifier-rend-vide/" class="md-nav__link">
+      <a href="../3082-designer-refuse-qualifier-rend-vide/" class="md-nav__link">
         
   
   
@@ -2951,7 +2823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3092-un-filtre-ne-change-que-ce-quon-regarde/" class="md-nav__link">
+      <a href="../3092-un-filtre-ne-change-que-ce-quon-regarde/" class="md-nav__link">
         
   
   
@@ -2979,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3093-une-restauration-rend-compte-de-deux-causes/" class="md-nav__link">
+      <a href="../3093-une-restauration-rend-compte-de-deux-causes/" class="md-nav__link">
         
   
   
@@ -3004,10 +2876,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3096 · Une clé de critère est un contrat de sérialisation
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3023,6 +2922,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pourquoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pourquoi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-ecartees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives écartées
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3035,7 +3009,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/" class="md-nav__link">
+      <a href="../3095-un-domaine-se-calcule-sans-son-propre-critere/" class="md-nav__link">
         
   
   
@@ -3063,7 +3037,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3099-une-puce-preselectionnee-annonce-ce-quelle-filtre/" class="md-nav__link">
+      <a href="../3099-une-puce-preselectionnee-annonce-ce-quelle-filtre/" class="md-nav__link">
         
   
   
@@ -3091,7 +3065,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3157-un-carre-a-un-identifiant-et-une-etiquette/" class="md-nav__link">
+      <a href="../3157-un-carre-a-un-identifiant-et-une-etiquette/" class="md-nav__link">
         
   
   
@@ -3119,7 +3093,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3158-une-valeur-memorisee-se-rattrape-par-dimension/" class="md-nav__link">
+      <a href="../3158-une-valeur-memorisee-se-rattrape-par-dimension/" class="md-nav__link">
         
   
   
@@ -3147,7 +3121,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3168-un-audit-qui-ne-peut-pas-trancher-montre-sans-juger/" class="md-nav__link">
+      <a href="../3168-un-audit-qui-ne-peut-pas-trancher-montre-sans-juger/" class="md-nav__link">
         
   
   
@@ -3175,7 +3149,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
+      <a href="../3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
   
@@ -3203,7 +3177,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
+      <a href="../2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
         
   
   
@@ -3231,7 +3205,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2729-un-script-publie-ne-se-modifie-plus/" class="md-nav__link">
+      <a href="../2729-un-script-publie-ne-se-modifie-plus/" class="md-nav__link">
         
   
   
@@ -3259,7 +3233,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2731-un-seul-processus-par-workspace/" class="md-nav__link">
+      <a href="../2731-un-seul-processus-par-workspace/" class="md-nav__link">
         
   
   
@@ -3287,7 +3261,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
+      <a href="../2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
         
   
   
@@ -3315,7 +3289,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
+      <a href="../2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
         
   
   
@@ -3397,7 +3371,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/" class="md-nav__link">
+      <a href="../../recette/" class="md-nav__link">
         
   
   
@@ -3425,7 +3399,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/fixtures/" class="md-nav__link">
+      <a href="../../recette/fixtures/" class="md-nav__link">
         
   
   
@@ -3453,7 +3427,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s1-premier-contact/" class="md-nav__link">
+      <a href="../../recette/sessions/s1-premier-contact/" class="md-nav__link">
         
   
   
@@ -3481,7 +3455,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s2-importer/" class="md-nav__link">
+      <a href="../../recette/sessions/s2-importer/" class="md-nav__link">
         
   
   
@@ -3509,7 +3483,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s3-verifier/" class="md-nav__link">
+      <a href="../../recette/sessions/s3-verifier/" class="md-nav__link">
         
   
   
@@ -3537,7 +3511,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
+      <a href="../../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
         
   
   
@@ -3565,7 +3539,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s5-valider/" class="md-nav__link">
+      <a href="../../recette/sessions/s5-valider/" class="md-nav__link">
         
   
   
@@ -3593,7 +3567,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s6-exploiter-piloter/" class="md-nav__link">
+      <a href="../../recette/sessions/s6-exploiter-piloter/" class="md-nav__link">
         
   
   
@@ -3621,7 +3595,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
+      <a href="../../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
         
   
   
@@ -3656,7 +3630,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cli/" class="md-nav__link">
+      <a href="../../cli/" class="md-nav__link">
         
   
   
@@ -3683,7 +3657,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tests-et-qualite/" class="md-nav__link">
+      <a href="../../tests-et-qualite/" class="md-nav__link">
         
   
   
@@ -3710,7 +3684,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-vigiechiro/" class="md-nav__link">
+      <a href="../../api-vigiechiro/" class="md-nav__link">
         
   
   
@@ -3737,7 +3711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance/" class="md-nav__link">
+      <a href="../../performance/" class="md-nav__link">
         
   
   
@@ -3764,7 +3738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../observabilite/" class="md-nav__link">
+      <a href="../../observabilite/" class="md-nav__link">
         
   
   
@@ -3791,7 +3765,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../captures/" class="md-nav__link">
+      <a href="../../captures/" class="md-nav__link">
         
   
   
@@ -3818,7 +3792,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ci-cd-release/" class="md-nav__link">
+      <a href="../../ci-cd-release/" class="md-nav__link">
         
   
   
@@ -3845,7 +3819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../securite/" class="md-nav__link">
+      <a href="../../securite/" class="md-nav__link">
         
   
   
@@ -3892,10 +3866,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#la-racine-de-composition" class="md-nav__link">
+  <a href="#contexte" class="md-nav__link">
     <span class="md-ellipsis">
       
-        La racine de composition
+        Contexte
       
     </span>
   </a>
@@ -3903,38 +3877,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#feature-flags" class="md-nav__link">
+  <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Feature-flags
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Feature-flags">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Livrer un écran inachevé : conditionner l'accès, jamais les composants
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-publie-un-module-de-feature" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que publie un module de feature
+        Décision
       
     </span>
   </a>
@@ -3942,10 +3888,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#des-controllers-fxml-injectes" class="md-nav__link">
+  <a href="#pourquoi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Des controllers FXML injectés
+        Pourquoi
       
     </span>
   </a>
@@ -3953,10 +3899,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#valeurs-transverses-bindings-nommes" class="md-nav__link">
+  <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Valeurs transverses : bindings nommés
+        Conséquences
       
     </span>
   </a>
@@ -3964,10 +3910,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#defaut-dinjection-surchargeable-implementedby" class="md-nav__link">
+  <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Défaut d'injection surchargeable (@ImplementedBy)
+        Alternatives écartées
       
     </span>
   </a>
@@ -3991,7 +3937,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/injection.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4000,277 +3946,68 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/injection.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="injection-guice">Injection (Guice)<a class="headerlink" href="#injection-guice" title="Permanent link">&para;</a></h1>
-<p>Toutes les dépendances sont câblées par <strong>Guice 7</strong> : services, DAO, ViewModels et même les
-<strong>controllers FXML</strong>. Aucun <code>new</code> métier dispersé dans le code.</p>
-<h2 id="la-racine-de-composition">La racine de composition<a class="headerlink" href="#la-racine-de-composition" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di/RacineInjecteur.java"><code>RacineInjecteur</code></a>
-assemble le graphe : le <strong>socle</strong> (<code>CommunModule</code> + <code>PersistenceModule</code>), installé <strong>explicitement</strong>,
-et les <strong>modules de feature</strong>, <strong>auto-découverts</strong> via <code>ServiceLoader&lt;</code><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di/ModuleDeFeature.java"><code>ModuleDeFeature</code></a><code>&gt;</code>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Module</span><span class="o">&gt;</span><span class="w"> </span><span class="nf">modules</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Module</span><span class="o">&gt;</span><span class="w"> </span><span class="n">modules</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ArrayList</span><span class="o">&lt;&gt;</span><span class="p">();</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">    </span><span class="n">modules</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">CommunModule</span><span class="p">());</span><span class="w">          </span><span class="c1">// socle : toujours explicite</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">    </span><span class="n">modules</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">PersistenceModule</span><span class="p">());</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="n">Predicate</span><span class="o">&lt;</span><span class="n">ModuleDeFeature</span><span class="o">&gt;</span><span class="w"> </span><span class="n">actif</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Fonctionnalites</span><span class="p">.</span><span class="na">filtreActives</span><span class="p">();</span><span class="w"> </span><span class="c1">// feature-flags</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">    </span><span class="n">ServiceLoader</span><span class="p">.</span><span class="na">load</span><span class="p">(</span><span class="n">ModuleDeFeature</span><span class="p">.</span><span class="na">class</span><span class="p">)</span><span class="w">  </span><span class="c1">// features : découvertes</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">            </span><span class="p">.</span><span class="na">stream</span><span class="p">().</span><span class="na">map</span><span class="p">(</span><span class="n">ServiceLoader</span><span class="p">.</span><span class="na">Provider</span><span class="p">::</span><span class="n">get</span><span class="p">)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">            </span><span class="p">.</span><span class="na">filter</span><span class="p">(</span><span class="n">actif</span><span class="p">)</span><span class="w">                      </span><span class="c1">// features désactivées écartées</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">            </span><span class="p">.</span><span class="na">sorted</span><span class="p">(</span><span class="n">Comparator</span><span class="p">.</span><span class="na">comparing</span><span class="p">(</span><span class="n">m</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="na">getClass</span><span class="p">().</span><span class="na">getName</span><span class="p">()))</span><span class="w"> </span><span class="c1">// ordre déterministe</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">            </span><span class="p">.</span><span class="na">forEach</span><span class="p">(</span><span class="n">modules</span><span class="p">::</span><span class="n">add</span><span class="p">);</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">List</span><span class="p">.</span><span class="na">copyOf</span><span class="p">(</span><span class="n">modules</span><span class="p">);</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="p">}</span>
-</code></pre></div>
-<p><strong>Ajouter une feature ne touche donc plus la racine</strong> : il suffit d'un <code>XxxModule extends
-ModuleDeFeature</code> <strong>déclaré comme service</strong>. Deux déclarations, gardées synchronisées par
-<code>DecouverteModulesTest</code> (qui lit le <code>module-info.class</code> pour les comparer) :</p>
+<h1 id="adr-3096-une-cle-de-critere-est-un-contrat-de-serialisation-un-concept-un-endroit-et-un-renommage-sans-migration">ADR 3096 - Une clé de critère est un <strong>contrat de sérialisation</strong> : un concept, un endroit, et un renommage sans migration<a class="headerlink" href="#adr-3096-une-cle-de-critere-est-un-contrat-de-serialisation-un-concept-un-endroit-et-un-renommage-sans-migration" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>classpath</strong> (tests surefire <code>useModulePath=false</code>, fat-jar/Launcher) :
-  <code>src/main/resources/META-INF/services/fr.univ_amu.iut.commun.di.ModuleDeFeature</code> ;</li>
-<li><strong>module-path</strong> (<code>javafx:run</code>) : <code>uses</code> + <code>provides … with …</code> dans <code>module-info.java</code>.</li>
+<li><strong>Statut</strong> : Accepté - 2026-08-04</li>
+<li><strong>Chantier</strong> : #3096, palier 3 du chantier #3092</li>
+<li><strong>Vérification</strong> : certaine - <code>ClesCriteresTest#aucune_cle_publiee_deux_fois</code></li>
 </ul>
-<p>L'ordre d'installation n'a <strong>aucun effet fonctionnel</strong> (les <code>Set</code> des points d'extension sont retriés
-par <code>ordre()</code> côté chrome, <code>OptionalBinder.setBinding</code> l'emporte quel que soit l'ordre) ; le tri par
-nom de classe garantit seulement la <strong>reproductibilité</strong>. Une feature peut être <strong>désactivée</strong>
-(feature-flag) : voir <a href="#feature-flags">Feature-flags</a> ci-dessous.</p>
-<div class="admonition note">
-<p class="admonition-title">Pourquoi <code>commun.di</code> peut dépendre des features</p>
-<p>Une racine de composition <strong>connaît tout le monde</strong> : c'est son rôle. Le test ArchUnit
-<code>features_sans_cycle</code> <strong>exclut</strong> explicitement <code>commun/di/</code> de la détection de cycles. Depuis
-l'auto-découverte, <code>RacineInjecteur</code> n'importe d'ailleurs plus aucun module de feature.</p>
-</div>
-<div class="admonition info">
-<p class="admonition-title">La CLI utilise un injecteur enfant</p>
-<p>La feature <code>cli</code> ne s'installe pas dans la racine : elle crée un <strong>injecteur enfant</strong>
-(<code>RacineInjecteur.creer().createChildInjector(new CliModule())</code>). L'enfant hérite de tout le
-graphe et y ajoute ses aides : voir <a href="../cli/">Interface en ligne de commande (CLI)</a>.</p>
-</div>
-<h2 id="feature-flags">Feature-flags<a class="headerlink" href="#feature-flags" title="Permanent link">&para;</a></h2>
-<p>Chaque <code>ModuleDeFeature</code> déclare son <strong>identité</strong> via <code>fonctionnalite()</code> :
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di/Fonctionnalite.java"><code>Fonctionnalite</code></a><code>(id, libellé,</code><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di/Categorie.java"><code>Categorie</code></a><code>)</code>.
-La <strong>catégorie</strong> décide de la <strong>désactivabilité</strong> :</p>
-<table>
-<thead>
-<tr>
-<th>Catégorie</th>
-<th>Désactivable ?</th>
-<th>Défaut</th>
-<th>Pour…</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>COEUR</code></td>
-<td>non (garde-fou)</td>
-<td>active</td>
-<td>feature socle, ou <strong>feuille load-bearing</strong> (une autre feature/écran en dépend)</td>
-</tr>
-<tr>
-<td><code>OPTIONNELLE</code></td>
-<td>oui</td>
-<td>active</td>
-<td>feature autonome, activée par défaut</td>
-</tr>
-<tr>
-<td><code>EXPERIMENTALE</code></td>
-<td>oui</td>
-<td><strong>inactive</strong></td>
-<td>fonctionnalité en construction, livrée sans être offerte</td>
-</tr>
-</tbody>
-</table>
-<p>Le registre <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di/Fonctionnalites.java"><code>Fonctionnalites</code></a>
-résout l'état actif de chaque feature, consulté par <code>RacineInjecteur.modules()</code> <strong>à la composition</strong>
-(donc <strong>au démarrage</strong> : changer un flag prend effet au prochain lancement). Précédence, de la plus
-forte à la plus faible :</p>
-<ol>
-<li><strong>propriété système</strong> <code>-Dvigiechiro.features.&lt;id&gt;=on|off</code> (override CI/dev) ;</li>
-<li><strong>alias rétro-compatible</strong> <code>-Dvigiechiro.features.desactivees=&lt;NomClasseSimple&gt;,…</code> ;</li>
-<li><strong>flag persisté</strong> <code>feature.&lt;id&gt;.active</code> dans <code>app_setting</code>, lu en <strong>pré-bootstrap</strong> (avant
-   l'injecteur, sans créer de base, tolérant à une base absente) et posé par l'onglet
-   <strong>« Fonctionnalités »</strong> de l'écran Réglages ;</li>
-<li><strong>défaut</strong> de la catégorie.</li>
-</ol>
-<div class="admonition warning">
-<p class="admonition-title">Garde-fou : une feature COEUR ne se désactive pas</p>
-<p>Le registre <strong>ignore</strong> toute tentative de couper une feature <code>COEUR</code> (par flag ou alias) : la
-retirer casserait l'injecteur (dépendance EAGER) ou un écran (contrat <code>Ouvrir*</code> consommé).
-<code>DecouverteModulesTest</code> vérifie que désactiver toute feuille <strong>exposée</strong> laisse l'injecteur
-constructible.</p>
-</div>
-<p>Sont <code>OPTIONNELLE</code> (désactivables) : <code>import-vigiechiro</code> (aucun <code>Ouvrir*</code>, <code>OptionalBinder</code> vide dès
-l'origine), les 6 feuilles autrefois couplées au runtime dont le contrat <code>Ouvrir*</code> a été
-<strong>neutralisé</strong> (<code>OptionalBinder</code> vide côté consommateur + <code>setBinding</code> côté feuille, le consommateur
-masquant son point d'entrée si absent) : <code>diagnostic</code>, <code>lot</code>, <code>qualification</code>, <code>importation</code>, <code>analyse</code>,
-<code>recherche</code> (#1087), <strong>et</strong> <code>activite-nuit</code>, née <code>EXPERIMENTALE</code> le temps du chantier #2348 puis passée
-<code>OPTIONNELLE</code> à la clôture du lot #2352 : la bascule d'une feature achevée est le cas nominal, pas une
-exception. Le reste demeure <code>COEUR</code> : <code>sites</code>, <code>passage</code>, <code>validation</code>, <code>audio</code>,
-<code>bibliotheque</code>, <code>multisite</code>, <code>connexion</code>, <code>synchronisation-participation</code>, <code>depot-vigiechiro</code>
-(dépendances EAGER ; cf. <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a>).</p>
-<h3 id="livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants">Livrer un écran inachevé : conditionner l'accès, jamais les composants<a class="headerlink" href="#livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants" title="Permanent link">&para;</a></h3>
-<p>Un écran en cours de construction se livre volontiers sous une fonctionnalité <code>EXPERIMENTALE</code>
-(inactive par défaut) : les paliers intermédiaires rejoignent <code>main</code> sans qu'un écran à moitié fait
-apparaisse à l'utilisateur. La tentation est alors de placer <strong>tout</strong> l'écran dans ce module. C'est
-une impasse, et elle se paie en intégration continue.</p>
-<p><code>ChargementFxmlTest</code> charge <strong>chaque</strong> vue FXML avec l'injecteur complet par défaut. Si le ViewModel
-et le service de l'écran vivent dans le module conditionné, ils ne sont <strong>pas fournis</strong> quand la
-fonctionnalité est inactive : la vue devient inchargeable et la garde rougit. Le même piège attend
-chez le consommateur : un <code>Optional&lt;OuvrirX&gt;</code> n'est injectable que si un <code>OptionalBinder</code> <strong>de base</strong>
-est déclaré chez lui, faute de quoi l'<code>Optional</code> n'est pas « vide », il est <strong>introuvable</strong>.</p>
-<p>La répartition qui tient :</p>
+<h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
+<p>Chaque critère de filtre porte un <strong>nom court</strong> (<code>statut</code>, <code>groupe</code>, <code>lieu</code>) qui sert à deux choses très
+différentes : identifier le critère dans le code, et le <strong>sérialiser</strong> dans la table <code>vue_sauvegardee</code>
+quand l'utilisateur enregistre une vue.</p>
+<p>Quatre catalogues déclaraient ces noms <strong>chacun de son côté</strong>, en constantes privées ou en littéraux.
+Deux conséquences étaient déjà là :</p>
 <ul>
-<li>le module <strong>conditionné</strong> ne porte que les <strong>points d'entrée</strong> : le contrat <code>Ouvrir*</code> (via
-  <code>setBinding</code>) et la carte d'accueil (<code>activite(...)</code>) ;</li>
-<li>les <strong>composants</strong> (ViewModel, service, DAO) vivent dans le module <strong>toujours actif</strong> de la
-  fonctionnalité ;</li>
-<li>le <strong>consommateur</strong> déclare le liant de base
-  <code>OptionalBinder.newOptionalBinder(binder(), OuvrirX.class)</code> sans <code>setBinding</code>, pour que l'<code>Optional</code>
-  soit injectable et vide quand la fonctionnalité est inactive.</li>
+<li><code>statut</code> désignait <code>StatutObservation</code> en audio et en analyse, mais <code>StatutWorkflow</code> en multisite :
+  <strong>une clé, deux concepts</strong>. La collision ne mordait pas encore - les vues sont persistées par écran,
+  et multisite n'est cible d'aucun transport - mais le mécanisme de transport (#476) l'arme ;</li>
+<li>rien n'empêchait un cinquième écran de nommer <code>lieux</code> ce que quatre autres nomment <code>lieu</code>.</li>
 </ul>
-<p>Corollaire en ligne de commande : une commande qui s'appuie sur ces composants n'a <strong>pas</strong> à être
-gouvernée par l'interrupteur de l'écran. Celui-ci gouverne un <strong>accès</strong>, pas une capacité de données :
-<code>exporter-activite</code> fonctionne que l'écran soit offert ou non (cf. <a href="../cli/">CLI</a>).</p>
-<p>Découpe illustrée par <code>analyse</code> : <code>AnalyseModule</code> (toujours actif) fournit <code>ActiviteViewModel</code> et
-<code>ServiceActivite</code> ; <code>ActiviteModule</code> ne porte que <code>OuvrirActivite</code> et la carte d'accueil.</p>
-<h2 id="ce-que-publie-un-module-de-feature">Ce que publie un module de feature<a class="headerlink" href="#ce-que-publie-un-module-de-feature" title="Permanent link">&para;</a></h2>
-<p>Un module de feature hérite de <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/di/ModuleDeFeature.java"><code>ModuleDeFeature</code></a>
-(lui-même un <code>AbstractModule</code>), qui ajoute un petit <strong>DSL de contribution</strong> masquant le boilerplate des
-<code>Multibinder</code>. Sur le patron de
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/di/PassageModule.java"><code>PassageModule</code></a> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">PassageModule</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ModuleDeFeature</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">    </span><span class="nd">@Override</span><span class="w"> </span><span class="kd">protected</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">configure</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">        </span><span class="n">bind</span><span class="p">(</span><span class="n">OuvrirPassage</span><span class="p">.</span><span class="na">class</span><span class="p">).</span><span class="na">to</span><span class="p">(</span><span class="n">NavigationPassage</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w"> </span><span class="c1">// contrat socle -&gt; impl feature</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">        </span><span class="n">indicateur</span><span class="p">(</span><span class="n">IndicateurPassages</span><span class="p">.</span><span class="na">class</span><span class="p">);</span><span class="w">                  </span><span class="c1">// contribution à l&#39;accueil (DSL)</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">    </span><span class="nd">@Provides</span><span class="w"> </span><span class="nd">@Singleton</span><span class="w"> </span><span class="n">PassageDao</span><span class="w"> </span><span class="nf">passageDao</span><span class="p">(</span><span class="n">SourceDeDonnees</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">PassageDao</span><span class="p">(</span><span class="n">s</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">    </span><span class="c1">// ... autres @Provides ...</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
-</code></pre></div>
-<p>Mécanismes à retenir :</p>
+<h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p><strong>Les clés partagées vivent à un seul endroit</strong>, <code>ClesCriteres</code>, avec le concept que chacune désigne.
+La clé multisite devient <code>statut_workflow</code>. Un catalogue ne réécrit <strong>jamais</strong> une clé partagée en
+littéral, et <code>ClesCriteresTest</code> le refuse.</p>
+<p><strong>Une clé propre à un seul écran reste chez lui.</strong> <code>ClesCriteres</code> ne porte que le <strong>commun</strong> : <code>gravite</code>,
+<code>categorie</code> et <code>passage</code> (Audit) vivent dans <code>CriteresAudit</code>.</p>
+<p><strong>Les libellés sont une préoccupation distincte</strong>, dans <code>LibellesCriteres</code>, qui doit couvrir <strong>toutes</strong>
+les clés - y compris celles qu'aucun écran local n'offre.</p>
+<p><strong>Un renommage ne migre pas la base</strong> : <code>CritereFiltre.nomsHerites()</code> (défaut vide) déclare les noms
+qu'un critère a portés, et <code>critereParNom</code> les accepte.</p>
+<h2 id="pourquoi">Pourquoi<a class="headerlink" href="#pourquoi" title="Permanent link">&para;</a></h2>
+<p><strong>Une clé est un contrat, pas un identifiant de code.</strong> La renommer invalide les vues déjà enregistrées
+chez les utilisateurs. C'est ce qui la distingue d'un nom de variable, et c'est la raison pour laquelle
+elle mérite un endroit déclaré plutôt qu'une constante privée par écran.</p>
+<p><strong>Clés et libellés ne bougent pas au même rythme.</strong> Un libellé se reformule quand l'ergonomie l'exige,
+une clé ne bouge qu'au prix des vues existantes. Les loger ensemble ferait porter le coût du second au
+premier - on hésiterait à corriger un libellé maladroit.</p>
+<p><strong>Une clé propre à un écran n'a rien à faire dans le commun.</strong> <code>categorie</code> (nature d'un constat d'audit)
+n'a aucun rapport avec <code>groupe</code> (taxon parent), et les mettre au même endroit inviterait précisément la
+collision que ce contrat existe pour empêcher.</p>
+<p><strong><code>nomsHerites</code> est un pont, pas un fourre-tout.</strong> N'y mettre que des noms <strong>réellement portés</strong> : un
+nom ajouté « au cas où » rendrait le compte rendu de restauration (ADR 3093) muet sur une vraie clé
+inconnue, en la faisant passer pour un alias connu.</p>
+<h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong><code>@Provides @Singleton</code></strong> assemble les DAO à partir de la <code>SourceDeDonnees</code> (singleton du socle).
-  Les DAO eux-mêmes restent <strong>sans annotation d'injection</strong> : la couche <code>model.dao</code> ignore Guice
-  (objectif réutilisation O6).</li>
-<li><strong><code>bind(Contrat).to(Impl)</code></strong> branche un <strong>contrat de navigation</strong> <code>Ouvrir*</code> du socle sur
-  l'implémentation de la feature (cf. <a href="../navigation/#ouvrir-une-autre-feature-sans-en-dependre">Navigation</a>).</li>
-<li><strong>Le DSL de <code>ModuleDeFeature</code></strong> (<code>activite(...)</code>, <code>indicateur(...)</code>, <code>ongletReglages(...)</code>,
-  <code>actionMenu(...)</code>) laisse une feature <strong>contribuer</strong> aux quatre points d'extension que le socle
-  agrège <strong>sans connaître les contributeurs</strong> :</li>
+<li>Ajouter un critère à un deuxième écran, c'est <strong>promouvoir sa clé</strong> dans <code>ClesCriteres</code> et lui donner
+  un libellé. Le garde le rappellera au premier littéral dupliqué.</li>
+<li>Le garde d'inventaire (#3105) ancre le <strong>nombre</strong> de critères de chaque écran dans sa fiche : un
+  catalogue qui grossit sans que la doc suive fait rougir la CI.</li>
+<li>Renommer une clé reste possible <strong>sans migration</strong>, mais chaque <code>nomsHerites</code> est une dette de
+  lecture : elle dit qu'un nom a existé, et il faudra un jour décider de la retirer.</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th>Helper</th>
-<th>Point d'extension</th>
-<th>Le socle en fait…</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>activite(X)</code></td>
-<td><code>ActiviteAccueil</code></td>
-<td>une carte sur l'accueil</td>
-</tr>
-<tr>
-<td><code>indicateur(X)</code></td>
-<td><code>IndicateurAccueil</code></td>
-<td>un compteur du tableau de bord</td>
-</tr>
-<tr>
-<td><code>ongletReglages(X)</code></td>
-<td><code>OngletReglages</code></td>
-<td>un onglet de l'écran Réglages</td>
-</tr>
-<tr>
-<td><code>actionMenu(X)</code></td>
-<td><code>ActionMenu</code></td>
-<td>une entrée du menu ☰</td>
-</tr>
-</tbody>
-</table>
-<p>Chaque helper encapsule un <code>Multibinder.newSetBinder(binder(), …).addBinding().to(X)</code>. Les points
-  non couverts (ex. <code>RapprochementVigieChiro</code>, un <code>OptionalBinder</code>) restent exprimés directement.</p>
-<h2 id="des-controllers-fxml-injectes">Des controllers FXML injectés<a class="headerlink" href="#des-controllers-fxml-injectes" title="Permanent link">&para;</a></h2>
-<p>C'est la clé du câblage Vue↔ViewModel.
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/App.java"><code>App</code></a>
-pose une <strong><code>controllerFactory</code></strong> sur le <code>FXMLLoader</code> : chaque controller est alors <strong>instancié par
-Guice</strong> (injection par constructeur), donc reçoit ses ViewModels/services.</p>
-<pre class="mermaid"><code>sequenceDiagram
-    participant App
-    participant Guice as Injecteur Guice
-    participant Loader as FXMLLoader
-    participant Ctrl as MainController
-    App-&gt;&gt;Guice: RacineInjecteur.creer()
-    App-&gt;&gt;App: MigrationSchema.migrer()
-    App-&gt;&gt;Loader: new FXMLLoader(MainView.fxml)
-    App-&gt;&gt;Loader: setControllerFactory(injector::getInstance)
-    App-&gt;&gt;Loader: load()
-    Loader-&gt;&gt;Guice: getInstance(MainController.class)
-    Guice--&gt;&gt;Ctrl: new MainController(NavigationViewModel, activités, ...)
-    Loader--&gt;&gt;App: vue prête (controller injecté)</code></pre>
-<p>Toute classe de navigation (<code>Navigation*</code>) réutilise ce patron : <code>loader.setControllerFactory(injector::getInstance)</code>
-avant <code>loader.load()</code>, pour que le controller de l'écran ouvert soit injecté lui aussi.</p>
-<h2 id="valeurs-transverses-bindings-nommes">Valeurs transverses : bindings nommés<a class="headerlink" href="#valeurs-transverses-bindings-nommes" title="Permanent link">&para;</a></h2>
-<p>Certaines valeurs partagées sont fournies par <strong>binding nommé</strong>. Exemple :
-<code>@Named("idUtilisateurCourant")</code> (application mono-utilisateur : le premier utilisateur en base).
-Un VM/service la reçoit par <code>@Inject ... @Named("idUtilisateurCourant") String idUtilisateur</code>.</p>
-<h2 id="defaut-dinjection-surchargeable-implementedby">Défaut d'injection surchargeable (<code>@ImplementedBy</code>)<a class="headerlink" href="#defaut-dinjection-surchargeable-implementedby" title="Permanent link">&para;</a></h2>
-<p>Un contrat du socle peut porter une <strong>implémentation par défaut</strong> via <code>@ImplementedBy(Defaut.class)</code>
-posé sur l'interface : l'injecteur l'utilise <strong>tant qu'aucun module ne lie explicitement</strong> ce contrat.
-La racine de composition <strong>surcharge</strong> ce défaut pour la production, tandis que les tests isolés
-récupèrent le défaut <strong>sans configuration</strong>. Le motif garde les tests <strong>déterministes et sans réseau</strong> :
-le défaut est neutre, l'application branche la variante réelle.</p>
-<p>Exemple, la fonctionnalité « Fiche de l'espèce » (#844) :</p>
-<table>
-<thead>
-<tr>
-<th>Contrat (<code>commun</code>)</th>
-<th>Défaut <code>@ImplementedBy</code> (tests)</th>
-<th>Surcharge production (<code>CommunModule</code>)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SourceUniverselle</code></td>
-<td><code>LienGbif</code></td>
-<td><code>SourceUniversellePreferee</code> (préférence GBIF / Wikipédia)</td>
-</tr>
-<tr>
-<td><code>ResolveurFiche</code></td>
-<td><code>ResolveurFicheIdentite</code> (aucun réseau)</td>
-<td><code>ResolveurFicheGbif</code> (résout la clé via l'API GBIF)</td>
-</tr>
-<tr>
-<td><code>ResolveurCommune</code></td>
-<td>lambda dans les tests (aucun réseau)</td>
-<td><code>ResolveurCommuneApiGeo</code> (commune d'un point via l'API Géo, #2791)</td>
-</tr>
-<tr>
-<td><code>ExecuteurFiche</code></td>
-<td><code>ExecuteurFicheSynchrone</code> (déterministe)</td>
-<td><code>ExecuteurFicheAsynchrone</code> (hors fil JavaFX + <code>Platform.runLater</code>)</td>
-</tr>
-<tr>
-<td><code>ExecuteurTache</code> (#793)</td>
-<td><code>ExecuteurTacheSynchrone</code> (déterministe)</td>
-<td><code>ExecuteurTacheAsynchrone</code> (thread virtuel + <code>Platform.runLater</code>)</td>
-</tr>
-</tbody>
-</table>
-<p>Une <strong>surcharge explicite</strong> (<code>bind(...).to(...)</code> ou <code>@Provides</code>) l'emporte toujours sur le défaut. Les
-tests E2E l'exploitent via <code>Modules.override(RacineInjecteur.modules()).with(...)</code> pour injecter un faux
-ciblé (ex. un <code>OuvreurDeLien</code> qui enregistre l'URL au lieu d'ouvrir un navigateur), sans dupliquer la
-liste des modules. Les <strong>outils de capture</strong> font de même avec <code>ModuleCaptureCommun</code> : les exécuteurs
-y sont <strong>synchrones</strong>, sinon l'aperçu montre le voile d'occupation à la place du contenu (#1278).</p>
-<hr />
-<p>Pour assembler une feature complète de bout en bout, voir
-<strong><a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a></strong>.</p>
+<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
+<p><strong>Une énumération de clés.</strong> Écarté : une clé propre à un écran n'aurait pas sa place dans une
+énumération commune, et l'y mettre relancerait la confusion que la séparation vient de lever.</p>
+<p><strong>Migrer <code>vue_sauvegardee</code> au renommage.</strong> Écarté : une migration pour un renommage d'affichage est
+disproportionnée, et <code>nomsHerites</code> rend le même service sans toucher aux données de l'utilisateur.</p>
 
 
 
@@ -4306,7 +4043,7 @@ y sont <strong>synchrones</strong>, sinon l'aperçu montre le voile d'occupation
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../glossaire/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Glossaire du domaine">
+          <a href="../3093-une-restauration-rend-compte-de-deux-causes/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3093 · Une restauration rend compte de deux causes">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4316,20 +4053,20 @@ y sont <strong>synchrones</strong>, sinon l'aperçu montre le voile d'occupation
                 Précédent
               </span>
               <div class="md-ellipsis">
-                Glossaire du domaine
+                3093 · Une restauration rend compte de deux causes
               </div>
             </div>
           </a>
         
         
           
-          <a href="../ajouter-une-fonctionnalite/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Ajouter une fonctionnalité">
+          <a href="../3095-un-domaine-se-calcule-sans-son-propre-critere/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3095 · Un domaine se calcule sans son propre critère">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                Ajouter une fonctionnalité
+                3095 · Un domaine se calcule sans son propre critère
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -4370,10 +4107,10 @@ y sont <strong>synchrones</strong>, sinon l'aperçu montre le voile d'occupation
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
