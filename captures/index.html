@@ -3818,6 +3818,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Les garde-fous de présence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-la-derniere-regle-lit-le-code-et-non-le-disque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pourquoi la dernière règle lit le code et non le disque
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4017,6 +4034,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Les garde-fous de présence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-la-derniere-regle-lit-le-code-et-non-le-disque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pourquoi la dernière règle lit le code et non le disque
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4194,7 +4228,7 @@ absente (lancés en CI) :</p>
 <tbody>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/check-captures.sh"><code>check-captures.sh</code></a></td>
-<td>Chaque vue FXML <code>src/main/**/view/*.fxml</code> est <strong>déclarée</strong> au <code>captures.manifest</code>, et chaque capture déclarée existe. <em>(Aucune vue livrée sans capture.)</em></td>
+<td>Chaque vue FXML <code>src/main/**/view/*.fxml</code> est <strong>déclarée</strong> au <code>captures.manifest</code>, chaque capture déclarée existe, et chaque capture <strong>écrite par un outil</strong> est présentée dans la galerie. <em>(Aucune vue livrée sans capture, aucune capture que personne ne regarde.)</em></td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/check-doc-images.sh"><code>check-doc-images.sh</code></a></td>
@@ -4202,6 +4236,18 @@ absente (lancés en CI) :</p>
 </tr>
 </tbody>
 </table>
+<h3 id="pourquoi-la-derniere-regle-lit-le-code-et-non-le-disque">Pourquoi la dernière règle lit le <strong>code</strong> et non le disque<a class="headerlink" href="#pourquoi-la-derniere-regle-lit-le-code-et-non-le-disque" title="Permanent link">&para;</a></h3>
+<p>Les PNG ne naissent pas dans la branche : le job <code>capturer</code> les produit sur <code>main</code>, <strong>après</strong> fusion.
+Une règle qui part des fichiers présents sur le disque ne peut donc rien voir dans la pull request qui
+ajoute une capture - le fichier n'existe pas encore, la PR passe au vert de bonne foi, et le manque
+n'apparaît qu'une fois <code>main</code> <strong>déjà rouge</strong>.</p>
+<p>Le coût n'est pas local à qui oublie : <code>lint</code> rougit sur <code>main</code>, donc <strong>toutes</strong> les PR ouvertes se
+mettent à échouer, et le diagnostic part dans la mauvaise direction puisque la PR qui échoue n'a rien à
+voir avec la capture manquante. C'est arrivé avec #3119, corrigé par #3126, puis fermé par #3129.</p>
+<p>Ce qui <strong>est</strong> dans la branche, c'est le code de l'outil de capture. La règle y lit les noms de fichiers
+écrits, en écartant les lignes de commentaire : celles-ci citent volontiers des captures <strong>passées</strong>
+(une réplique reconstruite, remplacée depuis par un rendu réel), qui n'existent plus et n'ont rien à
+faire en galerie. Les deux cas sont tenus par l'auto-test du script, positif et négatif.</p>
 <p>Le <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/captures.manifest"><code>captures.manifest</code></a>
 associe chaque vue FXML à ses aperçus.</p>
 <h2 id="le-garde-fou-de-fidelite-un-apercu-qui-ment-est-refuse">Le garde-fou de fidélité : un aperçu qui ment est refusé<a class="headerlink" href="#le-garde-fou-de-fidelite-un-apercu-qui-ment-est-refuse" title="Permanent link">&para;</a></h2>
