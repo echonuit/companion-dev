@@ -4743,6 +4743,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>docs.yml</code></td>
 </tr>
 <tr>
+<td><code>verifie-permissions.sh</code></td>
+<td>aucun plancher en écriture dans un workflow multi-jobs</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>scripts/adr/verifie_scripts.py</code></td>
 <td>les scripts cités par les ADR</td>
 <td><code>lint.yml</code></td>
@@ -4971,9 +4976,14 @@ empaquette - pouvait donc écrire des issues et des pull requests, ce dont elle 
 <p>Les trois autres workflows à droits d'écriture (<code>adr-rapport</code>, <code>capture-vues</code>, <code>flatpak</code>) sont
 <strong>mono-job</strong> et utilisent réellement chacun des leurs : leur bloc au niveau workflow est déjà, de
 fait, un bloc par job.</p>
+<p><strong>Et rien ne le laisse se défaire</strong> : <code>verifie-permissions.sh</code> (#3294) refuse un plancher en écriture
+dans un workflow à <strong>plusieurs jobs</strong>, où les droits seraient accordés à tous. Elle ne fige pas la
+liste attendue par job - #2742 a dû ajouter <code>id-token</code> et <code>attestations</code> pour les attestations, et une
+liste figée aurait rougi sur un ajout voulu, puis se serait fait élargir machinalement. Un workflow
+<strong>mono-job</strong> garde son plancher : plancher et job y désignent la même chose.</p>
 <p>⚠️ <strong>Ce que cela ne fait pas</strong> : <code>semantic-release</code> s'exécute toujours dans un job en écriture. L'en
-sortir suppose de réimplémenter en <code>git</code> + <code>gh</code> ce que font ses greffons d'écriture ; l'arbitrage est
-posé sur #2739.</p>
+sortir suppose de réimplémenter en <code>git</code> + <code>gh</code> ce que font ses greffons d'écriture ; l'arbitrage,
+rendu, est consigné sur #2739.</p>
 <h2 id="loutillage-de-publication-est-fige-et-repete-a-blanc-2738">L'outillage de publication est figé, et répété à blanc (#2738)<a class="headerlink" href="#loutillage-de-publication-est-fige-et-repete-a-blanc-2738" title="Permanent link">&para;</a></h2>
 <p><code>semantic-release</code> et ses greffons vivent dans
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/.github/release"><code>.github/release/</code></a>,
