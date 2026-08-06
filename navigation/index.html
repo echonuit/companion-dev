@@ -416,6 +416,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#toute-fenetre-passe-par-habillage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toute fenêtre passe par Habillage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-navigateur-une-pile-decrans-vivants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4228,6 +4239,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#toute-fenetre-passe-par-habillage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Toute fenêtre passe par Habillage
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-navigateur-une-pile-decrans-vivants" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4338,8 +4360,35 @@ centrale</strong> via le <a href="https://github.com/echonuit/vigiechiro-pr-comp
 </ul>
 <p>Le <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/MainController.java"><code>MainController</code></a>
 lie le centre à la <code>vueCentraleProperty()</code> du <code>Navigateur</code>, reconstruit le fil d'Ariane à chaque
-changement d'historique, et pose les raccourcis (Alt+← retour, Alt+Début accueil). Les changements
+changement d'historique, et pose les raccourcis (Alt+Gauche pour revenir, Alt+Début pour l'accueil). Les changements
 d'écran arrivent en léger fondu.</p>
+<h2 id="toute-fenetre-passe-par-habillage">Toute fenêtre passe par <code>Habillage</code><a class="headerlink" href="#toute-fenetre-passe-par-habillage" title="Permanent link">&para;</a></h2>
+<p>Une fenêtre de l'application ne se construit <strong>jamais</strong> par <code>new Scene(...)</code> : elle se demande à
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/Habillage.java"><code>Habillage</code></a>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">modale</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="n">Habillage</span><span class="p">.</span><span class="na">scene</span><span class="p">(</span><span class="n">vue</span><span class="p">));</span><span class="w">            </span><span class="c1">// une modale</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="n">Habillage</span><span class="p">.</span><span class="na">scene</span><span class="p">(</span><span class="n">racine</span><span class="p">));</span><span class="w">   </span><span class="c1">// la fenêtre principale</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Habillage</span><span class="p">.</span><span class="na">poser</span><span class="p">(</span><span class="n">sceneDejaConstruite</span><span class="p">);</span><span class="w">             </span><span class="c1">// une scène qu&#39;on n&#39;a pas fabriquée</span>
+</code></pre></div>
+<p>Il pose ce que <strong>toute</strong> fenêtre du produit porte : la police embarquée, <code>palette.css</code> et <code>base.css</code>,
+dans l'ordre du chrome.</p>
+<p>Sans lui, la règle tenait par la vigilance, et elle a lâché : <code>base.css</code> était déclarée à la main dans
+<strong>deux</strong> FXML sur des dizaines, si bien que <strong>dix fenêtres sur onze</strong> - toutes les modales - rendaient
+avec la police par défaut de JavaFX, différente de celle de la fenêtre qui les portait et différente
+d'une machine à l'autre (<a href="../decisions/3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/">ADR 3374</a>).</p>
+<p>Les <strong>outils de capture</strong> empruntent le même chemin. Un aperçu montre donc l'écran tel que
+l'utilisateur le voit <strong>par construction</strong>, et non parce qu'on y a pensé.</p>
+<div class="admonition warning">
+<p class="admonition-title">Deux pièges, dont un silencieux</p>
+<p><strong>L'ordre compte.</strong> <code>base.css</code> consomme <code>-couleur-fond</code>, défini par <code>palette.css</code>. Posée à un autre
+<strong>niveau</strong> que la palette, la couleur ne se résout pas : JavaFX <strong>avale la règle</strong> en journalisant un
+<code>ClassCastException</code>, et la fenêtre s'ouvre sans son fond sans que rien n'échoue. <code>Habillage</code> insère
+donc <code>base.css</code> juste après <code>palette.css</code>, dans la liste où celle-ci vit.</p>
+<p><strong>Un caractère non couvert par la police part en repli</strong> vers une police du système, et deux
+machines ne replient pas sur la même. <code>PoliceCouvreLIhmTest</code> refuse tout caractère affiché que la
+fonte embarquée ne porte pas (<a href="../decisions/3389-ce-que-l-application-affiche-tient-dans-la-police-embarquee/">ADR 3389</a>).</p>
+</div>
+<p><code>ScenesHabilleesTest</code> verrouille l'invariant : un <code>new Scene(...)</code> hors de <code>Habillage</code> fait échouer la
+construction, en nommant le fichier fautif.</p>
 <h2 id="le-navigateur-une-pile-decrans-vivants">Le <code>Navigateur</code> : une pile d'écrans vivants<a class="headerlink" href="#le-navigateur-une-pile-decrans-vivants" title="Permanent link">&para;</a></h2>
 <p>Le <code>Navigateur</code> (singleton Guice) tient un <strong>historique</strong> (pile d'<code>EtapeNavigation</code>, base = Accueil)
 dont le <strong>sommet</strong> alimente la zone centrale. Les écrans restent <strong>vivants</strong> dans la pile : revenir
