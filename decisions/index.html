@@ -3328,6 +3328,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3412-un-alias-n-est-pas-une-police/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3412 · Un alias n'est pas une police
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4862,6 +4890,11 @@
 <td><a href="3389-ce-que-l-application-affiche-tient-dans-la-police-embarquee/">3389</a></td>
 <td>Embarquer une police ne suffit pas si elle ne <strong>couvre</strong> pas ce qu on affiche : un caractere absent part en repli vers une police du systeme, et deux machines ne replient pas sur la meme - sans que rien ne le signale. Huit caracteres etaient dans ce cas (<code>→ ⚠ ☰ ≥ ≤ ▸ ← −</code>) ; ils se <strong>remplacent</strong>, on n embarque pas deux fontes de plus pour huit glyphes. Le perimetre s arrete a ce que <strong>JavaFX rend</strong> : une sortie terminal a la police de sa console. Trois cadenas emoji, deja interdits par l ADR 0035, sont tombes au passage - un cliquet trouve ce qu une relecture ne cherche pas</td>
 <td>#3389, suite de #3361</td>
+</tr>
+<tr>
+<td><a href="3412-un-alias-n-est-pas-une-police/">3412</a></td>
+<td>L ADR 3361 a cherche des <strong>familles nommees</strong>, et n a donc pas vu les deux feuilles qui demandaient leur police par l <strong>alias</strong> directement (<code>monospace</code>). Un alias n est pas une police : c est une demande que chaque systeme resout a sa facon, et le defaut se rejouait a l identique sur les chemins de fichiers. <code>Noto Sans Mono</code> est embarquee et nommee, l alias reste en queue comme filet. Le garde porte sur <strong>l alias</strong>, pas sur les deux cas trouves : corriger deux occurrences aurait laisse arriver la troisieme</td>
+<td>#3412, suite de #3361</td>
 </tr>
 <tr>
 <td><a href="3222-une-entree-externe-se-lit-sous-plafond/">3222</a></td>
