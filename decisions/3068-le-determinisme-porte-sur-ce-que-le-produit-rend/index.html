@@ -2804,32 +2804,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
+  <a href="#seconde-revision-du-2026-08-06-le-corollaire-est-tombe" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
+        Seconde révision, du 2026-08-06 : le corollaire est tombé
       
     </span>
   </a>
@@ -4106,32 +4084,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
+  <a href="#seconde-revision-du-2026-08-06-le-corollaire-est-tombe" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
+        Seconde révision, du 2026-08-06 : le corollaire est tombé
       
     </span>
   </a>
@@ -4253,10 +4209,26 @@ frontières de modules la rendent coûteuse à défaire :</p>
 <p>⚠️ Une révision de cette ADR <strong>ne serait pas absurde</strong> le jour où l'une de ces contraintes tombe (un
 point d'injection du retriever côté application, ou un <code>StorageService</code> configurable). Le « non » est
 motivé par un rapport coût/bénéfice, pas par un principe.</p>
-<p><strong>Ce qui change en pratique</strong> : depuis #3359, la CI ne <strong>committe</strong> plus les écarts sous 4 % sur ces
-seize aperçus. On garde la source vivante et sa variabilité ; on cesse simplement d'en faire un commit,
-une PR et un conflit à chaque exécution. Le corollaire de 2026-08-01 - « sur ces fichiers, un diff n'est
-pas un signal » - reste vrai, et devient enfin sans conséquence sur l'historique.</p>
+<p><strong>Ce qui change en pratique</strong> : la CI ne <strong>committe</strong> plus le bruit de ces seize aperçus. On garde la
+source vivante et sa variabilité ; on cesse d'en faire un commit, une PR et un conflit à chaque
+exécution.</p>
+<h2 id="seconde-revision-du-2026-08-06-le-corollaire-est-tombe">Seconde révision, du 2026-08-06 : le corollaire est tombé<a class="headerlink" href="#seconde-revision-du-2026-08-06-le-corollaire-est-tombe" title="Permanent link">&para;</a></h2>
+<p>Ce document affirmait, dans ses conséquences, que « sur ces fichiers, un diff de captures n'est pas un
+signal » et que « la revue s'y fait à l'œil, pas au <code>cmp</code> ». <strong>Ce n'est plus vrai</strong>, et c'est une bonne
+nouvelle.</p>
+<h1 id="3375-a-fait-porter-lhabillage-a-toute-fenetre-depuis-hors-de-la-carte-la-ci-et-un-poste-de">3375 a fait porter l'habillage à toute fenêtre. Depuis, **hors de la carte, la CI et un poste de<a class="headerlink" href="#3375-a-fait-porter-lhabillage-a-toute-fenetre-depuis-hors-de-la-carte-la-ci-et-un-poste-de" title="Permanent link">&para;</a></h1>
+<p>développement rendent au pixel près<strong> : <code>apercu-accueil.png</code> sort identique au bit près, et sur
+<code>apercu-analyse-carte</code> les bandes de texte passent de 29 % et 37,9 % d'écart à </strong>0,00 %**.</p>
+<h1 id="3381-en-tire-la-consequence-le-seuil-de-4-qui-ne-tenait-de-toute-facon-pas-le-bruit-de-tuiles">3381 en tire la conséquence : le seuil de 4 % - qui ne tenait de toute façon pas, le bruit de tuiles<a class="headerlink" href="#3381-en-tire-la-consequence-le-seuil-de-4-qui-ne-tenait-de-toute-facon-pas-le-bruit-de-tuiles" title="Permanent link">&para;</a></h1>
+<p><strong>seul</strong> valant jusqu'à <strong>23,8 %</strong> de l'image - cède la place à un <strong>masque</strong>. On compare <strong>hors</strong> du
+rectangle de la carte, à tolérance <strong>zéro</strong>.</p>
+<p>Le corollaire se restreint donc au seul rectangle :</p>
+<blockquote>
+<p>Un diff de capture <strong>est</strong> un signal partout, <strong>sauf</strong> à l'intérieur du rectangle de la carte. La
+revue se fait au <code>cmp</code> dehors, à l'œil dedans.</p>
+</blockquote>
+<p>Éprouvé : un changement de 40x12 px hors carte, sur l'aperçu où la carte couvre 72,9 % de l'image, est
+détecté - il pèse 0,07 %, qu'aucun seuil global n'aurait vu.</p>
 <p>⚠️ Un défaut <strong>distinct</strong> existait au même endroit, et a été corrigé : l'attente des tuiles était un
 délai fixe de six secondes, donc une course contre le réseau. Une capture pouvait partir avec des tuiles
 <strong>manquantes</strong> - un fond absent, pas une nuance de rendu. C'est désormais une condition sur l'état du
@@ -4273,10 +4245,13 @@ l'<a href="../3018-un-outil-compose-depuis-la-racine/">ADR 3018</a>, qui a fait 
 la source de tuiles rendrait l'image plus stable et <strong>moins vraie</strong>.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Sur ces quatre fichiers, un diff de captures n'est pas un signal.</strong> La revue s'y fait à l'œil, pas au
-  <code>cmp</code>. C'est le corollaire pratique, et il n'est pas anodin : au cours du chantier #3050, cette
-  variation m'a fait conclure <strong>deux fois</strong> qu'un changement modifiait le rendu alors qu'il n'y était pour
-  rien.</li>
+<li><strong>Sur ces seize fichiers, un diff de capture n'est pas un signal À L'INTÉRIEUR du rectangle de la
+  carte</strong> - et en est un partout ailleurs depuis #3381 (voir la révision ci-dessus). Écrit « quatre »
+  jusqu'au 2026-08-06, alors que la portée avait été corrigée à seize plus haut dans ce même document :
+  une révision partielle laisse une incohérence, et celle-ci a vécu une journée.</li>
+<li>Le corollaire d'origine n'était pas anodin : au cours du chantier #3050, cette variation m'a fait
+  conclure <strong>deux fois</strong> qu'un changement modifiait le rendu alors qu'il n'y était pour rien. C'est
+  précisément ce que le masque supprime hors de la carte.</li>
 <li>Le contrôle qui tranche reste le même, et il est désormais écrit : avant de lire un écart entre deux
   images, <strong>mesurer ce que produit l'absence de changement</strong> - deux exécutions du même code.</li>
 <li>La règle d'or, elle, ne bouge pas pour tout le reste : signaux de synthèse plutôt qu'audio réel, pas
