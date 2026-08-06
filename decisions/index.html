@@ -3356,6 +3356,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3417-la-galerie-rend-comme-une-machine-accordee-au-produit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3417 · La galerie rend comme une machine accordée au produit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4950,6 +4978,11 @@
 <td><a href="3412-un-alias-n-est-pas-une-police/">3412</a></td>
 <td>L ADR 3361 a cherche des <strong>familles nommees</strong>, et n a donc pas vu les deux feuilles qui demandaient leur police par l <strong>alias</strong> directement (<code>monospace</code>). Un alias n est pas une police : c est une demande que chaque systeme resout a sa facon, et le defaut se rejouait a l identique sur les chemins de fichiers. <code>Noto Sans Mono</code> est embarquee et nommee, l alias reste en queue comme filet. Le garde porte sur <strong>l alias</strong>, pas sur les deux cas trouves : corriger deux occurrences aurait laisse arriver la troisieme</td>
 <td>#3412, suite de #3361</td>
+</tr>
+<tr>
+<td><a href="3417-la-galerie-rend-comme-une-machine-accordee-au-produit/">3417</a></td>
+<td>Le produit ne depend plus de la machine pour <strong>peindre</strong>, il en depend encore pour <strong>MESURER</strong> : <code>ChoiceBoxSkin</code> calcule sa largeur avec un noeud de texte hors du graphe de scene, donc sans feuille de style, donc avec <code>Font.getDefault()</code> - 82 px en CI contre 78 sur un poste, et le graphe en dessous herite du decalage. Refaire une passe CSS n y change rien, teste. La police systeme du RUNNER est donc alignee sur celle que l application declare : il n existe pas UN rendu utilisateur, et la seule reference non arbitraire est celle ou mesure et peinture coincident</td>
+<td>#3417, suite de #3389</td>
 </tr>
 <tr>
 <td><a href="3222-une-entree-externe-se-lit-sous-plafond/">3222</a></td>
