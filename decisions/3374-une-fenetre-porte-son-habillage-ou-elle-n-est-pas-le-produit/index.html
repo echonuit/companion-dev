@@ -3219,6 +3219,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#amendement-le-trio-et-non-la-paire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amendement : le trio, et non la paire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ce-que-le-garde-a-trouve-et-que-la-lecture-navait-pas-vu" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4303,6 +4314,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#amendement-le-trio-et-non-la-paire" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amendement : le trio, et non la paire
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ce-que-le-garde-a-trouve-et-que-la-lecture-navait-pas-vu" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4417,7 +4439,7 @@ polices différentes : c'en était bien une, mais entre la vue <strong>avec</str
 entre les deux machines.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p>Un point de passage unique, <code>Habillage</code>, définit ce que porte toute fenêtre du produit - la police
-embarquée, <code>palette.css</code>, <code>base.css</code>, dans l'ordre du chrome - et <strong>les fenêtres comme les captures</strong>
+embarquée et le trio du chrome (<code>palette.css</code>, <code>base.css</code>, <code>design.css</code>) - et <strong>les fenêtres comme les captures</strong>
 s'en servent. Un aperçu montre alors l'écran de l'utilisateur par <strong>construction</strong>, non parce qu'on y
 a pensé.</p>
 <p>C'est le raisonnement déjà tenu par <code>Modales</code> pour la fermeture par Échap : plutôt qu'une consigne
@@ -4439,6 +4461,17 @@ Ajouter <code>@base.css</code> aux dix FXML aurait marché, et se serait défait
 JavaFX <strong>avale la règle</strong> en journalisant un <code>ClassCastException</code> sur <code>-fx-background-color</code>. La
 fenêtre s'ouvre sans son fond, sans que rien n'échoue. Un premier essai l'a produit. <code>Habillage</code>
 insère donc <code>base.css</code> juste après <code>palette.css</code>, <strong>dans la liste où celle-ci vit</strong>.</p>
+<h3 id="amendement-le-trio-et-non-la-paire">Amendement : le trio, et non la paire<a class="headerlink" href="#amendement-le-trio-et-non-la-paire" title="Permanent link">&para;</a></h3>
+<p>Cette ADR a d'abord fait poser <strong>deux</strong> feuilles sur trois. <code>MainView.fxml</code> en déclare trois, et la
+soustraction n'a été faite par personne - moi compris, qui ai vérifié l'ordre, le niveau et le silence
+de l'échec, mais <strong>jamais l'inventaire</strong>.</p>
+<p>Conséquence visible dans la galerie depuis le premier jour : trois aperçus de compte rendu s'y
+publiaient <strong>sans style</strong> - texte nu là où l'application montre une pastille, barre de progression
+vide, bouton gris au lieu du bouton primaire (900x178 contre 900x240). Un écran que l'utilisateur ne
+voit jamais, publié comme s'il était le produit.</p>
+<p>C'est la forme du défaut de l'<a href="../3412-un-alias-n-est-pas-une-police/">ADR 3412</a>, un cran plus loin :
+là, on avait cherché des familles nommées sans voir les alias ; ici, on a vérifié un <strong>ordre</strong> sans
+vérifier une <strong>liste</strong>.</p>
 <h3 id="ce-que-le-garde-a-trouve-et-que-la-lecture-navait-pas-vu">Ce que le garde a trouvé et que la lecture n'avait pas vu<a class="headerlink" href="#ce-que-le-garde-a-trouve-et-que-la-lecture-navait-pas-vu" title="Permanent link">&para;</a></h3>
 <p><code>ScenesHabilleesTest</code> a désigné quatre outils construisant une scène hors du chemin commun. Trois
 posaient <code>palette.css</code> + <code>base.css</code> <strong>à la main</strong> - trois copies du même helper, chacune avalant en

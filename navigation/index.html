@@ -4397,8 +4397,11 @@ d'écran arrivent en léger fondu.</p>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">primaryStage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="n">Habillage</span><span class="p">.</span><span class="na">scene</span><span class="p">(</span><span class="n">racine</span><span class="p">));</span><span class="w">   </span><span class="c1">// la fenêtre principale</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">Habillage</span><span class="p">.</span><span class="na">poser</span><span class="p">(</span><span class="n">sceneDejaConstruite</span><span class="p">);</span><span class="w">             </span><span class="c1">// une scène qu&#39;on n&#39;a pas fabriquée</span>
 </code></pre></div>
-<p>Il pose ce que <strong>toute</strong> fenêtre du produit porte : la police embarquée, <code>palette.css</code> et <code>base.css</code>,
-dans l'ordre du chrome.</p>
+<p>Il pose ce que <strong>toute</strong> fenêtre du produit porte : la police embarquée et le <strong>trio</strong> du chrome -
+<code>palette.css</code>, <code>base.css</code>, <code>design.css</code> - dans cet ordre.</p>
+<p>Les trois vont ensemble et chacune dépend de la précédente : <code>base.css</code> consomme les couleurs de
+<code>palette.css</code>, et <code>design.css</code> reprend l'une et l'autre pour les composants partagés (badges,
+cartes-sections, bouton primaire). En poser deux sur trois donne une fenêtre qui <strong>paraît</strong> habillée.</p>
 <p>Sans lui, la règle tenait par la vigilance, et elle a lâché : <code>base.css</code> était déclarée à la main dans
 <strong>deux</strong> FXML sur des dizaines, si bien que <strong>dix fenêtres sur onze</strong> - toutes les modales - rendaient
 avec la police par défaut de JavaFX, différente de celle de la fenêtre qui les portait et différente
