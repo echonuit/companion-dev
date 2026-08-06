@@ -3328,6 +3328,90 @@
   
   
     <li class="md-nav__item">
+      <a href="2746-le-produit-ne-depend-pas-de-son-outillage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2746 · Le produit ne dépend pas de son outillage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2748 · Un dispositif qui peut ne rien vérifier le dit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3366 · Ce qui compile se vérifie avec deux compilateurs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3269-un-ensemble-vide-se-constate-avant-de-filtrer/" class="md-nav__link">
         
   
@@ -4765,6 +4849,21 @@
 <td><a href="3269-un-ensemble-vide-se-constate-avant-de-filtrer/">3269</a></td>
 <td>Une commande qui filtre constate un <strong>ensemble source vide AVANT</strong> d'appliquer le moindre critère, et rend un résultat vide <strong>en succès</strong> dans le format demandé. Sinon un critère qui <strong>désigne</strong> (ADR 3082) refuse la valeur tapée - « Lieux présents : aucun », code 2 - alors qu'elle n'y est pour rien : il n'y a rien du tout, et n'importe quelle valeur aurait produit le même refus. Trois situations à ne pas confondre : rien en base, rien après filtrage, valeur absente. Corollaire de test : semer <strong>à la demande</strong>, un <code>@BeforeEach</code> qui sème toujours rend ce défaut structurellement intestable</td>
 <td>#3269, clôture des suites du chantier #3092</td>
+</tr>
+<tr>
+<td><a href="2746-le-produit-ne-depend-pas-de-son-outillage/">2746</a></td>
+<td>L'outillage est bati AVEC le produit et partait AVEC lui : <strong>80 classes</strong> et <strong>47 points d'entree <code>main</code></strong> dans le binaire d'un naturaliste. Le motif n'est pas le poids (600 Ko contre 21,6 Mo pour <code>org/sqlite</code>) mais la <strong>surface</strong>. Une classe de production franchissait la frontiere a l'envers - <code>ExportGraphe</code> appelait l'outillage pour l'export d'image de l'utilisateur - ce qui interdisait a la fois l'exclusion et la regle. Trois pieces dans l'ordre : un <code>RenduPng</code> qui recoit le geste, une regle ArchUnit, puis l'exclusion du jar. Resultat : <strong>0 classe</strong> d'outillage et <strong>3</strong> points d'entree</td>
+<td>#2746, lot #2724</td>
+</tr>
+<tr>
+<td><a href="2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">2748</a></td>
+<td>Six situations sans rapport apparent portaient le meme symptome, le pire qui soit : <strong>un vert qui n'a rien verifie ressemble exactement a un vert qui a verifie</strong>. Aucune n'a ete trouvee par la CI. Une mesure vide n'est donc pas un zero, le detecteur se surveille lui-meme, et la fraicheur se <strong>mesure</strong> depuis l'historique au lieu de se persister - un artefact ou un cache deviendrait une seconde chose a surveiller. ⚠️ Rougir trop s'apprend aussi vite que se taire : avertissement sur un retard mineur, rouge sur une majeure</td>
+<td>#2748, lot #2724 ; couvre #2887, #3287, #3345, #3382</td>
+</tr>
+<tr>
+<td><a href="3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/">3366</a></td>
+<td><code>javac</code> n'est pas la norme, c'en est <strong>une</strong> mise en oeuvre, et le code qu'il seul accepte empoisonne <code>target/classes</code> puis echoue a l'EXECUTION, tres loin de sa cause. Mesure avant decision : <strong>4 divergences reelles</strong>, dont <strong>2 que le balayage textuel de #3228 avait manquees</strong>, et 1293 avertissements. Ce sont ces deux manquees qui tranchent - une garde ne voit que ce qu'on lui a appris, un compilateur voit ce qu'il refuse. Seules les erreurs bloquent ; <code>module-info</code> est exclu de la passe, renoncement assume</td>
+<td>#3366, suite de #3228</td>
 </tr>
 </tbody>
 </table>

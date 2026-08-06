@@ -365,6 +365,14 @@
          <lastmod>2026-08-06</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/2746-le-produit-ne-depend-pas-de-son-outillage/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/2791-la-commune-se-derive-du-gps-et-s-attache-au-point/</loc>
          <lastmod>2026-08-06</lastmod>
     </url>
@@ -474,6 +482,10 @@
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/3361-la-typographie-est-embarquee/</loc>
+         <lastmod>2026-08-06</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/</loc>
          <lastmod>2026-08-06</lastmod>
     </url>
     <url>

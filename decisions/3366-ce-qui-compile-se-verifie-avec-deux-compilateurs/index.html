@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/2731-un-seul-processus-par-workspace/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/">
       
       
-        <link rel="prev" href="../2729-un-script-publie-ne-se-modifie-plus/">
+        <link rel="prev" href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">
       
       
-        <link rel="next" href="../2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/">
+        <link rel="next" href="../3269-un-ensemble-vide-se-constate-avant-de-filtrer/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>2731 · Un seul processus par dossier de travail - VigieChiro Companion · Doc développeur</title>
+        <title>3366 · Ce qui compile se vérifie avec deux compilateurs - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-2731-un-seul-processus-ecrit-dans-un-dossier-de-travail-et-la-seconde-instance-est-refusee" class="md-skip">
+        <a href="#adr-3366-ce-qui-compile-se-verifie-avec-deux-compilateurs" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              2731 · Un seul processus par dossier de travail
+              3366 · Ce qui compile se vérifie avec deux compilateurs
             
           </span>
         </div>
@@ -3268,10 +3268,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3366 · Ce qui compile se vérifie avec deux compilateurs
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3287,6 +3314,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-mesure-avant-la-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La mesure, avant la décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Conséquences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-infojava-est-exclu-de-cette-passe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ module-info.java est exclu de cette passe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-job-porte-son-propre-controle-de-non-vacuite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le job porte son propre contrôle de non-vacuité
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -3380,37 +3499,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2731 · Un seul processus par dossier de travail
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../2731-un-seul-processus-par-workspace/" class="md-nav__link">
         
   
   
@@ -3426,120 +3518,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Décision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#un-verrou-de-fichier-systeme-pas-un-fichier-de-pid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Un verrou de fichier système, pas un fichier de PID
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#la-seconde-instance-graphique-est-refusee-pas-basculee-en-lecture-seule" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        La seconde instance graphique est refusée, pas basculée en lecture seule
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#la-cli-ne-verrouille-que-ses-operations-exclusives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        La CLI ne verrouille que ses opérations exclusives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#un-processus-ne-se-bloque-pas-lui-meme" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Un processus ne se bloque pas lui-même
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verification" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Vérification
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4224,6 +4202,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#la-mesure-avant-la-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La mesure, avant la décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4231,56 +4220,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Décision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#un-verrou-de-fichier-systeme-pas-un-fichier-de-pid" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Un verrou de fichier système, pas un fichier de PID
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#la-seconde-instance-graphique-est-refusee-pas-basculee-en-lecture-seule" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        La seconde instance graphique est refusée, pas basculée en lecture seule
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#la-cli-ne-verrouille-que-ses-operations-exclusives" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        La CLI ne verrouille que ses opérations exclusives
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#un-processus-ne-se-bloque-pas-lui-meme" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Un processus ne se bloque pas lui-même
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4293,16 +4232,33 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#verification" class="md-nav__link">
+    <nav class="md-nav" aria-label="Conséquences">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#module-infojava-est-exclu-de-cette-passe" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Vérification
+        ⚠️ module-info.java est exclu de cette passe
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-job-porte-son-propre-controle-de-non-vacuite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le job porte son propre contrôle de non-vacuité
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4323,7 +4279,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/2731-un-seul-processus-par-workspace.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3366-ce-qui-compile-se-verifie-avec-deux-compilateurs.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4332,83 +4288,99 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/2731-un-seul-processus-par-workspace.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3366-ce-qui-compile-se-verifie-avec-deux-compilateurs.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-2731-un-seul-processus-ecrit-dans-un-dossier-de-travail-et-la-seconde-instance-est-refusee">ADR 2731 - Un seul processus écrit dans un dossier de travail, et la seconde instance est <strong>refusée</strong><a class="headerlink" href="#adr-2731-un-seul-processus-ecrit-dans-un-dossier-de-travail-et-la-seconde-instance-est-refusee" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3366-ce-qui-compile-se-verifie-avec-deux-compilateurs">ADR 3366 - Ce qui compile se vérifie avec deux compilateurs<a class="headerlink" href="#adr-3366-ce-qui-compile-se-verifie-avec-deux-compilateurs" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - 2026-08-03</li>
-<li><strong>Chantier</strong> : #2731, lot 1 (#2721) du chantier de dette #2720</li>
-<li><strong>Vérification</strong> : certaine - <code>ReservationWorkspaceTest#seconde_instance_refusee</code></li>
+<li><strong>Statut</strong> : Accepté - 2026-08-06</li>
+<li><strong>Chantier</strong> : #3366, suite de #3228, lot #2724 du chantier #2720</li>
+<li><strong>Vérification</strong> : certaine - <code>.github/workflows/maven.yml</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Rien n'empêchait deux processus de travailler sur le même dossier de travail : deux fenêtres de
-l'application, une IHM et une CLI, ou une restauration lancée pendant un import. <code>SourceDeDonnees</code>
-pose bien un <code>busy_timeout</code> de 10 s, mais il absorbe une contention <strong>courte</strong> entre deux écritures :
-il ne protège pas le <strong>remplacement du fichier</strong> de base.</p>
-<p>Le lot 1 venait précisément de poser des garanties qui supposent toutes un seul écrivain : migration
-atomique (#2728), filet avant montée de version (#2729), restaurations vérifiées puis basculées
-(#2727, #2730). Elles tombent entièrement si un second processus écrit pendant l'opération. Le pire
-cas est nommé dans l'issue : <strong>une instance migre pendant que l'autre écrit</strong>.</p>
-<p>Deux questions à trancher : <strong>avec quel mécanisme</strong>, et <strong>que fait-on</strong> de la seconde instance.</p>
+<p><code>javac</code> n'est pas la norme du langage, c'en est <strong>une</strong> mise en œuvre. #3228 l'a coûté cher : une
+lambda visant <code>com.google.inject.Provider</code> - interface à méthode unique, mais <strong>non annotée</strong>
+<code>@FunctionalInterface</code> - que <code>javac</code> accepte et qu'<strong>ecj refuse</strong>.</p>
+<p>Le défaut ne se manifeste pas là où on l'attend. La compilation Maven passe ; c'est l'<strong>IDE</strong> qui
+écrit ses classes en erreur dans le <strong>même</strong> <code>target/classes</code>, et le <code>./mvnw test</code> suivant échoue <strong>à
+l'exécution</strong>, sur des tests sans rapport, avec un message qui ne nomme jamais la cause
+(<code>Unresolved compilation problem</code>, <code>Could not inject spec</code>). Une occurrence a produit <strong>133 erreurs</strong>.
+Le remède, <code>./mvnw clean</code>, doit être redécouvert à chaque fois.</p>
+<h2 id="la-mesure-avant-la-decision">La mesure, avant la décision<a class="headerlink" href="#la-mesure-avant-la-decision" title="Permanent link">&para;</a></h2>
+<p>L'issue exigeait de mesurer plutôt que de croire. <code>ecj 3.46.0</code> + <code>plexus-compiler-eclipse 2.16.2</code>,
+<code>--release 25</code>, sur les sources <strong>et</strong> les tests :</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Divergences <strong>réelles</strong></td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td>dont manquées par le balayage textuel de #3228</td>
+<td><strong>2</strong></td>
+</tr>
+<tr>
+<td>Avertissements ecj</td>
+<td><strong>1293</strong></td>
+</tr>
+<tr>
+<td>Erreurs après correction</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Deux familles, et la seconde n'avait pas de nom :</p>
+<ul>
+<li><strong>lambda visant un <code>Provider</code></strong> : deux occurrences dans <code>CapturePassage</code>. Corrigées en <strong>classe
+  anonyme</strong> et non par <code>Providers.of</code>, qui évaluerait dans <code>configure()</code> alors que le fournisseur n'a
+  de sens qu'à l'injection ;</li>
+<li><strong>capture de générique sur <code>map(...).toList()</code></strong> : ecj infère <code>Stream&lt;Map&lt;String, capture-of ?&gt;&gt;</code> là
+  où <code>javac</code> assigne sans broncher à <code>List&lt;Map&lt;String, ?&gt;&gt;</code>. Deux occurrences, corrigées par un
+  <strong>témoin de type explicite</strong>.</li>
+</ul>
+<p>⚠️ La quatrième n'est apparue qu'<strong>après</strong> avoir mis <code>module-info.java</code> de côté : ecj s'arrêtait avant
+d'atteindre les sources de test. Une mesure interrompue n'est pas une mesure.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<h3 id="un-verrou-de-fichier-systeme-pas-un-fichier-de-pid">Un verrou de fichier système, pas un fichier de PID<a class="headerlink" href="#un-verrou-de-fichier-systeme-pas-un-fichier-de-pid" title="Permanent link">&para;</a></h3>
-<p>Le verrou est un <code>FileChannel.tryLock()</code> sur <code>&lt;workspace&gt;/.verrou</code>. Le PID et l'horodatage sont
-<strong>écrits dans le fichier</strong>, mais pour le <strong>message</strong> uniquement : jamais pour la décision.</p>
-<p>Ce qui départage les deux mécanismes n'est pas la simplicité, c'est le <strong>relâchement</strong>. Le système
-d'exploitation rend le verrou quand le processus meurt : un plantage ne condamne pas le dossier de
-travail. Un fichier de PID demanderait de savoir si le PID 12345 est encore vivant, question sans
-réponse portable, et sur laquelle une erreur coûte cher dans les deux sens : trop prudent, on bloque
-un utilisateur pour toujours après un crash ; trop confiant, on laisse deux instances écrire.</p>
-<p><strong>Un verrou qu'on ne sait pas relâcher est pire que pas de verrou</strong> : il transforme un incident en
-blocage définitif, et l'utilisateur n'a alors plus que la suppression manuelle d'un fichier caché
-pour s'en sortir.</p>
-<h3 id="la-seconde-instance-graphique-est-refusee-pas-basculee-en-lecture-seule">La seconde instance graphique est refusée, pas basculée en lecture seule<a class="headerlink" href="#la-seconde-instance-graphique-est-refusee-pas-basculee-en-lecture-seule" title="Permanent link">&para;</a></h3>
-<p>L'issue laissait le choix ouvert. Le refus est retenu.</p>
-<p>Un mode lecture seule n'existe <strong>nulle part</strong> dans le produit. Le livrer supposerait de gater chaque
-écriture de chaque fonctionnalité (import, qualification, validation, dépôt, réglages), et de décider
-pour chacune ce que « lecture seule » veut dire à l'écran. C'est un chantier en soi, pas un effet de
-bord de celui-ci, et un mode à moitié appliqué serait pire que pas de mode du tout : l'utilisateur
-croirait pouvoir travailler.</p>
-<p>Le refus est immédiat, sans ambiguïté, et <strong>réversible</strong> : passer plus tard en lecture seule ne
-remettrait pas en cause le verrou, seulement ce qu'on fait quand il est déjà pris.</p>
-<h3 id="la-cli-ne-verrouille-que-ses-operations-exclusives">La CLI ne verrouille que ses opérations exclusives<a class="headerlink" href="#la-cli-ne-verrouille-que-ses-operations-exclusives" title="Permanent link">&para;</a></h3>
-<p>L'IHM tient le verrou pour toute la durée de son exécution : c'est elle l'occupante. La CLI ne le
-prend que pour la migration <strong>ayant réellement quelque chose à appliquer</strong>, la restauration et la
-remise à zéro.</p>
-<p>La nuance sur la migration est délibérée. Une commande de lecture lancée pendant que l'IHM tourne ne
-migre rien ; la faire échouer sur un verrou lui coûterait plus que la protection ne lui rapporte, et
-casserait l'usage scriptable qui fait l'intérêt de la CLI.</p>
-<h3 id="un-processus-ne-se-bloque-pas-lui-meme">Un processus ne se bloque pas lui-même<a class="headerlink" href="#un-processus-ne-se-bloque-pas-lui-meme" title="Permanent link">&para;</a></h3>
-<p>Une JVM ne peut pas prendre deux fois le même verrou de fichier (<code>OverlappingFileLockException</code>), et
-n'a de toute façon pas à se protéger d'elle-même. La détention est donc connue au niveau du
-processus : une restauration lancée <strong>depuis</strong> l'IHM réutilise le verrou de l'IHM, et le rendre à la
-fin de l'opération ne le relâche pas.</p>
+<p><strong>Le dépôt compile avec deux compilateurs conformes, et les deux doivent accepter le code.</strong> Un
+troisième job de <code>maven.yml</code>, en parallèle des deux autres, rejoue <code>./mvnw -Pecj clean test-compile</code> -
+ni tests ni couverture, seule la compilation.</p>
+<p>Ce sont les <strong>deux occurrences manquées</strong> qui tranchent le choix que l'issue laissait ouvert. L'autre
+option était une garde textuelle sur la forme connue ; or le balayage textuel avait <strong>déjà tourné</strong> sur
+cette forme précise, en #3228, et il en avait laissé deux. <strong>Une garde ne voit que ce qu'on lui a
+appris ; un compilateur voit ce qu'il refuse.</strong></p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Deux fenêtres sur le même dossier de travail : la seconde se ferme en nommant l'occupante.</li>
-<li>Une opération exclusive pendant qu'un autre processus travaille : refus explicite, avec le nom de
-  l'occupant, plutôt qu'un échec SQLite tardif au milieu d'une écriture.</li>
-<li>Un plantage ne laisse aucun verrou derrière lui.</li>
-<li>⚠️ <strong>Ce que le verrou ne protège pas</strong> : deux dossiers de travail <strong>différents</strong> pointant vers la
-  même base (possible depuis #1038, où l'emplacement de la base est configurable). Le verrou porte
-  sur le dossier de travail, pas sur le fichier de base. C'est une limite assumée, et non un oubli.</li>
-<li>⚠️ Le verrou ne sérialise pas les écritures <strong>à l'intérieur</strong> d'un processus : ce n'est pas son
-  rôle, c'est celui des transactions.</li>
+<li>une construction qui ne passe qu'avec <code>javac</code> est refusée avant d'atteindre <code>main</code>, donc avant
+  d'empoisonner le <code>target/classes</code> de quelqu'un ;</li>
+<li><strong>seules les erreurs bloquent.</strong> Les 1293 avertissements ne sont pas des défauts, et un job qui
+  rougirait dessus serait désactivé en trois semaines ;</li>
+<li>deux dépendances de plus, dans un profil <strong>hors build par défaut</strong>. Leurs versions vivent dans le
+  <code>pom.xml</code>, <strong>où Dependabot les voit</strong> : posées dans un workflow, elles ne seraient surveillées par
+  personne - c'est exactement le défaut que l'<a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">ADR 2748</a>
+  et #3382 viennent de traiter.</li>
 </ul>
-<h2 id="verification">Vérification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
-<p><code>ReservationWorkspaceTest</code> couvre le refus de la seconde réservation, le message qui nomme l'occupant
-et dit quoi faire, et la libération qui rend le dossier. <code>VerrouWorkspaceTest</code> couvre le mécanisme :
-prise, refus du second preneur, relâchement, réutilisation par le processus détenteur, et prise
-temporaire pour une opération exclusive.</p>
-<p>Une réserve d'honnêteté : <strong>l'exclusion entre deux vrais processus n'est pas testée ici</strong>. Une seule
-JVM ne peut pas la simuler, le refus y venant du contrôle interne à la JVM et non du système. La
-chaîne de décision (refus, message, libération) est bien exercée ; l'exclusion elle-même repose sur
-la garantie de <code>FileChannel.tryLock</code>.</p>
+<h3 id="module-infojava-est-exclu-de-cette-passe">⚠️ <code>module-info.java</code> est exclu de cette passe<a class="headerlink" href="#module-infojava-est-exclu-de-cette-passe" title="Permanent link">&para;</a></h3>
+<p>Sous <code>plexus-compiler-eclipse</code>, ecj ne résout ni les modules automatiques (<code>com.google.gson</code>,
+<code>info.picocli</code>) ni <code>org.xerial.sqlitejdbc</code>, et rendait <strong>six erreurs qui ne disent rien du code</strong> ;
+<code>useModulePath=false</code> n'y change rien. Le profil exclut donc <code>module-info.java</code> et compile sur le
+classpath.</p>
+<p>C'est un <strong>renoncement assumé</strong> et non un oubli : <code>javac</code> vérifie le module à chaque build, ce second
+avis n'a pas à le refaire. À rouvrir si <code>plexus-compiler-eclipse</code> apprend les modules automatiques.</p>
+<h3 id="le-job-porte-son-propre-controle-de-non-vacuite">Le job porte son propre contrôle de non-vacuité<a class="headerlink" href="#le-job-porte-son-propre-controle-de-non-vacuite" title="Permanent link">&para;</a></h3>
+<p>Une faute dans le profil ferait retomber la compilation sur <strong>javac</strong>, et le job resterait <strong>vert</strong> en
+n'ayant rien comparé. L'étape exige donc de voir <strong>deux</strong> passes <code>Compiling with eclipse</code> dans son
+journal, une par jeu de sources, et échoue sinon en le disant. Vérifié dans les deux sens : <strong>2</strong> avec
+<code>-Pecj</code>, <strong>0</strong> sans.</p>
 
 
 
@@ -4444,7 +4416,7 @@ la garantie de <code>FileChannel.tryLock</code>.</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../2729-un-script-publie-ne-se-modifie-plus/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 2729 · Un script publié ne se modifie plus">
+          <a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 2748 · Un dispositif qui peut ne rien vérifier le dit">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4454,20 +4426,20 @@ la garantie de <code>FileChannel.tryLock</code>.</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                2729 · Un script publié ne se modifie plus
+                2748 · Un dispositif qui peut ne rien vérifier le dit
               </div>
             </div>
           </a>
         
         
           
-          <a href="../2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 2732 · On n&#39;écrit pas plus que ce qui est déclaré">
+          <a href="../3269-un-ensemble-vide-se-constate-avant-de-filtrer/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3269 · Un ensemble vide se constate avant de filtrer">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                2732 · On n'écrit pas plus que ce qui est déclaré
+                3269 · Un ensemble vide se constate avant de filtrer
               </div>
             </div>
             <div class="md-footer__button md-icon">
