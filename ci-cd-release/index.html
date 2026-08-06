@@ -4121,6 +4121,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#deux-compilateurs-pas-un-3366" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deux compilateurs, pas un (#3366)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deux compilateurs, pas un (#3366)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-la-mesure-a-donne-avant-de-decider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la mesure a donné, avant de décider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-1293-avertissements-et-pourquoi-on-ne-bloque-pas-dessus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les 1293 avertissements, et pourquoi on ne bloque pas dessus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ module-info.java est exclu de cette passe, et c'est un renoncement assumé
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-controle-qui-empeche-ce-job-de-mentir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le contrôle qui empêche ce job de mentir
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#analyse-statique-de-securite-et-detection-de-secrets-2741" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4420,6 +4481,67 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#deux-compilateurs-pas-un-3366" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deux compilateurs, pas un (#3366)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Deux compilateurs, pas un (#3366)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-la-mesure-a-donne-avant-de-decider" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la mesure a donné, avant de décider
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-1293-avertissements-et-pourquoi-on-ne-bloque-pas-dessus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les 1293 avertissements, et pourquoi on ne bloque pas dessus
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ module-info.java est exclu de cette passe, et c'est un renoncement assumé
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-controle-qui-empeche-ce-job-de-mentir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le contrôle qui empêche ce job de mentir
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#analyse-statique-de-securite-et-detection-de-secrets-2741" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4537,6 +4659,12 @@ publication.</p>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>paquet</code></td>
 <td>push <code>main</code> + PR</td>
 <td>Assemblage du fat-jar (<code>package -DskipTests</code>) puis smoke-test, <strong>E2E CLI bats</strong> et idempotence du packaging. <strong>En parallèle</strong> de <code>build</code></td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>second-compilateur</code></td>
+<td>push <code>main</code> + PR</td>
+<td>Recompile <strong>tout</strong> avec le compilateur <strong>Eclipse</strong> (<code>-Pecj</code>), sans les tests : ce que <code>javac</code> accepte, un autre compilateur conforme ne l'accepte pas forcément (cf. plus bas). <strong>En parallèle</strong> des deux autres</td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
@@ -5153,6 +5281,68 @@ indéterminée », donc rouge. Un échec qui <strong>persiste</strong> reste rou
 plus aucun tag est en soi une nouvelle - le tag a été déplacé ou supprimé en amont.</p>
 <p>L'autotest, lui, est <strong>hors ligne</strong> et tourne dans <code>lint.yml</code> à chaque PR : c'est le seul contrôle qui
 voit ce garde entre deux lundis.</p>
+<h2 id="deux-compilateurs-pas-un-3366">Deux compilateurs, pas un (#3366)<a class="headerlink" href="#deux-compilateurs-pas-un-3366" title="Permanent link">&para;</a></h2>
+<p><code>javac</code> n'est pas la norme du langage, c'en est <strong>une</strong> mise en oeuvre. #3228 l'a coûté cher : une
+lambda visant <code>com.google.inject.Provider</code> - une interface à méthode unique, mais <strong>non annotée</strong>
+<code>@FunctionalInterface</code> - que <code>javac</code> accepte et qu'<strong>ecj refuse</strong>. Le défaut ne se manifeste pas à la
+compilation Maven, mais quand l'IDE écrit ses classes en erreur dans le <strong>même</strong> <code>target/classes</code>, et
+que le <code>./mvnw test</code> suivant échoue <strong>à l'exécution</strong>, sur des tests sans rapport, avec un message qui
+ne nomme jamais la cause. Une occurrence a produit 133 erreurs.</p>
+<p>Le job <code>second-compilateur</code> recompile donc <strong>tout</strong> avec ecj (<code>./mvnw -Pecj clean test-compile</code>), sans
+les tests ni la couverture : seule la compilation est rejouée, par un autre compilateur conforme.</p>
+<h3 id="ce-que-la-mesure-a-donne-avant-de-decider">Ce que la mesure a donné, avant de décider<a class="headerlink" href="#ce-que-la-mesure-a-donne-avant-de-decider" title="Permanent link">&para;</a></h3>
+<p>L'issue demandait de mesurer plutôt que de croire. Sur le dépôt tel qu'il était :</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Divergences <strong>réelles</strong> trouvées</td>
+<td><strong>4</strong></td>
+</tr>
+<tr>
+<td>dont manquées par le balayage textuel de #3228</td>
+<td><strong>2</strong></td>
+</tr>
+<tr>
+<td>Avertissements ecj</td>
+<td><strong>1293</strong></td>
+</tr>
+<tr>
+<td>Erreurs après correction</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Deux familles, et la seconde n'avait pas de nom :</p>
+<ul>
+<li><strong>lambda visant un <code>Provider</code></strong> : deux occurrences dans <code>CapturePassage</code>, que le balayage textuel de
+  #3228 n'avait pas vues. Corrigées en classe anonyme - et <strong>pas</strong> avec <code>Providers.of</code>, qui évaluerait
+  dans <code>configure()</code> alors que le fournisseur n'a de sens qu'à l'injection ;</li>
+<li><strong>capture de générique sur <code>map(...).toList()</code></strong> : <code>Stream&lt;Map&lt;String, capture-of ?&gt;&gt;</code> que <code>javac</code>
+  assigne à <code>List&lt;Map&lt;String, ?&gt;&gt;</code> et qu'ecj refuse. Deux occurrences, corrigées par un <strong>témoin de
+  type explicite</strong> (<code>.&lt;Map&lt;String, ?&gt;&gt;map(...)</code>).</li>
+</ul>
+<p>C'est l'argument décisif contre l'alternative étroite qui avait été envisagée, une garde textuelle sur
+la forme connue : <strong>le balayage textuel avait déjà tourné, et il en avait manqué deux</strong>. Une garde ne
+voit que ce qu'on lui a appris ; un compilateur voit ce qu'il refuse.</p>
+<h3 id="les-1293-avertissements-et-pourquoi-on-ne-bloque-pas-dessus">Les 1293 avertissements, et pourquoi on ne bloque pas dessus<a class="headerlink" href="#les-1293-avertissements-et-pourquoi-on-ne-bloque-pas-dessus" title="Permanent link">&para;</a></h3>
+<p>Ce ne sont pas des défauts. Un job qui rougirait dessus serait désactivé en trois semaines, et on
+serait revenu au point de départ en ayant payé le trajet. <strong>Seules les erreurs bloquent.</strong></p>
+<h3 id="module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume">⚠️ <code>module-info.java</code> est exclu de cette passe, et c'est un renoncement assumé<a class="headerlink" href="#module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume" title="Permanent link">&para;</a></h3>
+<p>Sous <code>plexus-compiler-eclipse</code>, ecj ne résout ni les modules automatiques (<code>com.google.gson</code>,
+<code>info.picocli</code>) ni <code>org.xerial.sqlitejdbc</code>, et rendait <strong>six erreurs qui ne disent rien du code</strong> -
+<code>useModulePath=false</code> n'y change rien. Le profil exclut donc <code>module-info.java</code> et compile sur le
+classpath. <code>javac</code> vérifie le module à chaque build : ce second avis n'a pas à le refaire.</p>
+<h3 id="le-controle-qui-empeche-ce-job-de-mentir">Le contrôle qui empêche ce job de mentir<a class="headerlink" href="#le-controle-qui-empeche-ce-job-de-mentir" title="Permanent link">&para;</a></h3>
+<p>Une faute dans le profil ferait retomber la compilation sur <strong>javac</strong>, et le job resterait <strong>vert</strong> en
+n'ayant rien comparé. L'étape exige donc de voir <strong>deux</strong> passes <code>Compiling with eclipse</code> dans le
+journal - une pour les sources, une pour les tests - et échoue sinon en le disant. Vérifié dans les
+deux sens : 2 avec <code>-Pecj</code>, <strong>0</strong> sans.</p>
 <h2 id="analyse-statique-de-securite-et-detection-de-secrets-2741">Analyse statique de sécurité, et détection de secrets (#2741)<a class="headerlink" href="#analyse-statique-de-securite-et-detection-de-secrets-2741" title="Permanent link">&para;</a></h2>
 <p>Le dépôt est <strong>public</strong> depuis #169. <code>codeql.yml</code> cherche ce que ni PMD ni les tests ne cherchent :
 des <strong>chemins de données</strong> - une entrée qui atteint une commande, un chemin de fichier, une requête -
