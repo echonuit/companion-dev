@@ -4510,7 +4510,7 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/api-live.yml">api-live.yml</a></td>
 <td>hebdomadaire (lundi) + manuel</td>
-<td>Contrat de l'API Vigie-Chiro, <strong>en lecture seule</strong> ; sépare « jeton mort » (warning) de « contrat cassé » (rouge)</td>
+<td>Contrat de l'API Vigie-Chiro, <strong>en lecture seule</strong> ; sépare « jeton mort » (warning) de « contrat cassé » (rouge), et <strong>rougit au bout de trois semaines sans vérification réelle</strong> (cf. ci-dessous)</td>
 <td>—</td>
 </tr>
 <tr>
@@ -4551,6 +4551,31 @@ publication.</p>
 Codespaces. Il se déclenchait sur une branche <code>solution</code> <strong>absente de ce dépôt</strong> : il n'a jamais
 tourné et l'image n'a jamais existé, si bien que le conteneur ne pouvait plus se construire.
 Le <code>.devcontainer/</code> reconstruit désormais depuis son <code>Dockerfile</code> et ses features (#2388).</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Le vert du contrat API dit maintenant ce qu'il a vérifié</p>
+<p>Un jeton VigieChiro vit <strong>14 jours</strong> face à un passage <strong>hebdomadaire</strong> : il expire donc
+régulièrement, et <code>api-live.yml</code> reste volontairement vert dans ce cas, avec un avertissement.
+Un rouge permanent ne signalerait plus rien.</p>
+<p>L'angle mort, mesuré en #2748 : ce vert-là ne distinguait pas « contrat vérifié » de « contrat
+<strong>sauté</strong> ». Deux passages verts d'affilée n'avaient rien vérifié, la dernière exécution réelle
+remontant à 16 jours. Personne ne l'avait vu, et c'est le point : il n'y avait rien à voir.</p>
+<p>Chaque passage se termine désormais par une <strong>veille de fraîcheur</strong>
+(<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille-contrat-api.sh"><code>veille-contrat-api.sh</code></a>),
+dont le verdict s'affiche dans le <strong>résumé du run</strong>, vert compris :</p>
+<ul>
+<li>sous <strong>21 jours</strong> (trois passages hebdomadaires manqués) : vert, avec la date de la dernière
+  vérification réelle ;</li>
+<li>au-delà : <strong>rouge</strong>. Tolérer une expiration reste juste ; ne plus jamais vérifier ne l'est pas.</li>
+</ul>
+<p>Elle ne <strong>persiste rien</strong> : l'historique des passages <em>est</em> la date recherchée, lue par
+<code>actions: read</code>. Un fichier commité, un artefact (90 jours) ou un cache (7 jours) deviendraient
+chacun une seconde chose à surveiller, dont la première panne serait, ici encore, un silence.</p>
+<p>⚠️ Elle reconnaît un passage vérifié au <strong>nom</strong> de son étape (<code>Contrat API (lecture seule)</code>).
+Renommer cette étape sans reporter le nom dans <code>ETAPE_CONTRAT</code> casserait la détection : la veille
+refuse alors de conclure et dit que c'est <strong>elle</strong> qui est en cause, plutôt que d'annoncer un
+rassurant « jamais joué ». Son autotest tourne à chaque PR dans <code>lint.yml</code>, seul endroit où on la
+voit à l'œuvre entre deux lundis.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Workflows « dormants »</p>
