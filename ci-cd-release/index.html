@@ -5226,12 +5226,29 @@ le borne sans le supprimer.</p>
 <p>⚠️ <strong>Le binaire se lance depuis la racine pour publier</strong> (<code>./.github/release/node_modules/.bin/semantic-release</code>) :
 c'est <code>.releaserc.json</code> qui fait alors foi. Lancé <strong>depuis <code>.github/release/</code></strong>, c'est la configuration
 d'analyse que cosmiconfig trouve en premier. Les deux ont été vérifiées en local, greffon par greffon.</p>
+<h3 id="ce-que-le-lockfile-ne-figeait-pas-node-3264">Ce que le lockfile ne figeait pas : Node (#3264)<a class="headerlink" href="#ce-que-le-lockfile-ne-figeait-pas-node-3264" title="Permanent link">&para;</a></h3>
+<p>Les deux workflows qui installent cet outillage demandent <code>node-version: "24"</code>, et non <code>lts/*</code>. Un
+lockfile fige l'arbre ; <code>lts/*</code> laissait flotter le <strong>runtime qui l'exécute</strong>. Au prochain passage de
+majeure LTS, le job de publication aurait changé de Node <strong>sans PR ni relecture</strong> - exactement ce que</p>
+<h1 id="2738-cherchait-a-empecher-pour-les-paquets-laisse-ouvert-pour-linterpreteur">2738 cherchait à empêcher pour les paquets, laissé ouvert pour l'interpréteur.<a class="headerlink" href="#2738-cherchait-a-empecher-pour-les-paquets-laisse-ouvert-pour-linterpreteur" title="Permanent link">&para;</a></h1>
+<p>L'occasion l'a rendu concret : <code>semantic-release@25</code> exige <code>^22.14.0 || &gt;= 24.10.0</code>. Avec <code>lts/*</code>, la
+satisfaction de cette contrainte dépendait de ce que le runner avait en cache ce jour-là.</p>
+<h3 id="larbre-de-publication-et-ses-alertes">L'arbre de publication et ses alertes<a class="headerlink" href="#larbre-de-publication-et-ses-alertes" title="Permanent link">&para;</a></h3>
+<p>Le passage en <code>semantic-release@25</code> (#3264) ramène <code>npm audit</code> de <strong>18 paquets vulnérables (15
+hautes)</strong> à <strong>7 (2 hautes)</strong>. Il <strong>réduit sans résoudre</strong> : les deux hautes restantes vivent dans le
+<code>npm</code> que <code>semantic-release</code> embarque, et <code>npm audit fix</code> le dit lui-même (<code>is a bundled dependency of
+npm@… · It cannot be fixed automatically</code>). Aucune version de <code>semantic-release</code> ne les corrige : il
+faut que <code>npm</code> publie, et que <code>semantic-release</code> reprenne.</p>
+<p>⚠️ <strong>Un compte d'alertes Dependabot n'est pas une mesure d'exposition.</strong> GitHub <strong>auto-écarte</strong> les
+avis de portée <code>development</code>, ce qu'est tout cet arbre : au 2026-08-04, quatre avis
+(<code>brace-expansion</code> ×3, <code>picomatch</code>) l'ont été sans que le compte affiché bouge. Pour cet arbre, c'est
+<code>npm audit</code> qui fait foi.</p>
 <h2 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">&para;</a></h2>
 <p>Les mises à jour sont proposées par <strong>Dependabot</strong>
 (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>),
-<strong>mensuellement</strong>, pour <code>maven</code> et <code>github-actions</code>. <strong>JavaFX (<code>org.openjfx:*</code>) est volontairement
-exclu</strong> de l'automatisation : ses bumps ont un impact fort (rendu, Headless Platform) et se décident à
-la main.</p>
+<strong>mensuellement</strong>, pour <code>maven</code>, <code>github-actions</code> et l'outillage de publication (<code>npm</code>, dans
+<code>/.github/release</code>). <strong>JavaFX (<code>org.openjfx:*</code>) est volontairement exclu</strong> de l'automatisation : ses
+bumps ont un impact fort (rendu, Headless Platform) et se décident à la main.</p>
 
 
 
