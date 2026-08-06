@@ -3216,6 +3216,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3374 · Une fenêtre porte son habillage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4646,6 +4674,11 @@
 <td><a href="3361-la-typographie-est-embarquee/">3361</a></td>
 <td><code>base.css</code> nommait trois polices dont <strong>aucune n est installee</strong>, ni sur un poste ni sur le runner : les deux retombaient sur <code>sans-serif</code>, un ALIAS que chaque systeme resout a sa facon. Le produit heritait donc de la typographie de la machine - trois allers-retours avec le garde de troncature, et surtout deux utilisateurs voyant des rendus differents sans qu aucun garde ne le voie. Noto Sans est <strong>embarquee</strong> (OFL 1.1, 1 Mo), chargee aux DEUX points d entree - l application et les 41 outils de capture</td>
 <td>#3361, suite de #3151</td>
+</tr>
+<tr>
+<td><a href="3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/">3374</a></td>
+<td>Embarquer une police ne la <strong>selectionne</strong> pas : c est <code>base.css</code> qui la demande, et seuls deux FXML la declaraient. Sur onze scenes, <strong>dix</strong> naissaient d un <code>new Scene(vue)</code> sans elle et rendaient avec la police par defaut de JavaFX - differente de celle de la fenetre qui les porte, et differente d une machine a l autre. Un point de passage unique (<code>Habillage</code>) sert <strong>les fenetres comme les captures</strong>, de sorte qu un apercu montre l ecran de l utilisateur par CONSTRUCTION. Mesure : zero pixel d ecart CI/local sur l ecran qui porte la feuille, 28,8 % sur ceux qui ne la portent pas - il n y avait donc rien a regler cote anticrenelage</td>
+<td>#3374, suite de #3361</td>
 </tr>
 <tr>
 <td><a href="3222-une-entree-externe-se-lit-sous-plafond/">3222</a></td>
