@@ -3244,6 +3244,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3350-c-est-la-sortie-qui-desambigue-pas-le-critere-qui-se-restreint/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3350 · C'est la sortie qui désambiguïse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4679,6 +4707,11 @@
 <td><a href="3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/">3374</a></td>
 <td>Embarquer une police ne la <strong>selectionne</strong> pas : c est <code>base.css</code> qui la demande, et seuls deux FXML la declaraient. Sur onze scenes, <strong>dix</strong> naissaient d un <code>new Scene(vue)</code> sans elle et rendaient avec la police par defaut de JavaFX - differente de celle de la fenetre qui les porte, et differente d une machine a l autre. Un point de passage unique (<code>Habillage</code>) sert <strong>les fenetres comme les captures</strong>, de sorte qu un apercu montre l ecran de l utilisateur par CONSTRUCTION. Mesure : zero pixel d ecart CI/local sur l ecran qui porte la feuille, 28,8 % sur ceux qui ne la portent pas - il n y avait donc rien a regler cote anticrenelage</td>
 <td>#3374, suite de #3361</td>
+</tr>
+<tr>
+<td><a href="3350-c-est-la-sortie-qui-desambigue-pas-le-critere-qui-se-restreint/">3350</a></td>
+<td><code>--lieu</code> ecartait le <strong>point</strong> au motif qu un code seul (« A1 ») designe autant de lieux qu il y a de carres et qu une ligne de commande n a pas de liste sous les yeux. L inventaire a dementi la premisse : les cinq surfaces qui offrent <code>--lieu</code> portent le carre ET le point. La regle devient <strong>c est la sortie qui desambigue, pas le critere qui se restreint</strong>, dont le corollaire porte la these de l ADR 3151 a la ligne de commande - <code>lister-observations</code> filtrait sur un lieu qu elle taisait entierement. Et ce que le refus <strong>enumere</strong> n est pas ce qu il <strong>accepte</strong> : y ajouter les points faisait passer la liste de 15 a 31 entrees pour n en montrer que six sous la borne</td>
+<td>#3350, suite de #3151</td>
 </tr>
 <tr>
 <td><a href="3222-une-entree-externe-se-lit-sous-plafond/">3222</a></td>
