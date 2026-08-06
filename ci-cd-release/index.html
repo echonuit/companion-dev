@@ -4101,6 +4101,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="L&#39;inventaire des dépendances livrées, et sa surveillance (#2740)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-seconde-chaine-dapprovisionnement-celle-qui-construit-3382" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La seconde chaîne d'approvisionnement : celle qui construit (#3382)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4382,6 +4399,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="L&#39;inventaire des dépendances livrées, et sa surveillance (#2740)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-seconde-chaine-dapprovisionnement-celle-qui-construit-3382" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La seconde chaîne d'approvisionnement : celle qui construit (#3382)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -5069,6 +5103,56 @@ début de <code>Files.createTempDirectory</code>, celui du <strong>JDK</strong>,
 annonçait trois appels là où il n'y en avait aucun. La question « est-ce que ça nous concerne ? »
 se pose sur les <strong>imports</strong>, pas sur la ressemblance des noms.</p>
 </div>
+<h3 id="la-seconde-chaine-dapprovisionnement-celle-qui-construit-3382">La seconde chaîne d'approvisionnement : celle qui construit (#3382)<a class="headerlink" href="#la-seconde-chaine-dapprovisionnement-celle-qui-construit-3382" title="Permanent link">&para;</a></h3>
+<p>Le SBOM répond de ce que le fat-jar <strong>embarque</strong>. Restaient les <strong>actions GitHub</strong> qui le fabriquent,
+le signent et le publient - un autre approvisionnement, aussi capable de vieillir, et que rien ne
+regardait.</p>
+<p><code>verifie-epinglage.sh</code> garde leur <strong>cohérence</strong> : tout figé par SHA, aucune divergence entre deux
+emplacements. C'est une propriété du dépôt, vraie indéfiniment, <strong>y compris quand l'amont a pris une
+majeure d'avance</strong>. Un SHA figé reste figé.</p>
+<p>Mesuré au 2026-08-06 : <code>actions/attest-build-provenance</code> était épinglée sur <strong>v3.0.0</strong> (août 2025)
+quand l'amont en était à <strong>v4.1.1</strong> (juin 2026) - sur l'action qui <strong>signe la provenance des binaires
+livrés</strong>. Huit autres actions étaient à jour. Rien n'avait rougi, et Dependabot, actif et proposant
+d'autres montées la semaine même, ne l'avait <strong>jamais</strong> proposée, pour une raison qui reste inconnue :
+les deux hypothèses examinées (le SHA porte deux tags ; <code>release.yml</code> serait ignoré) ont toutes deux
+été réfutées.</p>
+<p>D'où un second job dans <code>securite-dependances.yml</code>, hebdomadaire, qui <strong>mesure</strong> l'écart au lieu de
+compter sur le mécanisme censé le combler :</p>
+<table>
+<thead>
+<tr>
+<th>Écart constaté</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>même version</td>
+<td>rien à dire</td>
+</tr>
+<tr>
+<td>retard dans la même majeure</td>
+<td><strong>avertissement</strong>, non bloquant</td>
+</tr>
+<tr>
+<td>retard d'une <strong>majeure entière</strong></td>
+<td><strong>rouge</strong></td>
+</tr>
+<tr>
+<td>version indéterminée après trois tentatives</td>
+<td><strong>rouge</strong></td>
+</tr>
+</tbody>
+</table>
+<p>L'asymétrie est délibérée. L'amont publie pour des raisons qui ne nous regardent pas : un rouge à
+chaque release amont s'apprendrait à ignorer aussi vite qu'un garde muet. Une majeure de retard, elle,
+n'est pas du bruit de fond - c'est le cas qui a échappé à tout le monde pendant six mois.</p>
+<p>⚠️ <strong>Trois tentatives, parce que l'API bafouille.</strong> Vu en écrivant le garde : un appel qui rend la
+liste attendue, rejoué à l'identique, revient vide. Sans reprise, ce hoquet se lirait « version
+indéterminée », donc rouge. Un échec qui <strong>persiste</strong> reste rouge, et c'est voulu : un SHA qui ne porte
+plus aucun tag est en soi une nouvelle - le tag a été déplacé ou supprimé en amont.</p>
+<p>L'autotest, lui, est <strong>hors ligne</strong> et tourne dans <code>lint.yml</code> à chaque PR : c'est le seul contrôle qui
+voit ce garde entre deux lundis.</p>
 <h2 id="analyse-statique-de-securite-et-detection-de-secrets-2741">Analyse statique de sécurité, et détection de secrets (#2741)<a class="headerlink" href="#analyse-statique-de-securite-et-detection-de-secrets-2741" title="Permanent link">&para;</a></h2>
 <p>Le dépôt est <strong>public</strong> depuis #169. <code>codeql.yml</code> cherche ce que ni PMD ni les tests ne cherchent :
 des <strong>chemins de données</strong> - une entrée qui atteint une commande, un chemin de fichier, une requête -
