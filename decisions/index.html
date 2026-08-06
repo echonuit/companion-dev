@@ -3468,6 +3468,34 @@
   
   
     <li class="md-nav__item">
+      <a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2753 · Une règle absente et assumée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3269-un-ensemble-vide-se-constate-avant-de-filtrer/" class="md-nav__link">
         
   
@@ -4175,6 +4203,33 @@
     
   
     CI/CD et release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reprendre-le-depot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reprendre le dépôt
   
 
     
@@ -4930,6 +4985,11 @@
 <td><a href="3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/">3366</a></td>
 <td><code>javac</code> n'est pas la norme, c'en est <strong>une</strong> mise en oeuvre, et le code qu'il seul accepte empoisonne <code>target/classes</code> puis echoue a l'EXECUTION, tres loin de sa cause. Mesure avant decision : <strong>4 divergences reelles</strong>, dont <strong>2 que le balayage textuel de #3228 avait manquees</strong>, et 1293 avertissements. Ce sont ces deux manquees qui tranchent - une garde ne voit que ce qu'on lui a appris, un compilateur voit ce qu'il refuse. Seules les erreurs bloquent ; <code>module-info</code> est exclu de la passe, renoncement assume</td>
 <td>#3366, suite de #3228</td>
+</tr>
+<tr>
+<td><a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/">2753</a></td>
+<td>Ce depot a UN mainteneur : 25 des 40 dernieres PR fusionnees par une personne, 15 par un bot. Et la mesure a recadre le constat - <code>main</code> n a <strong>aucune</strong> protection, pas seulement la meme revue que le reste. On n en pose donc aucune, et on l ECRIT : une seconde approbation n existe pas a effectif constant, et une regle qu on contourne apprend qu on peut contourner les regles. Les chemins sensibles (migrations, sauvegarde, workflows) portent une <strong>case</strong> dans le gabarit de PR, pas un garde - un garde de plus serait un dispositif de plus a surveiller (ADR 2748). Le bus factor se traite par l ecrit : la page « Reprendre le depot »</td>
+<td>#2753, lot #2725</td>
 </tr>
 </tbody>
 </table>

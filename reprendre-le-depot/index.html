@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/observabilite/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/reprendre-le-depot/">
       
       
-        <link rel="prev" href="../performance/">
+        <link rel="prev" href="../ci-cd-release/">
       
       
-        <link rel="next" href="../captures/">
+        <link rel="next" href="../securite/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Observabilité - VigieChiro Companion · Doc développeur</title>
+        <title>Reprendre le dépôt - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#observabilite" class="md-skip">
+        <a href="#reprendre-le-depot" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Observabilité
+              Reprendre le dépôt
             
           </span>
         </div>
@@ -4023,37 +4023,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Observabilité
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../observabilite/" class="md-nav__link">
         
   
   
@@ -4069,81 +4042,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#backend-javautillogging" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Backend : java.util.logging
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#point-de-passage-executeurtache" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Point de passage : ExecuteurTache
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#les-echanges-avec-lapi-1845" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Les échanges avec l'API (#1845)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#acces-utilisateur" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Accès utilisateur
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dette-soldee" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dette soldée
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4206,10 +4104,37 @@
       
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../reprendre-le-depot/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reprendre le dépôt
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4225,6 +4150,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#les-secrets-et-ce-qui-tombe-sans-eux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les secrets, et ce qui tombe sans eux
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les secrets, et ce qui tombe sans eux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-seul-secret-qui-expire-vigiechiro_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Le seul secret qui expire : VIGIECHIRO_TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-variables-de-depot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les variables de dépôt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-acces-exterieurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les accès extérieurs
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-qui-se-fait-a-la-main-et-a-quel-rythme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui se fait à la main, et à quel rythme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-la-gouvernance-nexige-pas-et-pourquoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la gouvernance n'exige pas, et pourquoi
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4283,10 +4300,38 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#backend-javautillogging" class="md-nav__link">
+  <a href="#les-secrets-et-ce-qui-tombe-sans-eux" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Backend : java.util.logging
+        Les secrets, et ce qui tombe sans eux
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les secrets, et ce qui tombe sans eux">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-seul-secret-qui-expire-vigiechiro_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Le seul secret qui expire : VIGIECHIRO_TOKEN
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-variables-de-depot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les variables de dépôt
       
     </span>
   </a>
@@ -4294,10 +4339,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#point-de-passage-executeurtache" class="md-nav__link">
+  <a href="#les-acces-exterieurs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Point de passage : ExecuteurTache
+        Les accès extérieurs
       
     </span>
   </a>
@@ -4305,10 +4350,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-echanges-avec-lapi-1845" class="md-nav__link">
+  <a href="#ce-qui-se-fait-a-la-main-et-a-quel-rythme" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les échanges avec l'API (#1845)
+        Ce qui se fait à la main, et à quel rythme
       
     </span>
   </a>
@@ -4316,21 +4361,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#acces-utilisateur" class="md-nav__link">
+  <a href="#ce-que-la-gouvernance-nexige-pas-et-pourquoi" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Accès utilisateur
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#dette-soldee" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Dette soldée
+        Ce que la gouvernance n'exige pas, et pourquoi
       
     </span>
   </a>
@@ -4354,7 +4388,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/observabilite.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/reprendre-le-depot.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4363,155 +4397,162 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/observabilite.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/reprendre-le-depot.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="observabilite">Observabilité<a class="headerlink" href="#observabilite" title="Permanent link">&para;</a></h1>
-<p>Un incident doit laisser une <strong>trace inspectable</strong>, même quand son message est nul. Avant #1523 ce
-n'était pas le cas : slf4j était en <code>slf4j-nop</code> (test), les quelques <code>Logger</code> du code écrivaient à FINE
-(invisibles par défaut) et aucun fichier de log n'était produit - après un plantage, rien à regarder.</p>
-<h2 id="backend-javautillogging">Backend : java.util.logging<a class="headerlink" href="#backend-javautillogging" title="Permanent link">&para;</a></h2>
-<p>Le choix s'est porté sur <strong>java.util.logging (JUL)</strong> plutôt que slf4j+logback :</p>
-<ul>
-<li><strong>zéro dépendance</strong> ajoutée et <strong>zéro changement du graphe de modules</strong> (JUL vient de la plateforme,
-  déjà tiré transitivement par <code>java.sql</code>) ;</li>
-<li>cohérent avec le <strong>packaging classpath</strong> (shade + jpackage ; le jlink modulaire est de toute façon
-  impossible à cause des modules automatiques de Guice, cf. <a href="../ci-cd-release/">CI/CD et release</a>).</li>
-</ul>
-<p><code>ConfigurationJournalisation.configurer(dossierLogs)</code> installe, <strong>une fois</strong> au démarrage :</p>
-<ul>
-<li>un <strong>fichier tournant</strong> dans <code>&lt;workspace&gt;/logs/</code> (5 fichiers de 2 Mo), pour garder la trace <strong>après</strong>
-  l'incident, même l'application fermée ;</li>
-<li>le niveau <strong>FINE</strong> sur <code>fr.univ_amu.iut</code>, capté par le fichier ; la <strong>console</strong> reste à INFO (pas de
-  bruit à l'écran).</li>
-</ul>
-<p>Elle est amorcée à <code>App.main</code> <strong>et</strong> <code>Cli.main</code> (IHM et CLI). L'amorçage est dans <code>main</code>, <strong>pas</strong>
-<code>start()</code> : les tests (qui appellent <code>start()</code> directement) n'installent donc aucun fichier de log. La
-sortie <strong>console</strong> des tests reste propre elle aussi : de nombreux tests exercent <em>volontairement</em> les
-chemins d'échec, où <code>JournalisationTache</code> émettrait des <code>SEVERE</code> + traces d'apparence alarmante mais
-normales ; une configuration JUL de test (<code>src/test/resources/logging-tests.properties</code>, pointée par
-<code>maven-surefire</code>) coupe ce seul logger pendant les tests, sans rien changer en production (#1560).</p>
-<div class="admonition note">
-<p class="admonition-title">Workspace</p>
-<p>Le dossier est résolu par <code>Workspace.dossierLogs()</code> (<code>&lt;workspace&gt;/logs/</code>), comme le reste : aucun
-chemin n'est codé en dur ailleurs (cf. <a href="../persistance/">Persistance</a>).</p>
+<h1 id="reprendre-le-depot">Reprendre le dépôt<a class="headerlink" href="#reprendre-le-depot" title="Permanent link">&para;</a></h1>
+<p>Cette page répond à une question que le reste de la documentation ne traite nulle part : <strong>que faut-il
+savoir pour <em>tenir</em> ce dépôt</strong>, et non pour en lire le code ?</p>
+<p>Elle existe parce que la mesure était nette : <code>VIGIECHIRO_TOKEN</code> n'était cité que dans <strong>un</strong> fichier,
+et les mots « rituel » et « bus factor » dans <strong>aucun</strong> (#2753). La doc développeur est riche sur
+l'architecture et muette sur les accès.</p>
+<div class="admonition danger">
+<p class="admonition-title">Aucune valeur secrète ici</p>
+<p>Cette page dit <strong>quels</strong> secrets existent, <strong>à quoi</strong> ils servent et <strong>où</strong> les régénérer. Jamais
+leur contenu. Un jeton qui apparaîtrait ici serait à révoquer immédiatement : il est déjà dans
+l'historique git (cf. <code>verifie-jeton.sh</code>, qui garde ce dépôt contre exactement cela).</p>
 </div>
-<h2 id="point-de-passage-executeurtache">Point de passage : ExecuteurTache<a class="headerlink" href="#point-de-passage-executeurtache" title="Permanent link">&para;</a></h2>
-<p>Presque toute tâche de fond passe par <code>ExecuteurTache</code> (réseau, base ; cf.
-<a href="../patterns/">Patterns et principes</a>). Ses deux implémentations routaient le <code>Throwable</code> vers le
-callback <code>echec</code> <strong>sans le loguer</strong> : un échec à message nul disparaissait. Désormais
-<code>JournalisationTache.consigner(...)</code> le journalise <strong>avant</strong> l'affichage à l'écran, au <strong>seul</strong> point par
-lequel tout passe.</p>
-<p>La journalisation <strong>distingue la nature</strong> de l'échec, pour ne pas noyer le signal :</p>
+<h2 id="les-secrets-et-ce-qui-tombe-sans-eux">Les secrets, et ce qui tombe sans eux<a class="headerlink" href="#les-secrets-et-ce-qui-tombe-sans-eux" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Nature</th>
-<th>Niveau</th>
-<th>Trace ?</th>
+<th>Secret</th>
+<th>Consommé par</th>
+<th>Sans lui</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Annulation (<code>OperationAnnuleeException</code>)</td>
-<td>FINE</td>
-<td>non</td>
+<td><code>VIGIECHIRO_TOKEN</code></td>
+<td><code>api-live.yml</code></td>
+<td>le contrat API hebdomadaire <strong>ne vérifie plus rien</strong> - le workflow reste vert avec un avertissement, et la veille de fraîcheur rougit au bout de 21 jours (ADR 2748)</td>
 </tr>
 <tr>
-<td>Refus métier (<code>RegleMetierException</code> : point inconnu, analyse non terminée…)</td>
-<td>FINE</td>
-<td>non</td>
+<td><code>DOCS_DEPLOY_TOKEN</code></td>
+<td><code>docs.yml</code></td>
+<td>les trois sites de documentation ne se déploient plus</td>
 </tr>
 <tr>
-<td><strong><code>Throwable</code> inattendu (bug)</strong></td>
-<td><strong>SEVERE</strong></td>
-<td><strong>oui</strong></td>
+<td><code>WINGET_TOKEN</code></td>
+<td><code>winget.yml</code></td>
+<td>⚠️ <strong>il n'existe pas</strong> : le workflow est <strong>inerte</strong>, et c'est voulu. La soumission winget se fait à la main</td>
 </tr>
 </tbody>
 </table>
-<p>Les refus et annulations - des issues <strong>normales</strong> d'une opération longue - restent donc discrets, et
-seul un <strong>vrai</strong> incident part en SEVERE avec sa trace : exactement la classe de bug qu'on ne voyait
-pas. Le filet d'exceptions non capturées d'<code>App</code>
-(<code>Thread.setDefaultUncaughtExceptionHandler</code>) journalise de même <strong>avec la trace</strong>, au lieu d'un
-<code>printStackTrace</code> perdu en console.</p>
-<h2 id="les-echanges-avec-lapi-1845">Les échanges avec l'API (#1845)<a class="headerlink" href="#les-echanges-avec-lapi-1845" title="Permanent link">&para;</a></h2>
-<p>Le filet ci-dessus couvre les <strong>tâches</strong> ; il ne voyait pas le <strong>réseau</strong>. Le journal ne portait aucune
-ligne mentionnant <code>participation</code>, <code>PATCH</code> ni le moindre statut HTTP. Face à « l'application dit
-<em>envoyées</em>, la plateforme n'affiche rien » (#1844), il ne permettait de trancher <strong>aucune</strong> hypothèse :
-le diagnostic a dû se faire en lisant les sources du serveur et du front : hors de portée d'un
-utilisateur, et impossible sur le terrain.</p>
-<p><code>TransportVigieChiro</code> consigne désormais chaque échange : <strong>méthode, chemin, issue, durée</strong>. Le point
-d'instrumentation est le filet commun <code>emettre</code>, qui voit déjà passer GET, POST, PATCH et PUT et trie
-leur issue en <code>ReponseApi</code> (<a href="../decisions/0007-retours-http-type-scelle-reponse-api/">ADR 0007</a>) : un
-seul endroit pour tout couvrir. Le dépôt S3, qui ne passe pas par lui (corps binaire, délai long), se
-consigne lui-même.</p>
-<p><strong>Ce qui est consigné vit dans <code>commun.api.JournalEchange</code></strong> (#2734) : la sévérité, le résumé, la
-cause lisible et la troncature du corps d'un refus. Le transport <strong>émet</strong> et appelle ; il ne décide
-plus de la forme du journal. Chercher « comment se fabrique cette ligne » mène donc à <code>JournalEchange</code>,
-pas au transport.</p>
-<p>La sévérité se décide <strong>à l'émission</strong>
-(<a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/">ADR 0008</a>) :</p>
+<p><code>GITHUB_TOKEN</code> est fourni par GitHub à chaque exécution : rien à créer.</p>
+<h3 id="le-seul-secret-qui-expire-vigiechiro_token">⚠️ Le seul secret qui expire : <code>VIGIECHIRO_TOKEN</code><a class="headerlink" href="#le-seul-secret-qui-expire-vigiechiro_token" title="Permanent link">&para;</a></h3>
+<p>Il vit <strong>14 jours</strong>. Il se récupère dans le navigateur, connecté à la plateforme, sous
+<code>localStorage['auth-session-token']</code>, puis :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gh<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>VIGIECHIRO_TOKEN<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
+</code></pre></div>
+<p>Ne pas le renouveler ne casse rien visiblement - c'est tout le problème, et c'est ce que
+<a href="../decisions/2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">l'ADR 2748</a> traite.</p>
+<h2 id="les-variables-de-depot">Les variables de dépôt<a class="headerlink" href="#les-variables-de-depot" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Issue</th>
-<th>Niveau</th>
-<th>Pourquoi</th>
+<th>Variable</th>
+<th>Effet</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Succès</td>
-<td>FINE</td>
-<td>échange nominal : capté par le fichier, absent de la console</td>
+<td><code>ENABLE_RELEASE</code></td>
+<td>à <code>true</code>, le train de publication publie réellement. Absente, <code>release.yml</code> reste dormant</td>
 </tr>
 <tr>
-<td>Non connecté</td>
-<td>FINE</td>
-<td>appel non émis faute de jeton : ce n'est pas une anomalie</td>
-</tr>
-<tr>
-<td>Injoignable</td>
-<td>WARNING</td>
-<td>anomalie, visible sans réglage</td>
-</tr>
-<tr>
-<td>Refusé</td>
-<td>WARNING</td>
-<td>idem, <strong>avec le corps de la réponse</strong></td>
+<td><code>ENABLE_PAGES</code></td>
+<td>à <code>true</code>, les sites se déploient sur Pages</td>
 </tr>
 </tbody>
 </table>
-<p>Le <strong>corps d'un refus</strong> est consigné, tronqué à 300 caractères : c'est l'explication du serveur
-(<code>_issues</code>, « invalid field »…), l'élément le plus diagnostique qui soit : et précisément ce qui
-manquait pour comprendre #1844.</p>
+<p>Ce sont des <strong>interrupteurs</strong>, pas des secrets : <code>gh variable list</code> les montre.</p>
+<h2 id="les-acces-exterieurs">Les accès extérieurs<a class="headerlink" href="#les-acces-exterieurs" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Où</th>
+<th>Ce qui en dépend</th>
+<th>Comment on y accède</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Plateforme VigieChiro</strong></td>
+<td>le contrat API, les sondes live, l'import et le dépôt réels</td>
+<td>compte naturaliste sur le site, rôle Observateur suffisant en lecture</td>
+</tr>
+<tr>
+<td><strong>Flathub</strong></td>
+<td>le paquet Flatpak et sa mise à jour automatique</td>
+<td>dépôt de manifeste chez Flathub, PR ouvertes par leur robot de vérification</td>
+</tr>
+<tr>
+<td><strong>winget</strong></td>
+<td>le paquet Windows</td>
+<td>soumission <strong>manuelle</strong> aujourd'hui, <code>WINGET_TOKEN</code> absent</td>
+</tr>
+<tr>
+<td><strong>Zenodo</strong></td>
+<td>le jeu de données d'exemple « une nuit »</td>
+<td>dépôt public, DOI figé</td>
+</tr>
+<tr>
+<td><strong>GitHub Pages</strong></td>
+<td>les trois sites de documentation</td>
+<td><code>DOCS_DEPLOY_TOKEN</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="ce-qui-se-fait-a-la-main-et-a-quel-rythme">Ce qui se fait à la main, et à quel rythme<a class="headerlink" href="#ce-qui-se-fait-a-la-main-et-a-quel-rythme" title="Permanent link">&para;</a></h2>
+<p>C'est la partie que personne ne devine en lisant la CI.</p>
+<table>
+<thead>
+<tr>
+<th>Geste</th>
+<th>Rythme</th>
+<th>Ce qui arrive si on l'oublie</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Renouveler <code>VIGIECHIRO_TOKEN</code></td>
+<td>tous les <strong>14 jours</strong></td>
+<td>le contrat API cesse de vérifier ; la veille rougit à 21 jours</td>
+</tr>
+<tr>
+<td><strong>Vérifier le train de publication</strong></td>
+<td>chaque <strong>mercredi</strong> après 6 h UTC</td>
+<td>l'ADR 2744 le déclare humain : les notes doivent <strong>agréger la semaine</strong>, pas un commit</td>
+</tr>
+<tr>
+<td>Soumettre le paquet winget</td>
+<td>à chaque version notable</td>
+<td>la version Windows reste en retard sur les autres</td>
+</tr>
+<tr>
+<td>Regarder les aperçus régénérés</td>
+<td>après une PR qui touche l'IHM</td>
+<td>une capture fausse illustre la documentation sans que rien ne rougisse</td>
+</tr>
+</tbody>
+</table>
 <div class="admonition warning">
-<p class="admonition-title">Ce qu'un journal ne doit jamais contenir</p>
-<p>Le jeton et les en-têtes ne sont <strong>jamais</strong> journalisés, ni le corps envoyé. L'<strong>URL complète</strong>
-non plus : une URL S3 <strong>pré-signée porte sa signature dans sa requête</strong>. On journalise donc le
-<strong>chemin seul</strong> : la fuite est réglée par construction, pas par vigilance. Un journal doit pouvoir
-être joint à un signalement d'anomalie sans divulguer de secret (cf. <a href="../securite/">Sécurité</a>).</p>
+<p class="admonition-title">Le train mérite un œil, même vert</p>
+<p>Son premier départ réel a échoué <strong>après</strong> avoir créé le tag et déposé la Release en brouillon :
+<code>installers</code> et <code>publish</code> ont été sautés, laissant une version <strong>à moitié publiée</strong>. Quand un train
+échoue, on regarde <code>gh release list</code> <strong>avant</strong> <code>gh run view</code>.</p>
 </div>
-<h2 id="acces-utilisateur">Accès utilisateur<a class="headerlink" href="#acces-utilisateur" title="Permanent link">&para;</a></h2>
-<p>Le menu principal (☰) → <strong>« Ouvrir le dossier des journaux »</strong> (une <code>ActionMenu</code> socle du groupe Maintenance, cf.
-<a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a>) ouvre <code>&lt;workspace&gt;/logs/</code> dans le
-gestionnaire de fichiers : l'utilisateur retrouve la trace d'un incident et la joint à un signalement.</p>
-<h2 id="dette-soldee">Dette soldée<a class="headerlink" href="#dette-soldee" title="Permanent link">&para;</a></h2>
-<p>L'audit de suite (#1543, <strong>clos</strong>) a résorbé les points restants : les opérations de fond lourdes
-(import et publication VigieChiro, relevé d'analyses, rattachement, lancement du traitement serveur)
-montrent désormais un <strong>voile d'occupation</strong> ou un repère « … en cours » (cf.
-<a href="../patterns/">Patterns et principes</a>), et les deux callbacks d'échec muets sont traités - l'un routé
-vers le filet d'erreurs de son écran, l'autre <em>fire-and-forget</em> assumé à la fermeture de la modale mais
-<strong>journalisé</strong> au point de passage.</p>
-<p>Cette page a ensuite conclu, pendant un temps, qu'aucune dette d'observabilité ne restait : alors que
-la <strong>couche réseau était muette</strong> (§ « Les échanges avec l'API »). La leçon vaut d'être gardée : un
-audit d'observabilité ne prouve rien sur ce qu'il n'a pas pensé à regarder. La question utile n'est pas
-« mes journaux couvrent-ils mes échecs ? » mais « <strong>face à ce symptôme, le journal me permet-il de
-trancher ?</strong> ». Ici, le symptôme était un succès.</p>
+<h2 id="ce-que-la-gouvernance-nexige-pas-et-pourquoi">Ce que la gouvernance n'exige pas, et pourquoi<a class="headerlink" href="#ce-que-la-gouvernance-nexige-pas-et-pourquoi" title="Permanent link">&para;</a></h2>
+<p><code>main</code> n'a <strong>aucune protection de branche</strong>, et <code>CODEOWNERS</code> attribue tout à un seul compte. Ce n'est
+pas un oubli : c'est un choix assumé, écrit dans
+<a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/">l'ADR 2753</a>. Un
+repreneur doit le savoir avant de s'appuyer sur une garantie qui n'existe pas - <strong>c'est la CI qui tient
+ce dépôt, pas une règle de fusion</strong>.</p>
 
 
 
@@ -4547,7 +4588,7 @@ trancher ?</strong> ». Ici, le symptôme était un succès.</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../performance/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Performance et benchmarks">
+          <a href="../ci-cd-release/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: CI/CD et release">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4557,20 +4598,20 @@ trancher ?</strong> ». Ici, le symptôme était un succès.</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                Performance et benchmarks
+                CI/CD et release
               </div>
             </div>
           </a>
         
         
           
-          <a href="../captures/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Captures d&#39;écran">
+          <a href="../securite/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Sécurité et données sensibles">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                Captures d'écran
+                Sécurité et données sensibles
               </div>
             </div>
             <div class="md-footer__button md-icon">
