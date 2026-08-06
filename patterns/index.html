@@ -3276,6 +3276,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3389-ce-que-l-application-affiche-tient-dans-la-police-embarquee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3389 · Ce que l'application affiche tient dans la police
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4591,7 +4619,7 @@ Guice), sans que le socle connaisse les contributeurs. Il injecte l'ensemble et 
 <p><strong>Dans cette application.</strong> Quatre points d'extension suivent ce patron, chacun avec un helper du DSL
 <a href="../injection/#ce-que-publie-un-module-de-feature"><code>ModuleDeFeature</code></a> : <code>ActiviteAccueil</code> (carte
 d'accueil, <code>activite(...)</code>), <code>IndicateurAccueil</code> (compteur, <code>indicateur(...)</code>), <code>OngletReglages</code>
-(onglet de l'écran Réglages, <code>ongletReglages(...)</code>) et <code>ActionMenu</code> (entrée du menu ☰, <code>actionMenu(...)</code>).
+(onglet de l'écran Réglages, <code>ongletReglages(...)</code>) et <code>ActionMenu</code> (entrée du menu principal (☰), <code>actionMenu(...)</code>).
 Le contrat est <strong>agnostique de JavaFX</strong> (dans <code>commun/view</code>), la feature ne fournit que des données
 (un descripteur, un libellé…), et c'est le socle (<code>MainController</code>, <code>EcranReglagesController</code>,
 <code>ConstructeurMenuOutils</code>) qui construit les widgets. Exemple : une bascule de menu déclare une

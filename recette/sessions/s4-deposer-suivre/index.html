@@ -3185,6 +3185,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../decisions/3389-ce-que-l-application-affiche-tient-dans-la-police-embarquee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3389 · Ce que l'application affiche tient dans la police
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../decisions/3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
@@ -4478,7 +4506,7 @@ précisément les deux propriétés qui ont motivé la conception séquentielle
 </blockquote>
 <p><em>Bloc E · Un lot de trois nuits, pour de vrai</em></p>
 <ol>
-<li>Cocher trois nuits (Ctrl+clic) : les quatre entrées de lot du menu ☰ s'activent et annoncent
+<li>Cocher trois nuits (Ctrl+clic) : les quatre entrées de lot du menu principal (☰) s'activent et annoncent
     « des 3 lignes cochées ».</li>
 <li>« Préparer le dépôt des 3 lignes cochées… » : l'annonce dit <strong>3 sur 3</strong>, aucune écartée.</li>
 <li>Rejouer la même action : l'annonce dit <strong>0 sur 3</strong>, les trois écartées « dépôt déjà préparé », et
@@ -4492,7 +4520,7 @@ précisément les deux propriétés qui ont motivé la conception séquentielle
     normalement, aucune archive n'est renvoyée deux fois.</li>
 <li>Le compte rendu final donne <strong>une ligne par nuit</strong>, dans l'ordre de la sélection.</li>
 <li><strong>Débrancher le réseau</strong> avant « Importer les résultats des 3 lignes cochées… » : les trois
-    remontent en échec avec un motif qui dit quoi faire (« Connectez-vous depuis le menu ☰ … »), et le
+    remontent en échec avec un motif qui dit quoi faire (« Connectez-vous depuis le menu principal (☰) … »), et le
     lot va au bout au lieu de s'arrêter à la première.</li>
 <li>
 <p><strong>Réseau très dégradé</strong> (bridage à quelques dizaines de ko/s, ou coupures brèves répétées), pour
@@ -4511,7 +4539,7 @@ effacerait les observations », jamais recalculée.
 <p><em>Bloc F · Les deux mécanismes de lot, l'un après l'autre (#2755)</em></p>
 <blockquote>
 <p>Ces trois cases existent parce qu'une affirmation du bilan de l'EPIC #2349 n'est <strong>pas</strong> vérifiée : que
-les deux mécanismes de traitement groupé cohabitent sans se gêner. Ils sont dans le <strong>même menu ☰</strong>, à
+les deux mécanismes de traitement groupé cohabitent sans se gêner. Ils sont dans le <strong>même menu principal (☰)</strong>, à
 quatre entrées d'intervalle, et rafraîchissent la <strong>même table</strong> par deux chemins qui ne se connaissent
 pas. Aucun test ne les joue à la suite, et aucun ne le peut aujourd'hui : cliquer une entrée de lot
 ouvre une vraie fenêtre de progression, que <code>TraitementLot</code> n'expose pas aux tests.</p>
