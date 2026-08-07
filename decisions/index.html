@@ -3580,6 +3580,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3451 · Un invariant tenu par la base se double d'un refus
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5145,6 +5173,11 @@
 <td><a href="3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/">3450</a></td>
 <td>Le cinquième garde « sur la forme du défaut » s'écrivait tout seul : refuser <code>systemDefault()</code> sur une heure locale. Confronté aux <strong>lignes fautives d'origine</strong>, il aurait manqué les DEUX moitiés - l'écriture portait son <code>atZone</code> deux lignes après ses types locaux, la lecture écrivait <code>atZoneSameInstant</code>, qui a l'air juste. Quand le défaut n'a pas de forme <strong>textuelle</strong> stable, chercher sa forme <strong>comportementale</strong> : la suite entière est rejouée sous <code>America/Cayenne</code> (territoire français, franchit minuit, sans heure d'été). Le fuseau passe par l'ENVIRONNEMENT, hérité des forks surefire : par <code>-D</code>, le job aurait pu être vert en ne vérifiant rien</td>
 <td>#3450, suite de #3406</td>
+</tr>
+<tr>
+<td><a href="3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/">3451</a></td>
+<td>Une mesure de mutation signalait deux branches non couvertes ; j'en ai conclu un trou produit. <strong>Faux</strong> : le schéma déclare les trois bornes de nuit <code>NOT NULL</code> et le dépôt charge par le DAO. Une couverture de mutation dit « aucun test ne couvre cette ligne », jamais « cette ligne est atteignable ». L'invariant n'étant tenu que par SQLite, il est <strong>doublé d'un refus</strong> à l'entonnoir <code>versParticipation</code> - atteignable par construction en mémoire, donc testable, et vu rouge sur ses trois cas</td>
+<td>#3451, suite de #3406</td>
 </tr>
 <tr>
 <td><a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/">2753</a></td>
