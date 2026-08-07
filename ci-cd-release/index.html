@@ -3409,6 +3409,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2750 · Un chiffre recalculable ne s'écrit pas à la main
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5098,8 +5126,8 @@ les <!--inv:tests-bats-->89<!--/inv--> tests bats passent sur ce seul artefact).
 ramène au plus long des deux, et un packaging cassé rougit même quand les tests échouent.</p>
 <div class="admonition warning">
 <p class="admonition-title">Ce qui ne gagne rien à être optimisé</p>
-<p>L'installation d'<code>apt</code>/<code>bats</code> coûte <strong>9 s</strong>, pas davantage : c'est vérifié. Les ~140 s du harnais
-sont les <strong>21 tests eux-mêmes</strong>, qui lancent chacun un JVM sur le fat-jar. Chercher un cache apt
+<p>L'installation d'<code>apt</code>/<code>bats</code> coûte <strong>9 s</strong>, pas davantage : c'est vérifié. Le reste du harnais,
+ce sont <strong>les tests eux-mêmes</strong>, qui lancent chacun un JVM sur le fat-jar. Chercher un cache apt
 ici ne rapporte rien - l'hypothèse a été faite, mesurée, et démentie.</p>
 </div>
 <h2 id="la-release-semantic-release-jpackage">La release (semantic-release + jpackage)<a class="headerlink" href="#la-release-semantic-release-jpackage" title="Permanent link">&para;</a></h2>

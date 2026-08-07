@@ -3409,6 +3409,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2750 · Un chiffre recalculable ne s'écrit pas à la main
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -4544,13 +4572,13 @@ l'historique git (cf. <code>verifie-jeton.sh</code>, qui garde ce dépôt contre
 </tr>
 <tr>
 <td><strong>Flathub</strong></td>
-<td>le paquet Flatpak et sa mise à jour automatique</td>
-<td>dépôt de manifeste chez Flathub, PR ouvertes par leur robot de vérification</td>
+<td><strong>rien pour l'instant</strong> : le paquet n'y est pas (#2191)</td>
+<td>la soumission a été fermée par leur robot, checklist incomplète</td>
 </tr>
 <tr>
 <td><strong>winget</strong></td>
-<td>le paquet Windows</td>
-<td>soumission <strong>manuelle</strong> aujourd'hui, <code>WINGET_TOKEN</code> absent</td>
+<td><strong>rien pour l'instant</strong> : le paquet n'y est pas (#2110)</td>
+<td>la première soumission est manuelle ; <code>WINGET_TOKEN</code> absent</td>
 </tr>
 <tr>
 <td><strong>Zenodo</strong></td>
@@ -4586,17 +4614,31 @@ l'historique git (cf. <code>verifie-jeton.sh</code>, qui garde ce dépôt contre
 <td>l'ADR 2744 le déclare humain : les notes doivent <strong>agréger la semaine</strong>, pas un commit</td>
 </tr>
 <tr>
-<td>Soumettre le paquet winget</td>
-<td>à chaque version notable</td>
-<td>la version Windows reste en retard sur les autres</td>
-</tr>
-<tr>
 <td>Regarder les aperçus régénérés</td>
 <td>après une PR qui touche l'IHM</td>
 <td>une capture fausse illustre la documentation sans que rien ne rougisse</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">Deux canaux de distribution sont outillés et n'ont jamais rien distribué</p>
+<p>C'est le piège le plus coûteux de cette page, parce qu'il se lit à l'envers : <code>.github/workflows/</code>
+porte <code>winget.yml</code> <strong>et</strong> <code>flatpak.yml</code>, <code>flatpak/</code> porte un manifeste versionné et validé. Tout
+donne à croire que les paquets existent et se mettent à jour. <strong>Ils n'existent pas.</strong></p>
+<ul>
+<li><strong>winget</strong> : <code>Echonuit.VigieChiroCompanion</code> est absent de <code>microsoft/winget-pkgs</code>. Le workflow
+  ne sait faire qu'une <strong>mise à jour</strong> - <code>winget-releaser</code> refuse une première soumission, et son
+  en-tête le dit. Tant que le paquet n'est pas déposé une fois <strong>à la main</strong>, ce workflow n'a rien
+  à mettre à jour. Il manque aussi le secret <code>WINGET_TOKEN</code> et un fork de <code>winget-pkgs</code>. Cf. #2110.</li>
+<li><strong>Flathub</strong> : ni <code>fr.echonuit.VigieChiroCompanion</code> ni l'ancien identifiant n'ont de dépôt chez
+  Flathub. La PR de soumission a été fermée par le robot pour checklist incomplète, et deux points
+  manquants sont des <strong>actes humains</strong> - une vidéo de l'application lancée en Flatpak, et une
+  attestation personnelle. Cf. #2191.</li>
+</ul>
+<p>⚠️ L'identifiant Flatpak a <strong>changé</strong> entre-temps (ADR 0047) : la PR fermée soumettait
+<code>io.github.iutinfoaix_s201.VigieChiro</code>, le manifeste porte aujourd'hui <code>fr.echonuit.…</code>. Reprendre
+la soumission n'est donc pas qu'une formalité de checklist.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Le train mérite un œil, même vert</p>
 <p>Son premier départ réel a échoué <strong>après</strong> avoir créé le tag et déposé la Release en brouillon :

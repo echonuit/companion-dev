@@ -3409,6 +3409,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2750 · Un chiffre recalculable ne s'écrit pas à la main
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -4803,9 +4831,14 @@ test recalcule. On écrit le nombre entre deux commentaires :</p>
 <p class="admonition-title">Règle de rédaction : un chiffre d'inventaire ne s'écrit pas en dur</p>
 <p><strong>Si le code sait recalculer un chiffre, la documentation le porte en balise.</strong> Sinon, elle ne
 l'écrit pas du tout.</p>
-<p>La raison n'est pas l'élégance, c'est une mesure : « les 21 tests bats » vivait à deux endroits
-quand il y en avait <strong>89</strong> - un facteur quatre, accumulé sans que rien ne le dise (#2749). Et
-personne n'avait mal fait : un chiffre juste le jour où on l'écrit devient faux tout seul.</p>
+<p>La raison n'est pas l'élégance, c'est une mesure : « les 21 tests bats » vivait à <strong>trois</strong>
+endroits quand il y en avait <strong>89</strong> - un facteur quatre, accumulé sans que rien ne le dise
+(#2749). Et personne n'avait mal fait : un chiffre juste le jour où on l'écrit devient faux tout
+seul.</p>
+<p>⚠️ Trois, et non deux : la correction n'en avait trouvé que deux, et le troisième a survécu une
+journée de plus, dans un encadré du même fichier. <strong>Un chiffre faux a des jumeaux</strong>, et le
+balayage qui corrige n'est pas celui qui compte - c'est l'audit d'harmonisation de la clôture qui
+a rendu le troisième.</p>
 <p>Trois cas, trois gestes :</p>
 <ul>
 <li><strong>le code sait compter</strong> → balise <code>&lt;!--inv:clé--&gt;N&lt;!--/inv--&gt;</code>, plus une entrée dans

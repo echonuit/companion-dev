@@ -3500,6 +3500,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2750 · Un chiffre recalculable ne s'écrit pas à la main
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -4668,7 +4696,7 @@ redivergeront pas.</p>
 même fonctionnalité dans tout le projet : pour modifier un écran, on touche partout.</p>
 <p><strong>La solution.</strong> Regrouper le code <strong>par fonctionnalité</strong> : <code>sites/</code>, <code>passage/</code>… chacun contenant ses
 4 couches. Une feature devient une <strong>tranche verticale</strong> autonome.</p>
-<p><strong>Dans cette application.</strong> Les 10 features sont des paquets autonomes ; le socle <code>commun/</code> porte le partagé
+<p><strong>Dans cette application.</strong> Les <!--inv:features-->16<!--/inv--> features sont des paquets autonomes ; le socle <code>commun/</code> porte le partagé
 (chrome, persistance, DI). On ouvre, modifie ou supprime une feature sans naviguer ailleurs.</p>
 <p><strong>Principes.</strong> <strong>Forte cohésion / faible couplage</strong> ; <strong>OCP</strong> à l'échelle du produit (ajouter une
 feature ≈ ajouter un paquet, sans toucher aux autres : garanti par
@@ -5112,9 +5140,10 @@ n'appellent pas la même réaction - une valeur disparue tient aux données, un 
 sauvegardées, le transport d'un écran à l'autre (#476) et la mémoire de session (#484). En ignorer un
 laisse l'écran filtrer moins large qu'annoncé, sans rien dire.</p>
 <h3 id="les-filtres-de-model-deux-roles-une-convention-de-nom">Les filtres de <code>model</code> : deux rôles, une convention de nom<a class="headerlink" href="#les-filtres-de-model-deux-roles-une-convention-de-nom" title="Permanent link">&para;</a></h3>
-<p>Six classes <code>Filtres*</code> vivent en <code>model</code>, hors du socle de vue. L'audit d'harmonisation de la clôture
-de #3092 a montré qu'elles ne relèvent pas de trois idiomes, comme leur forme le laissait croire, mais
-de <strong>deux rôles</strong>, et que seul leur <strong>nommage</strong> divergeait.</p>
+<p>Des classes <code>Filtres*</code> vivent en <code>model</code>, hors du socle de vue. L'audit d'harmonisation de la clôture
+de #3092 en a compté six et a montré qu'elles ne relèvent pas de trois idiomes, comme leur forme le
+laissait croire, mais de <strong>deux rôles</strong>, et que seul leur <strong>nommage</strong> divergeait. Elles sont huit
+aujourd'hui : le compte bouge, les deux rôles tiennent.</p>
 <table>
 <thead>
 <tr>
