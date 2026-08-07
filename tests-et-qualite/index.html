@@ -4771,6 +4771,26 @@ un état de plus) sans que rien ne rougisse. Une <strong>balise d'inventaire</st
 test recalcule. On écrit le nombre entre deux commentaires :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>l&#39;application compte <span class="gs">**&lt;!--inv:features--&gt;N&lt;!--/inv--&gt; features**</span> métier
 </code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Règle de rédaction : un chiffre d'inventaire ne s'écrit pas en dur</p>
+<p><strong>Si le code sait recalculer un chiffre, la documentation le porte en balise.</strong> Sinon, elle ne
+l'écrit pas du tout.</p>
+<p>La raison n'est pas l'élégance, c'est une mesure : « les 21 tests bats » vivait à deux endroits
+quand il y en avait <strong>89</strong> - un facteur quatre, accumulé sans que rien ne le dise (#2749). Et
+personne n'avait mal fait : un chiffre juste le jour où on l'écrit devient faux tout seul.</p>
+<p>Trois cas, trois gestes :</p>
+<ul>
+<li><strong>le code sait compter</strong> → balise <code>&lt;!--inv:clé--&gt;N&lt;!--/inv--&gt;</code>, plus une entrée dans
+  <code>DocumentationAJourTest</code> ;</li>
+<li><strong>le code ne sait pas</strong> (un commentaire de workflow, une note de PR) → <strong>écrire la phrase sans
+  le nombre</strong>. « les tests bats, qui lancent chacun un JVM » dit ce qu'il faut sans rien promettre ;</li>
+<li><strong>le chiffre est une mesure datée</strong> (« 66 aperçus sur 138 différaient le 6 août ») → il reste en
+  dur, et c'est <strong>juste</strong> : ce n'est pas un inventaire, c'est un constat, et un constat a une date.</li>
+</ul>
+<p>⚠️ Le troisième cas se confond avec le premier au premier coup d'œil. Un balayage a compté « 51,
+66, 108 aperçus » comme des inventaires divergents : c'étaient trois <strong>deltas</strong> d'ADR, et le total,
+138, était juste partout. Lire la phrase entière avant de conclure à une dérive.</p>
+</div>
 <p>où <code>N</code> est le chiffre (<code>15</code> aujourd'hui). Un commentaire HTML <strong>ne s'affiche pas</strong> : la phrase se lit
 « 15 features » comme avant, mais <code>chaque_chiffre_balise_egale_l_inventaire_reel</code> relit <code>N</code> et le
 confronte au code. Une divergence fait <strong>rougir la CI</strong>, le message portant le vrai chiffre. Clés
