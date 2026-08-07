@@ -3524,6 +3524,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3479-toute-table-n-a-pas-vocation-a-etre-exploree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3479 · Toute table n'a pas vocation à être explorée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-nav__link">
         
   
@@ -4264,6 +4292,33 @@
     
   
     Tests et qualité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audit-filtres-vues-tabulaires/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audit des filtres tabulaires
   
 
     
@@ -5191,6 +5246,11 @@
 <td><a href="3406-une-nuit-porte-le-fuseau-de-son-site/">3406</a></td>
 <td>Le fuseau d'une nuit est celui de <strong>son site d'écoute</strong>, <code>Europe/Paris</code> en dur : ces heures viennent de l'enregistreur planté sur le terrain, pas du poste qui dépouille. Le dépôt passait par <code>ZoneId.systemDefault()</code>, et la même nuit partait à la plateforme nationale en <code>19:00</code>, <code>21:00</code> ou - depuis Cayenne - <strong>le lendemain</strong>. Le test ne le voyait pas : il vérifiait par un <strong>aller-retour</strong> qui reconvertissait avec la même zone, donc vert sous tout fuseau, y compris ceux où la donnée était fausse. L'outre-mer reste faux et c'est écrit : le dériver du GPS comme la commune (ADR 2791) est différé, pas ignoré</td>
 <td>#3406, suite de #3151</td>
+</tr>
+<tr>
+<td><a href="3479-toute-table-n-a-pas-vocation-a-etre-exploree/">3479</a></td>
+<td>Trois natures d ecran decident <em>si</em> une table s explore, avant de decider <em>comment</em> la filtrer : <strong>exploratoire</strong> (contrat complet), <strong>analytique bornee</strong> (parametres metier visibles, pas un catalogue), <strong>operationnelle ou transitoire</strong> (rien, et c est delibere). L uniformite visee est celle des <strong>regles</strong>, pas des composants : equiper une table de suivi d import ajoute un catalogue devant une liste qu on regarde defiler. Le contrat en dix points est <strong>acquis</strong>, pas vise - cette ADR ecrit ce qui est garanti. Extrait de l audit des filtres du 31 juillet, parce qu un audit se lit une fois et qu un contrat se relit</td>
+<td>#3479</td>
 </tr>
 <tr>
 <td><a href="2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/">2750</a></td>

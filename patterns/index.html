@@ -3500,6 +3500,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3479-toute-table-n-a-pas-vocation-a-etre-exploree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3479 · Toute table n'a pas vocation à être explorée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-nav__link">
         
   
@@ -4240,6 +4268,33 @@
     
   
     Tests et qualité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../audit-filtres-vues-tabulaires/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audit des filtres tabulaires
   
 
     
@@ -5251,6 +5306,14 @@ n'appellent pas la même réaction - une valeur disparue tient aux données, un 
 <p>Il existe <strong>trois</strong> chemins de restauration, et tous trois doivent lire ce retour : les vues
 sauvegardées, le transport d'un écran à l'autre (#476) et la mémoire de session (#484). En ignorer un
 laisse l'écran filtrer moins large qu'annoncé, sans rien dire.</p>
+<div class="admonition tip">
+<p class="admonition-title">Avant de filtrer, décider si la table s'explore</p>
+<p>Une nouvelle <code>TableView</code> ne reçoit pas la barre de filtres par défaut, et pas non plus par
+imitation de l'écran d'à côté. L'<a href="../decisions/3479-toute-table-n-a-pas-vocation-a-etre-exploree/">ADR 3479</a>
+distingue trois natures - <strong>exploratoire</strong>, <strong>analytique bornée</strong>, <strong>opérationnelle ou
+transitoire</strong> - et seule la première reçoit le contrat complet. Équiper une table de suivi
+d'import ajoute un catalogue de critères devant une liste qu'on regarde défiler.</p>
+</div>
 <h3 id="les-filtres-de-model-deux-roles-une-convention-de-nom">Les filtres de <code>model</code> : deux rôles, une convention de nom<a class="headerlink" href="#les-filtres-de-model-deux-roles-une-convention-de-nom" title="Permanent link">&para;</a></h3>
 <p>Des classes <code>Filtres*</code> vivent en <code>model</code>, hors du socle de vue. L'audit d'harmonisation de la clôture
 de #3092 en a compté six et a montré qu'elles ne relèvent pas de trois idiomes, comme leur forme le

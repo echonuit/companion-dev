@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/tests-et-qualite/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/audit-filtres-vues-tabulaires/">
       
       
-        <link rel="prev" href="../cli/">
+        <link rel="prev" href="../tests-et-qualite/">
       
       
-        <link rel="next" href="../audit-filtres-vues-tabulaires/">
+        <link rel="next" href="../api-vigiechiro/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Tests et qualité - VigieChiro Companion · Doc développeur</title>
+        <title>Audit des filtres tabulaires - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#tests-et-qualite" class="md-skip">
+        <a href="#audit-des-filtres-des-vues-tabulaires" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Tests et qualité
+              Audit des filtres tabulaires
             
           </span>
         </div>
@@ -4166,6 +4166,33 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../tests-et-qualite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tests et qualité
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -4185,7 +4212,7 @@
   <span class="md-ellipsis">
     
   
-    Tests et qualité
+    Audit des filtres tabulaires
   
 
     
@@ -4203,7 +4230,7 @@
   <span class="md-ellipsis">
     
   
-    Tests et qualité
+    Audit des filtres tabulaires
   
 
     
@@ -4229,10 +4256,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#les-commandes" class="md-nav__link">
+  <a href="#synthese" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les commandes
+        Synthèse
       
     </span>
   </a>
@@ -4240,22 +4267,132 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ihm-testee-en-headless-sans-x11-ni-xvfb" class="md-nav__link">
+  <a href="#suivi-des-constats-au-7-aout-2026" class="md-nav__link">
     <span class="md-ellipsis">
       
-        IHM testée en headless (sans X11 ni xvfb)
+        Suivi des constats au 7 août 2026
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="IHM testée en headless (sans X11 ni xvfb)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methode-et-perimetre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Méthode et périmètre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventaire-par-vue-a-la-revision-auditee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventaire par vue à la révision auditée
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-qui-est-deja-bien-uniformise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui est déjà bien uniformisé
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constats-prioritaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constats prioritaires
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constats prioritaires">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lecran-headless-est-fige-a-10001000" class="md-nav__link">
+  <a href="#1-un-critere-disparu-est-ignore-silencieusement-lors-dune-restauration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        L'écran headless est figé à 1000×1000
+        1. Un critère disparu est ignoré silencieusement lors d'une restauration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-les-domaines-de-valeurs-sont-des-instantanes-pas-des-listes-reellement-cascadees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Les domaines de valeurs sont des instantanés, pas des listes réellement cascadées
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-une-puce-nouvellement-ajoutee-na-pas-une-semantique-uniforme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Une puce nouvellement ajoutée n'a pas une sémantique uniforme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-reinitialisation-et-memoire-de-session-different-entre-ecrans-similaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Réinitialisation et mémoire de session diffèrent entre écrans similaires
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-une-valeur-invalide-peut-laisser-une-puce-active-mais-neutre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Une valeur invalide peut laisser une puce active mais neutre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-les-cles-semantiques-ne-forment-pas-encore-un-vocabulaire-sur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Les clés sémantiques ne forment pas encore un vocabulaire sûr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-la-documentation-derive-du-catalogue-reel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. La documentation dérive du catalogue réel
       
     </span>
   </a>
@@ -4267,37 +4404,154 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#vues-a-faire-evoluer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vues à faire évoluer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vues à faire évoluer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audit-de-coherence-priorite-fonctionnelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit de cohérence : priorité fonctionnelle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ma-saison-a-confirmer-par-la-volumetrie-et-les-usages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ma saison : à confirmer par la volumétrie et les usages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-contextuelles-et-operationnelles-ne-pas-generaliser-sans-besoin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables contextuelles et opérationnelles : ne pas généraliser sans besoin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-cible-propose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard cible proposé
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-de-traitement-recommande" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan de traitement recommandé
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plan de traitement recommandé">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-1-securiser-les-contrats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 1 : sécuriser les contrats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-2-fixer-la-politique-commune" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 2 : fixer la politique commune
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-3-reduire-la-duplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 3 : réduire la duplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-4-etendre-avec-discernement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 4 : étendre avec discernement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-5-remettre-la-documentation-sous-controle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 5 : remettre la documentation sous contrôle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criteres-de-reussite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critères de réussite
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../audit-filtres-vues-tabulaires/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Audit des filtres tabulaires
-  
-
-    
-  </span>
-  
-  
-
-      </a>
     </li>
   
 
@@ -4518,10 +4772,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#les-commandes" class="md-nav__link">
+  <a href="#synthese" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les commandes
+        Synthèse
       
     </span>
   </a>
@@ -4529,22 +4783,132 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ihm-testee-en-headless-sans-x11-ni-xvfb" class="md-nav__link">
+  <a href="#suivi-des-constats-au-7-aout-2026" class="md-nav__link">
     <span class="md-ellipsis">
       
-        IHM testée en headless (sans X11 ni xvfb)
+        Suivi des constats au 7 août 2026
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="IHM testée en headless (sans X11 ni xvfb)">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#methode-et-perimetre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Méthode et périmètre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#inventaire-par-vue-a-la-revision-auditee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Inventaire par vue à la révision auditée
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-qui-est-deja-bien-uniformise" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui est déjà bien uniformisé
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#constats-prioritaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Constats prioritaires
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constats prioritaires">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#lecran-headless-est-fige-a-10001000" class="md-nav__link">
+  <a href="#1-un-critere-disparu-est-ignore-silencieusement-lors-dune-restauration" class="md-nav__link">
     <span class="md-ellipsis">
       
-        L'écran headless est figé à 1000×1000
+        1. Un critère disparu est ignoré silencieusement lors d'une restauration
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-les-domaines-de-valeurs-sont-des-instantanes-pas-des-listes-reellement-cascadees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Les domaines de valeurs sont des instantanés, pas des listes réellement cascadées
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-une-puce-nouvellement-ajoutee-na-pas-une-semantique-uniforme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Une puce nouvellement ajoutée n'a pas une sémantique uniforme
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-reinitialisation-et-memoire-de-session-different-entre-ecrans-similaires" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Réinitialisation et mémoire de session diffèrent entre écrans similaires
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-une-valeur-invalide-peut-laisser-une-puce-active-mais-neutre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Une valeur invalide peut laisser une puce active mais neutre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-les-cles-semantiques-ne-forment-pas-encore-un-vocabulaire-sur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Les clés sémantiques ne forment pas encore un vocabulaire sûr
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-la-documentation-derive-du-catalogue-reel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. La documentation dérive du catalogue réel
       
     </span>
   </a>
@@ -4553,6 +4917,150 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vues-a-faire-evoluer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vues à faire évoluer
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vues à faire évoluer">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audit-de-coherence-priorite-fonctionnelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit de cohérence : priorité fonctionnelle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ma-saison-a-confirmer-par-la-volumetrie-et-les-usages" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ma saison : à confirmer par la volumétrie et les usages
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tables-contextuelles-et-operationnelles-ne-pas-generaliser-sans-besoin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tables contextuelles et opérationnelles : ne pas généraliser sans besoin
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-cible-propose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standard cible proposé
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#plan-de-traitement-recommande" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Plan de traitement recommandé
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Plan de traitement recommandé">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#etape-1-securiser-les-contrats" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 1 : sécuriser les contrats
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-2-fixer-la-politique-commune" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 2 : fixer la politique commune
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-3-reduire-la-duplication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 3 : réduire la duplication
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-4-etendre-avec-discernement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 4 : étendre avec discernement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etape-5-remettre-la-documentation-sous-controle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Étape 5 : remettre la documentation sous contrôle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#criteres-de-reussite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Critères de réussite
+      
+    </span>
+  </a>
   
 </li>
       
@@ -4573,7 +5081,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/tests-et-qualite.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/audit-filtres-vues-tabulaires.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4582,844 +5090,401 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/tests-et-qualite.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/audit-filtres-vues-tabulaires.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="tests-et-qualite">Tests et qualité<a class="headerlink" href="#tests-et-qualite" title="Permanent link">&para;</a></h1>
-<p>La chaîne qualité tourne à <strong>chaque push</strong> (CI) et localement via <code>./mvnw</code>. Cette page est la
-référence structurée ; le repo-root garde un mémo
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/TESTING.md"><strong>TESTING.md</strong></a>.</p>
-<h2 id="les-commandes">Les commandes<a class="headerlink" href="#les-commandes" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Commande</th>
-<th>Effet</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>./mvnw test</code></td>
-<td><strong>Toute</strong> la suite de tests</td>
-</tr>
-<tr>
-<td><code>./mvnw test -Dtest=SitesViewModelTest</code></td>
-<td>Une seule <strong>classe</strong> de test</td>
-</tr>
-<tr>
-<td><code>./mvnw test -Dtest=SitesViewModelTest#chargeLesSites</code></td>
-<td>Une seule <strong>méthode</strong></td>
-</tr>
-<tr>
-<td><code>./mvnw verify</code></td>
-<td>Build complet : tests + couverture + contrôles (PMD/JaCoCo <strong>non</strong> bloquants)</td>
-</tr>
-<tr>
-<td><code>./mvnw -Pquality-gate verify</code></td>
-<td><strong>Portail qualité</strong> : PMD <code>failOnViolation</code> + seuils JaCoCo <strong>bloquants</strong></td>
-</tr>
-<tr>
-<td><code>./mvnw -Pmutation test</code></td>
-<td>Tests de <strong>mutation</strong> PIT (lent, à la demande)</td>
-</tr>
-<tr>
-<td><code>./mvnw pmd:check</code></td>
-<td>Rapport PMD seul (rapide)</td>
-</tr>
-<tr>
-<td><code>./mvnw spotless:check</code> / <code>spotless:apply</code></td>
-<td>Vérifie / applique le formatage</td>
-</tr>
-<tr>
-<td><code>./mvnw javafx:run</code></td>
-<td>Lance l'application</td>
-</tr>
-</tbody>
-</table>
-<div class="admonition tip">
-<p class="admonition-title">Quand lancer <code>clean</code> ?</p>
-<p>Le build Maven est <strong>incrémental</strong> : <code>./mvnw verify</code> réutilise <code>target/</code>. Après certains
-changements, une classe périmée peut y subsister et provoquer une erreur <strong>trompeuse</strong> (à la
-compilation ou au packaging) que <code>./mvnw clean verify</code> fait disparaître. Réflexe : en cas
-d'erreur inexpliquée alors que le code semble correct, <strong>relancer avec <code>clean</code></strong>. Cas typiques :</p>
+<h1 id="audit-des-filtres-des-vues-tabulaires">Audit des filtres des vues tabulaires<a class="headerlink" href="#audit-des-filtres-des-vues-tabulaires" title="Permanent link">&para;</a></h1>
+<p><strong>Date de l'audit initial :</strong> 31 juillet 2026<br />
+<strong>Révision examinée :</strong> <code>dde1ac07b</code><br />
+<strong>Suivi :</strong> 7 août 2026 sur <code>d1695bc44</code><br />
+<strong>Périmètre :</strong> vues JavaFX contenant une <code>TableView</code>, filtres associés, vues mémorisées,
+documentation utilisateur et captures générées du dépôt.</p>
+<div class="admonition success">
+<p class="admonition-title">Audit historique, principaux constats traités</p>
+<p>Ce document conserve le diagnostic posé sur <code>dde1ac07b</code>. Entre cet audit et la révision de suivi,
+le chantier d'uniformisation a corrigé l'essentiel des risques relevés : restauration complète,
+listes cascadées, clés sémantiques, fabriques communes, mémoire de session, action « Tout effacer »,
+filtres de l'Audit et garde documentaire. La section suivante relie chaque constat à son traitement.</p>
+</div>
+<h2 id="synthese">Synthèse<a class="headerlink" href="#synthese" title="Permanent link">&para;</a></h2>
+<p>L'application possède déjà un <strong>socle de filtrage commun et solide</strong>, employé par les trois grandes
+vues exploratoires : <strong>Sons &amp; validation</strong>, <strong>Espèces &amp; observations</strong> et <strong>Carte &amp; passages</strong>. Ces
+écrans partagent le même patron : recherche permanente, bouton « + Filtre », critères sous forme de
+puces et vues mémorisées.</p>
+<p>L'impression de manque d'uniformité reste néanmoins fondée :</p>
 <ul>
-<li><strong>suppression ou renommage</strong> d'une classe/méthode : l'ancien <code>.class</code> reste dans <code>target/</code> ;</li>
-<li><strong>changement de dépendances</strong> (<code>pom.xml</code>).</li>
+<li>le socle n'est pas appliqué selon une politique explicite à toutes les tables qui pourraient en
+  bénéficier ;</li>
+<li>deux barres visuellement semblables n'ont pas toujours les mêmes règles d'activation, de remise à
+  zéro ou de mémorisation ;</li>
+<li>quelques contrats techniques peuvent rendre une vue enregistrée plus large qu'annoncé ;</li>
+<li>plusieurs concepts communs sont dupliqués entre fonctionnalités ;</li>
+<li>la documentation a déjà commencé à diverger du catalogue réel.</li>
 </ul>
-<p>La CI part <strong>toujours</strong> d'un checkout propre : ce piège est purement <strong>local</strong>. Le cas du
-<strong>packaging</strong> est réglé depuis #1188 : le fat-jar est attaché sous le classifier <code>shaded</code>, le shade
-ne re-traite plus sa propre sortie (packaging <strong>idempotent</strong>, garde-fou en CI).</p>
-</div>
-<h2 id="ihm-testee-en-headless-sans-x11-ni-xvfb">IHM testée en <em>headless</em> (sans X11 ni xvfb)<a class="headerlink" href="#ihm-testee-en-headless-sans-x11-ni-xvfb" title="Permanent link">&para;</a></h2>
-<p>Les tests <strong>TestFX</strong> tournent en mémoire grâce à la <strong>Headless Platform</strong> de JavaFX : aucun <code>xvfb</code>,
-aucun display. La config vit dans le bloc Surefire du <code>pom.xml</code>, <strong>rien à régler</strong> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;glass.platform&gt;</span>Headless<span class="nt">&lt;/glass.platform&gt;</span><span class="w">   </span><span class="cm">&lt;!-- plateforme Glass logicielle --&gt;</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">&lt;prism.order&gt;</span>sw<span class="nt">&lt;/prism.order&gt;</span><span class="w">               </span><span class="cm">&lt;!-- rendu logiciel --&gt;</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nt">&lt;java.awt.headless&gt;</span>true<span class="nt">&lt;/java.awt.headless&gt;</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">&lt;testfx.robot&gt;</span>glass<span class="nt">&lt;/testfx.robot&gt;</span><span class="w">          </span><span class="cm">&lt;!-- robot piloté par Glass --&gt;</span>
-</code></pre></div>
-<p>On <strong>ne met pas</strong> <code>testfx.headless=true</code> : ce flag réactiverait l'ancien bootstrap Monocle. Le
-headless vient de <code>glass.platform=Headless</code>, pas de TestFX. Le <code>argLine</code> ajoute les <code>--add-opens</code> /
-<code>--add-exports</code> requis par JavaFX (accès aux internes <code>com.sun.javafx.*</code> pour TestFX) + l'agent JaCoCo
-+ l'agent <strong>Mockito</strong> (voir ci-dessous).</p>
-<div class="admonition note">
-<p class="admonition-title">Préparation à Java 26+</p>
-<p>Sous Java 25 tout passe, mais deux signaux annoncent la bascule 26 :</p>
-<ul>
-<li><strong>Agent Mockito explicite</strong> <em>(fait)</em> : Mockito 5 s'auto-attachait dynamiquement (« A Java agent
-  has been loaded dynamically… will be disallowed by default in a future release »). On passe
-  désormais <code>byte-buddy-agent</code> en <code>-javaagent</code> via <code>maven-dependency-plugin:properties</code>
-  (<code>${net.bytebuddy:byte-buddy-agent:jar}</code> dans l'<code>argLine</code>) : plus d'auto-attachement, prêt pour
-  le JDK 26.</li>
-<li>
-<p><strong><code>sun.misc.Unsafe</code></strong> <em>(à surveiller)</em> : le warning ne vient <strong>pas</strong> du code du projet, mais il ne
-  vient pas non plus de Guava. <strong>Mesuré le 2026-08-06</strong> (#2747), sur JDK 25.0.3, en lançant <code>AppTest</code> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>WARNING: sun.misc.Unsafe::staticFieldBase has been called by
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>         com.google.inject.internal.aop.HiddenClassDefiner (guice-7.0.0.jar)
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>WARNING: sun.misc.Unsafe::staticFieldBase will be removed in a future release
-</code></pre></div>
-<p>C'est <strong>Guice 7.0.0</strong>, dans la génération de proxys AOP. La version précédente de cette page
-accusait Guava : c'est cette erreur qui a fait attendre une montée de Guava, laquelle a bien eu
-lieu (33.4.8-jre, #2740) <strong>sans rien changer</strong> - elle ne pouvait pas.</p>
-<p>⚠️ <strong>Ce n'est pas « rien à faire pour l'instant », c'est une échéance.</strong> La JEP 498 retirera
-l'accès, et <code>--sun-misc-unsafe-memory-access=allow</code> (posé au <code>pom.xml</code> pour <code>javafx:run</code> et le
-lanceur jpackage, et au manifeste Flatpak) ne fait que la repousser. Le jour où le drapeau
-disparaît, l'application ne démarre plus.</p>
-<p><strong>Ce qui la lèverait</strong> : une version de Guice qui cesse d'utiliser <code>Unsafe</code>. 7.0.0 est la
-dernière publiée ; Dependabot suit la dépendance et proposera la montée. Le drapeau se retire
-<strong>le jour où ce warning cesse d'apparaître</strong>, et pas avant : le vérifier se fait en une
-commande, <code>./mvnw test -Dtest=AppTest</code> puis chercher « sun.misc.Unsafe » dans la sortie.</p>
-</li>
-</ul>
-</div>
-<div class="admonition danger">
-<p class="admonition-title">Lancer les tests avec le bon JDK</p>
-<p>Utilisez un <strong>JDK 25 standard</strong> (<code>25.0.2-open</code> / Temurin), <strong>pas</strong> un JDK packagé FX (<code>fx-zulu</code>) :
-ce dernier embarque JavaFX 25, masque les jars Maven FX 26 et fait échouer le headless
-(<code>NPE com.sun.glass.ui.PlatformFactory.getPlatformFactory()</code> : la Headless Platform n'existe qu'en
-FX 26). Comme la CI :
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
-</code></pre></div></p>
-</div>
-<h3 id="lecran-headless-est-fige-a-10001000">L'écran headless est figé à 1000×1000<a class="headerlink" href="#lecran-headless-est-fige-a-10001000" title="Permanent link">&para;</a></h3>
-<p>La Headless Platform de JavaFX 26 rend dans un écran <strong>codé en dur à 1000×1000 px</strong>
-(<code>HeadlessApplication.staticScreen_getScreens</code>, avec le <code>stride</code> de <code>HeadlessWindow</code>) : aucune
-propriété ni variable d'environnement ne le change, et le framebuffer est un <code>ByteBuffer</code> de
-<code>1000*1000*4</code> octets alloué une fois pour toutes.</p>
-<p>Conséquence : une fenêtre qui, une fois affichée, <strong>dépasse 1000 px</strong> - typiquement une modale qui
-grandit quand un bandeau se révèle et que <code>sizeToScene</code> la redimensionne - fait <strong>déborder</strong> le rendu :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>java.lang.IndexOutOfBoundsException
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    at com.sun.glass.ui.headless.HeadlessWindow.blit(HeadlessWindow.java:333)
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    at javafx.stage.Window.sizeToScene(...)
-</code></pre></div>
-<p>C'est un artefact du <strong>test</strong>, pas un défaut de production : un vrai écran (≥ 1000 px) et un vrai
-gestionnaire de fenêtres n'ont pas ce framebuffer figé.</p>
-<p><strong>La bonne réponse est de faire tenir la fenêtre sous 1000 px</strong>, ce qui corrige du même coup le vrai
-bug côté utilisateur (une fenêtre trop grande déborde aussi les petits portables). C'est ce qu'a fait</p>
-<h1 id="2496-pour-rattachementmodale-corps-dans-un-scrollpane-pied-epingle-la-fenetre-reste-bornee">2496 pour <code>RattachementModale</code> : corps dans un <code>ScrollPane</code>, pied épinglé, la fenêtre reste bornée<a class="headerlink" href="#2496-pour-rattachementmodale-corps-dans-un-scrollpane-pied-epingle-la-fenetre-reste-bornee" title="Permanent link">&para;</a></h1>
-<p>(cf. <a href="../decisions/2493-une-modale-a-revelation-suit-la-croissance/">ADR 2493</a>). <strong>À privilégier
-systématiquement.</strong></p>
-<div class="admonition warning">
-<p class="admonition-title">Dernier recours : agrandir le framebuffer par réflexion</p>
-<p>Pour un écran <strong>vraiment irréductible</strong> - un test dont la fenêtre ne <em>peut pas</em> descendre sous
-1000 px sans dénaturer ce qu'il vérifie - on peut agrandir le seul <strong>nombre de lignes</strong> du
-framebuffer au bootstrap du test (le <code>stride</code> reste à 1000, on ajoute des lignes). En test, JavaFX
-est chargé dans le <strong>module sans nom</strong> (classpath, <code>useModulePath=false</code>), donc la réflexion
-atteint le champ privé <strong>sans <code>--add-opens</code></strong> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">/// Agrandit le framebuffer de la Headless Platform (lignes seulement, stride inchangé).</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1">/// À appeler sur le fil JavaFX, après le démarrage du toolkit et avant tout rendu.</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">/// DERNIER RECOURS : couple le test aux internes de glass. À éviter si la fenêtre peut être bornée.</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kd">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">agrandirEcranHeadless</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">lignes</span><span class="p">)</span><span class="w"> </span><span class="kd">throws</span><span class="w"> </span><span class="n">ReflectiveOperationException</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="n">Object</span><span class="w"> </span><span class="n">app</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Class</span><span class="p">.</span><span class="na">forName</span><span class="p">(</span><span class="s">&quot;com.sun.glass.ui.Application&quot;</span><span class="p">)</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">      </span><span class="p">.</span><span class="na">getMethod</span><span class="p">(</span><span class="s">&quot;GetApplication&quot;</span><span class="p">).</span><span class="na">invoke</span><span class="p">(</span><span class="kc">null</span><span class="p">);</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">app</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">    </span><span class="k">return</span><span class="p">;</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="p">}</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">  </span><span class="n">java</span><span class="p">.</span><span class="na">lang</span><span class="p">.</span><span class="na">reflect</span><span class="p">.</span><span class="na">Field</span><span class="w"> </span><span class="n">champ</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">app</span><span class="p">.</span><span class="na">getClass</span><span class="p">().</span><span class="na">getDeclaredField</span><span class="p">(</span><span class="s">&quot;frameBuffer&quot;</span><span class="p">);</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">  </span><span class="n">champ</span><span class="p">.</span><span class="na">setAccessible</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="n">champ</span><span class="p">.</span><span class="na">set</span><span class="p">(</span><span class="n">app</span><span class="p">,</span><span class="w"> </span><span class="n">java</span><span class="p">.</span><span class="na">nio</span><span class="p">.</span><span class="na">ByteBuffer</span><span class="p">.</span><span class="na">allocate</span><span class="p">(</span><span class="mi">1000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lignes</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">4</span><span class="p">));</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="p">}</span>
-</code></pre></div>
-<p>Validé pendant #2496 : sur <code>RattachementModale</code> câblée, <code>agrandirEcranHeadless(3000)</code> rend ses
-12 tests verts au lieu du <code>blit</code> qui débordait. <strong>Coûts</strong> : ~<code>1000 * lignes * 4</code> octets par fork ;
-dépendance à un champ privé (<code>frameBuffer</code>) et à un nom de méthode (<code>GetApplication</code>) qui peuvent
-changer d'une version de JavaFX à l'autre. D'où « dernier recours » : préférer <strong>borner la
-fenêtre</strong>.</p>
-</div>
-<h3 id="les-butoirs-testfx-sont-des-coupe-circuits-pas-des-budgets">Les butoirs TestFX sont des coupe-circuits, pas des budgets<a class="headerlink" href="#les-butoirs-testfx-sont-des-coupe-circuits-pas-des-budgets" title="Permanent link">&para;</a></h3>
-<p><code>FxToolkit</code> borne deux attentes : le démarrage du toolkit JavaFX (<code>testfx.launch.timeout</code>) et la mise
-en place d'un test, c'est-à-dire l'exécution de la méthode <code>@Start</code> par
-<code>ApplicationExtension.beforeEach</code> (<code>testfx.setup.timeout</code>). Leur seul rôle est d'empêcher un fil FX
-bloqué de figer le build indéfiniment. <strong>Ils ne mesurent rien</strong> : dépasser un butoir ne dit pas que le
-code est lent, seulement que la machine n'a pas rendu la main à temps.</p>
-<p>Les deux valeurs sont posées dans le <code>pom.xml</code> à <strong>120 s</strong>, et non laissées aux défauts de TestFX
-(30 s et 60 s) :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;testfx.setup.timeout&gt;</span>120000<span class="nt">&lt;/testfx.setup.timeout&gt;</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">&lt;testfx.launch.timeout&gt;</span>120000<span class="nt">&lt;/testfx.launch.timeout&gt;</span>
-</code></pre></div>
-<p>Ce n'est pas un confort. Les défauts de TestFX supposent une JVM seule sur sa machine, alors que la
-suite lance <strong>une JVM par coeur</strong> (<code>surefire.forkCount=1C</code>) sur un runner partagé. Les deux décisions
-avaient été prises séparément, et le calcul ne tombait pas juste (#2120) :</p>
+<p>Il ne s'agit donc pas de remplacer le mécanisme existant, mais de <strong>formaliser son domaine d'emploi et
+de durcir ses contrats</strong>.</p>
+<h2 id="suivi-des-constats-au-7-aout-2026">Suivi des constats au 7 août 2026<a class="headerlink" href="#suivi-des-constats-au-7-aout-2026" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Grandeur</th>
-<th>Mesure</th>
+<th>Constat initial</th>
+<th>État</th>
+<th>Traitement</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Mise en place la plus lente de la suite, 4 coeurs / 4 forks, machine au repos</td>
-<td><strong>6,9 s</strong> (<code>SonsValidationViewTest#basculer_reference</code>)</td>
+<td>Critère disparu ignoré à la restauration</td>
+<td><strong>Corrigé</strong></td>
+<td><code>aaa963e82</code> : la restauration rend désormais critères inconnus et valeurs perdues</td>
 </tr>
 <tr>
-<td>Marge sous l'ancien butoir de 30 s</td>
-<td><strong>4,3x</strong></td>
+<td>Domaines de valeurs figés à l'ouverture</td>
+<td><strong>Corrigé</strong></td>
+<td><code>45a821951</code> et <code>320871d2d</code> : listes cascadées sur les autres critères</td>
 </tr>
 <tr>
-<td>Durée du job <code>build</code> sur 27 runs CI consécutifs</td>
-<td>de <strong>370 s à 2260 s</strong>, soit <strong>5,4x</strong></td>
+<td>Activation différente selon le type de critère</td>
+<td><strong>Assumée</strong></td>
+<td>distinction conservée entre booléen, seuil/plage et liste ; les raccourcis restent aussi portés par les vues par défaut</td>
+</tr>
+<tr>
+<td>Réinitialisation et mémoire différentes</td>
+<td><strong>Corrigé</strong></td>
+<td><code>bb695a9bc</code> : mémoire commune sur les quatre écrans initiaux et action « Tout effacer »</td>
+</tr>
+<tr>
+<td>Année invalide mais puce apparemment active</td>
+<td><strong>Corrigé</strong></td>
+<td><code>013f76e39</code> : une année illisible n'est plus décrite comme un filtre actif</td>
+</tr>
+<tr>
+<td>Clés ambiguës et critères communs dupliqués</td>
+<td><strong>Corrigé</strong></td>
+<td><code>7f1654520</code>, <code>0092b522d</code> et <code>cfbfdb059</code> : clés par concept, critère booléen et critère Lieu mutualisés</td>
+</tr>
+<tr>
+<td>Documentation désynchronisée</td>
+<td><strong>Corrigé et gardé</strong></td>
+<td><code>8c4990d8e</code> : les catalogues sont ancrés dans <code>DocumentationAJourTest</code></td>
+</tr>
+<tr>
+<td>Audit de cohérence sans filtres</td>
+<td><strong>Corrigé</strong></td>
+<td><code>3d4a4c39a</code> : recherche, Gravité, Catégorie, Passage, vues et mémoire de session</td>
 </tr>
 </tbody>
 </table>
-<p>La marge était <strong>plus petite que la variation de la machine</strong>. Le butoir vivait donc dans le bruit, et
-expirait au hasard des runs. À 120 s, la marge est de 17x sur le nominal, soit 3x au-delà de la pire
-dégradation observée, et un vrai interblocage est toujours coupé en deux minutes.</p>
-<div class="admonition warning">
-<p class="admonition-title">Un <code>» Timeout</code> en CI ne se lit pas comme un échec de test</p>
-<p>Surefire l'affiche sous cette forme, sans distinguer une assertion fausse d'une attente expirée :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>SonsValidationViewTest.basculer_reference » Timeout
-</code></pre></div>
-<p>La trace le tranche en trois lignes : <code>ApplicationExtension.beforeEach</code> puis
-<code>FxToolkit.setupApplication</code> puis <code>WaitForAsyncUtils.waitFor</code> signifient que <strong>le test n'a jamais
-commencé</strong>. Le premier réflexe est alors de regarder la <strong>durée du job</strong>, pas le diff : si le build
-a mis trois fois son temps habituel, c'est le runner qu'on observe, pas le code.</p>
-<p>Le piège est ailleurs : un rouge intermittent qu'on prend l'habitude d'écarter finit par couvrir
-celui qui compte. C'est ce précédent, et non le temps perdu, qui a motivé #2120.</p>
-</div>
-<p><code>ButoirsTestFxTest</code> vérifie que ces deux valeurs atteignent bien la JVM <strong>forkée</strong>. Elles passent par
-<code>systemPropertyVariables</code> : posées sur la JVM de Maven, elles n'auraient aucun effet, et TestFX
-retomberait <strong>en silence</strong> sur ses défauts.</p>
-<h2 id="la-taxonomie-des-tests">La taxonomie des tests<a class="headerlink" href="#la-taxonomie-des-tests" title="Permanent link">&para;</a></h2>
-<p>Les tests vivent sous <code>src/test/java/fr/univ_amu/iut/</code>, en <strong>miroir</strong> des paquets de production.</p>
-<table>
-<thead>
-<tr>
-<th>Catégorie</th>
-<th>Emplacement</th>
-<th>Vérifie</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Unitaires métier</td>
-<td><code>&lt;feature&gt;/model/</code>, <code>&lt;feature&gt;/dao/</code>, <code>commun/persistence/</code>, <code>commun/model/</code></td>
-<td>Entités, services, DAO, migrations. Sans JavaFX.</td>
-</tr>
-<tr>
-<td>ViewModel</td>
-<td><code>&lt;feature&gt;/viewmodel/</code></td>
-<td>État observable + logique de présentation, sans composant graphique.</td>
-</tr>
-<tr>
-<td>Intégration de vue (TestFX)</td>
-<td><code>&lt;feature&gt;/view/*VueIntegrationTest</code></td>
-<td>La vue FXML se lie au ViewModel et réagit (headless).</td>
-</tr>
-<tr>
-<td><strong>Geste</strong> (TestFX)</td>
-<td><code>&lt;feature&gt;/view/*ViewTest</code></td>
-<td>Le bouton est <strong>cliqué</strong>, et on vérifie son <strong>effet</strong> (#1405).</td>
-</tr>
-<tr>
-<td>Bout en bout</td>
-<td><code>fr.univ_amu.iut.e2e.*</code>, <code>&lt;feature&gt;/e2e/Parcours*E2ETest</code></td>
-<td>Le scénario complet : IHM → ViewModel → service → base.</td>
-</tr>
-<tr>
-<td><strong>CLI shell (bats)</strong></td>
-<td><code>src/test/bats/*.bats</code> (fixtures partagées <code>helper.bash</code>)</td>
-<td>La CLI <strong>empaquetée</strong> (fat-jar shadé), au niveau <strong>processus</strong> : arguments picocli, texte d'aide, <strong>codes de sortie</strong>, refus métier, ce que les tests Java in-process ne voient pas. <code>cli.bats</code> éprouve les commandes du chantier #1565 ; <code>cli-surface.bats</code> couvre le contrat <strong>hors-ligne de chaque</strong> sous-commande (aide, refus des options requises manquantes, exécution locale, refus sans jeton) ; <code>cli-reseau.bats</code> pointe le client sur un <strong>serveur stub</strong> (processus Python <code>stub_vigiechiro.py</code>) via la surcharge <code>VIGIECHIRO_URL</code> (<code>ConnexionModule#urlDeBase</code>) et prouve le chemin réseau <strong>sans jeton réel ni Internet</strong>. Reste à étoffer : contrats métier réseau sur fixtures Eve réalistes (#1592). Lancés en CI après le smoke-test du fat-jar (#1572, amorce).</td>
-</tr>
-<tr>
-<td>Architecture (ArchUnit)</td>
-<td><code>architecture/ArchitectureTest</code></td>
-<td>Les <strong>6 règles</strong> de frontière MVVM (cf. <a href="../architecture/">Architecture</a>).</td>
-</tr>
-<tr>
-<td><strong>Documentation</strong></td>
-<td><code>documentation/DocumentationAJourTest</code></td>
-<td>Toute commande CLI a sa ligne, tout écran a sa fiche (#1458).</td>
-</tr>
-</tbody>
-</table>
-<p>Outils : <strong>JUnit 5 + AssertJ + Mockito</strong> ; <strong>ApprovalTests</strong> pour les sorties verbatim (CSV Tadarida
-<code>_Vu</code> : le premier run produit un <code>*.received</code>, à approuver en <code>*.approved</code>).</p>
-<h3 id="tester-un-geste-pas-un-bouton">Tester un geste, pas un bouton<a class="headerlink" href="#tester-un-geste-pas-un-bouton" title="Permanent link">&para;</a></h3>
-<p>Un test qui vérifie qu'un bouton est <strong>présent et actif</strong> ne dit rien de ce qu'il fait. C'était
-pourtant tout ce qu'on avait sur les actions <strong>irréversibles</strong> - restaurer la base, supprimer un
-passage et sa nuit, réimporter par-dessus les validations de l'observateur. Et pas par négligence : un <code>showAndWait()</code> <strong>fige</strong> un test headless, donc le clic
-était <strong>impossible</strong>.</p>
-<p>Les dialogues d'une action sont désormais des <strong>ports</strong> remplaçables (<code>Confirmateur</code>, <code>Notificateur</code>,
-<code>SelecteurFichier</code>, <code>DemandeurDeChoix</code> : cf.
-<a href="../patterns/#les-dialogues-dune-action-sont-des-ports-socle-commun">Patrons</a>).
-Un test de geste les remplace par des doubles, <strong>déclenche</strong> l'action, et vérifie <strong>ce qui s'est
-passé</strong> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">controleur</span><span class="p">.</span><span class="na">confirmateur</span><span class="p">().</span><span class="na">definir</span><span class="p">(</span><span class="n">message</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">confirmations</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">confirme</span><span class="p">;</span><span class="w"> </span><span class="p">});</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">controleur</span><span class="p">.</span><span class="na">notificateur</span><span class="p">().</span><span class="na">definir</span><span class="p">((</span><span class="n">niveau</span><span class="p">,</span><span class="w"> </span><span class="n">entete</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">annonces</span><span class="p">.</span><span class="na">add</span><span class="p">(</span><span class="n">entete</span><span class="p">));</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="n">robot</span><span class="p">.</span><span class="na">interact</span><span class="p">(()</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">robot</span><span class="p">.</span><span class="na">lookup</span><span class="p">(</span><span class="s">&quot;#boutonSupprimer&quot;</span><span class="p">).</span><span class="na">queryButton</span><span class="p">().</span><span class="na">fire</span><span class="p">());</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="n">assertThat</span><span class="p">(</span><span class="n">sitesEnBase</span><span class="p">()).</span><span class="na">isEmpty</span><span class="p">();</span><span class="w">     </span><span class="c1">// l&#39;effet, pas « un mock a été appelé »</span>
-</code></pre></div>
-<p>Trois exigences, dans l'ordre d'importance :</p>
+<p>Les sections suivantes restent formulées comme au moment de l'audit : elles expliquent les défauts qui
+ont motivé ces changements et servent de trace de conception.</p>
+<h2 id="methode-et-perimetre">Méthode et périmètre<a class="headerlink" href="#methode-et-perimetre" title="Permanent link">&para;</a></h2>
+<p>L'inventaire trouve <strong>15 tables</strong> : 14 déclarées dans les fichiers FXML et une créée en Java dans
+<code>TableNuits</code>. Une seule barre peut piloter plusieurs tables : c'est notamment le cas d'Analyse, où les
+trois tables reposent sur le même sous-ensemble d'observations.</p>
+<p>L'audit distingue trois natures d'écran :</p>
 <ol>
-<li><strong>Le refus.</strong> Sur une action irréversible, « Annuler annule vraiment » est le test qui compte le
-   plus - et c'est celui qui manquait partout.</li>
-<li><strong>L'effet réel.</strong> Quand la fixture le permet (vrai injecteur + vraie base), asserter que la ligne a
-   <strong>disparu de la base</strong>, pas qu'un mock a reçu un appel.</li>
-<li><strong>Le message de confirmation est un contenu.</strong> Sur une suppression en cascade, c'est le seul
-   avertissement que l'utilisateur recevra : vérifier qu'il annonce le gain, ce qui est conservé, et
-   ce qui est <strong>définitivement</strong> perdu.</li>
-<li><strong>Renoncer n'est pas abandonner.</strong> Quand un dialogue offre plusieurs issues, l'une d'elles <strong>détruit</strong>
-   souvent quelque chose et une autre <strong>ne fait rien</strong>. Les deux ferment le dialogue. Un test doit les
-   <strong>distinguer</strong> - c'est le piège le plus coûteux de tout ce chantier.</li>
+<li><strong>exploratoire et potentiellement volumineux</strong> : filtrer fait partie du travail principal ;</li>
+<li><strong>analytique mais fortement borné</strong> : quelques paramètres métier valent mieux qu'un catalogue
+   générique ;</li>
+<li><strong>opérationnel ou transitoire</strong> : la table suit une action et n'a pas vocation à être explorée.</li>
 </ol>
-<div class="admonition tip">
-<p class="admonition-title">Ce qu'aucun test ne verra</p>
-<p>Trois défauts d'IHM de #1431 n'ont été trouvés qu'en <strong>regardant une capture</strong> : un libellé tronqué,
-un emoji qui ne se rend pas (#700), et une <strong>réplique</strong> de dialogue qui avait <strong>dérivé</strong> du vrai
-écran. Un geste testé n'est pas un écran regardé : rendez la capture, et <strong>ouvrez-la</strong>.</p>
-</div>
-<h3 id="semer-une-nuit-jeudedonneespassage">Semer une nuit : <code>JeuDeDonneesPassage</code><a class="headerlink" href="#semer-une-nuit-jeudedonneespassage" title="Permanent link">&para;</a></h3>
-<p>Le schéma est <strong>profond</strong> : une <code>observation</code> référence une <code>sequence</code>, qui référence une
-<code>recording_session</code>, qui référence un <code>passage</code>, qui référence un <code>point</code>, un <code>site</code>, un <code>recorder</code> et un
-<code>user</code>. Écrire un test sur <strong>une observation</strong> obligeait donc à connaître <strong>sept tables</strong> - et
-<strong>soixante-quinze</strong> fichiers de test resemaient cette même chaîne à la main, en trois styles SQL
-différents (#1258).</p>
-<p>Ce n'était pas de la rigueur, c'était du <strong>bruit</strong> : le test parlait de la plomberie au lieu de parler de
-ce qu'il vérifie. Et chaque migration de schéma coûtait autant de retouches que de copies.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">JeuDeDonneesPassage</span><span class="w"> </span><span class="n">jeu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JeuDeDonneesPassage</span><span class="p">.</span><span class="na">dans</span><span class="p">(</span><span class="n">source</span><span class="p">)</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">        </span><span class="p">.</span><span class="na">carre</span><span class="p">(</span><span class="s">&quot;130711&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">        </span><span class="p">.</span><span class="na">point</span><span class="p">(</span><span class="s">&quot;Z41&quot;</span><span class="p">)</span>
-<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">        </span><span class="p">.</span><span class="na">semer</span><span class="p">();</span>
-<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>
-<a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="kt">long</span><span class="w"> </span><span class="n">douteuse</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservation</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">);</span>
-<a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="kt">long</span><span class="w"> </span><span class="n">validee</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationValidee</span><span class="p">(</span><span class="s">&quot;Nyclei&quot;</span><span class="p">);</span>
-<a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="kt">long</span><span class="w"> </span><span class="n">corrigee</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">jeu</span><span class="p">.</span><span class="na">ajouterObservationCorrigee</span><span class="p">(</span><span class="s">&quot;Pipkuh&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Pippip&quot;</span><span class="p">);</span>
-</code></pre></div>
-<p>Valeurs par défaut : utilisateur <code>u-1</code>, carré <code>640380</code>, point <code>A1</code>, enregistreur <code>SN-1</code> - celles que les
-tests utilisaient déjà. Tout se surcharge avant <code>semer()</code>.</p>
-<p><strong>Migration opportuniste</strong>, pas de big bang : on bascule un fichier <strong>quand on le retouche</strong>. Les trois
-styles SQL et les jeux de colonnes variables rendent une conversion mécanique <strong>risquée</strong>, et un test
-converti trop vite est un test qu'on ne relit plus.</p>
-<div class="admonition warning">
-<p class="admonition-title">Un cliquet empêche de l'oublier</p>
-<p><strong>Une migration opportuniste sans garde-fou est une migration qu'on oublie</strong> - le même défaut que la
-doc, qui dérivait parce que rien ne rougissait. <code>CliquetFixturePassageTest</code> <strong>épingle la liste</strong> des
-tests qui sèment encore un passage à la main (le compte de référence vit <strong>dans le test lui-même</strong>,
-pas ici, pour ne pas diverger), et elle ne peut que <strong>rétrécir</strong> :</p>
-<ul>
-<li><strong>ajouter un semeur de plus</strong> → CI rouge (c'est le cas qui compte : sans lui, la dette repousserait
-  aussi vite qu'on la coupe) ;</li>
-<li><strong>en migrer un</strong> → CI rouge aussi, jusqu'à ce qu'on <strong>retire son nom</strong> de la liste. Le geste est
-  trivial, et c'est ce qui rend le progrès <strong>visible</strong>.</li>
-</ul>
-<p>Le compteur restant est donc <strong>toujours exact</strong>, sans que personne ait à s'en souvenir.</p>
-</div>
-<p>Deux limites, assumées :</p>
-<ul>
-<li>la fixture <strong>ne migre pas</strong> le schéma (les tests ne l'obtiennent pas tous de la même façon) et <strong>ne sème
-  aucun taxon</strong> : le référentiel réel est déjà posé par <code>V02__seed_taxons.sql</code>, et réinsérer <code>Pipkuh</code>
-  <strong>viole la clé primaire</strong> ;</li>
-<li>les <strong>outils de capture</strong> (<code>src/main/.../outils</code>) restent <strong>autonomes</strong> : ce sont des exécutables
-  indépendants, la fixture de test ne leur est pas accessible, on accepte leur duplication.</li>
-</ul>
-<h3 id="la-documentation-est-tenue-par-un-test">La documentation est tenue par un test<a class="headerlink" href="#la-documentation-est-tenue-par-un-test" title="Permanent link">&para;</a></h3>
-<p>Une doc qui ment est <strong>pire</strong> qu'une doc absente : on la croit. Le dépôt l'avait déjà tranché pour les
-<strong>captures</strong>, défendues par quatre garde-fous (cf. <a href="../captures/">Captures</a>). Les <strong>commandes</strong> et les
-<strong>écrans</strong>, eux, n'avaient rien - et ils ont dérivé, en silence : <code>dev-docs/cli.md</code> a documenté jusqu'à
-<strong>22 commandes sur 29</strong>, et l'écran « Audit de cohérence » a vécu <strong>sans aucune fiche</strong> de sa livraison
-(#1133) à la clôture de l'EPIC #1154. Aucune CI n'a rougi. Une relecture à la main les a trouvés.</p>
-<p><code>DocumentationAJourTest</code> comble l'asymétrie, en confrontant la doc non pas à une liste tenue à la main
-(c'est exactement ce qui dérive) mais à la <strong>vérité du câblage</strong> :</p>
+<p>Cette distinction évite de conclure que toute <code>TableView</code> doit mécaniquement recevoir une barre de
+filtres.</p>
+<h2 id="inventaire-par-vue-a-la-revision-auditee">Inventaire par vue à la révision auditée<a class="headerlink" href="#inventaire-par-vue-a-la-revision-auditee" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Ce qui est confronté</th>
-<th>À quoi</th>
-<th>Ce que ça empêche</th>
+<th>Vue</th>
+<th>Mécanisme observé sur <code>dde1ac07b</code></th>
+<th>Évaluation initiale</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Les sous-commandes de l'annotation <code>@Command</code> de <code>CommandeRacine</code></td>
-<td>Le tableau de <code>dev-docs/cli.md</code></td>
-<td>Une commande livrée, testée, verte en CI… et <strong>introuvable</strong> dans sa propre doc</td>
+<td><strong>Sons &amp; validation</strong></td>
+<td>Recherche, 10 critères, puces, 4 vues par défaut, vues utilisateur et mémoire de session</td>
+<td>Référence actuelle</td>
 </tr>
 <tr>
-<td>Les <code>ActiviteAccueil</code> <strong>liées dans l'injecteur</strong></td>
-<td>La fiche <code>docs/ecrans/&lt;pageDoc&gt;.md</code></td>
-<td>Un <strong>écran entier</strong> offert à l'utilisateur, sans page</td>
+<td><strong>Espèces &amp; observations</strong></td>
+<td>Recherche, 5 critères, puces, 6 vues par défaut et vues utilisateur</td>
+<td>Conforme au socle</td>
 </tr>
 <tr>
-<td>Les fiches présentes sur le disque</td>
-<td>La <code>nav</code> de <code>mkdocs.yml</code> <strong>et</strong> le tableau de <code>docs/ecrans/index.md</code></td>
-<td>Une page que le site ne publie pas, ou qu'on ne peut atteindre depuis l'index de sa section</td>
+<td><strong>Carte &amp; passages</strong></td>
+<td>Recherche, 7 critères, puces, 6 vues par défaut, vues utilisateur et bouton de réinitialisation</td>
+<td>Conforme, avec des particularités</td>
 </tr>
 <tr>
-<td>Les <strong>chiffres balisés</strong> <code>&lt;!--inv:clé--&gt;N&lt;!--/inv--&gt;</code> (#2385)</td>
-<td>L'<strong>inventaire réel du code</strong> (contrats <code>Ouvrir*</code>, états de <code>StatutWorkflow</code>, features, sous-commandes, <strong>catalogues de critères de filtre</strong>)</td>
-<td>Un décompte <strong>figé dans la prose</strong> qui dérive après un ajout : « 43 sous-commandes » quand le code en câble 44</td>
+<td><strong>Ma saison</strong></td>
+<td>Sélecteurs fixes Année et Campagne</td>
+<td>Cohérent avec le domaine, mais limité si le nombre de points augmente</td>
+</tr>
+<tr>
+<td><strong>Synthèse de la nuit</strong></td>
+<td>Bascule « Identifications validées seulement » et choix du milieu</td>
+<td>Écart justifié : ces contrôles recalculent la synthèse</td>
+</tr>
+<tr>
+<td><strong>Audit de cohérence</strong></td>
+<td>Aucun filtre</td>
+<td>Lacune principale parmi les tables exploratoires</td>
+</tr>
+<tr>
+<td><strong>Fiche site</strong></td>
+<td>Aucun filtre sur les passages du site</td>
+<td>Acceptable tant que la liste reste naturellement bornée</td>
+</tr>
+<tr>
+<td><strong>Qualification</strong></td>
+<td>Aucun filtre sur la sélection d'écoute</td>
+<td>Justifié : table opérationnelle d'un passage</td>
+</tr>
+<tr>
+<td><strong>Importation, dépôt et reconstruction</strong></td>
+<td>Aucun filtre sur les tables de suivi ou de sélection</td>
+<td>Justifié : tables transitoires liées à une action</td>
 </tr>
 </tbody>
 </table>
-<p>Deux détails qui comptent :</p>
+<p>Les captures illustrent clairement ces familles :</p>
 <ul>
-<li>Les commandes sont lues <strong>sur l'annotation</strong>, par réflexion - jamais instanciées. Leurs constructeurs
-  tirent des <code>Provider</code> qui <strong>ouvrent la base</strong> : les instancier ferait de l'E/S pour rien.</li>
-<li><code>ActiviteAccueil.pageDoc()</code> est une méthode du <strong>contrat</strong>, pas une convention. Le nom de la fiche ne se
-  déduit ni du titre (« Sons de référence » se documente dans <code>validation.md</code>) ni du paquet (la feature
-  <code>audio</code> aussi) : il faut le <strong>dire</strong>. Le compilateur force donc à choisir une fiche, et le test refuse
-  qu'elle soit absente.</li>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/.github/assets/apercu-sons-validation-filtres.png">Sons &amp; validation avec une puce active</a> ;</li>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/.github/assets/apercu-multisite-filtre.png">Carte &amp; passages avec un filtre de carré</a> ;</li>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/.github/assets/apercu-analyse.png">Espèces &amp; observations</a> ;</li>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/.github/assets/apercu-saison.png">Ma saison et ses deux sélecteurs fixes</a> ;</li>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/.github/assets/apercu-synthese.png">Synthèse et sa bascule métier</a> ;</li>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/.github/assets/apercu-audit.png">Audit sans outil de filtrage</a>.</li>
 </ul>
-<h4 id="ancrer-un-chiffre-les-balises-dinventaire">Ancrer un chiffre : les balises d'inventaire<a class="headerlink" href="#ancrer-un-chiffre-les-balises-dinventaire" title="Permanent link">&para;</a></h4>
-<p>Certains nombres de la doc <strong>décrivent le code</strong> : le nombre de contrats <code>Ouvrir*</code>, d'états du workflow,
-de features, de sous-commandes CLI. Écrits en dur, ils <strong>dérivent</strong> au premier ajout (un contrat de plus,
-un état de plus) sans que rien ne rougisse. Une <strong>balise d'inventaire</strong> les ancre à un décompte que le
-test recalcule. On écrit le nombre entre deux commentaires :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>l&#39;application compte <span class="gs">**&lt;!--inv:features--&gt;N&lt;!--/inv--&gt; features**</span> métier
-</code></pre></div>
-<div class="admonition warning">
-<p class="admonition-title">Règle de rédaction : un chiffre d'inventaire ne s'écrit pas en dur</p>
-<p><strong>Si le code sait recalculer un chiffre, la documentation le porte en balise.</strong> Sinon, elle ne
-l'écrit pas du tout.</p>
-<p>La raison n'est pas l'élégance, c'est une mesure : « les 21 tests bats » vivait à <strong>trois</strong>
-endroits quand il y en avait <strong>89</strong> - un facteur quatre, accumulé sans que rien ne le dise
-(#2749). Et personne n'avait mal fait : un chiffre juste le jour où on l'écrit devient faux tout
-seul.</p>
-<p>⚠️ Trois, et non deux : la correction n'en avait trouvé que deux, et le troisième a survécu une
-journée de plus, dans un encadré du même fichier. <strong>Un chiffre faux a des jumeaux</strong>, et le
-balayage qui corrige n'est pas celui qui compte - c'est l'audit d'harmonisation de la clôture qui
-a rendu le troisième.</p>
-<p>Trois cas, trois gestes :</p>
+<h2 id="ce-qui-est-deja-bien-uniformise">Ce qui est déjà bien uniformisé<a class="headerlink" href="#ce-qui-est-deja-bien-uniformise" title="Permanent link">&para;</a></h2>
+<p>Le composant <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/src/main/java/fr/univ_amu/iut/commun/view/GestionnaireFiltres.java"><code>GestionnaireFiltres</code></a>
+centralise correctement :</p>
 <ul>
-<li><strong>le code sait compter</strong> → balise <code>&lt;!--inv:clé--&gt;N&lt;!--/inv--&gt;</code>, plus une entrée dans
-  <code>DocumentationAJourTest</code> ;</li>
-<li><strong>le code ne sait pas</strong> (un commentaire de workflow, une note de PR) → <strong>écrire la phrase sans
-  le nombre</strong>. « les tests bats, qui lancent chacun un JVM » dit ce qu'il faut sans rien promettre ;</li>
-<li><strong>le chiffre est une mesure datée</strong> (« 66 aperçus sur 138 différaient le 6 août ») → il reste en
-  dur, et c'est <strong>juste</strong> : ce n'est pas un inventaire, c'est un constat, et un constat a une date.</li>
+<li>la recherche texte permanente ;</li>
+<li>la composition des prédicats ;</li>
+<li>le menu des critères encore disponibles ;</li>
+<li>la création et le retrait des puces ;</li>
+<li>la description sémantique d'un état de filtres ;</li>
+<li>la restauration d'un état mémorisé.</li>
 </ul>
-<p>⚠️ Le troisième cas se confond avec le premier au premier coup d'œil. Un balayage a compté « 51,
-66, 108 aperçus » comme des inventaires divergents : c'étaient trois <strong>deltas</strong> d'ADR, et le total,
-138, était juste partout. Lire la phrase entière avant de conclure à une dérive.</p>
+<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/src/main/java/fr/univ_amu/iut/commun/view/CritereListe.java"><code>CritereListe</code></a> fournit en outre des
+éditeurs réutilisables : choix simple, choix multiple, valeurs d'énumération et présélection explicite.
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/src/main/java/fr/univ_amu/iut/commun/view/GestionnaireVues.java"><code>GestionnaireVues</code></a> complète le
+dispositif par les vues nommées et la mémorisation des colonnes.</p>
+<p>Les trois catalogues principaux reposent effectivement sur ce socle :</p>
+<ul>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/src/main/java/fr/univ_amu/iut/audio/view/CriteresAudio.java"><code>CriteresAudio</code></a> ;</li>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/src/main/java/fr/univ_amu/iut/analyse/view/CriteresAnalyse.java"><code>CriteresAnalyse</code></a> ;</li>
+<li><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/src/main/java/fr/univ_amu/iut/multisite/view/CriteresMultisite.java"><code>CriteresMultisite</code></a>.</li>
+</ul>
+<p>La vue non tabulaire <strong>Activité de la nuit</strong> réutilise également le même composant, ce qui montre que
+le modèle sait filtrer une collection métier sans dépendre directement d'une <code>TableView</code>.</p>
+<h2 id="constats-prioritaires">Constats prioritaires<a class="headerlink" href="#constats-prioritaires" title="Permanent link">&para;</a></h2>
+<h3 id="1-un-critere-disparu-est-ignore-silencieusement-lors-dune-restauration">1. Un critère disparu est ignoré silencieusement lors d'une restauration<a class="headerlink" href="#1-un-critere-disparu-est-ignore-silencieusement-lors-dune-restauration" title="Permanent link">&para;</a></h3>
+<p><code>GestionnaireFiltres.restaurer</code> signale les <strong>valeurs</strong> qu'un critère connu n'a pas réussi à replacer,
+mais ignore entièrement un critère dont la clé n'existe plus dans le catalogue. L'appel à
+<code>critereParNom(...).ifPresent(...)</code> n'a pas de branche d'échec.</p>
+<p>Le compte rendu de <code>GestionnaireVues</code> ne reçoit alors aucune anomalie. Après une évolution de
+l'application, une vue enregistrée peut donc filtrer <strong>moins</strong> qu'au moment de son enregistrement tout
+en conservant le même nom.</p>
+<p><strong>Risque :</strong> résultat silencieusement trop large, particulièrement gênant avant un export ou une revue
+ciblée.</p>
+<p><strong>Recommandation :</strong> remplacer la simple liste de valeurs disparues par un résultat structuré contenant
+au minimum :</p>
+<ul>
+<li>les critères inconnus ;</li>
+<li>les valeurs disparues des critères connus ;</li>
+<li>les éventuelles valeurs invalides ;</li>
+<li>le caractère complet ou amputé de la restauration.</li>
+</ul>
+<p>Le même principe devrait s'appliquer à <code>GestionnaireFiltres.poser</code>, qui documente déjà le fait qu'il
+jette une valeur non reconnue.</p>
+<h3 id="2-les-domaines-de-valeurs-sont-des-instantanes-pas-des-listes-reellement-cascadees">2. Les domaines de valeurs sont des instantanés, pas des listes réellement cascadées<a class="headerlink" href="#2-les-domaines-de-valeurs-sont-des-instantanes-pas-des-listes-reellement-cascadees" title="Permanent link">&para;</a></h3>
+<p>Les fournisseurs de lieux, groupes ou espèces sont évalués lors de la construction de l'éditeur de la
+puce. Modifier ensuite un autre filtre ne reconstruit pas sa liste.</p>
+<p>Deux situations sont alors possibles :</p>
+<ul>
+<li>la liste continue de proposer des valeurs qu'un autre filtre vient de rendre impossibles ;</li>
+<li>une puce ouverte dans un sous-ensemble restreint ne récupère pas les valeurs qui redeviennent
+  disponibles lorsque l'autre filtre est retiré.</li>
+</ul>
+<p>Le comportement se situe à mi-chemin entre un domaine <strong>stable</strong> calculé sur toute la source et un
+domaine <strong>réactif</strong> calculé sur le sous-ensemble courant.</p>
+<p><strong>Recommandation :</strong> choisir et documenter une seule politique :</p>
+<ul>
+<li>soit des domaines stables issus de la source complète, plus simples et prévisibles ;</li>
+<li>soit de vraies listes cascadées, réactualisées à chaque changement tout en préservant les sélections
+  encore valides.</li>
+</ul>
+<h3 id="3-une-puce-nouvellement-ajoutee-na-pas-une-semantique-uniforme">3. Une puce nouvellement ajoutée n'a pas une sémantique uniforme<a class="headerlink" href="#3-une-puce-nouvellement-ajoutee-na-pas-une-semantique-uniforme" title="Permanent link">&para;</a></h3>
+<p>La règle générale de <code>CritereListe</code> est : <strong>ajouter une puce à liste n'écarte rien tant qu'aucune valeur
+n'est choisie</strong>. Plusieurs critères Audio font exception :</p>
+<ul>
+<li>Statut sélectionne immédiatement « À revoir » ;</li>
+<li>Taxon parent sélectionne immédiatement « Chiroptères » quand il existe ;</li>
+<li>Proba applique immédiatement 50 % ;</li>
+<li>Heure applique immédiatement la plage nocturne.</li>
+</ul>
+<p>Les critères booléens filtrent eux aussi dès leur ajout, ce qui est naturel puisque leur présence porte
+leur valeur.</p>
+<p>Le problème n'est pas l'existence d'une valeur par défaut, mais l'absence de règle perceptible depuis
+l'interface.</p>
+<p><strong>Recommandation :</strong> formaliser les catégories suivantes :</p>
+<ul>
+<li>booléen : actif dès l'ajout ;</li>
+<li>seuil ou plage : actif avec une valeur initiale explicitement affichée ;</li>
+<li>liste ou énumération : neutre jusqu'au choix ;</li>
+<li>raccourci fréquent : porté par une vue par défaut, plutôt que par une présélection surprenante dans
+  l'éditeur.</li>
+</ul>
+<p>Les vues « À valider » et « Chiroptères » existent déjà et peuvent porter ces raccourcis.</p>
+<h3 id="4-reinitialisation-et-memoire-de-session-different-entre-ecrans-similaires">4. Réinitialisation et mémoire de session diffèrent entre écrans similaires<a class="headerlink" href="#4-reinitialisation-et-memoire-de-session-different-entre-ecrans-similaires" title="Permanent link">&para;</a></h3>
+<p>Seule la vue Carte &amp; passages affiche un bouton <strong>Réinitialiser</strong>, alors que les trois écrans utilisent
+le même gestionnaire et possèdent tous une vue « Tout ».</p>
+<p>Sons &amp; validation possède en plus une mémoire automatique du tri et des filtres via
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/dde1ac07b/src/main/java/fr/univ_amu/iut/audio/view/MemoireRevueAudio.java"><code>MemoireRevueAudio</code></a>. Analyse et
+Multisite ont des vues sauvegardées, mais pas cette mémoire libre de session.</p>
+<p>Ces écarts peuvent être justifiés par le besoin de reprendre une revue audio, mais ils doivent relever
+d'une politique explicite plutôt que du câblage propre à chaque contrôleur.</p>
+<p><strong>Recommandation :</strong></p>
+<ul>
+<li>exposer « Tout effacer » de la même façon sur chaque barre commune ;</li>
+<li>décider si la mémoire de session est un comportement du socle ou une capacité opt-in clairement
+  documentée ;</li>
+<li>distinguer visuellement « revenir à Tout » et « restaurer ma dernière vue libre ».</li>
+</ul>
+<h3 id="5-une-valeur-invalide-peut-laisser-une-puce-active-mais-neutre">5. Une valeur invalide peut laisser une puce active mais neutre<a class="headerlink" href="#5-une-valeur-invalide-peut-laisser-une-puce-active-mais-neutre" title="Permanent link">&para;</a></h3>
+<p>Le critère Année de Carte &amp; passages utilise un champ texte. Une saisie non numérique produit un
+prédicat neutre sans signaler l'erreur. La puce semble donc active mais n'écarte aucune ligne ; sa
+description mémorisée ne contient même plus la valeur invalide.</p>
+<p><strong>Recommandation :</strong> utiliser un <code>TextFormatter&lt;Integer&gt;</code>, une liste des années présentes ou un état de
+validation visible. Un filtre affiché comme actif ne doit jamais échouer silencieusement à filtrer.</p>
+<h3 id="6-les-cles-semantiques-ne-forment-pas-encore-un-vocabulaire-sur">6. Les clés sémantiques ne forment pas encore un vocabulaire sûr<a class="headerlink" href="#6-les-cles-semantiques-ne-forment-pas-encore-un-vocabulaire-sur" title="Permanent link">&para;</a></h3>
+<p>Les clés sont persistées dans les vues enregistrées et servent parfois au transport entre écrans. Elles
+constituent donc une API interne versionnée.</p>
+<p>Or :</p>
+<ul>
+<li><code>statut</code> désigne un statut d'observation dans Audio et Analyse, mais un statut de workflow dans
+  Multisite ;</li>
+<li><code>lieu</code> porte bien un concept partagé, mais ses helpers sont réécrits dans plusieurs fonctionnalités ;</li>
+<li>les conventions de nommage alternent, par exemple entre <code>a_enjeu</code>, <code>non_identifie</code> et <code>natureNuit</code> ;</li>
+<li>le gestionnaire ne vérifie pas à la construction que deux critères d'un même catalogue ont des clés
+  uniques.</li>
+</ul>
+<p><strong>Recommandation :</strong> introduire des clés partagées seulement lorsque la sémantique est réellement la
+même, par exemple <code>statut_observation</code> et <code>statut_workflow</code>, et valider l'unicité du catalogue au
+démarrage.</p>
+<h3 id="7-la-documentation-derive-du-catalogue-reel">7. La documentation dérive du catalogue réel<a class="headerlink" href="#7-la-documentation-derive-du-catalogue-reel" title="Permanent link">&para;</a></h3>
+<p>Le catalogue Audio contient dix critères, mais la table de la documentation utilisateur omet
+<strong>Douteux</strong> et <strong>Non identifiés</strong>. Plusieurs commentaires de contrôleurs annoncent encore deux ou quatre
+critères alors que leur liste en contient davantage.</p>
+<p>Cette dérive est un symptôme de la dispersion des métadonnées : la clé, le libellé, la valeur initiale,
+la description métier et la documentation ne vivent pas ensemble.</p>
+<p><strong>Recommandation :</strong> enrichir le descripteur de critère avec ses métadonnées stables, puis au minimum
+tester les catalogues attendus. Une génération partielle des tableaux documentaires peut être envisagée,
+mais un test de contrat sur les clés et libellés apporterait déjà un garde-fou peu coûteux.</p>
+<h2 id="vues-a-faire-evoluer">Vues à faire évoluer<a class="headerlink" href="#vues-a-faire-evoluer" title="Permanent link">&para;</a></h2>
+<h3 id="audit-de-coherence-priorite-fonctionnelle">Audit de cohérence : priorité fonctionnelle<a class="headerlink" href="#audit-de-coherence-priorite-fonctionnelle" title="Permanent link">&para;</a></h3>
+<p>L'Audit est une vue globale et non bornée. Ses colonnes correspondent directement à des dimensions de
+filtrage utiles :</p>
+<ul>
+<li>Gravité ;</li>
+<li>Catégorie ;</li>
+<li>Passage ;</li>
+<li>Cible et détail en recherche libre.</li>
+</ul>
+<p>Il devrait être le premier écran supplémentaire à adopter le socle commun. Des vues par défaut
+« Erreurs », « Avertissements » et éventuellement « Avec passage » répondraient aux tâches courantes
+sans masquer l'inventaire complet.</p>
+<h3 id="ma-saison-a-confirmer-par-la-volumetrie-et-les-usages">Ma saison : à confirmer par la volumétrie et les usages<a class="headerlink" href="#ma-saison-a-confirmer-par-la-volumetrie-et-les-usages" title="Permanent link">&para;</a></h3>
+<p>Année et Campagne sont des <strong>paramètres de périmètre</strong> cohérents et doivent rester visibles. Pour une
+grande saison, deux filtres complémentaires pourraient devenir utiles :</p>
+<ul>
+<li>recherche par carré, point ou site ;</li>
+<li>filtre rapide « Reste à faire ».</li>
+</ul>
+<p>Le résumé doit continuer à être calculé sur exactement le même sous-ensemble que la table.</p>
+<h3 id="tables-contextuelles-et-operationnelles-ne-pas-generaliser-sans-besoin">Tables contextuelles et opérationnelles : ne pas généraliser sans besoin<a class="headerlink" href="#tables-contextuelles-et-operationnelles-ne-pas-generaliser-sans-besoin" title="Permanent link">&para;</a></h3>
+<p>La Synthèse, la Qualification, les suivis d'import/dépôt et la modale de reconstruction ne doivent pas
+recevoir le patron complet par simple souci d'homogénéité. Leur périmètre est court ou leur table sert une
+action précise. Ajouter une barre y augmenterait la surface technique sans améliorer le parcours.</p>
+<p>La table des passages d'une fiche site mérite seulement une surveillance de volumétrie. Si elle devient
+difficile à parcourir, une recherche légère peut suffire avant d'introduire les vues mémorisées.</p>
+<h2 id="standard-cible-propose">Standard cible proposé<a class="headerlink" href="#standard-cible-propose" title="Permanent link">&para;</a></h2>
+<div class="admonition success">
+<p class="admonition-title">Ce standard est devenu une décision</p>
+<p>Il ne se lit plus ici pour être appliqué : il vit dans
+<a href="../decisions/3479-toute-table-n-a-pas-vocation-a-etre-exploree/">l'ADR 3479</a>, avec la taxonomie
+des trois natures qui décide <strong>qui</strong> doit le respecter. Un audit se lit une fois, un contrat se
+relit à chaque écran ajouté. La section ci-dessous reste la formulation d'origine, comme trace
+de conception.</p>
 </div>
-<p>où <code>N</code> est le chiffre (<code>15</code> aujourd'hui). Un commentaire HTML <strong>ne s'affiche pas</strong> : la phrase se lit
-« 15 features » comme avant, mais <code>chaque_chiffre_balise_egale_l_inventaire_reel</code> relit <code>N</code> et le
-confronte au code. Une divergence fait <strong>rougir la CI</strong>, le message portant le vrai chiffre. Clés
-reconnues :</p>
-<table>
-<thead>
-<tr>
-<th>Clé</th>
-<th>Décompte réel</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ouvrir</code></td>
-<td>fichiers <code>commun/view/Ouvrir*.java</code></td>
-</tr>
-<tr>
-<td><code>etats-workflow</code></td>
-<td>valeurs de l'enum <code>StatutWorkflow</code></td>
-</tr>
-<tr>
-<td><code>features</code></td>
-<td>dossiers de <code>fr.univ_amu.iut</code> hors <code>commun</code>, <code>cli</code>, <code>perf</code></td>
-</tr>
-<tr>
-<td><code>cli</code></td>
-<td>sous-commandes câblées dans <code>CommandeRacine</code></td>
-</tr>
-<tr>
-<td><code>workflows-ci</code></td>
-<td>fichiers <code>.yml</code> de <code>.github/workflows</code></td>
-</tr>
-<tr>
-<td><code>migrations</code></td>
-<td>fichiers <code>V*.sql</code> de <code>db/migration</code></td>
-</tr>
-<tr>
-<td><code>criteres-validation</code></td>
-<td>fabriques <code>CritereFiltre</code> de <code>CriteresAudio</code></td>
-</tr>
-<tr>
-<td><code>criteres-analyse</code></td>
-<td>fabriques <code>CritereFiltre</code> de <code>CriteresAnalyse</code></td>
-</tr>
-<tr>
-<td><code>criteres-activite</code></td>
-<td>fabriques <code>CritereFiltre</code> de <code>CriteresActivite</code></td>
-</tr>
-<tr>
-<td><code>criteres-multisite</code></td>
-<td>fabriques <code>CritereFiltre</code> de <code>CriteresMultisite</code></td>
-</tr>
-<tr>
-<td><code>criteres-audit</code></td>
-<td>fabriques <code>CritereFiltre</code> de <code>CriteresAudit</code></td>
-</tr>
-</tbody>
-</table>
-<p>Les cinq clés <code>criteres-*</code> (#3105) comptent les fabriques par <strong>nom distinct</strong> : plusieurs catalogues
-offrent des surcharges du même critère (<code>groupe</code>, <code>heure</code>), qui restent <strong>une seule puce</strong> à l'écran.
-La réflexion s'arrête au type de retour, sans rien invoquer : pas de toolkit JavaFX, pas de données.</p>
-<p>Ces cinq-là existent parce que la dérive s'était déjà produite : « Douteux » et « Non identifiés »
-ont vécu deux paliers sans figurer dans <code>validation.md</code>, et un commentaire de <code>FiltresVuesAudio</code>
-annonçait deux critères là où le code en câblait dix. Un décompte réécrit en prose finit toujours par
-mentir - la règle est donc de <strong>nommer la source</strong> dans un commentaire, et d'ancrer le <strong>nombre</strong> ici.</p>
-<p>Poser une balise sur une <strong>clé non listée</strong> échoue aussi : on ajoute d'abord la clé et son décompte au
-test (une clé = un fait que le code sait recalculer). Et le test exige qu'<strong>au moins une</strong> balise subsiste
-par clé, pour qu'un inventaire ne perde pas discrètement son ancre. Enfin, <code>aucune_commande_documentee_n_a_disparu_de_la_cli</code>
-fait le trajet <strong>inverse</strong> du tableau CLI : une commande décrite dans <code>cli.md</code> mais <strong>absente</strong> du câblage
-(renommée, supprimée) fait rougir tout autant.</p>
-<h2 id="les-outils-qualite">Les outils qualité<a class="headerlink" href="#les-outils-qualite" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Outil</th>
-<th>Rôle</th>
-<th>Bloquant ?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>ArchUnit</strong></td>
-<td>Frontières MVVM + absence de cycles</td>
-<td>Oui (tests)</td>
-</tr>
-<tr>
-<td><strong>Spotless</strong> (Palantir)</td>
-<td>Format du code, via un <em>hook</em> pre-commit silencieux</td>
-<td>Oui (<code>spotless:check</code> en CI)</td>
-</tr>
-<tr>
-<td><strong>PMD</strong></td>
-<td><em>Code smells</em></td>
-<td>Bloquant <strong>sous <code>-Pquality-gate</code></strong></td>
-</tr>
-<tr>
-<td><strong>JaCoCo</strong></td>
-<td>Couverture</td>
-<td>Seuils bloquants <strong>sous <code>-Pquality-gate</code></strong></td>
-</tr>
-<tr>
-<td><strong>PIT</strong></td>
-<td>Qualité des tests par <strong>mutation</strong></td>
-<td>Non (à la demande, <code>-Pmutation</code>)</td>
-</tr>
-</tbody>
-</table>
-<h3 id="sonarqube-for-ide-facultatif-a-configurer">SonarQube for IDE (facultatif, à configurer)<a class="headerlink" href="#sonarqube-for-ide-facultatif-a-configurer" title="Permanent link">&para;</a></h3>
-<p>L'extension <strong>SonarQube for IDE</strong> (ex-SonarLint) analyse à la frappe et complète utilement PMD :
-elle voit des bugs et des fuites de ressources que le ruleset ne cherche pas. Mais <strong>PMD fait foi</strong> :
-c'est lui qui bloque la CI. Or, laissée par défaut, l'extension applique le profil « Sonar way »
-(542 règles Java) et <strong>contredit trois seuils</strong> délibérément arbitrés dans
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/pmd-ruleset.xml"><code>pmd-ruleset.xml</code></a> :</p>
-<table>
-<thead>
-<tr>
-<th>Règle Sonar</th>
-<th>Défaut</th>
-<th>Ce que dit le ruleset PMD</th>
-<th>Remontées sur <code>src/main/java</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>java:S107</code> (nb de paramètres)</td>
-<td>7</td>
-<td><code>ExcessiveParameterList</code> <strong>11</strong> : les <code>@Provides</code> Guice agrègent leurs collaborateurs</td>
-<td><strong>30</strong></td>
-</tr>
-<tr>
-<td><code>java:S3776</code> (complexité cognitive)</td>
-<td>15</td>
-<td>pendant de <code>CyclomaticComplexity</code> <strong>24</strong> : les parseurs écrits à la main montent à 27</td>
-<td><strong>9</strong></td>
-</tr>
-<tr>
-<td><code>java:S106</code> (sortie standard)</td>
-<td>actif</td>
-<td>aucun équivalent : <code>**/outils/**</code> et la CLI picocli écrivent sur stdout</td>
-<td><strong>28 fichiers</strong></td>
-</tr>
-</tbody>
-</table>
-<p>Le réglage qui les réaligne <strong>ne peut pas être versionné</strong> : <code>sonarlint.rules</code> est de scope
-<code>application</code>, donc VS Code le lit <strong>uniquement</strong> depuis les réglages utilisateur et ignore
-silencieusement un bloc placé dans <code>.vscode/settings.json</code>. À recopier dans ses réglages personnels :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">&quot;sonarlint.rules&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nt">&quot;java:S107&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;maximum&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;constructorMax&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;11&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">&quot;java:S3776&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;on&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;parameters&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;Threshold&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;30&quot;</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">&quot;java:S106&quot;</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">&quot;level&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;off&quot;</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">}</span>
-</code></pre></div>
-<p>Trois points à ne pas redécouvrir :</p>
+<p>Une table <strong>exploratoire ou potentiellement volumineuse</strong> devrait respecter le contrat suivant :</p>
+<ol>
+<li>recherche permanente sur une liste de champs explicitement documentée ;</li>
+<li>critères typés et composés en ET ;</li>
+<li>activation prévisible selon le type de critère ;</li>
+<li>action visible pour retirer tous les filtres ;</li>
+<li>compteur calculé sur le sous-ensemble affiché ;</li>
+<li>état vide distinguant l'absence de données de l'absence de résultat ;</li>
+<li>export aligné sur le sous-ensemble affiché ;</li>
+<li>restauration qui rend compte de toute perte de sens ;</li>
+<li>politique explicite de mémoire de session et de vues sauvegardées ;</li>
+<li>tests de contrat communs, complétés par les prédicats métier de chaque écran.</li>
+</ol>
+<p>Les autres tables peuvent rester sans filtres dès lors que leur caractère <strong>borné, contextuel ou
+opérationnel</strong> est assumé.</p>
+<h2 id="plan-de-traitement-recommande">Plan de traitement recommandé<a class="headerlink" href="#plan-de-traitement-recommande" title="Permanent link">&para;</a></h2>
+<h3 id="etape-1-securiser-les-contrats">Étape 1 : sécuriser les contrats<a class="headerlink" href="#etape-1-securiser-les-contrats" title="Permanent link">&para;</a></h3>
 <ul>
-<li>La clé de <code>java:S3776</code> prend une <strong>majuscule</strong> (<code>Threshold</code>). Écrite en minuscule, elle est ignorée
-  sans le moindre message et le seuil reste à 15.</li>
-<li><code>java:S107</code> ne visite ni les <strong>records</strong> : les 27 records à 8 composants ou plus, dont
-  <code>LigneObservationAudio</code> et ses 30 composants, ne remontent pas. Inutile de relever le seuil pour eux.</li>
-<li>On ne coupe <strong>que</strong> ces trois règles. Le reste de « Sonar way » est un complément, pas un doublon ;
-  le désactiver en bloc reviendrait à ne garder que ce que PMD sait déjà faire.</li>
+<li>rendre visibles les critères inconnus et les valeurs perdues à la restauration ;</li>
+<li>faire remonter les échecs de <code>poser</code> ;</li>
+<li>refuser les clés dupliquées dans un catalogue ;</li>
+<li>valider les valeurs saisies, notamment l'année ;</li>
+<li>ajouter les tests de non-régression correspondants.</li>
 </ul>
-<p>Pour une configuration réellement <strong>partagée</strong> entre contributeurs, la seule voie serait le
-<em>connected mode</em> (SonarQube Cloud, gratuit sur dépôt public) avec un profil qualité côté serveur.
-Le coût est un second référentiel de règles à tenir en phase avec <code>pmd-ruleset.xml</code> ; tant que
-l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
-<h3 id="couverture-et-mutation">Couverture et mutation<a class="headerlink" href="#couverture-et-mutation" title="Permanent link">&para;</a></h3>
+<h3 id="etape-2-fixer-la-politique-commune">Étape 2 : fixer la politique commune<a class="headerlink" href="#etape-2-fixer-la-politique-commune" title="Permanent link">&para;</a></h3>
 <ul>
-<li><strong>JaCoCo</strong> : sous <code>-Pquality-gate</code>, seuils <strong>bloquants</strong> au niveau <code>BUNDLE</code>. Leurs valeurs, la
-  raison de chacune et la recette pour re-mesurer la couverture vivent dans le
-  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/pom.xml"><code>pom.xml</code></a>, <strong>seule
-  source</strong> : les répéter ici les ferait diverger au premier resserrage. Les <code>**/outils/**</code> (capture
-  d'écran, bancs de mesure) sont <strong>exclus</strong> : ils sont validés par exécution, pas par tests
-  unitaires.</li>
-<li>
-<p><strong>PIT</strong> (<code>-Pmutation</code>) évalue si les tests <strong>détectent</strong> des mutations du code. Lent sur tout le
-  dépôt, mais <strong>rapide ciblé</strong> sur la classe qu'on vient d'écrire - et c'est ainsi qu'il sert le mieux :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
-</code></pre></div>
-</li>
+<li>décider domaine stable ou liste réellement cascadée ;</li>
+<li>uniformiser la règle d'activation ;</li>
+<li>uniformiser la remise à zéro ;</li>
+<li>décider ce qui est mémorisé automatiquement entre deux ouvertures.</li>
 </ul>
-<p>⚠️ <strong><code>test-compile</code> n'est pas une commodité, c'est ce qui fait démarrer le minion.</strong> PIT hérite de
-l'<code>argLine</code> de Surefire, qui contient deux valeurs posées par des greffons liés à des <strong>phases</strong> :
-<code>@{jacocoArgLine}</code> (<code>jacoco:prepare-agent</code>) et <code>${net.bytebuddy:byte-buddy-agent:jar}</code>
-(<code>dependency:properties</code>, phase <code>initialize</code>). Invoquer le <strong>but seul</strong>
-(<code>./mvnw -Pmutation org.pitest:...:mutationCoverage</code>) n'exécute <strong>aucune</strong> phase : les deux restent
-littérales, le minion reçoit <code>-javaagent:${net.bytebuddy:byte-buddy-agent:jar}</code>, refuse de démarrer, et
-PIT ne rapporte que :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>PIT &gt;&gt; SEVERE : Coverage generator Minion exited abnormally due to MINION_DIED
-</code></pre></div>
-<p>Ce message <strong>ne dit pas</strong> la cause, et il est identique quelle que soit la classe visée - y compris une
-classe pure sans JavaFX ni SQLite. D'où la conclusion tentante, et fausse, que « PIT ne marche pas sur ce
-dépôt ». Il marche : toujours enchaîner une phase, comme dans les exemples ci-dessus.</p>
-<p><strong>Sur une classe de vue (TestFX), rien de plus à faire.</strong> Le profil <code>mutation</code> du <code>pom.xml</code> passe déjà
-les quatre propriétés headless au minion (<code>glass.platform=Headless</code>, <code>prism.order=sw</code>,
-<code>java.awt.headless=true</code>, <code>testfx.robot=glass</code>) : sans elles, PIT lançait ses minions hors headless et
-s'arrêtait sur « <em>tests did not pass without mutation</em> ». <strong>Ne pas</strong> les repasser à la main via
-<code>-DjvmArgs=…</code> : la ligne de commande <strong>remplace</strong> la liste du profil au lieu de s'y ajouter, et une liste
-incomplète ramène l'échec que le profil avait supprimé.</p>
-<p>PIT couvre donc aussi la couche <code>view</code>, ce que l'échec brut laissait croire impossible.</p>
-<p><strong>Deux mesures tournent toutes seules, chaque nuit</strong>, et leurs périmètres ne se recouvrent pas.</p>
-<p>Elles étaient hebdomadaire et mensuelle : les cycles complets prenaient <strong>17 semaines</strong> et <strong>15 mois</strong>.
-Quinze mois, pour les vues d'une feature, c'est plus long que le chantier qui y introduirait une
-régression. En quotidien les mêmes cycles prennent <strong>17 et 15 jours</strong>, et le dépôt étant public, les
-minutes d'Actions sont illimitées sur les runners standard : la fréquence ne coûte que du temps machine.</p>
-<p>Deux limites à garder en tête. La rotation est <strong>aveugle au diff</strong> : elle avance d'un paquet par jour quoi
-qu'on ait touché, donc elle mesure plus souvent, pas plus juste. Et un bilan quotidien que personne ne lit
-vaut moins qu'un bilan hebdomadaire qu'on lit - la fréquence ne crée pas l'attention. Les deux sont <strong>non
-bloquantes</strong>, comme le rapport ADR dont elles sont le calque : un survivant n'est pas un défaut mais une
-<strong>question</strong> posée à un humain, et bloquer une fusion là-dessus ferait cocher au hasard.</p>
-<table>
-<thead>
-<tr>
-<th>Workflow</th>
-<th>Quand</th>
-<th>Ce qu'elle mute</th>
-<th>Avec quels tests</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>mutation-model.yml</code></td>
-<td>chaque nuit (3 h UTC), <strong>un paquet par tour</strong> (cycle de 17 jours)</td>
-<td><code>fr.univ_amu.iut.&lt;feature&gt;.model.*</code></td>
-<td>tous, <strong>sauf</strong> <code>e2e</code> et <code>commun.api</code></td>
-</tr>
-<tr>
-<td><code>mutation-ihm.yml</code></td>
-<td>chaque nuit (5 h UTC), <strong>une feature par tour</strong> (cycle de 15 jours)</td>
-<td><code>fr.univ_amu.iut.&lt;feature&gt;.view.*</code></td>
-<td>ceux de la feature, <strong>sauf</strong> <code>e2e</code></td>
-</tr>
-</tbody>
-</table>
-<p>Chacune publie son bilan dans le <strong>résumé du job</strong> ; le rapport HTML détaillé est conservé 30 jours en
-artefact.</p>
-<p><strong>Pourquoi les E2E sont exclus des deux.</strong> Un E2E est <strong>large en couverture et pauvre en jugement</strong>.
-<code>ParcoursDepotE2ETest</code> couvre à lui seul 8 539 blocs : PIT le retient comme test candidat pour des mutants
-situés dans des centaines de classes, et rejoue le parcours entier - des minutes de TestFX - pour
-apprendre ce qu'un test unitaire dit en millisecondes. Le premier passage sur le dépôt entier a produit
-<strong>19 expirations en une heure</strong>, toutes autour de ce parcours.</p>
-<p>Les exclure ne <strong>cache</strong> rien, et c'est le point : un mutant que seul un E2E tuerait est, par définition,
-un mutant qu'aucun test unitaire ne détecte. Il ressort désormais en <strong>survivant</strong>, c'est-à-dire en
-question posée à un humain, au lieu d'être tué silencieusement.</p>
-<p><strong>Pourquoi le modèle aussi se mesure un paquet à la fois.</strong> Les paquets <code>model</code> d'un seul coup n'ont pas
-fini : le job a été <strong>tué à 300 minutes pile</strong>, après 335 unités sur ~4 657 mutants. Ce n'est pas la
-lenteur d'un test qui l'a tué, c'est le <strong>volume</strong> - 4 657 mutants à quelques secondes chacun font cinq
-heures quelle que soit la finesse des tests. Un paquet seul, en revanche, tient sans peine :
-<code>saison.model</code> a rendu 86 mutants et <strong>97 % de détection en 12 minutes</strong>, sans expiration.</p>
-<p><strong>Le plus gros paquet tient, et confortablement.</strong> <code>commun.model</code> (96 classes) a été mesuré : <strong>2 h 35</strong>
-sur les 5 heures de budget, 746 mutants, <strong>92 % de détection</strong>. L'extrapolation à partir de <code>saison</code>
-donnait 4 h 45 - elle était pessimiste d'un facteur deux, parce que le coût se compte en <strong>mutants</strong>, pas
-en classes : le périmètre entier en produisait 4 657, <code>commun.model</code> seulement 746.</p>
-<p>Reste <code>passage</code> (93 classes) comme seul inconnu, et il devrait se comporter comme <code>commun</code>. La maille n'a
-donc <strong>pas</strong> à descendre d'un cran.</p>
-<p>À noter, parce que cela contre-indique une maille plus fine : le <strong>calcul de couverture est un coût fixe</strong>
-payé à chaque tour, autour de 14 minutes quelle que soit la taille du paquet - 12 minutes sur les 12 de
-<code>saison</code>, 14 sur les 155 de <code>commun</code>. Découper davantage ferait payer ce préambule plus souvent, pour un
-rendement moindre.</p>
-<p><strong>Pourquoi <code>commun.api</code> est écarté côté tests.</strong> Nuance qui compte : ce n'est pas une classe mutée, c'est
-la suite du <strong>réessai gradué</strong> (<a href="../decisions/2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/">ADR 2354</a>),
-la plus lente du dépôt (5,5 s). Son sujet est l'<strong>attente</strong> : tout mutant qui fait boucler le réessai une
-fois de plus dépasse le butoir de PIT (~11 s), et l'expiration y est un <strong>effet du sujet muté</strong>, pas un
-défaut d'outillage. Les 16 expirations du run tué pointaient vers elle.</p>
-<p><strong>Pourquoi l'IHM se mesure une feature à la fois.</strong> Muter une vue coûte ~9 s par mutant : chaque mutant
-rejoue des tests TestFX, qui démarrent un toolkit JavaFX. Les 283 classes de vue de l'application
-demanderaient des dizaines d'heures, quand la borne d'un job est à 300 minutes. La mesure est donc
-<strong>complète sur un cycle, pas sur un mois</strong> : la rotation se déduit du mois, sans état à écrire ni relire,
-et le tour se fait en 15 mois. Elle vaut le détour - sur <code>saison</code>, 80 mutants, 36 % tués, <strong>40 % de
-survivants</strong>.</p>
-<div class="admonition danger">
-<p class="admonition-title">Ne pas allonger le butoir pour « laisser le temps » aux tests graphiques</p>
-<p>C'est la correction qui vient à l'esprit devant une expiration, et elle rendrait le chiffre <strong>faux
-dans le sens rassurant</strong> : PIT compte une expiration comme une <strong>détection</strong>. Vérifié en rendant le
-butoir absurde sur une classe de vue - 21 mutants, 21 expirations, score annoncé <strong>100 %</strong>, là où la
-mesure honnête donne 43 %.</p>
-<p>Le butoir par défaut (<code>4 s + 1,25 × durée normale</code>) suffit une fois les E2E écartés : sur le
-périmètre des vues, <strong>1 expiration sur 280 mutants</strong>. C'est le périmètre qu'il fallait corriger, pas
-le butoir (#2768).</p>
-</div>
-<p>⚠️ <strong>PIT n'a plus d'analyse incrémentale.</strong> Depuis la version 1.25.x, le stockage de l'historique est un
-greffon <strong>commercial</strong> (arcmutate). Les options <code>historyInputFile</code>/<code>historyOutputFile</code> figurent toujours
-au descripteur du greffon Maven, mais les passer sans lui ne les fait pas ignorer : PIT <strong>refuse de
-démarrer</strong>. Le descripteur dit que l'option existe, pas que la fonction est là (#2768).</p>
-<p>Le même bilan se lit en local, sur n'importe quel rapport :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>python3<span class="w"> </span>scripts/qualite/rapport_mutation.py<span class="w"> </span>--markdown
-</code></pre></div>
-<p>Il trie les classes par nombre de survivants plutôt que d'afficher un pourcentage : le score situe, la
-liste travaille.</p>
-<p>⚠️ <strong>Lire le rapport, pas le résumé.</strong> <code>target/pit-reports/mutations.xml</code> écrit ses attributs en
-<strong>apostrophes simples</strong> (<code>status='SURVIVED'</code>). Un filtre écrit en guillemets doubles ne matche rien et
-annonce « 0 survivant » sur n'importe quel rapport - y compris sur une classe dont sept mutants
-survivaient. Le résumé imprimé en fin de course (<code>Generated N Killed M</code>) est la référence à recouper.</p>
-<div class="highlight"><pre><span></span><code>Rapport HTML dans `target/pit-reports/`. Un **mutant survivant** désigne une ligne que rien ne
-vérifie vraiment.
-</code></pre></div>
-<h3 id="un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge">Un garde-fou de non-régression se vérifie en le voyant rouge<a class="headerlink" href="#un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge" title="Permanent link">&para;</a></h3>
-<p>Un test écrit pour empêcher un défaut de revenir ne vaut que si l'on a <strong>constaté qu'il échoue</strong> quand
-le défaut est là. Les suites de l'EPIC #1863 ont produit <strong>quatre</strong> contre-exemples en une seule
-session, tous verts et tous creux :</p>
+<h3 id="etape-3-reduire-la-duplication">Étape 3 : réduire la duplication<a class="headerlink" href="#etape-3-reduire-la-duplication" title="Permanent link">&para;</a></h3>
 <ul>
-<li>un test d'alias CLI qui passait <strong>avec et sans</strong> l'alias (<code>--help</code> sur une commande inconnue déclenche
-  l'aide de la <strong>racine</strong>, qui liste justement la commande cherchée) ;</li>
-<li>une sonde live dont la remise en état allait échouer en silence ;</li>
-<li>une garde « n'écrire que si la saisie a changé », posée pour corriger un défaut constaté, que rien
-  n'avait jamais verrouillée ;</li>
-<li>un test de boucle d'horodatage qui refaisait lui-même la moitié du calcul qu'il prétendait vérifier.</li>
+<li>extraire une fabrique de critère booléen ;</li>
+<li>extraire une fabrique de champ texte ou numérique validé ;</li>
+<li>mutualiser les dimensions et libellés géographiques ;</li>
+<li>centraliser les clés réellement partagées ;</li>
+<li>conserver dans chaque fonctionnalité uniquement son prédicat métier.</li>
 </ul>
-<p><strong>Deux gestes, pas un.</strong> Ils ne couvrent pas la même chose :</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>Ce que ça couvre</th>
-<th>Ce que ça ne voit pas</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>PIT</strong> (<code>-Pmutation</code> ciblé)</td>
-<td>l'<strong>espace entier</strong> des mutations d'une classe : conditions inversées, bornes, retours neutralisés</td>
-<td>tout ce qui n'est pas du code Java mutable - attribut d'annotation (<code>aliases</code>), câblage Guice, FXML, sonde réseau</td>
-</tr>
-<tr>
-<td><strong>La mutation à la main</strong></td>
-<td>n'importe quoi : réintroduire le défaut d'origine, retirer une annotation, casser un binding</td>
-<td>une seule hypothèse à la fois, celle qu'on a pensé à tester</td>
-</tr>
-</tbody>
-</table>
-<p>PIT est plus <strong>exhaustif</strong> là où il s'applique ; le geste manuel est plus <strong>large</strong>. Les trois premiers
-contre-exemples ci-dessus sont hors de portée de PIT ; le quatrième, en revanche, était exactement dans
-sa cible - et un <code>-Pmutation</code> ciblé l'aurait signalé sans qu'on ait à deviner lequel mutant écrire.</p>
-<p><strong>En pratique</strong> : à la passe 6 d'une clôture, lancer PIT ciblé sur les classes que le chantier a
-introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindre.</p>
-<h2 id="ce-qui-bloque-la-ci">Ce qui bloque la CI<a class="headerlink" href="#ce-qui-bloque-la-ci" title="Permanent link">&para;</a></h2>
-<table>
-<thead>
-<tr>
-<th>Workflow</th>
-<th>Commande</th>
-<th>Bloquant ?</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>« Java CI » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a>), tests <strong>+ couverture</strong></td>
-<td><code>./mvnw -B verify -Djacoco.haltOnFailure=true</code></td>
-<td><strong>Oui</strong></td>
-</tr>
-<tr>
-<td>« Quality gate » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a>), formatage</td>
-<td><code>./mvnw -B spotless:check</code></td>
-<td><strong>Oui</strong></td>
-</tr>
-<tr>
-<td>« Quality gate », portail PMD</td>
-<td><code>./mvnw -B -Pquality-gate compile pmd:check</code></td>
-<td><strong>Oui</strong></td>
-</tr>
-</tbody>
-</table>
-<p><code>lint.yml</code> vérifie aussi la <strong>complétude des captures</strong> (cf. <a href="../captures/">Captures</a>). Une PR doit
-passer <strong>les deux</strong> workflows (cf. <a href="../ci-cd-release/">CI/CD et release</a>).</p>
-<p>Deux invariants sont en plus <strong>verrouillés</strong> : un test fige le <strong>plan d'exécution</strong> des requêtes O5
-(l'index ne doit pas régresser, cf. <a href="../performance/">Performance et benchmarks</a>), et les <strong>garde-fous</strong>
-PMD / ArchUnit ne se désactivent <strong>jamais</strong> pour « faire passer » un build (cf.
-<a href="../securite/">Sécurité et données sensibles</a>).</p>
-<h2 id="ecrire-un-nouveau-test">Écrire un nouveau test<a class="headerlink" href="#ecrire-un-nouveau-test" title="Permanent link">&para;</a></h2>
+<h3 id="etape-4-etendre-avec-discernement">Étape 4 : étendre avec discernement<a class="headerlink" href="#etape-4-etendre-avec-discernement" title="Permanent link">&para;</a></h3>
 <ul>
-<li>Un test de vue part d'un <strong>injecteur</strong> (réel ou partiel) Guice et d'une <strong>base jetable</strong> (workspace
-  temporaire + <code>MigrationSchema.migrer()</code>), comme les <code>*VueIntegrationTest</code> / <code>*E2ETest</code> existants.</li>
-<li><strong>TestFX</strong> : interroger les nœuds par <code>fx:id</code> (<code>lookup("#monId")</code>), piloter via le robot Glass,
-  asserter avec AssertJ. Préférer <strong><code>bouton.fire()</code></strong> à un clic robot quand c'est possible (plus
-  stable en headless).</li>
-<li>Pour une capture déterministe, voir
-  <a href="../ajouter-une-fonctionnalite/#7-ajouter-un-apercu-capture-decran">Ajouter une fonctionnalité §7</a>.</li>
+<li>équiper d'abord l'Audit ;</li>
+<li>mesurer le besoin sur Ma saison et la fiche site ;</li>
+<li>ne pas équiper les tables transitoires sans scénario utilisateur concret.</li>
 </ul>
-<h3 id="trois-pieges-recurrents">Trois pièges récurrents<a class="headerlink" href="#trois-pieges-recurrents" title="Permanent link">&para;</a></h3>
-<div class="admonition warning">
-<p class="admonition-title"><code>assertThat(path).endsWith(Path)</code> canonicalise</p>
-<p>Cette forme appelle <code>toRealPath</code> et lève <code>NoSuchFileException</code> si le dossier n'existe pas (erreur
-sur runner neuf). Préférer le booléen <strong>lexical</strong> : <code>assertThat(p.endsWith(autre)).isTrue()</code>.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title"><code>fire()</code> est un no-op sur un contrôle désactivé</p>
-<p><code>Button.fire()</code> comme <code>Hyperlink.fire()</code> vérifient <code>isDisabled()</code> <strong>avant</strong> d'émettre. Un test qui
-« clique » un contrôle grisé ne déclenche donc <strong>rien</strong>, et s'il attend un refus métier, il échoue
-sans dire pourquoi. Le plus souvent, c'est le <strong>test</strong> qui a tort : quand l'affordance (#789) a
-déjà <strong>fermé</strong> le geste, il n'y a plus de refus à annoncer, et c'est le <strong>grisage</strong> qu'il faut
-asserter. <em>On ne prévient pas après coup ce qu'on a déjà empêché.</em></p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Mutation hors fil JavaFX</p>
-<p>Un handler qui modifie l'IHM depuis un thread d'arrière-plan lève <code>Not on FX application thread</code>,
-souvent <strong>avalée</strong> (l'écran fige). Découper <strong>préparation</strong> (fil FX) / <strong>exécution</strong> (hors-thread)
-/ retour sur le fil FX - c'est exactement le contrat du socle <code>ExecuteurTache</code> (#793, cf.
-<a href="../patterns/">Patterns</a>), <strong>synchrone en test</strong> : avec lui, <code>bouton.fire()</code> rend l'état terminal
-observable au retour du clic, sans attente.</p>
-</div>
+<h3 id="etape-5-remettre-la-documentation-sous-controle">Étape 5 : remettre la documentation sous contrôle<a class="headerlink" href="#etape-5-remettre-la-documentation-sous-controle" title="Permanent link">&para;</a></h3>
+<ul>
+<li>corriger les catalogues documentés ;</li>
+<li>supprimer les commentaires périmés ;</li>
+<li>ajouter un test de contrat sur les critères exposés par chaque vue.</li>
+</ul>
+<h2 id="criteres-de-reussite">Critères de réussite<a class="headerlink" href="#criteres-de-reussite" title="Permanent link">&para;</a></h2>
+<p>L'harmonisation pourra être considérée comme terminée lorsque :</p>
+<ul>
+<li>deux contrôles de même apparence auront la même règle d'activation ;</li>
+<li>toute puce visible aura un effet réel ou affichera clairement son erreur ;</li>
+<li>aucune restauration amputée ne pourra rester silencieuse ;</li>
+<li>toutes les vues exploratoires offriront le même chemin de remise à zéro ;</li>
+<li>le vocabulaire des clés persistées sera non ambigu et testé ;</li>
+<li>le catalogue documenté correspondra au catalogue réellement présenté ;</li>
+<li>les tables opérationnelles resteront volontairement simples.</li>
+</ul>
 
 
 
@@ -5455,7 +5520,7 @@ observable au retour du clic, sans attente.</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../cli/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Interface en ligne de commande (CLI)">
+          <a href="../tests-et-qualite/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Tests et qualité">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5465,20 +5530,20 @@ observable au retour du clic, sans attente.</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                Interface en ligne de commande (CLI)
+                Tests et qualité
               </div>
             </div>
           </a>
         
         
           
-          <a href="../audit-filtres-vues-tabulaires/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Audit des filtres tabulaires">
+          <a href="../api-vigiechiro/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Contrat de l&#39;API VigieChiro">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                Audit des filtres tabulaires
+                Contrat de l'API VigieChiro
               </div>
             </div>
             <div class="md-footer__button md-icon">
