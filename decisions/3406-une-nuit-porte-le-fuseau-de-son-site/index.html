@@ -4475,8 +4475,24 @@ d'aller le chercher. <code>ZoneId.of</code> gère l'heure d'été, ce qu'un déc
 <p>C'est la généralisation d'une décision <strong>déjà prise ailleurs</strong> : <code>AnalyseCoherenceHoraire</code> déclarait
 <code>FUSEAU_SITE = ZoneId.of("Europe/Paris")</code>, motivé de la même façon. Elle ne régissait qu'un écran ;
 elle régit maintenant le dépôt.</p>
-<p>Les six <code>ZoneId.systemDefault()</code> restants sont conservés <strong>délibérément</strong> : ce sont des horodatages
-techniques - noms de sauvegardes, messages, avis - où le fuseau de l'observateur est le bon.</p>
+<p>Les <code>ZoneId.systemDefault()</code> restants sont conservés <strong>délibérément</strong> : ce sont des horodatages
+techniques - sauvegardes, messages, avis - où le fuseau de l'observateur est le bon.</p>
+<div class="admonition warning">
+<p class="admonition-title">Amendement (2026-08-07, clôture des suites) - un chiffre était faux</p>
+<p>Cette ADR annonçait « <strong>six</strong> <code>systemDefault()</code> restants ». Il y en a <strong>quatre</strong> :
+<code>FormatAvisValidateur</code>, <code>Discussion</code>, <code>ListerSauvegardes</code>, <code>ContenuChoixSauvegarde</code>. Les deux
+autres occurrences étaient des <strong>commentaires</strong> citant le terme, dans <code>FuseauDuSite</code> et
+<code>CorrespondanceParticipation</code> - dont celui que cette ADR a fait écrire.</p>
+<p>L'inventaire était aussi <strong>trop étroit</strong>. Le fuseau de la machine s'emprunte par d'autres
+constructions, et le relevé complet en donne <strong>dix</strong> : les quatre ci-dessus, trois <code>LocalDate.now()</code>
+(deux datent un export, une est le port <code>HorlogeSysteme</code>) et trois <code>LocalDateTime.now()</code>
+(<code>HorlogeSysteme</code>, <code>RegistreMigrations</code>, <code>VerrouWorkspace</code>). Toutes légitimes - aucune ne convertit
+une heure de site - mais aucune n'avait été regardée avant d'écrire « six ».</p>
+<p>C'est la <strong>troisième fois</strong> dans ce chantier qu'un décompte gonfle en comptant des commentaires
+pour du code, après les « vingt-six caractères d'IHM » qui étaient huit
+(<a href="../3389-ce-que-l-application-affiche-tient-dans-la-police-embarquee/">ADR 3389</a>). Un <code>grep -c</code>
+compte des <strong>lignes</strong>, pas des appels.</p>
+</div>
 <h2 id="ce-que-cette-decision-laisse-faux-et-qui-est-assume">Ce que cette décision laisse faux, et qui est assumé<a class="headerlink" href="#ce-que-cette-decision-laisse-faux-et-qui-est-assume" title="Permanent link">&para;</a></h2>
 <p>Les carrés d'<strong>outre-mer</strong>, où l'écart réel atteint plusieurs heures. C'était déjà le cas avant, et
 pour tout le monde : la décision ne le crée pas, elle le rend visible et le nomme.</p>

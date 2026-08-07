@@ -5116,6 +5116,13 @@ qui n'existe pas dans le source, et se saute proprement si le miroir est absent.
 <li><strong>Pas de champ <code>numero</code></strong> : Eve le refuse (<code>422 {"numero": "invalid field"}</code>).</li>
 <li><strong>Dates</strong> : Eve <strong>refuse l'ISO 8601</strong> en entrée (<code>422 must be of datetime type</code>) ; il faut du
   <strong>RFC 1123</strong> (<code>Sat, 04 Jul 2026 19:00:00 GMT</code>). En sortie, Eve renvoie de l'ISO UTC (<code>+00:00</code>).</li>
+<li><strong>Le fuseau de départ n'est pas celui de la machine.</strong> Ce format dit comment écrire l'instant,
+  pas de quelle heure locale il part. Les heures d'un passage viennent de l'<strong>enregistreur posé sur
+  le site</strong> : elles s'interprètent dans <code>FuseauDuSite.ZONE</code>, jamais dans <code>ZoneId.systemDefault()</code>
+  (<a href="../decisions/3406-une-nuit-porte-le-fuseau-de-son-site/">ADR 3406</a>). Le passage par le fuseau du
+  poste envoyait la <strong>même nuit</strong> à <code>19:00</code>, <code>21:00</code> ou - depuis Cayenne - <strong>le lendemain</strong>.
+  L'écriture et la <strong>lecture</strong> doivent employer la même zone, sous peine de déplacer la nuit à
+  chaque aller-retour (#1860).</li>
 <li><strong><code>meteo</code></strong> porte <code>vent</code> (<code>NUL|FAIBLE|MOYEN|FORT</code>), <code>couverture</code>
   (<code>0-25|25-50|50-75|75-100</code>) <strong>et les températures</strong> <code>temperature_debut</code> / <code>temperature_fin</code>,
   typées <strong><code>integer</code></strong> : un relevé décimal est <strong>refusé</strong>, il faut arrondir avant l'envoi (#1844).
