@@ -3496,6 +3496,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3406-une-nuit-porte-le-fuseau-de-son-site/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3406 · Une nuit porte le fuseau de son site
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5018,6 +5046,11 @@
 <td><a href="3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/">3366</a></td>
 <td><code>javac</code> n'est pas la norme, c'en est <strong>une</strong> mise en oeuvre, et le code qu'il seul accepte empoisonne <code>target/classes</code> puis echoue a l'EXECUTION, tres loin de sa cause. Mesure avant decision : <strong>4 divergences reelles</strong>, dont <strong>2 que le balayage textuel de #3228 avait manquees</strong>, et 1293 avertissements. Ce sont ces deux manquees qui tranchent - une garde ne voit que ce qu'on lui a appris, un compilateur voit ce qu'il refuse. Seules les erreurs bloquent ; <code>module-info</code> est exclu de la passe, renoncement assume</td>
 <td>#3366, suite de #3228</td>
+</tr>
+<tr>
+<td><a href="3406-une-nuit-porte-le-fuseau-de-son-site/">3406</a></td>
+<td>Le fuseau d'une nuit est celui de <strong>son site d'écoute</strong>, <code>Europe/Paris</code> en dur : ces heures viennent de l'enregistreur planté sur le terrain, pas du poste qui dépouille. Le dépôt passait par <code>ZoneId.systemDefault()</code>, et la même nuit partait à la plateforme nationale en <code>19:00</code>, <code>21:00</code> ou - depuis Cayenne - <strong>le lendemain</strong>. Le test ne le voyait pas : il vérifiait par un <strong>aller-retour</strong> qui reconvertissait avec la même zone, donc vert sous tout fuseau, y compris ceux où la donnée était fausse. L'outre-mer reste faux et c'est écrit : le dériver du GPS comme la commune (ADR 2791) est différé, pas ignoré</td>
+<td>#3406, suite de #3151</td>
 </tr>
 <tr>
 <td><a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/">2753</a></td>
