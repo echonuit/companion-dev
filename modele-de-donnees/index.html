@@ -4489,9 +4489,17 @@ transforme l'association N:N <strong>Retenir</strong> (Sélection ↔ Séquence)
 (IE / <em>crow's foot</em>, celle de Mermaid) : relations binaires, clés étrangères explicites. C'est la
 traduction du MCD ci-dessus. <strong>19 tables à l'origine</strong>, créées par
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/resources/db/migration/V01__schema.sql"><code>V01__schema.sql</code></a> ;
-le schéma courant en compte <strong>31</strong> après les migrations ultérieures (<code>V02</code>→<code>V35</code>),
-clés étrangères <strong><code>ON DELETE CASCADE</code></strong> (supprimer un passage emporte sa session, ses séquences, ses
-observations…).</p>
+le schéma courant en compte <strong><!--inv:tables-->33<!--/inv--></strong>, au terme des
+<strong><!--inv:migrations-->38<!--/inv--></strong> migrations versionnées ; clés étrangères
+<strong><code>ON DELETE CASCADE</code></strong> (supprimer un passage emporte sa session, ses séquences, ses observations…).</p>
+<div class="admonition note">
+<p class="admonition-title">Pourquoi ces deux chiffres sont balisés et pas le premier</p>
+<p>Les 19 tables d'origine sont un <strong>fait d'histoire</strong> : <code>V01__schema.sql</code> ne changera plus, les
+migrations étant en ajout seul. Les deux autres bougent à chaque migration, et ils avaient
+dérivé - la page annonçait 31 tables « après <code>V02</code>→<code>V35</code> » quand il y en avait 33 après <code>V38</code>.
+Le garde les recalcule désormais : le compte de tables vient du schéma <strong>appliqué</strong>, pas d'un
+comptage de <code>CREATE TABLE</code> (une reconstruction de table en crée une de plus et la renomme).</p>
+</div>
 <pre class="mermaid"><code>erDiagram
     user ||--o{ monitoring_site : "déclare"
     monitoring_site ||--o{ listening_point : "contient"

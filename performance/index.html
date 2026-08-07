@@ -4589,8 +4589,15 @@ complètes (avec les propriétés <code>-Dperf.*</code> de dimensionnement) sont
 </table>
 <p><strong>Lectures clés</strong> : la <strong>copie SD→workspace (I/O) domine</strong> (~65-70 %), la transformation parallélisée
 (#12) ~25-30 %, la persistance est négligeable (~3 %). Ordre de grandeur de référence : une <strong>vraie
-nuit</strong> (~1572 fichiers) s'importe en <strong>~6-8 s</strong>, ~2100 séquences (découpage à 5 s réelles, <code>ceil(D/5)</code>
-par enregistrement), empreinte ~600-700 Mo.</p>
+nuit</strong> (1572 fichiers) s'importe en <strong>~6-8 s</strong>, <strong>2109 séquences</strong> (découpage à 5 s réelles,
+<code>ceil(D/5)</code> par enregistrement), empreinte ~600-700 Mo.</p>
+<div class="admonition warning">
+<p class="admonition-title">L'empreinte annoncée n'est pas le besoin en RAM</p>
+<p>Les ~600-700 Mo sont une <strong>crête sous heap généreux</strong> : G1 laisse s'accumuler le déchet
+transitoire jusqu'à son seuil. Le <strong>live set</strong> est bien plus petit - la même nuit passe sous
+<code>-Xmx128m</code> avec 82-83 Mo vifs, au même débit (#104). Pour dimensionner une machine, c'est ce
+second chiffre qui compte.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Des ordres de grandeur, pas des garanties</p>
 <p>Ces chiffres viennent d'une <strong>machine de référence</strong>. Sur un poste plus modeste, refaire la mesure.
