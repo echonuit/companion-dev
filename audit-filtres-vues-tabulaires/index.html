@@ -4275,6 +4275,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Suivi des constats au 7 août 2026">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-criteres-de-reussite-un-par-un" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les critères de réussite, un par un
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -4791,6 +4808,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Suivi des constats au 7 août 2026">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-criteres-de-reussite-un-par-un" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les critères de réussite, un par un
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5104,11 +5138,12 @@
 <strong>Périmètre :</strong> vues JavaFX contenant une <code>TableView</code>, filtres associés, vues mémorisées,
 documentation utilisateur et captures générées du dépôt.</p>
 <div class="admonition success">
-<p class="admonition-title">Audit historique, principaux constats traités</p>
+<p class="admonition-title">Audit historique, un seul point encore ouvert</p>
 <p>Ce document conserve le diagnostic posé sur <code>dde1ac07b</code>. Entre cet audit et la révision de suivi,
 le chantier d'uniformisation a corrigé l'essentiel des risques relevés : restauration complète,
 listes cascadées, clés sémantiques, fabriques communes, mémoire de session, action « Tout effacer »,
 filtres de l'Audit et garde documentaire. La section suivante relie chaque constat à son traitement.</p>
+<p>Il reste <strong>l'unicité des clés d'un catalogue</strong> (<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/3492">#3492</a>), et une <strong>surveillance</strong> de volumétrie sur la fiche site. Le reste est traité, décidé ou assumé.</p>
 </div>
 <h2 id="synthese">Synthèse<a class="headerlink" href="#synthese" title="Permanent link">&para;</a></h2>
 <p>L'application possède déjà un <strong>socle de filtrage commun et solide</strong>, employé par les trois grandes
@@ -5176,6 +5211,74 @@ de durcir ses contrats</strong>.</p>
 <td>Audit de cohérence sans filtres</td>
 <td><strong>Corrigé</strong></td>
 <td><code>3d4a4c39a</code> : recherche, Gravité, Catégorie, Passage, vues et mémoire de session</td>
+</tr>
+<tr>
+<td>Ma saison sans recherche ni « Reste à faire »</td>
+<td><strong>Corrigé</strong></td>
+<td>#3103 : recherche de lieu et case « Reste à faire », écrites une fois dans <code>FiltresSaison</code></td>
+</tr>
+<tr>
+<td>Ne pas généraliser aux tables opérationnelles</td>
+<td><strong>Décidé</strong></td>
+<td><a href="../decisions/3479-toute-table-n-a-pas-vocation-a-etre-exploree/">ADR 3479</a> : trois natures d'écran, et c'est la nature qui décide</td>
+</tr>
+<tr>
+<td>Résumé de Ma saison sur le sous-ensemble affiché</td>
+<td><strong>Écarté</strong></td>
+<td>divergence assumée et écrite dans <code>SaisonController</code> : « chercher un lieu ne change pas ce qu'il y a à faire cette année ». Cohérent avec l'ADR 3479, qui classe cet écran en <strong>analytique borné</strong> et non en exploratoire</td>
+</tr>
+<tr>
+<td>Unicité des clés d'un catalogue</td>
+<td><strong>Ouvert</strong></td>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/3492">#3492</a> : <code>ClesCriteres</code> a levé l'ambiguïté entre écrans, mais rien ne refuse deux critères de même clé dans un même catalogue</td>
+</tr>
+<tr>
+<td>Fiche site sans filtre</td>
+<td><strong>Surveillance</strong></td>
+<td>volontaire tant que la liste des passages reste bornée ; une recherche légère avant d'introduire les vues mémorisées</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ Ce tableau a lui-même sous-déclaré son avancement : deux lignes (Ma saison, tables opérationnelles)
+décrivaient des travaux <strong>faits</strong> que le suivi ne mentionnait pas, et l'unicité des clés, seul reste
+réel, n'y figurait pas du tout. Le vérifier a demandé d'ouvrir le code, pas de relire le tableau.</p>
+<h3 id="les-criteres-de-reussite-un-par-un">Les critères de réussite, un par un<a class="headerlink" href="#les-criteres-de-reussite-un-par-un" title="Permanent link">&para;</a></h3>
+<p>L'audit se ferme sur sept critères. Six sont tenus ; le premier a été <strong>reformulé</strong> plutôt qu'atteint.</p>
+<table>
+<thead>
+<tr>
+<th>Critère</th>
+<th>État</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deux contrôles de même apparence ont la même règle d'activation</td>
+<td><strong>reformulé</strong> : la distinction par type est conservée et <strong>écrite</strong> (ADR 3479, point 3). L'audit visait l'uniformité du geste, le produit a choisi la prévisibilité de la règle</td>
+</tr>
+<tr>
+<td>Toute puce visible a un effet réel ou affiche son erreur</td>
+<td>tenu (<code>013f76e39</code>)</td>
+</tr>
+<tr>
+<td>Aucune restauration amputée ne reste silencieuse</td>
+<td>tenu (<code>aaa963e82</code>)</td>
+</tr>
+<tr>
+<td>Même chemin de remise à zéro sur les vues exploratoires</td>
+<td>tenu (<code>bb695a9bc</code>)</td>
+</tr>
+<tr>
+<td>Vocabulaire des clés non ambigu <strong>et testé</strong></td>
+<td><strong>à moitié</strong> : non ambigu (<code>7f1654520</code>), pas encore testé (#3492)</td>
+</tr>
+<tr>
+<td>Le catalogue documenté correspond au catalogue présenté</td>
+<td>tenu et <strong>gardé</strong> (<code>8c4990d8e</code>)</td>
+</tr>
+<tr>
+<td>Les tables opérationnelles restent volontairement simples</td>
+<td>tenu, et devenu une décision (ADR 3479)</td>
 </tr>
 </tbody>
 </table>
