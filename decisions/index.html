@@ -3552,6 +3552,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3439 · Un masque se dérive de la scène
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/" class="md-nav__link">
         
   
@@ -5178,6 +5206,11 @@
 <td><a href="3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/">3451</a></td>
 <td>Une mesure de mutation signalait deux branches non couvertes ; j'en ai conclu un trou produit. <strong>Faux</strong> : le schéma déclare les trois bornes de nuit <code>NOT NULL</code> et le dépôt charge par le DAO. Une couverture de mutation dit « aucun test ne couvre cette ligne », jamais « cette ligne est atteignable ». L'invariant n'étant tenu que par SQLite, il est <strong>doublé d'un refus</strong> à l'entonnoir <code>versParticipation</code> - atteignable par construction en mémoire, donc testable, et vu rouge sur ses trois cas</td>
 <td>#3451, suite de #3406</td>
+</tr>
+<tr>
+<td><a href="3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/">3439</a></td>
+<td>Les rectangles de masque des aperçus de carte étaient <strong>recopiés à la main</strong>, et personne ne les remesurait. Trois défauts : sous-couverture (144 lignes de carte dehors, ces fichiers changeant 8 fois sur 20 contre 1 sur 20 ailleurs) ; <strong>sur-couverture</strong>, la face grave, avec <strong>55 %</strong> du masque de <code>multisite-edition</code> sur un <strong>tableau de données</strong> comparé à rien ; et une entrée de 23x24 px qui ne masquait aucune carte mais une estimation de temps restant. Les rectangles se dérivent désormais de la scène. ⚠️ Écrire sur disque entre le <code>snapshot</code> et la fermeture du stage change les captures <strong>suivantes</strong> : mesuré à 40 543 pixels</td>
+<td>#3439, suite de #3068</td>
 </tr>
 <tr>
 <td><a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/">2753</a></td>

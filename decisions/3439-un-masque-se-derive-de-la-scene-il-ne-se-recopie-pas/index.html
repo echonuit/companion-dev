@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/">
       
       
-        <link rel="prev" href="../3099-une-puce-preselectionnee-annonce-ce-quelle-filtre/">
+        <link rel="prev" href="../2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/">
       
       
-        <link rel="next" href="../3157-un-carre-a-un-identifiant-et-une-etiquette/">
+        <link rel="next" href="../3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>3151 · Un écran n'offre pas ce qu'il ne montre pas - VigieChiro Companion · Doc développeur</title>
+        <title>3439 · Un masque se dérive de la scène - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-3151-un-ecran-noffre-pas-un-lieu-quil-ne-montre-pas-et-le-chemin-dacces-compte" class="md-skip">
+        <a href="#adr-3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3151 · Un écran n'offre pas ce qu'il ne montre pas
+              3439 · Un masque se dérive de la scène
             
           </span>
         </div>
@@ -2960,37 +2960,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3151 · Un écran n'offre pas ce qu'il ne montre pas
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas/" class="md-nav__link">
         
   
   
@@ -3006,131 +2979,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-quatre-applications-ont-appris-et-qui-ne-se-devinait-pas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que quatre applications ont appris, et qui ne se devinait pas
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Ce que quatre applications ont appris, et qui ne se devinait pas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-la-surface-nest-pas-forcement-une-colonne" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. La surface n'est pas forcément une colonne
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-le-chemin-compte-et-cest-le-point-le-moins-evident" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Le chemin compte, et c'est le point le moins évident
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-une-table-pleine-noblige-pas-a-choisir" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Une table pleine n'oblige pas à choisir
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-la-forme-se-juge-sur-une-capture-pas-sur-un-raisonnement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. La forme se juge sur une capture, pas sur un raisonnement
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3588,10 +3436,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3439 · Un masque se dérive de la scène
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3607,6 +3482,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-la-liste-disait-de-faux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la liste disait de faux
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-la-mesure-a-coute-dapprendre-ou-deposer-le-fichier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Ce que la mesure a coûté d'apprendre : où déposer le fichier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cette ADR apprend au-delà de son cas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4542,6 +4503,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ce-que-la-liste-disait-de-faux" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la liste disait de faux
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4553,63 +4525,13 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ce-que-quatre-applications-ont-appris-et-qui-ne-se-devinait-pas" class="md-nav__link">
+  <a href="#ce-que-la-mesure-a-coute-dapprendre-ou-deposer-le-fichier" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ce que quatre applications ont appris, et qui ne se devinait pas
+        ⚠️ Ce que la mesure a coûté d'apprendre : où déposer le fichier
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Ce que quatre applications ont appris, et qui ne se devinait pas">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-la-surface-nest-pas-forcement-une-colonne" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. La surface n'est pas forcément une colonne
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-le-chemin-compte-et-cest-le-point-le-moins-evident" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Le chemin compte, et c'est le point le moins évident
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-une-table-pleine-noblige-pas-a-choisir" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Une table pleine n'oblige pas à choisir
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#4-la-forme-se-juge-sur-une-capture-pas-sur-un-raisonnement" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        4. La forme se juge sur une capture, pas sur un raisonnement
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -4625,10 +4547,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
+  <a href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alternatives écartées
+        Ce que cette ADR apprend au-delà de son cas
       
     </span>
   </a>
@@ -4652,7 +4574,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4661,111 +4583,104 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-3151-un-ecran-noffre-pas-un-lieu-quil-ne-montre-pas-et-le-chemin-dacces-compte">ADR 3151 - Un écran n'offre pas un lieu qu'il ne <strong>montre</strong> pas, et le chemin d'accès compte<a class="headerlink" href="#adr-3151-un-ecran-noffre-pas-un-lieu-quil-ne-montre-pas-et-le-chemin-dacces-compte" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas">ADR 3439 - Un masque se dérive de la scène, il ne se recopie pas<a class="headerlink" href="#adr-3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - 2026-08-05</li>
-<li><strong>Chantier</strong> : #3151</li>
-<li><strong>Vérification</strong> : certaine - <code>SaisonViewTest#colonne_carre_montre_les_deux_etiquettes</code></li>
+<li><strong>Statut</strong> : Accepté - 2026-08-07</li>
+<li><strong>Chantier</strong> : #3439, suite de l'<a href="../3068-le-determinisme-porte-sur-ce-que-le-produit-rend/">ADR 3068</a></li>
+<li><strong>Vérification</strong> : certaine - <code>ZoneCarteApercuTest#le_rectangle_epouse_la_carte</code></li>
 </ul>
-<blockquote>
-<p>La règle est tenue sur cinq écrans par autant de gardes : <code>MultisiteViewTest#colonne_commune_visible_et_vide_si_non_resolue</code>, <code>ColonnesAudioContexteTest#nom_du_carre_disponible_mais_masque</code>, <code>AnalyseViewTest#colonne_commune_sur_la_table_des_observations</code>, <code>SaisonViewTest#colonne_commune</code>. Le garde des ADR n'accepte qu'une référence, la décision en a cinq.</p>
-</blockquote>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Le chantier est parti d'un défaut répété : <strong>une recherche trouvait sans montrer</strong>. On tapait un texte,
-des lignes apparaissaient, et rien à l'écran ne disait <strong>pourquoi elles correspondaient</strong>.</p>
-<p>Il s'est produit quatre fois, sur quatre dimensions et quatre écrans :</p>
+<p><code>filtrer-bruit-cartes.sh</code> compare chaque aperçu à sa version committée <strong>hors</strong> du rectangle de sa
+carte, à tolérance zéro. Le masque est nécessaire : le bruit de tuiles vaut jusqu'à 23,8 % de l'image,
+et aucun seuil global ne le sépare du signal.</p>
+<p>Ces rectangles étaient <strong>recopiés à la main</strong> dans le script, avec l'avertissement qu'« une capture
+dont la mise en page bouge doit voir son rectangle remesuré ». Personne ne le remesurait.</p>
+<h2 id="ce-que-la-liste-disait-de-faux">Ce que la liste disait de faux<a class="headerlink" href="#ce-que-la-liste-disait-de-faux" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
 <tr>
-<th>Dimension</th>
-<th>Écran</th>
-<th>Corrigé par</th>
+<th>Aperçu</th>
+<th>Déclaré</th>
+<th>Réel</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>la commune</td>
-<td>Carte &amp; passages, Sons &amp; validation, Espèces &amp; observations</td>
-<td>#3226, #3229, #3233</td>
+<td><code>sites-modale-point</code></td>
+<td><code>18,331,464,457</code></td>
+<td><code>25,363,535,601</code></td>
 </tr>
 <tr>
-<td>le nom du carré</td>
-<td>Ma saison</td>
-<td>#3297</td>
+<td><code>multisite-edition</code></td>
+<td><code>12,90,865,571</code></td>
+<td><code>19,144,462,564</code></td>
 </tr>
 <tr>
-<td>le nom du carré</td>
-<td>Carte &amp; passages, Sons &amp; validation</td>
-<td>#3310</td>
-</tr>
-<tr>
-<td>la commune</td>
-<td>Ma saison</td>
-<td>#3317</td>
+<td><code>import-decompression-volume</code></td>
+<td><code>524,825,547,849</code></td>
+<td><code>42,441,1058,629</code></td>
 </tr>
 </tbody>
 </table>
-<p>Aucune de ces PR n'a inventé la règle : elles l'ont <strong>appliquée</strong>. Elle n'était écrite nulle part, sinon
-en une phrase du <em>contexte</em> de l'<a href="../2861-une-donnee-de-point-ne-se-montre-pas-sur-une-ligne-agregee/">ADR 2861</a>,
-à propos d'un seul cas.</p>
+<p>Trois défauts distincts, et le plus grave n'est pas celui qui se voyait.</p>
+<p><strong>Sous-couverture.</strong> Sur <code>sites-modale-point</code>, 144 lignes de carte restaient dehors : le bruit y
+repassait, et ces deux fichiers ont changé dans <strong>8 des 20</strong> commits d'aperçus depuis l'arrivée du
+filtre, contre <strong>1 sur 20</strong> pour une carte correctement masquée. Facteur huit.</p>
+<p><strong>Sur-couverture, et c'est la face grave.</strong> Sur <code>multisite-edition</code>, le rectangle couvrait le
+<strong>tableau de données entier</strong> - Carré, Point, Commune, Année, N° passage, Date - plus la barre de
+recherche et les filtres. <strong>55 % de la surface masquée n'était pas de la carte</strong> : 224 233 pixels de
+produit, comparés à rien. Une colonne fausse, un libellé tronqué, une date mal formatée n'auraient fait
+rougir personne.</p>
+<p><strong>Incomplétude.</strong> Le rendu dépose <strong>19</strong> zones ; la liste en déclarait <strong>16</strong>. Trois écrans d'import
+portaient une carte que personne n'avait recensée.</p>
+<p><strong>Détournement.</strong> L'entrée <code>import-decompression-volume</code> faisait 23 × 24 pixels dans une liste dont
+toutes les autres font des centaines de pixels de côté. Elle ne désignait aucune carte : elle cachait
+les deux chiffres d'une <strong>estimation de temps restant</strong>, qui dépend de la vitesse de la machine. Un
+correctif de non-déterminisme rangé parmi les masques de carte, donc invisible (#3483).</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>Ce qu'un écran offre de chercher ou de filtrer, il doit pouvoir le montrer.</strong> L'inverse est libre : un
-écran peut montrer sans offrir.</p>
-<p>L'asymétrie n'est pas arbitraire. Montrer sans offrir laisse l'utilisateur devant une information qu'il
-lit ; offrir sans montrer le laisse devant un <strong>résultat qu'il doit croire</strong>.</p>
-<h2 id="ce-que-quatre-applications-ont-appris-et-qui-ne-se-devinait-pas">Ce que quatre applications ont appris, et qui ne se devinait pas<a class="headerlink" href="#ce-que-quatre-applications-ont-appris-et-qui-ne-se-devinait-pas" title="Permanent link">&para;</a></h2>
-<h3 id="1-la-surface-nest-pas-forcement-une-colonne">1. La surface n'est pas forcément une colonne<a class="headerlink" href="#1-la-surface-nest-pas-forcement-une-colonne" title="Permanent link">&para;</a></h3>
-<p>Sur les quatre écrans qui ont une puce « Lieu », les entrées de la puce <strong>sont</strong> une surface : elles
-affichent le carré qualifié, <code>640380 · Vallon</code> (<a href="../3157-un-carre-a-un-identifiant-et-une-etiquette/">ADR 3157</a>).
-Un écran peut donc offrir le nom du carré sans lui donner de colonne - <strong>à condition qu'on y arrive par
-la puce</strong>.</p>
-<h3 id="2-le-chemin-compte-et-cest-le-point-le-moins-evident">2. Le chemin compte, et c'est le point le moins évident<a class="headerlink" href="#2-le-chemin-compte-et-cest-le-point-le-moins-evident" title="Permanent link">&para;</a></h3>
-<p>Une puce ne sert <strong>pas</strong> la recherche libre. Sur Carte &amp; passages et Sons &amp; validation, la recherche
-retenait une ligne sur le nom du carré (<code>CriteresMultisite.correspond</code>, <code>CriteresAudio.correspond</code>) :
-qui tape « Vallon » dans la recherche ne passe pas par la puce, et ne voit donc rien qui explique le
-résultat.</p>
-<p>Ces deux écrans avaient été <strong>écartés à tort</strong> au premier examen de la clôture, par un raisonnement
-d'analogie - « la puce le montre » - vrai d'un chemin et faux de l'autre. La règle se vérifie donc
-<strong>chemin par chemin</strong>, pas écran par écran.</p>
-<h3 id="3-une-table-pleine-noblige-pas-a-choisir">3. Une table pleine n'oblige pas à choisir<a class="headerlink" href="#3-une-table-pleine-noblige-pas-a-choisir" title="Permanent link">&para;</a></h3>
-<p>Quand la table ne peut plus prendre de colonne, la colonne existe quand même, <strong>masquée</strong>, inscrite au
-sélecteur (#919). Carte &amp; passages totalisait déjà 1 360 px dans une scène partagée avec la carte, et
-Sons &amp; validation compte 22 colonnes : les deux ont reçu leur colonne, éteinte. C'est un test qui l'a
-imposé - ouverte, elle poussait la date hors de la zone visible et <code>double_clic_ouvre_le_passage</code>
-échouait.</p>
-<h3 id="4-la-forme-se-juge-sur-une-capture-pas-sur-un-raisonnement">4. La forme se juge sur une capture, pas sur un raisonnement<a class="headerlink" href="#4-la-forme-se-juge-sur-une-capture-pas-sur-un-raisonnement" title="Permanent link">&para;</a></h3>
-<p>Sur Ma saison, qualifier la colonne « Carré » en <code>640380 · Vallon</code>, comme les entrées de la puce, semblait
-évident. La capture régénérée montrait <code>640380 · …</code>. Il a fallu <strong>trois</strong> captures - qualification,
-colonne dédiée, puis élargissement de la scène - pour que le nom <strong>et</strong> « Reste à faire » tiennent
-ensemble. Ni un test ni une relecture n'auraient pris cette décision.</p>
+<p>Les rectangles sont <strong>dérivés de la scène</strong> au moment du rendu, par <code>ZoneCarteApercu</code>, et déposés dans
+un <code>apercu-&lt;nom&gt;.png.carte</code> que le filtre lit aussitôt. Ces fichiers ne sont <strong>jamais committés</strong> :
+produits et consommés dans la même exécution, les committer les ferait vieillir - le défaut même qu'ils
+corrigent.</p>
+<p>Une carte se reconnaît à la classe de style <code>carte-sites</code>, que <code>CarteSites</code> se pose à elle-même. Les
+quatre surfaces cartographiques du produit passent par ce composant : aucun marqueur n'a été ajouté, et
+l'outillage ne dépend pas de Gluon Maps.</p>
+<p>Un rectangle dérivé ne peut pas se démoder. La question « les autres sont-ils justes ? » cesse de se
+poser, puisque plus personne ne les écrit.</p>
+<h2 id="ce-que-la-mesure-a-coute-dapprendre-ou-deposer-le-fichier">⚠️ Ce que la mesure a coûté d'apprendre : où déposer le fichier<a class="headerlink" href="#ce-que-la-mesure-a-coute-dapprendre-ou-deposer-le-fichier" title="Permanent link">&para;</a></h2>
+<p>Une première version appelait <code>ZoneCarteApercu</code> avec la scène, <strong>juste après le <code>snapshot</code></strong>. Le
+raisonnement paraissait solide : l'image est déjà prise, rien de ce qui suit ne peut la changer.</p>
+<p>Il était faux. <code>apercu-passage-rattachement.png</code> est ressorti <strong>différent de la version d'intégration
+continue</strong>, sur 40 543 pixels - un champ marqué invalide, un autre porteur du focus. Vérifié en
+retirant le changement et en régénérant : sans lui, la capture retombe <strong>au bit près</strong> sur celle de la
+CI.</p>
+<p>L'image en cours n'était pas touchée ; <strong>les captures suivantes du même outil</strong> l'étaient. Écrire sur
+disque entre le <code>snapshot</code> et la fermeture du stage suffit à laisser passer une validation de
+formulaire avant la capture d'après.</p>
+<p>La mesure se fait donc <strong>pendant</strong> que la scène est montée, et l'écriture <strong>après</strong> <code>RenduPng.ecrire</code>,
+hors du cycle de vie du stage.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Ajouter un champ à une recherche libre ou à une puce oblige à se demander <strong>où il se voit</strong> sur cet
-  écran, et <strong>par quel chemin</strong> on y arrive ;</li>
-<li>l'inventaire se fait <strong>dimension par dimension et chemin par chemin</strong> : la matrice qui a servi à la
-  clôture croise, pour chaque écran, ce que la recherche libre interroge, ce que la puce offre, et ce
-  que les colonnes rendent ;</li>
-<li>la ligne de commande suit la même règle sous une autre forme : ce que <code>--lieu</code> retient doit se lire
-  dans la sortie. C'est ce qui a fait ajouter le nom du carré aux trois sorties de <code>solde-saison</code>
-  (#3297) et la commune ensuite (#3317).</li>
+<li><strong>18 divergences CI/poste avant, 3 après</strong> : la version du JDK, le nom de l'utilisateur, et
+  l'estimation de temps restant que ce chantier a mise au jour (#3483) ;</li>
+<li>le refus explicite de « zéro rectangle trouvé » : cela ne veut pas dire « aucune carte », le produit
+  en porte quatre, mais que le rendu n'a pas déposé ses zones. Sans ce refus, le filtre passerait en
+  silence et le bruit repartirait en commit ;</li>
+<li><code>deposer(null, png)</code> <strong>efface</strong> un fichier devenu obsolète : sans cela, un écran dont on retire la
+  carte garderait son masque, et cette zone cesserait d'être comparée.</li>
 </ul>
-<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Retirer de la recherche ce qui ne se montre pas.</strong> Le moins de code, et la contradiction disparaît -
-  mais on enlève un raccourci qui marche, et que les utilisateurs emploient précisément parce qu'ils
-  pensent leurs carrés par leur nom.</li>
-<li><strong>Une colonne visible partout, systématiquement.</strong> Rejeté par la mesure : sur les deux tables les plus
-  denses, elle chassait de l'écran une colonne que l'utilisateur regarde davantage.</li>
-<li><strong>Laisser la puce couvrir la recherche libre.</strong> C'est ce qu'on a cru un moment. Deux chemins distincts
-  ne se couvrent pas l'un l'autre.</li>
-</ul>
+<h2 id="ce-que-cette-adr-apprend-au-dela-de-son-cas">Ce que cette ADR apprend au-delà de son cas<a class="headerlink" href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" title="Permanent link">&para;</a></h2>
+<p>Un masque est un <strong>renoncement à vérifier</strong>. Tant qu'il est écrit à la main, personne ne sait plus ce à
+quoi il fait renoncer : ici, un tableau de données entier, et une estimation qui n'avait rien d'une
+carte. Dériver le masque de ce qu'il prétend couvrir le rend à la fois juste et <strong>lisible</strong> - le
+fichier déposé dit, à chaque rendu, exactement ce qu'on cesse de comparer.</p>
 
 
 
@@ -4801,7 +4716,7 @@ ensemble. Ni un test ni une relecture n'auraient pris cette décision.</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../3099-une-puce-preselectionnee-annonce-ce-quelle-filtre/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3099 · Une puce présélectionnée annonce ce qu&#39;elle filtre">
+          <a href="../2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 2750 · Un chiffre recalculable ne s&#39;écrit pas à la main">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4811,20 +4726,20 @@ ensemble. Ni un test ni une relecture n'auraient pris cette décision.</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                3099 · Une puce présélectionnée annonce ce qu'elle filtre
+                2750 · Un chiffre recalculable ne s'écrit pas à la main
               </div>
             </div>
           </a>
         
         
           
-          <a href="../3157-un-carre-a-un-identifiant-et-une-etiquette/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3157 · Un carré a un identifiant et une étiquette">
+          <a href="../3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3450 · Une propriété de fuseau se tient en rejouant">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                3157 · Un carré a un identifiant et une étiquette
+                3450 · Une propriété de fuseau se tient en rejouant
               </div>
             </div>
             <div class="md-footer__button md-icon">
