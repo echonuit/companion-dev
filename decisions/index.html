@@ -3552,6 +3552,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3450 · Une propriété de fuseau se tient en rejouant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5084,6 +5112,11 @@
 <td><a href="2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/">2750</a></td>
 <td>L ADR 2385 laissait le balisage facultatif. Quinze jours apres, mesure : les onze balises etaient justes, <strong>aucun</strong> chiffre en prose ne l etait - 21 tests bats pour 89, treize ecrans pour 16, 31 tables pour 33, ~3600 sequences pour 2109. Et personne n avait mal fait : un chiffre juste le jour ou on l ecrit devient faux tout seul. Donc : le code sait compter -&gt; balise <strong>obligatoire</strong> ; il ne sait pas -&gt; ecrire la phrase <strong>sans</strong> le nombre ; c est une mesure <strong>datee</strong> -&gt; elle reste en dur, et c est juste. Corollaire : un decompte se prend sur l etat <strong>applique</strong>, pas sur le texte qui le produit <em>(amende 2385)</em></td>
 <td>#2750, lot #2725</td>
+</tr>
+<tr>
+<td><a href="3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/">3450</a></td>
+<td>Le cinquième garde « sur la forme du défaut » s'écrivait tout seul : refuser <code>systemDefault()</code> sur une heure locale. Confronté aux <strong>lignes fautives d'origine</strong>, il aurait manqué les DEUX moitiés - l'écriture portait son <code>atZone</code> deux lignes après ses types locaux, la lecture écrivait <code>atZoneSameInstant</code>, qui a l'air juste. Quand le défaut n'a pas de forme <strong>textuelle</strong> stable, chercher sa forme <strong>comportementale</strong> : la suite entière est rejouée sous <code>America/Cayenne</code> (territoire français, franchit minuit, sans heure d'été). Le fuseau passe par l'ENVIRONNEMENT, hérité des forks surefire : par <code>-D</code>, le job aurait pu être vert en ne vérifiant rien</td>
+<td>#3450, suite de #3406</td>
 </tr>
 <tr>
 <td><a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/">2753</a></td>

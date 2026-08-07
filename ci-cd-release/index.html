@@ -3437,6 +3437,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3450 · Une propriété de fuseau se tient en rejouant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -4972,6 +5000,12 @@ publication.</p>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>second-compilateur</code></td>
 <td>push <code>main</code> + PR</td>
 <td>Recompile <strong>tout</strong> avec le compilateur <strong>Eclipse</strong> (<code>-Pecj</code>), sans les tests : ce que <code>javac</code> accepte, un autre compilateur conforme ne l'accepte pas forcément (cf. plus bas). <strong>En parallèle</strong> des deux autres</td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>fuseau-alternatif</code></td>
+<td>push <code>main</code> + PR</td>
+<td>Rejoue <strong>toute</strong> la suite sous <code>America/Cayenne</code> : <em>ce que le produit calcule pour une nuit ne dépend pas du fuseau de la machine</em> (<a href="../decisions/3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/">ADR 3450</a>). <code>TZ</code> passe par l'<strong>environnement</strong>, hérité des forks surefire, et <code>FuseauDExecutionTest</code> vérifie depuis l'intérieur que la zone est bien appliquée</td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
