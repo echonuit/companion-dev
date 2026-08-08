@@ -3633,6 +3633,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3510-une-capacite-sait-comment-on-la-verifie-a-la-main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3510 · Une capacité sait comment on la vérifie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -4033,6 +4061,17 @@
     <span class="md-ellipsis">
       
         Le déroulé d'une campagne
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dou-viennent-les-cases-la-passe-6-dun-chantier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D'où viennent les cases : la passe 6 d'un chantier
       
     </span>
   </a>
@@ -4692,6 +4731,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#dou-viennent-les-cases-la-passe-6-dun-chantier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D'où viennent les cases : la passe 6 d'un chantier
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#les-scripts-de-session" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4874,6 +4924,19 @@ ailleurs il n'est qu'écran de transit (seule la fluidité de la transition est 
 </table>
 <p>Chaque session se joue en trois temps : une <strong>passe statique</strong> en solo (préparation, postée en
 commentaire), la <strong>session interactive</strong> (pilotage écran par écran), puis un <strong>triage à froid</strong>.</p>
+<h2 id="dou-viennent-les-cases-la-passe-6-dun-chantier">D'où viennent les cases : la passe 6 d'un chantier<a class="headerlink" href="#dou-viennent-les-cases-la-passe-6-dun-chantier" title="Permanent link">&para;</a></h2>
+<p>Un script ne se remplit pas au moment de jouer la campagne : il se remplit <strong>à la clôture de chaque
+chantier</strong>, en <a href="../cycle-de-chantier/">passe 6</a>. La règle y est posée ainsi :</p>
+<blockquote>
+<p>Une capacité ajoutée par le chantier n'est pas finie tant qu'on ne sait pas comment la vérifier à la
+main, et que ce « comment » n'est pas écrit là où on le retrouvera.</p>
+</blockquote>
+<p>Une case est terminée quand elle est <strong>rejouable</strong> par quelqu'un qui n'a pas fait le chantier, autant
+de fois que nécessaire. Trois pièces, et il en manque une seule pour qu'elle redevienne une intention :
+le <strong>geste</strong>, l'<strong>observation attendue</strong>, et la <strong>fixture</strong>. C'est pour cette dernière que les cartes SD
+sont <strong>générées</strong> depuis une spec plutôt que stockées : une donnée fabriquée à la main pour une campagne
+ne revient pas à la suivante. Quand le cas n'est porté par aucune fixture, <strong>étendre la spec du
+générateur fait partie de la passe 6</strong>.</p>
 <h2 id="les-scripts-de-session">Les scripts de session<a class="headerlink" href="#les-scripts-de-session" title="Permanent link">&para;</a></h2>
 <p>Chaque session a son <strong>script figé</strong>, versionné sous <code>recette/sessions/</code>. Un script est à la fois la
 <strong>checklist rejouable</strong> (une case = un fait observable, groupée par étape) et le <strong>relevé</strong> de la dernière

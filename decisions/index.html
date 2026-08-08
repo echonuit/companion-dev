@@ -3748,6 +3748,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3510-une-capacite-sait-comment-on-la-verifie-a-la-main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3510 · Une capacité sait comment on la vérifie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5410,6 +5438,11 @@
 <td><a href="3482-l-audit-ramasse-ce-qu-une-suppression-laisse/">3482</a></td>
 <td>Supprimer un passage laisse <strong>délibérément</strong> ses fichiers - l'audio est irremplaçable, la base se rejoue. Deux conséquences n'étaient prises par personne : la modale annonçait « toute sa nuit » quand les WAV restaient (la CLI, elle, le disait déjà - deux surfaces, deux histoires), et <strong>rien ne ramassait derrière</strong>, à plusieurs Go par nuit, jusqu'au mur du disque plein rencontré en vrai. L'audit gagne donc sa <strong>seule</strong> action qui écrit, parce que décider qu'un dossier est orphelin <strong>est</strong> son calcul : confronter le disque à la base. Bornée à la catégorie <code>DOSSIER_ORPHELIN</code> (le champ <code>cible</code> porte ailleurs un FICHIER), chiffrant la perte avant de la demander, et rendant compte de ce qui a résisté - le helper existant était best-effort et <strong>silencieux</strong>, juste pour un temporaire, faux pour des données d'utilisateur</td>
 <td>#3482, campagne de recette 2 (#3424)</td>
+</tr>
+<tr>
+<td><a href="3510-une-capacite-sait-comment-on-la-verifie-a-la-main/">3510</a></td>
+<td>La passe 6 traitait la recette en <strong>deversoir</strong> (« ce qui ne peut pas etre automatise y va »), ce qui fermait un mode de panne et en laissait un autre : une case <strong>ecrite mais injouable</strong> a l apparence d une verification prevue, et elle se coche. Trois facons d y arriver sans faute de personne - la session proprietaire n existe pas (S7), la case atterrit dans une session de transit, ou aucune fixture ne porte le cas. Desormais : <strong>une capacite n est pas finie tant qu on ne sait pas comment la verifier a la main</strong>, et une case n est terminee que si elle est <strong>rejouable</strong> - geste, observation attendue, fixture. Etendre la spec du generateur fait partie de la passe : une donnee bricolee ne revient pas a la campagne suivante</td>
+<td>#3510, suite de #3505</td>
 </tr>
 </tbody>
 </table>

@@ -3719,6 +3719,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3510-une-capacite-sait-comment-on-la-verifie-a-la-main/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3510 · Une capacité sait comment on la vérifie
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5255,12 +5283,71 @@ précisément dans les <strong>coutures</strong> entre deux étapes. Quand deux 
 <strong>fusionner</strong> en un seul qui va plus loin donne une couverture plus <strong>fidèle</strong>. Le critère de fusion
 est simple : deux étapes se fusionnent quand le défaut probable est <strong>entre</strong> elles. À l'inverse,
 fusionner sans couture à exercer ne produit qu'un test-fleuve illisible - la longueur n'est pas le but.</p>
-<p><strong>Ce qui ne peut pas être automatisé va en recette.</strong> Certaines vérifications ne se scriptent pas :
-finesse du rendu, fluidité perçue, geste qui exige un vrai serveur, une vraie carte SD ou du matériel.
-Elles ne disparaissent pas pour autant : elles s'écrivent dans la <a href="../recette/">recette</a>, sur le
-script de la <strong>session propriétaire</strong> de l'écran (<code>recette/sessions/</code>), sous forme de <strong>cases
-numérotées <code>Sxx-NN</code></strong> - une case = <strong>un fait observable</strong>, jamais un contrôle groupé. Sans ce report,
-« pas automatisable » devient silencieusement « pas vérifié ».</p>
+<h4 id="preparer-la-recette-toute-capacite-ajoutee-sait-comment-on-la-verifie">Préparer la recette : toute capacité ajoutée sait comment on la vérifie<a class="headerlink" href="#preparer-la-recette-toute-capacite-ajoutee-sait-comment-on-la-verifie" title="Permanent link">&para;</a></h4>
+<p>La <a href="../recette/">recette</a> n'est pas le déversoir de ce qui a résisté à l'automatisation. C'est
+l'endroit où vit <strong>le procédé de vérification</strong> d'une capacité : le geste à faire, ce qu'on doit voir,
+et de quoi le refaire.</p>
+<blockquote>
+<p><strong>Une capacité ajoutée par le chantier n'est pas finie tant qu'on ne sait pas comment la vérifier à
+la main, et que ce « comment » n'est pas écrit là où on le retrouvera.</strong></p>
+</blockquote>
+<p>Le critère qui dit qu'une case est terminée est la <strong>rejouabilité</strong> : quelqu'un qui n'a pas fait le
+chantier doit pouvoir la refaire, dans six mois, autant de fois que nécessaire, et obtenir la même
+chose. Il tient en trois pièces, et il en manque <strong>une seule</strong> pour que la case redevienne une
+intention :</p>
+<table>
+<thead>
+<tr>
+<th>Pièce</th>
+<th>Ce qu'elle répond</th>
+<th>Ce qui arrive si elle manque</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>le <strong>geste</strong></td>
+<td>qu'est-ce que je fais ?</td>
+<td>la case se rejoue différemment à chaque campagne</td>
+</tr>
+<tr>
+<td>l'<strong>observation attendue</strong></td>
+<td>qu'est-ce que je dois voir ?</td>
+<td>on coche « ça marche » sans référence</td>
+</tr>
+<tr>
+<td>la <strong>fixture</strong></td>
+<td>sur quelles données ?</td>
+<td>la donnée se bricole, donc le résultat ne se compare pas</td>
+</tr>
+</tbody>
+</table>
+<p>Quatre gestes, donc, dans cette passe.</p>
+<p><strong>1. Désigner la session propriétaire.</strong> Un écran est déroulé <strong>en entier</strong> dans <strong>une seule</strong> session ;
+ailleurs il n'est qu'écran de transit. Une case déposée dans la mauvaise session sera jouée deux fois ou
+jamais. La table des sessions vit dans l'<a href="../recette/">index de la recette</a>.</p>
+<p>⚠️ <strong>Toutes les sessions n'existent pas.</strong> S7 n'est pas écrite ; S5 et S6 sont partielles ; S4 et S8
+sont écrites mais <strong>jamais jouées</strong>. Quand le chantier touche un de ces écrans, cela se <strong>dit</strong> - une
+issue, pas un silence : sinon la capacité est réputée vérifiable par un script qui n'existe pas.</p>
+<p><strong>2. Écrire les cases à leur place</strong>, sous forme de points numérotés <code>Sxx-NN</code>, groupés par étape du
+parcours. <strong>Une case = un fait observable</strong>, jamais un contrôle groupé. Elles s'écrivent <strong>pour un
+lecteur qui n'était pas là</strong> : « le bandeau annonce la nuit du 22/04 et le nombre de fichiers retenus »
+se rejoue, « vérifier que l'import marche » non.</p>
+<p><strong>3. Fournir de quoi les jouer.</strong> Si aucune des fixtures existantes ne porte le cas - une nuit sans GPS,
+un journal qui contredit les WAV, un volume qui déborde -, <strong>étendre la spec du générateur</strong> fait partie
+de cette passe. Les cartes SD de recette sont <strong>générées</strong> depuis quelques kilo-octets de spec
+précisément pour revenir à l'identique (voir <a href="../recette/fixtures/">Fixtures</a>) ; une donnée fabriquée à
+la main pour l'occasion ne se retrouvera pas à la campagne suivante, et la case deviendra injouable
+sans que personne ne l'ait décidé.</p>
+<p><strong>4. Relire le statut de la session.</strong> L'index de la recette porte un inventaire - qui a été joué, ce
+qui est partiel, ce qui reste à écrire - et un inventaire vieillit tout seul. C'est le même geste que
+la relecture de la doc périmée en passe 3.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ce que cette passe empêche, et qui se déguise bien</p>
+<p>L'ancienne formulation - <em>ce qui ne peut pas être automatisé va en recette</em> - laissait « pas
+automatisable » devenir silencieusement « <strong>pas vérifié</strong> ». La règle actuelle ferme aussi la
+variante suivante, plus difficile à voir : une case <strong>écrite mais injouable</strong>, faute de fixture ou
+faute de session où la déposer. Elle a l'apparence d'une vérification prévue, et elle se coche.</p>
+</div>
 <h3 id="7-passe-dharmonisation">7. Passe d'harmonisation<a class="headerlink" href="#7-passe-dharmonisation" title="Permanent link">&para;</a></h3>
 <p><strong>Prendre du recul sur l'application entière</strong>, pas seulement sur les fichiers que le chantier a
 touchés. Il s'agit de regarder comment ce qui vient d'être livré <strong>s'intègre dans le tout</strong>. La passe
@@ -5442,12 +5529,13 @@ trompé : une analyse fausse laissée en place oriente le chantier suivant.</p>
 <a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="k">- [ ]</span> 3. Doc développeur (dev-docs) : ce qui manque <span class="gs">**et ce qui est devenu FAUX**</span> (partir des fichiers touchés, chercher qui les cite)
 <a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="k">- [ ]</span> 4. Doc utilisateur (docs/) + captures
 <a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="k">- [ ]</span> 5. Brief projet (<span class="sb">`brief/`</span>, dans la PR du chantier) répercuté si un élément de conception change
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, <span class="gs">**PIT ciblé**</span> (survivants lus un par un) et <span class="gs">**E2E `bats`**</span> si la CLI bouge, non-automatisable reporté en <span class="gs">**recette**</span>
-<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l&#39;utilisateur**</span>
-<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
-<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
-<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">- [ ]</span> 10. ADR du chantier écrites (balayer les passes 0 à 9 ; une décision <span class="gs">**de ne pas faire**</span> en est une)
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">- [ ]</span> 11. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, <span class="gs">**PIT ciblé**</span> (survivants lus un par un) et <span class="gs">**E2E `bats`**</span> si la CLI bouge
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="k">- [ ]</span> 6b. Recette <span class="gs">**préparée**</span> : chaque capacité ajoutée a sa case <span class="sb">`Sxx-NN`</span> dans sa <span class="gs">**session propriétaire**</span> (geste + observation attendue), la <span class="gs">**fixture**</span> existe ou la spec du générateur est étendue, session manquante ou jamais jouée <span class="gs">**signalée en issue**</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l&#39;utilisateur**</span>
+<a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
+<a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">- [ ]</span> 10. ADR du chantier écrites (balayer les passes 0 à 9 ; une décision <span class="gs">**de ne pas faire**</span> en est une)
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="k">- [ ]</span> 11. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
 </code></pre></div>
 <h2 id="modele-de-cycle-dune-issue-rouge-vert-refactor">Modèle de cycle d'une issue (rouge, vert, refactor)<a class="headerlink" href="#modele-de-cycle-dune-issue-rouge-vert-refactor" title="Permanent link">&para;</a></h2>
 <p>Le bloc <strong>↻</strong> se répète à <strong>chaque petit pas</strong>, jusqu'à ce que le comportement soit complet : une issue
