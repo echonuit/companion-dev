@@ -3747,6 +3747,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3535-un-inventaire-ne-se-duplique-pas-il-se-cite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3535 · Un inventaire ne se duplique pas, il se cite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5380,9 +5408,13 @@ intention :</p>
 <p><strong>1. Désigner la session propriétaire.</strong> Un écran est déroulé <strong>en entier</strong> dans <strong>une seule</strong> session ;
 ailleurs il n'est qu'écran de transit. Une case déposée dans la mauvaise session sera jouée deux fois ou
 jamais. La table des sessions vit dans l'<a href="../recette/">index de la recette</a>.</p>
-<p>⚠️ <strong>Toutes les sessions n'existent pas.</strong> S7 n'est pas écrite ; S5 et S6 sont partielles ; S4 et S8
-sont écrites mais <strong>jamais jouées</strong>. Quand le chantier touche un de ces écrans, cela se <strong>dit</strong> - une
-issue, pas un silence : sinon la capacité est réputée vérifiable par un script qui n'existe pas.</p>
+<p>⚠️ <strong>Toutes les sessions ne sont pas au même état</strong> : certaines sont partielles, d'autres écrites mais
+jamais jouées. Quand le chantier touche un de ces écrans, cela se <strong>dit</strong> - une issue, pas un silence :
+sinon la capacité est réputée vérifiable par un script qui ne la couvre pas.</p>
+<p>L'état de chaque session se lit dans l'<a href="../recette/">index de la recette</a>, <strong>et nulle part
+ailleurs</strong>. La première version de cette page recopiait la liste ici : les deux copies ont divergé en
+<strong>quelques heures</strong>, S7 ayant été écrite (#3517) le jour même où ce paragraphe affirmait qu'elle
+n'existait pas. Un inventaire ne se duplique pas, il se cite.</p>
 <p><strong>2. Écrire les cases à leur place</strong>, sous forme de points numérotés <code>Sxx-NN</code>, groupés par étape du
 parcours. <strong>Une case = un fait observable</strong>, jamais un contrôle groupé. Elles s'écrivent <strong>pour un
 lecteur qui n'était pas là</strong> : « le bandeau annonce la nuit du 22/04 et le nombre de fichiers retenus »

@@ -3776,6 +3776,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3535-un-inventaire-ne-se-duplique-pas-il-se-cite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3535 · Un inventaire ne se duplique pas, il se cite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5499,6 +5527,11 @@
 <td><a href="3510-une-capacite-sait-comment-on-la-verifie-a-la-main/">3510</a></td>
 <td>La passe 6 traitait la recette en <strong>deversoir</strong> (« ce qui ne peut pas etre automatise y va »), ce qui fermait un mode de panne et en laissait un autre : une case <strong>ecrite mais injouable</strong> a l apparence d une verification prevue, et elle se coche. Trois facons d y arriver sans faute de personne - la session proprietaire n existe pas (S7), la case atterrit dans une session de transit, ou aucune fixture ne porte le cas. Desormais : <strong>une capacite n est pas finie tant qu on ne sait pas comment la verifier a la main</strong>, et une case n est terminee que si elle est <strong>rejouable</strong> - geste, observation attendue, fixture. Etendre la spec du generateur fait partie de la passe : une donnee bricolee ne revient pas a la campagne suivante</td>
 <td>#3510, suite de #3505</td>
+</tr>
+<tr>
+<td><a href="3535-un-inventaire-ne-se-duplique-pas-il-se-cite/">3535</a></td>
+<td>Un meme inventaire a diverge <strong>trois fois en une journee</strong>, et deux fois du fait du chantier qui ecrivait le matin la regle censee l eviter : etat des sessions de recette (3 copies, S7 ecrite le jour ou deux copies la disaient inexistante), liste des cartes d accueil (4 copies, 5 annoncees pour 7), masques d apercus (16 pour 19, deja corrige par #3439). <strong>Une copie perimee se lit exactement comme une copie juste</strong> : Markdown valide, <code>mkdocs --strict</code> muet, aucun test rouge - les trois ont ete trouvees par quelqu un qui LISAIT. Un inventaire a une source unique ; les autres pages la <strong>citent</strong>, et quand les publics different (brief, script de recette) elle se <strong>derive</strong> sous garde. ⚠️ Et souvent la meilleure reponse est de la SUPPRIMER : #3522 a corrige le meme cas le meme jour en retirant la liste au profit d une consigne de comportement, qui ne se demode pas. Generalise l ADR 3439 du code a la prose</td>
+<td>#3535, cloture de #3505/#3510</td>
 </tr>
 </tbody>
 </table>
