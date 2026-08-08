@@ -3993,6 +3993,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3482-l-audit-ramasse-ce-qu-une-suppression-laisse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3482 · L'audit ramasse ce qu'une suppression laisse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5377,6 +5405,11 @@
 <td><a href="3505-le-cycle-decrit-aussi-le-travail-pas-seulement-sa-cloture/">3505</a></td>
 <td>Le cycle decrivait la <strong>cloture</strong> et se taisait sur le travail - et ce silence etait rempli par une consigne fausse : <code>ajouter-une-fonctionnalite.md</code> numerotait « Tester » en <strong>etape 8 sur 8</strong>. Rouge-vert-refactor devient une <strong>boucle</strong> repetee a chaque petit pas, dont le REFACTOR est la troisieme phase de CHAQUE tour et non une etape de fin ; PIT tourne quand la boucle s arrete, pas a la cloture. Les ADR se coupent en deux passes : <strong>0</strong> relit l existant, <strong>10</strong> ecrit les nouvelles - les cinq ADR de #3151 portent toutes « suite de », aucune n etait nee ou le cycle la demandait. ⚠️ Les passes 1 a 9 gardent leur numero : <strong>35 des 42 citations</strong> vivent dans des ADR <strong>immuables</strong></td>
 <td>#3505, suite de la cloture de #3151</td>
+</tr>
+<tr>
+<td><a href="3482-l-audit-ramasse-ce-qu-une-suppression-laisse/">3482</a></td>
+<td>Supprimer un passage laisse <strong>délibérément</strong> ses fichiers - l'audio est irremplaçable, la base se rejoue. Deux conséquences n'étaient prises par personne : la modale annonçait « toute sa nuit » quand les WAV restaient (la CLI, elle, le disait déjà - deux surfaces, deux histoires), et <strong>rien ne ramassait derrière</strong>, à plusieurs Go par nuit, jusqu'au mur du disque plein rencontré en vrai. L'audit gagne donc sa <strong>seule</strong> action qui écrit, parce que décider qu'un dossier est orphelin <strong>est</strong> son calcul : confronter le disque à la base. Bornée à la catégorie <code>DOSSIER_ORPHELIN</code> (le champ <code>cible</code> porte ailleurs un FICHIER), chiffrant la perte avant de la demander, et rendant compte de ce qui a résisté - le helper existant était best-effort et <strong>silencieux</strong>, juste pour un temporaire, faux pour des données d'utilisateur</td>
+<td>#3482, campagne de recette 2 (#3424)</td>
 </tr>
 </tbody>
 </table>
