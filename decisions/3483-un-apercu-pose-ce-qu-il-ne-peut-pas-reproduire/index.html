@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/0014-parite-cli-ihm/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/">
       
       
-        <link rel="prev" href="../0013-ancrage-passage-relie-a-sa-participation/">
+        <link rel="prev" href="../3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/">
       
       
-        <link rel="next" href="../0015-generateur-deterministe-cartes-sd-recette/">
+        <link rel="next" href="../2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>0014 · Parité CLI ↔ IHM - VigieChiro Companion · Doc développeur</title>
+        <title>3483 · Un aperçu pose ce qu'il ne peut pas reproduire - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0014-toute-capacite-metier-est-offerte-aussi-en-ligne-de-commande-parite-cli-ihm" class="md-skip">
+        <a href="#adr-3483-un-apercu-pose-ce-quil-ne-peut-pas-reproduire" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              0014 · Parité CLI ↔ IHM
+              3483 · Un aperçu pose ce qu'il ne peut pas reproduire
             
           </span>
         </div>
@@ -972,37 +972,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    0014 · Parité CLI ↔ IHM
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../0014-parite-cli-ihm/" class="md-nav__link">
         
   
   
@@ -1018,70 +991,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3639,10 +3548,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3483 · Un aperçu pose ce qu'il ne peut pas reproduire
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3658,6 +3594,114 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-defaut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le défaut
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-qui-a-ete-ecarte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui a été écarté
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-garde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le garde
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-le-test-a-appris-la-sequence-compte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Ce que le test a appris : la séquence compte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cette ADR apprend au-delà de son cas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4564,10 +4608,54 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-defaut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le défaut
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-qui-a-ete-ecarte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui a été écarté
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
         Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-garde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le garde
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-le-test-a-appris-la-sequence-compte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Ce que le test a appris : la séquence compte
       
     </span>
   </a>
@@ -4586,10 +4674,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
+  <a href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alternatives écartées
+        Ce que cette ADR apprend au-delà de son cas
       
     </span>
   </a>
@@ -4613,7 +4701,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/0014-parite-cli-ihm.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -4622,34 +4710,106 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/0014-parite-cli-ihm.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-0014-toute-capacite-metier-est-offerte-aussi-en-ligne-de-commande-parite-cli-ihm">ADR 0014 - Toute capacité métier est offerte aussi en ligne de commande (parité CLI ↔ IHM)<a class="headerlink" href="#adr-0014-toute-capacite-metier-est-offerte-aussi-en-ligne-de-commande-parite-cli-ihm" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3483-un-apercu-pose-ce-quil-ne-peut-pas-reproduire">ADR 3483 - Un aperçu pose ce qu'il ne peut pas reproduire<a class="headerlink" href="#adr-3483-un-apercu-pose-ce-quil-ne-peut-pas-reproduire" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - rétroactif</li>
-<li><strong>Chantier</strong> : CLI socle #619/#659 ; parité #1304 ; passe 2 du cycle de chantier</li>
-<li><strong>Vérification</strong> : humaine - la parité CLI/IHM est une passe de clôture (passe 2), une obligation de processus, pas un invariant du code à un instant donné</li>
+<li><strong>Statut</strong> : Accepté - 2026-08-07</li>
+<li><strong>Chantier</strong> : #3483, suite de l'<a href="../3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/">ADR 3439</a></li>
+<li><strong>Vérification</strong> : certaine - <code>ArchitectureTest#capture_pose_son_temps_ecoule</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>L'application a une IHM JavaFX, mais aussi une <strong>CLI</strong> (<code>fr.univ_amu.iut.cli</code>, picocli). Le risque, quand deux surfaces coexistent, est qu'elles <strong>divergent</strong> : une capacité ajoutée à l'IHM (archiver, réactiver, reconstruire, diagnostiquer…) reste inaccessible en ligne de commande, et l'automatisation, les tests de bout en bout et la recette scriptée s'appauvrissent.</p>
+<p>L'<a href="../3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/">ADR 3439</a> a retiré un masque de
+23 × 24 pixels qui ne couvrait aucune carte : il cachait les deux chiffres d'une <strong>estimation de temps
+restant</strong>. Le masque parti, l'écart est redevenu visible, et il restait l'un des <strong>trois</strong> derniers
+écarts entre un rendu d'intégration continue et un rendu de poste - le seul des trois imputable au
+produit, les deux autres étant la version du JDK et le nom de l'utilisateur dans un chemin.</p>
+<p><code>apercu-import-decompression-volume.png</code> annonçait « ~13 s restant » en CI et « ~15 s » ici, pour le
+même état posé.</p>
+<h2 id="le-defaut">Le défaut<a class="headerlink" href="#le-defaut" title="Permanent link">&para;</a></h2>
+<p><code>ProgressionOperation</code> lit l'horloge deux fois : <code>demarrer()</code> pose <code>System.nanoTime()</code>, <code>appliquer()</code>
+en retranche la valeur courante. L'estimation extrapole cet écoulé. Pour une opération réelle, c'est
+exactement ce qu'il faut.</p>
+<p>Pour une capture, l'écoulé mesuré est le <strong>temps que la machine a mis à rendre l'image précédente</strong> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">vm</span><span class="p">.</span><span class="na">marquerExtractionEnCours</span><span class="p">();</span><span class="w">       </span><span class="c1">// demarrer() : t0</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">dormir</span><span class="p">(</span><span class="mi">2500</span><span class="p">);</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">vm</span><span class="p">.</span><span class="na">progression</span><span class="p">().</span><span class="na">appliquer</span><span class="p">(...);</span><span class="w">     </span><span class="c1">// écoulé = 2,5 s          -&gt; « ~10 s »</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">rendre</span><span class="p">(</span><span class="n">scene</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="na">decompression</span><span class="p">.</span><span class="na">png</span><span class="p">);</span><span class="w"> </span><span class="c1">// durée VARIABLE</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">vm</span><span class="p">.</span><span class="na">progression</span><span class="p">().</span><span class="na">appliquer</span><span class="p">(...);</span><span class="w">     </span><span class="c1">// écoulé = 2,5 s + rendu   -&gt; « ~13 s » ou « ~15 s »</span>
+</code></pre></div>
+<p>Ce qui rend ce défaut long à voir : le chiffre affiché est <strong>plausible</strong>. Une estimation de 13 s à
+20 % d'avancement ne ressemble pas à une erreur ; elle ressemble au produit. Rien dans l'image ne dit
+qu'elle a été écrite par le processeur qui l'a rendue.</p>
+<h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
+<p><strong>Supprimer l'estimation</strong>, comme le fait déjà <code>SuiviProgression.apercu</code> en n'appelant pas <code>demarrer</code>.
+Le geste est bon là où il est - un aperçu de dialogue n'a rien à estimer - mais ici l'estimation
+<strong>est</strong> ce que les captures documentent : #146 pour la décompression, #2733 pour l'état où le compteur
+ne bouge plus et où seul le volume écrit dit que ça avance. Une image sans estimation ne montrerait
+plus la fonctionnalité qu'elle est là pour montrer.</p>
+<p><strong>Injecter une horloge</strong>, sur le patron d'<code>Horloge</code>/<code>HorlogeFigee</code> qui règle le même problème pour les
+dates. C'est le geste habituel du dépôt, et c'était le premier réflexe. Il
+suppose de porter une horloge jusqu'à <code>ProgressionOperation</code>, construit par <code>new</code> en <strong>huit</strong> endroits
+dont cinq ViewModels, donc de changer cinq constructeurs et la douzaine de fichiers de test qui les
+appellent - pour un besoin qui n'existe que dans l'outillage.</p>
+<p><strong>Reposer la référence et redormir</strong> avant chaque capture. L'écoulé resterait à la merci de
+l'ordonnanceur : à 20 % d'avancement, 125 ms de retard suffisent à faire basculer l'arrondi d'une
+seconde. Un déterminisme qui tient tant que la machine n'est pas chargée n'en est pas un.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Quand un chantier ajoute ou change une <strong>capacité métier</strong>, la CLI doit en exposer l'<strong>équivalent</strong> - même comportement, mêmes règles, mêmes formats - <strong>au même moment</strong>. Cette exigence est une <strong>passe obligatoire</strong> de la clôture de tout chantier (passe 2, « cohérence CLI ↔ UI ») : soit l'aligner tout de suite si c'est petit, soit <strong>créer une issue</strong> sinon. « Sans objet » n'est admis que pour un chantier purement présentationnel.</p>
+<p><code>ProgressionOperation.appliquer(Progression, Duration)</code> reçoit le temps écoulé <strong>de l'appelant</strong>.</p>
+<p>Un outil de capture pose un état : le libellé, la fraction, et l'écoulé, qui n'est pas moins un
+paramètre de l'image que les deux autres. Le laisser à l'horloge, c'est laisser la vitesse de la
+machine décider du contenu du PNG.</p>
+<p>Ce n'est pas un fac-similé, au sens que l'<a href="../3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/">ADR 3439</a>
+reproche aux masques recopiés : la chaîne affichée reste calculée par <code>avecTempsRestant</code>, le code de
+production, sur le chemin de production. Seule la <strong>mesure</strong> du temps, que la capture ne peut pas
+reproduire, devient une donnée d'entrée.</p>
+<p>Les trois états capturés posent 2,5 s / 3,5 s / 2,5 s, soit « ~10 s », « ~14 s » et « ~17 s ». Le
+deuxième est délibérément plus grand que le premier : c'est le même avancement à un moment plus tard,
+et l'estimation qui grandit pendant que le compteur ne bouge pas est précisément ce que #2733
+documente. Les trois valeurs tombent loin d'un demi, donc à l'abri d'un basculement d'arrondi.</p>
+<h2 id="le-garde">Le garde<a class="headerlink" href="#le-garde" title="Permanent link">&para;</a></h2>
+<p><code>ArchitectureTest#capture_pose_son_temps_ecoule</code> : aucune classe de <code>..outils..</code> n'appelle
+<code>appliquer(Progression)</code>, la surcharge qui lit l'horloge.</p>
+<p>Il porte sur la <strong>forme</strong> du défaut - tout outil de capture, pas les trois appels trouvés - comme
+l'exige l'<a href="../3412-un-alias-n-est-pas-une-police/">ADR 3412</a>. Vu rouge avant d'être vu vert : en
+réintroduisant l'ancien appel, il nomme le fichier, la méthode et la ligne.</p>
+<p><code>..perf..</code> en est exclu à dessein. Un banc de mesure lit l'horloge parce que <strong>mesurer la machine</strong> est
+sa raison d'être, et il ne publie pas d'image.</p>
+<h2 id="ce-que-le-test-a-appris-la-sequence-compte">⚠️ Ce que le test a appris : la séquence compte<a class="headerlink" href="#ce-que-le-test-a-appris-la-sequence-compte" title="Permanent link">&para;</a></h2>
+<p>En figeant les trois états, le test a <strong>échoué</strong> : le troisième annonçait « ~10 s » et non « ~17 s ».</p>
+<p>La fraction est <strong>monotone</strong> (#814) : 0,126 posé après 0,20 ne redescend pas, et l'estimation se
+calcule sur 0,20. La capture, elle, est juste - <code>marquerEnCours()</code> appelle <code>demarrer</code> entre les deux et
+remet la fraction à zéro. Mais rien ne le disait, et rien ne l'aurait signalé : un outil qui poserait
+une fraction plus basse <strong>sans</strong> repartir afficherait l'estimation de l'état précédent, dans une image
+qui aurait l'air normale. Le test suit donc la séquence réelle de <code>CaptureImport</code>, <code>demarrer</code> compris.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>La CLI reste un <strong>miroir fidèle</strong> du métier : <code>archiver</code>, <code>reactiver</code>, <code>reconstruire-passage</code>, <code>diagnostiquer</code>, <code>audit-coherence</code>… suivent l'IHM.</li>
-<li>Les deux surfaces partagent le <strong>même service</strong> métier ; seule la présentation diffère (une modale ici, du texte ou du JSON là). La logique n'est écrite qu'une fois.</li>
-<li>La CLI devient un levier de <strong>test et de recette</strong> (parcours scriptables, sondes de contrat) que l'IHM seule ne permettrait pas.</li>
+<li><strong>Deux rendus consécutifs sont identiques au bit près</strong> sur les onze aperçus d'import, alors que
+  <code>decompression-volume</code> et <code>en-cours</code> variaient d'une exécution à l'autre ;</li>
+<li>l'écart avec la version publiée tombe à <strong>9 × 11 pixels</strong> sur <code>decompression-volume</code>, un seul glyphe,
+  celui du chiffre changé ; tous les autres écarts d'import tiennent <strong>entièrement dans le rectangle
+  de carte</strong> dérivé par <code>ZoneCarteApercu</code>, c'est-à-dire dans le bruit de tuiles déjà exclu ;</li>
+<li>les divergences CI/poste passent de <strong>3 à 2</strong>, et les deux qui restent sont environnementales, plus
+  du tout du produit ;</li>
+<li><code>dormir(2500)</code>, appelé deux fois, disparaît : l'outil ne dort plus pour laisser une estimation
+  s'établir, il la pose. Cinq secondes de moins par exécution de la galerie.</li>
 </ul>
-<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Laisser la CLI dériver, la rattraper « plus tard ».</strong> « Plus tard » n'arrive pas ; l'écart se creuse et la CLI devient un piège (des commandes qui ne font plus ce que l'IHM fait).</li>
-<li><strong>Dupliquer la logique par surface.</strong> Deux implémentations d'une même règle divergent immanquablement ; le service partagé garantit un comportement unique.</li>
-</ul>
+<h2 id="ce-que-cette-adr-apprend-au-dela-de-son-cas">Ce que cette ADR apprend au-delà de son cas<a class="headerlink" href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" title="Permanent link">&para;</a></h2>
+<p>Une capture peut reproduire ce qu'elle <strong>construit</strong> : une base semée, un fuseau épinglé, une police
+embarquée, une locale imposée. Elle ne peut pas reproduire ce qu'elle <strong>subit</strong>. Le temps qui passe en
+est un cas, et la réponse vaut au-delà : ce qu'un aperçu ne peut pas reproduire doit devenir une
+<strong>entrée</strong> qu'il pose, jamais une valeur qu'il lit.</p>
+<p>La liste des choses subies n'est pas close. Elle s'est réduite écran par écran - la locale et le fuseau
+(<a href="../3389-ce-que-l-application-affiche-tient-dans-la-police-embarquee/">ADR 3389</a>), la police
+(<a href="../3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/">ADR 3374</a>), la mesure de texte
+(<a href="../3417-la-galerie-rend-comme-une-machine-accordee-au-produit/">ADR 3417</a>), les masques
+(<a href="../3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/">ADR 3439</a>) - et chacune de ces passes a
+trouvé la suivante en retirant ce qui la cachait.</p>
 
 
 
@@ -4685,7 +4845,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../0013-ancrage-passage-relie-a-sa-participation/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 0013 · Ancrage passage ↔ participation">
+          <a href="../3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3451 · Un invariant tenu par la base se double d&#39;un refus">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -4695,20 +4855,20 @@
                 Précédent
               </span>
               <div class="md-ellipsis">
-                0013 · Ancrage passage ↔ participation
+                3451 · Un invariant tenu par la base se double d'un refus
               </div>
             </div>
           </a>
         
         
           
-          <a href="../0015-generateur-deterministe-cartes-sd-recette/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 0015 · Cartes SD de recette : générateur déterministe">
+          <a href="../2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 2753 · Une règle absente et assumée">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                0015 · Cartes SD de recette : générateur déterministe
+                2753 · Une règle absente et assumée
               </div>
             </div>
             <div class="md-footer__button md-icon">

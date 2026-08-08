@@ -3664,6 +3664,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3483 · Un aperçu pose ce qu'il ne peut pas reproduire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5276,6 +5304,11 @@
 <td><a href="2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/">2753</a></td>
 <td>Ce depot a UN mainteneur : 25 des 40 dernieres PR fusionnees par une personne, 15 par un bot. Et la mesure a recadre le constat - <code>main</code> n a <strong>aucune</strong> protection, pas seulement la meme revue que le reste. On n en pose donc aucune, et on l ECRIT : une seconde approbation n existe pas a effectif constant, et une regle qu on contourne apprend qu on peut contourner les regles. Les chemins sensibles (migrations, sauvegarde, workflows) portent une <strong>case</strong> dans le gabarit de PR, pas un garde - un garde de plus serait un dispositif de plus a surveiller (ADR 2748). Le bus factor se traite par l ecrit : la page « Reprendre le depot »</td>
 <td>#2753, lot #2725</td>
+</tr>
+<tr>
+<td><a href="3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/">3483</a></td>
+<td>Le masque retire par l ADR 3439 cachait une <strong>estimation de temps restant</strong> : elle valait « ~13 s » en integration continue et « ~15 s » sur un poste, parce que l ecoule mesure entre deux <code>appliquer</code> est le temps que la MACHINE a mis a rendre l image precedente. Long a voir parce que le chiffre est <strong>plausible</strong> - il ressemble au produit. Ecarte : supprimer l estimation (c est ce que #146 et #2733 documentent), injecter une horloge (huit sites de construction, cinq ViewModels), redormir (125 ms font basculer l arrondi). L ecoule devient une <strong>entree posee</strong> par la capture, au meme titre que la fraction et le libelle ; le calcul reste celui de la production, et le garde porte sur tout <code>..outils..</code>. ⚠️ Le test a echoue en figeant les trois etats : la fraction est monotone, 0,126 pose apres 0,20 rend l estimation de 0,20</td>
+<td>#3483, suite de #3439</td>
 </tr>
 </tbody>
 </table>

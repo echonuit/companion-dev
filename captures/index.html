@@ -3549,6 +3549,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3483 · Un aperçu pose ce qu'il ne peut pas reproduire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -4856,12 +4884,19 @@ par <code>ApercuFx</code>. Souvent en <strong>deux états</strong> (vide / peupl
 synthèse (cf. <code>SonDemo</code>), pas d'horodatage réel, attente explicite des chargements asynchrones.</p>
 <p>La règle porte sur <strong>ce que le produit rend</strong>. Une entrée <strong>extérieure</strong> au dépôt n'y est pas
 soumise : voir l'exception des tuiles ci-dessous, qui est la seule.</p>
+<p><strong>Un aperçu pose ce qu'il ne peut pas reproduire</strong>
+(<a href="../decisions/3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/">ADR 3483</a>). Une capture
+construit sa base, épingle son fuseau, impose sa locale : tout cela, elle le maîtrise. Le <strong>temps
+qui passe</strong>, non. Un état de progression se pose donc avec son écoulé,
+<code>progression.appliquer(point, Duration.ofMillis(2500))</code>, jamais avec la surcharge qui lit
+l'horloge - sinon c'est la vitesse de la machine qui écrit le chiffre affiché. Gardé par
+<code>ArchitectureTest#capture_pose_son_temps_ecoule</code>, qui refuse l'appel dans tout <code>..outils..</code>.</p>
 </div>
 <h4 id="lexception-assumee-les-tuiles-openstreetmap">L'exception assumée : les tuiles OpenStreetMap<a class="headerlink" href="#lexception-assumee-les-tuiles-openstreetmap" title="Permanent link">&para;</a></h4>
-<p>Les aperçus qui montrent une carte <strong>varient d'un build à l'autre</strong>, sans qu'aucun code ne change. Ils
-sont <strong>seize</strong>, pas quatre : aux quatre de <code>multisite</code> s'ajoutent <code>apercu-analyse-carte</code>, les huit
-aperçus d'import (dont l'assistant porte une bande cartographique en bas) et les deux modales de point.
-La liste exhaustive vit dans <code>filtrer-bruit-cartes.sh</code>.</p>
+<p>Les aperçus qui montrent une carte <strong>varient d'un build à l'autre</strong>, sans qu'aucun code ne change. Il
+n'en existe plus de liste écrite : depuis #3439, chaque rendu <strong>dépose</strong> le rectangle de sa carte à
+côté du PNG (<code>apercu-&lt;nom&gt;.png.carte</code>), et le filtre le lit aussitôt. Le compte se constate donc à
+l'exécution - <strong>19</strong> zones au dernier relevé, quand la liste tenue à la main en déclarait <strong>16</strong>.</p>
 <p>C'est mesuré, pas supposé - et le chiffre a été <strong>revu à la hausse</strong> en cartographiant les écarts entre
 les <strong>30</strong> versions successives d'<code>apercu-analyse-carte</code> (2026-08-05, 435 paires) : médiane <strong>1,22 %</strong>,
 maximum <strong>2,51 %</strong>. Le <strong>0,34 %</strong> annoncé auparavant venait d'un échantillon plus étroit et
@@ -4878,9 +4913,10 @@ au même titre que les autres montrent de vraies données depuis une base semée
 rendrait l'image plus stable et moins vraie. La variabilité résiduelle est minime et n'affecte aucun
 élément produit par le dépôt.</p>
 <p>Ce qui vient de <strong>nous</strong> reste donc strictement déterministe, et c'est là-dessus que la règle d'or
-s'applique. Le corollaire pratique : sur ces seize fichiers, un diff de captures n'est pas un signal -
-la revue se fait à l'œil, pas au <code>cmp</code>. Depuis, la CI cesse d'ailleurs de <strong>committer</strong> ces écarts sous
-le seuil : voir <a href="#le-bruit-des-cartes-et-pourquoi-on-cesse-de-le-committer">Le bruit des cartes</a>.</p>
+s'applique. Le corollaire pratique : sur un aperçu à carte, un diff <strong>dans le rectangle</strong> n'est pas un
+signal - la revue s'y fait à l'œil. Partout ailleurs, y compris sur ces mêmes fichiers, la tolérance
+est <strong>zéro</strong> et la comparaison se fait au <code>cmp</code> : voir
+<a href="#le-bruit-des-cartes-et-pourquoi-on-cesse-de-le-committer">Le bruit des cartes</a>.</p>
 <h3 id="linjecteur-se-compose-depuis-la-racine">L'injecteur se compose depuis la racine<a class="headerlink" href="#linjecteur-se-compose-depuis-la-racine" title="Permanent link">&para;</a></h3>
 <p>Un outil compose <strong><code>RacineInjecteur.modules()</code></strong>, la liste que l'application elle-même assemble, et
 s'adapte par <code>Modules.override(racine).with(…)</code> - jamais en énumérant un sous-ensemble de modules.</p>
@@ -4949,12 +4985,23 @@ bandes de texte tombent de 29 % et 37,9 % d'écart à <strong>0,00 %</strong>. L
 masque leur rend leur valeur de signal <strong>partout sauf dans le rectangle de la carte</strong>. Éprouvé : un
 changement de 40x12 px hors carte, sur l'aperçu où la carte couvre 72,9 % de l'image, est <strong>détecté</strong>
 (533 pixels) là où un seuil de 4 % ne l'aurait jamais vu.</p>
-<p>Les rectangles sont <strong>mesurés</strong> : depuis #3375, un diff entre la version de la CI et une régénération
-locale ne contient plus que les tuiles, donc sa boîte englobante <strong>est</strong> la carte.</p>
+<p>Les rectangles sont <strong>dérivés de la scène</strong> au moment du rendu, plus recopiés à la main
+(<a href="../decisions/3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/">ADR 3439</a>). Une carte se
+reconnaît à la classe de style <code>carte-sites</code>, <code>ZoneCarteApercu</code> en mesure les bornes pendant que la
+scène est montée, et dépose un <code>apercu-&lt;nom&gt;.png.carte</code> que le filtre lit dans la foulée. Ces fichiers
+ne sont <strong>jamais committés</strong> : produits et consommés dans la même exécution, les committer les ferait
+vieillir, c'est-à-dire retomber dans le défaut qu'ils corrigent.</p>
+<p>La liste tenue à la main s'était démodée dans les trois sens à la fois : elle oubliait des cartes
+(16 déclarées pour 19 réelles), elle couvrait ce qui n'en était pas (<strong>55 %</strong> du masque de
+<code>multisite-edition</code> tombait sur un tableau de données, comparé à rien), et elle avait servi à cacher
+autre chose - une estimation de temps restant, corrigée depuis à sa source
+(<a href="../decisions/3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/">ADR 3483</a>).</p>
 <p>⚠️ Ce que le masque ne voit pas : un changement <strong>à l'intérieur</strong> de la carte - un marqueur déplacé,
 un carré recoloré. C'est l'arbitrage de l'ADR 3068, réduit au seul rectangle au lieu de toute l'image.</p>
-<p>⚠️ <code>apercu-passage-rattachement.png</code> bouge aussi et n'est <strong>pas</strong> dans la liste : <code>CapturePassage</code> ne
-monte aucune carte. Son instabilité a une autre cause, non élucidée.</p>
+<p>⚠️ <code>apercu-passage-rattachement.png</code> bougeait aussi sans porter de carte, et la cause est désormais
+connue : <strong>écrire sur disque entre le <code>snapshot</code> et la fermeture du stage</strong> laisse passer une
+validation de formulaire, ce qui change les captures <strong>suivantes</strong> du même outil - mesuré à
+40 543 pixels. La mesure se fait pendant que la scène est montée, l'écriture après <code>RenduPng.ecrire</code>.</p>
 <h2 id="les-garde-fous-de-presence">Les garde-fous de présence<a class="headerlink" href="#les-garde-fous-de-presence" title="Permanent link">&para;</a></h2>
 <p>Deux scripts vérifient qu'aucune vue ne vit sans aperçu, et qu'aucune page ne pointe une image
 absente (lancés en CI) :</p>
