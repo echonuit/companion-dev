@@ -4839,8 +4839,9 @@ distinctes), déclarer un site et un point d'écoute. On valide que le tout prem
 <p><strong>Étape 1 · Premier lancement (workspace vierge)</strong></p>
 <ol>
 <li>L'accueil affiche le hero « Deux entrées… » et ses 2 sections (Collecte &amp; passages / Espèces &amp;
-   biodiversité), 5 cartes (Mes sites, Carte &amp; passages, Audit de cohérence, Espèces &amp; observations,
-   Sons &amp; validation).</li>
+   biodiversité). Les cartes sont <strong>contribuées par les features</strong> : ne pas figer leur liste ici, mais
+   vérifier que chacune de celles qui s'affichent porte un intitulé, une destination annoncée, et
+   <strong>ouvre bien ce qu'elle annonce</strong>.</li>
 <li>Le bandeau de compteurs est masqué sans donnée.</li>
 <li>Le fil d'Ariane, la recherche (Ctrl+F) et le menu principal (☰) sont présents.</li>
 </ol>
@@ -4850,7 +4851,8 @@ distinctes), déclarer un site et un point d'écoute. On valide que le tout prem
 <li>Token vide : message d'information.</li>
 <li>Token bidon : 401 « Token invalide ou expiré… ».</li>
 <li>Réseau coupé : « Vigie-Chiro est injoignable… le jeton n'est peut-être pas en cause ».</li>
-<li>Succès : bandeau vert « référentiel à jour : N taxons, N sites », badge vert identité + rôle.</li>
+<li>Succès : bandeau vert « référentiel à jour : N taxons, N sites », badge vert identité + rôle.
+   Avec <strong>un seul</strong> site, le bandeau écrit « 1 site » et non « 1 sites » (#1373).</li>
 <li>Déconnexion : confirmation, badge repasse gris, l'entrée du menu principal (☰) redevient « Se connecter… ».</li>
 </ol>
 <p><strong>Étape 3 · Mes sites</strong></p>
@@ -4878,6 +4880,22 @@ distinctes), déclarer un site et un point d'écoute. On valide que le tout prem
 <li>Garde de validité : code « 1 lettre + chiffres », GPS décimal/DMS synchronisés avec la carte-outil.</li>
 <li>« Annuler » ne touche rien.</li>
 </ol>
+<p><strong>Étape 6 · Ce que la stabilisation a changé au premier contact</strong> (#3424)</p>
+<ol>
+<li>La modale de connexion s'ouvre <strong>sans saut</strong> : la saisie est en place, rien ne se replace après
+    coup. #1373</li>
+<li>Pendant la récupération qui suit « Se connecter », <strong>rien ne se redimensionne</strong> : le contenu ne sort
+    pas avant que le bandeau d'état ait pris sa place.</li>
+<li>Le menu ☰ ne porte <strong>plus</strong> d'entrée « fiche espèce » : la source des fiches vit dans
+    <strong>Réglages ▸ Général</strong>, où <a href="../s7-reglages/">S7</a> la déroule. #3433</li>
+<li>Le menu ☰ porte toujours ses autres entrées, et chacune ouvre ce qu'elle annonce.</li>
+</ol>
+<blockquote>
+<p>Le point 27 est le garde-fou du 26 : retirer un doublon est juste, en emporter un voisin ne l'est pas.
+Il coûte quelques secondes et couvre la seule façon dont ce retrait pouvait mal tourner.</p>
+<p>Les points 24 et 25 sont <strong>perceptifs</strong> : aucun test ne voit un contenu qui se replace, il voit un
+contenu correct une fois posé. C'est précisément ce qui les met ici plutôt qu'en TestFX.</p>
+</blockquote>
 <h2 id="verdict-par-axe-derniere-passe">Verdict par axe (dernière passe)<a class="headerlink" href="#verdict-par-axe-derniere-passe" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

@@ -4855,7 +4855,9 @@ fixtures au carré 130711 (verrouillé). Les écritures plateforme n'arrivent qu
 <li>Le rattachement propose site, point, année, numéro.</li>
 <li>La carte de confirmation montre le carré et le point choisi en indigo.</li>
 <li>L'aperçu du préfixe <code>CarXXXXXX-AAAA-PassN-YY-</code> suit la saisie.</li>
-<li>La case « Conserver les originaux sur le disque » est présente.</li>
+<li>Le formulaire ne porte <strong>plus</strong> de case « Conserver les originaux » : le réglage a rejoint
+    <strong>Réglages ▸ Import</strong> (#3471), où <a href="../s7-reglages/">S7</a> le déroule. Ici on vérifie seulement
+    qu'il n'en reste pas de trace, et que rien ne demande deux fois la même chose.</li>
 <li>« Importer cette nuit » affiche une barre de progression déterminée.</li>
 <li>Une estimation de temps restant s'affiche.</li>
 <li>Un bouton « Annuler » est disponible pendant l'import.</li>
@@ -4943,6 +4945,34 @@ la lisibilité du bandeau qui se juge ici, pas la règle.</p>
     que ce soit ne soit écrit ; le bandeau donne les deux volumes (nécessaire, disponible).</li>
 <li>Le bandeau du refus est lisible <strong>en entier</strong> : la phrase qui dit quoi faire n'est pas tronquée.</li>
 </ol>
+<p><strong>Étape 6 · Ce que l'import, le rattachement et la suppression </strong>annoncent<strong> (stabilisation #3424)</strong></p>
+<blockquote>
+<p>Ces six faits portent sur le <strong>compte rendu</strong>, pas sur l'action : dans les quatre cas, l'action était
+juste et le message mentait. Ils se jugent donc sur ce que l'écran <strong>dit</strong>, confronté à ce qui s'est
+réellement produit - et deux d'entre eux exigent de regarder <strong>ailleurs que dans l'application</strong>.</p>
+</blockquote>
+<ol>
+<li>🔌 Connecté, importer une nuit : le compte rendu annonce une participation créée, <strong>et</strong> elle existe
+    réellement sur la plateforme (« Voir la participation » l'ouvre). #3448</li>
+<li>🔒 Déconnecté, importer : le compte rendu <strong>ne prétend pas</strong> avoir créé de participation.</li>
+<li>Rattacher une nuit dont des séquences doivent être renommées : le compte rendu <strong>chiffre</strong> les
+    séquences renommées. #3449</li>
+<li>🔒 Faire échouer l'envoi (se déconnecter avant de valider) : le compte rendu dit <strong>à la fois</strong> le
+    renommage réussi <strong>et</strong> l'échec de l'envoi, et non l'échec seul.</li>
+<li>« 🗑 Supprimer » : la confirmation dit que les <strong>fichiers audio restent sur le disque</strong>, et affiche
+    <strong>où</strong>. #3482</li>
+<li>Après confirmation, regarder le disque : le dossier de la nuit est <strong>toujours là</strong>, conformément à
+    ce qu'annonçait la confirmation.</li>
+</ol>
+<blockquote>
+<p>Le point 58 ne se coche pas sur le message : c'est exactement ce que #3448 a corrigé, l'écran
+annonçant une création qui n'avait pas eu lieu. Le fait observable est <strong>sur la plateforme</strong>.</p>
+<p>Le point 61 est la moitié qu'on perdait : une opération en deux temps dont la seconde échoue
+annonçait un échec sec, et l'utilisateur ne savait pas si la première avait abouti - donc s'il pouvait
+relancer sans risque.</p>
+<p>Ce que devient le dossier du point 63 se joue en <a href="../s6-exploiter-piloter/">S6</a>, à l'audit : c'est lui
+qui le ramasse.</p>
+</blockquote>
 <h2 id="verdict-par-axe-derniere-passe">Verdict par axe (dernière passe)<a class="headerlink" href="#verdict-par-axe-derniere-passe" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
