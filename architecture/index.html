@@ -3522,6 +3522,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3501-le-code-tiers-ne-s-execute-pas-avec-les-droits-de-publication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3501 · Le code tiers et les droits de publication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3479-toute-table-n-a-pas-vocation-a-etre-exploree/" class="md-nav__link">
         
   
@@ -4773,6 +4801,11 @@ par un (le quoi, le pourquoi ici, et les principes servis).</p>
 <p>Le <code>model</code> ignore l'IHM ; le <code>viewmodel</code> porte l'état en <strong>propriétés observables</strong>
 (<code>IntegerProperty</code>, <code>ObservableList</code>…) sans toucher aux composants graphiques ; la <code>view</code>
 <strong>observe</strong> le viewmodel par <em>data binding</em> JavaFX.</p>
+<p>⚠️ <strong>Ce qui est garanti n'est pas ce que ce schéma suggère.</strong> ArchUnit interdit à une <code>view</code> de
+toucher <strong>JDBC</strong> - ni <code>model.dao</code>, ni <code>java.sql</code> - pas de nommer un type de <code>model</code>. En pratique
+<strong>beaucoup</strong> de classes de <code>view</code> importent un paquet <code>model</code>, pour y lire un <em>record</em> ou un enum,
+et c'est accepté : faire transiter chaque type métier par le viewmodel produirait une couche de
+recopie sans lecteur. La frontière tenue est <strong>la donnée, pas le vocabulaire</strong>.</p>
 </div>
 <div class="admonition info">
 <p class="admonition-title">Une feature peut être <em>sans écran</em></p>
