@@ -634,10 +634,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-tester" class="md-nav__link">
+  <a href="#8-les-niveaux-de-test-a-ecrire-avant-le-code-quils-couvrent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Tester
+        8. Les niveaux de test (à écrire AVANT le code qu'ils couvrent)
       
     </span>
   </a>
@@ -3751,6 +3751,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3505-le-cycle-decrit-aussi-le-travail-pas-seulement-sa-cloture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3505 · Le cycle décrit aussi le travail
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -4728,10 +4756,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#8-tester" class="md-nav__link">
+  <a href="#8-les-niveaux-de-test-a-ecrire-avant-le-code-quils-couvrent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        8. Tester
+        8. Les niveaux de test (à écrire AVANT le code qu'ils couvrent)
       
     </span>
   </a>
@@ -4801,6 +4829,16 @@ on le câble à l'injection, puis on le <strong>branche à la navigation</strong
 <p class="admonition-title">Le meilleur point de départ : copier une feature voisine</p>
 <p>Une feature simple comme <code>bibliotheque/</code> ou <code>diagnostic/</code> est un bon gabarit. Calquez sa
 structure, les tests suivront le même moule.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Cette numérotation décrit une ANATOMIE, pas une chronologie</p>
+<p>Les huit sections ci-dessous disent <strong>de quoi une feature est faite</strong>, dans l'ordre où on la lit.
+Elles ne disent <strong>pas</strong> dans quel ordre on l'écrit.</p>
+<p>Dans le temps, <strong>le test vient en premier</strong> : le cycle de travail est
+<a href="../cycle-de-chantier/#pendant-lissue-rouge-vert-refactor-autant-de-fois-quil-le-faut">rouge, vert, refactor</a>, à chaque
+comportement. Jusqu'à #3505 cette page numérotait « Tester » en <strong>8 sur 8</strong>, ce qui se lisait comme
+une consigne d'écrire les tests en dernier - et c'en était une. La section 8 rassemble donc les
+<strong>outils et niveaux</strong> de test, pas le moment où l'on s'en sert.</p>
 </div>
 <h2 id="1-creer-le-paquet-et-ses-4-couches">1. Créer le paquet et ses 4 couches<a class="headerlink" href="#1-creer-le-paquet-et-ses-4-couches" title="Permanent link">&para;</a></h2>
 <p>Sous <code>src/main/java/fr/univ_amu/iut/</code>, créez <code>mafeature/</code> avec les 4 sous-paquets. Chacun a une
@@ -5027,7 +5065,11 @@ neutralisez son contrat chez le consommateur :</p>
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/outils/AttenteAudio.java"><code>AttenteAudio</code></a>
 pour afficher un spectrogramme réel dans la capture.</p>
 </div>
-<h2 id="8-tester">8. Tester<a class="headerlink" href="#8-tester" title="Permanent link">&para;</a></h2>
+<h2 id="8-les-niveaux-de-test-a-ecrire-avant-le-code-quils-couvrent">8. Les niveaux de test (à écrire AVANT le code qu'ils couvrent)<a class="headerlink" href="#8-les-niveaux-de-test-a-ecrire-avant-le-code-quils-couvrent" title="Permanent link">&para;</a></h2>
+<p>Chaque puce ci-dessous répond à « <strong>avec quoi</strong> je teste ceci ? ». Le <strong>quand</strong> est réglé ailleurs et
+ne dépend pas du niveau : le test s'écrit d'abord et on le voit <strong>rouge</strong>, sinon il faudra réintroduire
+le défaut à la main pour savoir ce qu'il couvre vraiment
+(<a href="../cycle-de-chantier/#pendant-lissue-rouge-vert-refactor-autant-de-fois-quil-le-faut">cycle d'une issue</a>).</p>
 <ul>
 <li><strong>ViewModel / service</strong> : tests unitaires (JUnit 5 + AssertJ), Mockito pour les dépendances.</li>
 <li><strong>Vue</strong> : test d'intégration <strong>TestFX</strong> (headless) qui charge le FXML et vérifie les bindings.</li>
