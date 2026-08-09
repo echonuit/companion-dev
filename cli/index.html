@@ -3689,6 +3689,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3498-la-declaration-porte-sur-les-lectrices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3498 · La déclaration porte sur les lectrices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -4471,10 +4499,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#codes-de-sortie" class="md-nav__link">
+  <a href="#le-dossier-de-travail-est-reserve-pendant-lecriture-3498" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Codes de sortie
+        Le dossier de travail est réservé pendant l'écriture (#3498)
       
     </span>
   </a>
@@ -4483,39 +4511,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#designer-les-observations-dun-geste-de-revue-1311" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Désigner les observations d'un geste de revue (#1311)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lancer-la-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lancer la CLI
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tests
-      
-    </span>
-  </a>
   
 </li>
       
@@ -4842,10 +4837,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#codes-de-sortie" class="md-nav__link">
+  <a href="#le-dossier-de-travail-est-reserve-pendant-lecriture-3498" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Codes de sortie
+        Le dossier de travail est réservé pendant l'écriture (#3498)
       
     </span>
   </a>
@@ -4854,39 +4849,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#designer-les-observations-dun-geste-de-revue-1311" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Désigner les observations d'un geste de revue (#1311)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#lancer-la-cli" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Lancer la CLI
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#tests" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tests
-      
-    </span>
-  </a>
   
 </li>
       
@@ -5404,6 +5366,27 @@ appellent les services.</p>
 globale <code>--workspace &lt;dir&gt;</code> est consommée par <code>main()</code> <strong>avant</strong> de bâtir l'injecteur (elle positionne
 la propriété système <code>vigiechiro.workspace</code>, lue par <code>CommunModule</code>). Sans elle, le workspace par
 défaut est <code>&lt;Documents&gt;/VigieChiro-Companion</code>.</p>
+<h3 id="le-dossier-de-travail-est-reserve-pendant-lecriture-3498">Le dossier de travail est réservé pendant l'écriture (#3498)<a class="headerlink" href="#le-dossier-de-travail-est-reserve-pendant-lecriture-3498" title="Permanent link">&para;</a></h3>
+<p>L'application graphique <strong>réserve</strong> le dossier de travail pour toute sa durée (<code>VerrouWorkspace</code>,</p>
+<h1 id="2731-la-cli-ne-le-demandait-jamais-et-ecrivait-donc-par-dessus-alors-que-la-doc-du-verrou-nomme">2731) ; la CLI ne le demandait jamais et écrivait donc par-dessus, alors que la doc du verrou nomme<a class="headerlink" href="#2731-la-cli-ne-le-demandait-jamais-et-ecrivait-donc-par-dessus-alors-que-la-doc-du-verrou-nomme" title="Permanent link">&para;</a></h1>
+<p>elle-même le cas : « deux instances graphiques, <strong>une IHM et une CLI</strong>, ou une restauration pendant un
+import ». Depuis #3498, <code>Cli.migrerPuisExecuter</code> prend le verrou <strong>par défaut</strong>, pour toute la durée
+de la commande. Un dossier déjà occupé donne un refus : code <code>2</code>, état intact.</p>
+<p>Une commande s'en dispense en portant l'interface marqueur <code>fr.univ_amu.iut.cli.LectureSeule</code>. <strong>La
+déclaration porte sur les lectrices, pas sur les écrivaines</strong>, et le sens compte : oublier de déclarer
+une écrivaine laisserait son écriture échapper au verrou, en silence ; oublier une lectrice fait
+refuser une consultation pendant que l'application est ouverte, ce qui se voit et se signale le jour
+même. « Lecture seule » veut dire : ne touche ni la base ni les dossiers du dossier de travail.
+Interroger le réseau, ou écrire <strong>hors</strong> du dossier de travail (<code>lister-carres --sortie</code>,
+<code>synthetiser-passage --sortie</code>), reste de la lecture seule - tout comme écrire la configuration
+d'amorçage, qui vit ailleurs et s'écrit d'un seul coup (#3507). C'est pourquoi <code>emplacements</code> est
+lectrice : elle sert à <strong>repointer</strong> le dossier de travail, et la verrouiller refuserait de déménager
+à qui déménage parce que la place actuelle est occupée.</p>
+<p>⚠️ La migration du schéma prend le verrou de son côté : une commande de lecture sur une base à mettre
+à jour peut donc être refusée, et c'est voulu - mettre à jour le schéma est une écriture.</p>
+<p><code>ClassementLectureEcritureTest</code> exige que <strong>chaque</strong> commande soit classée : elle porte le marqueur,
+ou elle figure dans la liste des écrivaines, tenue dans ce test. Le garde ne juge pas le classement -
+aucune analyse statique n'y arrive - il rend l'<strong>oubli</strong> impossible.</p>
 <h3 id="codes-de-sortie">Codes de sortie<a class="headerlink" href="#codes-de-sortie" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
