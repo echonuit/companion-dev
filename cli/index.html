@@ -3717,6 +3717,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3500-le-code-de-sortie-distingue-le-manque-du-deplacement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3500 · Le code de sortie distingue le manque du déplacement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
@@ -5241,7 +5269,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>restaurer</code></td>
 <td><code>&lt;chemin&gt; [--complet] --confirmer</code></td>
 <td>#148, #1346</td>
-<td><code>ServiceSauvegarde.restaurer</code> / <code>restaurerComplet</code> : remet la base (et, avec <code>--complet</code>, les dossiers de son, <strong>remis là où ils étaient</strong>, avec les <code>root_path</code> corrigés et un compte rendu de ce qui a changé de place, #2727). <strong>Écrase l'état local</strong> : <code>--confirmer</code> est obligatoire. La base courante est mise de côté (<code>vigiechiro.db.avant-restauration</code>)</td>
+<td><code>ServiceSauvegarde.restaurer</code> / <code>restaurerComplet</code> : remet la base (et, avec <code>--complet</code>, les dossiers de son, <strong>remis là où ils étaient</strong>, avec les <code>root_path</code> corrigés et un compte rendu de ce qui a changé de place, #2727). <strong>Écrase l'état local</strong> : <code>--confirmer</code> est obligatoire. La base courante est mise de côté (<code>vigiechiro.db.avant-restauration</code>). <strong>Trois codes</strong> : <code>0</code> restauration entière, <strong><code>10</code></strong> restaurée mais il manque quelque chose, <code>2</code> refus (#3500)</td>
 </tr>
 <tr>
 <td><code>lister-sauvegardes</code></td>
@@ -5408,6 +5436,10 @@ aucune analyse statique n'y arrive - il rend l'<strong>oubli</strong> impossible
 <td><code>2</code></td>
 <td>mauvaise invocation (commande inconnue, argument requis manquant ou mal formé) <strong>ou refus</strong> (règle métier, ou garde destructive : état <strong>intact</strong>, rien n'a été fait)</td>
 </tr>
+<tr>
+<td><code>10</code></td>
+<td><strong>succès partiel</strong>, sur les seules commandes qui le documentent (<code>verifier-maj</code>, <code>restaurer</code>) : l'opération a abouti, mais quelque chose reste à regarder</td>
+</tr>
 </tbody>
 </table>
 <p><strong><code>2</code> dit aussi « j'ai refusé, je n'ai rien fait ».</strong> Les commandes <strong>destructives</strong> exigent un drapeau
@@ -5425,6 +5457,17 @@ occupé. Tous sont émis <strong>avant</strong> la moindre écriture, et sortaie
 Ils portent maintenant <code>RefusAvantEcriture</code>, que le gestionnaire d'erreurs classe avec les autres
 refus. Une <code>DataAccessException</code> ordinaire, elle, reste un incident : sa pile est l'information
 utile.</p>
+<p><strong>Un troisième code quand « réussi » ne suffit pas (#3500).</strong> <code>restaurer --complet</code> imprimait qu'une
+nuit manquait, puis sortait en <code>0</code> : le fait était dit dans un texte qu'un script ne lit pas. Elle rend
+maintenant <strong><code>10</code></strong> quand la restauration laisse un <strong>manque</strong> - la sauvegarde ne dit pas d'où venaient
+les dossiers, ou une nuit connue de la base n'y était pas.</p>
+<p>⚠️ Pas <code>1</code> ni <code>2</code> : la restauration a <strong>réussi</strong>. Confondre « ça n'a pas marché » avec « ça a marché,
+regarde quand même » est exactement ce que <code>verifier-maj</code> a payé avant elle.</p>
+<p>⚠️ Et pas sur les dossiers simplement <strong>replacés ailleurs</strong>, qui restent <code>0</code> : c'est le cas normal
+d'une restauration sur une autre machine, l'usage principal de <code>--complet</code>, et le compte rendu nomme
+déjà l'ancienne et la nouvelle adresse. Un <code>10</code> permanent s'apprend à s'ignorer, et emporterait avec
+lui celui qui compte. L'IHM, elle, garde son avertissement sur les trois cas : elle parle à quelqu'un
+qui lit le compte rendu (<a href="../decisions/3500-le-code-de-sortie-distingue-le-manque-du-deplacement/">ADR 3500</a>).</p>
 <p><code>deposer-vigiechiro</code> étend la convention : <code>0</code> <strong>seulement si le dépôt est complet</strong> ; <code>1</code> si des
 fichiers restent à reprendre (relancer la même commande ne re-téléverse que les manquants). Le jeton
 vient de <code>--token</code>, sinon de la variable d'environnement <code>VIGIECHIRO_TOKEN</code>, sinon de la <strong>connexion
