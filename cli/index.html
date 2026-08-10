@@ -5473,6 +5473,16 @@ appellent les services.</p>
   (<code>RegleMetierException</code> ou l'<code>IllegalArgumentException</code> des validateurs) sort en <code>2</code> (état intact) ; toute
   autre exception (échec inattendu, état incertain) en <code>1</code> (message seul, jamais la trace).</li>
 </ul>
+<p>⚠️ <strong>« Jamais la trace » n'était vrai qu'à moitié jusqu'à #3570</strong>, et de deux façons. D'abord
+<code>Cli.main</code> amorce la journalisation et migre la base <strong>avant</strong> d'entrer dans la commande, donc hors du
+gestionnaire de picocli : une exception née là sortait par la JVM, <code>Exception in thread "main"</code> et pile
+complète, en code <code>1</code> - y compris un <code>RefusAvantEcriture</code> que #3498 avait pourtant appris à traduire en
+<code>2</code>. Ensuite, la JVM installe d'office un <code>ConsoleHandler</code> que personne ne retirait : <strong>tout</strong> incident
+reversait donc sa pile sur la sortie d'erreur, en plus de la phrase.</p>
+<p>Les deux sont corrigés : le classement exception vers code vit dans <code>VerdictCli</code>, appelable des deux
+côtés, et la CLI <strong>retire la console</strong> au démarrage (<code>ConfigurationJournalisation.configurerSansConsole</code>).
+L'IHM garde la sienne : le trajet des journaux est un choix de surface, et personne ne script la sortie
+d'une fenêtre. La trace n'est pas perdue, elle est dans <code>&lt;workspace&gt;/logs/</code>.</p>
 <h3 id="workspace-surchargeable">Workspace surchargeable<a class="headerlink" href="#workspace-surchargeable" title="Permanent link">&para;</a></h3>
 <p>Comme l'IHM, la CLI travaille dans un <strong>workspace</strong> (qui contient la base <code>vigiechiro.db</code>). L'option
 globale <code>--workspace &lt;dir&gt;</code> est consommée par <code>main()</code> <strong>avant</strong> de bâtir l'injecteur (elle positionne
