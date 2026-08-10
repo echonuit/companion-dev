@@ -3804,6 +3804,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3563 · Le régime de restauration suit la place disponible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3498-la-declaration-porte-sur-les-lectrices/" class="md-nav__link">
         
   
@@ -5598,6 +5626,11 @@
 <td><a href="3500-le-code-de-sortie-distingue-le-manque-du-deplacement/">3500</a></td>
 <td><code>BilanRestauration</code> porte deux accesseurs, et les deux surfaces n'en lisaient pas le même nombre : l'IHM passait en <strong>AVERTISSEMENT</strong>, la CLI imprimait le même texte puis rendait <strong><code>0</code></strong> sans condition. Un script qui restaure et teste <code>$?</code> concluait à une restauration entière alors qu'une nuit manquait - le défaut que le lot 1 existait pour tuer, réapparu sur la surface scriptable. Le remède évident était faux : <code>appelleUnRegard()</code> est un <strong>ou</strong> de trois termes, dont « les dossiers ont atterri ailleurs », qui est le cas <strong>normal</strong> d'une restauration sur une autre machine. Le câbler tel quel aurait rendu 10 à l'usage principal de <code>--complet</code>, et un <code>10</code> permanent s'apprend à s'ignorer. D'où <code>laisseUnManque()</code>, plus étroit. ⚠️ Les deux surfaces divergent désormais, et c'est <strong>un choix de destinataire</strong> : l'IHM parle à quelqu'un qui lit le compte rendu, la CLI à un script qui n'a que le code</td>
 <td>#3500, lot 1 de #3518 ; défaut trouvé à la passe 2 de la clôture de #2720</td>
+</tr>
+<tr>
+<td><a href="3563-le-regime-de-restauration-suit-la-place-disponible/">3563</a></td>
+<td>#3514 avait introduit la <strong>zone temporaire que l'ADR 2727 avait écartée avec un chiffre</strong> (« restaurer 40 Go par-dessus ses propres 40 Go demanderait 80 Go libres »), et personne ne l'avait relue : le pic passait à ~3x la donnée, sans aucun garde d'espace, alors que le port <code>EspaceDisque</code> existait. Le régime devient une <strong>conséquence de la place libre</strong> et non un choix figé : tout étaler si la place y est, une nuit à la fois sinon, refus <strong>chiffré</strong> en dessous. Le calcul est pur - le manifeste porte les octets - et se compte <strong>par dossier d'accueil</strong>, un total unique se trompant dans le sens dangereux quand un disque externe est rebranché. ⚠️ Dès la première bascule du régime dégradé, « rien n'a été touché » cesse d'être vrai : le refus est requalifié en incident. Amende l'ADR 2727</td>
+<td>#3563, lot 1 (#3559) de #3518</td>
 </tr>
 </tbody>
 </table>

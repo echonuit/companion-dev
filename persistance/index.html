@@ -3808,6 +3808,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3563 · Le régime de restauration suit la place disponible
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3498-la-declaration-porte-sur-les-lectrices/" class="md-nav__link">
         
   
@@ -5126,7 +5154,8 @@ l'ancien manifeste ou le nouveau, jamais un JSON coupé.</p>
 <ol>
 <li><strong>vérifier</strong> chaque dossier de la sauvegarde contre l'inventaire du manifeste ;</li>
 <li><strong>restaurer la base</strong> (avec son filet <code>vigiechiro.db.avant-restauration</code>) ;</li>
-<li><strong>replacer</strong> les dossiers ;</li>
+<li><strong>étaler</strong> les dossiers à côté de leur destination, sous un suffixe <code>.en-cours</code>, puis les
+   <strong>basculer</strong> par un renommage (#3514) ;</li>
 <li><strong>réécrire les chemins persistés</strong> en une transaction.</li>
 </ol>
 <div class="admonition danger">
@@ -5153,6 +5182,47 @@ ajoute une colonne de chemin à une table de plus, et que personne ne pense à i
 <p>L'ordre est le point important : une seule discordance à l'étape 1 annule tout <strong>avant que rien
 n'ait été touché</strong>. La vérification passait auparavant après la bascule, ce qui revenait à découvrir
 le problème une fois la base remplacée.</p>
+<h3 id="ce-que-letalement-coute-et-pourquoi-il-nest-pas-toujours-possible">Ce que l'étalement coûte, et pourquoi il n'est pas toujours possible<a class="headerlink" href="#ce-que-letalement-coute-et-pourquoi-il-nest-pas-toujours-possible" title="Permanent link">&para;</a></h3>
+<p>L'étalement ramène la fenêtre d'une <strong>copie complète</strong> - des minutes, des gigaoctets - à une <strong>suite
+de renommages</strong>. Il se paie en place : la copie coexiste avec l'original jusqu'à la bascule.</p>
+<p>⚠️ C'est exactement ce que l'<a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/">ADR 2727</a>
+avait refusé, en chiffrant le cas ordinaire (« restaurer 40 Go par-dessus ses propres 40 Go
+demanderait 80 Go libres ») et en concluant qu'« un dispositif de sûreté qui empêche l'usage normal
+n'est pas un dispositif de sûreté ». Le reproche reste juste ; ce qui change, c'est qu'on n'est plus
+obligé de choisir une fois pour toutes. Le régime est décidé <strong>par la place réellement libre</strong>
+(#3563), sans toucher au disque : le manifeste porte les octets de chaque racine.</p>
+<table>
+<thead>
+<tr>
+<th>Place libre là où les nuits atterrissent</th>
+<th>Régime</th>
+<th>Ce qu'une panne laisserait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≥ ce que pèsent toutes les nuits qui y vont</td>
+<td>tout étaler, tout vérifier, puis tout basculer</td>
+<td>des temporaires, et l'état d'avant</td>
+</tr>
+<tr>
+<td>≥ la plus grosse d'entre elles</td>
+<td>une nuit à la fois</td>
+<td>les premières en place, pas les dernières - <strong>et le compte rendu le dit</strong></td>
+</tr>
+<tr>
+<td>en dessous</td>
+<td>refus <strong>chiffré</strong> : combien il manque, et où</td>
+<td>rien</td>
+</tr>
+</tbody>
+</table>
+<p>Le besoin est compté <strong>par dossier d'accueil</strong>, et non en un total unique : une nuit dont le disque
+externe est rebranché y retourne, les autres vont dans le dossier de travail. Un total unique
+confronté à la seule place du dossier de travail se tromperait <strong>dans le sens dangereux</strong>.</p>
+<p>⚠️ En régime dégradé, <strong>dès la première bascule, « rien n'a été touché » cesse d'être vrai</strong>. Un refus
+survenu ensuite est donc requalifié en incident : le laisser passer pour un refus donnerait à un
+script un code qui promet un état intact au-dessus d'un état partiel.</p>
 <p>Où revient un dossier : <strong>à son emplacement d'origine s'il existe encore et qu'il est inscriptible</strong>,
 sinon dans le workspace, sous son nom d'origine. Le critère est que le dossier existe, et non que son
 parent soit créable : <code>/mnt/disque-a</code> est un point de montage <strong>vide</strong> quand le disque n'est pas
@@ -5193,15 +5263,22 @@ condamne pas le dossier de travail.</p>
 <td>seulement si elle a <strong>réellement</strong> quelque chose à appliquer</td>
 </tr>
 <tr>
+<td><strong>toute commande CLI</strong>, sauf celles déclarées <code>LectureSeule</code></td>
+<td>toute la durée de la commande (#3498)</td>
+</tr>
+<tr>
 <td>la restauration (simple et complète), la remise à zéro</td>
 <td>le temps de l'opération</td>
 </tr>
 <tr>
 <td>les commandes de lecture</td>
-<td>jamais</td>
+<td>jamais - c'est le sens de la déclaration <code>LectureSeule</code></td>
 </tr>
 </tbody>
 </table>
+<p>Qui est lectrice ne se recopie pas ici : la liste vit dans le code, portée par l'interface marqueur, et
+<code>ClassementLectureEcritureTest</code> exige que <strong>chaque</strong> commande soit classée. Voir
+<a href="../cli/#le-dossier-de-travail-est-reserve-pendant-lecriture-3498">CLI</a>.</p>
 <p>La nuance sur la migration est délibérée : une commande de lecture lancée pendant que l'IHM tourne ne
 migre rien, et la faire échouer sur un verrou lui coûterait plus que la protection ne lui rapporte.</p>
 <p>Un processus qui détient déjà le verrou <strong>ne se bloque pas lui-même</strong> : une restauration lancée
