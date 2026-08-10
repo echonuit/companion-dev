@@ -3819,6 +3819,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3537-un-signal-se-pose-a-l-ecriture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3537 · Un signal se pose à l'écriture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-nav__link">
         
   
@@ -5244,6 +5272,13 @@ dépendent tous deux (jamais l'un de l'autre).</p>
 <code>IndicateurAccueil</code> (un compteur du tableau de bord). Le <code>MainController</code> peuple les cartes
 automatiquement : pour qu'un nouvel écran apparaisse à l'accueil, il suffit de publier son
 <code>ActiviteAccueil</code>.</p>
+<p><strong>Les compteurs suivent la donnée, pas la navigation</strong> (#1376). Ils étaient recalculés à
+l'initialisation puis à chaque retour sur l'accueil, si bien qu'une synchronisation déroulée
+<em>par-dessus</em> l'accueil ne se voyait qu'après un aller-retour. Depuis, <code>AccueilViewModel</code> recalcule sa
+liste observable à chaque <strong>révision des données</strong> (<code>JournalMutations</code> / <code>RevisionDonnees</code>, cf.
+<a href="../patterns/#le-signal-de-mutation-tu-ecris-tu-signales">Patterns</a>), et le chrome ne fait plus que la
+restituer. Le contrat <code>IndicateurAccueil</code> vit en <code>commun.viewmodel</code> : cinq accesseurs de types
+primitifs, aucune classe JavaFX, et désormais un ViewModel parmi ses lecteurs.</p>
 <hr />
 <p>Pour câbler tout cela à l'injection, voir <strong><a href="../injection/">Injection (Guice)</a></strong>.</p>
 

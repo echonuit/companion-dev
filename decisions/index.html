@@ -3804,6 +3804,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3537-un-signal-se-pose-a-l-ecriture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3537 · Un signal se pose à l'écriture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-nav__link">
         
   
@@ -5667,6 +5695,11 @@
 <td><a href="3510-une-capacite-sait-comment-on-la-verifie-a-la-main/">3510</a></td>
 <td>La passe 6 traitait la recette en <strong>deversoir</strong> (« ce qui ne peut pas etre automatise y va »), ce qui fermait un mode de panne et en laissait un autre : une case <strong>ecrite mais injouable</strong> a l apparence d une verification prevue, et elle se coche. Trois facons d y arriver sans faute de personne - la session proprietaire n existe pas (S7), la case atterrit dans une session de transit, ou aucune fixture ne porte le cas. Desormais : <strong>une capacite n est pas finie tant qu on ne sait pas comment la verifier a la main</strong>, et une case n est terminee que si elle est <strong>rejouable</strong> - geste, observation attendue, fixture. Etendre la spec du generateur fait partie de la passe : une donnee bricolee ne revient pas a la campagne suivante</td>
 <td>#3510, suite de #3505</td>
+</tr>
+<tr>
+<td><a href="3537-un-signal-se-pose-a-l-ecriture/">3537</a></td>
+<td>Un binding observe une <code>Property</code>, jamais <strong>SQLite</strong> : tant qu'une ecriture ne laisse pas de trace observable, un ecran ne peut que se rappeler lui-meme au retour de navigation, et rate donc tout ce qui survient pendant qu'il est affiche (#1376). Le port <code>JournalMutations</code> posait <strong>deux</strong> regles d'appel ; la seconde - <em>une fois par operation metier</em> - a tenu trois jours : <code>RapprochementSites</code> cree les sites <strong>en boucle</strong> en appelant le meme service qu'un ajout manuel, et ce service ne peut pas savoir s'il sert un geste ou une synchro de 250. La tenir imposait d'eloigner l'appel du point d'ecriture, donc de le rendre oubliable - en desarmant le mecanisme pour respecter sa propre grammaire. <strong>Tu ecris, tu signales</strong>, apres validation ; la rafale s'amortit <strong>chez le lecteur</strong> (250 signaux, 1 reveil). ⚠️ Trois inventaires successifs des ecritures ont ete faux : un <code>grep</code> en une ligne rate un DAO nomme sur la ligne d'avant, un balayage multi-lignes rate le <strong>SQL brut</strong> de l'import, et deduire l'effet structurel d'un compteur de compte rendu produit des faux negatifs. Meme constat que l'ADR 3498, sans l'inversion de charge qui la sauve</td>
+<td>#3537, lot 1 de #3536</td>
 </tr>
 <tr>
 <td><a href="3535-un-inventaire-ne-se-duplique-pas-il-se-cite/">3535</a></td>

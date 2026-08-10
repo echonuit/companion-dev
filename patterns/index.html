@@ -3780,6 +3780,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3537-un-signal-se-pose-a-l-ecriture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3537 · Un signal se pose à l'écriture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-nav__link">
         
   
@@ -6626,6 +6654,55 @@ met à jour <strong>toute seule</strong> : la vue <em>observe</em>, elle ne <em>
     V-&gt;&gt;V: met à jour le widget</code></pre>
 <p><strong>Principes.</strong> <strong>Faible couplage</strong> View↔ViewModel et <strong>DIP</strong> (la vue dépend d'abstractions
 observables, pas de logique).</p>
+<h3 id="le-signal-de-mutation-tu-ecris-tu-signales">Le signal de mutation : « tu écris, tu signales »<a class="headerlink" href="#le-signal-de-mutation-tu-ecris-tu-signales" title="Permanent link">&para;</a></h3>
+<p><strong>Le problème.</strong> Un binding observe une <code>Property</code>. Il ne sait pas observer <strong>SQLite</strong>. Tant qu'une
+écriture en base ne laisse aucune trace observable, un écran ne peut se rafraîchir qu'en se rappelant
+lui-même, typiquement au retour de navigation - et il rate donc tout ce qui survient pendant qu'il est
+affiché.</p>
+<p><strong>La solution.</strong> Un <strong>port</strong> que l'écriture appelle, et un <strong>compteur observable</strong> que l'écran lit.</p>
+<table>
+<thead>
+<tr>
+<th>Pièce</th>
+<th>Où</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>JournalMutations</code></td>
+<td><code>commun.model</code></td>
+<td>le port, sans JavaFX (<code>model</code> ne peut pas en dépendre)</td>
+</tr>
+<tr>
+<td><code>RevisionDonnees</code></td>
+<td><code>commun.viewmodel</code></td>
+<td><code>ReadOnlyLongProperty</code> incrémentée à chaque signal</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La règle d'appel tient en trois mots : tu écris, tu signales.</strong> Après validation, jamais avant. Elle
+a d'abord été énoncée autrement - <em>une fois par opération métier</em> - et cette version-là n'a pas tenu :
+<code>RapprochementSites</code> crée les sites <strong>en boucle</strong> en appelant le même service qu'un ajout manuel, et ce
+service ne peut pas savoir s'il sert un geste ou une synchronisation de deux cent cinquante. La
+frontière d'une opération métier n'est <strong>pas visible depuis l'endroit qui écrit</strong>.</p>
+<p><strong>La rafale se règle donc chez le lecteur</strong> : <code>RevisionDonnees</code> ne poste pas de nouvelle avancée tant
+que la précédente n'est pas appliquée. Deux cent cinquante signaux, un réveil. Un endroit, sous test,
+au lieu d'une vigilance dans chaque appelant. Voir
+<a href="../decisions/3537-un-signal-se-pose-a-l-ecriture/">ADR 3537</a>.</p>
+<p>⚠️ <strong>Ce qui émet, et ce qui n'émet pas.</strong> Seules les mutations <strong>structurelles</strong> : celles qui peuvent
+changer l'inventaire affiché (sites, points, passages, observations). Une validation, un verdict, une
+disposition de colonnes ne changent aucun de ces nombres, et les annoncer ferait relire quatre
+<code>COUNT(*)</code> pour un affichage identique.</p>
+<p>⚠️ <strong>Un <code>grep</code> ne suffit pas à trouver les écritures.</strong> Deux inventaires successifs en ont manqué :
+<code>CreationPassageArchive</code> nomme son DAO sur une ligne et appelle <code>insert</code> sur la suivante ;
+<code>MoteurImport</code> écrit le passage en <strong>SQL brut</strong>, hors de <code>PassageDao</code>. C'est le même constat que
+l'<a href="../decisions/3498-la-declaration-porte-sur-les-lectrices/">ADR 3498</a> fait sur les commandes CLI :
+ni le nom, ni le service appelé, ni l'analyse d'appels ne tranchent, et ils se trompent <strong>dans les deux
+sens</strong>.</p>
+<p><strong>Principes.</strong> <strong>DIP</strong> (le service dépend d'un port, pas de JavaFX) et <strong>Observer</strong> (l'émetteur ignore
+ses lecteurs).</p>
+<hr />
 <div class="admonition note">
 <p class="admonition-title">API fluente (le « builder » le plus proche)</p>
 <p>Les liaisons s'écrivent souvent avec l'<strong>API fluente</strong> de JavaFX :

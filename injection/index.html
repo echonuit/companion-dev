@@ -3819,6 +3819,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3537-un-signal-se-pose-a-l-ecriture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3537 · Un signal se pose à l'écriture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-nav__link">
         
   
@@ -5293,7 +5321,7 @@ le défaut est neutre, l'application branche la variante réelle.</p>
 <tr>
 <td><code>ExecuteurTache</code> (#793)</td>
 <td><code>ExecuteurTacheSynchrone</code> (déterministe)</td>
-<td><code>ExecuteurTacheAsynchrone</code> (thread virtuel + <code>Platform.runLater</code>)</td>
+<td><code>ExecuteurTacheAsynchrone</code> (thread virtuel + <code>Platform.runLater</code>, <strong>exécution sur place sans toolkit</strong> : la CLI n'a pas de fil d'affichage)</td>
 </tr>
 </tbody>
 </table>
