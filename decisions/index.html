@@ -3832,6 +3832,62 @@
   
   
     <li class="md-nav__item">
+      <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3507 · L'amorçage s'écrit d'un seul coup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3514 · Restaurer n'efface pas ce que la sauvegarde ignore
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3498-la-declaration-porte-sur-les-lectrices/" class="md-nav__link">
         
   
@@ -5631,6 +5687,16 @@
 <td><a href="3563-le-regime-de-restauration-suit-la-place-disponible/">3563</a></td>
 <td>#3514 avait introduit la <strong>zone temporaire que l'ADR 2727 avait écartée avec un chiffre</strong> (« restaurer 40 Go par-dessus ses propres 40 Go demanderait 80 Go libres »), et personne ne l'avait relue : le pic passait à ~3x la donnée, sans aucun garde d'espace, alors que le port <code>EspaceDisque</code> existait. Le régime devient une <strong>conséquence de la place libre</strong> et non un choix figé : tout étaler si la place y est, une nuit à la fois sinon, refus <strong>chiffré</strong> en dessous. Le calcul est pur - le manifeste porte les octets - et se compte <strong>par dossier d'accueil</strong>, un total unique se trompant dans le sens dangereux quand un disque externe est rebranché. ⚠️ Dès la première bascule du régime dégradé, « rien n'a été touché » cesse d'être vrai : le refus est requalifié en incident. Amende l'ADR 2727</td>
 <td>#3563, lot 1 (#3559) de #3518</td>
+</tr>
+<tr>
+<td><a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/">3507</a></td>
+<td>Le fichier qui dit <strong>où vivent les données</strong> s'écrivait en place : une interruption le laissait tronqué, et sa lecture - qui <strong>pardonne</strong>, à raison - repartait alors sur les emplacements par défaut. Deux décisions bonnes séparément, un défaut muet ensemble : l'application marche, et toutes les nuits ont disparu. Il passe par <code>EcritureAtomique</code>, et le garde porte sur la <strong>structure</strong> faute de pouvoir observer une troncature. ⚠️ Le détour par un flux d'octets n'est pas une lourdeur : <code>store(OutputStream)</code> écrit en ISO-8859-1 échappé quand <code>store(Writer)</code> écrirait du brut, et <code>load(InputStream)</code> relit en ISO-8859-1 - simplifier corromprait le premier chemin accentué venu</td>
+<td>#3507, lot 1 (#3559) de #3518</td>
+</tr>
+<tr>
+<td><a href="3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/">3514</a></td>
+<td>Deux décisions qu'aucun code ne portait. <strong>Une destination qui contient un fichier inconnu de la sauvegarde fait refuser</strong> : basculer remplace la destination entière, donc <code>restaurer</code> deviendrait un moyen détourné d'effacer ce qui traînait là - trouvé par un test qui est passé au <strong>vert</strong> tout seul, un vert inattendu étant une trouvaille au même titre qu'un rouge. Et <strong>pas de journal de bascule</strong> : sa panne serait du même genre que celle qu'il répare, avec un dispositif de plus à surveiller (ADR 2748). On réduit la fenêtre au lieu de la rattraper - ce n'est <strong>pas</strong> de l'atomicité, et il ne faut pas le dire</td>
+<td>#3514, lot 1 (#3559) de #3518</td>
 </tr>
 </tbody>
 </table>

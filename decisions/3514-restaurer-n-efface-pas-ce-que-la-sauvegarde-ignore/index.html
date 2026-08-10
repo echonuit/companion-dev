@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3535-un-inventaire-ne-se-duplique-pas-il-se-cite/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/">
       
       
-        <link rel="prev" href="../3510-une-capacite-sait-comment-on-la-verifie-a-la-main/">
+        <link rel="prev" href="../3507-l-amorcage-s-ecrit-d-un-seul-coup/">
       
       
-        <link rel="next" href="../3563-le-regime-de-restauration-suit-la-place-disponible/">
+        <link rel="next" href="../3498-la-declaration-porte-sur-les-lectrices/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>3535 · Un inventaire ne se duplique pas, il se cite - VigieChiro Companion · Doc développeur</title>
+        <title>3514 · Restaurer n'efface pas ce que la sauvegarde ignore - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-3535-un-inventaire-ne-se-duplique-pas-il-se-cite" class="md-skip">
+        <a href="#adr-3514-restaurer-nefface-pas-ce-que-la-sauvegarde-ignore-et-ne-tient-pas-de-journal" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3535 · Un inventaire ne se duplique pas, il se cite
+              3514 · Restaurer n'efface pas ce que la sauvegarde ignore
             
           </span>
         </div>
@@ -3660,37 +3660,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3535 · Un inventaire ne se duplique pas, il se cite
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../3535-un-inventaire-ne-se-duplique-pas-il-se-cite/" class="md-nav__link">
         
   
   
@@ -3706,109 +3679,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#le-defaut" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Le défaut
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Décision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#et-souvent-la-meilleure-reponse-est-de-supprimer-linventaire" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚠️ Et souvent, la meilleure réponse est de SUPPRIMER l'inventaire
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-cette-adr-generalise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que cette ADR généralise
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que cette ADR apprend au-delà de son cas
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3874,10 +3744,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3514 · Restaurer n'efface pas ce que la sauvegarde ignore
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3893,6 +3790,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-1-une-destination-qui-porte-autre-chose-est-un-refus-pas-un-ecrasement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision 1 - Une destination qui porte autre chose est un refus, pas un écrasement
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision-2-pas-de-journal-de-bascule-et-cest-une-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision 2 - Pas de journal de bascule, et c'est une décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-cette-adr-ne-dit-plus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cette ADR ne dit plus
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4939,10 +4900,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#le-defaut" class="md-nav__link">
+  <a href="#decision-1-une-destination-qui-porte-autre-chose-est-un-refus-pas-un-ecrasement" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Le défaut
+        Décision 1 - Une destination qui porte autre chose est un refus, pas un écrasement
       
     </span>
   </a>
@@ -4950,38 +4911,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
+  <a href="#decision-2-pas-de-journal-de-bascule-et-cest-une-decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Décision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Décision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#et-souvent-la-meilleure-reponse-est-de-supprimer-linventaire" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        ⚠️ Et souvent, la meilleure réponse est de SUPPRIMER l'inventaire
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-cette-adr-generalise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que cette ADR généralise
+        Décision 2 - Pas de journal de bascule, et c'est une décision
       
     </span>
   </a>
@@ -4989,21 +4922,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
+  <a href="#ce-que-cette-adr-ne-dit-plus" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que cette ADR apprend au-delà de son cas
+        Ce que cette ADR ne dit plus
       
     </span>
   </a>
@@ -5027,7 +4949,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3535-un-inventaire-ne-se-duplique-pas-il-se-cite.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5036,110 +4958,56 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3535-un-inventaire-ne-se-duplique-pas-il-se-cite.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-3535-un-inventaire-ne-se-duplique-pas-il-se-cite">ADR 3535 - Un inventaire ne se duplique pas, il se cite<a class="headerlink" href="#adr-3535-un-inventaire-ne-se-duplique-pas-il-se-cite" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3514-restaurer-nefface-pas-ce-que-la-sauvegarde-ignore-et-ne-tient-pas-de-journal">ADR 3514 - Restaurer n'efface pas ce que la sauvegarde ignore, et ne tient pas de journal<a class="headerlink" href="#adr-3514-restaurer-nefface-pas-ce-que-la-sauvegarde-ignore-et-ne-tient-pas-de-journal" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - 2026-08-09</li>
-<li><strong>Chantier</strong> : #3535, clôture du chantier « le cycle et sa vérification » (#3505, #3510)</li>
-<li><strong>Vérification</strong> : humaine - aucun invariant mécanique ne couvre les quatre formes d'écriture d'une
-  même liste. La loupe existante est <code>DocumentationAJourTest</code>, qui applique déjà ce principe aux ADR et
-  aux commandes CLI ; l'étendre aux cartes d'accueil est le périmètre de #3535.</li>
+<li><strong>Statut</strong> : Accepté - 2026-08-10</li>
+<li><strong>Chantier</strong> : #3514, lot 1 (#3559) du chantier #3518 ; ADR écrite à la passe 10 de la clôture du lot</li>
+<li><strong>Vérification</strong> : certaine - <code>RestaurationCompleteTest#un_fichier_occupant_la_destination_fait_refuser</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Le 2026-08-08, un même inventaire a divergé <strong>trois fois en une journée</strong>. Deux de ces divergences ont
-été introduites par le chantier qui écrivait, le matin même, la règle censée les éviter.</p>
-<table>
-<thead>
-<tr>
-<th>Inventaire</th>
-<th>Copies</th>
-<th>Ce qui a divergé</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>état des sessions de recette</td>
-<td><strong>3</strong></td>
-<td>S7 écrite (#3517) le jour où deux copies la disaient inexistante</td>
-</tr>
-<tr>
-<td>liste des cartes d'accueil</td>
-<td><strong>4</strong></td>
-<td>ordre changé (#3521) ; brief et recette annonçaient <strong>5</strong> cartes pour <strong>7</strong></td>
-</tr>
-<tr>
-<td>rectangles de masque des aperçus</td>
-<td>1 liste manuelle</td>
-<td>16 déclarés pour 19 réels (#3439)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="le-defaut">Le défaut<a class="headerlink" href="#le-defaut" title="Permanent link">&para;</a></h2>
-<p><strong>Une copie périmée se lit exactement comme une copie juste.</strong></p>
-<p>C'est ce qui la distingue d'un lien mort ou d'une référence cassée : il n'existe aucun signal. Le
-Markdown est valide, <code>mkdocs --strict</code> n'a rien à dire, aucun test ne rougit. Les trois divergences
-ci-dessus ont été trouvées par quelqu'un qui <strong>lisait</strong>, jamais par un outil - et deux d'entre elles
-l'ont été par hasard, en cherchant autre chose.</p>
-<p>Le mode de panne s'aggrave avec l'utilité de la page : plus une liste est reprise à des endroits utiles,
-plus elle a de copies, donc plus elle diverge.</p>
-<h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>Un inventaire a une source, et une seule. Les autres pages la citent.</strong></p>
-<p>Quand la citation est acceptable pour le lecteur, c'est le remède : <code>cycle-de-chantier.md</code> et
-<code>CONTRIBUTING.md</code> renvoient désormais à <code>recette/index.md</code> pour l'état des sessions, au lieu de le
-répéter.</p>
-<p><strong>Quand la duplication est inévitable parce que les publics diffèrent, elle se DÉRIVE.</strong> Un brief ne
-renvoie pas à une page de documentation développeur, et un script de recette doit se lire seul en
-séance. Dans ces cas, un garde compare la liste écrite à celle que le code déclare - c'est exactement
-ce que fait déjà <code>DocumentationAJourTest</code> pour les ADR et les commandes CLI.</p>
-<h3 id="et-souvent-la-meilleure-reponse-est-de-supprimer-linventaire">⚠️ Et souvent, la meilleure réponse est de SUPPRIMER l'inventaire<a class="headerlink" href="#et-souvent-la-meilleure-reponse-est-de-supprimer-linventaire" title="Permanent link">&para;</a></h3>
-<p>Elle n'a pas été trouvée en écrivant cette ADR, mais en la <strong>confrontant</strong> : deux personnes ont corrigé
-le même défaut le même jour, sans se voir, et la meilleure des deux corrections n'était ni de citer ni
-de dériver.</p>
-<p>Sur la session de recette S1, l'inventaire disait « 5 cartes (Mes sites, Carte &amp; passages, …) ». La
-première correction (celle-ci) le <strong>mettait à jour</strong> : sept cartes, dans l'ordre de chaque prisme.
-La seconde (#3522) le <strong>retirait</strong> :</p>
-<blockquote>
-<p>Les cartes sont <strong>contribuées par les features</strong> : ne pas figer leur liste ici, mais vérifier que
-chacune de celles qui s'affichent porte un intitulé, une destination annoncée, et <strong>ouvre bien ce
-qu'elle annonce</strong>.</p>
-</blockquote>
-<p>C'est meilleur, et le conflit de fusion l'a rendu évident. Une liste mise à jour redeviendra fausse à
-la prochaine carte ; une <strong>consigne de comportement</strong> ne se démode pas. La question à poser avant de
-recopier une liste n'est donc pas « où est la source ? » mais <strong>« ai-je besoin de la liste, ou de ce
-que ses éléments doivent faire ? »</strong>. Quand c'est le comportement qui compte - et pour un script de
-recette, c'est presque toujours le cas - l'inventaire n'a pas à exister.</p>
-<h2 id="ce-que-cette-adr-generalise">Ce que cette ADR généralise<a class="headerlink" href="#ce-que-cette-adr-generalise" title="Permanent link">&para;</a></h2>
-<p>L'<a href="../3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/">ADR 3439</a> a posé le geste pour un cas
-particulier : les rectangles de masque des aperçus se <strong>dérivent de la scène</strong> au lieu d'être recopiés.
-Sa conclusion valait déjà au-delà de son objet :</p>
-<blockquote>
-<p>Un masque est un <strong>renoncement à vérifier</strong>. Tant qu'il est écrit à la main, personne ne sait plus ce
-à quoi il fait renoncer.</p>
-</blockquote>
-<p>Ce qui vaut pour un rectangle vaut pour une <strong>prose</strong> : une liste recopiée est un renoncement à vérifier
-qu'elle est encore juste. La présente ADR étend la règle du code à la documentation, au brief et aux
-scripts de recette.</p>
-<h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<ul>
-<li>avant d'écrire une liste dans une page, chercher si elle existe déjà ailleurs - et si oui, <strong>citer</strong> ;</li>
-<li>une liste qui doit exister en plusieurs exemplaires est une <strong>dette déclarée</strong>, qui appelle un garde,
-  pas un rappel de vigilance ;</li>
-<li>⚠️ <strong>la règle ne s'applique pas à un chiffre daté.</strong> L'<a href="../2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/">ADR 2750</a>
-  a déjà tranché ce cas voisin : une mesure prise un jour donné reste en dur, et c'est juste. C'est
-  l'inventaire <em>courant</em> qui se cite, pas le relevé <em>historique</em>.</li>
-</ul>
-<h2 id="ce-que-cette-adr-apprend-au-dela-de-son-cas">Ce que cette ADR apprend au-delà de son cas<a class="headerlink" href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" title="Permanent link">&para;</a></h2>
-<p><strong>Une règle écrite le matin ne protège pas l'après-midi.</strong> Celle de la passe 3 - <em>chercher ce qui est
-devenu faux, pas ce qu'on a à ajouter</em> - a été écrite le 2026-08-08 et violée le jour même, par son
-auteur, dans le fichier voisin. Ce n'est pas un défaut de discipline : c'est que la règle demandait une
-vigilance là où il fallait un <strong>point de vérité unique</strong>.</p>
-<p>Une règle qui repose sur l'attention se paie à chaque relecture ; une source unique se paie une fois.</p>
+<p>La restauration complète remplaçait les dossiers de son <strong>un par un</strong>, après avoir déjà remplacé la
+base. Une panne au troisième dossier laissait une base restaurée, deux dossiers neufs, et le reste tel
+quel : un état qu'aucune des deux versions ne décrit, et dont l'utilisateur ne sait rien.</p>
+<p>Deux questions se sont posées en chemin, et aucune n'avait de réponse évidente.</p>
+<h2 id="decision-1-une-destination-qui-porte-autre-chose-est-un-refus-pas-un-ecrasement">Décision 1 - Une destination qui porte autre chose est un refus, pas un écrasement<a class="headerlink" href="#decision-1-une-destination-qui-porte-autre-chose-est-un-refus-pas-un-ecrasement" title="Permanent link">&para;</a></h2>
+<p>Basculer, c'est <strong>remplacer la destination entière</strong> par le dossier étalé. Si la destination contient
+un fichier que la sauvegarde ne contient pas - un WAV rangé là à la main, un export oublié - ce
+fichier disparaît sans avoir été nommé.</p>
+<p><code>restaurer</code> ne doit pas devenir un moyen détourné d'effacer ce qui traînait là. La bascule <strong>refuse
+avant d'écrire</strong> quand la destination porte quelque chose d'inconnu de la sauvegarde.</p>
+<p>⚠️ Le refus porte sur les <strong>fichiers</strong>, pas sur les dossiers : un dossier vide supplémentaire n'est pas
+une donnée à protéger, et refuser dessus rendrait la restauration capricieuse pour rien.</p>
+<p>Ce cas a été découvert par un test qui <strong>est passé au vert tout seul</strong> : écrit pour vérifier autre
+chose, il a cessé d'échouer quand la copie a été déplacée vers une zone temporaire, révélant que le
+fichier intrus était désormais silencieusement détruit. Un rouge inattendu est une trouvaille ; un
+<strong>vert</strong> inattendu aussi.</p>
+<h2 id="decision-2-pas-de-journal-de-bascule-et-cest-une-decision">Décision 2 - Pas de journal de bascule, et c'est une décision<a class="headerlink" href="#decision-2-pas-de-journal-de-bascule-et-cest-une-decision" title="Permanent link">&para;</a></h2>
+<p>Un journal des bascules, relu au démarrage, permettrait de terminer ou d'annuler une restauration
+interrompue, et supprimerait l'état mixte résiduel. Il est <strong>écarté</strong>.</p>
+<p>La raison n'est pas le coût mais la <strong>nature de sa panne</strong> : un journal est un fichier de plus, écrit
+pendant l'opération qu'il protège, et relu par un chemin de démarrage qui doit fonctionner quand tout
+le reste a échoué. Sa défaillance serait du même genre que celle qu'il répare, avec un dispositif de
+plus à surveiller - et <a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">ADR 2748</a> dit ce qu'un
+dispositif qu'on ne surveille pas finit par valoir.</p>
+<p>Ce qui est retenu à la place : <strong>réduire la fenêtre</strong> plutôt que la rattraper. Étaler puis basculer
+ramène le risque d'une copie de plusieurs minutes à une suite de renommages de quelques
+millisecondes. Ce n'est <strong>pas de l'atomicité</strong>, et il ne faut pas le dire : basculer trois dossiers,
+ce sont trois renommages, et aucune astuce ne les rendra indivisibles.</p>
+<p>⚠️ Cette décision est celle qu'un lecteur futur défera le plus volontiers, parce qu'un journal se
+conçoit facilement et que son absence ne laisse aucune trace dans le code. Elle est donc écrite ici,
+avec sa raison.</p>
+<h2 id="ce-que-cette-adr-ne-dit-plus">Ce que cette ADR ne dit plus<a class="headerlink" href="#ce-que-cette-adr-ne-dit-plus" title="Permanent link">&para;</a></h2>
+<p>L'étalement lui-même a été <strong>conditionné à la place disponible</strong> par
+<a href="../3563-le-regime-de-restauration-suit-la-place-disponible/">ADR 3563</a>, qui amende l'ADR 2727 : ce
+qui est décrit ici comme « le » régime est devenu le régime <strong>nominal</strong>, employé quand la place le
+permet. Les deux décisions ci-dessus valent dans les deux régimes.</p>
 
 
 
@@ -5175,7 +5043,7 @@ vigilance là où il fallait un <strong>point de vérité unique</strong>.</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../3510-une-capacite-sait-comment-on-la-verifie-a-la-main/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3510 · Une capacité sait comment on la vérifie">
+          <a href="../3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3507 · L&#39;amorçage s&#39;écrit d&#39;un seul coup">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5185,20 +5053,20 @@ vigilance là où il fallait un <strong>point de vérité unique</strong>.</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                3510 · Une capacité sait comment on la vérifie
+                3507 · L'amorçage s'écrit d'un seul coup
               </div>
             </div>
           </a>
         
         
           
-          <a href="../3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3563 · Le régime de restauration suit la place disponible">
+          <a href="../3498-la-declaration-porte-sur-les-lectrices/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3498 · La déclaration porte sur les lectrices">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                3563 · Le régime de restauration suit la place disponible
+                3498 · La déclaration porte sur les lectrices
               </div>
             </div>
             <div class="md-footer__button md-icon">
