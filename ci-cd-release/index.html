@@ -4916,6 +4916,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#winget-2213" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        winget (#2213)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="winget (#2213)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publier-une-version-sur-winget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publier une version sur winget
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5303,6 +5331,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#winget-2213" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        winget (#2213)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="winget (#2213)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#publier-une-version-sur-winget" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Publier une version sur winget
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5623,14 +5679,14 @@ publication.</p>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/flatpak.yml">flatpak.yml</a></td>
-<td>release</td>
+<td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
 <td>Paquet Flatpak (cf. plus bas)</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/winget.yml">winget.yml</a></td>
-<td>release</td>
-<td>Soumission winget (inerte sans <code>WINGET_TOKEN</code>)</td>
+<td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
+<td>Soumission d'une version choisie à winget-pkgs (cf. plus bas)</td>
 <td>—</td>
 </tr>
 </tbody>
@@ -5954,6 +6010,41 @@ corrige au build - et c'est la <strong>première</strong> édition qu'il fait, c
 fichier à chaque appel et échouerait avant d'y arriver. Le <code>.deb</code> installé normalement, lui, garde
 cette catégorie fautive.</p>
 </div>
+<h2 id="winget-2213">winget (#2213)<a class="headerlink" href="#winget-2213" title="Permanent link">&para;</a></h2>
+<p>Le paquet <strong><code>Echonuit.VigieChiroCompanion</code></strong> est servi par winget depuis le <strong>2026-08-10</strong>
+(<a href="https://github.com/microsoft/winget-pkgs/pull/405848">winget-pkgs#405848</a>, version 2.34.2). Son
+identité est figée à vie : <code>Scope: user</code> (installation dans <code>%LOCALAPPDATA%</code>, <strong>sans UAC</strong>) et un
+<code>UpgradeCode</code> constant, tous deux décidés avant la première soumission (<a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/">ADR 0045</a>,
+<a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/">ADR 0047</a>).</p>
+<h3 id="publier-une-version-sur-winget">Publier une version sur winget<a class="headerlink" href="#publier-une-version-sur-winget" title="Permanent link">&para;</a></h3>
+<p>Ce n'est <strong>pas</strong> automatique, et c'est délibéré (mêmes raisons que Flatpak : un dépôt communautaire à
+modération humaine face à un dépôt qui publiait 3 à 37 fois par jour). On pousse les versions qui
+apportent quelque chose à l'utilisateur :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>winget.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">tag</span><span class="o">=</span>v2.184.0<span class="w">     </span><span class="c1"># vide = la dernière publiée</span>
+</code></pre></div>
+<p>Le workflow fait trois choses avant de soumettre, et la deuxième est celle qui compte :</p>
+<ol>
+<li><strong>Il recalcule l'empreinte du MSI</strong> et la compare au <code>.sha256</code> publié. Soumettre un manifeste qui
+   décrit un fichier différent de celui servi ferait échouer la validation de winget <strong>après coup, et
+   chez eux</strong>.</li>
+<li><strong>Il installe le MSI puis le LANCE</strong>, 45 secondes, sur un runner Windows, et relit le journal que
+   l'application écrit. C'est le contrôle qui manquait à la v2.32.3 : paquet installable, validé par
+   le pipeline de Microsoft, <strong>incapable de démarrer</strong>. Leur validation ne lance pas l'application.</li>
+<li><strong>Il soumet</strong> via <code>winget-releaser</code>, qui ouvre la PR depuis le fork <code>echonuit/winget-pkgs</code>.</li>
+</ol>
+<p><code>max-versions-to-keep: 5</code> : le dépôt communautaire n'a pas vocation à archiver notre historique.</p>
+<div class="admonition warning">
+<p class="admonition-title">La garde du secret rougit, et c'est un changement</p>
+<p><code>winget.yml</code> sortait <strong>en vert</strong> quand <code>WINGET_TOKEN</code> manquait. Ce choix était juste tant qu'il se
+déclenchait sur <code>release: released</code> : rougir à chaque publication aurait été du bruit sur un canal
+qu'on savait inerte.</p>
+<p>Il a cessé de l'être quand le workflow est passé en <code>workflow_dispatch</code> <strong>seul</strong>. Un dispatch est
+un geste délibéré : on le lance parce qu'on veut soumettre. Un vert qui n'a rien soumis annonce
+une publication qui n'a pas eu lieu, et c'est le seul type de défaut qui se présente sous la
+forme d'un succès.</p>
+<p>Mesuré en ouvrant #2213 : le secret était <strong>absent</strong>, et le workflow n'avait <strong>jamais</strong> été
+exécuté depuis sa fusion. Le premier dispatch aurait rendu un vert sans rien publier.</p>
+</div>
 <h2 id="toute-garde-de-ci-porte-sa-propre-preuve-2947-3293">Toute garde de CI porte sa propre preuve (#2947, #3293)<a class="headerlink" href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" title="Permanent link">&para;</a></h2>
 <p>Une garde qui <strong>accepte à tort ne rougit pas</strong> : elle passe au vert, sur un dépôt propre, exactement
 comme si elle faisait son travail. C'est le seul type de défaut qui se présente sous la forme d'un
@@ -6008,6 +6099,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>verifie-secret-winget.sh</code></td>
+<td><code>WINGET_TOKEN</code> est posé avant qu'une soumission ne parte</td>
+<td><code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>scripts/adr/verifie_scripts.py</code></td>
 <td>les scripts cités par les ADR</td>
 <td><code>lint.yml</code></td>
@@ -6030,8 +6126,8 @@ surchargeable par variable d'environnement, et en montant un bac jetable.</p>
 <h2 id="epinglage-des-actions-et-conteneurs-2737">Épinglage des actions et conteneurs (#2737)<a class="headerlink" href="#epinglage-des-actions-et-conteneurs-2737" title="Permanent link">&para;</a></h2>
 <p>Chaque <code>uses:</code> désigne un <strong>contenu</strong>, jamais un nom : une action est figée sur un <strong>SHA de commit</strong>,
 un conteneur sur un <strong>digest</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
 </code></pre></div>
 <p><strong>Pourquoi, alors qu'un tag semble suffire.</strong> Un tag est déplaçable. <code>actions/checkout@v7</code> peut être
 repointé sur un autre commit sans que rien ne bouge chez nous : ce qui s'exécute dans nos workflows
@@ -6047,9 +6143,9 @@ mise à jour invisible contre une mise à jour qui passe par une PR.</p>
 dans le job <code>lint</code>. Elle refuse toute référence non figée <strong>et</strong> tout SHA sans commentaire de version.
 Sans elle, la prochaine action ajoutée le serait par tag et l'épinglage se déferait en silence - la
 forme même du défaut corrigé. Pour résoudre un tag :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
 <h2 id="la-publication-part-a-heure-fixe-2744">La publication part à heure fixe (#2744)<a class="headerlink" href="#la-publication-part-a-heure-fixe-2744" title="Permanent link">&para;</a></h2>
 <p><code>release.yml</code> ne se déclenche plus au push sur <code>main</code> mais <strong>le mercredi à 6 h UTC</strong>, plus
@@ -6069,7 +6165,7 @@ celui publié</em>, elle ne dit rien de <strong>qui</strong> l'a produit - et el
 fichier, donc sa confiance vaut celle qu'on accorde à la page du projet. L'attestation lie le binaire
 à un <strong>commit</strong> et à une <strong>exécution</strong> de ce workflow, et se vérifie contre <strong>Sigstore</strong>, hors de notre
 portée.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
 </code></pre></div>
 <p><strong>Elle est produite sur la sortie de build, avant tout téléversement</strong>, pour la même raison que
 l'empreinte : une corruption survenue au téléversement se retrouverait sinon <em>attestée</em>. Les <code>.sha256</code>
@@ -6448,8 +6544,8 @@ avis de portée <code>development</code>, ce qu'est tout cet arbre : au 2026-08-
 <h3 id="le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose">⚠️ Le train ne commente pas les issues, et c'est le train qui l'impose<a class="headerlink" href="#le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose" title="Permanent link">&para;</a></h3>
 <p><code>@semantic-release/github</code> commente par défaut chaque issue et PR incluse dans une version. Le premier
 départ du train, déclenché à la main le 2026-08-06 sur <strong>104 commits</strong>, est tombé exactement là :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>TypeError: Cannot destructure property &#39;repository&#39; of &#39;(intermediate value)&#39; as it is undefined.
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    at @semantic-release/github/lib/success.js:81
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>TypeError: Cannot destructure property &#39;repository&#39; of &#39;(intermediate value)&#39; as it is undefined.
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    at @semantic-release/github/lib/success.js:81
 </code></pre></div>
 <p>La cause n'est pas un bogue de circonstance, c'est une <strong>conséquence structurelle de l'ADR 2744</strong>. Le
 greffon découpe les commits en lots de <strong>100</strong> et construit, pour chaque lot, une requête GraphQL avec
