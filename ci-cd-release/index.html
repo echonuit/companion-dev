@@ -6068,6 +6068,17 @@ apportent quelque chose à l'utilisateur :</p>
 </ol>
 <p><code>max-versions-to-keep: 5</code> : le dépôt communautaire n'a pas vocation à archiver notre historique.</p>
 <div class="admonition warning">
+<p class="admonition-title">Le fork doit être à jour avant un dispatch</p>
+<p>Le fork <code>echonuit/winget-pkgs</code> prend du retard entre deux soumissions, espacées de plusieurs
+semaines par construction. Au 2026-08-11 il était <strong>7969 commits en retard</strong>, donc antérieur à la
+fusion de notre propre manifeste.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>gh<span class="w"> </span>repo<span class="w"> </span>sync<span class="w"> </span>echonuit/winget-pkgs<span class="w"> </span>--source<span class="w"> </span>microsoft/winget-pkgs
+</code></pre></div>
+<p>Ce n'est pas une précaution de principe : les versions récentes de <code>winget-releaser</code> lancent
+<code>komac sync-fork</code> <strong>avant</strong> la mise à jour, ce que la nôtre (épinglée sur <code>v2</code>, un commit de
+<strong>novembre 2024</strong>) ne fait pas.</p>
+</div>
+<div class="admonition warning">
 <p class="admonition-title">La garde du secret rougit, et c'est un changement</p>
 <p><code>winget.yml</code> sortait <strong>en vert</strong> quand <code>WINGET_TOKEN</code> manquait. Ce choix était juste tant qu'il se
 déclenchait sur <code>release: released</code> : rougir à chaque publication aurait été du bruit sur un canal
@@ -6097,6 +6108,28 @@ une installation de MSI :</p>
 </ul>
 <p><code>verifie-secret-winget.sh --verifie-l-acces</code> rend maintenant ce diagnostic <strong>au début du
 workflow</strong>, en nommant la cause.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">La cause réelle, et elle n'était dans aucune de ces listes : 8 jours de durée de vie</p>
+<p>Ce qu'a fini par dire l'API, une fois la sonde réparée pour ne plus avaler sa réponse :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>The &#39;Microsoft Open Source&#39; enterprise forbids access via a personal access tokens (classic)
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>if the token&#39;s lifetime is greater than 8 days.  (HTTP 403)
+</code></pre></div>
+<p><strong>403, pas 404.</strong> Le jeton était du bon type, au bon scope, valide et sans espace parasite. Seule
+sa <strong>durée de vie</strong> le disqualifiait, par une politique de l'entreprise qui héberge <code>winget-pkgs</code>.</p>
+<p>Trois enseignements, et le troisième est le plus cher payé :</p>
+<ol>
+<li><strong><code>WINGET_TOKEN</code> se refait avant chaque soumission</strong>, avec une expiration de 8 jours au plus.
+   C'est documenté dans <a href="../reprendre-le-depot/">Reprendre le dépôt</a>.</li>
+<li><strong>Un message d'erreur d'outil tiers n'est pas un diagnostic.</strong> komac disait « le paquet
+   n'existe pas » là où l'API disait « votre jeton vit trop longtemps ».</li>
+<li><strong>Une sonde qui avale la réponse de l'API fabrique de faux diagnostics.</strong> La première version
+   du contrôle d'accès faisait <code>2&gt;/dev/null</code> : elle a conclu, avec aplomb, que le jeton n'avait
+   pas les droits de lecture. C'était faux, et rien dans son verdict ne permettait de le voir. Un
+   dispositif qui conclut sans montrer sa preuve appartient à la même famille que ceux que la
+   section « Toute garde de CI porte sa propre preuve » combat - il se trouve seulement qu'ici,
+   c'est la garde elle-même qui en était atteinte.</li>
+</ol>
 </div>
 <h2 id="toute-garde-de-ci-porte-sa-propre-preuve-2947-3293">Toute garde de CI porte sa propre preuve (#2947, #3293)<a class="headerlink" href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" title="Permanent link">&para;</a></h2>
 <p>Une garde qui <strong>accepte à tort ne rougit pas</strong> : elle passe au vert, sur un dépôt propre, exactement
@@ -6179,8 +6212,8 @@ surchargeable par variable d'environnement, et en montant un bac jetable.</p>
 <h2 id="epinglage-des-actions-et-conteneurs-2737">Épinglage des actions et conteneurs (#2737)<a class="headerlink" href="#epinglage-des-actions-et-conteneurs-2737" title="Permanent link">&para;</a></h2>
 <p>Chaque <code>uses:</code> désigne un <strong>contenu</strong>, jamais un nom : une action est figée sur un <strong>SHA de commit</strong>,
 un conteneur sur un <strong>digest</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
 </code></pre></div>
 <p><strong>Pourquoi, alors qu'un tag semble suffire.</strong> Un tag est déplaçable. <code>actions/checkout@v7</code> peut être
 repointé sur un autre commit sans que rien ne bouge chez nous : ce qui s'exécute dans nos workflows
@@ -6196,9 +6229,9 @@ mise à jour invisible contre une mise à jour qui passe par une PR.</p>
 dans le job <code>lint</code>. Elle refuse toute référence non figée <strong>et</strong> tout SHA sans commentaire de version.
 Sans elle, la prochaine action ajoutée le serait par tag et l'épinglage se déferait en silence - la
 forme même du défaut corrigé. Pour résoudre un tag :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
 <h2 id="la-publication-part-a-heure-fixe-2744">La publication part à heure fixe (#2744)<a class="headerlink" href="#la-publication-part-a-heure-fixe-2744" title="Permanent link">&para;</a></h2>
 <p><code>release.yml</code> ne se déclenche plus au push sur <code>main</code> mais <strong>le mercredi à 6 h UTC</strong>, plus
@@ -6218,7 +6251,7 @@ celui publié</em>, elle ne dit rien de <strong>qui</strong> l'a produit - et el
 fichier, donc sa confiance vaut celle qu'on accorde à la page du projet. L'attestation lie le binaire
 à un <strong>commit</strong> et à une <strong>exécution</strong> de ce workflow, et se vérifie contre <strong>Sigstore</strong>, hors de notre
 portée.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
 </code></pre></div>
 <p><strong>Elle est produite sur la sortie de build, avant tout téléversement</strong>, pour la même raison que
 l'empreinte : une corruption survenue au téléversement se retrouverait sinon <em>attestée</em>. Les <code>.sha256</code>
@@ -6644,8 +6677,8 @@ avis de portée <code>development</code>, ce qu'est tout cet arbre : au 2026-08-
 <h3 id="le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose">⚠️ Le train ne commente pas les issues, et c'est le train qui l'impose<a class="headerlink" href="#le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose" title="Permanent link">&para;</a></h3>
 <p><code>@semantic-release/github</code> commente par défaut chaque issue et PR incluse dans une version. Le premier
 départ du train, déclenché à la main le 2026-08-06 sur <strong>104 commits</strong>, est tombé exactement là :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>TypeError: Cannot destructure property &#39;repository&#39; of &#39;(intermediate value)&#39; as it is undefined.
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    at @semantic-release/github/lib/success.js:81
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>TypeError: Cannot destructure property &#39;repository&#39; of &#39;(intermediate value)&#39; as it is undefined.
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    at @semantic-release/github/lib/success.js:81
 </code></pre></div>
 <p>La cause n'est pas un bogue de circonstance, c'est une <strong>conséquence structurelle de l'ADR 2744</strong>. Le
 greffon découpe les commits en lots de <strong>100</strong> et construit, pour chaque lot, une requête GraphQL avec

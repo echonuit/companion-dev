@@ -4850,10 +4850,38 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#le-seul-secret-qui-expire-vigiechiro_token" class="md-nav__link">
+  <a href="#les-deux-secrets-qui-expirent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ Le seul secret qui expire : VIGIECHIRO_TOKEN
+        ⚠️ Les deux secrets qui expirent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Les deux secrets qui expirent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#winget_token-huit-jours-et-ce-nest-pas-negociable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WINGET_TOKEN : huit jours, et ce n'est pas négociable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-secret-qui-expire-le-plus-souvent-vigiechiro_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Le secret qui expire le plus souvent : VIGIECHIRO_TOKEN
       
     </span>
   </a>
@@ -4983,10 +5011,38 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#le-seul-secret-qui-expire-vigiechiro_token" class="md-nav__link">
+  <a href="#les-deux-secrets-qui-expirent" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ Le seul secret qui expire : VIGIECHIRO_TOKEN
+        ⚠️ Les deux secrets qui expirent
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚠️ Les deux secrets qui expirent">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#winget_token-huit-jours-et-ce-nest-pas-negociable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        WINGET_TOKEN : huit jours, et ce n'est pas négociable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-secret-qui-expire-le-plus-souvent-vigiechiro_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Le secret qui expire le plus souvent : VIGIECHIRO_TOKEN
       
     </span>
   </a>
@@ -5110,15 +5166,53 @@ l'historique git (cf. <code>verifie-jeton.sh</code>, qui garde ce dépôt contre
 <tr>
 <td><code>WINGET_TOKEN</code></td>
 <td><code>winget.yml</code></td>
-<td>⚠️ <strong>il n'existe pas</strong> : le workflow est <strong>inerte</strong>, et c'est voulu. La soumission winget se fait à la main</td>
+<td>la soumission winget <strong>rougit</strong> au lieu de partir. PAT « classic », scope <code>public_repo</code>, <strong>expiration à 8 jours au plus</strong> (cf. ci-dessous)</td>
 </tr>
 </tbody>
 </table>
 <p><code>GITHUB_TOKEN</code> est fourni par GitHub à chaque exécution : rien à créer.</p>
-<h3 id="le-seul-secret-qui-expire-vigiechiro_token">⚠️ Le seul secret qui expire : <code>VIGIECHIRO_TOKEN</code><a class="headerlink" href="#le-seul-secret-qui-expire-vigiechiro_token" title="Permanent link">&para;</a></h3>
+<h3 id="les-deux-secrets-qui-expirent">⚠️ Les deux secrets qui expirent<a class="headerlink" href="#les-deux-secrets-qui-expirent" title="Permanent link">&para;</a></h3>
+<p>Ils n'expirent pas pour les mêmes raisons et ne se renouvellent pas au même rythme.</p>
+<table>
+<thead>
+<tr>
+<th>Secret</th>
+<th>Durée de vie</th>
+<th>Ce qui l'impose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VIGIECHIRO_TOKEN</code></td>
+<td><strong>14 jours</strong></td>
+<td>la plateforme Vigie-Chiro</td>
+</tr>
+<tr>
+<td><code>WINGET_TOKEN</code></td>
+<td><strong>8 jours au plus</strong></td>
+<td>une politique de l'entreprise <strong>Microsoft Open Source</strong></td>
+</tr>
+</tbody>
+</table>
+<h4 id="winget_token-huit-jours-et-ce-nest-pas-negociable"><code>WINGET_TOKEN</code> : huit jours, et ce n'est pas négociable<a class="headerlink" href="#winget_token-huit-jours-et-ce-nest-pas-negociable" title="Permanent link">&para;</a></h4>
+<p>L'entreprise propriétaire de <code>microsoft/winget-pkgs</code> refuse tout PAT « classic » dont la <strong>durée de
+vie dépasse 8 jours</strong>. Un jeton du bon type, au bon scope et parfaitement valide est rejeté sur ce
+seul critère, avec un <strong>403</strong> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>The &#39;Microsoft Open Source&#39; enterprise forbids access via a personal access tokens (classic)
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>if the token&#39;s lifetime is greater than 8 days.
+</code></pre></div>
+<p>⚠️ <strong>Ce refus ne ressemble pas à un refus.</strong> komac le traduit par « <code>Echonuit.VigieChiroCompanion</code>
+does not exist in microsoft/winget-pkgs », c'est-à-dire en accusant le paquet. Le diagnostic a coûté
+trois dispatchs, et l'erreur d'attribution a d'abord visé les droits du jeton, puis sa forme, avant
+que la sonde ne rapporte le message réel. <code>verifie-secret-winget.sh --verifie-l-acces</code> le nomme
+désormais au début du workflow.</p>
+<p><strong>Conséquence pratique</strong> : n'entretenez pas ce secret. Créez le jeton <strong>juste avant</strong> de pousser une
+version sur winget - la soumission est manuelle et rare, les deux gestes vont ensemble. Un jeton posé
+« pour plus tard » sera périmé au moment utile.</p>
+<h3 id="le-secret-qui-expire-le-plus-souvent-vigiechiro_token">⚠️ Le secret qui expire le plus souvent : <code>VIGIECHIRO_TOKEN</code><a class="headerlink" href="#le-secret-qui-expire-le-plus-souvent-vigiechiro_token" title="Permanent link">&para;</a></h3>
 <p>Il vit <strong>14 jours</strong>. Il se récupère dans le navigateur, connecté à la plateforme, sous
 <code>localStorage['auth-session-token']</code>, puis :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gh<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>VIGIECHIRO_TOKEN<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gh<span class="w"> </span>secret<span class="w"> </span><span class="nb">set</span><span class="w"> </span>VIGIECHIRO_TOKEN<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
 </code></pre></div>
 <p>Ne pas le renouveler ne casse rien visiblement - c'est tout le problème, et c'est ce que
 <a href="../decisions/2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">l'ADR 2748</a> traite.</p>
@@ -5164,8 +5258,8 @@ l'historique git (cf. <code>verifie-jeton.sh</code>, qui garde ce dépôt contre
 </tr>
 <tr>
 <td><strong>winget</strong></td>
-<td><strong>rien pour l'instant</strong> : le paquet n'y est pas (#2110)</td>
-<td>la première soumission est manuelle ; <code>WINGET_TOKEN</code> absent</td>
+<td>la distribution Windows : <code>Echonuit.VigieChiroCompanion</code>, en ligne depuis le 2026-08-10</td>
+<td>fork <code>echonuit/winget-pkgs</code> + <code>WINGET_TOKEN</code> ; on y pousse une version à la main (#2213)</td>
 </tr>
 <tr>
 <td><strong>Zenodo</strong></td>
@@ -5205,19 +5299,23 @@ l'historique git (cf. <code>verifie-jeton.sh</code>, qui garde ce dépôt contre
 <td>après une PR qui touche l'IHM</td>
 <td>une capture fausse illustre la documentation sans que rien ne rougisse</td>
 </tr>
+<tr>
+<td><strong>Pousser une version sur winget</strong> : refaire <code>WINGET_TOKEN</code> (8 jours max), <strong>puis</strong> <code>gh workflow run winget.yml -f tag=vX.Y.Z</code></td>
+<td>quand une version <strong>apporte quelque chose à l'utilisateur</strong></td>
+<td>winget continue de servir l'ancienne, indéfiniment. Rien ne rougit : le canal n'est pas cassé, il est simplement en retard</td>
+</tr>
 </tbody>
 </table>
 <div class="admonition warning">
-<p class="admonition-title">Deux canaux de distribution sont outillés et n'ont jamais rien distribué</p>
+<p class="admonition-title">Un canal de distribution est outillé et n'a jamais rien distribué</p>
 <p>C'est le piège le plus coûteux de cette page, parce qu'il se lit à l'envers : <code>.github/workflows/</code>
 porte <code>winget.yml</code> <strong>et</strong> <code>flatpak.yml</code>, <code>flatpak/</code> porte un manifeste versionné et validé. Tout
-donne à croire que les paquets existent et se mettent à jour. <strong>Ils n'existent pas.</strong></p>
+donne à croire que les <strong>deux</strong> paquets existent et se mettent à jour. Un seul existe.</p>
 <ul>
-<li><strong>winget</strong> : <code>Echonuit.VigieChiroCompanion</code> est absent de <code>microsoft/winget-pkgs</code>. Le workflow
-  ne sait faire qu'une <strong>mise à jour</strong> - <code>winget-releaser</code> refuse une première soumission, et son
-  en-tête le dit. Tant que le paquet n'est pas déposé une fois <strong>à la main</strong>, ce workflow n'a rien
-  à mettre à jour. Il manque aussi le secret <code>WINGET_TOKEN</code> et un fork de <code>winget-pkgs</code>. Cf. #2110.</li>
-<li><strong>Flathub</strong> : ni <code>fr.echonuit.VigieChiroCompanion</code> ni l'ancien identifiant n'ont de dépôt chez
+<li><strong>winget</strong> : ✅ en ligne depuis le 2026-08-10, <code>Echonuit.VigieChiroCompanion</code>. Le canal marche,
+  mais <strong>ne se remplit pas tout seul</strong> : chaque version se pousse à la main (voir le tableau des
+  gestes ci-dessus). Cf. #2213.</li>
+<li><strong>Flathub</strong> : ❌ ni <code>fr.echonuit.VigieChiroCompanion</code> ni l'ancien identifiant n'ont de dépôt chez
   Flathub. La PR de soumission a été fermée par le robot pour checklist incomplète, et deux points
   manquants sont des <strong>actes humains</strong> - une vidéo de l'application lancée en Flatpak, et une
   attestation personnelle. Cf. #2191.</li>
