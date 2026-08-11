@@ -3860,6 +3860,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3572-une-sauvegarde-ne-porte-son-nom-qu-une-fois-complete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3572 · Une sauvegarde ne porte son nom qu'une fois complète
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5730,6 +5758,11 @@
 <td><a href="3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/">3514</a></td>
 <td>Deux décisions qu'aucun code ne portait. <strong>Une destination qui contient un fichier inconnu de la sauvegarde fait refuser</strong> : basculer remplace la destination entière, donc <code>restaurer</code> deviendrait un moyen détourné d'effacer ce qui traînait là - trouvé par un test qui est passé au <strong>vert</strong> tout seul, un vert inattendu étant une trouvaille au même titre qu'un rouge. Et <strong>pas de journal de bascule</strong> : sa panne serait du même genre que celle qu'il répare, avec un dispositif de plus à surveiller (ADR 2748). On réduit la fenêtre au lieu de la rattraper - ce n'est <strong>pas</strong> de l'atomicité, et il ne faut pas le dire</td>
 <td>#3514, lot 1 (#3559) de #3518</td>
+</tr>
+<tr>
+<td><a href="3572-une-sauvegarde-ne-porte-son-nom-qu-une-fois-complete/">3572</a></td>
+<td>La sauvegarde complete etait le seul chemin d'ecriture volumineuse <strong>sans garde d'espace</strong>, et vers un support choisi par l'utilisateur - une cle, souvent plus petite que le dossier de travail. Mais la verification a montre pire : le dossier interrompu <strong>restait</strong>, <code>InventaireSauvegardes</code> le classait comme complet (il classe sur le <strong>prefixe</strong> du nom), et son manifeste - ecrit en dernier - etant absent, le restaurer empruntait le chemin d'avant #2726. <strong>Une sauvegarde tronquee se faisait passer pour une sauvegarde d'ancien format.</strong> Remede en deux moities : un refus chiffre avant la premiere copie, et un nom de <strong>chantier</strong> jusqu'a l'ecriture du manifeste. ⚠️ Renommer plutot que nettoyer a l'echec, parce qu'une coupure de courant n'execute aucun <code>catch</code> ; et le marqueur en <strong>tete</strong> du nom, un suffixe laissant le dossier passer pour complet</td>
+<td>#3572, suite de #3559</td>
 </tr>
 </tbody>
 </table>

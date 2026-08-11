@@ -3864,6 +3864,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3572-une-sauvegarde-ne-porte-son-nom-qu-une-fois-complete/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3572 · Une sauvegarde ne porte son nom qu'une fois complète
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5232,6 +5260,19 @@ clôture du lot #2722) : une interruption pendant son écriture le laissait tron
 explicite tombait alors sur une sauvegarde par ailleurs <strong>intacte</strong>. Un lecteur voit désormais
 l'ancien manifeste ou le nouveau, jamais un JSON coupé.</p>
 </div>
+<h2 id="une-sauvegarde-ne-porte-son-nom-quune-fois-complete">Une sauvegarde ne porte son nom qu'une fois complète<a class="headerlink" href="#une-sauvegarde-ne-porte-son-nom-quune-fois-complete" title="Permanent link">&para;</a></h2>
+<p>Elle vérifie <strong>d'abord</strong> la place : la base plus les racines de session accessibles, confrontées à
+l'espace libre de la destination. Un manque est un refus <strong>chiffré</strong>, avant la première copie - même
+geste que l'import, le lot et la restauration, que la sauvegarde était seule à ne pas faire (#3572).</p>
+<p>Elle se construit ensuite sous un nom de <strong>chantier</strong> (<code>en-chantier-vigiechiro-sauvegarde-complete-…</code>)
+et n'est <strong>renommée</strong> qu'après l'écriture du manifeste.</p>
+<p>⚠️ Le renommage ferme ce qu'un nettoyage à l'échec ne fermerait pas : une coupure de courant ou un
+<code>kill -9</code> ne laissent tourner aucun code. Sans lui, un dossier interrompu portait le nom d'une
+sauvegarde complète, <code>InventaireSauvegardes</code> le listait comme telle - il classe sur le <strong>préfixe</strong> du
+nom - et le restaurer empruntait <code>replacerSansManifeste</code>, le chemin d'avant #2726 : dossiers déversés à
+la racine, chemins non corrigés. <strong>L'absence de manifeste voulait dire deux choses opposées</strong> : « cette
+sauvegarde est ancienne » et « cette sauvegarde est tronquée ».</p>
+<p>Le marqueur est en <strong>tête</strong> du nom, et pas en suffixe, pour cette raison exacte.</p>
 <h2 id="une-restauration-complete-est-verifiee-puis-basculee">Une restauration complète est vérifiée, puis basculée<a class="headerlink" href="#une-restauration-complete-est-verifiee-puis-basculee" title="Permanent link">&para;</a></h2>
 <p><code>ServiceSauvegarde.restaurerComplet</code> s'appuie sur le manifeste pour tenir la promesse en entier
 (#2727), dans cet ordre :</p>
