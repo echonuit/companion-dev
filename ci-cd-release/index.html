@@ -6079,6 +6079,25 @@ forme d'un succès.</p>
 <p>Mesuré en ouvrant #2213 : le secret était <strong>absent</strong>, et le workflow n'avait <strong>jamais</strong> été
 exécuté depuis sa fusion. Le premier dispatch aurait rendu un vert sans rien publier.</p>
 </div>
+<div class="admonition danger">
+<p class="admonition-title">« does not exist in microsoft/winget-pkgs » accuse le mauvais coupable</p>
+<p>Message rendu par komac au premier dispatch réel, alors que le paquet <strong>y était</strong> depuis la
+veille. Il ne veut pas dire ce qu'il dit.</p>
+<p>Komac résout le paquet avec le jeton qu'on lui donne. Un jeton qu'il ne peut pas employer rend une
+réponse <strong>vide</strong>, et une réponse vide se lit chez lui comme « le paquet n'existe pas ». Le
+coupable désigné est donc le paquet, quand la cause est le jeton.</p>
+<p>Ce qu'il faut savoir avant d'y passer du temps, parce que chaque essai coûte un runner Windows et
+une installation de MSI :</p>
+<ul>
+<li>le paquet, le chemin, le fork et komac se vérifient <strong>en local</strong>, en quelques secondes :
+  <code>GITHUB_TOKEN=$(gh auth token) komac list-versions Echonuit.VigieChiroCompanion</code> ;</li>
+<li>un jeton <strong>valide mais copié avec un retour à la ligne</strong> produit exactement ce symptôme : il
+  s'authentifie quand on le teste à la main, et l'en-tête <code>Authorization</code> qu'il forme dans la CI
+  est invalide. D'où <code>printf '%s'</code> et non <code>echo</code> pour le poser.</li>
+</ul>
+<p><code>verifie-secret-winget.sh --verifie-l-acces</code> rend maintenant ce diagnostic <strong>au début du
+workflow</strong>, en nommant la cause.</p>
+</div>
 <h2 id="toute-garde-de-ci-porte-sa-propre-preuve-2947-3293">Toute garde de CI porte sa propre preuve (#2947, #3293)<a class="headerlink" href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" title="Permanent link">&para;</a></h2>
 <p>Une garde qui <strong>accepte à tort ne rougit pas</strong> : elle passe au vert, sur un dépôt propre, exactement
 comme si elle faisait son travail. C'est le seul type de défaut qui se présente sous la forme d'un
@@ -6134,7 +6153,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie-secret-winget.sh</code></td>
-<td><code>WINGET_TOKEN</code> est posé avant qu'une soumission ne parte</td>
+<td><code>WINGET_TOKEN</code> est posé, propre, et <strong>utilisable</strong> avant qu'une soumission ne parte</td>
 <td><code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
