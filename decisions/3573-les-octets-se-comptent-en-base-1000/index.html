@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/0027-une-attente-porte-toujours-un-nom/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3573-les-octets-se-comptent-en-base-1000/">
       
       
-        <link rel="prev" href="../0026-le-nommage-des-tranches-est-une-etape-du-pipeline/">
+        <link rel="prev" href="../3574-un-effacement-dit-son-contrat-dans-son-nom/">
       
       
-        <link rel="next" href="../0028-un-etat-n-est-pas-un-compte-rendu/">
+        <link rel="next" href="../3507-l-amorcage-s-ecrit-d-un-seul-coup/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>0027 · Une attente porte toujours un nom - VigieChiro Companion · Doc développeur</title>
+        <title>3573 · Les octets se comptent en base 1000 - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0027-une-attente-porte-toujours-un-nom-et-cest-letape-qui-va-attendre-qui-le-pose" class="md-skip">
+        <a href="#adr-3573-les-octets-se-comptent-en-base-1000-a-un-seul-endroit" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              0027 · Une attente porte toujours un nom
+              3573 · Les octets se comptent en base 1000
             
           </span>
         </div>
@@ -1336,37 +1336,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    0027 · Une attente porte toujours un nom
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
         
   
   
@@ -1382,70 +1355,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-qui-a-ete-ecarte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce qui a été écarté
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -3891,10 +3800,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3573-les-octets-se-comptent-en-base-1000/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3573 · Les octets se comptent en base 1000
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -3910,6 +3846,76 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#une-decimale-en-dessous-de-dix-aucune-au-dessus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Une décimale en dessous de dix, aucune au-dessus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5020,6 +5026,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#une-decimale-en-dessous-de-dix-aucune-au-dessus" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Une décimale en dessous de dix, aucune au-dessus
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5027,17 +5050,6 @@
     <span class="md-ellipsis">
       
         Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-qui-a-ete-ecarte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce qui a été écarté
       
     </span>
   </a>
@@ -5061,7 +5073,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/0027-une-attente-porte-toujours-un-nom.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3573-les-octets-se-comptent-en-base-1000.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5070,43 +5082,58 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/0027-une-attente-porte-toujours-un-nom.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3573-les-octets-se-comptent-en-base-1000.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-0027-une-attente-porte-toujours-un-nom-et-cest-letape-qui-va-attendre-qui-le-pose">ADR 0027 - Une attente porte toujours un nom, et c'est l'étape qui va attendre qui le pose<a class="headerlink" href="#adr-0027-une-attente-porte-toujours-un-nom-et-cest-letape-qui-va-attendre-qui-le-pose" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3573-les-octets-se-comptent-en-base-1000-a-un-seul-endroit">ADR 3573 - Les octets se comptent en base 1000, à un seul endroit<a class="headerlink" href="#adr-3573-les-octets-se-comptent-en-base-1000-a-un-seul-endroit" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - 2026-07-19</li>
-<li><strong>Chantier</strong> : #1931, #1935, #1940, #1946, #1951, #1959</li>
-<li><strong>Vérification</strong> : humaine - qu'aucune opération longue ne laisse l'écran muet est une propriété temporelle du déroulé, pas un invariant statique</li>
+<li><strong>Statut</strong> : Accepté - 2026-08-11</li>
+<li><strong>Chantier</strong> : #3573, suite de la clôture du lot 1 (#3559)</li>
+<li><strong>Vérification</strong> : certaine - <code>FormatsTest#octets_lisibles_en_base_1000</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>La modale de réactivation montre deux barres depuis #1780, justement parce qu'une barre unique restait <strong>figée à 100 %</strong> pendant la phase d'ancrage : on ne savait pas si le travail continuait. Le principe était posé, mais seulement là où on l'avait regardé.</p>
-<p>Sur une nuit réelle de 2042 bruts, l'écran est resté <strong>plus de deux minutes</strong> sur <code>Régénération 2042/2042</code>, sans rien d'autre. Le silence n'était pas un temps mort : trois gestes s'y enchaînaient, dont aucun n'était annoncé.</p>
-<p>Deux erreurs successives ont été nécessaires pour trouver la règle.</p>
-<p><strong>La première</strong> : #1951 a nommé les étapes de fin de phase (« Vérification de l'audio disponible… », « Recherche de ce qu'il reste à récupérer… »), sans rien changer pour l'utilisateur. Ces libellés étaient posés <strong>après</strong> le geste qui prenait le temps.</p>
-<p><strong>La seconde</strong> est plus intéressante : le fait que rien ne change a <strong>localisé</strong> le défaut. Puisque les libellés d'après ne s'affichaient jamais, l'attente était forcément avant eux. Elle était dans l'adoption des originaux d'une nuit reconstruite, près de 6700 ordres SQL auto-commités, soit autant de <code>fsync</code> (#1959).</p>
+<p>Deux formateurs annonçaient des tailles <strong>différentes pour les mêmes octets</strong>, sous la <strong>même
+étiquette</strong>. Pour 4 000 000 000 octets : <code>Formats.octetsLisibles</code> disait <strong>3,7 Go</strong> (base 1 073 741 824)
+et <code>CompacteurDepot.enGigaoctets</code> disait <strong>4,0 Go</strong> (base 1 000 000 000). Les deux parlaient de place
+disque, et le même utilisateur pouvait voir les deux à cinq minutes d'intervalle.</p>
+<p>Le relevé par <strong>diviseurs</strong> - et non par noms de méthode - en a trouvé <strong>sept</strong> en tout : quatre en
+base 1024 étiquetées « Mo » (<code>ExportBiblioSons</code>, <code>ExporterSons</code>, <code>ExportObservationsEtSons</code>,
+<code>ExporteurAudio</code>), deux en base 1000 rendant un nombre nu suivi d'un « Go » écrit à la main
+(<code>FormatsLot</code>, <code>MoteurImport</code>), plus <code>LotViewModel</code> qui divisait par un million pour son titre.</p>
+<p>⚠️ <code>Formats.octetsLisibles</code> n'avait <strong>aucun test</strong>. Le formateur le plus employé du produit était sans
+garde, ce qui est aussi la raison pour laquelle les bases ont pu diverger sans que rien ne le dise.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>1. Aucune opération longue ne laisse l'écran muet.</strong> Tout intervalle où le travail continue sans qu'aucune barre ne bouge est un défaut, au même titre qu'une barre figée à 100 %. Ce que l'utilisateur ne peut pas distinguer d'un plantage doit être nommé.</p>
-<p><strong>2. Le libellé d'une étape est posé par celle qui va attendre, jamais par celle qui vient de finir.</strong> C'est la règle que #1951 a manquée : une étape émise après coup décrit un travail déjà fait, et laisse le suivant muet. Concrètement, l'émission précède l'appel qu'elle annonce.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">progresRegeneration</span><span class="p">.</span><span class="na">accept</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Progression</span><span class="p">(</span><span class="n">ADOPTION_ORIGINAUX</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">));</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">adopterOriginaux</span><span class="p">(</span><span class="n">session</span><span class="p">,</span><span class="w"> </span><span class="n">originaux</span><span class="p">,</span><span class="w"> </span><span class="n">resultat</span><span class="p">);</span><span class="w">   </span><span class="c1">// ← ce qui va prendre le temps</span>
-</code></pre></div>
-<p><strong>3. Une attente nommée est aussi un instrument de mesure.</strong> Quand on ignore où passe le temps, nommer les étapes coûte moins que d'instrumenter, et l'usage réel tranche en une exécution. C'est ce qui a désigné l'adoption : les deux minutes ne s'affichaient sur aucun des libellés posés, donc elles étaient avant.</p>
-<p><strong>4. Nommer ne dispense pas de corriger.</strong> Une attente de deux minutes reste une attente : le libellé la rend supportable, la transaction la fait disparaître. Les deux se font, dans cet ordre de découverte, pas de priorité.</p>
+<p><strong>Base 1000, étiquettes <code>Ko</code>/<code>Mo</code>/<code>Go</code>, et une seule implémentation.</strong></p>
+<p>C'est l'unité dans laquelle les supports sont <strong>vendus</strong> : une carte « 128 Go » porte
+128 000 000 000 octets. Or nos chiffres servent précisément à répondre à « est-ce que ça tient sur ma
+clé ? ». En base 1024 sous une étiquette « Go », on faisait comparer deux grandeurs différentes portant
+le même nom.</p>
+<p>Écarté : <code>Kio</code>/<code>Mio</code>/<code>Gio</code>, techniquement exact mais qui ferait comparer des « Gio » à une clé vendue
+en « Go » ; et le statu quo (base 1024 étiquetée « Go »), qui conserve une étiquette fausse.</p>
+<h3 id="une-decimale-en-dessous-de-dix-aucune-au-dessus">Une décimale en dessous de dix, aucune au-dessus<a class="headerlink" href="#une-decimale-en-dessous-de-dix-aucune-au-dessus" title="Permanent link">&para;</a></h3>
+<p>Consolider posait une question que la base ne posait pas : les quatre formateurs d'export affichaient
+<code>%.1f Mo</code>, <code>Formats</code> affichait <code>%.0f Mo</code>. Aligner sur <code>Formats</code> aurait transformé « ~1,5 Mo » en
+« ~2 Mo » sur des annonces d'export.</p>
+<p>Sous dix, la décimale porte de l'information, et c'est dans cette plage que vivent la plupart de nos
+volumes annoncés. Au-dessus, elle n'est plus que du bruit : personne ne décide rien à « 128,3 Go »
+qu'il ne déciderait à « 128 Go ».</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Une revue de phase longue se lit dans les deux sens : « chaque barre bouge-t-elle ? » <strong>et</strong> « existe-t-il un intervalle entre deux barres ? ». Le second est le plus facile à oublier, parce qu'il n'apparaît sur aucun écran de test : les jeux d'essai sont trop petits pour que l'intervalle se voie.</li>
-<li>Un test de progression vérifie l'<strong>ordre</strong> des libellés, pas seulement leur présence : <code>containsSubsequence</code> plutôt que <code>contains</code>. Sans quoi un libellé posé après coup reste vert.</li>
-<li>Le corollaire de performance est écrit dans <a href="../../performance/">performance.md</a> : une écriture de masse passe par une <code>UniteDeTravail</code>.</li>
+<li>Les valeurs affichées <strong>changent partout</strong>, légèrement : un fichier de 4,5 Gio passe de « 4,2 Go » à
+  « 4,5 Go ». Quatorze attendus de tests ont suivi.</li>
+<li>⚠️ Deux d'entre eux étaient <strong>pliés au formateur plutôt qu'à leur propre fixture</strong> : le compte rendu
+  de dépôt posait <code>4_500_000_000L</code> et attendait « 4,2 Go ». L'assertion redevient cohérente avec ce
+  qu'elle décrit.</li>
+<li>La justification écrite dans <code>LotViewModel</code> - « et non <code>Formats.octetsLisibles</code> qui raisonne en base
+  1024 » - est devenue <strong>fausse</strong> le jour de cette ADR. C'est le motif que la passe 3 traque : un
+  commentaire qui décrit un mécanisme remplacé ne rougit nulle part.</li>
+<li>Une conversion d'octets hors de <code>Formats</code> est désormais un <strong>défaut</strong> : le contrôle se fait sur les
+  <strong>diviseurs</strong>, pas sur les noms de méthode - la prochaine s'appellera autrement.</li>
 </ul>
-<h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
-<p><strong>Une barre indéterminée pendant les temps morts.</strong> JavaFX la rend gratuitement (<code>progress = -1</code>), mais <code>ProgressionOperation.appliquer</code> retient <code>Math.max(fraction, point.fraction())</code> : une valeur négative serait avalée. Il aurait fallu ouvrir le contrat du socle pour un cas d'affichage ; le libellé sur barre pleine dit la même chose sans y toucher.</p>
-<p><strong>Une ligne d'étape dédiée, alimentée par un troisième canal.</strong> Sémantiquement le bon endroit (la ligne parle quand aucune barre ne le peut), mais il aurait fallu reprendre les <strong>12 implémentations</strong> de <code>ReactivationModaleController.Travail</code> pour un libellé. Reste le bon choix le jour où une étape n'appartient à aucune des deux phases.</p>
-<p><strong>Mesurer d'abord, afficher ensuite.</strong> L'ordre inverse a été retenu : l'affichage est utile en soi et coûte deux lignes, alors qu'une instrumentation ne sert qu'une fois (décision 3).</p>
 
 
 
@@ -5142,7 +5169,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 0026 · Le nommage des tranches est une étape du pipeline">
+          <a href="../3574-un-effacement-dit-son-contrat-dans-son-nom/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3574 · Un effacement dit son contrat dans son nom">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5152,20 +5179,20 @@
                 Précédent
               </span>
               <div class="md-ellipsis">
-                0026 · Le nommage des tranches est une étape du pipeline
+                3574 · Un effacement dit son contrat dans son nom
               </div>
             </div>
           </a>
         
         
           
-          <a href="../0028-un-etat-n-est-pas-un-compte-rendu/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 0028 · Un état n&#39;est pas un compte rendu">
+          <a href="../3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3507 · L&#39;amorçage s&#39;écrit d&#39;un seul coup">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                0028 · Un état n'est pas un compte rendu
+                3507 · L'amorçage s'écrit d'un seul coup
               </div>
             </div>
             <div class="md-footer__button md-icon">

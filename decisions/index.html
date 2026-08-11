@@ -3916,6 +3916,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3573-les-octets-se-comptent-en-base-1000/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3573 · Les octets se comptent en base 1000
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5796,6 +5824,11 @@
 <td><a href="3574-un-effacement-dit-son-contrat-dans-son-nom/">3574</a></td>
 <td><strong>Sept</strong> implementations d'un effacement recursif, et le meme nom ne voulait pas dire la meme chose : quatre comportements en cas d'echec - lever, lever sans le declarer, avaler, rapporter - dont deux sous le nom <code>supprimerRecursivement</code>. Une copie faite depuis le mauvais modele changeait le comportement en cas de panne <strong>sans rien casser de visible</strong>. Deux contrats, deux noms : <code>supprimerRecursivement</code> leve, <code>effacerAuMieux</code> rend ce qui a resiste <strong>avec la raison</strong> - le rapporteur en a besoin, et la lui retirer l'obligerait a refaire le parcours. Envelopper en <code>UncheckedIOException</code> reste une decision de l'appelant. ⚠️ Le premier test « continue apres un echec » etait <strong>creux</strong> : deux dossiers separes, donc rien sur le parcours - la mutation l'a dit</td>
 <td>#3574, suite de #3559</td>
+</tr>
+<tr>
+<td><a href="3573-les-octets-se-comptent-en-base-1000/">3573</a></td>
+<td>Deux formateurs annoncaient des tailles <strong>differentes pour les memes octets</strong>, sous la <strong>meme etiquette</strong> : 4 000 000 000 octets valaient « 3,7 Go » ici et « 4,0 Go » la. Le releve par <strong>diviseurs</strong> - et non par noms de methode - en a trouve <strong>sept</strong>. Base 1000 retenue parce que c'est l'unite dans laquelle les supports sont <strong>vendus</strong>, et que nos chiffres servent a repondre a « est-ce que ca tient sur ma cle ? ». Une decimale sous dix, aucune au-dessus : consolider aurait sinon transforme « ~1,5 Mo » en « ~2 Mo » sur les annonces d'export. ⚠️ <code>octetsLisibles</code> n'avait <strong>aucun test</strong>, ce qui est aussi pourquoi les bases ont pu diverger ; et deux attendus etaient plies au formateur plutot qu'a leur propre fixture</td>
+<td>#3573, suite de #3559</td>
 </tr>
 </tbody>
 </table>
