@@ -5018,6 +5018,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#les-emballages-sont-ouverts-avant-detre-publies-3617" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les emballages sont ouverts avant d'être publiés (#3617)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#les-empreintes-sha-256-2107" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5443,6 +5454,17 @@
     <span class="md-ellipsis">
       
         L'AppImage (#2107)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-emballages-sont-ouverts-avant-detre-publies-3617" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les emballages sont ouverts avant d'être publiés (#3617)
       
     </span>
   </a>
@@ -6067,6 +6089,52 @@ nomme le paquet au lieu de renvoyer le message d'appimagetool, qui ne le dit pas
 est une dépendance qu'il faut déclarer, parce que rien ne la rend visible tant que le poste qui
 construit la possède.</p>
 </div>
+<h3 id="les-emballages-sont-ouverts-avant-detre-publies-3617">Les emballages sont ouverts avant d'être publiés (#3617)<a class="headerlink" href="#les-emballages-sont-ouverts-avant-detre-publies-3617" title="Permanent link">&para;</a></h3>
+<p><code>maven.yml</code> prouve à chaque PR que l'<strong>app-image</strong> démarre (#2299, né de la v2.32.3). Personne
+n'ouvrait les <strong>enveloppes</strong>. Or chacune a été choisie <em>pour ce qu'elle préserve</em>, ce qui est une
+autre façon de dire que chacune a une façon connue de casser : <code>tar.gz</code> pour le <strong>bit exécutable</strong>,
+<code>ditto</code> pour les liens d'un bundle <code>.app</code>, <code>appimagetool</code> qui a déjà fait échouer la v2.21.0.</p>
+<p>Chaque emballage est donc <strong>ré-ouvert et lancé</strong> là où il est produit, par
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/verifie-demarrage-emballage.sh"><code>verifie-demarrage-emballage.sh</code></a> :</p>
+<table>
+<thead>
+<tr>
+<th>Où</th>
+<th>Ce qui est ouvert</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>maven.yml</code>, chaque PR</td>
+<td>l'app-image, puis un <strong>aller-retour <code>tar.gz</code></strong> : on empaquette, on ré-extrait ailleurs, on relance</td>
+</tr>
+<tr>
+<td><code>release.yml</code>, runner Linux</td>
+<td>l'archive portable <code>.tar.gz</code> et l'<strong>AppImage</strong></td>
+</tr>
+<tr>
+<td><code>release.yml</code>, runner macOS</td>
+<td>l'archive portable, extraite par <code>ditto</code> (bundle <code>.app</code>)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>L'étape est placée avant le calcul des empreintes</strong>, à dessein : un artefact qui ne démarre pas ne
+doit être ni certifié, ni attesté, ni téléversé. Un emballage cassé <strong>bloque la publication</strong> au lieu
+d'arriver chez l'utilisateur.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ce qui n'est pas couvert, et pourquoi c'est dit</p>
+<p><strong>L'archive portable Windows.</strong> Le script est en bash, et le suivi d'un lanceur en sous-système
+graphique depuis Git Bash n'a pas pu être éprouvé : un faux échec y bloquerait une publication.
+Le <code>.msi</code>, lui, est installé <strong>et lancé</strong> par <code>winget.yml</code>.</p>
+<p><strong>Les installeurs <code>.deb</code> et <code>.dmg</code></strong>, qui demandent une installation et non une simple extraction.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Pourquoi un script plutôt que des lignes dans le workflow</p>
+<p>Parce que <code>release.yml</code> <strong>n'est traversé par aucune PR</strong>. Une étape écrite là peut être fusionnée
+cassée et ne se découvrir qu'au train suivant, en bloquant la publication - c'est le piège
+général des étapes que seul un déclencheur rare exerce. Sortie en script, la logique porte son
+<code>--auto-test</code> (joué à chaque PR par <code>lint.yml</code>) et <code>maven.yml</code> l'exerce <strong>en vrai</strong>.</p>
+</div>
 <h3 id="les-empreintes-sha-256-2107">Les empreintes SHA-256 (#2107)<a class="headerlink" href="#les-empreintes-sha-256-2107" title="Permanent link">&para;</a></h3>
 <p>Les installeurs ne sont <strong>pas signés</strong>. Sans empreinte, un utilisateur n'a donc <strong>aucun moyen</strong> de
 vérifier ce qu'il télécharge. Chaque artefact est accompagné d'un fichier <code>&lt;nom&gt;.sha256</code>, produit par
@@ -6328,6 +6396,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>verifie-secret-winget.sh</code></td>
 <td><code>WINGET_TOKEN</code> est posé, propre, et <strong>utilisable</strong> avant qu'une soumission ne parte</td>
 <td><code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>verifie-demarrage-emballage.sh</code></td>
+<td>un emballage de distribution, une fois <strong>ouvert</strong>, démarre et ne lève aucune erreur de chargement</td>
+<td><code>maven.yml</code> et <code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
 <td><code>scripts/adr/verifie_scripts.py</code></td>
