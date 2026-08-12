@@ -3944,6 +3944,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3575-le-journal-fait-exception-et-le-cliquet-ne-recopie-rien/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3575 · Le journal fait exception, et le cliquet ne recopie rien
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3573-les-octets-se-comptent-en-base-1000/" class="md-nav__link">
         
   
@@ -5890,6 +5918,11 @@
 <td><a href="3573-les-octets-se-comptent-en-base-1000/">3573</a></td>
 <td>Deux formateurs annoncaient des tailles <strong>differentes pour les memes octets</strong>, sous la <strong>meme etiquette</strong> : 4 000 000 000 octets valaient « 3,7 Go » ici et « 4,0 Go » la. Le releve par <strong>diviseurs</strong> - et non par noms de methode - en a trouve <strong>sept</strong>. Base 1000 retenue parce que c'est l'unite dans laquelle les supports sont <strong>vendus</strong>, et que nos chiffres servent a repondre a « est-ce que ca tient sur ma cle ? ». Une decimale sous dix, aucune au-dessus : consolider aurait sinon transforme « ~1,5 Mo » en « ~2 Mo » sur les annonces d'export. ⚠️ <code>octetsLisibles</code> n'avait <strong>aucun test</strong>, ce qui est aussi pourquoi les bases ont pu diverger ; et deux attendus etaient plies au formateur plutot qu'a leur propre fixture</td>
 <td>#3573, suite de #3559</td>
+</tr>
+<tr>
+<td><a href="3575-le-journal-fait-exception-et-le-cliquet-ne-recopie-rien/">3575</a></td>
+<td>Deux pieces de l'ADR 3498 ne tenaient pas ce qu'elles promettaient. Sa <strong>definition</strong> disait « ni les dossiers du dossier de travail », alors que <code>Cli.main</code> amorce la journalisation avant tout : les vingt-trois lectrices ecrivent <code>&lt;workspace&gt;/logs</code>. Elle etait donc contredite par les commandes qu'elle decrivait - l'exception est desormais <strong>nommee</strong>, et elle est voulue : un incident doit laisser une trace meme sur une lecture. Et son <strong>cliquet</strong> recopiait 44 noms que ses deux assertions rendaient exactement derivables ; il devient un compteur, ce qui force autant puisque c'est le MESSAGE qui decide, pas la liste. ⚠️ Recul assume : le message ne designe plus l'intruse, il affiche les quarante-cinq</td>
+<td>#3575, suite de #3559</td>
 </tr>
 </tbody>
 </table>
