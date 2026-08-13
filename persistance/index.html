@@ -5565,6 +5565,39 @@ l'appelant qui tranche - comme <code>supprimerRecursivement</code> et <code>effa
 (<a href="../decisions/3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/">ADR 3627</a>, <a href="../decisions/3574-un-effacement-dit-son-contrat-dans-son-nom/">ADR 3574</a>).</p>
 <p>⚠️ Le parcours est une <strong>file explicite</strong> et non <code>Files.walk</code> : <code>walk</code> lève sur le premier dossier
 interdit et interrompt tout, alors qu'on veut mesurer le reste et rapporter ce qui a résisté.</p>
+<h3 id="partout-ailleurs-qui-parcourt-rattrape-ce-que-le-parcours-leve">Partout ailleurs, qui parcourt rattrape ce que le parcours lève<a class="headerlink" href="#partout-ailleurs-qui-parcourt-rattrape-ce-que-le-parcours-leve" title="Permanent link">&para;</a></h3>
+<p><code>Files.walk</code> reste employé ailleurs, et il y a un piège que neuf sites du dépôt ont partagé : il
+n'annonce <strong>pas</strong> son échec de parcours en <code>IOException</code>, il l'enveloppe dans une
+<code>UncheckedIOException</code> levée <strong>pendant l'itération</strong>. Elle n'hérite pas d'<code>IOException</code> : le <code>catch</code>
+voisin ne la voit pas, et une méthode qui déclare <code>throws IOException</code> la laisse sortir d'un autre
+type. Le rattrapage écrit ne rattrape donc rien du cas pour lequel il a été écrit.</p>
+<p>Trois gestes, selon le contrat du site - et c'est bien le contrat qui décide, pas une règle unique :</p>
+<table>
+<thead>
+<tr>
+<th>Le site promet</th>
+<th>Le geste</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>de ne <strong>jamais lever</strong> (<code>effacerAuMieux</code>)</td>
+<td>rapporter le dossier illisible dans sa liste</td>
+</tr>
+<tr>
+<td>une mesure <strong>d'affichage</strong> (<code>ArborescenceFichiers.octets</code>)</td>
+<td>compter ce qui a pu être lu</td>
+</tr>
+<tr>
+<td><code>throws IOException</code> (<code>copier</code>, <code>InventaireDossier</code>, <code>BasculeRacines</code>…)</td>
+<td>ramener la cause au type annoncé</td>
+</tr>
+</tbody>
+</table>
+<p><code>ParcoursDeDossierTest</code> tient le cliquet : tout fichier appelant <code>Files.walk</code> doit rattraper
+l'<code>UncheckedIOException</code>. Interdire <code>walk</code> au profit d'un helper unique a été <strong>écarté</strong> - ces sites
+ont des contrats opposés, et un seul nom pour des comportements contraires est précisément ce que
+l'ADR 3574 a démêlé (#3632).</p>
 <h2 id="une-restauration-complete-est-verifiee-puis-basculee">Une restauration complète est vérifiée, puis basculée<a class="headerlink" href="#une-restauration-complete-est-verifiee-puis-basculee" title="Permanent link">&para;</a></h2>
 <p><code>ServiceSauvegarde.restaurerComplet</code> s'appuie sur le manifeste pour tenir la promesse en entier
 (#2727), dans cet ordre :</p>
