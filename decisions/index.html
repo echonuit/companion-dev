@@ -4028,6 +4028,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3580-deux-mecanismes-parce-que-deux-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3580 · Deux mécanismes, parce que ce sont deux questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
         
   
@@ -4036,6 +4064,34 @@
     
   
     3624 · Un fait que rien ne peut faire rougir s'ancre autrement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3651 · Un cycle de vie qu'on peut oublier est mal placé
   
 
     
@@ -5989,6 +6045,16 @@
 <td><a href="3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/">3627</a></td>
 <td>Le garde d'espace concluait « il y a la place » depuis un <strong>silence</strong> : un fichier illisible pesait comme un fichier vide. ⚠️ Mais le constat de départ était <strong>partiellement faux</strong>, et le sonder l'a montré : un <em>dossier</em> illisible ne se tait pas, <code>Files.walk</code> <strong>lève</strong> - et cette <code>UncheckedIOException</code>, n'étant pas une <code>IOException</code>, traversait le <code>catch</code> de <code>sauvegarderComplet</code>. L'utilisateur lisait « Échec, état incertain » (code 1) sur une opération qui n'avait <strong>rien touché</strong> : c'est un refus (code 2). Une mesure rend donc ce qu'elle a lu <strong>et</strong> ce qu'elle n'a pas pu ouvrir ; l'inventaire l'ignore, le garde refuse en le nommant, <strong>avant</strong> de comparer à la place libre - sinon on envoie libérer des octets pour un problème de droits. Parcours par file explicite, <code>walk</code> interrompant tout au premier dossier interdit. ⚠️ <code>NOFOLLOW_LINKS</code> sur le seul test de dossier : sans lui un lien vers un ancêtre fait tourner le parcours sans fin</td>
 <td>#3627 puis #3634, suites de #3624</td>
+</tr>
+<tr>
+<td><a href="3580-deux-mecanismes-parce-que-deux-questions/">3580</a></td>
+<td>Le lot 4 devait brancher cinq ecrans sur la revision <strong>puis retirer</strong> <code>RafraichirAuRetour</code>, devenu un vestige. La cartographie a dementi la premisse : le signal de l'ADR 3537 est <strong>structurel</strong>, or ce que ces cinq ecrans rechargent au retour sont des <code>update</code> - un verdict, un depot, un statut - qui n'emettent pas. Le vestige suppose etait le seul mecanisme couvrant leur cas reel. Les deux <strong>coexistent</strong> donc par contrat : le retour voit les <code>update</code>, la revision voit les <code>insert</code> / <code>delete</code>. ⚠️ Un lecteur futur y verra une migration inachevee ; la supprimer compile, laisse les gardes verts, et casse les cinq ecrans sur ce pour quoi ils rechargent</td>
+<td>#3580, lot 4 de #3536</td>
+</tr>
+<tr>
+<td><a href="3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/">3651</a></td>
+<td>Cinq ecrans portaient le meme triplet abonnement / pose / retrait. La duplication n'etait pas le probleme : <strong>les trois lignes ne se valent pas</strong>. Oublier la pose se voit au premier essai ; oublier le <strong>retrait</strong> ne casse rien de perceptible - <code>RevisionDonnees</code> est un singleton, l'ecoute survit a la vue, et dix ouvertures font dix rechargements dont neuf pour personne. Le <code>Navigateur</code> porte donc le cycle, l'ecran ne declare que son intention (<code>SuitLaRevision</code>). ⚠️ Le repere est la <strong>vue</strong>, pas l'etape : relibeller (#1213) retire et replace la meme etape, donc la pose doit etre idempotente - mesure a « expected: 1 but was: 2 »</td>
+<td>#3651, suite de #3580</td>
 </tr>
 </tbody>
 </table>

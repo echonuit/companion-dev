@@ -4043,6 +4043,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3580-deux-mecanismes-parce-que-deux-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3580 · Deux mécanismes, parce que ce sont deux questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
         
   
@@ -4051,6 +4079,34 @@
     
   
     3624 · Un fait que rien ne peut faire rougir s'ancre autrement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3651 · Un cycle de vie qu'on peut oublier est mal placé
   
 
     
@@ -5411,6 +5467,16 @@ mémorise le <code>controller</code> de l'écran et en dérive, par <code>instan
 <td>Recharge ses données quand on y <strong>revient</strong></td>
 </tr>
 <tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/AuDepartEcran.java"><code>AuDepartEcran</code></a></td>
+<td>L'écran tient une <strong>ressource à rendre</strong> : un fichier temporaire, un verrou</td>
+<td>Appelé quand l'écran <strong>quitte l'historique</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/SuitLaRevision.java"><code>SuitLaRevision</code></a></td>
+<td>L'écran affiche un <strong>inventaire</strong> qu'un import, une synchro ou une restauration peut changer <strong>sous les yeux</strong> de l'utilisateur</td>
+<td>Le <code>Navigateur</code> l'abonne à la révision tant qu'il est dans l'historique, et <strong>rend</strong> l'abonnement à sa sortie</td>
+</tr>
+<tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/ResumeStatut.java"><code>ResumeStatut</code></a></td>
 <td>L'écran a une <strong>info vivante</strong> à afficher en pied (compteurs, avancement)</td>
 <td>Alimente les <strong>3 zones de la barre de statut</strong></td>
@@ -5421,7 +5487,28 @@ mémorise le <code>controller</code> de l'écran et en dérive, par <code>instan
 <p class="admonition-title">Pourquoi <code>RafraichirAuRetour</code> existe</p>
 <p>M-Passage ouvre M-Qualification ; un verdict y fait avancer le statut. Sans contrat, revenir
 ré-afficherait le passage <strong>périmé</strong> (instance vivante). En l'implémentant, le <code>Navigateur</code> le
-recharge au retour. M-Multisite et M-Site-detail (tableaux de passages) l'implémentent aussi.</p>
+recharge au retour. Cinq écrans le déclarent : Ma saison, Espèces &amp; observations, Carte &amp;
+passages, la fiche site et M-Passage.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Il ne couvre que la moitié de la question</p>
+<p><code>RafraichirAuRetour</code> répond à « une sous-activité a travaillé pendant que j'étais masqué ». Il ne
+dit <strong>rien</strong> de ce qui survient pendant qu'on regarde : une synchronisation lancée depuis le menu
+☰, un import, une restauration. C'est le rôle de <code>SuitLaRevision</code> et du
+<a href="../patterns/#le-signal-de-mutation-tu-ecris-tu-signales">signal de mutation</a>.</p>
+<p>Les deux <strong>coexistent</strong> parce qu'ils ne couvrent pas les mêmes écritures : le retour voit les
+<code>update</code> (un verdict, un dépôt), la révision voit les <code>insert</code> / <code>delete</code>. Les cinq écrans
+d'inventaire déclarent donc les deux.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Le cycle de l'abonnement appartient au <code>Navigateur</code>, pas à l'écran</p>
+<p>Un écran qui déclare <code>SuitLaRevision</code> fournit <strong>une méthode</strong> et rien d'autre : ni champ, ni
+<code>ChangeListener</code>, ni <code>RevisionDonnees</code> dans son constructeur. C'est le <code>Navigateur</code> qui abonne
+l'étape à son entrée dans l'historique et qui <strong>rend</strong> l'abonnement à sa sortie, exactement là où
+il appelle déjà <code>auDepartEcran()</code>.</p>
+<p>Le repère est la <strong>vue</strong>, pas l'étape : <code>actualiserLibelleCourant</code> remplace une étape par sa
+jumelle relibellée sans que l'écran ait bougé. La pose est donc idempotente, et le retrait ne se
+déclenche que si plus aucune étape ne porte cette vue.</p>
 </div>
 <h3 id="convention-de-la-barre-de-statut-resumestatut">Convention de la barre de statut (<code>ResumeStatut</code>)<a class="headerlink" href="#convention-de-la-barre-de-statut-resumestatut" title="Permanent link">&para;</a></h3>
 <p>La barre de statut du chrome se lit en <strong>3 zones</strong>, alimentées par le <code>ResumeStatut</code> de l'écran au

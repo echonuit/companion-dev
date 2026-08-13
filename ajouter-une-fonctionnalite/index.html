@@ -4087,6 +4087,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3580-deux-mecanismes-parce-que-deux-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3580 · Deux mécanismes, parce que ce sont deux questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
         
   
@@ -4095,6 +4123,34 @@
     
   
     3624 · Un fait que rien ne peut faire rougir s'ancre autrement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3651 · Un cycle de vie qu'on peut oublier est mal placé
   
 
     
@@ -5576,6 +5632,17 @@ automatiquement.</p>
 <p>Si votre écran affiche des données qu'un écran ouvert par-dessus peut changer, implémentez
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/RafraichirAuRetour.java"><code>RafraichirAuRetour</code></a>
 sur le controller : le <code>Navigateur</code> le recharge au retour.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Données modifiées pendant qu'on les regarde ?</p>
+<p>C'est une <strong>autre</strong> question, et elle a une autre réponse. Un import, une synchronisation, une
+restauration écrivent sans que l'utilisateur ait quitté l'écran : le retour ne se produit jamais.
+Déclarez alors
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/SuitLaRevision.java"><code>SuitLaRevision</code></a>
+et implémentez <code>rafraichirDepuisLaDonnee()</code>. Le <code>Navigateur</code> s'occupe de l'abonnement et de sa
+restitution, cf. <a href="../patterns/#le-signal-de-mutation-tu-ecris-tu-signales">Patrons › Le signal de mutation</a>.</p>
+<p>Les deux contrats se déclarent <strong>ensemble</strong> : ils ne couvrent pas les mêmes écritures. Et si votre
+écran <strong>écrit</strong>, la règle vaut aussi dans l'autre sens : tu écris, tu signales.</p>
 </div>
 <h3 id="developper-une-feature-derriere-un-flag">Développer une feature derrière un flag<a class="headerlink" href="#developper-une-feature-derriere-un-flag" title="Permanent link">&para;</a></h3>
 <p>Le champ <code>Categorie</code> de <code>fonctionnalite()</code> pilote la <strong>désactivabilité</strong> de la feature (cf.

@@ -4004,6 +4004,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3580-deux-mecanismes-parce-que-deux-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3580 · Deux mécanismes, parce que ce sont deux questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
         
   
@@ -4012,6 +4040,34 @@
     
   
     3624 · Un fait que rien ne peut faire rougir s'ancre autrement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3651 · Un cycle de vie qu'on peut oublier est mal placé
   
 
     
@@ -6924,6 +6980,33 @@ disposition de colonnes ne changent aucun de ces nombres, et les annoncer ferait
 l'<a href="../decisions/3498-la-declaration-porte-sur-les-lectrices/">ADR 3498</a> fait sur les commandes CLI :
 ni le nom, ni le service appelé, ni l'analyse d'appels ne tranchent, et ils se trompent <strong>dans les deux
 sens</strong>.</p>
+<p><strong>Côté lecteur, une méthode.</strong> Un écran qui veut suivre la donnée déclare
+<a href="../navigation/#les-contrats-optionnels-dun-ecran"><code>SuitLaRevision</code></a> et n'a <strong>rien</strong> d'autre à faire :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">SaisonController</span><span class="w"> </span><span class="kd">implements</span><span class="w"> </span><span class="n">RafraichirAuRetour</span><span class="p">,</span><span class="w"> </span><span class="n">SuitLaRevision</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nd">@Override</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">rafraichirDepuisLaDonnee</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">        </span><span class="c1">// ce que l&#39;écran fait déjà pour se recharger</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="p">}</span>
+</code></pre></div>
+<p>Il ne connaît ni <code>RevisionDonnees</code>, ni écouteur, ni <code>addListener</code> : le <code>Navigateur</code> pose l'abonnement
+quand l'étape entre dans l'historique et le <strong>rend</strong> quand elle en sort, au même endroit que
+<a href="../navigation/#les-contrats-optionnels-dun-ecran"><code>AuDepartEcran</code></a>.</p>
+<p>⚠️ <strong>Pourquoi le cycle a quitté les écrans.</strong> Les cinq premiers l'ont porté eux-mêmes : un champ
+<code>ChangeListener</code>, un <code>addListener</code>, un <code>removeListener</code>. Trois lignes, cinq fois, dont <strong>une seule</strong>
+empêchait une fuite : <code>RevisionDonnees</code> est un singleton, un écran ne l'est pas, et un abonnement non
+rendu survit à sa vue. Un cycle de vie qu'on peut oublier est un cycle de vie mal placé. Le
+<code>Navigateur</code> porte déjà celui des quatre autres contrats ; celui-ci l'a rejoint.</p>
+<p>⚠️ <strong>L'abonnement se repère par la VUE, pas par l'étape.</strong> Une étape est un record remplaçable :
+<code>actualiserLibelleCourant</code> (#1213) la remplace par sa jumelle relibellée, un <code>setAll</code> retire puis
+replace l'accueil. Dans les deux cas l'écran n'a pas bougé, et ré-abonner ferait relire la base deux
+fois pour un seul import (<code>NavigateurTest#relibeller_ne_reabonne_pas</code>).</p>
+<p><strong>Les deux mécanismes coexistent, et ce n'est pas une transition inachevée.</strong>
+<a href="../navigation/#les-contrats-optionnels-dun-ecran"><code>RafraichirAuRetour</code></a> couvre les <code>update</code> (un
+verdict, un dépôt, un statut de workflow), que le signal n'annonce <strong>pas</strong> ; le signal couvre les
+<code>insert</code> / <code>delete</code>, que le retour ne voit pas quand ils surviennent sous les yeux de l'utilisateur.
+Les cinq écrans qui rechargent au retour déclarent donc les deux.</p>
 <p><strong>Principes.</strong> <strong>DIP</strong> (le service dépend d'un port, pas de JavaFX) et <strong>Observer</strong> (l'émetteur ignore
 ses lecteurs).</p>
 <hr />

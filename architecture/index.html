@@ -4026,6 +4026,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3580-deux-mecanismes-parce-que-deux-questions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3580 · Deux mécanismes, parce que ce sont deux questions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
         
   
@@ -4034,6 +4062,34 @@
     
   
     3624 · Un fait que rien ne peut faire rougir s'ancre autrement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3651 · Un cycle de vie qu'on peut oublier est mal placé
   
 
     
@@ -5413,7 +5469,11 @@ dépendance, les six règles ArchUnit restent <strong>vertes</strong> et ce test
   <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/EmplacementNavigation.java"><code>EmplacementNavigation</code></a>
   (fil d'Ariane hiérarchique),
   <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/RafraichirAuRetour.java"><code>RafraichirAuRetour</code></a>
-  (recharger ses données quand on y revient).</li>
+  (recharger ses données quand on y revient),
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/AuDepartEcran.java"><code>AuDepartEcran</code></a>
+  (rendre une ressource quand l'écran quitte l'historique : un fichier temporaire, un verrou),
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/SuitLaRevision.java"><code>SuitLaRevision</code></a>
+  (se recharger quand une écriture structurelle est validée, le <code>Navigateur</code> portant l'abonnement).</li>
 </ul>
 <p><strong>Comment une feature en ouvre une autre sans en dépendre</strong> (inversion de dépendance) : le socle
 publie un <strong>contrat</strong> <code>Ouvrir*</code> dans <code>commun.view</code>, la feature cible l'<strong>implémente</strong> via sa classe
