@@ -3969,6 +3969,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3560-tourner-sans-conclure-a-trois-formes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3560 · « Tourner sans conclure » a trois formes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
         
   
@@ -5910,7 +5938,7 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>build</code></td>
 <td>push <code>main</code> + PR</td>
-<td>« Java CI » : <code>./mvnw -B verify -Djacoco.haltOnFailure=true</code> (compilation + tous les tests dont ArchUnit + <strong>seuils de couverture JaCoCo bloquants</strong>)</td>
+<td>« Java CI » : <code>./mvnw -B verify -Djacoco.haltOnFailure=true</code> (compilation + tous les tests dont ArchUnit + <strong>seuils de couverture JaCoCo bloquants</strong> + <strong>hygiène des dépendances</strong>, <code>dependency:analyze-only</code> avec <code>failOnWarning</code>)</td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>

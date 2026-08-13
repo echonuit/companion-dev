@@ -4084,6 +4084,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3560-tourner-sans-conclure-a-trois-formes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3560 · « Tourner sans conclure » a trois formes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
         
   
@@ -6040,6 +6068,11 @@
 <td><a href="3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/">3624</a></td>
 <td>La cloture des suites a trouve trois defauts que l'arsenal de tests ne pouvait pas voir : un fait vrai, une consequence visible, et <strong>aucun dispositif capable de rougir dessus</strong>. #3570 avait retire la pile de la console en promettant qu'elle restait dans un fichier - promesse que rien ne verifiait, dans un dossier qu'aucune commande ne nommait. Les fixtures d'apercu, ecrites en base 1024, publiaient « 432 Mo » la ou leur litteral disait 412 depuis l'ADR 3573. Deux ancrages, a choisir explicitement : un test qui <strong>traverse</strong> (<code>bats</code>, vrai fat-jar) quand le fait est mecanique, une fixture posee dans la base <strong>ou elle sera rendue</strong> quand il est visuel. ⚠️ Retirer un temoin sans verifier le nouveau, c'est deplacer la preuve hors de portee en la croyant conservee</td>
 <td>#3624, cloture de #3559</td>
+</tr>
+<tr>
+<td><a href="3560-tourner-sans-conclure-a-trois-formes/">3560</a></td>
+<td>Le lot visait deux outils ; en les ouvrant, la formule a recouvert <strong>trois</strong> pannes distinctes. <code>dependency:analyze</code> <strong>ne tournait pas du tout</strong> - lie a aucune phase, appele par aucun workflow, alors que ses exclusions avaient ete soigneusement reglees. Les deux issues <strong>concluaient sur une premisse fausse</strong> : <code>archunit-junit5</code> n'etait pas le faux positif suppose, et la « variance faible » de la CI, mesuree sur sept executions, cachait deux runs au DOUBLE de la mediane sur trente. Et le dispositif ecrit pour la seconde est arrive <strong>injugeable</strong> : il allait chercher ses propres donnees, et son verdict n'allait que dans le resume. ⚠️ La garde de dependances bloque aussi en LOCAL, contre le principe du depot : la deplacer sous <code>-Pquality-gate</code> la desactiverait, le job <code>build</code> lancant <code>verify</code> sans ce profil</td>
+<td>#3560, lot 2 de #3518</td>
 </tr>
 <tr>
 <td><a href="3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/">3627</a></td>
