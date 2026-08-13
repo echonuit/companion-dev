@@ -3972,6 +3972,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3627 · Une mesure dit ce qu'elle n'a pas pu lire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3573-les-octets-se-comptent-en-base-1000/" class="md-nav__link">
         
   
@@ -5956,6 +5984,11 @@
 <td><a href="3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/">3624</a></td>
 <td>La cloture des suites a trouve trois defauts que l'arsenal de tests ne pouvait pas voir : un fait vrai, une consequence visible, et <strong>aucun dispositif capable de rougir dessus</strong>. #3570 avait retire la pile de la console en promettant qu'elle restait dans un fichier - promesse que rien ne verifiait, dans un dossier qu'aucune commande ne nommait. Les fixtures d'apercu, ecrites en base 1024, publiaient « 432 Mo » la ou leur litteral disait 412 depuis l'ADR 3573. Deux ancrages, a choisir explicitement : un test qui <strong>traverse</strong> (<code>bats</code>, vrai fat-jar) quand le fait est mecanique, une fixture posee dans la base <strong>ou elle sera rendue</strong> quand il est visuel. ⚠️ Retirer un temoin sans verifier le nouveau, c'est deplacer la preuve hors de portee en la croyant conservee</td>
 <td>#3624, cloture de #3559</td>
+</tr>
+<tr>
+<td><a href="3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/">3627</a></td>
+<td>Le garde d'espace concluait « il y a la place » depuis un <strong>silence</strong> : un fichier illisible pesait comme un fichier vide. ⚠️ Mais le constat de départ était <strong>partiellement faux</strong>, et le sonder l'a montré : un <em>dossier</em> illisible ne se tait pas, <code>Files.walk</code> <strong>lève</strong> - et cette <code>UncheckedIOException</code>, n'étant pas une <code>IOException</code>, traversait le <code>catch</code> de <code>sauvegarderComplet</code>. L'utilisateur lisait « Échec, état incertain » (code 1) sur une opération qui n'avait <strong>rien touché</strong> : c'est un refus (code 2). Une mesure rend donc ce qu'elle a lu <strong>et</strong> ce qu'elle n'a pas pu ouvrir ; l'inventaire l'ignore, le garde refuse en le nommant, <strong>avant</strong> de comparer à la place libre - sinon on envoie libérer des octets pour un problème de droits. Parcours par file explicite, <code>walk</code> interrompant tout au premier dossier interdit. ⚠️ <code>NOFOLLOW_LINKS</code> sur le seul test de dossier : sans lui un lien vers un ancêtre fait tourner le parcours sans fin</td>
+<td>#3627 puis #3634, suites de #3624</td>
 </tr>
 </tbody>
 </table>

@@ -3976,6 +3976,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3627 · Une mesure dit ce qu'elle n'a pas pu lire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3573-les-octets-se-comptent-en-base-1000/" class="md-nav__link">
         
   
@@ -5441,6 +5469,18 @@ nom - et le restaurer empruntait <code>replacerSansManifeste</code>, le chemin d
 la racine, chemins non corrigés. <strong>L'absence de manifeste voulait dire deux choses opposées</strong> : « cette
 sauvegarde est ancienne » et « cette sauvegarde est tronquée ».</p>
 <p>Le marqueur est en <strong>tête</strong> du nom, et pas en suffixe, pour cette raison exacte.</p>
+<h3 id="le-garde-refuse-aussi-quand-il-na-pas-pu-tout-voir">Le garde refuse aussi quand il n'a pas pu tout voir<a class="headerlink" href="#le-garde-refuse-aussi-quand-il-na-pas-pu-tout-voir" title="Permanent link">&para;</a></h3>
+<p>Le garde pèse les racines de session avec <code>ArborescenceFichiers.peser</code>, qui rend <strong>ce qu'elle a lu et
+ce qu'elle n'a pas pu ouvrir</strong>. Si la liste des illisibles n'est pas vide, il refuse <strong>avant</strong> de
+comparer à la place libre, en nommant le dossier et sa cause système.</p>
+<p>⚠️ Le refus tombe avant la comparaison, pas après : annoncer « il manque N Go » sur une mesure
+incomplète enverrait l'utilisateur libérer de l'espace pour un problème de <strong>droits</strong>.</p>
+<p>La même pesée sert <code>InventaireSauvegardes</code>, qui <strong>ignore</strong> les illisibles et affiche ce qu'il sait :
+un affichage n'a pas à se briser parce qu'un dossier a résisté. Un geste, deux besoins, et c'est
+l'appelant qui tranche - comme <code>supprimerRecursivement</code> et <code>effacerAuMieux</code>
+(<a href="../decisions/3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/">ADR 3627</a>, <a href="../decisions/3574-un-effacement-dit-son-contrat-dans-son-nom/">ADR 3574</a>).</p>
+<p>⚠️ Le parcours est une <strong>file explicite</strong> et non <code>Files.walk</code> : <code>walk</code> lève sur le premier dossier
+interdit et interrompt tout, alors qu'on veut mesurer le reste et rapporter ce qui a résisté.</p>
 <h2 id="une-restauration-complete-est-verifiee-puis-basculee">Une restauration complète est vérifiée, puis basculée<a class="headerlink" href="#une-restauration-complete-est-verifiee-puis-basculee" title="Permanent link">&para;</a></h2>
 <p><code>ServiceSauvegarde.restaurerComplet</code> s'appuie sur le manifeste pour tenir la promesse en entier
 (#2727), dans cet ordre :</p>
