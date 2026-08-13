@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3157-un-carre-a-un-identifiant-et-une-etiquette/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3661-un-garde-de-ci-porte-ses-propres-cas/">
       
       
-        <link rel="prev" href="../3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas/">
+        <link rel="prev" href="../3560-tourner-sans-conclure-a-trois-formes/">
       
       
-        <link rel="next" href="../3158-une-valeur-memorisee-se-rattrape-par-dimension/">
+        <link rel="next" href="../3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>3157 · Un carré a un identifiant et une étiquette - VigieChiro Companion · Doc développeur</title>
+        <title>3661 · Un garde de CI porte ses propres cas - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-3157-un-carre-a-un-identifiant-et-une-etiquette-pas-deux-dimensions" class="md-skip">
+        <a href="#adr-3661-un-garde-de-ci-porte-ses-propres-cas-et-rien-dautre-ne-les-porte" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3157 · Un carré a un identifiant et une étiquette
+              3661 · Un garde de CI porte ses propres cas
             
           </span>
         </div>
@@ -3016,37 +3016,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3157 · Un carré a un identifiant et une étiquette
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../3157-un-carre-a-un-identifiant-et-une-etiquette/" class="md-nav__link">
         
   
   
@@ -3062,70 +3035,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4087,10 +3996,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3661-un-garde-de-ci-porte-ses-propres-cas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3661 · Un garde de CI porte ses propres cas
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4106,6 +4042,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-ce-nest-pas-quune-question-de-rangement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pourquoi ce n'est pas qu'une question de rangement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-linjection-devient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que l'injection devient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-qui-a-ete-ecarte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui a été écarté
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5272,6 +5300,45 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pourquoi-ce-nest-pas-quune-question-de-rangement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pourquoi ce n'est pas qu'une question de rangement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-linjection-devient" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que l'injection devient
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-qui-a-ete-ecarte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui a été écarté
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5279,17 +5346,6 @@
     <span class="md-ellipsis">
       
         Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
       
     </span>
   </a>
@@ -5313,7 +5369,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3157-un-carre-a-un-identifiant-et-une-etiquette.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3661-un-garde-de-ci-porte-ses-propres-cas.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5322,77 +5378,74 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3157-un-carre-a-un-identifiant-et-une-etiquette.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3661-un-garde-de-ci-porte-ses-propres-cas.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-3157-un-carre-a-un-identifiant-et-une-etiquette-pas-deux-dimensions">ADR 3157 - Un carré a un <strong>identifiant</strong> et une <strong>étiquette</strong>, pas deux dimensions<a class="headerlink" href="#adr-3157-un-carre-a-un-identifiant-et-une-etiquette-pas-deux-dimensions" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3661-un-garde-de-ci-porte-ses-propres-cas-et-rien-dautre-ne-les-porte">ADR 3661 - Un garde de CI porte ses propres cas, et rien d'autre ne les porte<a class="headerlink" href="#adr-3661-un-garde-de-ci-porte-ses-propres-cas-et-rien-dautre-ne-les-porte" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - 2026-08-04</li>
-<li><strong>Chantier</strong> : #3157, lot 1 du chantier #3151</li>
-<li><strong>Vérification</strong> : certaine - <code>CritereLieuTest#un_carre_une_entree_deux_etiquettes</code></li>
+<li><strong>Statut</strong> : Accepté - 2026-08-13</li>
+<li><strong>Chantier</strong> : #3661, suites des lots 1 et 2 (#3664)</li>
+<li><strong>Amende</strong> : <a href="../3560-tourner-sans-conclure-a-trois-formes/">ADR 3560</a></li>
+<li><strong>Vérification</strong> : certaine - <code>.github/scripts/mesure-duree-portail.sh</code></li>
 </ul>
-<blockquote>
-<p>Le corollaire - deux carrés homonymes restent distincts - est tenu par
-<code>CritereLieuTest#deux_carres_homonymes_restent_distincts</code> : le garde des ADR n'accepte qu'une
-référence, la décision en a deux.</p>
-</blockquote>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Le critère « Lieu » offrait quatre groupes sur la revue audio : <strong>Communes</strong>, <strong>Carrés</strong>, <strong>Points</strong>,
-<strong>Sites</strong>. On les lisait comme quatre dimensions géographiques, et l'écart entre écrans - trois ici,
-quatre là, et pas les mêmes trois - passait pour une question d'ergonomie à trancher (#3145).</p>
-<p>Ce n'en était pas une. <code>monitoring_site</code> porte <code>square_number</code> <strong>et</strong> <code>friendly_name</code> sur la <strong>même
-ligne</strong> : les projections les lisent côte à côte (<code>ms.square_number AS carre, ms.friendly_name AS
-nom_site</code>). Cocher « 640380 » et cocher « Vallon » retenaient donc exactement le même ensemble, sans
-que rien à l'écran ne dise que ce sont deux noms d'un seul objet.</p>
-<p>Deux conséquences, l'une visible et l'autre latente :</p>
-<ul>
-<li>le menu s'allongeait d'une entrée par carré, pour un pouvoir de filtrage nul ;</li>
-<li><code>friendly_name</code> n'a <strong>aucune contrainte d'unicité</strong> (V01) ni garde à la saisie. Deux carrés nommés
-  « Vallon » donnaient une entrée qui en désignait deux, sans moyen de choisir - le défaut que
-  <a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/2992">ADR 2992</a> avait corrigé pour les
-  points, jamais traité à ce niveau.</li>
-</ul>
+<p>Le dépôt tient depuis #2947 une discipline que <strong>dix scripts sur onze</strong> appliquent : chaque garde de
+CI porte un <code>--auto-test</code> dans son propre fichier, et <code>lint.yml</code> les lance tous. La raison est écrite
+dans <code>verifie-titre-pr.sh</code> :</p>
+<blockquote>
+<p>Ce script est lui-même un garde, et un garde qui cesse de détecter reste vert.</p>
+</blockquote>
+<p>Les cas sont substantiels : onze pour le titre de PR, treize pour le secret winget, sept pour les
+renvois de workflows, et plusieurs portent des <strong>contrôles négatifs</strong> - la règle doit aussi refuser de
+refuser.</p>
+<p>Le onzième script, <code>mesure-duree-portail.sh</code>, est arrivé avec [ADR 3560] <strong>hors de cette
+discipline</strong> : ses cas vivaient dans <code>src/test/bats/scripts-ci.bats</code>, un fichier créé pour lui.</p>
+<p>⚠️ <strong>La cause est un relevé faux, et il était de moi.</strong> L'issue #3661 affirmait au départ que « onze
+scripts rendent des jugements, un seul est éprouvé ». J'avais cherché les tests dans <code>src/test</code> et
+dans les chemins cités par les workflows ; je ne pouvais pas y voir une discipline qui vit <strong>à
+l'intérieur</strong> de chaque script. Un <code>grep</code> qui ne trouve rien est une hypothèse, jamais un constat.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>Le domaine a trois niveaux géographiques</strong> : la <strong>commune</strong> (dérivée du GPS du point,
-<a href="../2791-la-commune-se-derive-du-gps-et-s-attache-au-point/">ADR 2791</a>), le <strong>carré</strong> et le <strong>point
-d'écoute</strong>.</p>
-<p>Le carré s'offre dans <strong>une seule entrée</strong>, portant ses deux étiquettes quand la seconde existe :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Carrés
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  640380 · Vallon      &lt;- le carré nommé
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  840962               &lt;- le carré que personne n&#39;a nommé
-</code></pre></div>
-<p>Le <strong>préfixe identifie</strong>, le suffixe ne fait que nommer. D'où l'asymétrie de <code>LieuQualifie.qualifier</code> :
-sans suffixe on garde le préfixe, sans préfixe on ne rend rien. Un nom convivial orphelin ne désigne
-aucun lieu.</p>
+<p><strong>Les cas d'un garde de CI vivent dans le garde.</strong> <code>mesure-duree-portail.sh</code> porte désormais son
+<code>--auto-test</code>, lancé par <code>lint.yml</code> à côté des dix autres ; <code>scripts-ci.bats</code> disparaît.</p>
+<h3 id="pourquoi-ce-nest-pas-quune-question-de-rangement">Pourquoi ce n'est pas qu'une question de rangement<a class="headerlink" href="#pourquoi-ce-nest-pas-quune-question-de-rangement" title="Permanent link">&para;</a></h3>
+<p>L'exception avait trois conséquences mesurables, toutes annulées ici :</p>
+<ul>
+<li>ses cas ne tournaient que dans le job <code>paquet</code>, qui <strong>attend l'assemblage d'un fat-jar de 80 Mo</strong>
+  dont un test de shell n'a aucun besoin - les dix autres ne construisent rien ;</li>
+<li>elle a rendu <strong>fausse</strong> une phrase de <code>dev-docs/ci-cd-release.md</code> (« les tests bats passent sur ce
+  seul artefact »), qu'il a fallu recadrer pour l'accueillir ;</li>
+<li>le compteur <code>&lt;!--inv:tests-bats--&gt;</code> comptait des cas qui ne sont pas des E2E de CLI, brouillant ce
+  qu'il mesure.</li>
+</ul>
+<p>Une seconde façon de faire ne coûte pas seulement sa duplication : elle <strong>déplace ce qui l'entoure</strong>
+pour lui faire de la place, et chaque déplacement se relit ensuite comme une règle.</p>
+<h3 id="ce-que-linjection-devient">Ce que l'injection devient<a class="headerlink" href="#ce-que-linjection-devient" title="Permanent link">&para;</a></h3>
+<p>La couture de l'ADR 3560 <strong>reste</strong> : la série se pose par <code>SERIE_DUREES_FICHIER</code>. C'est elle qui rend
+les cas possibles, quel que soit le harnais qui les porte - et c'est la moitié de la décision qui
+valait, l'autre étant le choix du harnais, qui était faux.</p>
+<h3 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h3>
+<p><strong>Garder <code>bats</code> et l'exécuter dans <code>lint.yml</code>.</strong> Techniquement suffisant : cela réglait le fat-jar
+inutile, pas la seconde façon de faire. Deux harnais pour onze scripts obligent, à chaque garde
+suivant, à trancher lequel employer - et ce genre d'arbitrage se tranche par recopie du voisin le plus
+proche, ce que l'ADR 3574 a déjà payé sur les effacements.</p>
+<p><strong>Convertir les dix autres vers <code>bats</code>.</strong> L'inverse, pour la même raison, avec dix fois le coût et
+aucun gain : leur discipline actuelle fonctionne et est éprouvée.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>#3145 devient sans objet.</strong> La question « faut-il ajouter le site à Carte &amp; passages ? » n'a pas
-  reçu un « non » : il n'y a plus de dimension « site », et le niveau qu'elle désignait était déjà
-  offert partout. L'écart entre écrans se réduit au seul point d'Espèces &amp; observations, dont la cause
-  est une colonne non remontée (#3161).</li>
-<li><strong>L'homonymie tombe</strong> sans règle supplémentaire : qualifiés par leur numéro, deux « Vallon » se
-  distinguent.</li>
-<li><strong>Les vues mémorisées changent de contenu</strong> : ce qui se persiste est l'étiquette affichée. D'où
-  <a href="../3158-une-valeur-memorisee-se-rattrape-par-dimension/">ADR 3158</a>, sans laquelle toute vue portant
-  un carré se rejouerait en filtrant moins qu'annoncé.</li>
-<li><strong>La ligne de commande ne change pas de comportement</strong>, sa correspondance étant partielle :
-  <code>--lieu 640380</code> et <code>--lieu vallon</code> retenaient déjà le même carré. Ce qu'elle <strong>dit</strong> s'aligne en
-  revanche (#3159), pour que la valeur nommée par un refus se recopie telle quelle.</li>
-<li>L'écriture qualifiée a dû remonter en <code>commun.model.LieuQualifie</code> : née dans la vue, elle est lue par
-  la CLI, qui est un modèle.</li>
-</ul>
-<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Ajouter « Sites » partout</strong> (la réponse « oui » à #3145). Uniformise l'apparence en gardant le
-  doublon : chaque carré aurait deux entrées sur les quatre écrans, et l'homonymie resterait entière.</li>
-<li><strong>Retirer « Sites » partout</strong>, numéro seul. Le plus court des menus, mais l'utilisateur qui pense ses
-  carrés par le nom qu'il leur a donné perd ce point d'entrée - et ce nom existe précisément pour cela.</li>
-<li><strong>Laisser l'écart et l'écrire.</strong> C'était l'état de départ ; il rendait la géométrie du critère
-  impossible à justifier autrement que par l'histoire de chaque écran.</li>
+<li><code>lint.yml</code> gagne une étape, <code>src/test/bats/</code> perd un fichier, et le compteur <code>bats</code> revient à 100.</li>
+<li>L'ADR 3560 annonçait <code>scripts-ci.bats</code> en vérification : ce fichier n'existe plus, et la garde
+  <code>DocumentationAJourTest</code> l'a signalé. Sa ligne <code>**Vérification**</code> <strong>est repointée</strong> vers le script
+  lui-même : une ADR est immuable dans son raisonnement, pas dans le pointeur vers le dispositif qui
+  la tient - et laisser ce pointeur cassé serait précisément « un rapport qu'aucun script n'alimente »,
+  ce que la garde reproche. C'est elle qui a rendu cette ADR nécessaire, plutôt qu'un pointeur corrigé
+  en silence.</li>
+<li>⚠️ <strong>Deux constats restent ouverts</strong>, et ils ne sont pas traités ici : <code>construit-appimage.sh</code> est le
+  seul script sans aucun cas, et <strong>quatre des dix auto-tests n'ont pas de contrôle négatif visible</strong>.
+  Un garde qui n'accepte jamais rien passe ses tests d'acceptation aussi bien qu'un garde juste.</li>
 </ul>
 
 
@@ -5429,7 +5482,7 @@ aucun lieu.</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3151 · Un écran n&#39;offre pas ce qu&#39;il ne montre pas">
+          <a href="../3560-tourner-sans-conclure-a-trois-formes/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3560 · « Tourner sans conclure » a trois formes">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5439,20 +5492,20 @@ aucun lieu.</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                3151 · Un écran n'offre pas ce qu'il ne montre pas
+                3560 · « Tourner sans conclure » a trois formes
               </div>
             </div>
           </a>
         
         
           
-          <a href="../3158-une-valeur-memorisee-se-rattrape-par-dimension/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3158 · Une valeur mémorisée se rattrape par dimension">
+          <a href="../3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3651 · Un cycle de vie qu&#39;on peut oublier est mal placé">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                3158 · Une valeur mémorisée se rattrape par dimension
+                3651 · Un cycle de vie qu'on peut oublier est mal placé
               </div>
             </div>
             <div class="md-footer__button md-icon">

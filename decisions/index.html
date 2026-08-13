@@ -4112,6 +4112,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3661-un-garde-de-ci-porte-ses-propres-cas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3661 · Un garde de CI porte ses propres cas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
         
   
@@ -6073,6 +6101,11 @@
 <td><a href="3560-tourner-sans-conclure-a-trois-formes/">3560</a></td>
 <td>Le lot visait deux outils ; en les ouvrant, la formule a recouvert <strong>trois</strong> pannes distinctes. <code>dependency:analyze</code> <strong>ne tournait pas du tout</strong> - lie a aucune phase, appele par aucun workflow, alors que ses exclusions avaient ete soigneusement reglees. Les deux issues <strong>concluaient sur une premisse fausse</strong> : <code>archunit-junit5</code> n'etait pas le faux positif suppose, et la « variance faible » de la CI, mesuree sur sept executions, cachait deux runs au DOUBLE de la mediane sur trente. Et le dispositif ecrit pour la seconde est arrive <strong>injugeable</strong> : il allait chercher ses propres donnees, et son verdict n'allait que dans le resume. ⚠️ La garde de dependances bloque aussi en LOCAL, contre le principe du depot : la deplacer sous <code>-Pquality-gate</code> la desactiverait, le job <code>build</code> lancant <code>verify</code> sans ce profil</td>
 <td>#3560, lot 2 de #3518</td>
+</tr>
+<tr>
+<td><a href="3661-un-garde-de-ci-porte-ses-propres-cas/">3661</a></td>
+<td>Dix scripts de CI sur onze portent un <code>--auto-test</code> lance par <code>lint.yml</code> - une discipline du depot depuis #2947, dont les cas vont jusqu'aux <strong>controles negatifs</strong>. Le onzieme, arrive avec l'ADR 3560, avait ses cas dans un fichier <code>bats</code> a part. ⚠️ La cause etait un releve FAUX, et de moi : chercher les tests dans <code>src/test</code> ne pouvait pas voir une discipline qui vit A L'INTERIEUR de chaque script. L'exception coutait plus que sa duplication - elle faisait attendre un fat-jar de 80 Mo a des tests de shell, avait rendu fausse une phrase de la doc, et brouillait ce que compte la balise <code>tests-bats</code>. Une seconde facon de faire DEPLACE ce qui l'entoure pour lui faire de la place</td>
+<td>#3661, suites de #3664</td>
 </tr>
 <tr>
 <td><a href="3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/">3627</a></td>
