@@ -5982,7 +5982,7 @@ introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindr
 </thead>
 <tbody>
 <tr>
-<td>« Java CI » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a>), tests <strong>+ couverture</strong></td>
+<td>« Java CI » (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a>), tests <strong>+ couverture</strong> <strong>+ hygiène des dépendances</strong></td>
 <td><code>./mvnw -B verify -Djacoco.haltOnFailure=true</code></td>
 <td><strong>Oui</strong></td>
 </tr>
@@ -5998,6 +5998,19 @@ introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindr
 </tr>
 </tbody>
 </table>
+<p>L'<strong>hygiène des dépendances</strong> est verrouillée dans la première ligne : <code>dependency:analyze-only</code> est
+lié à la phase <code>verify</code> et <strong>échoue sur écart</strong> (<code>failOnWarning</code>). Jusqu'à #3515 il n'était lié à
+aucune phase et n'apparaissait dans aucun workflow - il ne tournait que si quelqu'un le tapait, et
+signalait cinq écarts en terminant en succès.</p>
+<p>Deux familles d'écarts, deux gestes opposés : <strong>utilisée sans être déclarée</strong> veut dire qu'on compile
+grâce à une transitive, qui disparaîtra le jour où son porteur montera de version - la déclarer ;
+<strong>déclarée sans être utilisée</strong> veut dire qu'on porte un artefact pour rien - le retirer, après avoir
+vérifié que ce n'est pas un faux positif de l'analyseur, qui lit le bytecode et ne voit donc ni les
+liaisons résolues à l'exécution ni les artefacts résolus avec un classifieur de plateforme. Les
+exclusions du <code>pom.xml</code> nomment chacune sa raison ; une exclusion sans motif est le même bruit sous un
+autre nom.</p>
+<p>⚠️ Ne pas mêler une <strong>déclaration</strong> à une <strong>montée de version</strong> : les deux dans la même PR rendent un
+éventuel rouge illisible.</p>
 <p><code>lint.yml</code> vérifie aussi la <strong>complétude des captures</strong> (cf. <a href="../captures/">Captures</a>). Une PR doit
 passer <strong>les deux</strong> workflows (cf. <a href="../ci-cd-release/">CI/CD et release</a>).</p>
 <p>Deux invariants sont en plus <strong>verrouillés</strong> : un test fige le <strong>plan d'exécution</strong> des requêtes O5
