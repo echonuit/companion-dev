@@ -4000,6 +4000,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3624 · Un fait que rien ne peut faire rougir s'ancre autrement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5923,6 +5951,11 @@
 <td><a href="3575-le-journal-fait-exception-et-le-cliquet-ne-recopie-rien/">3575</a></td>
 <td>Deux pieces de l'ADR 3498 ne tenaient pas ce qu'elles promettaient. Sa <strong>definition</strong> disait « ni les dossiers du dossier de travail », alors que <code>Cli.main</code> amorce la journalisation avant tout : les vingt-trois lectrices ecrivent <code>&lt;workspace&gt;/logs</code>. Elle etait donc contredite par les commandes qu'elle decrivait - l'exception est desormais <strong>nommee</strong>, et elle est voulue : un incident doit laisser une trace meme sur une lecture. Et son <strong>cliquet</strong> recopiait 44 noms que ses deux assertions rendaient exactement derivables ; il devient un compteur, ce qui force autant puisque c'est le MESSAGE qui decide, pas la liste. ⚠️ Recul assume : le message ne designe plus l'intruse, il affiche les quarante-cinq</td>
 <td>#3575, suite de #3559</td>
+</tr>
+<tr>
+<td><a href="3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/">3624</a></td>
+<td>La cloture des suites a trouve trois defauts que l'arsenal de tests ne pouvait pas voir : un fait vrai, une consequence visible, et <strong>aucun dispositif capable de rougir dessus</strong>. #3570 avait retire la pile de la console en promettant qu'elle restait dans un fichier - promesse que rien ne verifiait, dans un dossier qu'aucune commande ne nommait. Les fixtures d'apercu, ecrites en base 1024, publiaient « 432 Mo » la ou leur litteral disait 412 depuis l'ADR 3573. Deux ancrages, a choisir explicitement : un test qui <strong>traverse</strong> (<code>bats</code>, vrai fat-jar) quand le fait est mecanique, une fixture posee dans la base <strong>ou elle sera rendue</strong> quand il est visuel. ⚠️ Retirer un temoin sans verifier le nouveau, c'est deplacer la preuve hors de portee en la croyant conservee</td>
+<td>#3624, cloture de #3559</td>
 </tr>
 </tbody>
 </table>

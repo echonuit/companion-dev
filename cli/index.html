@@ -3885,6 +3885,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3624 · Un fait que rien ne peut faire rougir s'ancre autrement
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5633,7 +5661,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>emplacements</code></td>
 <td><code>[--definir-travail &lt;dir&gt;] [--definir-base &lt;dir&gt;] [--reinitialiser] [--json]</code></td>
 <td>#1038</td>
-<td>Parité CLI de l'onglet « Emplacements » (<a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>) : <code>ServiceEmplacements</code>. Sans option, <strong>affiche</strong> où vivent le dossier de travail et la base (et leurs défauts). <code>--definir-*</code> <strong>sonde</strong> chaque dossier (un fichier ou un dossier non inscriptible est refusé, code <code>2</code> : rien n'est écrit) puis <strong>écrit</strong> le choix ; <code>--reinitialiser</code> l'efface. Ne déplace <strong>rien</strong> : change le pointeur lu au prochain démarrage, pas les données - une base pointée vers un dossier vide démarre neuve. <code>--reinitialiser</code> et <code>--definir-*</code> sont exclusifs (code <code>2</code>)</td>
+<td>Parité CLI de l'onglet « Emplacements » (<a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/">ADR 1038</a>) : <code>ServiceEmplacements</code>. Sans option, <strong>affiche</strong> où vivent le dossier de travail, la base et les <strong>journaux</strong> (et leurs défauts). Les journaux y figurent parce que la CLI n'imprime plus la pile d'un incident : le détail n'existe qu'une fois, dans ce dossier, et l'IHM est seule à savoir l'ouvrir (#3624). <code>--definir-*</code> <strong>sonde</strong> chaque dossier (un fichier ou un dossier non inscriptible est refusé, code <code>2</code> : rien n'est écrit) puis <strong>écrit</strong> le choix ; <code>--reinitialiser</code> l'efface. Ne déplace <strong>rien</strong> : change le pointeur lu au prochain démarrage, pas les données - une base pointée vers un dossier vide démarre neuve. <code>--reinitialiser</code> et <code>--definir-*</code> sont exclusifs (code <code>2</code>)</td>
 </tr>
 <tr>
 <td><code>--help</code> / <code>-h</code>, <code>--version</code> / <code>-V</code>, ou aucun argument</td>
@@ -5705,6 +5733,10 @@ commande crée et écrit <code>&lt;dossier de travail&gt;/logs</code> - les lect
 doit laisser une trace même sur une commande qui ne fait que lire, et deux processus qui écrivent
 chacun ses lignes dans un journal ne se corrompent pas, là où deux processus qui écrivent la même base
 le feraient (#3575).</p>
+<div class="highlight"><pre><span></span><code>C&#39;est aussi pourquoi `emplacements` **nomme** ce dossier : la trace retirée de la console doit
+rester trouvable sans le deviner. `cli.bats` le vérifie des deux bouts - la pile est dans le
+fichier, et la commande désigne le dossier réellement écrit.
+</code></pre></div>
 <p>⚠️ La migration du schéma prend le verrou de son côté : une commande de lecture sur une base à mettre
 à jour peut donc être refusée, et c'est voulu - mettre à jour le schéma est une écriture.</p>
 <p><code>ClassementLectureEcritureTest</code> exige que <strong>chaque</strong> commande soit classée : elle porte le marqueur,
