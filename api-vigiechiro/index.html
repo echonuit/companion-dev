@@ -6455,12 +6455,42 @@ régénère le CSV côté serveur ; inutile ici, le pipeline le produit déjà a
   <code>PUT</code> S3 <code>application/zip</code>, finalisation : <strong>verte</strong>. Un rouge sur cette probe veut donc dire que <strong>le
   mode de dépôt par défaut est cassé</strong>, et non, comme son libellé le laissait croire, qu'il faudrait
   revenir au WAV.</li>
-<li><strong>PATCH <code>/sites/{id}</code></strong> : <strong>HTTP 403</strong> pour un observateur → le <strong>push point→site est abandonné</strong> ;
-  le pull (<code>RapprochementSites</code>) reste la seule direction de synchronisation des sites : exécuté à la
-  connexion, et rejouable <strong>à la demande</strong> depuis M-Sites (« Récupérer depuis VigieChiro », #1045,
-  passerelle <code>SynchronisationSites</code> activée par <code>OptionalBinder</code>).</li>
 <li>
-<p><strong>Aller-retour d'écriture (#1862)</strong> : <strong>quatre verdicts confirmés en réel</strong> (exécutée le 2026-07-18 sur
+<p><strong>PATCH <code>/sites/{id}</code></strong> : <strong>HTTP 403</strong> pour un observateur. ⚠️ <strong>Ce verdict était exact et la conclusion
+  qu'on en tirait était fausse</strong> (#3694). Il en avait été déduit que le « push point→site » était
+  impossible ; la sonde éprouvait simplement <strong>la mauvaise route</strong>. Lecture de la source
+  (<code>vigiechiro/resources/sites.py</code>) :</p>
+<table>
+<thead>
+<tr>
+<th>Route</th>
+<th>Politique d'accès</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PATCH /sites/{id}</code></td>
+<td><code>_check_edit_acess</code> : <strong>propriétaire non verrouillé</strong>, ou administrateur. Sinon 403</td>
+</tr>
+<tr>
+<td><strong><code>PUT /sites/{id}/localites</code></strong></td>
+<td>propriétaire non verrouillé, administrateur, <strong>ou non-propriétaire validé sur le protocole du site</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Le portail passe par la <strong>seconde</strong>, et c'est par elle qu'un point a pu être créé sur un carré
+appartenant à un autre observateur (<code>Z41</code> sur 130711, le 2026-07-04, une semaine <strong>avant</strong> que la
+sonde ne rende son 403).</p>
+<p>⚠️ <strong>Elle remplace la liste entière</strong> : <code>mongo_update = {'$set': {'localites': payload['localites']}}</code>.
+Envoyer le seul point neuf <strong>efface tous les autres</strong> - 41 localités sur ce carré, sur la donnée d'un
+tiers. Même forme que le <code>PATCH</code> de <code>configuration</code> d'une participation (#1844) : on part du distant,
+on y ajoute, on renvoie l'ensemble.</p>
+<p>Le schéma d'une localité : <code>nom</code> (<strong>requis</strong>, unique dans la liste), <code>coordonnee</code>, <code>geometries</code>
+(<code>GeometryCollection</code>, coordonnées en <strong><code>[lat, lon]</code></strong>), <code>representatif</code>, <code>habitats</code>.</p>
+<p>Le pull (<code>RapprochementSites</code>) reste la direction <strong>implémentée</strong> : exécuté à la connexion, et
+rejouable <strong>à la demande</strong> depuis M-Sites (« Récupérer depuis VigieChiro », #1045, passerelle
+<code>SynchronisationSites</code> activée par <code>OptionalBinder</code>).
+- <strong>Aller-retour d'écriture (#1862)</strong> : <strong>quatre verdicts confirmés en réel</strong> (exécutée le 2026-07-18 sur
   la participation de rebut <code>6a50f790…</code>, quatre probes vertes).</p>
 <table>
 <thead>
