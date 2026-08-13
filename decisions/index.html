@@ -4140,6 +4140,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3664-un-releve-qui-n-a-pas-ouvert-les-fichiers-est-une-hypothese/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3664 · Un relevé qui n'a pas ouvert les fichiers est une hypothèse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
         
   
@@ -6106,6 +6134,11 @@
 <td><a href="3661-un-garde-de-ci-porte-ses-propres-cas/">3661</a></td>
 <td>Dix scripts de CI sur onze portent un <code>--auto-test</code> lance par <code>lint.yml</code> - une discipline du depot depuis #2947, dont les cas vont jusqu'aux <strong>controles negatifs</strong>. Le onzieme, arrive avec l'ADR 3560, avait ses cas dans un fichier <code>bats</code> a part. ⚠️ La cause etait un releve FAUX, et de moi : chercher les tests dans <code>src/test</code> ne pouvait pas voir une discipline qui vit A L'INTERIEUR de chaque script. L'exception coutait plus que sa duplication - elle faisait attendre un fat-jar de 80 Mo a des tests de shell, avait rendu fausse une phrase de la doc, et brouillait ce que compte la balise <code>tests-bats</code>. Une seconde facon de faire DEPLACE ce qui l'entoure pour lui faire de la place</td>
 <td>#3661, suites de #3664</td>
+</tr>
+<tr>
+<td><a href="3664-un-releve-qui-n-a-pas-ouvert-les-fichiers-est-une-hypothese/">3664</a></td>
+<td>Sur les trois suites des lots 1 et 2, <strong>deux portaient une premisse fausse</strong> - et avec les deux constats du lot 2 et le releve initial de #3627, cela fait <strong>cinq sur cinq</strong> le meme jour. #3632 annoncait trois sites, il y en avait neuf ; #3661 affirmait qu'un seul script de CI etait eprouve quand <strong>dix sur onze</strong> portent un <code>--auto-test</code> depuis #2947. Un <code>grep</code> qui ne trouve rien est une hypothese, jamais un constat. ⚠️ Ce n'est pas de la prudence : rejouer le releve a change le DISPOSITIF quatre fois sur cinq. Et ce qui a mordu, ce sont des dispositifs - cliquet, mutation, sonde -, pas une relecture : ecarte donc l'ajout d'une case au cycle, qui se coche sans se faire</td>
+<td>#3664, suites de #3518</td>
 </tr>
 <tr>
 <td><a href="3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/">3627</a></td>
