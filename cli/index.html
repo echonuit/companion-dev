@@ -5037,6 +5037,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#la-couleur-est-choisie-pas-deduite-3738" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La couleur est choisie, pas déduite (#3738)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#socle-registre-de-commandes-picocli-614" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5373,6 +5384,17 @@
   
     <nav class="md-nav" aria-label="Les sous-commandes">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-couleur-est-choisie-pas-deduite-3738" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La couleur est choisie, pas déduite (#3738)
+      
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#socle-registre-de-commandes-picocli-614" class="md-nav__link">
@@ -5895,6 +5917,17 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 </tbody>
 </table>
+<h3 id="la-couleur-est-choisie-pas-deduite-3738">La couleur est choisie, pas déduite (#3738)<a class="headerlink" href="#la-couleur-est-choisie-pas-deduite-3738" title="Permanent link">&para;</a></h3>
+<p><code>Cli</code> pose explicitement le mode ANSI à la construction du <code>CommandLine</code>. Sans cela, picocli applique
+son heuristique <code>AUTO</code>, <strong>qui ne décide pas la même chose partout</strong> : la première exécution de la suite
+sous Windows a rendu une aide colorisée là où Linux la rend nue - <code>Usage: ESC[1mvigiechiro…</code>.</p>
+<p>La règle : de la couleur pour un humain devant un terminal (<code>System.console() != null</code>), <strong>jamais</strong>
+dans un tuyau, un fichier ou un journal de CI ; et <a href="https://no-color.org"><code>NO_COLOR</code></a> l'emporte
+toujours, dès qu'il est présent et non vide - quelle que soit sa valeur.</p>
+<p>⚠️ La décision vit dans <code>CouleurCli</code>, sur des <strong>entrées fournies</strong> plutôt que lues du système : la
+console et l'environnement d'une JVM en cours ne se manipulent pas de façon portable, et c'est
+précisément cette non-portabilité qui avait créé le défaut. <code>CliTest</code> garde par ailleurs l'invariant
+qui compte - une sortie redirigée ne porte <strong>aucun</strong> caractère d'échappement.</p>
 <h3 id="socle-registre-de-commandes-picocli-614">Socle : registre de commandes picocli (#614)<a class="headerlink" href="#socle-registre-de-commandes-picocli-614" title="Permanent link">&para;</a></h3>
 <p>Le CLI repose sur <strong><a href="https://picocli.info">picocli</a> 4.7.7</strong> : chaque commande est une classe annotée
 <code>@Command</code> de <code>cli.commande</code> (<code>ListerPassages</code>, <code>Importer</code>, <code>ExporterLot</code>, <code>ExporterVu</code>) déclarant son nom,
