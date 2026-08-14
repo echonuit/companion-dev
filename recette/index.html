@@ -4759,6 +4759,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Les scripts de session">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trois-etats-et-couvert-reste-reserve-a-ce-que-la-ci-prouve-3764" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trois états, et « couvert » reste réservé à ce que la CI prouve (#3764)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5506,6 +5523,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Les scripts de session">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trois-etats-et-couvert-reste-reserve-a-ce-que-la-ci-prouve-3764" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trois états, et « couvert » reste réservé à ce que la CI prouve (#3764)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5706,6 +5740,43 @@ c'est re-dérouler la checklist ; ses annotations disent ce qui avait été trou
 <p>Gabarit d'un script : en-tête (écrans propriétaires · features · statut) → objectif → environnement →
 [raccourcis] → <strong>le script</strong> (points numérotés <code>Sxx-NN</code>, groupés par étape) → <strong>verdict par axe</strong> →
 issues produites → renvois et décisions → notes de méthode.</p>
+<h3 id="trois-etats-et-couvert-reste-reserve-a-ce-que-la-ci-prouve-3764">Trois états, et « couvert » reste réservé à ce que la CI prouve (#3764)<a class="headerlink" href="#trois-etats-et-couvert-reste-reserve-a-ce-que-la-ci-prouve-3764" title="Permanent link">&para;</a></h3>
+<p>Une case est dans l'une de <strong>trois</strong> situations. Les réduire à deux fabrique un vert creux :</p>
+<table>
+<thead>
+<tr>
+<th>État</th>
+<th>Qui tranche</th>
+<th>Comment il se déclare</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Asserté</strong></td>
+<td>la CI, et elle rougit quand le logiciel a tort</td>
+<td>un test porte <code>@CasDeRecette("S1-02")</code></td>
+</tr>
+<tr>
+<td><strong>Perceptif</strong></td>
+<td>un humain, en regardant</td>
+<td>la case porte la marque <code>*perceptif*</code>, posée en passe 6</td>
+</tr>
+<tr>
+<td><strong>Non couvert</strong></td>
+<td>personne</td>
+<td>ni l'une, ni l'autre</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ Le deuxième état n'est <strong>pas</strong> une couverture, et c'est tout l'enjeu. Un scénario qui <em>joue</em> un cas
+perceptif le cite comme n'importe quel test - c'est le seul lien vers le script - si bien que sans
+distinction il gonflerait le compte des couverts d'un cas que <strong>personne n'a regardé</strong>. Un tel
+scénario se déclare donc <code>@CasDeRecette("S1-26", jugement = HUMAIN)</code>.</p>
+<p><strong>Les deux sources se tiennent l'une l'autre.</strong> Le script dit ce qu'un cas <em>demande</em>, le code dit ce
+qu'un test <em>prouve</em>, et <code>CorrespondanceRecetteTest</code> les confronte : il rougit sur un cas marqué
+perceptif que du code prétend asserter, comme sur un scénario qui se déclare humain là où le script
+n'a rien marqué. Sans ce recoupement, la marque dériverait comme la prose avait dérivé avant #3728 -
+le script disait « perceptifs » en toutes lettres, et aucune machine ne le lisait.</p>
 <ul>
 <li><a href="sessions/s1-premier-contact/">S1 · Premier contact</a> : accueil, connexion, sites, points.</li>
 <li><a href="sessions/s2-importer/">S2 · Importer une nuit</a> : importation, passage, diagnostic (+ cas dégradés).</li>

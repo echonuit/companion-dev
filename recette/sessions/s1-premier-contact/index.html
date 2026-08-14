@@ -5589,10 +5589,10 @@ distinctes), déclarer un site et un point d'écoute. On valide que le tout prem
 </ul>
 <p><strong>Étape 6 · Ce que la stabilisation a changé au premier contact</strong> (#3424)</p>
 <ul>
-<li><strong>S1-26</strong> · La modale de connexion s'ouvre <strong>sans saut</strong> : la saisie est en place, rien ne se replace après
-  coup. #1373</li>
-<li><strong>S1-27</strong> · Pendant la récupération qui suit « Se connecter », <strong>rien ne se redimensionne</strong> : le contenu ne sort
-  pas avant que le bandeau d'état ait pris sa place.</li>
+<li><strong>S1-26</strong> · <em>perceptif</em> · La modale de connexion s'ouvre <strong>sans saut</strong> : la saisie est en place, rien ne se
+  replace après coup. #1373</li>
+<li><strong>S1-27</strong> · <em>perceptif</em> · Pendant la récupération qui suit « Se connecter », <strong>rien ne se redimensionne</strong> : le
+  contenu ne sort pas avant que le bandeau d'état ait pris sa place.</li>
 <li><strong>S1-28</strong> · Le menu ☰ ne porte <strong>plus</strong> d'entrée « fiche espèce » : la source des fiches vit dans
   <strong>Réglages ▸ Général</strong>, où <a href="../s7-reglages/">S7</a> la déroule. #3433</li>
 <li><strong>S1-29</strong> · Le menu ☰ porte toujours ses autres entrées, et chacune ouvre ce qu'elle annonce.</li>
@@ -5602,6 +5602,11 @@ distinctes), déclarer un site et un point d'écoute. On valide que le tout prem
 Il coûte quelques secondes et couvre la seule façon dont ce retrait pouvait mal tourner.</p>
 <p><strong>S1-26</strong> et <strong>S1-27</strong> sont <strong>perceptifs</strong> : aucun test ne voit un contenu qui se replace, il voit un
 contenu correct une fois posé. C'est précisément ce qui les met ici plutôt qu'en TestFX.</p>
+<p>Cette phrase était vraie, elle était au bon endroit, et <strong>aucune machine ne la lisait</strong> : le garde de
+correspondance rangeait ces deux cas parmi ceux « qu'il reste à couvrir », c'est-à-dire dans la file
+des tests à écrire, alors qu'il n'y a rien à y écrire. La marque <code>*perceptif*</code> en tête de case le dit
+désormais à une machine (#3764) : elle leur donne leur propre bac, et fait rougir le garde si un test
+prétend les asserter.</p>
 </blockquote>
 <h2 id="verdict-par-axe-derniere-passe">Verdict par axe (dernière passe)<a class="headerlink" href="#verdict-par-axe-derniere-passe" title="Permanent link">&para;</a></h2>
 <table>
