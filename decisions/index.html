@@ -4280,6 +4280,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3547-un-binding-declare-ce-qu-il-lit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3547 · Un binding déclare ce qu'il lit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -6253,6 +6281,11 @@
 <td><a href="3668-un-e2e-attend-le-signal-du-callback-pas-le-retour-du-geste/">3668</a></td>
 <td>Un <code>robot.interact(...)</code> (ou un appel direct dans <code>@Start</code>) qui declenche <code>occupation.occuper(...)</code> sur le vrai <code>RacineInjecteur</code> tourne sur le vrai <code>ExecuteurTacheAsynchrone</code>, pas sur l'<code>ExecuteurTacheSynchrone</code> que les tests de vue/ViewModel recoivent par defaut : l'assertion qui suit doit attendre le <strong>signal du callback</strong> (<code>WaitForAsyncUtils.waitFor</code> sur un predicat observable), jamais le seul retour du geste - <code>waitForFxEvents()</code> vide la file du fil FX, il n'attend pas le thread d'arriere-plan qui doit encore la remplir. ⚠️ Defaut non reproductible en local, visible uniquement sous un fuseau CI plus lent, et qui accusait a chaque fois un test sans rapport avec la modification en cours</td>
 <td>#3668, PR #3716/#3722, audit #3717</td>
+</tr>
+<tr>
+<td><a href="3547-un-binding-declare-ce-qu-il-lit/">3547</a></td>
+<td><code>Bindings.createXBinding(calcul, dependances…)</code> ne recalcule que si une <strong>dependance declaree</strong> s'invalide, et rien ne verifie que <code>calcul</code> n'en lit pas d'autres : ni le compilateur, ni PMD, ni un test. Les <strong>63</strong> sites du depot ouverts un par un : 61 complets, 1 inoffensif <strong>par un ordre</strong> (l'ecran charge avant de filtrer, et n'a aucun rechargement), 1 atteignable - la barre de statut de la vue audio, dont <code>reinitialiser()</code> repose la <strong>meme instance constante</strong>, donc zero invalidation mesuree (#3752). Verifier statiquement « lu ⊆ declare » est ecarte : il faudrait suivre les appels depuis la lambda, et une heuristique textuelle echouerait sur les <strong>references de methode</strong>, c'est-a-dire la ou les trois defauts se cachaient. Un <strong>cliquet compte les sites</strong> a la place : il ne verifie aucune declaration, il garantit qu'un nouveau site est vu. ⚠️ L'issue en annoncait 62 ; le 63ᵉ etait arrive <strong>deux jours apres</strong> sa redaction, sans que rien ne le signale</td>
+<td>#3547, lot 3 de #3536</td>
 </tr>
 </tbody>
 </table>
