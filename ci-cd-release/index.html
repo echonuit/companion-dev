@@ -6034,7 +6034,7 @@
 
 
 <h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
-<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->15<!--/inv--> workflows et le processus de
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->16<!--/inv--> workflows et le processus de
 publication.</p>
 <h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
 <table>
@@ -6076,6 +6076,12 @@ publication.</p>
 <td>push <code>main</code> + PR</td>
 <td>Compare la <strong>médiane</strong> des 12 dernières exécutions réussies sur <code>main</code> à celle des 12 d'avant, et <strong>avertit</strong> au-delà de 20 % d'écart. Une CI riche se dégrade par accumulation, jamais d'un coup : chaque ajout coûte trente secondes que personne ne remarque. ⚠️ Deux <strong>médianes</strong>, et non une exécution contre un seuil : sur trente exécutions, deux durent le double des autres, et un butoir aurait rougi sans qu'aucune PR soit fautive (#3508)</td>
 <td>Non - il avertit</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/suite-sous-windows-et-macos.yml">suite-sous-windows-et-macos.yml</a></td>
+<td><strong>manuel</strong></td>
+<td>Lance la suite <strong>entière</strong> sous Windows et macOS et <strong>compte</strong> ce qui échoue, TestFX à part. On ne sait pas ce que la suite y donne : elle n'y a jamais tourné, et 29 classes portent un chemin POSIX en dur. ⚠️ Manuel délibérément - un <code>schedule</code> rougirait dès sa première nuit sur du bruit de fixture probable, et un dispositif qui commence par du bruit devient un onglet qu'on ferme. Le programmer viendra quand le chiffre sera connu (#3526)</td>
+<td>Non - il compte</td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a></td>
