@@ -6543,9 +6543,47 @@ tiers. Même forme que le <code>PATCH</code> de <code>configuration</code> d'une
 on y ajoute, on renvoie l'ensemble.</p>
 <p>Le schéma d'une localité : <code>nom</code> (<strong>requis</strong>, unique dans la liste), <code>coordonnee</code>, <code>geometries</code>
 (<code>GeometryCollection</code>, coordonnées en <strong><code>[lat, lon]</code></strong>), <code>representatif</code>, <code>habitats</code>.</p>
-<p>Le pull (<code>RapprochementSites</code>) reste la direction <strong>implémentée</strong> : exécuté à la connexion, et
-rejouable <strong>à la demande</strong> depuis M-Sites (« Récupérer depuis VigieChiro », #1045, passerelle
-<code>SynchronisationSites</code> activée par <code>OptionalBinder</code>).
+<p>Le pull (<code>RapprochementSites</code>) est exécuté à la connexion, et rejouable <strong>à la demande</strong> depuis
+M-Sites (« Récupérer depuis VigieChiro », #1045, passerelle <code>SynchronisationSites</code> activée par
+<code>OptionalBinder</code>). Le <strong>push</strong> l'est depuis #3458 : <code>PublicationPoint</code>, offert sur la carte du point
+de la fiche site (passerelle <code>PublicationPoint</code> activée par <code>PublicationPointModule</code>).</p>
+<p>⚠️ <strong>Le 403 de cette route n'est pas prédictible depuis Companion</strong>, et c'est ce qui décide de la
+forme de l'action à l'écran. Deux cas y mènent, et rien ne les distingue dans la réponse :</p>
+<table>
+<thead>
+<tr>
+<th>Cas</th>
+<th>Écriture des localités</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Propriétaire, carré <strong>non verrouillé</strong></td>
+<td>autorisée</td>
+</tr>
+<tr>
+<td>Propriétaire, carré <strong>verrouillé</strong></td>
+<td><strong>403</strong></td>
+</tr>
+<tr>
+<td>Non-propriétaire <strong>validé</strong> sur le protocole</td>
+<td>autorisée, <strong>même verrouillé</strong></td>
+</tr>
+<tr>
+<td>Non-propriétaire non validé</td>
+<td><strong>403</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>set_localite</code> refuse donc le propriétaire dès que son carré est verrouillé (<code>tests/test_sites.py</code>
+le dit dans ses propres mots : <em>« Now owner cannot remove localites »</em>), et seul un administrateur
+peut rouvrir un carré verrouillé. <strong><code>StatutPlateforme.VERROUILLE</code> s'inverse ici</strong> : état favorable
+pour déposer une nuit, état refusé pour ajouter un point sur son propre carré.</p>
+<p>On serait tenté d'en faire un garde. <strong>Il ne faut pas</strong> : les liens de site viennent de
+<code>GET /moi/participations</code> et non de <code>/moi/sites</code> (#718, cf. <code>ClientVigieChiro.mesSites</code>), donc un
+carré relié peut appartenir à quelqu'un d'autre, et Companion ne connaît ni le propriétaire, ni la
+validation sur le protocole. Griser sur « verrouillé » bloquerait le participant validé, à qui la
+plateforme dit oui. Le refus est <strong>rendu compte avec son geste</strong>, pas deviné.
 - <strong>Aller-retour d'écriture (#1862)</strong> : <strong>quatre verdicts confirmés en réel</strong> (exécutée le 2026-07-18 sur
   la participation de rebut <code>6a50f790…</code>, quatre probes vertes).</p>
 <table>
