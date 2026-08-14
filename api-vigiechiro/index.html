@@ -6579,6 +6579,14 @@ forme de l'action à l'écran. Deux cas y mènent, et rien ne les distingue dans
 le dit dans ses propres mots : <em>« Now owner cannot remove localites »</em>), et seul un administrateur
 peut rouvrir un carré verrouillé. <strong><code>StatutPlateforme.VERROUILLE</code> s'inverse ici</strong> : état favorable
 pour déposer une nuit, état refusé pour ajouter un point sur son propre carré.</p>
+<p>⚠️ <strong>Un homonyme n'est pas le même point</strong> (#3458). La plateforme impose l'unicité du <code>nom</code> d'une
+localité, et l'on pourrait croire qu'un nom déjà pris signifie « c'est déjà le nôtre ». Une
+participation <strong>nomme</strong> sa localité (<code>'point': {'type': 'string'}</code> au schéma des participations) :
+déplacer une localité déplacerait donc, sans préavis, toutes les nuits qui s'y rattachent, y compris
+celles d'autres observateurs. <code>PublicationPoint</code> compare donc les <strong>positions</strong> avant de conclure, et
+rend <code>AilleursSurLaPlateforme</code> au delà de <code>ECART_MEME_POINT_METRES</code> (15 m). Rien n'est envoyé, et
+surtout <strong>rien n'est retenu</strong> : marquer le point publié figerait la confusion, puisque le geste ne
+serait plus reproposé. Position distante illisible : même verdict, par prudence.</p>
 <p>On serait tenté d'en faire un garde. <strong>Il ne faut pas</strong> : les liens de site viennent de
 <code>GET /moi/participations</code> et non de <code>/moi/sites</code> (#718, cf. <code>ClientVigieChiro.mesSites</code>), donc un
 carré relié peut appartenir à quelqu'un d'autre, et Companion ne connaît ni le propriétaire, ni la
