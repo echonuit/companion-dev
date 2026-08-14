@@ -6034,7 +6034,7 @@
 
 
 <h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
-<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->14<!--/inv--> workflows et le processus de
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->15<!--/inv--> workflows et le processus de
 publication.</p>
 <h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
 <table>
@@ -6141,6 +6141,12 @@ publication.</p>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/winget.yml">winget.yml</a></td>
 <td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
 <td>Soumission d'une version choisie à winget-pkgs (cf. plus bas)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/recette-filmee.yml">recette-filmee.yml</a></td>
+<td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
+<td>Éprouve qu'un runner <strong>pilote</strong> un test filmé, et pas seulement qu'il l'exécute. Porte son <strong>témoin</strong> : sans gestionnaire de fenêtres, le lancement doit être refusé (cf. plus bas)</td>
 <td>—</td>
 </tr>
 </tbody>
@@ -7166,6 +7172,28 @@ créé et la Release déposée en brouillon <strong>avant</strong> l'étape qui 
 <code>installers</code> et <code>publish</code> ont été <strong>sautés</strong> - donc ni binaires attachés, ni brouillon levé. Une
 version peut donc exister à moitié. C'est ce qu'il faut regarder d'abord quand un train échoue :
 <code>gh release list</code> avant <code>gh run view</code>.</p>
+<h2 id="un-runner-qui-execute-nest-pas-un-runner-qui-pilote-3710">Un runner qui exécute n'est pas un runner qui pilote (#3710)<a class="headerlink" href="#un-runner-qui-execute-nest-pas-un-runner-qui-pilote-3710" title="Permanent link">&para;</a></h2>
+<p><code>recette-filmee.yml</code> répond à une seule question, et elle n'est pas celle que le verdict de Maven
+donne : <strong>le runner pilote-t-il vraiment l'interface ?</strong></p>
+<p>Un lancement filmé tient à cinq conditions (cf. <code>lance-test-filme.sh</code>), dont deux dépendent de la
+<strong>machine</strong> : un gestionnaire de fenêtres doit tourner sur le <code>DISPLAY</code> visé, et <code>WAYLAND_DISPLAY</code>
+doit être absent.</p>
+<p>⚠️ Sans gestionnaire de fenêtres, le pointeur ne bouge pas - <strong>même pour <code>xdotool</code></strong> - et pourtant
+les tests s'exécutent sans erreur. Ils passent ou échouent pour de mauvaises raisons. Pire,
+certains passent <strong>avec un robot mort</strong> : un test qui affirme qu'une valeur reste inchangée est
+vrai si l'on ne clique nulle part.</p>
+<h3 id="le-temoin-qui-est-ce-que-ce-workflow-apporte-vraiment">Le témoin, qui est ce que ce workflow apporte vraiment<a class="headerlink" href="#le-temoin-qui-est-ce-que-ce-workflow-apporte-vraiment" title="Permanent link">&para;</a></h3>
+<p>L'entrée <code>sans_gestionnaire_de_fenetres</code> <strong>n'installe pas</strong> matchbox, et <strong>inverse le verdict</strong> :
+dans ce mode, un lancement réussi devient un <strong>échec</strong> du workflow, puisqu'il prouverait que la
+vérification du pointeur ne garde rien.</p>
+<p>Ce qui fait foi n'est donc pas la présence de matchbox mais <code>verifier_pointeur</code>, qui teste le
+<strong>comportement</strong> : un gestionnaire installé mais inopérant passerait un contrôle de présence, pas
+celui-là.</p>
+<p>La vidéo est conservée en artefact <strong>14 jours</strong> : elle se revoit un temps, puis s'efface, et rien
+ne part dans git.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w">                                  </span><span class="c1"># le passage normal</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">sans_gestionnaire_de_fenetres</span><span class="o">=</span><span class="nb">true</span><span class="w">   </span><span class="c1"># le témoin</span>
+</code></pre></div>
 <h2 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">&para;</a></h2>
 <p>Les mises à jour sont proposées par <strong>Dependabot</strong>
 (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/dependabot.yml"><code>.github/dependabot.yml</code></a>),
