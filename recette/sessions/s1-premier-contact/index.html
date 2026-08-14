@@ -5453,70 +5453,70 @@ distinctes), déclarer un site et un point d'écoute. On valide que le tout prem
 </ul>
 <h2 id="le-script-une-case-un-fait-observable">Le script (une case = un fait observable)<a class="headerlink" href="#le-script-une-case-un-fait-observable" title="Permanent link">&para;</a></h2>
 <p><strong>Étape 1 · Premier lancement (workspace vierge)</strong></p>
-<ol>
-<li>L'accueil affiche le hero « Deux entrées… » et ses 2 sections (Collecte &amp; passages / Espèces &amp;
-   biodiversité). Les cartes sont <strong>contribuées par les features</strong> : ne pas figer leur liste ici, mais
-   vérifier que chacune de celles qui s'affichent porte un intitulé, une destination annoncée, et
-   <strong>ouvre bien ce qu'elle annonce</strong>.</li>
-<li>Le bandeau de compteurs est masqué sans donnée.</li>
-<li>Le fil d'Ariane, la recherche (Ctrl+F) et le menu principal (☰) sont présents.</li>
-</ol>
+<ul>
+<li><strong>S1-01</strong> · L'accueil affiche le hero « Deux entrées… » et ses 2 sections (Collecte &amp; passages / Espèces &amp;
+  biodiversité). Les cartes sont <strong>contribuées par les features</strong> : ne pas figer leur liste ici, mais
+  vérifier que chacune de celles qui s'affichent porte un intitulé, une destination annoncée, et
+  <strong>ouvre bien ce qu'elle annonce</strong>.</li>
+<li><strong>S1-02</strong> · Le bandeau de compteurs est masqué sans donnée.</li>
+<li><strong>S1-03</strong> · Le fil d'Ariane, la recherche (Ctrl+F) et le menu principal (☰) sont présents.</li>
+</ul>
 <p><strong>Étape 2 · Connexion (modale)</strong></p>
-<ol>
-<li>La modale déroule 3 étapes (Ouvrir Vigie-Chiro, Copier le marque-page, coller le token).</li>
-<li>Token vide : message d'information.</li>
-<li>Token bidon : 401 « Token invalide ou expiré… ».</li>
-<li>Réseau coupé : « Vigie-Chiro est injoignable… le jeton n'est peut-être pas en cause ».</li>
-<li>Succès : bandeau vert « référentiel à jour : N taxons, N sites », badge vert identité + rôle.
-   Avec <strong>un seul</strong> site, le bandeau écrit « 1 site » et non « 1 sites » (#1373).</li>
-<li><strong>Sans quitter l'accueil</strong>, fermer la modale : le bandeau de compteurs, masqué à la case 2, est
-   maintenant <strong>visible</strong> et annonce les sites rapatriés. On n'a navigué nulle part entre-temps.
-   ⚠️ C'est le défaut #1376 : avant, il fallait un aller-retour de navigation pour que les compteurs
-   bougent. Une case qui navigue d'abord ne verrait rien.</li>
-<li>Menu ☰ → « Restaurer une sauvegarde », depuis l'accueil : après la restauration, les quatre
-    compteurs reflètent la base restaurée, toujours <strong>sans</strong> avoir quitté l'accueil. Le retour à
-    l'accueil ne suffisait pas à les rafraîchir, l'écran courant ne changeant pas.</li>
-<li>Déconnexion : confirmation, badge repasse gris, l'entrée du menu principal (☰) redevient « Se connecter… ».</li>
-</ol>
+<ul>
+<li><strong>S1-04</strong> · La modale déroule 3 étapes (Ouvrir Vigie-Chiro, Copier le marque-page, coller le token).</li>
+<li><strong>S1-05</strong> · Token vide : message d'information.</li>
+<li><strong>S1-06</strong> · Token bidon : 401 « Token invalide ou expiré… ».</li>
+<li><strong>S1-07</strong> · Réseau coupé : « Vigie-Chiro est injoignable… le jeton n'est peut-être pas en cause ».</li>
+<li><strong>S1-08</strong> · Succès : bandeau vert « référentiel à jour : N taxons, N sites », badge vert identité + rôle.
+  Avec <strong>un seul</strong> site, le bandeau écrit « 1 site » et non « 1 sites » (#1373).</li>
+<li><strong>S1-09</strong> · <strong>Sans quitter l'accueil</strong>, fermer la modale : le bandeau de compteurs, masqué à la case 2, est
+  maintenant <strong>visible</strong> et annonce les sites rapatriés. On n'a navigué nulle part entre-temps.
+  ⚠️ C'est le défaut #1376 : avant, il fallait un aller-retour de navigation pour que les compteurs
+  bougent. Une case qui navigue d'abord ne verrait rien.</li>
+<li><strong>S1-10</strong> · Menu ☰ → « Restaurer une sauvegarde », depuis l'accueil : après la restauration, les quatre
+  compteurs reflètent la base restaurée, toujours <strong>sans</strong> avoir quitté l'accueil. Le retour à
+  l'accueil ne suffisait pas à les rafraîchir, l'écran courant ne changeant pas.</li>
+<li><strong>S1-11</strong> · Déconnexion : confirmation, badge repasse gris, l'entrée du menu principal (☰) redevient « Se connecter… ».</li>
+</ul>
 <p><strong>Étape 3 · Mes sites</strong></p>
-<ol>
-<li>État vide : icône 🌐, « + Ajouter mon premier site de suivi », hint-box.</li>
-<li>Création : carré 6 chiffres, « Créer » grisé tant qu'invalide, le champ rougit.</li>
-<li>Carte de site complète : nom, points, passages, badge fraîcheur, badges « Enregistré / Verrouillé
-    sur Vigie-Chiro », chevron ›.</li>
-<li>Navigation clavier (Tab / Entrée / Espace) sur les cartes.</li>
-<li>« Récupérer depuis Vigie-Chiro » est présent, et masqué hors connexion.</li>
-<li>Voile d'occupation au chargement.</li>
-</ol>
+<ul>
+<li><strong>S1-12</strong> · État vide : icône 🌐, « + Ajouter mon premier site de suivi », hint-box.</li>
+<li><strong>S1-13</strong> · Création : carré 6 chiffres, « Créer » grisé tant qu'invalide, le champ rougit.</li>
+<li><strong>S1-14</strong> · Carte de site complète : nom, points, passages, badge fraîcheur, badges « Enregistré / Verrouillé
+  sur Vigie-Chiro », chevron ›.</li>
+<li><strong>S1-15</strong> · Navigation clavier (Tab / Entrée / Espace) sur les cartes.</li>
+<li><strong>S1-16</strong> · « Récupérer depuis Vigie-Chiro » est présent, et masqué hors connexion.</li>
+<li><strong>S1-17</strong> · Voile d'occupation au chargement.</li>
+</ul>
 <p><strong>Étape 4 · Détail de carré</strong></p>
-<ol>
-<li>Le bandeau affiche carré, département, protocole, créé le, dernière nuit, passages.</li>
-<li>Gardes des boutons : « Ouvrir sur Vigie-Chiro » grisé si non relié ; « Supprimer » grisé si des
-    passages existent ; « Importer une nuit » masqué si la feature est off.</li>
-<li>Points d'écoute : badges GPS ✓/⚠, distance au plus proche, repli sans point.</li>
-<li>Tableau des passages (7 colonnes dont « Déposé le »), placeholder, double-clic vers le passage.</li>
-<li>Le dialog « Modifier le site » s'ouvre.</li>
-</ol>
+<ul>
+<li><strong>S1-18</strong> · Le bandeau affiche carré, département, protocole, créé le, dernière nuit, passages.</li>
+<li><strong>S1-19</strong> · Gardes des boutons : « Ouvrir sur Vigie-Chiro » grisé si non relié ; « Supprimer » grisé si des
+  passages existent ; « Importer une nuit » masqué si la feature est off.</li>
+<li><strong>S1-20</strong> · Points d'écoute : badges GPS ✓/⚠, distance au plus proche, repli sans point.</li>
+<li><strong>S1-21</strong> · Tableau des passages (7 colonnes dont « Déposé le »), placeholder, double-clic vers le passage.</li>
+<li><strong>S1-22</strong> · Le dialog « Modifier le site » s'ouvre.</li>
+</ul>
 <p><strong>Étape 5 · Modale Point</strong></p>
-<ol>
-<li>Création vs édition : titre et bouton dynamiques.</li>
-<li>Garde de validité : code « 1 lettre + chiffres », GPS décimal/DMS synchronisés avec la carte-outil.</li>
-<li>« Annuler » ne touche rien.</li>
-</ol>
+<ul>
+<li><strong>S1-23</strong> · Création vs édition : titre et bouton dynamiques.</li>
+<li><strong>S1-24</strong> · Garde de validité : code « 1 lettre + chiffres », GPS décimal/DMS synchronisés avec la carte-outil.</li>
+<li><strong>S1-25</strong> · « Annuler » ne touche rien.</li>
+</ul>
 <p><strong>Étape 6 · Ce que la stabilisation a changé au premier contact</strong> (#3424)</p>
-<ol>
-<li>La modale de connexion s'ouvre <strong>sans saut</strong> : la saisie est en place, rien ne se replace après
-    coup. #1373</li>
-<li>Pendant la récupération qui suit « Se connecter », <strong>rien ne se redimensionne</strong> : le contenu ne sort
-    pas avant que le bandeau d'état ait pris sa place.</li>
-<li>Le menu ☰ ne porte <strong>plus</strong> d'entrée « fiche espèce » : la source des fiches vit dans
-    <strong>Réglages ▸ Général</strong>, où <a href="../s7-reglages/">S7</a> la déroule. #3433</li>
-<li>Le menu ☰ porte toujours ses autres entrées, et chacune ouvre ce qu'elle annonce.</li>
-</ol>
+<ul>
+<li><strong>S1-26</strong> · La modale de connexion s'ouvre <strong>sans saut</strong> : la saisie est en place, rien ne se replace après
+  coup. #1373</li>
+<li><strong>S1-27</strong> · Pendant la récupération qui suit « Se connecter », <strong>rien ne se redimensionne</strong> : le contenu ne sort
+  pas avant que le bandeau d'état ait pris sa place.</li>
+<li><strong>S1-28</strong> · Le menu ☰ ne porte <strong>plus</strong> d'entrée « fiche espèce » : la source des fiches vit dans
+  <strong>Réglages ▸ Général</strong>, où <a href="../s7-reglages/">S7</a> la déroule. #3433</li>
+<li><strong>S1-29</strong> · Le menu ☰ porte toujours ses autres entrées, et chacune ouvre ce qu'elle annonce.</li>
+</ul>
 <blockquote>
-<p>Le point 27 est le garde-fou du 26 : retirer un doublon est juste, en emporter un voisin ne l'est pas.
+<p><strong>S1-27</strong> est le garde-fou de <strong>S1-26</strong> : retirer un doublon est juste, en emporter un voisin ne l'est pas.
 Il coûte quelques secondes et couvre la seule façon dont ce retrait pouvait mal tourner.</p>
-<p>Les points 24 et 25 sont <strong>perceptifs</strong> : aucun test ne voit un contenu qui se replace, il voit un
+<p><strong>S1-26</strong> et <strong>S1-27</strong> sont <strong>perceptifs</strong> : aucun test ne voit un contenu qui se replace, il voit un
 contenu correct une fois posé. C'est précisément ce qui les met ici plutôt qu'en TestFX.</p>
 </blockquote>
 <h2 id="verdict-par-axe-derniere-passe">Verdict par axe (dernière passe)<a class="headerlink" href="#verdict-par-axe-derniere-passe" title="Permanent link">&para;</a></h2>
