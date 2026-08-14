@@ -5461,6 +5461,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="La publication part à heure fixe (#2744)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-train-ne-part-pas-sans-preuve-des-plateformes-3526" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le train ne part pas sans preuve des plateformes (#3526)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5904,6 +5921,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="La publication part à heure fixe (#2744)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-train-ne-part-pas-sans-preuve-des-plateformes-3526" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le train ne part pas sans preuve des plateformes (#3526)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6163,9 +6197,9 @@ publication.</p>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/suite-sous-windows-et-macos.yml">suite-sous-windows-et-macos.yml</a></td>
-<td><strong>manuel</strong></td>
-<td>Lance la suite <strong>entière</strong> sous Windows et macOS et <strong>compte</strong> ce qui échoue, TestFX à part. On ne sait pas ce que la suite y donne : elle n'y a jamais tourné, et 29 classes portent un chemin POSIX en dur. ⚠️ Manuel délibérément - un <code>schedule</code> rougirait dès sa première nuit sur du bruit de fixture probable, et un dispositif qui commence par du bruit devient un onglet qu'on ferme. Le programmer viendra quand le chiffre sera connu (#3526)</td>
-<td>Non - il compte</td>
+<td><strong>hebdomadaire (mardi 6 h UTC)</strong> + manuel</td>
+<td>Lance la suite <strong>entière</strong> sous Windows et macOS, et <strong>conclut</strong> : rouge dès le premier échec, TestFX compté à part. Manuel jusqu'à #3526, le temps de savoir ce que la suite y donnait - 11 échecs sous Windows au premier relevé, 0 sous macOS. Programmé la <strong>veille</strong> du train de publication, dont il est désormais la condition (cf. plus bas). ⚠️ En manuel il peut être <strong>ciblé</strong> sur quelques classes (#3754, 2 min contre 48) : un passage ciblé sert à instruire, jamais à prouver</td>
+<td><strong>Oui</strong></td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a></td>
@@ -6757,6 +6791,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>maven.yml</code> et <code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
+<td><code>veille-plateformes.sh</code></td>
+<td>la suite a été éprouvée sous Windows et macOS il y a moins de 10 jours, par un passage <strong>programmé</strong></td>
+<td><code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>scripts/adr/verifie_scripts.py</code></td>
 <td>les scripts cités par les ADR</td>
 <td><code>lint.yml</code></td>
@@ -6810,6 +6849,40 @@ descriptible. La cadence pesait par ailleurs sur une décision en aval : elle co
 déclenchement manuel de winget et Flathub - sans en être la principale, le paquet n'étant pas encore
 accepté sur Flathub (#2191).</p>
 <p>Détail et alternatives écartées : <a href="../decisions/2744-la-publication-part-a-heure-fixe/">ADR 2744</a>.</p>
+<h3 id="le-train-ne-part-pas-sans-preuve-des-plateformes-3526">Le train ne part pas sans preuve des plateformes (#3526)<a class="headerlink" href="#le-train-ne-part-pas-sans-preuve-des-plateformes-3526" title="Permanent link">&para;</a></h3>
+<p>Le produit est livré en installeurs <strong>Windows</strong>, macOS et Linux. Jusqu'à #3526, rien dans la chaîne
+n'avait jamais exécuté la suite ailleurs que sous Linux : le train publiait un <code>.msi</code> sur la foi d'un
+vert obtenu sur un runner Ubuntu. Le premier passage sous Windows a rendu <strong>11 échecs</strong>, dont un vrai
+défaut produit (la couleur ANSI de la CLI, #3738) et un verrou de fichier que POSIX ne pouvait pas
+révéler (#3693) - un dépôt qui aurait été publié tel quel.</p>
+<p>La suite tourne donc le <strong>mardi</strong>, veille du train, et le train en fait sa condition : le job
+<code>preuve-des-plateformes</code> interroge l'historique du workflow et refuse de publier si la dernière
+preuve remonte à plus de <strong>10 jours</strong> (un passage hebdomadaire manqué, plus la marge d'un <code>schedule</code>
+retardé).</p>
+<p>⚠️ <strong>Seuls les passages complets comptent.</strong> Depuis #3754 un passage peut être <strong>ciblé</strong> sur quelques
+classes, et l'API des runs ne dit pas quelles entrées ont été passées à un <code>workflow_dispatch</code> : le
+compter certifierait la suite entière sur la preuve de deux classes. Cette distinction n'est pas
+théorique - au moment d'écrire ces lignes, l'historique du dépôt contenait deux passages <code>success</code>,
+dont l'un portait les onze échecs (le tri ne concluait pas encore) et l'autre ne couvrait que trois
+classes. Sans le filtre, la veille aurait certifié la fraîcheur sur l'un ou l'autre.</p>
+<p>Le workflow porte donc son périmètre dans le <strong>titre du run</strong> (<code>run-name:</code>), que la veille lit :
+<code>[complet]</code> ou <code>[ciblé]</code>. Filtrer sur le seul <strong>déclencheur</strong> aurait été plus simple, et laissait le
+train <strong>sans issue de secours</strong> : un mardi rouge sur une instabilité aurait bloqué la publication
+jusqu'au mardi suivant, aucun passage manuel ne pouvant produire de preuve. Un passage complet lancé à
+la main vaut donc preuve ; c'est le passage ciblé qui n'en est pas une.</p>
+<p>⚠️ Comme <code>ETAPE_CONTRAT</code> un cran plus haut, la détection repose sur un <strong>nom</strong>. Si aucun run examiné
+ne porte de marqueur, la veille refuse en disant que c'est <strong>elle</strong> qui est en cause - et distingue
+les deux causes : des exécutions toutes antérieures à la pose du marqueur (qui se résout seule), ou un
+<code>run-name:</code> renommé sans report.</p>
+<p>Comme <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille-contrat-api.sh"><code>veille-contrat-api.sh</code></a>,
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille-plateformes.sh"><code>veille-plateformes.sh</code></a>
+<strong>ne persiste rien</strong> : l'historique des exécutions <em>est</em> la date cherchée. Elle refuse explicitement
+dans trois cas où un dispositif naïf rendrait un « 0 jour » rassurant : historique <strong>vide</strong> (la
+question n'a pas été posée), aucune exécution programmée réussie (preuve <strong>absente</strong>, pas périmée),
+date <strong>illisible</strong>. Son autotest tourne à chaque PR dans <code>lint.yml</code>.</p>
+<p>⚠️ Une différence avec la veille du contrat d'API, et elle compte : là-bas un <code>failure</code> <strong>prouve</strong> que
+le contrat a été exercé ; ici le job de plateformes <strong>conclut</strong>, donc un <code>failure</code> est l'inverse d'une
+preuve. Le compter rendrait la veille verte au moment précis où la suite est cassée.</p>
 <h2 id="les-artefacts-publies-portent-une-attestation-de-provenance-2742">Les artefacts publiés portent une attestation de provenance (#2742)<a class="headerlink" href="#les-artefacts-publies-portent-une-attestation-de-provenance-2742" title="Permanent link">&para;</a></h2>
 <p><code>actions/attest-build-provenance</code> s'applique à chaque artefact de <code>target/dist</code> (installeurs et
 archives portables) et au SBOM, dans le job <code>installers</code>.</p>
