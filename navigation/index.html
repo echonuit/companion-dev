@@ -450,6 +450,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#un-libelle-derive-de-la-donnee-se-relibelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un libellé dérivé de la donnée se relibelle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#convention-de-la-barre-de-statut-resumestatut" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4211,6 +4222,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3539-un-etat-de-controle-se-lie-il-ne-se-photographie-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3539 · Un état de contrôle se lie, il ne se photographie pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3672-deux-cas-ne-font-pas-une-mecanique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3672 · Deux cas ne font pas une mécanique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5363,6 +5430,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#un-libelle-derive-de-la-donnee-se-relibelle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un libellé dérivé de la donnée se relibelle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#convention-de-la-barre-de-statut-resumestatut" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5593,6 +5671,53 @@ il appelle déjà <code>auDepartEcran()</code>.</p>
 <p>Le repère est la <strong>vue</strong>, pas l'étape : <code>actualiserLibelleCourant</code> remplace une étape par sa
 jumelle relibellée sans que l'écran ait bougé. La pose est donc idempotente, et le retrait ne se
 déclenche que si plus aucune étape ne porte cette vue.</p>
+</div>
+<h3 id="un-libelle-derive-de-la-donnee-se-relibelle">Un libellé dérivé de la donnée se relibelle<a class="headerlink" href="#un-libelle-derive-de-la-donnee-se-relibelle" title="Permanent link">&para;</a></h3>
+<p>Le <code>libelle</code> d'une <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/EtapeNavigation.java"><code>EtapeNavigation</code></a>
+est un <code>String</code> <strong>immuable</strong>, figé à l'empilement. C'est sans conséquence pour les treize écrans dont
+le libellé est une constante (« Mes sites », « Importer une nuit »). Ce ne l'est pas pour les <strong>deux</strong>
+qui le dérivent de la donnée :</p>
+<table>
+<thead>
+<tr>
+<th>Écran</th>
+<th>Libellé</th>
+<th>Ce qui peut le rendre faux</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M-Passage</td>
+<td><code>libelleFil()</code> → « Détails du passage N° X »</td>
+<td>renommer la nuit (#3455)</td>
+</tr>
+<tr>
+<td>Fiche site</td>
+<td><code>libelleFil()</code> → « Carré N »</td>
+<td>renommer le carré (#3672)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La règle, en trois points</strong>, et ils vont ensemble :</p>
+<ol>
+<li>l'écran <strong>déclare</strong> son libellé (<code>libelleFil()</code>), et sa classe <code>Navigation*</code> le lit à l'empilement
+   au lieu de le fabriquer - une seule définition, sinon les deux divergent ;</li>
+<li>après une écriture qui touche l'identité, le rappel repasse par un <strong>point d'entrée du
+   contrôleur</strong>, qui appelle <code>Navigation*#actualiserFil</code> → <code>Navigateur#actualiserLibelleCourant</code> ;</li>
+<li>si l'écriture change un <strong>agrégat détenu</strong> par le ViewModel (un <code>record</code> mémorisé), celui-ci le
+   <strong>relit</strong> : recharger ses listes ne suffit pas.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Deux façons de se tromper, et la seconde ne se voit pas</p>
+<p>Sur M-Passage, le fil d'Ariane est <strong>vivant</strong> - l'écran déclare <code>EmplacementNavigation</code>, donc
+<code>filActuel()</code> redemande son emplacement à chaque affichage. Un libellé d'étape figé y produit une
+<strong>contradiction visible</strong> : le fil dit « N° 2 », le bouton Retour « N° 7 ». C'est ce qui a fait
+remarquer #3455.</p>
+<p>La fiche site ne déclare pas <code>EmplacementNavigation</code> : le fil retombe sur l'historique et lit le
+<strong>même</strong> libellé figé. Les deux s'accordent alors <strong>sur la mauvaise valeur</strong>, et rien n'alerte.
+C'est pourquoi #3672 n'a été trouvée que par un balayage, pas par l'usage.</p>
+<p>⚠️ Corollaire : déclarer <code>EmplacementNavigation</code> sur un écran dont le libellé d'étape est figé
+<strong>fabrique</strong> la contradiction au lieu de la corriger. Les deux se posent ensemble.</p>
 </div>
 <h3 id="convention-de-la-barre-de-statut-resumestatut">Convention de la barre de statut (<code>ResumeStatut</code>)<a class="headerlink" href="#convention-de-la-barre-de-statut-resumestatut" title="Permanent link">&para;</a></h3>
 <p>La barre de statut du chrome se lit en <strong>3 zones</strong>, alimentées par le <code>ResumeStatut</code> de l'écran au

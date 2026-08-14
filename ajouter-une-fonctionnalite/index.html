@@ -4255,6 +4255,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3539-un-etat-de-controle-se-lie-il-ne-se-photographie-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3539 · Un état de contrôle se lie, il ne se photographie pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3672-deux-cas-ne-font-pas-une-mecanique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3672 · Deux cas ne font pas une mécanique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5727,6 +5783,19 @@ et implémentez <code>rafraichirDepuisLaDonnee()</code>. Le <code>Navigateur</co
 restitution, cf. <a href="../patterns/#le-signal-de-mutation-tu-ecris-tu-signales">Patrons › Le signal de mutation</a>.</p>
 <p>Les deux contrats se déclarent <strong>ensemble</strong> : ils ne couvrent pas les mêmes écritures. Et si votre
 écran <strong>écrit</strong>, la règle vaut aussi dans l'autre sens : tu écris, tu signales.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Un bouton grisé, un contrôle masqué, un libellé calculé ?</p>
+<p>Ne les <strong>posez</strong> pas au montage. Un <code>setDisable(!x)</code> ou un <code>setVisible(x)</code> lu dans <code>initialize()</code>
+fige la valeur de cet instant, et l'écran restant vivant dans la pile du <code>Navigateur</code>, aucune
+reconstruction ne la reprendra. Faites porter l'état par une <strong>propriété</strong>, et liez le contrôle
+(<code>disableProperty().bind(...)</code>, <code>VisibiliteGeree.lier(...)</code>), cf.
+<a href="../patterns/#un-etat-de-controle-se-lie-il-ne-se-photographie-pas">Patrons › Un état de contrôle se lie</a>.</p>
+<p>Trois exceptions <strong>légitimes</strong>, où le fait ne peut pas changer en cours de session : ce qui dérive
+d'un drapeau de fonctionnalité, d'une ressource embarquée, ou ce qui vit dans une modale rebâtie à
+chaque ouverture.</p>
+<p>Et si le <strong>libellé de navigation</strong> de votre écran dérive de la donnée, il se relibelle : cf.
+<a href="../navigation/#un-libelle-derive-de-la-donnee-se-relibelle">Navigation › Un libellé dérivé de la donnée</a>.</p>
 </div>
 <h3 id="developper-une-feature-derriere-un-flag">Développer une feature derrière un flag<a class="headerlink" href="#developper-une-feature-derriere-un-flag" title="Permanent link">&para;</a></h3>
 <p>Le champ <code>Categorie</code> de <code>fonctionnalite()</code> pilote la <strong>désactivabilité</strong> de la feature (cf.

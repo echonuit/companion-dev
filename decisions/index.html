@@ -4196,6 +4196,62 @@
   
   
     <li class="md-nav__item">
+      <a href="3539-un-etat-de-controle-se-lie-il-ne-se-photographie-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3539 · Un état de contrôle se lie, il ne se photographie pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3672-deux-cas-ne-font-pas-une-mecanique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3672 · Deux cas ne font pas une mécanique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -6154,6 +6210,16 @@
 <td><a href="3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/">3651</a></td>
 <td>Cinq ecrans portaient le meme triplet abonnement / pose / retrait. La duplication n'etait pas le probleme : <strong>les trois lignes ne se valent pas</strong>. Oublier la pose se voit au premier essai ; oublier le <strong>retrait</strong> ne casse rien de perceptible - <code>RevisionDonnees</code> est un singleton, l'ecoute survit a la vue, et dix ouvertures font dix rechargements dont neuf pour personne. Le <code>Navigateur</code> porte donc le cycle, l'ecran ne declare que son intention (<code>SuitLaRevision</code>). ⚠️ Le repere est la <strong>vue</strong>, pas l'etape : relibeller (#1213) retire et replace la meme etape, donc la pose doit etre idempotente - mesure a « expected: 1 but was: 2 »</td>
 <td>#3651, suite de #3580</td>
+</tr>
+<tr>
+<td><a href="3539-un-etat-de-controle-se-lie-il-ne-se-photographie-pas/">3539</a></td>
+<td>Un booleen lu au <strong>montage</strong> puis pose sur un controle : ce qui le rendait vrai peut changer, le controle ne rebouge plus. Plus insidieux que l'ecran qui ne voit pas arriver la donnee, parce que l'instantane est JUSTE a l'instant ou il est pris - rien ne se voit au premier lancement - et que les ecrans restent vivants dans la pile. Ce qui se decide au montage, c'est le <strong>cablage</strong> ; ce qui varie, c'est la donnee. ⚠️ Le balayage a releve <strong>138 sites</strong> sur les trois mots-cles : <strong>zero defaut</strong>, et le seul jumeau reel n'en porte aucun - trois formes sur quatre sont invisibles au mot-cle</td>
+<td>#3539, lot 2 de #3536</td>
+</tr>
+<tr>
+<td><a href="3672-deux-cas-ne-font-pas-une-mecanique/">3672</a></td>
+<td>Deux ecrans sur quinze derivent leur libelle de navigation de la donnee, et les deux ont produit le meme defaut a onze jours d'ecart. L'arbitrage 3 de #3536 prevoyait qu'un <strong>deuxieme cas rouvre</strong> la decision : elle a ete rouverte et <strong>re-tranchee dans le meme sens</strong> - une correction locale en une methode contre une mecanique qui toucherait le chrome entier. ⚠️ Corollaire contre-intuitif : declarer <code>EmplacementNavigation</code> sur un ecran au libelle fige <strong>fabrique</strong> la contradiction au lieu de la corriger</td>
+<td>#3672, suite de #3455</td>
 </tr>
 </tbody>
 </table>

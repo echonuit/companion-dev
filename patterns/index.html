@@ -4172,6 +4172,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3539-un-etat-de-controle-se-lie-il-ne-se-photographie-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3539 · Un état de contrôle se lie, il ne se photographie pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3672-deux-cas-ne-font-pas-une-mecanique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3672 · Deux cas ne font pas une mécanique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -7093,6 +7149,70 @@ verdict, un dépôt, un statut de workflow), que le signal n'annonce <strong>pas
 Les cinq écrans qui rechargent au retour déclarent donc les deux.</p>
 <p><strong>Principes.</strong> <strong>DIP</strong> (le service dépend d'un port, pas de JavaFX) et <strong>Observer</strong> (l'émetteur ignore
 ses lecteurs).</p>
+<hr />
+<h3 id="un-etat-de-controle-se-lie-il-ne-se-photographie-pas">Un état de contrôle se lie, il ne se photographie pas<a class="headerlink" href="#un-etat-de-controle-se-lie-il-ne-se-photographie-pas" title="Permanent link">&para;</a></h3>
+<p><strong>Le problème.</strong> Un booléen est lu au moment où l'écran se construit, puis <strong>posé</strong> sur un contrôle :
+<code>setDisable</code>, <code>setVisible</code> + <code>setManaged</code>, un <code>String</code> de libellé. Ce qui le rendait vrai peut
+changer ; le contrôle, lui, ne rebouge plus.</p>
+<p>C'est plus insidieux que l'écran qui ne voit pas arriver la donnée (ci-dessus), pour deux raisons :
+l'instantané est <strong>juste à l'instant où il est pris</strong>, donc rien ne se voit au premier lancement ; et
+les écrans restent <strong>vivants</strong> dans la pile du <code>Navigateur</code>, donc aucune reconstruction ne rattrape
+la photo.</p>
+<p><strong>La règle.</strong> Ce qui se décide au montage, c'est le <strong>câblage</strong> ; ce qui varie, c'est la <strong>donnée</strong>.
+Une propriété porte l'état, le contrôle s'y lie (<code>disableProperty().bind(...)</code>,
+<code>VisibiliteGeree.lier(...)</code>), et ce qui l'alimente est réinterrogé au bon moment.</p>
+<p>⚠️ <strong>Ne pas dériver l'état de ce qui est affiché.</strong> Avant « Appliquer », les chemins sélectionnés ne
+sont pas encore la configuration persistée : un bouton lié à eux s'allumerait sur une <strong>intention</strong>.
+Ce qui décide, c'est ce qui a été <strong>écrit</strong> (#3543).</p>
+<p>⚠️ <strong>Recalculer ne doit pas défaire un choix de l'utilisateur</strong> (<a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/">ADR 3095</a>).
+Repeupler la liste d'un <code>ComboBox</code> par <code>clear()</code> puis <code>addAll()</code> remet sa valeur à <code>null</code>, et une
+liaison bidirectionnelle propage ce <code>null</code> jusqu'au ViewModel : le filtre disparaît à chaque retour
+sur l'écran. <code>setAll</code> remplace le contenu sans passer par la liste vide (#3544).</p>
+<h4 id="les-quatre-formes-dont-trois-quun-grep-ne-voit-pas">Les quatre formes, dont trois qu'un <code>grep</code> ne voit pas<a class="headerlink" href="#les-quatre-formes-dont-trois-quun-grep-ne-voit-pas" title="Permanent link">&para;</a></h4>
+<p>Le chantier #3539 les a rencontrées une par une. C'est <strong>la forme</strong> qui les relie, pas le mot-clé :</p>
+<table>
+<thead>
+<tr>
+<th>Forme</th>
+<th>Ce qui la trahit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>un booléen posé sur un contrôle au montage</td>
+<td><code>setDisable</code> / <code>setVisible</code>, visible au mot-clé</td>
+</tr>
+<tr>
+<td>une <strong>sortie prématurée</strong> qui n'installe ni items ni liaison</td>
+<td>rien : la méthode a l'air complète</td>
+</tr>
+<tr>
+<td>un <strong><code>String</code> figé</strong> dans un record (le libellé d'une étape de navigation)</td>
+<td>rien</td>
+</tr>
+<tr>
+<td>un <strong>rappel qui court-circuite</strong> le point d'entrée qui rafraîchit</td>
+<td>rien</td>
+</tr>
+</tbody>
+</table>
+<p>L'inventaire complet des sites relevés, avec le verdict de chacun, vit dans
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/3545">#3545</a> : un inventaire se cite, il
+ne se recopie pas (<a href="../decisions/3535-un-inventaire-ne-se-duplique-pas-il-se-cite/">ADR 3535</a>).</p>
+<h4 id="le-critere-de-tri-quand-on-cherche-un-jumeau">Le critère de tri, quand on cherche un jumeau<a class="headerlink" href="#le-critere-de-tri-quand-on-cherche-un-jumeau" title="Permanent link">&para;</a></h4>
+<p>La question n'est pas « y a-t-il un <code>setVisible</code> ? » mais :</p>
+<blockquote>
+<p><strong>le fait qui le rend vrai peut-il changer pendant la vie de l'application ?</strong></p>
+</blockquote>
+<p>Trois familles répondent <strong>non</strong>, et sont donc légitimes :</p>
+<ul>
+<li>ce qui dérive d'un <strong>drapeau de fonctionnalité</strong> (<code>Optional&lt;Service&gt;.isPresent()</code>) : l'onglet des
+  réglages annonce que la bascule prend effet au <strong>prochain démarrage</strong> ;</li>
+<li>ce qui dérive d'une <strong>ressource embarquée</strong> dans l'artefact ;</li>
+<li>ce qui vit dans une <strong>modale</strong>, rebâtie à chaque ouverture.</li>
+</ul>
+<p><strong>Principes.</strong> <strong>Observer</strong> (le contrôle suit une propriété) et <strong>DIP</strong> pour la source qu'on
+réinterroge.</p>
 <hr />
 <div class="admonition note">
 <p class="admonition-title">API fluente (le « builder » le plus proche)</p>
