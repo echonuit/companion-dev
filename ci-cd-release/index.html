@@ -7354,8 +7354,26 @@ vérification du pointeur ne garde rien.</p>
 celui-là.</p>
 <p>La vidéo est conservée en artefact <strong>14 jours</strong> : elle se revoit un temps, puis s'efface, et rien
 ne part dans git.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w">                                  </span><span class="c1"># le passage normal</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">sans_gestionnaire_de_fenetres</span><span class="o">=</span><span class="nb">true</span><span class="w">   </span><span class="c1"># le témoin</span>
+<h3 id="ce-que-la-seance-ecrit-a-cote-du-film-les-reperes-3774">Ce que la séance écrit à côté du film : les repères (#3774)<a class="headerlink" href="#ce-que-la-seance-ecrit-a-cote-du-film-les-reperes-3774" title="Permanent link">&para;</a></h3>
+<p>Un film d'un bloc ne sert à personne pour trancher un cas : personne ne regardera trente minutes.
+La séance dépose donc, à côté de la vidéo, un <strong>journal de repères</strong>
+(<code>target/recette-filmee/reperes.tsv</code>) qui dit <strong>quand</strong> chaque cas s'est joué.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a># repères de séance (#3774) : epoch_ms  borne   test    cas
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>1786725329321   debut   ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>1786725329581   fin ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
+</code></pre></div>
+<p>Les instants sont des <strong>millisecondes depuis l'époque</strong>, la même grandeur que <code>date +%s%3N</code> : c'est
+ce qui permettra au montage de les ramener à des positions dans la vidéo. Seuls les tests qui citent
+un cas (<code>@CasDeRecette</code>) sont encadrés ; les autres ne montrent rien qu'on irait chercher.</p>
+<p>⚠️ Deux propriétés vont ensemble, et seul le profil <code>recette-filmee</code> les pose :
+<code>recette.autodetection</code> charge l'extension, <code>recette.reperes</code> lui dit où écrire. Un <code>mvn test</code>
+ordinaire ne voit ni l'une ni l'autre, ne charge donc rien et n'écrit rien. <code>CablageDesReperesTest</code>
+garde ce câblage, parce qu'il casserait <strong>en silence</strong> : une extension que le moteur n'appelle pas
+produit un journal vide, et un journal vide ressemble à une séance où aucun test ne cite de cas.</p>
+<p>C'est aussi pourquoi le journal part dans l'artefact avec le film : depuis la CI, c'est le seul
+moyen de constater que l'extension a bien été chargée. Le film, lui, sortirait pareil.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w">                                  </span><span class="c1"># le passage normal</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">sans_gestionnaire_de_fenetres</span><span class="o">=</span><span class="nb">true</span><span class="w">   </span><span class="c1"># le témoin</span>
 </code></pre></div>
 <h2 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">&para;</a></h2>
 <p>Les mises à jour sont proposées par <strong>Dependabot</strong>
