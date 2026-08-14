@@ -5440,8 +5440,8 @@ transforme l'association N:N <strong>Retenir</strong> (Sélection ↔ Séquence)
 (IE / <em>crow's foot</em>, celle de Mermaid) : relations binaires, clés étrangères explicites. C'est la
 traduction du MCD ci-dessus. <strong>19 tables à l'origine</strong>, créées par
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/resources/db/migration/V01__schema.sql"><code>V01__schema.sql</code></a> ;
-le schéma courant en compte <strong><!--inv:tables-->33<!--/inv--></strong>, au terme des
-<strong><!--inv:migrations-->39<!--/inv--></strong> migrations versionnées ; clés étrangères
+le schéma courant en compte <strong><!--inv:tables-->34<!--/inv--></strong>, au terme des
+<strong><!--inv:migrations-->40<!--/inv--></strong> migrations versionnées ; clés étrangères
 <strong><code>ON DELETE CASCADE</code></strong> (supprimer un passage emporte sa session, ses séquences, ses observations…).</p>
 <div class="admonition note">
 <p class="admonition-title">Pourquoi ces deux chiffres sont balisés et pas le premier</p>
@@ -5571,6 +5571,16 @@ accents), <strong>SQL</strong> (anglais).</p>
 </table>
 <p>S'ajoutent des tables techniques : <code>saved_view</code> (vues sauvegardées de M-Multisite) et <code>schema_version</code>
 (suivi des <a href="../persistance/#les-migrations-de-schema">migrations</a>).</p>
+<div class="admonition note">
+<p class="admonition-title">Point publié sur Vigie-Chiro (V40, #3458)</p>
+<p>Depuis <code>V40__point_publie.sql</code>, la table latérale <code>point_publie</code> retient qu'un point d'écoute
+créé ici a été <strong>poussé</strong> vers la plateforme (<code>PUT /sites/{id}/localites</code>). Sans cette mémoire,
+l'écran reproposerait le geste indéfiniment.</p>
+<p>⚠️ <strong>À ne pas confondre avec <code>listening_point.synchronise</code></strong> (#1738), qui dit l'inverse :
+« <strong>rapatrié de</strong> la plateforme », et sert à masquer les points rapatriés inutilisés. Réutiliser
+ce drapeau ferait disparaître de la fiche un point qu'on vient de créer pour s'en servir, et
+mentirait sur sa provenance. Deux faits distincts, deux endroits.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Commune d'un point (V38, #2791)</p>
 <p>Depuis <code>V38__commune_du_point.sql</code>, la table latérale <code>point_commune</code> porte la commune d'un
