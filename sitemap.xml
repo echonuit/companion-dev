@@ -641,6 +641,10 @@
          <lastmod>2026-08-14</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3668-un-e2e-attend-le-signal-du-callback-pas-le-retour-du-geste/</loc>
+         <lastmod>2026-08-14</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/3672-deux-cas-ne-font-pas-une-mecanique/</loc>
          <lastmod>2026-08-14</lastmod>
     </url>

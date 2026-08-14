@@ -4252,6 +4252,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3668-un-e2e-attend-le-signal-du-callback-pas-le-retour-du-geste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3668 · Un E2E attend le signal du callback, pas le retour du geste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -6220,6 +6248,11 @@
 <td><a href="3672-deux-cas-ne-font-pas-une-mecanique/">3672</a></td>
 <td>Deux ecrans sur quinze derivent leur libelle de navigation de la donnee, et les deux ont produit le meme defaut a onze jours d'ecart. L'arbitrage 3 de #3536 prevoyait qu'un <strong>deuxieme cas rouvre</strong> la decision : elle a ete rouverte et <strong>re-tranchee dans le meme sens</strong> - une correction locale en une methode contre une mecanique qui toucherait le chrome entier. ⚠️ Corollaire contre-intuitif : declarer <code>EmplacementNavigation</code> sur un ecran au libelle fige <strong>fabrique</strong> la contradiction au lieu de la corriger</td>
 <td>#3672, suite de #3455</td>
+</tr>
+<tr>
+<td><a href="3668-un-e2e-attend-le-signal-du-callback-pas-le-retour-du-geste/">3668</a></td>
+<td>Un <code>robot.interact(...)</code> (ou un appel direct dans <code>@Start</code>) qui declenche <code>occupation.occuper(...)</code> sur le vrai <code>RacineInjecteur</code> tourne sur le vrai <code>ExecuteurTacheAsynchrone</code>, pas sur l'<code>ExecuteurTacheSynchrone</code> que les tests de vue/ViewModel recoivent par defaut : l'assertion qui suit doit attendre le <strong>signal du callback</strong> (<code>WaitForAsyncUtils.waitFor</code> sur un predicat observable), jamais le seul retour du geste - <code>waitForFxEvents()</code> vide la file du fil FX, il n'attend pas le thread d'arriere-plan qui doit encore la remplir. ⚠️ Defaut non reproductible en local, visible uniquement sous un fuseau CI plus lent, et qui accusait a chaque fois un test sans rapport avec la modification en cours</td>
+<td>#3668, PR #3716/#3722, audit #3717</td>
 </tr>
 </tbody>
 </table>

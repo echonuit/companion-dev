@@ -4137,6 +4137,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3668-un-e2e-attend-le-signal-du-callback-pas-le-retour-du-geste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3668 · Un E2E attend le signal du callback, pas le retour du geste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -6223,7 +6251,7 @@ PMD / ArchUnit ne se désactivent <strong>jamais</strong> pour « faire passer �
 <li>Pour une capture déterministe, voir
   <a href="../ajouter-une-fonctionnalite/#7-ajouter-un-apercu-capture-decran">Ajouter une fonctionnalité §7</a>.</li>
 </ul>
-<h3 id="trois-pieges-recurrents">Trois pièges récurrents<a class="headerlink" href="#trois-pieges-recurrents" title="Permanent link">&para;</a></h3>
+<h3 id="quatre-pieges-recurrents">Quatre pièges récurrents<a class="headerlink" href="#quatre-pieges-recurrents" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title"><code>assertThat(path).endsWith(Path)</code> canonicalise</p>
 <p>Cette forme appelle <code>toRealPath</code> et lève <code>NoSuchFileException</code> si le dossier n'existe pas (erreur
@@ -6242,8 +6270,20 @@ asserter. <em>On ne prévient pas après coup ce qu'on a déjà empêché.</em><
 <p>Un handler qui modifie l'IHM depuis un thread d'arrière-plan lève <code>Not on FX application thread</code>,
 souvent <strong>avalée</strong> (l'écran fige). Découper <strong>préparation</strong> (fil FX) / <strong>exécution</strong> (hors-thread)
 / retour sur le fil FX - c'est exactement le contrat du socle <code>ExecuteurTache</code> (#793, cf.
-<a href="../patterns/">Patterns</a>), <strong>synchrone en test</strong> : avec lui, <code>bouton.fire()</code> rend l'état terminal
-observable au retour du clic, sans attente.</p>
+<a href="../patterns/">Patterns</a>), <strong>synchrone par défaut en test de vue/ViewModel</strong> (liaison Guice
+<code>@ImplementedBy(ExecuteurTacheSynchrone.class)</code>, cf. <a href="../patterns/">Patterns</a>) : avec lui,
+<code>bouton.fire()</code> rend l'état terminal observable au retour du clic, sans attente.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Un E2E n'a pas le double synchrone : attendre le signal, pas le retour du clic</p>
+<p>Un test <code>*E2ETest</code> monte le <strong>vrai</strong> <code>RacineInjecteur</code>, pas le module de test qui rebranche
+<code>ExecuteurTacheSynchrone</code> (#793). <code>occupation.occuper(...)</code> y tourne donc sur le <strong>vrai</strong>
+<code>ExecuteurTacheAsynchrone</code> : thread virtuel + <code>Platform.runLater</code>. Après un <code>robot.interact(...)</code>
+(ou un appel direct en <code>@Start</code>) qui déclenche ce chemin, <code>waitForFxEvents()</code> ne fait que vider la
+file du fil FX - il n'attend pas le thread d'arrière-plan qui la remplira. L'assertion tombe alors
+avant le callback de succès : un échec qui ne se reproduit que sur une machine lente, donc en CI
+(#3668, #3717). Remède : <code>WaitForAsyncUtils.waitFor(timeout, TimeUnit, () -&gt; &lt;prédicat
+observable&gt;)</code> sur l'état attendu, jamais une assertion immédiate après l'<code>interact</code>.</p>
 </div>
 
 
