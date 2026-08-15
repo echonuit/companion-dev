@@ -4364,6 +4364,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3458-un-verdict-ne-juge-que-le-numero-qui-l-a-demande/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3458 · Un verdict ne juge que ce qu'on lui a demandé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -6413,6 +6441,11 @@
 <td><a href="3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme/">3561</a></td>
 <td>Le train de publication a ete branche sur une preuve des plateformes <strong>sans inventorier les chemins que la garde ferme</strong> - alors que l'ADR 0041 ecrit la procedure, et que l'ADR 2744 decide en toutes lettres qu'« un correctif urgent n'attend pas le train ». Le <code>workflow_dispatch</code> etait garde comme le <code>schedule</code>. ⚠️ Ce qui a tranche n'est pas le retard de ~50 min mais qu'un test <strong>instable et sans rapport</strong> aurait retenu un correctif de securite - mesure : un test vert a 8 h 14 et rouge a 15 h 34, <strong>meme commit, meme image</strong> (#3773). L'echappatoire n'est donc ni fermee ni invisible : une <code>raison_du_contournement</code> ecrite, refusee sous 20 caracteres, portee dans le <strong>titre du run</strong>. ⚠️ Deux pieges : <code>null == ''</code> est VRAI en expression GitHub, donc tester la seule entree aurait desarme la garde le mercredi ; et <code>needs</code> sur un job saute saute le dependant, donc le contournement aurait EMPECHE la publication</td>
 <td>#3561, lot 3 de #3518</td>
+</tr>
+<tr>
+<td><a href="3458-un-verdict-ne-juge-que-le-numero-qui-l-a-demande/">3458</a></td>
+<td>La modale de declaration demande a Vigie-Chiro si un carre y existe deja. Entre la question et la reponse, <strong>le numero peut changer</strong> - dans les deux sens : la saisie bouge apres la reponse, ou la reponse arrive apres la saisie. Les deux affichent <strong>un jugement sous un carre qu'il ne juge pas</strong>, c'est-a-dire la panne meme du chantier, avec la preuve visuelle du contraire. Deux mecanismes, un par sens : le verdict s'efface quand le numero change, et un resultat porte le numero qui l'a demande pour etre jete s'il ne correspond plus. ⚠️ Corollaire : une absence de reponse <strong>parle</strong> (« ce carre n'a PAS ete verifie ») la ou un controle automatique peut se taire sans mentir</td>
+<td>#3458</td>
 </tr>
 </tbody>
 </table>

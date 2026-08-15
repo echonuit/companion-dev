@@ -4379,6 +4379,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3458-un-verdict-ne-juge-que-le-numero-qui-l-a-demande/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3458 · Un verdict ne juge que ce qu'on lui a demandé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5754,15 +5782,23 @@ retirer casserait l'injecteur (dépendance EAGER) ou un écran (contrat <code>Ou
 <code>DecouverteModulesTest</code> vérifie que désactiver toute feuille <strong>exposée</strong> laisse l'injecteur
 constructible.</p>
 </div>
-<p>Sont <code>OPTIONNELLE</code> (désactivables) : <code>import-vigiechiro</code> (aucun <code>Ouvrir*</code>, <code>OptionalBinder</code> vide dès
-l'origine), les 6 feuilles autrefois couplées au runtime dont le contrat <code>Ouvrir*</code> a été
-<strong>neutralisé</strong> (<code>OptionalBinder</code> vide côté consommateur + <code>setBinding</code> côté feuille, le consommateur
-masquant son point d'entrée si absent) : <code>diagnostic</code>, <code>lot</code>, <code>qualification</code>, <code>importation</code>, <code>analyse</code>,
-<code>recherche</code> (#1087), <strong>et</strong> <code>activite-nuit</code>, née <code>EXPERIMENTALE</code> le temps du chantier #2348 puis passée
-<code>OPTIONNELLE</code> à la clôture du lot #2352 : la bascule d'une feature achevée est le cas nominal, pas une
-exception. Le reste demeure <code>COEUR</code> : <code>sites</code>, <code>passage</code>, <code>validation</code>, <code>audio</code>,
-<code>bibliotheque</code>, <code>multisite</code>, <code>connexion</code>, <code>synchronisation-participation</code>, <code>depot-vigiechiro</code>
-(dépendances EAGER ; cf. <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a>).</p>
+<p><strong>L'inventaire ne se recopie pas ici</strong>, il se lit : l'onglet <strong>« Fonctionnalités »</strong> de l'écran Réglages
+rend la liste <strong>du registre</strong>, catégorie comprise, et la capture <code>apercu-reglages-fonctionnalites.png</code>
+la fige à chaque build. Une énumération en prose, elle, dérive sans rougir : celle qui vivait ici
+nommait <strong>8</strong> features <code>OPTIONNELLE</code> quand le code en déclare <strong>18</strong> (pour 11 <code>COEUR</code>) - dix chantiers
+avaient ajouté la leur sans que rien ne le signale (relevé à la clôture de #3458).</p>
+<p>Ce qui vaut la peine d'être dit tient au <strong>critère</strong>, pas à la liste :</p>
+<ul>
+<li>est <code>OPTIONNELLE</code> ce dont l'absence retire une capacité <strong>sans casser l'injecteur ni un écran</strong> : la
+  feuille déclare son contrat en <code>OptionalBinder</code> <strong>vide</strong> côté consommateur et fait <code>setBinding</code> de son
+  côté, le consommateur masquant son point d'entrée quand l'<code>Optional</code> est absent (#1087). C'est le
+  montage de <code>carre-existant</code> (#3458) comme de <code>controle-carre-stoc</code> avant lui ;</li>
+<li>reste <code>COEUR</code> ce dont une dépendance est <strong>EAGER</strong> ou dont un contrat <code>Ouvrir*</code> est consommé sans
+  garde : <code>sites</code>, <code>passage</code>, <code>connexion</code>… (cf. <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a>) ;</li>
+<li>une feature née <code>EXPERIMENTALE</code> passe <code>OPTIONNELLE</code> <strong>à la clôture de son chantier</strong> - la bascule
+  d'une feature achevée est le cas nominal, pas une exception (<code>activite-nuit</code>, chantier #2348, lot
+  #2352).</li>
+</ul>
 <h3 id="livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants">Livrer un écran inachevé : conditionner l'accès, jamais les composants<a class="headerlink" href="#livrer-un-ecran-inacheve-conditionner-lacces-jamais-les-composants" title="Permanent link">&para;</a></h3>
 <p>Un écran en cours de construction se livre volontiers sous une fonctionnalité <code>EXPERIMENTALE</code>
 (inactive par défaut) : les paliers intermédiaires rejoignent <code>main</code> sans qu'un écran à moitié fait

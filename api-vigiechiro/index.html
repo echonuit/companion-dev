@@ -4249,6 +4249,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3458-un-verdict-ne-juge-que-le-numero-qui-l-a-demande/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3458 · Un verdict ne juge que ce qu'on lui a demandé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -5327,6 +5355,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="La carte complète des lectures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-sitesq-filtre-vraiment-et-cest-le-seul-parametre-dont-on-puisse-le-dire-3458" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /sites?q= filtre vraiment, et c'est le seul paramètre dont on puisse le dire (#3458)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -5749,6 +5794,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="La carte complète des lectures">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#get-sitesq-filtre-vraiment-et-cest-le-seul-parametre-dont-on-puisse-le-dire-3458" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GET /sites?q= filtre vraiment, et c'est le seul paramètre dont on puisse le dire (#3458)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -6261,6 +6323,55 @@ prévenir : celle-ci rougit.</p>
 </table>
 <p><strong>Toutes</strong> les lectures exigent le même rôle (<code>Observateur</code>) : le source ne distingue les rôles qu'en
 écriture. Un refus en lecture ne vient donc <strong>pas</strong> du rôle, mais d'une route qui n'existe pas.</p>
+<h4 id="get-sitesq-filtre-vraiment-et-cest-le-seul-parametre-dont-on-puisse-le-dire-3458"><code>GET /sites?q=</code> filtre vraiment, et c'est le seul paramètre dont on puisse le dire (#3458)<a class="headerlink" href="#get-sitesq-filtre-vraiment-et-cest-le-seul-parametre-dont-on-puisse-le-dire-3458" title="Permanent link">&para;</a></h4>
+<p>Le dépôt s'est fait prendre une fois par un paramètre <strong>accepté puis ignoré</strong> (<code>where=</code>, cf. #1277 et
+<code>donnees?where={titre}</code> plus bas) : depuis, aucun filtre serveur n'est cru sans mesure. Celui-ci a été
+mesuré, en lecture seule, le <strong>2026-08-14</strong> - six <code>GET</code> sur <code>/sites</code> :</p>
+<table>
+<thead>
+<tr>
+<th>Requête</th>
+<th>Total annoncé</th>
+<th>Rendu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/sites?max_results=3</code></td>
+<td><strong>20 767</strong></td>
+<td>référence, sans filtre</td>
+</tr>
+<tr>
+<td><code>/sites?max_results=3&amp;q=130711</code></td>
+<td><strong>1</strong></td>
+<td><code>Vigiechiro - Point Fixe-130711</code></td>
+</tr>
+<tr>
+<td><code>/sites?max_results=3&amp;q=999999</code></td>
+<td><strong>0</strong></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>/sites?max_results=3&amp;q=13071</code></td>
+<td><strong>0</strong></td>
+<td>préfixe à 5 chiffres de 130711</td>
+</tr>
+<tr>
+<td><code>/sites?max_results=3&amp;q=Routier</code></td>
+<td><strong>219</strong></td>
+<td>recherche plein texte réelle</td>
+</tr>
+</tbody>
+</table>
+<p><code>_sites_generic_list</code> (<code>vigiechiro/resources/sites.py</code>) pose <code>lookup['$text'] = {'$search': q}</code> quand
+<code>q</code> est présent, et <strong>l'index texte existe</strong> : le total annoncé bouge, ce que <code>where=</code> ne fait jamais.</p>
+<p>⚠️ <strong><code>$text</code> cherche des mots entiers, pas des préfixes.</strong> <code>13071</code> ne ramène pas <code>130711</code>. C'est ce
+qu'il faut pour un numéro de carré - aucun faux positif par troncature - et cela <strong>interdit</strong> d'en tirer
+une recherche partielle. Le titre d'un site (<code>Vigiechiro - Point Fixe-130711</code>) indexe le numéro comme un
+mot à lui seul, le tiret servant de séparateur.</p>
+<p>Conséquence pratique : « ce carré existe-t-il ? » se répond en <strong>une</strong> requête, sous la seconde
+(<code>ClientVigieChiro#chercherCarre</code>), et non en paginant les 200+ pages du catalogue. La ligne de commande
+le fait encore et doit s'aligner (#3769).</p>
 <p><strong>Rejouer la carte</strong> quand le miroir du source bouge (<code>SAE201/vigiechiro-api</code>) :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>../vigiechiro-api/vigiechiro/resources
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>grep<span class="w"> </span>-nE<span class="w"> </span><span class="s2">&quot;@\w+\.route\(&#39;[^&#39;]+&#39;|@requires_auth&quot;</span><span class="w"> </span>*.py
