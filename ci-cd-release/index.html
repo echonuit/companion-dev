@@ -5400,6 +5400,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Flatpak (#2111)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#depot-flatpak-auto-heberge-9760" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dépôt Flatpak auto-hébergé (#9760)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5859,6 +5876,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Flatpak (#2111)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#depot-flatpak-auto-heberge-9760" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dépôt Flatpak auto-hébergé (#9760)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6640,6 +6674,41 @@ corrige au build - et c'est la <strong>première</strong> édition qu'il fait, c
 fichier à chaque appel et échouerait avant d'y arriver. Le <code>.deb</code> installé normalement, lui, garde
 cette catégorie fautive.</p>
 </div>
+<h3 id="depot-flatpak-auto-heberge-9760">Dépôt Flatpak auto-hébergé (#9760)<a class="headerlink" href="#depot-flatpak-auto-heberge-9760" title="Permanent link">&para;</a></h3>
+<p>Le paquet est soumis à Flathub depuis #2191, sans être encore accepté : leur revue exige un point de
+contact humain avant la première fusion, et une rotation de mainteneurs interne n'y change rien. En
+attendant, <code>flatpak.yml</code> peut publier le <strong>même</strong> paquet - construit et démarré par la même vérification
+- dans un dépôt Flatpak que ce projet héberge lui-même, indépendant de Flathub.</p>
+<p><strong>Mécanisme</strong> : la construction de <code>flatpak-builder</code> exporte désormais vers <code>--repo</code>, en plus du
+<code>--install</code> local qui sert au démarrage réel. C'est ce dépôt-là, déjà éprouvé par le pas qui le précède,
+qu'un <code>.flatpakrepo</code> généré à la volée puis
+<a href="https://github.com/peaceiris/actions-gh-pages"><code>peaceiris/actions-gh-pages</code></a> publient vers
+<code>echonuit/flatpak</code> (branche <code>gh-pages</code>, domaine <code>flatpak.echonuit.fr</code>) - le même patron que
+<code>companion</code>/<code>companion-dev</code>/<code>brief</code> dans <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/docs.yml">docs.yml</a>.</p>
+<p><strong>Dormant par construction</strong>, comme la publication de la doc : tant que la variable
+<code>ENABLE_FLATPAK_REPO</code> n'est pas à <code>true</code> ou que le secret <code>FLATPAK_DEPLOY_TOKEN</code> n'est pas posé, ces
+deux pas s'effacent en <code>::notice::</code> plutôt que de rougir. Pour l'activer :</p>
+<ol>
+<li>Créer le dépôt de publication <code>echonuit/flatpak</code> (vide, <code>gh-pages</code> sera créée par l'action) et pointer
+   <code>flatpak.echonuit.fr</code> dessus (CNAME + enregistrement DNS, comme les trois domaines de doc).</li>
+<li>Poser un PAT avec <code>contents: write</code> sur ce seul dépôt dans le secret <code>FLATPAK_DEPLOY_TOKEN</code>.</li>
+<li>Poser la variable de dépôt <code>ENABLE_FLATPAK_REPO=true</code>.</li>
+</ol>
+<p><strong>Signature GPG</strong> : la clé (ed25519, générée hors CI le 2026-08-15) est déjà câblée -
+<code>FLATPAK_GPG_KEY_ID</code> et la clé publique <code>FLATPAK_GPG_PUBLIC_KEY_B64</code> vivent en clair dans <code>flatpak.yml</code>
+(non sensibles : c'est la partie publique). La partie <strong>privée</strong>, elle, n'existe nulle part dans ce
+dépôt ni dans une conversation - uniquement dans le secret <code>FLATPAK_DEPLOY_TOKEN</code>-adjacent
+<code>FLATPAK_GPG_KEY</code> (armored, encodé en base64), à poser en plus des trois étapes ci-dessus pour activer
+la signature :</p>
+<ol>
+<li>Poser le secret <code>FLATPAK_GPG_KEY</code> : sortie de
+   <code>gpg --export-secret-key --armor &lt;ID&gt; | base64 -w0</code> pour la clé <code>1BA6A82DA9213B177B160E56CD450A9383707B17</code>.</li>
+</ol>
+<p>Tant que ce secret est absent, <code>garde-flatpak-signature</code> retombe en silence sur le comportement non
+signé (<code>NoGpgVerify=true</code>, <code>flatpak-builder</code> sans <code>--gpg-sign</code>) - même patron d'inertie que les trois
+étapes précédentes. Une fois posé, la construction signe l'export (<code>--gpg-sign</code>/<code>--gpg-homedir</code>) et le
+<code>.flatpakrepo</code> généré embarque <code>GPGKey=</code> au lieu de <code>NoGpgVerify=true</code>, sans qu'aucune autre étape n'ait
+à changer.</p>
 <h2 id="winget-2213">winget (#2213)<a class="headerlink" href="#winget-2213" title="Permanent link">&para;</a></h2>
 <p>Le paquet <strong><code>Echonuit.VigieChiroCompanion</code></strong> est servi par winget depuis le <strong>2026-08-10</strong>
 (<a href="https://github.com/microsoft/winget-pkgs/pull/405848">winget-pkgs#405848</a>, version 2.34.2). Son
