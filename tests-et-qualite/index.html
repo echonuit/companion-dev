@@ -4690,6 +4690,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3826-un-test-qui-mesure-monte-une-scene-habillee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3826 · Un test qui mesure monte une scène habillée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6418,7 +6446,24 @@ PMD / ArchUnit ne se désactivent <strong>jamais</strong> pour « faire passer �
   stable en headless).</li>
 <li>Pour une capture déterministe, voir
   <a href="../ajouter-une-fonctionnalite/#7-ajouter-un-apercu-capture-decran">Ajouter une fonctionnalité §7</a>.</li>
+<li><strong>Un test qui MESURE une géométrie monte sa scène avec <code>Habillage.scene(...)</code></strong>, jamais <code>new Scene</code>.
+  Sans lui, il mesure la police de la <strong>machine hôte</strong> au lieu de celle du produit, et son verdict
+  dépend de ce qui a tourné avant lui dans le même fork. <code>ScenesHabilleesTest</code> le garde (#3773).</li>
 </ul>
+<h3 id="la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne">⚠️ La police d'un test n'est pas celle du produit, sauf si on la lui donne<a class="headerlink" href="#la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne" title="Permanent link">&para;</a></h3>
+<p><code>Typographie.installer()</code> garde un <code>static boolean</code> : l'enregistrement de la police embarquée est
+<strong>global au JVM et fait une seule fois</strong>. Un test qui monte sa scène à la main voit donc la police du
+produit <strong>si un voisin l'a installée avant lui</strong>, et celle du système sinon - avec <code>reuseForks=true</code>,
+c'est l'<strong>ordre d'exécution</strong> qui décide.</p>
+<p>Mesuré (#3773) : <code>CartesAccueilTest</code> a rendu <strong>vert à 8 h 14 et rouge à 15 h 34</strong>, sur le <strong>même
+commit</strong> et la <strong>même image</strong> <code>macos-26-arm64</code>. Puis, joué <strong>seul</strong> sous macOS - donc sans voisin -, il
+échoue. L'écart tient à 20,43 px contre 17,666 px selon la police effectivement rendue.</p>
+<p>⚠️ <strong>Ce défaut ne se voit pas depuis un poste Linux</strong> : <code>Noto Sans</code> y est une police système, donc
+trouvée installée ou non. Une suite locale verte ne dit rien de cette propriété. Sur le runner Ubuntu,
+l'ADR 3361 note que <code>sans-serif</code> se résout en « une police plus large » - ce que la CI voit exactement
+n'a pas été mesuré.</p>
+<p>Le remède ne dépend d'aucune machine : passer par <code>Habillage.scene(...)</code>, qui installe la police <strong>et</strong>
+pose le trio du chrome.</p>
 <h3 id="quatre-pieges-recurrents">Quatre pièges récurrents<a class="headerlink" href="#quatre-pieges-recurrents" title="Permanent link">&para;</a></h3>
 <div class="admonition warning">
 <p class="admonition-title"><code>assertThat(path).endsWith(Path)</code> canonicalise</p>

@@ -4805,6 +4805,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3826-un-test-qui-mesure-monte-une-scene-habillee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3826 · Un test qui mesure monte une scène habillée
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6446,6 +6474,11 @@
 <td><a href="3458-un-verdict-ne-juge-que-le-numero-qui-l-a-demande/">3458</a></td>
 <td>La modale de declaration demande a Vigie-Chiro si un carre y existe deja. Entre la question et la reponse, <strong>le numero peut changer</strong> - dans les deux sens : la saisie bouge apres la reponse, ou la reponse arrive apres la saisie. Les deux affichent <strong>un jugement sous un carre qu'il ne juge pas</strong>, c'est-a-dire la panne meme du chantier, avec la preuve visuelle du contraire. Deux mecanismes, un par sens : le verdict s'efface quand le numero change, et un resultat porte le numero qui l'a demande pour etre jete s'il ne correspond plus. ⚠️ Corollaire : une absence de reponse <strong>parle</strong> (« ce carre n'a PAS ete verifie ») la ou un controle automatique peut se taire sans mentir</td>
 <td>#3458</td>
+</tr>
+<tr>
+<td><a href="3826-un-test-qui-mesure-monte-une-scene-habillee/">3826</a></td>
+<td>L'ADR 3374 posait <code>Habillage</code> pour « les fenetres comme les captures » ; son garde ne parcourait que <code>src/main</code>, et ce silence sur les TESTS etait le trou - dix d'entre eux mesuraient une geometrie sur une scene montee a la main, donc avec la police de la MACHINE. ⚠️ Le mecanisme est un couplage d'ORDRE, pas une difference de plateforme : <code>Typographie.installer()</code> garde un <code>static boolean</code>, donc un test voit la bonne police si un voisin l'a installee avant lui. Mesure : meme commit, meme image <code>macos-26-arm64</code>, <strong>vert a 8 h 14 et rouge a 15 h 34</strong> ; joue SEUL, il echoue. ⚠️ Invisible depuis un poste Linux, ou <code>Noto Sans</code> est une police systeme : l'experience d'isolement y est aveugle par construction, et elle a failli servir de preuve. La regle ne vise PAS tous les <code>new Scene</code> - une centaine de tests ont raison de l'ecrire - mais l'USAGE : construire ET mesurer</td>
+<td>#3826, lot 1 de #3802</td>
 </tr>
 </tbody>
 </table>
