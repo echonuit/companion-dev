@@ -7443,10 +7443,23 @@ les tests s'exécutent sans erreur. Ils passent ou échouent pour de mauvaises r
 certains passent <strong>avec un robot mort</strong> : un test qui affirme qu'une valeur reste inchangée est
 vrai si l'on ne clique nulle part.</p>
 <h3 id="le-temoin-qui-est-ce-que-ce-workflow-apporte-vraiment">Le témoin, qui est ce que ce workflow apporte vraiment<a class="headerlink" href="#le-temoin-qui-est-ce-que-ce-workflow-apporte-vraiment" title="Permanent link">&para;</a></h3>
-<p>L'entrée <code>sans_gestionnaire_de_fenetres</code> <strong>n'installe pas</strong> matchbox, et <strong>inverse le verdict</strong> :
+<p>L'entrée <code>sans_gestionnaire_de_fenetres</code> <strong>n'installe pas</strong> le gestionnaire, et <strong>inverse le
+verdict</strong> :
 dans ce mode, un lancement réussi devient un <strong>échec</strong> du workflow, puisqu'il prouverait que la
 vérification du pointeur ne garde rien.</p>
-<p>Ce qui fait foi n'est donc pas la présence de matchbox mais <code>verifier_pointeur</code>, qui teste le
+<h3 id="le-gestionnaire-choisi-nest-pas-neutre-openbox-et-non-matchbox-3788">⚠️ Le gestionnaire choisi n'est pas neutre : openbox, et non matchbox (#3788)<a class="headerlink" href="#le-gestionnaire-choisi-nest-pas-neutre-openbox-et-non-matchbox-3788" title="Permanent link">&para;</a></h3>
+<p><code>matchbox-window-manager</code> <strong>maximise tout</strong> ce qu'il affiche - c'est son parti pris, il est fait pour
+de petits écrans. Le banc en a menti deux fois avant qu'on le voie :</p>
+<ul>
+<li>les tests de croissance de fenêtre (<code>Modales.suivreLaCroissance</code>, #1534) <strong>ne pouvaient pas</strong>
+  passer en fenêtré : une fenêtre déjà maximisée ne grandit pas. On a d'abord soupçonné le code ;</li>
+<li>surtout, les clips de #3774 montraient la modale de connexion sur 1280 × 900, contenu tassé en
+  haut. Or ces clips servent à faire <strong>juger</strong> des cas perceptifs par un humain : sur une mise en
+  page qui n'est pas celle qu'on livre, qui juge, juge autre chose.</li>
+</ul>
+<p><code>openbox</code> honore les dimensions demandées par la fenêtre. Le banc montre alors l'application telle
+qu'elle est livrée, ce qui est la condition pour qu'un regard porté sur un clip vaille quelque chose.</p>
+<p>Ce qui fait foi n'est donc pas la présence du gestionnaire mais <code>verifier_pointeur</code>, qui teste le
 <strong>comportement</strong> : un gestionnaire installé mais inopérant passerait un contrôle de présence, pas
 celui-là.</p>
 <p>La vidéo est conservée en artefact <strong>14 jours</strong> : elle se revoit un temps, puis s'efface, et rien
