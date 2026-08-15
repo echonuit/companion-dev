@@ -5591,8 +5591,8 @@
 <p>L'audit du 28 juillet 2026 a relevé une chaîne de publication non durcie. Trois faits, un seul mécanisme :</p>
 <ul>
 <li><strong>28 actions référencées, 28 sur un tag mutable</strong> (<code>actions/checkout@v7</code>, <code>setup-java@v5</code>,
-  <code>peaceiris/actions-gh-pages@v4</code>…), et le conteneur du vérificateur Flathub tiré en <code>:latest</code> dans un
-  workflow disposant de droits d'écriture ;</li>
+  <code>peaceiris/actions-gh-pages@v4</code>…), et le conteneur du vérificateur de données externes tiré en
+  <code>:latest</code> dans un workflow disposant de droits d'écriture ;</li>
 <li>l'outillage de publication installé par <code>npx --yes</code> <strong>au moment de publier</strong>, dans un job autorisé à
   écrire contenus, issues et PR ;</li>
 <li>un <strong>seul job</strong> faisant tout : analyse des commits, calcul de version, création du tag, publication.</li>

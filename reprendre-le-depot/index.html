@@ -5812,9 +5812,9 @@ version sur winget - la soumission est manuelle et rare, les deux gestes vont en
 <td>compte naturaliste sur le site, rôle Observateur suffisant en lecture</td>
 </tr>
 <tr>
-<td><strong>Flathub</strong></td>
-<td><strong>rien pour l'instant</strong> : le paquet n'y est pas (#2191)</td>
-<td>la soumission a été fermée par leur robot, checklist incomplète</td>
+<td><strong>Dépôt Flatpak auto-hébergé</strong></td>
+<td>la distribution Linux : <code>fr.echonuit.VigieChiroCompanion</code>, en ligne depuis le 2026-08-15</td>
+<td><code>echonuit/flatpak</code> (<code>gh-pages</code>) + <code>FLATPAK_DEPLOY_TOKEN</code> et <code>FLATPAK_GPG_KEY</code> ; <code>flatpak.yml</code> publie et met à jour tout seul (#2111)</td>
 </tr>
 <tr>
 <td><strong>winget</strong></td>
@@ -5867,22 +5867,17 @@ version sur winget - la soumission est manuelle et rare, les deux gestes vont en
 </tbody>
 </table>
 <div class="admonition warning">
-<p class="admonition-title">Un canal de distribution est outillé et n'a jamais rien distribué</p>
-<p>C'est le piège le plus coûteux de cette page, parce qu'il se lit à l'envers : <code>.github/workflows/</code>
-porte <code>winget.yml</code> <strong>et</strong> <code>flatpak.yml</code>, <code>flatpak/</code> porte un manifeste versionné et validé. Tout
-donne à croire que les <strong>deux</strong> paquets existent et se mettent à jour. Un seul existe.</p>
+<p class="admonition-title">Deux canaux, deux rythmes de mise à jour</p>
+<p><code>.github/workflows/</code> porte <code>winget.yml</code> <strong>et</strong> <code>flatpak.yml</code>, tous deux en ligne, mais pas avec la
+même autonomie.</p>
 <ul>
 <li><strong>winget</strong> : ✅ en ligne depuis le 2026-08-10, <code>Echonuit.VigieChiroCompanion</code>. Le canal marche,
   mais <strong>ne se remplit pas tout seul</strong> : chaque version se pousse à la main (voir le tableau des
   gestes ci-dessus). Cf. #2213.</li>
-<li><strong>Flathub</strong> : ❌ ni <code>fr.echonuit.VigieChiroCompanion</code> ni l'ancien identifiant n'ont de dépôt chez
-  Flathub. La PR de soumission a été fermée par le robot pour checklist incomplète, et deux points
-  manquants sont des <strong>actes humains</strong> - une vidéo de l'application lancée en Flatpak, et une
-  attestation personnelle. Cf. #2191.</li>
+<li><strong>Flatpak</strong> : ✅ en ligne depuis le 2026-08-15 sur le dépôt auto-hébergé
+  <code>flatpak.echonuit.fr</code>, signé (<code>fr.echonuit.VigieChiroCompanion</code>). <code>flatpak.yml</code> publie et détecte
+  lui-même les nouvelles versions via <code>x-checker-data</code>, aucun geste manuel n'est requis. Cf. #2111.</li>
 </ul>
-<p>⚠️ L'identifiant Flatpak a <strong>changé</strong> entre-temps (ADR 0047) : la PR fermée soumettait
-<code>io.github.iutinfoaix_s201.VigieChiro</code>, le manifeste porte aujourd'hui <code>fr.echonuit.…</code>. Reprendre
-la soumission n'est donc pas qu'une formalité de checklist.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Le train mérite un œil, même vert</p>
