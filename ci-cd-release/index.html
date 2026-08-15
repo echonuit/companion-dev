@@ -4634,6 +4634,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3561 · Une garde obligatoire inventorie les chemins qu'elle ferme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -4983,6 +5011,34 @@
     
   
     S9 · Installer et mettre à jour
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s10-le-poste-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S10 · Le poste Windows
   
 
     
@@ -5520,6 +5576,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#et-une-voie-de-secours-motivee-par-ecrit-3561" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Et une voie de secours, motivée par écrit (#3561)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5997,6 +6064,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#et-une-voie-de-secours-motivee-par-ecrit-3561" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Et une voie de secours, motivée par écrit (#3561)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6289,8 +6367,8 @@ publication.</p>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/release.yml">release.yml</a></td>
-<td>push <code>main</code></td>
-<td>Version + Release + installeurs natifs (dormant tant que <code>ENABLE_RELEASE</code> ≠ true)</td>
+<td><strong>hebdomadaire (mercredi 6 h UTC)</strong> + manuel</td>
+<td>Version + Release + installeurs natifs (dormant tant que <code>ENABLE_RELEASE</code> ≠ true). Le <strong>train de publication</strong> depuis l'ADR 2744 - la ligne disait encore « push <code>main</code> » neuf jours après le changement. Ne part pas sans preuve fraîche des plateformes, sauf contournement écrit (cf. plus bas)</td>
 <td>—</td>
 </tr>
 <tr>
@@ -6395,7 +6473,7 @@ série</strong>, soit ~10 min avant le moindre verdict. Le second, plus gênant,
 fausse</strong> : les étapes de packaging ne s'exécutaient qu'après le succès des tests, donc une suite rouge
 <strong>masquait</strong> l'état du packaging, qu'on n'apprenait qu'au tour suivant.</p>
 <p>Or ces étapes ne dépendent que de l'<strong>assemblage</strong> : <code>package -DskipTests</code> suffit (~20 s en local, et
-les <!--inv:tests-bats-->100<!--/inv--> tests bats passent sur ce seul artefact). D'où la séparation :</p>
+les <!--inv:tests-bats-->103<!--/inv--> tests bats passent sur ce seul artefact). D'où la séparation :</p>
 <table>
 <thead>
 <tr>
@@ -6967,6 +7045,32 @@ classes. Sans le filtre, la veille aurait certifié la fraîcheur sur l'un ou l'
 train <strong>sans issue de secours</strong> : un mardi rouge sur une instabilité aurait bloqué la publication
 jusqu'au mardi suivant, aucun passage manuel ne pouvant produire de preuve. Un passage complet lancé à
 la main vaut donc preuve ; c'est le passage ciblé qui n'en est pas une.</p>
+<h3 id="et-une-voie-de-secours-motivee-par-ecrit-3561">⚠️ Et une voie de secours, motivée par écrit (#3561)<a class="headerlink" href="#et-une-voie-de-secours-motivee-par-ecrit-3561" title="Permanent link">&para;</a></h3>
+<p>Poser cette condition contredisait deux décisions, et la clôture du lot 3 l'a relevé :</p>
+<ul>
+<li>l'<strong>ADR 0041</strong> pose la règle qu'on avait sautée - « avant de rendre un check obligatoire, inventorier
+  tous les chemins d'écriture vers <code>main</code> [...] un chemin sans réponse est un <strong>blocage permanent</strong> ».
+  L'inventaire tient en deux lignes : le train du mercredi, et le <code>workflow_dispatch</code>. La seconde était
+  vide ;</li>
+<li>l'<strong>ADR 2744</strong> décide pourtant en toutes lettres : « <strong>Pourquoi <code>workflow_dispatch</code> reste</strong> : un
+  correctif urgent n'attend pas le train ».</li>
+</ul>
+<p>Ce qui a tranché n'est pas le retard - un passage complet lancé à la main coûte ~50 min - mais qu'un
+<strong>test instable sans rapport</strong> (#3773) aurait retenu un correctif de sécurité.</p>
+<p>Le <code>workflow_dispatch</code> de <code>release.yml</code> porte donc une entrée <strong><code>raison_du_contournement</code></strong>, vide par
+défaut. Renseignée, elle saute la garde, et la raison part <strong>dans le titre du run</strong> - donc dans
+l'historique des exécutions, pas seulement dans le log d'un job - puis dans son résumé. En dessous de
+<strong>20 caractères</strong>, elle est refusée : un contournement dont la trace est « x » n'en laisse pas.</p>
+<p>⚠️ Deux pièges, écrits sur place dans le workflow parce qu'ils se reproduisent :</p>
+<ul>
+<li>tester <code>inputs.raison_du_contournement == ''</code> <strong>seul</strong> aurait désarmé la garde sur le <code>schedule</code> :
+  <code>inputs</code> y est <strong>null</strong>, et une expression GitHub coule deux types différents en nombre, donc
+  <code>null == ''</code> y est <strong>vrai</strong>. La garde se serait sautée toute seule le mercredi, c'est-à-dire
+  exactement les jours où elle sert. La condition teste d'abord le <strong>déclencheur</strong> ;</li>
+<li><code>needs</code> sur un job <strong>sauté</strong> saute le dépendant par défaut. Sans <code>!cancelled()</code> et un test explicite
+  sur <code>.result != 'failure'</code>, le contournement aurait <strong>empêché</strong> la publication au lieu de la
+  permettre.</li>
+</ul>
 <p>⚠️ Comme <code>ETAPE_CONTRAT</code> un cran plus haut, la détection repose sur un <strong>nom</strong>. Si aucun run examiné
 ne porte de marqueur, la veille refuse en disant que c'est <strong>elle</strong> qui est en cause - et distingue
 les deux causes : des exécutions toutes antérieures à la pose du marqueur (qui se résout seule), ou un

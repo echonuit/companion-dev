@@ -4749,6 +4749,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3561 · Une garde obligatoire inventorie les chemins qu'elle ferme
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5098,6 +5126,34 @@
     
   
     S9 · Installer et mettre à jour
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../recette/sessions/s10-le-poste-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    S10 · Le poste Windows
   
 
     
@@ -6352,6 +6408,11 @@
 <td><a href="3760-le-deficit-se-porte-il-ne-se-repartit-pas/">3760</a></td>
 <td>Les deux barres du chrome demandaient plus de place qu elles n en avaient a la largeur d ouverture, et les deux mecaniques donnaient le meme trou : une <code>HBox</code> <strong>repartit</strong> le manque (chacun perdait 27 px, tout le monde tronquait un peu, titre et bouton Retour compris), un <code>BorderPane</code> donne a droite sa largeur preferee et laisse <strong>10 px</strong> au centre. Personne ne decidait qui rend sa place. Trois natures de reponse, qui ne valent pas la meme chose : <strong>figer</strong> ce qui ne doit jamais s abreger, <strong>reduire la demande</strong> (le seul qui supprime le probleme au lieu de le deplacer), et <strong>assumer</strong> par <code>abregeable</code>. ⚠️ La troisieme fait TAIRE le garde de lisibilite : elle change un rouge en vert sans rien ameliorer a l ecran, et doit donc dire ou elle est posee et a partir de quelle largeur elle travaille</td>
 <td>#3760 et #3743, suites de la cloture du lot 3</td>
+</tr>
+<tr>
+<td><a href="3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme/">3561</a></td>
+<td>Le train de publication a ete branche sur une preuve des plateformes <strong>sans inventorier les chemins que la garde ferme</strong> - alors que l'ADR 0041 ecrit la procedure, et que l'ADR 2744 decide en toutes lettres qu'« un correctif urgent n'attend pas le train ». Le <code>workflow_dispatch</code> etait garde comme le <code>schedule</code>. ⚠️ Ce qui a tranche n'est pas le retard de ~50 min mais qu'un test <strong>instable et sans rapport</strong> aurait retenu un correctif de securite - mesure : un test vert a 8 h 14 et rouge a 15 h 34, <strong>meme commit, meme image</strong> (#3773). L'echappatoire n'est donc ni fermee ni invisible : une <code>raison_du_contournement</code> ecrite, refusee sous 20 caracteres, portee dans le <strong>titre du run</strong>. ⚠️ Deux pieges : <code>null == ''</code> est VRAI en expression GitHub, donc tester la seule entree aurait desarme la garde le mercredi ; et <code>needs</code> sur un job saute saute le dependant, donc le contournement aurait EMPECHE la publication</td>
+<td>#3561, lot 3 de #3518</td>
 </tr>
 </tbody>
 </table>

@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme/">
       
       
-        <link rel="prev" href="../3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/">
+        <link rel="prev" href="../3482-l-audit-ramasse-ce-qu-une-suppression-laisse/">
       
       
-        <link rel="next" href="../3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/">
+        <link rel="next" href="../../recette/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>3451 · Un invariant tenu par la base se double d'un refus - VigieChiro Companion · Doc développeur</title>
+        <title>3561 · Une garde obligatoire inventorie les chemins qu'elle ferme - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-3451-un-invariant-tenu-par-la-base-se-double-dun-refus-dans-le-code" class="md-skip">
+        <a href="#adr-3561-une-garde-obligatoire-inventorie-les-chemins-quelle-ferme" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              3451 · Un invariant tenu par la base se double d'un refus
+              3561 · Une garde obligatoire inventorie les chemins qu'elle ferme
             
           </span>
         </div>
@@ -3576,37 +3576,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    3451 · Un invariant tenu par la base se double d'un refus
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/" class="md-nav__link">
         
   
   
@@ -3622,81 +3595,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#pourquoi-garder-un-refus-que-rien-ne-peut-declencher" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Pourquoi garder un refus que rien ne peut déclencher
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que cette ADR apprend au-delà de son cas
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4742,10 +4640,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3561 · Une garde obligatoire inventorie les chemins qu'elle ferme
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4761,6 +4686,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-qui-distingue-une-preuve-dun-passage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui distingue une preuve d'un passage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-pieges-dexpression-github-tenus-pour-acquis-par-personne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deux pièges d'expression GitHub, tenus pour acquis par personne
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-cette-adr-amende-dans-ladr-2744" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cette ADR amende dans l'ADR 2744
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-ecartees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives écartées
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5535,13 +5563,41 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-qui-distingue-une-preuve-dun-passage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui distingue une preuve d'un passage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-pieges-dexpression-github-tenus-pour-acquis-par-personne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deux pièges d'expression GitHub, tenus pour acquis par personne
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
-  <a href="#pourquoi-garder-un-refus-que-rien-ne-peut-declencher" class="md-nav__link">
+  <a href="#ce-que-cette-adr-amende-dans-ladr-2744" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pourquoi garder un refus que rien ne peut déclencher
+        Ce que cette ADR amende dans l'ADR 2744
       
     </span>
   </a>
@@ -5560,10 +5616,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" class="md-nav__link">
+  <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ce que cette ADR apprend au-delà de son cas
+        Alternatives écartées
       
     </span>
   </a>
@@ -5587,7 +5643,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3451-un-invariant-tenu-par-la-base-se-double-d-un-refus.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5596,70 +5652,107 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3451-un-invariant-tenu-par-la-base-se-double-d-un-refus.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-3451-un-invariant-tenu-par-la-base-se-double-dun-refus-dans-le-code">ADR 3451 - Un invariant tenu par la base se double d'un refus dans le code<a class="headerlink" href="#adr-3451-un-invariant-tenu-par-la-base-se-double-dun-refus-dans-le-code" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3561-une-garde-obligatoire-inventorie-les-chemins-quelle-ferme">ADR 3561 - Une garde obligatoire inventorie les chemins qu'elle ferme<a class="headerlink" href="#adr-3561-une-garde-obligatoire-inventorie-les-chemins-quelle-ferme" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - 2026-08-07</li>
-<li><strong>Chantier</strong> : #3451, suite de l'<a href="../3406-une-nuit-porte-le-fuseau-de-son-site/">ADR 3406</a></li>
-<li><strong>Vérification</strong> : certaine - <code>CorrespondanceParticipationTest#une_borne_manquante_refuse_le_depot</code></li>
+<li><strong>Statut</strong> : Accepté - 2026-08-15</li>
+<li><strong>Chantier</strong> : #3561, lot 3 du chantier #3518</li>
+<li><strong>Amende</strong> : <a href="../2744-la-publication-part-a-heure-fixe/">ADR 2744</a></li>
+<li><strong>Applique</strong> : <a href="../0041-un-check-requis-gouverne-la-branche/">ADR 0041</a></li>
+<li><strong>Vérification</strong> : certaine - <code>.github/scripts/veille-plateformes.sh</code></li>
 </ul>
+<p>⚠️ L'auto-test de ce script couvre dix cas, dont l'issue de secours et le marqueur absent. Mais le
+<strong>câblage</strong> du job, lui, ne s'exécutera qu'au jour où <code>ENABLE_RELEASE</code> passe à <code>true</code> : le script est
+éprouvé, le graphe de jobs ne l'est pas.</p>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p><code>CorrespondanceParticipation</code> assemblait le corps envoyé à Vigie-Chiro avec, pour chaque borne de nuit,
-un repli silencieux :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">passage</span><span class="p">.</span><span class="na">dateEnregistrement</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">passage</span><span class="p">.</span><span class="na">heureDebut</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w">   </span><span class="c1">// le champ disparaît simplement du corps envoyé</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="p">}</span>
-</code></pre></div>
-<p>Une mesure de mutation a signalé ces deux branches comme non couvertes. J'en ai d'abord conclu à un
-trou produit - « un passage aux métadonnées incomplètes se dépose amputé de ses bornes ». <strong>C'était
-faux</strong>, et la vérification tenait dans quinze lignes de SQL : <code>V01__schema.sql</code> déclare
-<code>recording_date</code>, <code>start_time</code> et <code>end_time</code> en <code>TEXT NOT NULL</code>, les deux chemins de dépôt chargent
-leur passage par le DAO, et la seule substitution d'horaires (<code>realignerSurLesPreuves</code>) écrit en base
-<strong>avant</strong> l'envoi - une valeur nulle buterait sur la contrainte bien avant d'atteindre la plateforme.</p>
+<p>Le lot 3 a branché le train de publication sur une preuve : <code>release</code> ne part plus sans un passage
+complet réussi de la suite sous Windows et macOS, de moins de dix jours (#3526). Le motif est solide -
+le produit est livré en MSI et DMG, et son premier passage sous Windows a rendu <strong>onze échecs</strong>, dont
+un vrai défaut produit.</p>
+<p>La garde a été posée sans inventorier ce qu'elle ferme. Deux décisions en ont fait les frais.</p>
+<p><strong>L'ADR 0041 avait écrit la procédure</strong>, et elle a été sautée :</p>
+<blockquote>
+<p>Avant de rendre un check obligatoire, inventorier <strong>tous les chemins d'écriture</strong> vers <code>main</code> - PR
+humaines, PR de bot, pushes directs d'automatismes - et se demander, pour chacun, comment le check y
+rapportera. Un chemin sans réponse est un <strong>blocage permanent</strong>.</p>
+</blockquote>
+<p>Fait après coup, l'inventaire tient en deux lignes : le <code>schedule</code> du mercredi, et le
+<code>workflow_dispatch</code>. La seconde était vide.</p>
+<p><strong>L'ADR 2744 décidait le contraire</strong>, en toutes lettres : « Pourquoi <code>workflow_dispatch</code> reste : un
+correctif urgent n'attend pas le train. » Le job <code>preuve-des-plateformes</code> ne portait aucun <code>if</code>
+distinguant les déclencheurs : il gardait les deux.</p>
+<p>⚠️ Ce qui a tranché n'est pas le retard - un passage complet lancé à la main coûte ~50 min. C'est qu'un
+<strong>test instable et sans rapport</strong> aurait retenu un correctif de sécurité. Ce n'est pas une hypothèse :
+la même clôture a mesuré dix tests dont le verdict dépend de l'ordre d'exécution (#3773), et l'un d'eux
+a rendu <strong>vert à 8 h 14 et rouge à 15 h 34 sur le même commit et la même image</strong>.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>L'invariant <em>« une nuit a ses trois bornes »</em> n'est donc tenu que par <strong>SQLite</strong>. Il est désormais
-<strong>doublé d'un refus</strong> dans le code : <code>versParticipation</code> lève une <code>RegleMetierException</code> plutôt que de
-laisser partir un corps amputé.</p>
-<p>Le garde est posé sur l'<strong>entonnoir</strong> (<code>versParticipation</code>), traversé par les deux chemins d'écriture,
-et non chez les deux appelants connus - il vaut donc aussi pour ceux qui n'existent pas encore.</p>
-<h2 id="pourquoi-garder-un-refus-que-rien-ne-peut-declencher">Pourquoi garder un refus que rien ne peut déclencher<a class="headerlink" href="#pourquoi-garder-un-refus-que-rien-ne-peut-declencher" title="Permanent link">&para;</a></h2>
-<p>C'est la question qu'un lecteur futur posera, et la réponse est dans la <strong>portée</strong> de l'invariant.</p>
-<p>Un <code>Passage</code> ne vient pas forcément de la base : le code en construit depuis la plateforme
-(<code>SynchronisationParticipation</code>), en mémoire pour les captures, dans les services. Aucun de ces chemins
-n'atteint le dépôt aujourd'hui. Le jour où l'un le fera - c'est précisément ce que #3442 prépare, en
-dérivant des horaires depuis des coordonnées - le repli silencieux enverrait une nuit <strong>sans bornes</strong>
-sur la plateforme nationale, et personne ne le verrait.</p>
-<p>Un silence ne se remarque pas ; un refus, si. La nuit est l'unité de traitement du produit
-(<a href="../0009-la-nuit-est-l-unite-bornee-a-midi/">ADR 0009</a>) et ses heures <strong>décident de la partition</strong> :
-une nuit sans bornes n'est pas une nuit.</p>
-<p>Ce garde n'est d'ailleurs pas du code mort au sens où on l'entend d'habitude : il est <strong>atteignable
-par construction en mémoire</strong>, donc testable pour de vrai. Ses trois cas ont été vus <strong>rouges</strong> en
-retirant l'appel - et eux seuls sur les seize du fichier.</p>
+<p><strong>Une garde obligatoire énumère les chemins qu'elle ferme, et laisse à chacun une réponse.</strong> Quand un
+chemin doit rester ouvert, l'exception est <strong>explicite et tracée</strong>, jamais implicite ni impossible.</p>
+<p>Concrètement, pour le train :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">run-name</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">&gt;-</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="no">${{ (github.event_name == &#39;workflow_dispatch&#39; &amp;&amp; inputs.raison_du_contournement != &#39;&#39;)</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">      </span><span class="no">&amp;&amp; format(&#39;⚠️ publication SANS preuve des plateformes - {0}&#39;, inputs.raison_du_contournement)</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">      </span><span class="no">|| &#39;publication&#39; }}</span>
+</code></pre></div>
+<ul>
+<li>une entrée <code>raison_du_contournement</code>, <strong>vide par défaut</strong> ;</li>
+<li>renseignée, elle saute la garde, part dans le <strong>titre du run</strong> - donc dans l'historique des
+  exécutions, pas seulement dans le log d'un job - puis dans son résumé ;</li>
+<li><strong>refusée en dessous de 20 caractères</strong> : un contournement dont la trace est « x » n'en laisse pas.</li>
+</ul>
+<h3 id="ce-qui-distingue-une-preuve-dun-passage">Ce qui distingue une preuve d'un passage<a class="headerlink" href="#ce-qui-distingue-une-preuve-dun-passage" title="Permanent link">&para;</a></h3>
+<p>La veille ne compte que les passages <strong>complets</strong>. Un passage peut être <strong>ciblé</strong> depuis #3754 - deux
+classes au lieu de 4600 - et l'API des runs ne dit pas quelles entrées ont été passées à un
+<code>workflow_dispatch</code>. Le workflow porte donc son périmètre dans son <code>run-name</code> : <code>[complet]</code> ou
+<code>[ciblé]</code>.</p>
+<p>⚠️ Filtrer sur le <strong>déclencheur</strong> aurait été plus simple, et c'est ce qui a été écrit d'abord. C'est
+précisément ce filtre qui fermait le chemin du correctif urgent : un passage manuel <em>complet</em> est une
+preuve tout aussi bonne qu'un passage programmé ; c'est le passage <em>ciblé</em> qui n'en est pas une.</p>
+<h3 id="deux-pieges-dexpression-github-tenus-pour-acquis-par-personne">Deux pièges d'expression GitHub, tenus pour acquis par personne<a class="headerlink" href="#deux-pieges-dexpression-github-tenus-pour-acquis-par-personne" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tester <code>inputs.raison_du_contournement == ''</code> <strong>seul</strong> aurait désarmé la garde sur le <code>schedule</code> :
+  <code>inputs</code> y est <strong>null</strong>, et une expression GitHub compare deux types différents en les coulant en
+  nombre - <code>null == ''</code> y est donc <strong>vrai</strong>. La garde se serait sautée toute seule le mercredi,
+  c'est-à-dire exactement les jours où elle sert. La condition teste d'abord le déclencheur.</li>
+<li><code>needs</code> sur un job <strong>sauté</strong> saute le dépendant par défaut. Sans <code>!cancelled()</code> et un test explicite
+  sur <code>.result != 'failure'</code>, le contournement aurait <strong>empêché</strong> la publication au lieu de la
+  permettre.</li>
+</ul>
+<h2 id="ce-que-cette-adr-amende-dans-ladr-2744">Ce que cette ADR amende dans l'ADR 2744<a class="headerlink" href="#ce-que-cette-adr-amende-dans-ladr-2744" title="Permanent link">&para;</a></h2>
+<p>L'ADR 2744 écrit : « <code>workflow_dispatch</code> reste : un correctif urgent n'attend pas le train ». La phrase
+n'est plus vraie <strong>sans condition</strong>. Elle se lit désormais : <em>un correctif urgent n'attend pas le train,
+et il ne part pas non plus sans qu'on ait écrit pourquoi il se passe de la preuve.</em></p>
+<p>Le reste de l'ADR 2744 est inchangé : cadence hebdomadaire, mercredi, <code>semantic-release</code> intact.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>les branches <code>return null</code> de <code>debutVc</code> et <code>finVc</code> <strong>disparaissent</strong> : l'invariant est énoncé une
-  fois, à l'entrée, au lieu d'être re-testé partiellement à trois endroits. Il ne reste aucun code
-  inatteignable derrière le garde ;</li>
-<li>le message nomme ce que l'observateur peut faire (réimporter, réaligner sur les enregistrements)
-  plutôt que de décrire l'état interne ;</li>
-<li><code>RegleMetierException</code> et non <code>IllegalStateException</code> : c'est un <strong>refus</strong> que l'IHM traduit en
-  message, pas une panne technique. Le contrat de l'exception le prévoit explicitement.</li>
+<li><strong>Le train peut refuser</strong>, et il le dit avec la raison - preuve absente, périmée, ou historique
+  illisible. Trois refus distincts plutôt qu'un silence.</li>
+<li><strong>Un contournement est visible pour toujours</strong> dans l'historique des runs, sans qu'il faille ouvrir
+  un job. C'est ce qui rend l'exception supportable : elle ne s'oublie pas.</li>
+<li>⚠️ <strong>Le câblage n'a jamais tourné.</strong> <code>release.yml</code> est dormant (<code>ENABLE_RELEASE != 'true'</code>). Le
+  script est éprouvé sur les données réelles du dépôt et les expressions sont validées par
+  <code>actionlint</code>, mais le graphe de jobs s'exécutera pour la première fois le jour de l'activation. Cela
+  se dit, plutôt que de laisser croire que le dispositif a été vu à l'œuvre.</li>
+<li><strong>Le marqueur repose sur un nom.</strong> Renommer <code>[complet]</code> d'un seul côté casse la détection ; la veille
+  refuse alors en accusant <strong>elle-même</strong>, comme <code>ETAPE_CONTRAT</code> le fait pour la veille du contrat d'API.</li>
 </ul>
-<h2 id="ce-que-cette-adr-apprend-au-dela-de-son-cas">Ce que cette ADR apprend au-delà de son cas<a class="headerlink" href="#ce-que-cette-adr-apprend-au-dela-de-son-cas" title="Permanent link">&para;</a></h2>
-<p><strong>Une couverture de mutation dit « aucun test ne couvre cette ligne ». Elle ne dit pas « cette ligne
-est atteignable ».</strong> Confondre les deux produit une issue fausse, et le cycle de chantier avertit déjà
-qu'« une issue fausse coûte plus cher que le trou qu'elle prétend signaler » - il l'écrit pour les
-<code>grep</code>, ça vaut aussi pour PIT.</p>
-<p>Le réflexe utile n'est pas d'écrire le test manquant, c'est de demander d'abord <strong>par où</strong> on
-arriverait sur cette ligne. Quand la réponse est « par nulle part, grâce à une contrainte ailleurs »,
-la vraie question devient : <em>cette contrainte est-elle au bon endroit, et que se passe-t-il le jour où
-on la contourne ?</em></p>
+<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Laisser la garde sur les deux chemins.</strong> Cohérent - un correctif qui ne peut pas prouver les
+  plateformes ne devrait pas partir. Mais c'est le blocage permanent que l'ADR 0041 dit d'éviter, et il
+  suffisait d'un test instable pour retenir un correctif de sécurité une semaine.</li>
+<li><strong>Exempter <code>workflow_dispatch</code>.</strong> Restaure l'ADR 2744 à la lettre, et rend la garde contournable par
+  simple clic, sans trace ni justification. Le bouton serait devenu le chemin de moindre résistance
+  pour éviter un rouge - le défaut que ce dépôt combat partout ailleurs.</li>
+<li><strong>Un secret ou une variable de dépôt comme interrupteur.</strong> Invisible dans l'historique, et modifiable
+  sans laisser de trace dans le run qu'il autorise.</li>
+</ul>
 
 
 
@@ -5695,7 +5788,7 @@ on la contourne ?</em></p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3450 · Une propriété de fuseau se tient en rejouant">
+          <a href="../3482-l-audit-ramasse-ce-qu-une-suppression-laisse/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3482 · L&#39;audit ramasse ce qu&#39;une suppression laisse">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5705,20 +5798,20 @@ on la contourne ?</em></p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                3450 · Une propriété de fuseau se tient en rejouant
+                3482 · L'audit ramasse ce qu'une suppression laisse
               </div>
             </div>
           </a>
         
         
           
-          <a href="../3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 3483 · Un aperçu pose ce qu&#39;il ne peut pas reproduire">
+          <a href="../../recette/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Méthode">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                3483 · Un aperçu pose ce qu'il ne peut pas reproduire
+                Méthode
               </div>
             </div>
             <div class="md-footer__button md-icon">
