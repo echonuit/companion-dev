@@ -5897,6 +5897,13 @@ restitution, cf. <a href="../patterns/#le-signal-de-mutation-tu-ecris-tu-signale
 écran <strong>écrit</strong>, la règle vaut aussi dans l'autre sens : tu écris, tu signales.</p>
 </div>
 <div class="admonition note">
+<p class="admonition-title">Un <code>Bindings.create…Binding</code> ?</p>
+<p>Sa liste de dépendances doit énoncer <strong>tout</strong> ce que son calcul lit, <strong>méthodes appelées comprises</strong>.
+Rien ne le vérifie : un binding incomplet affiche juste tant qu'une autre propriété change au bon
+moment. Un cliquet compte les sites pour qu'un nouveau soit <strong>vu</strong>, cf.
+<a href="../patterns/#un-binding-declare-tout-ce-quil-lit">Patrons › Un binding déclare tout ce qu'il lit</a>.</p>
+</div>
+<div class="admonition note">
 <p class="admonition-title">Un bouton grisé, un contrôle masqué, un libellé calculé ?</p>
 <p>Ne les <strong>posez</strong> pas au montage. Un <code>setDisable(!x)</code> ou un <code>setVisible(x)</code> lu dans <code>initialize()</code>
 fige la valeur de cet instant, et l'écran restant vivant dans la pile du <code>Navigateur</code>, aucune
