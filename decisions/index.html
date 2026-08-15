@@ -4336,6 +4336,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3760-le-deficit-se-porte-il-ne-se-repartit-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3760 · Le déficit de place se porte, il ne se répartit pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
@@ -6319,6 +6347,11 @@
 <td><a href="3540-un-cliquet-qui-compte-n-est-pas-la-preuve-de-la-regle/">3540</a></td>
 <td>L'ADR 3547 declarait <code>Verification : certaine</code> en designant le cliquet qui compte les <code>Bindings.create…Binding</code> - or son propre texte dit que ce cliquet <strong>ne verifie aucune declaration</strong>. Un binding qui sous-declare le laisse vert : la ligne nommait un test incapable de rougir sur la decision, la forme exacte que l'ADR 3624 proscrit. Le cliquet et la regle s'ancrent donc <strong>separement</strong> : la regle par un <strong>regard consigne</strong> (l'inventaire des 63 sites), le cliquet par ce qu'il tient vraiment - aucun nouveau site n'entre sans etre vu. ⚠️ Trouve parce que la passe 0 a ete rejouee depuis le commit d'ouverture du <strong>chantier</strong> et non du <strong>lot</strong> : la fenetre courte ramenait <strong>une</strong> ADR au lieu de <strong>vingt-trois</strong>, et l'ADR 3624 etait dans les manquantes</td>
 <td>#3540, cloture du lot 3 de #3536</td>
+</tr>
+<tr>
+<td><a href="3760-le-deficit-se-porte-il-ne-se-repartit-pas/">3760</a></td>
+<td>Les deux barres du chrome demandaient plus de place qu elles n en avaient a la largeur d ouverture, et les deux mecaniques donnaient le meme trou : une <code>HBox</code> <strong>repartit</strong> le manque (chacun perdait 27 px, tout le monde tronquait un peu, titre et bouton Retour compris), un <code>BorderPane</code> donne a droite sa largeur preferee et laisse <strong>10 px</strong> au centre. Personne ne decidait qui rend sa place. Trois natures de reponse, qui ne valent pas la meme chose : <strong>figer</strong> ce qui ne doit jamais s abreger, <strong>reduire la demande</strong> (le seul qui supprime le probleme au lieu de le deplacer), et <strong>assumer</strong> par <code>abregeable</code>. ⚠️ La troisieme fait TAIRE le garde de lisibilite : elle change un rouge en vert sans rien ameliorer a l ecran, et doit donc dire ou elle est posee et a partir de quelle largeur elle travaille</td>
+<td>#3760 et #3743, suites de la cloture du lot 3</td>
 </tr>
 </tbody>
 </table>
