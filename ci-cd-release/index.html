@@ -6406,6 +6406,18 @@ publication.</p>
 <td>—</td>
 </tr>
 <tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/codeql.yml">codeql.yml</a></td>
+<td>push <code>main</code> + PR + hebdomadaire (lundi 5 h UTC)</td>
+<td>Analyse statique de sécurité <strong>CodeQL</strong> sur le code Java (cf. plus bas). ⚠️ Le <code>schedule</code> n'est pas décoratif : les requêtes CodeQL évoluent, donc <strong>une base de code inchangée peut devenir signalable</strong> sans qu'aucun commit l'ait touchée</td>
+<td><strong>Oui</strong> sur PR</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/securite-dependances.yml">securite-dependances.yml</a></td>
+<td>hebdomadaire (lundi 6 h UTC) + PR sur <code>pom.xml</code></td>
+<td>Rapport de vulnérabilités des dépendances livrées (cf. plus bas). ⚠️ Le filtre de chemins inclut le workflow lui-même : une étape que <strong>seul un <code>schedule</code> exerce</strong> peut être fusionnée cassée, et ce chemin la fait tourner sur la PR qui la modifie</td>
+<td>—</td>
+</tr>
+<tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/adr-rapport.yml">adr-rapport.yml</a></td>
 <td>hebdomadaire + manuel</td>
 <td>Rapport ADR (calibration des cliquets et des loupes)</td>
@@ -7002,6 +7014,41 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>veille-plateformes.sh</code></td>
 <td>la suite a été éprouvée sous Windows et macOS il y a moins de 10 jours, par un passage <strong>programmé</strong></td>
 <td><code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>veille-contrat-api.sh</code></td>
+<td>le contrat d'API a <strong>réellement</strong> tourné il y a moins de trois semaines</td>
+<td><code>api-live.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>verifie-fraicheur-actions.sh</code></td>
+<td>un épinglage <strong>cohérent</strong> peut être <strong>périmé</strong> : il date les SHA épinglés</td>
+<td><code>securite-dependances.yml</code> et <code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>verifie-affichage-flatpak.sh</code></td>
+<td>le Flatpak déclare ce qu'il faut pour démarrer <strong>sur un bureau Wayland</strong></td>
+<td><code>flatpak.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>mesure-duree-portail.sh</code></td>
+<td>l'<strong>allongement</strong> du portail qualité, médiane contre médiane</td>
+<td><code>maven.yml</code> - ⚠️ il <strong>avertit</strong>, il ne bloque pas (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>lance-test-filme.sh</code></td>
+<td>un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres</td>
+<td><code>recette-filmee.yml</code> - ⚠️ workflow <strong>manuel</strong></td>
+</tr>
+<tr>
+<td><code>filtrer-bruit-cartes.sh</code></td>
+<td>rend leur version committée aux aperçus de carte dont <strong>seul le fond</strong> a changé</td>
+<td><code>capture-vues.yml</code></td>
+</tr>
+<tr>
+<td><code>verifie-inventaires-ci.sh</code></td>
+<td>les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité</td>
+<td><code>lint.yml</code></td>
 </tr>
 <tr>
 <td><code>scripts/adr/verifie_scripts.py</code></td>
