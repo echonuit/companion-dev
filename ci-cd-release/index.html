@@ -7819,6 +7819,30 @@ honore <code>@FixtureDeRecette</code>. Une liste tenue à la main dériverait co
 <p>À quoi elle sert : le garde de #3728 vérifie qu'un identifiant cité <strong>existe</strong>, jamais que le test
 <strong>fait ce que le cas décrit</strong>. La planche rend cette relecture possible en regardant, plutôt qu'en
 relisant seize classes.</p>
+<p>⚠️ <strong>Mais tous les cas ne s'auditent pas en regardant</strong>, et l'index le dit ligne par ligne. Un
+ViewModel cite des cas et n'ouvre aucune fenêtre : son clip est noir, et c'est le résultat <strong>juste</strong>.
+Cocher « vu » dessus serait un mensonge - un mensonge que la planche aurait encouragé si elle avait
+proposé la même case à tout le monde.</p>
+<table>
+<thead>
+<tr>
+<th>Colonne « Comment l'auditer »</th>
+<th>Ce que ça veut dire</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>en regardant</strong></td>
+<td>quelque chose a paru à l'écran pendant ce test, le clip le montre</td>
+</tr>
+<tr>
+<td><strong>en lisant le test</strong></td>
+<td>rien n'a paru : l'audit est une lecture de code, le clip n'y ajoute rien</td>
+</tr>
+</tbody>
+</table>
+<p>La frontière est « <strong>aucune</strong> image utile », et non un seuil réglé à la main : soit quelque chose a
+paru, soit rien. Un nombre choisi aurait rangé un cas du mauvais côté sans qu'on le sache.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w">                                  </span><span class="c1"># le passage normal</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">sans_gestionnaire_de_fenetres</span><span class="o">=</span><span class="nb">true</span><span class="w">   </span><span class="c1"># le témoin</span>
 </code></pre></div>
