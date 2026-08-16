@@ -4952,6 +4952,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3801-une-modale-ne-sert-qu-une-fois/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3801 · Une modale ne sert qu'une fois, et le dit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3769-une-option-qui-ne-veut-plus-rien-dire-se-refuse/" class="md-nav__link">
         
   
@@ -6809,6 +6837,11 @@
 <td><a href="3840-le-signal-et-le-retour-se-partagent-la-fraicheur/">3840</a></td>
 <td>L'ADR 3537 reserve le signal aux ecritures STRUCTURELLES, ce qui laisse dehors les <code>update</code> - or Analyse affiche le taxon RETENU (<code>COALESCE(taxon_observer, taxon_tadarida)</code>), que le remplacer change. Le critere « les quatre comptes » n'explique donc pas pourquoi le produit reste juste : la fraicheur est portee par DEUX mecanismes, <code>SuitLaRevision</code> pendant qu'on regarde l'ecran, <code>RafraichirAuRetour</code> parce qu'on etait ailleurs. Ils ne sont PAS redondants ; retirer le second d'un ecran qui porte le premier casse la fraicheur en silence. ⚠️ Ma premiere version du test ne prouvait rien et restait verte sous cette mutation : la premiere validation INSERE (donc annonce), et son rechargement asynchrone relisait la base apres le remplacement silencieux. Un fait tenu par un autre dispositif que celui qu'on croit se demasque comme l'ADR 3624, en mutant ce qu'on pretend verifier</td>
 <td>#3840, suite de #3645</td>
+</tr>
+<tr>
+<td><a href="3801-une-modale-ne-sert-qu-une-fois/">3801</a></td>
+<td>Douze mutants survivaient sur <code>SiteEditViewModel</code>, dont NEUF sur une reinitialisation de champs qui reecrivait des valeurs deja en place : la production recharge le FXML a chaque ouverture, donc le ViewModel est toujours neuf. ⚠️ Mais la premisse « personne ne reutilise une instance » etait fausse du DEPOT : trois tests le faisaient, dont deux en faisaient un CONTRAT (#1380 sur la portee, #3458 sur le verdict). Le mono-usage est donc un RENVERSEMENT, et il se declare : preparer deux fois LEVE, au lieu de laisser un ecran a moitie rempli. Ce que la reinitialisation garantissait est reporte sur un cas qui lit l etat CONSTRUIT. ⚠️ Un faux vert pris par la remesure : un cas ecrit pour <code>effacerRetour</code> partait d un carre invalide, donc comparait AUCUN a AUCUN. PIT 83 % → 97 %</td>
+<td>#3801, dette de la cloture des suites de #3458</td>
 </tr>
 </tbody>
 </table>
