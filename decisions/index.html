@@ -5085,6 +5085,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3840-le-signal-et-le-retour-se-partagent-la-fraicheur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3840 · Le signal et le retour se partagent la fraîcheur
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6776,6 +6804,11 @@
 <td><a href="3798-un-fil-elide-des-segments-il-ne-rogne-pas-des-libelles/">3798</a></td>
 <td>L'ADR 3760 avait designe le fil d'Ariane comme PORTEUR du deficit de la barre du haut ; une <code>HBox</code> le REPARTIT, et ses cinq segments perdaient 39 px chacun a 900. Le principe etait donc tenu a l'etage de la barre et enfreint un cran plus bas, par le composant charge de le porter - et une repartition egale en pixels ampute inegalement : « Accueil » perdait 65 % de sa largeur, « Details du passage N° 1 » 26 %. Le fil elide desormais des segments ENTIERS, la proximite d'abord, l'ancre en dernier ; le menu « … » garde les retires, libelle complet et action. ⚠️ Le remede ecrit dans l'issue (premier + deux derniers) demandait 380 px pour 351 : un schema FIXE ne pouvait pas convenir. ⚠️ Meilleure part du chantier : <code>abregeable</code> est retiree des segments, donc <code>LisibiliteCapture</code> retrouve le droit de rougir dessus - un dispositif qu'on cesse de baillonner plutot qu'un dispositif de plus</td>
 <td>#3798, suite de #3536</td>
+</tr>
+<tr>
+<td><a href="3840-le-signal-et-le-retour-se-partagent-la-fraicheur/">3840</a></td>
+<td>L'ADR 3537 reserve le signal aux ecritures STRUCTURELLES, ce qui laisse dehors les <code>update</code> - or Analyse affiche le taxon RETENU (<code>COALESCE(taxon_observer, taxon_tadarida)</code>), que le remplacer change. Le critere « les quatre comptes » n'explique donc pas pourquoi le produit reste juste : la fraicheur est portee par DEUX mecanismes, <code>SuitLaRevision</code> pendant qu'on regarde l'ecran, <code>RafraichirAuRetour</code> parce qu'on etait ailleurs. Ils ne sont PAS redondants ; retirer le second d'un ecran qui porte le premier casse la fraicheur en silence. ⚠️ Ma premiere version du test ne prouvait rien et restait verte sous cette mutation : la premiere validation INSERE (donc annonce), et son rechargement asynchrone relisait la base apres le remplacement silencieux. Un fait tenu par un autre dispositif que celui qu'on croit se demasque comme l'ADR 3624, en mutant ce qu'on pretend verifier</td>
+<td>#3840, suite de #3645</td>
 </tr>
 </tbody>
 </table>
