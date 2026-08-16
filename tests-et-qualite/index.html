@@ -4809,6 +4809,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/3802-un-defaut-de-plateforme-se-sonde-il-ne-se-deduit-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3802 · Un défaut de plateforme se sonde, il ne se déduit pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/3645-un-detecteur-textuel-s-exclut-de-son-corpus/" class="md-nav__link">
         
   
@@ -6562,6 +6590,15 @@ PMD / ArchUnit ne se désactivent <strong>jamais</strong> pour « faire passer �
   Sans lui, il mesure la police de la <strong>machine hôte</strong> au lieu de celle du produit, et son verdict
   dépend de ce qui a tourné avant lui dans le même fork. <code>ScenesHabilleesTest</code> le garde (#3773).</li>
 </ul>
+<h3 id="certains-defauts-ne-se-voient-pas-depuis-ce-poste-il-faut-les-sonder">⚠️ Certains défauts ne se voient pas depuis ce poste - il faut les sonder<a class="headerlink" href="#certains-defauts-ne-se-voient-pas-depuis-ce-poste-il-faut-les-sonder" title="Permanent link">&para;</a></h3>
+<p>Quatre fois sur la campagne #3802, une mesure locale a rendu <strong>vert</strong> sans rien dire : <code>Noto Sans</code> est
+une police <strong>système</strong> sous Linux, <code>ATOMIC_MOVE</code> y réussit quoi qu'on tienne ouvert, la vue <strong>ACL</strong> n'y
+existe pas, et PIT y tourne - donc laisse sans couverture toute branche que seul Windows emprunte.</p>
+<p>La méthode qui marche, et qui coûte trois minutes depuis #3754 : une <strong>sonde jetable</strong> qui <strong>rapporte</strong>
+au lieu de juger, dispatchée sur la plateforme concernée, lue, <strong>puis</strong> traduite en assertion.</p>
+<p>⚠️ Les deux sondes de cette campagne ont <strong>contredit</strong> l'hypothèse qui les demandait. Une sonde qui
+aurait asserté l'hypothèse serait passée au rouge sans qu'on sache pourquoi.</p>
+<p>Détail : <a href="../decisions/3802-un-defaut-de-plateforme-se-sonde-il-ne-se-deduit-pas/">ADR 3802</a>.</p>
 <h3 id="la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne">⚠️ La police d'un test n'est pas celle du produit, sauf si on la lui donne<a class="headerlink" href="#la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne" title="Permanent link">&para;</a></h3>
 <p><code>Typographie.installer()</code> garde un <code>static boolean</code> : l'enregistrement de la police embarquée est
 <strong>global au JVM et fait une seule fois</strong>. Un test qui monte sa scène à la main voit donc la police du

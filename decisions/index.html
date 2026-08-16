@@ -4924,6 +4924,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3802-un-defaut-de-plateforme-se-sonde-il-ne-se-deduit-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3802 · Un défaut de plateforme se sonde, il ne se déduit pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3645-un-detecteur-textuel-s-exclut-de-son-corpus/" class="md-nav__link">
         
   
@@ -6611,6 +6639,11 @@
 <td><a href="3794-la-ci-garde-ses-inventaires-comme-ceux-du-produit/">3794</a></td>
 <td>Le depot exige de son PRODUIT que ses inventaires soient prouves - CLI, captures, ADR, cliquets - et de sa PROPRE DESCRIPTION rien. Trois inventaires tenus a la main, trois derives : ⚠️ deux workflows absents du tableau, et ce sont les DEUX de securite - un inventaire non garde perd d'abord ce qu'on regarde le moins. ⚠️ Le defaut se reproduit pendant qu'on le decrit : #3771 annoncait cinq gardes manquantes, il y en avait six. D'ou la garde AVANT les corrections. Elle compare des FICHIERS, jamais des lignes - <code>maven.yml</code> en occupe cinq. Et elle ne juge PAS le contenu des colonnes : exiger un libelle pousserait a completer le tableau EN L'APLATISSANT</td>
 <td>#3794, lot 2 de #3802</td>
+</tr>
+<tr>
+<td><a href="3802-un-defaut-de-plateforme-se-sonde-il-ne-se-deduit-pas/">3802</a></td>
+<td>QUATRE fois sur cinq lots, le poste de developpement etait AVEUGLE PAR CONSTRUCTION : <code>Noto Sans</code> est une police systeme sous Linux, <code>ATOMIC_MOVE</code> y reussit quoi qu'on tienne ouvert, la vue ACL n'y existe pas, et PIT y tourne. Une suite locale verte ne disait rien - et une experience d'isolement a failli servir de preuve. Un defaut de plateforme se SONDE : un test jetable qui RAPPORTE au lieu de juger, dispatche la ou le defaut vit, lu, PUIS traduit en assertion. ⚠️ Les DEUX sondes de la campagne ont CONTREDIT l'issue qui les demandait. La sonde dit quel comportement cabler ; l'injection le rend rejouable partout - l'un sans l'autre laisse la moitie du remede non jugee</td>
+<td>#3802, suites de #3518</td>
 </tr>
 </tbody>
 </table>
