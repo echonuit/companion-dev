@@ -5057,6 +5057,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3798-un-fil-elide-des-segments-il-ne-rogne-pas-des-libelles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3798 · Un fil élide des segments, il ne rogne pas des libellés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6743,6 +6771,11 @@
 <td><a href="3854-un-refus-ne-conseille-que-ce-qu-il-a-verifie/">3854</a></td>
 <td>Le refus du depot conseillait « synchronisez vos sites », geste dont la sonde #3669 a mesure qu'il ne ramene PAS un carre sans participation : le conseil etait inapplicable a ceux-la precisement, et c'est le parcours qui a produit #3458. JUMEAU du defaut corrige cote modale par #3806 - corriger l'un sans l'autre laisse le defaut vivant sous une autre forme. Un refus verifie donc qu'un geste s'applique avant de le nommer : recuperer si le carre existe en Point Fixe, activer sur le portail sinon. ⚠️ Injoignable NE TRANCHE PAS - ni « recuperez-le », ni « il n'existe pas » : affirmer depuis une ignorance est ce que l'ADR 3458 a ferme. La requete ne se paie que sur le chemin d'ECHEC, un test tenant qu'un depot qui aboutit ne cherche aucun carre</td>
 <td>#3854, cloture des suites de #3458</td>
+</tr>
+<tr>
+<td><a href="3798-un-fil-elide-des-segments-il-ne-rogne-pas-des-libelles/">3798</a></td>
+<td>L'ADR 3760 avait designe le fil d'Ariane comme PORTEUR du deficit de la barre du haut ; une <code>HBox</code> le REPARTIT, et ses cinq segments perdaient 39 px chacun a 900. Le principe etait donc tenu a l'etage de la barre et enfreint un cran plus bas, par le composant charge de le porter - et une repartition egale en pixels ampute inegalement : « Accueil » perdait 65 % de sa largeur, « Details du passage N° 1 » 26 %. Le fil elide desormais des segments ENTIERS, la proximite d'abord, l'ancre en dernier ; le menu « … » garde les retires, libelle complet et action. ⚠️ Le remede ecrit dans l'issue (premier + deux derniers) demandait 380 px pour 351 : un schema FIXE ne pouvait pas convenir. ⚠️ Meilleure part du chantier : <code>abregeable</code> est retiree des segments, donc <code>LisibiliteCapture</code> retrouve le droit de rougir dessus - un dispositif qu'on cesse de baillonner plutot qu'un dispositif de plus</td>
+<td>#3798, suite de #3536</td>
 </tr>
 </tbody>
 </table>

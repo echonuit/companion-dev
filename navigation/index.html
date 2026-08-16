@@ -435,6 +435,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Le Navigateur : une pile d&#39;écrans vivants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quand-la-place-manque-le-fil-elide-des-segments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quand la place manque, le fil élide des segments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -5083,6 +5100,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3798-un-fil-elide-des-segments-il-ne-rogne-pas-des-libelles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3798 · Un fil élide des segments, il ne rogne pas des libellés
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5863,6 +5908,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Le Navigateur : une pile d&#39;écrans vivants">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#quand-la-place-manque-le-fil-elide-des-segments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quand la place manque, le fil élide des segments
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6048,6 +6110,38 @@ ré-affiche l'instance précédente, <strong>état préservé</strong>.</p>
 hiérarchique</strong> que l'écran déclare (cf. <code>EmplacementNavigation</code> ci-dessous), sinon il retombe sur
 l'historique.</p>
 </div>
+<h3 id="quand-la-place-manque-le-fil-elide-des-segments">Quand la place manque, le fil élide des segments<a class="headerlink" href="#quand-la-place-manque-le-fil-elide-des-segments" title="Permanent link">&para;</a></h3>
+<p><code>FilAriane</code> ne laisse <strong>aucun</strong> de ses libellés se faire couper : quand la barre rétrécit, il retire des
+segments <strong>entiers</strong> et les remplace par un menu « … » où chacun garde son libellé complet et son
+action.</p>
+<p>L'ordre de service est <strong>la proximité d'abord</strong> : le dernier segment (où l'on est) est gardé quoi qu'il
+arrive, puis on remonte vers ses ancêtres tant qu'ils tiennent, et « Accueil » ne vient qu'en dernier -
+le titre de l'application et le bouton ← Retour y mènent déjà.</p>
+<table>
+<thead>
+<tr>
+<th>Largeur</th>
+<th>Fil rendu sur l'écran le plus profond</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1100</td>
+<td><code>Accueil › Mes sites › Carré 640380 › Détails du passage N° 1 › Diagnostic matériel</code></td>
+</tr>
+<tr>
+<td>1000</td>
+<td><code>… › Carré 640380 › Détails du passage N° 1 › Diagnostic matériel</code></td>
+</tr>
+<tr>
+<td>900</td>
+<td><code>… › Détails du passage N° 1 › Diagnostic matériel</code></td>
+</tr>
+</tbody>
+</table>
+<p>Conséquence pour qui touche au chrome : les segments ne portent <strong>plus</strong> la classe <code>abregeable</code>.
+<code>LisibiliteCapture</code> les juge comme le reste, et un fil qui se couperait à nouveau ferait rougir la CI.
+Cf. <a href="../decisions/3798-un-fil-elide-des-segments-il-ne-rogne-pas-des-libelles/">ADR 3798</a>.</p>
 <h2 id="les-contrats-optionnels-dun-ecran">Les contrats optionnels d'un écran<a class="headerlink" href="#les-contrats-optionnels-dun-ecran" title="Permanent link">&para;</a></h2>
 <p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/EtapeNavigation.java"><code>EtapeNavigation</code></a>
 mémorise le <code>controller</code> de l'écran et en dérive, par <code>instanceof</code>, des <strong>contrats optionnels</strong> que le
