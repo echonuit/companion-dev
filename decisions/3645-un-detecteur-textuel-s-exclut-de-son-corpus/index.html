@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/0036-la-copie-des-bruts-est-une-option/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3645-un-detecteur-textuel-s-exclut-de-son-corpus/">
       
       
-        <link rel="prev" href="../0035-un-pictogramme-est-une-icone-pas-un-caractere/">
+        <link rel="prev" href="../3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/">
       
       
-        <link rel="next" href="../0037-une-barre-d-actions-plie-elle-ne-tronque-pas/">
+        <link rel="next" href="../../recette/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>0036 · La copie des bruts est une option - VigieChiro Companion · Doc développeur</title>
+        <title>3645 · Un détecteur textuel s'exclut de son propre corpus - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0036-la-copie-des-enregistrements-bruts-est-une-option-de-re-analyse-pas-un-defaut" class="md-skip">
+        <a href="#adr-3645-un-detecteur-textuel-sexclut-de-son-propre-corpus" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              0036 · La copie des bruts est une option
+              3645 · Un détecteur textuel s'exclut de son propre corpus
             
           </span>
         </div>
@@ -1532,37 +1532,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    0036 · La copie des bruts est une option
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
         
   
   
@@ -1578,70 +1551,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-qui-a-ete-ecarte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce qui a été écarté
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -4843,10 +4752,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../3645-un-detecteur-textuel-s-exclut-de-son-corpus/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3645 · Un détecteur textuel s'exclut de son propre corpus
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4862,6 +4798,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#le-defaut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le défaut
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -5628,6 +5628,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-defaut" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le défaut
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5643,17 +5654,6 @@
     <span class="md-ellipsis">
       
         Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-qui-a-ete-ecarte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce qui a été écarté
       
     </span>
   </a>
@@ -5677,7 +5677,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/0036-la-copie-des-bruts-est-une-option.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3645-un-detecteur-textuel-s-exclut-de-son-corpus.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5686,47 +5686,67 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/0036-la-copie-des-bruts-est-une-option.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3645-un-detecteur-textuel-s-exclut-de-son-corpus.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-0036-la-copie-des-enregistrements-bruts-est-une-option-de-re-analyse-pas-un-defaut">ADR 0036 - La copie des enregistrements bruts est une option de ré-analyse, pas un défaut<a class="headerlink" href="#adr-0036-la-copie-des-enregistrements-bruts-est-une-option-de-re-analyse-pas-un-defaut" title="Permanent link">&para;</a></h1>
+<h1 id="adr-3645-un-detecteur-textuel-sexclut-de-son-propre-corpus">ADR 3645 - Un détecteur textuel s'exclut de son propre corpus<a class="headerlink" href="#adr-3645-un-detecteur-textuel-sexclut-de-son-propre-corpus" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - 2026-07-20</li>
-<li><strong>Chantier</strong> : EPIC #2061 (lots #2062 à #2064)</li>
-<li><strong>Vérification</strong> : humaine - la copie des bruts comme option non par défaut est un arbitrage produit, vérifié en revue et par les tests d'import</li>
+<li><strong>Statut</strong> : Accepté - 2026-08-16</li>
+<li><strong>Chantier</strong> : #3645, suites du chantier #3536</li>
+<li><strong>Vérification</strong> : certaine - <code>src/test/java/fr/univ_amu/iut/architecture/AnnonceDesMutationsTest.java</code></li>
 </ul>
+<p>Vue rouge par une mutation à la main, dans les deux sens et sur la même garde retirée : <strong>sans</strong>
+l'exclusion, le détecteur reste vert ; <strong>avec</strong>, il nomme <code>BaseNeuve</code>. C'est la seule mesure qui prouve
+que l'exclusion porte quelque chose.</p>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>L'import copiait les WAV bruts dans <code>bruts/</code> avant de les transformer, et ce depuis toujours. Une case de l'écran d'import permettait de s'en passer, décochée par presque personne.</p>
-<p>Ce défaut coûte cher : les bruts pèsent <strong>plusieurs gigaoctets par nuit</strong>, soit un tiers à la moitié de l'occupation d'un import, et la copie SD → workspace représente <strong>65 à 70 % du temps d'import</strong> (<code>docs/benchmarks/README.md</code>). Ne pas copier divise donc ce temps par environ trois, en plus de la place gagnée.</p>
-<p>Et il n'avait <strong>aucune justification écrite</strong>. Le code disait « comportement historique » ; la doc utilisateur parlait d'« archive de sécurité ». Aucune ADR, aucune exigence du protocole Vigie-Chiro ne l'imposait.</p>
-<p>Trois objections se présentent spontanément. Aucune ne tient, et c'est pour cela que cette décision mérite d'être écrite.</p>
-<p><strong>« R9 l'impose. »</strong> Non. R9 dit : <em>ne jamais écrire sur la carte SD</em>. Le mode sans copie lit les WAV <strong>en place</strong> et est documenté partout comme <em>conforme</em> à R9 (<code>PreparationOriginaux</code>, <code>SourceOriginal</code>, <code>ServiceImport</code>, <code>InspecteurDossier</code>). La garantie effectivement testée est la non-modification de la source, pas la conservation d'une copie.</p>
-<p><strong>« On ne pourra plus récupérer une nuit archivée. »</strong> Non plus. <strong>Rien dans l'application ne relit <code>bruts/</code> après l'import.</strong> Les deux voies de réactivation partent d'un <strong>dossier désigné par l'utilisateur</strong>, et le code anticipe explicitement la carte SD comme provenance :</p>
-<blockquote>
-<p><code>CandidatsReactivation</code>, sous l'un des deux noms sous lesquels un utilisateur le garde : son nom R6 (copie du dossier <code>bruts/</code>) ou son <strong>nom d'enregistreur non préfixé (copie de la carte SD)</strong>.</p>
-</blockquote>
-<p>L'<a href="../0006-depot-zip-par-defaut-perte-audio-serveur-assumee/">ADR 0006</a> désignait d'ailleurs déjà « la <strong>carte SD de l'utilisateur</strong> » comme source de récupération, pas le workspace.</p>
-<p><strong>« On perd la preuve d'identité. »</strong> Non : <code>sha256</code> et <code>size_bytes</code> sont capturés à l'import dans les <strong>deux</strong> modes. Ils décrivent ce qu'il faut <em>retrouver</em>, pas ce qu'on possède, <code>VerificationIdentiteAudio</code> le dit : « quand l'utilisateur <strong>n'a gardé que ses originaux</strong>, leur <code>sha256</code> intégral prouve l'original ». Ces colonnes sont plus utiles quand le fichier local n'est plus là que quand il y est.</p>
+<p>Le lot 1 du chantier #3536 a posé l'invariant « tu écris, tu signales »
+(<a href="../3537-un-signal-se-pose-a-l-ecriture/">ADR 3537</a>) : toute écriture structurelle validée appelle
+<code>JournalMutations.mutationStructurelleValidee()</code>.</p>
+<p>Pour empêcher qu'une nouvelle écriture entre sans annonce, #3645 a livré un <strong>cliquet de dette</strong>
+(<a href="../2843-typographie-cliquet-plutot-que-nettoyage/">ADR 2843</a>) : cinq classes annonçaient sans qu'un test
+compte leur annonce, et ce nombre devait descendre, jamais monter. Le cliquet tient un <strong>compteur</strong>, pas
+une liste, l'<a href="../3575-le-journal-fait-exception-et-le-cliquet-ne-recopie-rien/">ADR 3575</a> ayant montré
+qu'une liste de noms ne protège qu'elle-même. Mais son doc-comment <strong>nommait</strong> les cinq débiteurs, comme trace de départ.</p>
+<p>Sa règle : une classe est gardée si un fichier de <code>src/test/java</code> cite son nom <strong>et</strong> contient le mot
+<code>JournalMutations</code>.</p>
+<h2 id="le-defaut">Le défaut<a class="headerlink" href="#le-defaut" title="Permanent link">&para;</a></h2>
+<p>Le fichier du détecteur est lui-même dans <code>src/test/java</code>. Il contient le mot <code>JournalMutations</code> par
+construction, puisque c'est ce qu'il cherche. Et sa documentation nomme les cinq classes en dette.</p>
+<p>Il les certifiait donc gardées, toutes les cinq, en se lisant lui-même.</p>
+<p>Mesuré en remplaçant <code>hasSizeLessThanOrEqualTo(5)</code> par <code>hasSize(5)</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Expected size: 5 but was: 0
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>En dette : []
+</code></pre></div>
+<p>Le cliquet n'a jamais nommé personne. Il ne pouvait pas descendre, puisqu'il était déjà à zéro ; il ne
+pouvait pas rougir, puisque toute classe qu'il aurait accusée serait, du fait même de l'accusation
+écrite dans son en-tête, aussitôt absoute. Un vert qui existerait à l'identique sur un dépôt cassé, ce
+que l'<a href="../3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/">ADR 3624</a> refuse.</p>
+<p>La forme est particulière et mérite d'être nommée : ce n'est pas un garde trop faible, c'est un garde
+dont le <strong>corpus contient le juge</strong>. Plus il documente ce qu'il cherche, moins il le trouve.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>1. Le défaut est de ne pas copier.</strong> Conserver les bruts devient une option, pour qui compte <strong>ré-analyser</strong> ses enregistrements avec d'autres réglages ou un autre outil. Ce n'est pas un service rendu à tout le monde : l'application n'en a aucun besoin pour écouter, valider ou déposer.</p>
-<p><strong>2. L'option nomme son usage, pas sa mécanique.</strong> « Conserver les originaux pour ré-analyse ultérieure », et non « conserver les originaux importés ». Un réglage qui dit à quoi il sert se trouve ; un réglage qui décrit son implémentation ne se trouve pas. Son aide énonce ce qu'il <strong>coûte</strong> (plusieurs Go, import trois fois plus long) et pas seulement ce qu'il fait.</p>
-<p><strong>3. Le choix vit aux Réglages, pas sur l'écran d'import.</strong> L'utilisateur courant n'a rien à arbitrer au moment d'importer ; celui qui a besoin de l'option ira la chercher. Il n'y avait d'ailleurs pas deux mécanismes : la case et le réglage partageaient déjà la même clé.</p>
-<p><strong>4. Rien n'avertit l'utilisateur qu'on ne copie pas.</strong> C'est la partie la moins évidente, et elle tient au <strong>modèle mental</strong> : personne ne s'imagine que l'application garde un <strong>double</strong> d'un fichier qu'elle ne touche jamais. Prévenir qu'on ne fait pas une chose que personne n'attendait, c'est du bruit.</p>
-<p><strong>5. Un choix déjà fait n'est pas repris.</strong> <code>lireBooleen</code> ne retombe sur le défaut que si la clé est absente : une installation qui a déjà importé garde sa valeur. On ne revient pas dans le dos de quelqu'un sur une décision explicite ; seules les installations neuves basculent.</p>
-<p><strong>6. Un import sans copie déclare « non stocké localement ».</strong> Les originaux sont <strong>connus et prouvés</strong> mais absents du disque : c'est exactement ce que <code>originals_purged_at</code> déclare, et l'<a href="../0001-reactivation-passage-reconstruit-identite-structurelle/">ADR 0001</a> emploie déjà « purgé » en ce sens pour les originaux adoptés après hydratation. Sans cette déclaration, l'audit prendrait chaque original devenu introuvable pour une <strong>corruption</strong>, un fait voulu passant pour un incident, ce que l'<a href="../0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/">ADR 0012</a> proscrit.</p>
-<p><strong>7. Le réglage appartient à l'appelant, pas au service.</strong> IHM et CLI lisent le réglage et disent au service ce qu'ils veulent. <code>ServiceImport</code> n'a pas à connaître une préférence d'interface : une première version lui injectait le réglage, PMD l'a refusée pour liste de paramètres excessive, et le motif de fond était le bon.</p>
+<p><strong>Un dispositif qui cherche un motif textuel dans un corpus de fichiers exclut son propre fichier de ce
+corpus.</strong></p>
+<p>L'exclusion est nommée et documentée sur place, comme <code>SOCLE</code> dans <code>LibelleDeNavigationTest</code>, qui écarte
+<code>Navigateur.java</code> pour la raison symétrique : la classe qui <strong>déclare</strong> un geste n'est pas celle qui le
+<strong>commet</strong>.</p>
+<p>Corollaire, pour cette famille de gardes : <strong>un garde nomme le port qu'il vérifie</strong>. Un
+<code>() -&gt; compteur[0]++</code> anonyme compte l'annonce sans qu'aucun détecteur textuel puisse le voir ;
+<code>BaseNeuveTest</code> gardait ainsi son annonce depuis le lot 1, et se faisait accuser d'une dette qu'elle
+n'avait pas. Le message d'échec l'écrit désormais en toutes lettres.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p>Le pic disque de l'import passe de 2-3× la taille source à 1-2×, et l'import est environ trois fois plus rapide. Cela réduit d'autant la portée de #2041, qui ne garde que son garde-fou disque.</p>
-<p>Le bouton « Purger les originaux » <strong>n'est pas supprimé</strong> : il se retire déjà seul quand il n'y a rien à purger, et le supprimer priverait les installations existantes du seul moyen de récupérer l'espace de leurs bruts déjà copiés. La purge n'est d'ailleurs pas qu'un geste : c'est le <strong>fait déclaré</strong> dont l'audit dépend.</p>
-<p><code>EnregistrementOriginal.cheminFichier</code> désigne, en mode sans copie, un chemin sur la carte SD : une <strong>provenance</strong>, pas un localisateur. Aucun parcours de récupération ne s'en sert, la réactivation apparie par nom. Sa doc le dit désormais, pour que personne n'écrive de code supposant ce fichier ouvrable.</p>
-<h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
-<p><strong>Migrer les installations existantes vers le nouveau défaut.</strong> Techniquement trivial, mais cela reviendrait sur un choix que l'utilisateur a explicitement fait. Reste possible si le besoin apparaît.</p>
-<p><strong>Effacer le <code>file_path</code> en mode sans copie.</strong> Plus propre en apparence, mais cela introduirait un <code>null</code> là où <code>BackfillEmpreintes</code> fait <code>Path.of(...)</code>, pour supprimer une information dont la valeur archivistique est réelle.</p>
-<p><strong>Supprimer le mode de conservation.</strong> Le besoin de ré-analyse est légitime pour un utilisateur scientifique ; c'est son statut de <strong>défaut</strong> qui ne l'était pas.</p>
+<p>Le détecteur s'exclut, les cinq gardes sont écrites - dont quatre nouvelles, la cinquième n'étant qu'un
+lambda à typer - et le plafond de dette a laissé place à une <strong>invariante</strong> : la liste des classes sans
+garde doit être vide. Un cliquet arrivé à zéro n'a plus de raison d'être un plafond.</p>
+<p>Le doc-comment disait aussi que l'approximation « ne peut pas sous-estimer » la couverture. C'était faux,
+et de la moitié dangereuse : une dette surévaluée donne du mou. Il dit maintenant qu'elle se trompe dans
+les deux sens, et lesquels.</p>
+<p>Ce qu'aucun de ces dispositifs ne prouve reste écrit en tête du fichier : que les <strong>bonnes</strong> opérations
+annoncent. L'ADR 3537 autorise une seule annonce par rafale, donc comparer deux comptes rougirait en
+permanence sur un dépôt correct.</p>
 
 
 
@@ -5762,7 +5782,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 0035 · Un pictogramme est une icône">
+          <a href="../3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3827 · Une affirmation de sécurité se lit, ou elle n&#39;existe pas">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -5772,20 +5792,20 @@
                 Précédent
               </span>
               <div class="md-ellipsis">
-                0035 · Un pictogramme est une icône
+                3827 · Une affirmation de sécurité se lit, ou elle n'existe pas
               </div>
             </div>
           </a>
         
         
           
-          <a href="../0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 0037 · Une barre d&#39;actions plie">
+          <a href="../../recette/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Méthode">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                0037 · Une barre d'actions plie
+                Méthode
               </div>
             </div>
             <div class="md-footer__button md-icon">
