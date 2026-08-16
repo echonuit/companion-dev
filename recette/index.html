@@ -5109,6 +5109,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#le-clip-ce-quun-cas-perceptif-donne-a-regarder-3667" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le clip : ce qu'un cas perceptif donne à regarder (#3667)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -5901,6 +5912,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#le-clip-ce-quun-cas-perceptif-donne-a-regarder-3667" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le clip : ce qu'un cas perceptif donne à regarder (#3667)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -6159,6 +6181,23 @@ le script disait « perceptifs » en toutes lettres, et aucune machine ne le lis
   de la stabilisation tiennent-ils <strong>ensemble</strong> ? Un parcours qui traverse quatre écrans, là où chaque
   session n'en déroule qu'un. Condition d'entrée de la campagne 2 <em>(à jouer)</em>.</li>
 </ul>
+<h3 id="le-clip-ce-quun-cas-perceptif-donne-a-regarder-3667">Le clip : ce qu'un cas perceptif donne à regarder (#3667)<a class="headerlink" href="#le-clip-ce-quun-cas-perceptif-donne-a-regarder-3667" title="Permanent link">&para;</a></h3>
+<p>Un cas perceptif n'était jusqu'ici jugeable qu'en <strong>refaisant les manipulations à la main</strong>. Il l'est
+maintenant en regardant un extrait.</p>
+<p>Une séance filmée produit, à côté du film, un <strong>clip par test</strong> et un <code>index.md</code> qui se lit <strong>par
+cas</strong> : on saute à l'extrait plutôt que de regarder trente minutes.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>ConnexionModaleViewTest<span class="w">   </span><span class="c1"># une classe</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>--planche<span class="w">                 </span><span class="c1"># tout ce qui cite un cas</span>
+</code></pre></div>
+<p>⚠️ <strong>L'index dit par quel moyen chaque cas s'audite</strong>, et c'est ce qui l'empêche d'inviter à cocher
+n'importe quoi : « en regardant » quand quelque chose a paru à l'écran, « en lisant le test » quand
+rien n'a paru. Un test de ViewModel cite des cas et n'ouvre aucune fenêtre - son clip est noir, et
+c'est le résultat <strong>juste</strong>.</p>
+<p>Le mode d'emploi et les pièges du banc vivent dans
+<a href="../ci-cd-release/#un-runner-qui-execute-nest-pas-un-runner-qui-pilote-3710">CI/CD</a>.</p>
+<p>⚠️ <strong>Le clip ne rend pas le verdict, il le rend possible.</strong> Filmer une application cassée produit une
+vidéo parfaitement valide : ce qui fait foi reste l'assertion pour un cas asserté, et le <strong>regard
+d'un humain</strong> pour un cas perceptif.</p>
 <h2 id="la-fiche-devaluation-six-axes">La fiche d'évaluation : six axes<a class="headerlink" href="#la-fiche-devaluation-six-axes" title="Permanent link">&para;</a></h2>
 <p>Chaque écran est noté sur <strong>six axes</strong>, verdict trivalué (<strong>OK / remarque / bloquant</strong>). Les axes <strong>P</strong>
 et <strong>D</strong> s'instruisent en <strong>passe statique</strong> (ils ne demandent pas de piloter l'écran) ; la session
@@ -6251,7 +6290,7 @@ Selon l'axe, la couche de cristallisation diffère :</p>
 </tr>
 <tr>
 <td><strong>F</strong></td>
-<td><strong>irréductiblement humain</strong> pour la part <em>perçue</em> ; les invariants objectivables (annulable, désactivation expliquée) rejoignent C / E</td>
+<td><strong>irréductiblement humain</strong> pour la part <em>perçue</em> - irréductible à une <strong>assertion</strong>, non à un <strong>dispositif</strong> : le geste se filme et se regarde (#3667). Les invariants objectivables (annulable, désactivation expliquée) rejoignent C / E</td>
 </tr>
 </tbody>
 </table>

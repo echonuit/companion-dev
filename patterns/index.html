@@ -7095,6 +7095,21 @@ d'elle-même les puces de filtre, construites sur <code>values()</code>.</p>
   point corse une divergence. <code>RegionsFrancaises.memeDepartement</code> n'affirme que les écarts qu'elle sait
   <strong>démontrer</strong>.</li>
 </ul>
+<h3 id="le-patron-vaut-aussi-hors-des-donnees-du-produit-3667">Le patron vaut aussi hors des données du produit (#3667)<a class="headerlink" href="#le-patron-vaut-aussi-hors-des-donnees-du-produit-3667" title="Permanent link">&para;</a></h3>
+<p><code>CorrespondanceRecetteTest</code> confronte deux sources qui parlent du même sujet sans se connaître : le
+<strong>script de recette</strong>, qui dit ce qu'un cas demande (<code>*perceptif*</code> ou non), et le <strong>code</strong>, qui dit ce
+qu'un test prétend prouver (<code>jugement</code>). Elles peuvent se contredire, et la contradiction était
+jusque-là invisible.</p>
+<p>Deux règles s'y retrouvent à l'identique, ce qui est le signe qu'il s'agit bien du même patron :</p>
+<ul>
+<li><strong>montrer n'est pas trier</strong> : un cas marqué perceptif ne rejoint <strong>jamais</strong> les assertés, quoi
+  qu'en dise le code. La contradiction se signale, elle ne se résout pas en silence dans le sens qui
+  arrange le compteur ;</li>
+<li><strong>s'abstenir plutôt qu'affirmer</strong> : le garde ne réclame pas la couverture, il refuse qu'elle soit
+  <strong>tacite</strong>. « Aucun test » reste une réponse recevable.</li>
+</ul>
+<p>Une différence, en revanche : ici la confrontation ne rend pas un constat à l'utilisateur, elle
+<strong>rougit la CI</strong>. Un désaccord entre un document et le code n'a pas de destinataire dans le produit.</p>
 <p><strong>Où le constat vit.</strong> Sur la <strong>portée de ce qu'il décrit</strong>, pas sur celle de ce qui l'a déclenché. Un
 écart de topologie (un point, un carré) sort de l'audit <strong>global</strong> ; l'audit ciblé d'une nuit
 (<code>auditerPassage</code>) le répéterait à chaque passage du même point sans rien apprendre.</p>

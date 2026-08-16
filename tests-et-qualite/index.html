@@ -6115,10 +6115,67 @@ retomberait <strong>en silence</strong> sur ses défauts.</p>
 <td><code>documentation/DocumentationAJourTest</code></td>
 <td>Toute commande CLI a sa ligne, tout écran a sa fiche (#1458).</td>
 </tr>
+<tr>
+<td><strong>Recette (traçabilité)</strong></td>
+<td><code>recette/</code></td>
+<td>Le lien entre les scripts de session et le code qui les couvre : <code>CorrespondanceRecetteTest</code> confronte les deux, <code>RepartitionDesCas</code> trie les cas en trois bacs, <code>CasDeRecette</code> porte la citation (#3667).</td>
+</tr>
+<tr>
+<td><strong>Scénario perceptif</strong></td>
+<td><code>&lt;feature&gt;/view/Scenario*Test</code></td>
+<td>Joue un geste <strong>sans l'asserter</strong> : le verdict revient à qui regarde le clip (<code>jugement = HUMAIN</code>). Il asserte seulement qu'il a <strong>joué</strong>.</td>
+</tr>
 </tbody>
 </table>
 <p>Outils : <strong>JUnit 5 + AssertJ + Mockito</strong> ; <strong>ApprovalTests</strong> pour les sorties verbatim (CSV Tadarida
 <code>_Vu</code> : le premier run produit un <code>*.received</code>, à approuver en <code>*.approved</code>).</p>
+<h3 id="ce-quune-assertion-ne-voit-pas-le-harnais-de-recette-filmee-3667">Ce qu'une assertion ne voit pas : le harnais de recette filmée (#3667)<a class="headerlink" href="#ce-quune-assertion-ne-voit-pas-le-harnais-de-recette-filmee-3667" title="Permanent link">&para;</a></h3>
+<p>Certains cas de recette ne se tranchent pas par une assertion : « la modale s'ouvre <strong>sans saut</strong> »,
+« rien ne se redimensionne pendant la récupération ». Une assertion voit un contenu <strong>correct une
+fois posé</strong>, jamais le chemin pour y arriver.</p>
+<p>Le harnais leur donne un dispositif, dont la règle centrale est de ne <strong>jamais</strong> compter un cas joué
+comme un cas prouvé.</p>
+<table>
+<thead>
+<tr>
+<th>Pièce</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CasDeRecette</code></td>
+<td>un test déclare le ou les cas qu'il couvre, et <strong>ce qu'il prétend prouver</strong> (<code>Jugement.AUTOMATIQUE</code> par défaut, <code>HUMAIN</code> pour un scénario qui ne fait que jouer)</td>
+</tr>
+<tr>
+<td><code>FixtureDeRecette</code></td>
+<td>marque les classes d'<strong>exemple</strong> qui citent un cas sans rien couvrir - sans elle, elles gonfleraient l'index</td>
+</tr>
+<tr>
+<td><code>RepartitionDesCas</code></td>
+<td>trie en <strong>asserté / perceptif / non couvert</strong>, et signale les désaccords entre le script et le code</td>
+</tr>
+<tr>
+<td><code>ReperesDeSeance</code> + <code>JournalDesReperes</code></td>
+<td>pendant une séance filmée, consignent l'instant de chaque test (<code>currentTimeMillis</code>, jamais <code>nanoTime</code>)</td>
+</tr>
+<tr>
+<td><code>Seance</code></td>
+<td>dit à un scénario s'il est filmé, pour qu'il ne prenne ses respirations que là</td>
+</tr>
+</tbody>
+</table>
+<p>Le montage et l'index par cas vivent côté script :
+<a href="../ci-cd-release/#le-montage-un-clip-par-test-un-index-par-cas-3774">CI/CD</a>.</p>
+<p>⚠️ <strong>Trois états, pas deux.</strong> Un cas « perceptif » n'est ni couvert ni à couvrir : le script le
+marque <code>*perceptif*</code>, et le mot « couvert » reste réservé à ce que la CI prouve. Compter un scénario
+joué parmi les couverts fabriquerait exactement le vert creux que ce harnais combat.</p>
+<p>⚠️ <strong>Un calcul alimenté par le classpath ne se voit pas rougir.</strong> <code>CorrespondanceRecetteTest</code> balaie
+les annotations compilées : on ne peut lui présenter aucun jeu fabriqué, donc rien ne prouve qu'il
+range un cas du bon côté. Le tri vit pour cette raison dans <code>RepartitionDesCas</code>, qui reçoit des
+ensembles ordinaires - et ses tests lui montrent les situations que le dépôt ne contient pas, et ne
+contiendra jamais volontairement. <strong>La règle se généralise</strong> : quand un garde tire sa matière d'un
+balayage (classpath, disque, dépôt), en sortir la décision, sans quoi son verdict est indémontrable.</p>
 <h3 id="tester-un-geste-pas-un-bouton">Tester un geste, pas un bouton<a class="headerlink" href="#tester-un-geste-pas-un-bouton" title="Permanent link">&para;</a></h3>
 <p>Un test qui vérifie qu'un bouton est <strong>présent et actif</strong> ne dit rien de ce qu'il fait. C'était
 pourtant tout ce qu'on avait sur les actions <strong>irréversibles</strong> - restaurer la base, supprimer un
@@ -6721,9 +6778,15 @@ souvent <strong>avalée</strong> (l'écran fige). Découper <strong>préparation
 <code>bouton.fire()</code> rend l'état terminal observable au retour du clic, sans attente.</p>
 </div>
 <div class="admonition warning">
-<p class="admonition-title">Un E2E n'a pas le double synchrone : attendre le signal, pas le retour du clic</p>
+<p class="admonition-title">Dès que l'exécuteur est asynchrone : attendre le signal, pas le retour du clic</p>
 <p>Un test <code>*E2ETest</code> monte le <strong>vrai</strong> <code>RacineInjecteur</code>, pas le module de test qui rebranche
-<code>ExecuteurTacheSynchrone</code> (#793). <code>occupation.occuper(...)</code> y tourne donc sur le <strong>vrai</strong>
+<code>ExecuteurTacheSynchrone</code> (#793).</p>
+<p>⚠️ <strong>Ce n'est plus une propriété des seuls E2E</strong> (#3667). Un test de vue peut brancher
+<code>ExecuteurTacheAsynchrone</code> <strong>délibérément</strong> : <code>ScenarioPerceptifConnexionTest</code> le fait, parce que
+le transitoire qu'il donne à voir - la zone de progression seule, avant le bandeau - n'existe pas
+autrement. En synchrone, la récupération occupe le fil JavaFX : aucune image n'est rendue pendant
+ce temps, et il n'y a rien à filmer. La règle ci-dessous porte donc sur <strong>l'exécuteur employé</strong>,
+pas sur la famille du test. <code>occupation.occuper(...)</code> y tourne donc sur le <strong>vrai</strong>
 <code>ExecuteurTacheAsynchrone</code> : thread virtuel + <code>Platform.runLater</code>. Après un <code>robot.interact(...)</code>
 (ou un appel direct en <code>@Start</code>) qui déclenche ce chemin, <code>waitForFxEvents()</code> ne fait que vider la
 file du fil FX - il n'attend pas le thread d'arrière-plan qui la remplira. L'assertion tombe alors
