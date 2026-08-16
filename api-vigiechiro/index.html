@@ -6538,8 +6538,13 @@ qu'il faut pour un numéro de carré - aucun faux positif par troncature - et ce
 une recherche partielle. Le titre d'un site (<code>Vigiechiro - Point Fixe-130711</code>) indexe le numéro comme un
 mot à lui seul, le tiret servant de séparateur.</p>
 <p>Conséquence pratique : « ce carré existe-t-il ? » se répond en <strong>une</strong> requête, sous la seconde
-(<code>ClientVigieChiro#chercherCarre</code>), et non en paginant les 200+ pages du catalogue. La ligne de commande
-le fait encore et doit s'aligner (#3769).</p>
+(<code>ClientVigieChiro#chercherCarre</code>), et non en paginant les 200+ pages du catalogue. <strong>Les deux surfaces
+posent la question de cette façon</strong> : la fenêtre de déclaration depuis #3787, la ligne de commande
+depuis #3769 (<code>lister-sites-vigiechiro --carre</code>, qui refuse désormais <code>--pages</code> et <code>--tout</code> : il n'y a
+plus d'étendue à borner).</p>
+<p>⚠️ Un <strong>troisième</strong> appelant s'en sert pour autre chose que chercher : le refus « site non rattaché »
+(<code>SynchronisationParticipation</code>, #3854) interroge <code>q</code> pour choisir son conseil - récupérer le carré, ou
+l'activer sur le portail. La requête ne part que sur ce chemin d'échec.</p>
 <p><strong>Rejouer la carte</strong> quand le miroir du source bouge (<code>SAE201/vigiechiro-api</code>) :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>../vigiechiro-api/vigiechiro/resources
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>grep<span class="w"> </span>-nE<span class="w"> </span><span class="s2">&quot;@\w+\.route\(&#39;[^&#39;]+&#39;|@requires_auth&quot;</span><span class="w"> </span>*.py
@@ -6990,9 +6995,21 @@ tiers. Même forme que le <code>PATCH</code> de <code>configuration</code> d'une
 on y ajoute, on renvoie l'ensemble.</p>
 <p>Le schéma d'une localité : <code>nom</code> (<strong>requis</strong>, unique dans la liste), <code>coordonnee</code>, <code>geometries</code>
 (<code>GeometryCollection</code>, coordonnées en <strong><code>[lat, lon]</code></strong>), <code>representatif</code>, <code>habitats</code>.</p>
-<p>Le pull (<code>RapprochementSites</code>) est exécuté à la connexion, et rejouable <strong>à la demande</strong> depuis
-M-Sites (« Récupérer depuis VigieChiro », #1045, passerelle <code>SynchronisationSites</code> activée par
-<code>OptionalBinder</code>). Le <strong>push</strong> l'est depuis #3458 : <code>PublicationPoint</code>, offert sur la carte du point
+<p>Le pull a <strong>trois</strong> déclencheurs, et ils ne lisent pas la même route :</p>
+<ul>
+<li>à la <strong>connexion</strong>, et <strong>à la demande</strong> depuis M-Sites (« Récupérer depuis VigieChiro », #1045,
+  passerelle <code>SynchronisationSites</code> activée par <code>OptionalBinder</code>) : <code>RapprochementSites</code>, qui dérive
+  les sites de <code>/moi/participations</code> - donc <strong>uniquement</strong> les carrés où une nuit est déjà déposée ;</li>
+<li><strong>par numéro de carré</strong>, depuis la fenêtre de déclaration (« Récupérer ce carré », #3806) :
+  <code>RapatriementCarre</code>, qui passe par <code>GET /sites?q=</code> et atteint donc un carré <strong>sans participation</strong>.
+  C'est le seul chemin qui rattache un carré avant tout dépôt.</li>
+</ul>
+<p>Les deux posent <strong>le même état local</strong> : la mécanique d'import est partagée
+(<code>ImportSiteDistant</code>, extrait de <code>RapprochementSites</code> en #3806), mêmes points rapatriés, même
+marquage de propriété. Une différence est assumée : la synchronisation connaît <strong>tous</strong> les sites et
+peut purger les correspondances qu'elle ne cite plus ; le rapatriement n'en connaît <strong>qu'un</strong> et se
+contente d'un <code>upsert</code>.</p>
+<p>Le <strong>push</strong> l'est depuis #3458 : <code>PublicationPoint</code>, offert sur la carte du point
 de la fiche site (passerelle <code>PublicationPoint</code> activée par <code>PublicationPointModule</code>).</p>
 <p>⚠️ <strong>Le 403 de cette route n'est pas prédictible depuis Companion</strong>, et c'est ce qui décide de la
 forme de l'action à l'écran. Deux cas y mènent, et rien ne les distingue dans la réponse :</p>
