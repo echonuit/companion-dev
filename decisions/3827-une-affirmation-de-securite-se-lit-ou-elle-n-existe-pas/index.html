@@ -10,31 +10,31 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/modele-de-donnees/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/">
       
       
-        <link rel="prev" href="../persistance/">
+        <link rel="prev" href="../3826-un-test-qui-mesure-monte-une-scene-habillee/">
       
       
-        <link rel="next" href="../glossaire/">
+        <link rel="next" href="../../recette/">
       
       
         
       
       
-      <link rel="icon" href="../assets/images/favicon.png">
+      <link rel="icon" href="../../assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Modèle de données et domaine - VigieChiro Companion · Doc développeur</title>
+        <title>3827 · Une affirmation de sécurité se lit, ou elle n'existe pas - VigieChiro Companion · Doc développeur</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
       
         
-        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
       
       
 
@@ -53,9 +53,9 @@
       
     
     
-      <link rel="stylesheet" href="../stylesheets/extra.css">
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
-    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#modele-de-donnees-domaine" class="md-skip">
+        <a href="#adr-3827-une-affirmation-de-securite-se-lit-ou-elle-nexiste-pas" class="md-skip">
           Aller au contenu
         </a>
       
@@ -96,7 +96,7 @@
 
 <header class="md-header md-header--shadow" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="En-tête">
-    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+    <a href="../.." title="VigieChiro Companion · Doc développeur" class="md-header__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Modèle de données et domaine
+              3827 · Une affirmation de sécurité se lit, ou elle n'existe pas
             
           </span>
         </div>
@@ -234,7 +234,7 @@
 
 <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href=".." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
+    <a href="../.." title="VigieChiro Companion · Doc développeur" class="md-nav__button md-logo" aria-label="VigieChiro Companion · Doc développeur" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -264,7 +264,7 @@
   
   
     <li class="md-nav__item">
-      <a href=".." class="md-nav__link">
+      <a href="../.." class="md-nav__link">
         
   
   
@@ -291,7 +291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../architecture/" class="md-nav__link">
+      <a href="../../architecture/" class="md-nav__link">
         
   
   
@@ -318,7 +318,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../patterns/" class="md-nav__link">
+      <a href="../../patterns/" class="md-nav__link">
         
   
   
@@ -345,7 +345,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../navigation/" class="md-nav__link">
+      <a href="../../navigation/" class="md-nav__link">
         
   
   
@@ -372,7 +372,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../persistance/" class="md-nav__link">
+      <a href="../../persistance/" class="md-nav__link">
         
   
   
@@ -396,37 +396,10 @@
       
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Modèle de données et domaine
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../modele-de-donnees/" class="md-nav__link">
         
   
   
@@ -442,92 +415,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#le-modele-conceptuel-mcd-merise" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Le modèle conceptuel (MCD Merise)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#le-schema-physique-sqlite" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Le schéma physique (SQLite)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#correspondance-concept-record-table" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Correspondance concept → record → table
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#transformation-audio-de-loriginal-brut-aux-sequences-decoute-r10r11" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Transformation audio : de l'original brut aux séquences d'écoute (R10/R11)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enumerations-du-domaine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Énumérations du domaine
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#regenerer-le-mcd-mocodo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Régénérer le MCD (Mocodo)
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -539,7 +426,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../glossaire/" class="md-nav__link">
+      <a href="../../glossaire/" class="md-nav__link">
         
   
   
@@ -566,7 +453,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../injection/" class="md-nav__link">
+      <a href="../../injection/" class="md-nav__link">
         
   
   
@@ -593,7 +480,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ajouter-une-fonctionnalite/" class="md-nav__link">
+      <a href="../../ajouter-une-fonctionnalite/" class="md-nav__link">
         
   
   
@@ -620,7 +507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cycle-de-chantier/" class="md-nav__link">
+      <a href="../../cycle-de-chantier/" class="md-nav__link">
         
   
   
@@ -644,18 +531,20 @@
       
   
   
+    
   
   
+  
     
     
     
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
         
           
           <label class="md-nav__link" for="__nav_11" id="__nav_11_label" tabindex="0">
@@ -676,7 +565,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_11">
             <span class="md-nav__icon md-icon"></span>
             
@@ -694,7 +583,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/" class="md-nav__link">
+      <a href="../" class="md-nav__link">
         
   
   
@@ -722,7 +611,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
+      <a href="../0001-reactivation-passage-reconstruit-identite-structurelle/" class="md-nav__link">
         
   
   
@@ -750,7 +639,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
+      <a href="../0002-detection-acoustique-energie-de-pointe/" class="md-nav__link">
         
   
   
@@ -778,7 +667,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
+      <a href="../0003-feature-plugin-desactivable-ports-optionnels/" class="md-nav__link">
         
   
   
@@ -806,7 +695,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
+      <a href="../0004-cross-feature-sans-cycle-ports-commun/" class="md-nav__link">
         
   
   
@@ -834,7 +723,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
+      <a href="../0005-reactivation-cascade-de-preuves-archive-etat-observe/" class="md-nav__link">
         
   
   
@@ -862,7 +751,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
+      <a href="../0006-depot-zip-par-defaut-perte-audio-serveur-assumee/" class="md-nav__link">
         
   
   
@@ -890,7 +779,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
+      <a href="../0007-retours-http-type-scelle-reponse-api/" class="md-nav__link">
         
   
   
@@ -918,7 +807,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
+      <a href="../0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
         
   
   
@@ -946,7 +835,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
+      <a href="../0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-nav__link">
         
   
   
@@ -974,7 +863,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
+      <a href="../0010-dialogues-bloquants-sont-des-ports/" class="md-nav__link">
         
   
   
@@ -1002,7 +891,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
+      <a href="../0011-transformation-audio-pilotee-par-le-log/" class="md-nav__link">
         
   
   
@@ -1030,7 +919,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
+      <a href="../0012-audit-coherence-tout-ecart-visible-etat-normal-silencieux/" class="md-nav__link">
         
   
   
@@ -1058,7 +947,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
+      <a href="../0013-ancrage-passage-relie-a-sa-participation/" class="md-nav__link">
         
   
   
@@ -1086,7 +975,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0014-parite-cli-ihm/" class="md-nav__link">
+      <a href="../0014-parite-cli-ihm/" class="md-nav__link">
         
   
   
@@ -1114,7 +1003,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
+      <a href="../0015-generateur-deterministe-cartes-sd-recette/" class="md-nav__link">
         
   
   
@@ -1142,7 +1031,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
+      <a href="../0016-synchro-rapatrie-des-squelettes-hydrates-a-la-demande/" class="md-nav__link">
         
   
   
@@ -1170,7 +1059,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
+      <a href="../0017-origine-d-un-point-etat-porte-pas-deduit/" class="md-nav__link">
         
   
   
@@ -1198,7 +1087,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
+      <a href="../0018-la-synchro-rapatrie-l-identite-de-la-nuit/" class="md-nav__link">
         
   
   
@@ -1226,7 +1115,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
+      <a href="../0019-ancrage-acquis-quand-il-sert/" class="md-nav__link">
         
   
   
@@ -1254,7 +1143,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
+      <a href="../0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/" class="md-nav__link">
         
   
   
@@ -1282,7 +1171,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
+      <a href="../0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
         
   
   
@@ -1310,7 +1199,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
+      <a href="../0022-le-verbe-dit-le-sens-de-l-echange/" class="md-nav__link">
         
   
   
@@ -1338,7 +1227,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
+      <a href="../0023-rendre-compte-bandeau-par-defaut-modal-si-irreversible/" class="md-nav__link">
         
   
   
@@ -1366,7 +1255,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
+      <a href="../0024-les-heures-d-une-nuit-viennent-de-ses-preuves/" class="md-nav__link">
         
   
   
@@ -1394,7 +1283,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
+      <a href="../0025-une-capture-passe-par-le-code-de-production/" class="md-nav__link">
         
   
   
@@ -1422,7 +1311,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
+      <a href="../0026-le-nommage-des-tranches-est-une-etape-du-pipeline/" class="md-nav__link">
         
   
   
@@ -1450,7 +1339,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
+      <a href="../0027-une-attente-porte-toujours-un-nom/" class="md-nav__link">
         
   
   
@@ -1478,7 +1367,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
+      <a href="../0028-un-etat-n-est-pas-un-compte-rendu/" class="md-nav__link">
         
   
   
@@ -1506,7 +1395,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
+      <a href="../0031-un-retour-n-est-pas-un-compte-rendu/" class="md-nav__link">
         
   
   
@@ -1534,7 +1423,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0032-le-plan-precede-l-ecriture/" class="md-nav__link">
+      <a href="../0032-le-plan-precede-l-ecriture/" class="md-nav__link">
         
   
   
@@ -1562,7 +1451,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0033-la-fenetre-borne-le-disque/" class="md-nav__link">
+      <a href="../0033-la-fenetre-borne-le-disque/" class="md-nav__link">
         
   
   
@@ -1590,7 +1479,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
+      <a href="../0034-la-forme-du-depot-se-choisit/" class="md-nav__link">
         
   
   
@@ -1618,7 +1507,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
+      <a href="../0035-un-pictogramme-est-une-icone-pas-un-caractere/" class="md-nav__link">
         
   
   
@@ -1646,7 +1535,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
+      <a href="../0036-la-copie-des-bruts-est-une-option/" class="md-nav__link">
         
   
   
@@ -1674,7 +1563,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
+      <a href="../0037-une-barre-d-actions-plie-elle-ne-tronque-pas/" class="md-nav__link">
         
   
   
@@ -1702,7 +1591,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
+      <a href="../0038-l-echelle-de-severite-a-quatre-niveaux/" class="md-nav__link">
         
   
   
@@ -1730,7 +1619,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
+      <a href="../0039-une-barre-de-statut-est-neutre/" class="md-nav__link">
         
   
   
@@ -1758,7 +1647,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
+      <a href="../0040-le-sujet-de-commit-est-une-syntaxe/" class="md-nav__link">
         
   
   
@@ -1786,7 +1675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
+      <a href="../0041-un-check-requis-gouverne-la-branche/" class="md-nav__link">
         
   
   
@@ -1814,7 +1703,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
+      <a href="../0042-un-apercu-qui-ment-est-refuse/" class="md-nav__link">
         
   
   
@@ -1842,7 +1731,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
+      <a href="../0043-la-mesure-fait-foi-en-ci/" class="md-nav__link">
         
   
   
@@ -1870,7 +1759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
+      <a href="../0044-le-mecanisme-de-parallelisme-suit-la-nature-de-l-attente/" class="md-nav__link">
         
   
   
@@ -1898,7 +1787,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
+      <a href="../0045-l-upgradecode-windows-est-une-constante-d-identite/" class="md-nav__link">
         
   
   
@@ -1926,7 +1815,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
+      <a href="../0046-une-classe-css-a-une-seule-feuille/" class="md-nav__link">
         
   
   
@@ -1954,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
+      <a href="../0047-l-identite-de-distribution-est-le-projet-echonuit/" class="md-nav__link">
         
   
   
@@ -1982,7 +1871,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
+      <a href="../0048-l-utilisateur-possede-ses-fichiers-l-app-observe/" class="md-nav__link">
         
   
   
@@ -2010,7 +1899,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/1038-la-configuration-d-amorcage-vit-hors-de-la-base/" class="md-nav__link">
+      <a href="../1038-la-configuration-d-amorcage-vit-hors-de-la-base/" class="md-nav__link">
         
   
   
@@ -2038,7 +1927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/" class="md-nav__link">
+      <a href="../1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/" class="md-nav__link">
         
   
   
@@ -2066,7 +1955,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2213-un-dispositif-rapporte-avant-de-conclure/" class="md-nav__link">
+      <a href="../2213-un-dispositif-rapporte-avant-de-conclure/" class="md-nav__link">
         
   
   
@@ -2094,7 +1983,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2465-une-adr-declare-comment-elle-est-verifiee/" class="md-nav__link">
+      <a href="../2465-une-adr-declare-comment-elle-est-verifiee/" class="md-nav__link">
         
   
   
@@ -2122,7 +2011,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2493-une-modale-a-revelation-suit-la-croissance/" class="md-nav__link">
+      <a href="../2493-une-modale-a-revelation-suit-la-croissance/" class="md-nav__link">
         
   
   
@@ -2150,7 +2039,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
+      <a href="../2554-la-synchro-amene-chaque-nuit-a-un-niveau-de-completude/" class="md-nav__link">
         
   
   
@@ -2178,7 +2067,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2357-un-traitement-en-lot-compose-des-gestes-unitaires/" class="md-nav__link">
+      <a href="../2357-un-traitement-en-lot-compose-des-gestes-unitaires/" class="md-nav__link">
         
   
   
@@ -2206,7 +2095,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
+      <a href="../2635-un-refus-dit-ce-qui-manque-la-surface-dit-quoi-faire/" class="md-nav__link">
         
   
   
@@ -2234,7 +2123,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/" class="md-nav__link">
+      <a href="../2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/" class="md-nav__link">
         
   
   
@@ -2262,7 +2151,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/" class="md-nav__link">
+      <a href="../2581-un-etat-qui-decide-de-l-affichage-se-declare/" class="md-nav__link">
         
   
   
@@ -2290,7 +2179,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre/" class="md-nav__link">
+      <a href="../2614-une-nuit-hors-protocole-se-filtre-au-lieu-de-se-fondre/" class="md-nav__link">
         
   
   
@@ -2318,7 +2207,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/" class="md-nav__link">
+      <a href="../2353-l-enjeu-de-conservation-est-celui-que-le-plan-national-designe/" class="md-nav__link">
         
   
   
@@ -2346,7 +2235,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2351-un-nombre-de-contacts-se-lit-contre-un-referentiel-cite/" class="md-nav__link">
+      <a href="../2351-un-nombre-de-contacts-se-lit-contre-un-referentiel-cite/" class="md-nav__link">
         
   
   
@@ -2374,7 +2263,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/" class="md-nav__link">
+      <a href="../2525-un-fait-booleen-d-une-entite-centrale-vit-dans-une-table-laterale/" class="md-nav__link">
         
   
   
@@ -2402,7 +2291,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/" class="md-nav__link">
+      <a href="../2349-une-derivation-automatique-ne-defait-jamais-une-saisie-manuelle/" class="md-nav__link">
         
   
   
@@ -2430,7 +2319,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
+      <a href="../2352-la-nuit-se-lit-du-crepuscule-a-l-aube-pas-de-minuit-a-minuit/" class="md-nav__link">
         
   
   
@@ -2458,7 +2347,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2348-un-export-d-image-se-redessine-il-ne-se-capture-pas/" class="md-nav__link">
+      <a href="../2348-un-export-d-image-se-redessine-il-ne-se-capture-pas/" class="md-nav__link">
         
   
   
@@ -2486,7 +2375,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/" class="md-nav__link">
+      <a href="../2358-un-compte-rendu-chiffre-tient-ses-regles-par-le-type/" class="md-nav__link">
         
   
   
@@ -2514,7 +2403,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/" class="md-nav__link">
+      <a href="../2354-le-reessai-reseau-est-gradue-jamais-aveugle-toujours-jittere/" class="md-nav__link">
         
   
   
@@ -2542,7 +2431,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2433-un-dossier-de-transformes-s-importe-par-reference/" class="md-nav__link">
+      <a href="../2433-un-dossier-de-transformes-s-importe-par-reference/" class="md-nav__link">
         
   
   
@@ -2570,7 +2459,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2385-la-doc-chiffree-est-adossee-au-code/" class="md-nav__link">
+      <a href="../2385-la-doc-chiffree-est-adossee-au-code/" class="md-nav__link">
         
   
   
@@ -2598,7 +2487,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2791-la-commune-se-derive-du-gps-et-s-attache-au-point/" class="md-nav__link">
+      <a href="../2791-la-commune-se-derive-du-gps-et-s-attache-au-point/" class="md-nav__link">
         
   
   
@@ -2626,7 +2515,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2792-l-archive-d-export-range-les-sons-par-session/" class="md-nav__link">
+      <a href="../2792-l-archive-d-export-range-les-sons-par-session/" class="md-nav__link">
         
   
   
@@ -2654,7 +2543,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2843-typographie-cliquet-plutot-que-nettoyage/" class="md-nav__link">
+      <a href="../2843-typographie-cliquet-plutot-que-nettoyage/" class="md-nav__link">
         
   
   
@@ -2682,7 +2571,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3006-le-groupe-api-est-borne/" class="md-nav__link">
+      <a href="../3006-le-groupe-api-est-borne/" class="md-nav__link">
         
   
   
@@ -2710,7 +2599,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2867-une-dette-se-tient-par-un-cliquet/" class="md-nav__link">
+      <a href="../2867-une-dette-se-tient-par-un-cliquet/" class="md-nav__link">
         
   
   
@@ -2738,7 +2627,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2951-une-exclusion-nomme-son-repreneur/" class="md-nav__link">
+      <a href="../2951-une-exclusion-nomme-son-repreneur/" class="md-nav__link">
         
   
   
@@ -2766,7 +2655,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2941-un-cliquet-s-apprend-en-l-appliquant/" class="md-nav__link">
+      <a href="../2941-un-cliquet-s-apprend-en-l-appliquant/" class="md-nav__link">
         
   
   
@@ -2794,7 +2683,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3018-un-outil-compose-depuis-la-racine/" class="md-nav__link">
+      <a href="../3018-un-outil-compose-depuis-la-racine/" class="md-nav__link">
         
   
   
@@ -2822,7 +2711,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3048-la-parite-dune-sortie-machine-est-de-dire/" class="md-nav__link">
+      <a href="../3048-la-parite-dune-sortie-machine-est-de-dire/" class="md-nav__link">
         
   
   
@@ -2850,7 +2739,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3068-le-determinisme-porte-sur-ce-que-le-produit-rend/" class="md-nav__link">
+      <a href="../3068-le-determinisme-porte-sur-ce-que-le-produit-rend/" class="md-nav__link">
         
   
   
@@ -2878,7 +2767,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3053-une-capture-exige-son-libelle/" class="md-nav__link">
+      <a href="../3053-une-capture-exige-son-libelle/" class="md-nav__link">
         
   
   
@@ -2906,7 +2795,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2861-une-donnee-de-point-ne-se-montre-pas-sur-une-ligne-agregee/" class="md-nav__link">
+      <a href="../2861-une-donnee-de-point-ne-se-montre-pas-sur-une-ligne-agregee/" class="md-nav__link">
         
   
   
@@ -2934,7 +2823,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3082-designer-refuse-qualifier-rend-vide/" class="md-nav__link">
+      <a href="../3082-designer-refuse-qualifier-rend-vide/" class="md-nav__link">
         
   
   
@@ -2962,7 +2851,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3092-un-filtre-ne-change-que-ce-quon-regarde/" class="md-nav__link">
+      <a href="../3092-un-filtre-ne-change-que-ce-quon-regarde/" class="md-nav__link">
         
   
   
@@ -2990,7 +2879,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3093-une-restauration-rend-compte-de-deux-causes/" class="md-nav__link">
+      <a href="../3093-une-restauration-rend-compte-de-deux-causes/" class="md-nav__link">
         
   
   
@@ -3018,7 +2907,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3096-une-cle-de-critere-est-un-contrat-de-serialisation/" class="md-nav__link">
+      <a href="../3096-une-cle-de-critere-est-un-contrat-de-serialisation/" class="md-nav__link">
         
   
   
@@ -3046,7 +2935,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/" class="md-nav__link">
+      <a href="../3095-un-domaine-se-calcule-sans-son-propre-critere/" class="md-nav__link">
         
   
   
@@ -3074,7 +2963,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3099-une-puce-preselectionnee-annonce-ce-quelle-filtre/" class="md-nav__link">
+      <a href="../3099-une-puce-preselectionnee-annonce-ce-quelle-filtre/" class="md-nav__link">
         
   
   
@@ -3102,7 +2991,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas/" class="md-nav__link">
+      <a href="../3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas/" class="md-nav__link">
         
   
   
@@ -3130,7 +3019,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3157-un-carre-a-un-identifiant-et-une-etiquette/" class="md-nav__link">
+      <a href="../3157-un-carre-a-un-identifiant-et-une-etiquette/" class="md-nav__link">
         
   
   
@@ -3158,7 +3047,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3158-une-valeur-memorisee-se-rattrape-par-dimension/" class="md-nav__link">
+      <a href="../3158-une-valeur-memorisee-se-rattrape-par-dimension/" class="md-nav__link">
         
   
   
@@ -3186,7 +3075,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3168-un-audit-qui-ne-peut-pas-trancher-montre-sans-juger/" class="md-nav__link">
+      <a href="../3168-un-audit-qui-ne-peut-pas-trancher-montre-sans-juger/" class="md-nav__link">
         
   
   
@@ -3214,7 +3103,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3361-la-typographie-est-embarquee/" class="md-nav__link">
+      <a href="../3361-la-typographie-est-embarquee/" class="md-nav__link">
         
   
   
@@ -3242,7 +3131,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/" class="md-nav__link">
+      <a href="../3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/" class="md-nav__link">
         
   
   
@@ -3270,7 +3159,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3350-c-est-la-sortie-qui-desambigue-pas-le-critere-qui-se-restreint/" class="md-nav__link">
+      <a href="../3350-c-est-la-sortie-qui-desambigue-pas-le-critere-qui-se-restreint/" class="md-nav__link">
         
   
   
@@ -3298,7 +3187,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3348-ce-qui-se-cherche-doit-pouvoir-se-balayer/" class="md-nav__link">
+      <a href="../3348-ce-qui-se-cherche-doit-pouvoir-se-balayer/" class="md-nav__link">
         
   
   
@@ -3326,7 +3215,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3389-ce-que-l-application-affiche-tient-dans-la-police-embarquee/" class="md-nav__link">
+      <a href="../3389-ce-que-l-application-affiche-tient-dans-la-police-embarquee/" class="md-nav__link">
         
   
   
@@ -3354,7 +3243,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3412-un-alias-n-est-pas-une-police/" class="md-nav__link">
+      <a href="../3412-un-alias-n-est-pas-une-police/" class="md-nav__link">
         
   
   
@@ -3382,7 +3271,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3417-la-galerie-rend-comme-une-machine-accordee-au-produit/" class="md-nav__link">
+      <a href="../3417-la-galerie-rend-comme-une-machine-accordee-au-produit/" class="md-nav__link">
         
   
   
@@ -3410,7 +3299,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
+      <a href="../3222-une-entree-externe-se-lit-sous-plafond/" class="md-nav__link">
         
   
   
@@ -3438,7 +3327,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2746-le-produit-ne-depend-pas-de-son-outillage/" class="md-nav__link">
+      <a href="../2746-le-produit-ne-depend-pas-de-son-outillage/" class="md-nav__link">
         
   
   
@@ -3466,7 +3355,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/" class="md-nav__link">
+      <a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/" class="md-nav__link">
         
   
   
@@ -3494,7 +3383,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/" class="md-nav__link">
+      <a href="../3366-ce-qui-compile-se-verifie-avec-deux-compilateurs/" class="md-nav__link">
         
   
   
@@ -3522,7 +3411,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3406-une-nuit-porte-le-fuseau-de-son-site/" class="md-nav__link">
+      <a href="../3406-une-nuit-porte-le-fuseau-de-son-site/" class="md-nav__link">
         
   
   
@@ -3550,7 +3439,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3501-le-code-tiers-ne-s-execute-pas-avec-les-droits-de-publication/" class="md-nav__link">
+      <a href="../3501-le-code-tiers-ne-s-execute-pas-avec-les-droits-de-publication/" class="md-nav__link">
         
   
   
@@ -3578,7 +3467,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3479-toute-table-n-a-pas-vocation-a-etre-exploree/" class="md-nav__link">
+      <a href="../3479-toute-table-n-a-pas-vocation-a-etre-exploree/" class="md-nav__link">
         
   
   
@@ -3606,7 +3495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-nav__link">
+      <a href="../2750-un-chiffre-que-le-code-sait-recalculer-ne-s-ecrit-pas-a-la-main/" class="md-nav__link">
         
   
   
@@ -3634,7 +3523,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/" class="md-nav__link">
+      <a href="../3439-un-masque-se-derive-de-la-scene-il-ne-se-recopie-pas/" class="md-nav__link">
         
   
   
@@ -3662,7 +3551,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/" class="md-nav__link">
+      <a href="../3450-une-propriete-de-fuseau-se-tient-en-rejouant-pas-en-relisant/" class="md-nav__link">
         
   
   
@@ -3690,7 +3579,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/" class="md-nav__link">
+      <a href="../3451-un-invariant-tenu-par-la-base-se-double-d-un-refus/" class="md-nav__link">
         
   
   
@@ -3718,7 +3607,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/" class="md-nav__link">
+      <a href="../3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/" class="md-nav__link">
         
   
   
@@ -3746,7 +3635,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3505-le-cycle-decrit-aussi-le-travail-pas-seulement-sa-cloture/" class="md-nav__link">
+      <a href="../3505-le-cycle-decrit-aussi-le-travail-pas-seulement-sa-cloture/" class="md-nav__link">
         
   
   
@@ -3774,7 +3663,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3510-une-capacite-sait-comment-on-la-verifie-a-la-main/" class="md-nav__link">
+      <a href="../3510-une-capacite-sait-comment-on-la-verifie-a-la-main/" class="md-nav__link">
         
   
   
@@ -3802,7 +3691,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3535-un-inventaire-ne-se-duplique-pas-il-se-cite/" class="md-nav__link">
+      <a href="../3535-un-inventaire-ne-se-duplique-pas-il-se-cite/" class="md-nav__link">
         
   
   
@@ -3830,7 +3719,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3537-un-signal-se-pose-a-l-ecriture/" class="md-nav__link">
+      <a href="../3537-un-signal-se-pose-a-l-ecriture/" class="md-nav__link">
         
   
   
@@ -3858,7 +3747,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-nav__link">
+      <a href="../3563-le-regime-de-restauration-suit-la-place-disponible/" class="md-nav__link">
         
   
   
@@ -3886,7 +3775,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3572-une-sauvegarde-ne-porte-son-nom-qu-une-fois-complete/" class="md-nav__link">
+      <a href="../3572-une-sauvegarde-ne-porte-son-nom-qu-une-fois-complete/" class="md-nav__link">
         
   
   
@@ -3914,7 +3803,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3574-un-effacement-dit-son-contrat-dans-son-nom/" class="md-nav__link">
+      <a href="../3574-un-effacement-dit-son-contrat-dans-son-nom/" class="md-nav__link">
         
   
   
@@ -3942,7 +3831,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3575-le-journal-fait-exception-et-le-cliquet-ne-recopie-rien/" class="md-nav__link">
+      <a href="../3575-le-journal-fait-exception-et-le-cliquet-ne-recopie-rien/" class="md-nav__link">
         
   
   
@@ -3970,7 +3859,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/" class="md-nav__link">
+      <a href="../3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/" class="md-nav__link">
         
   
   
@@ -3998,7 +3887,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3573-les-octets-se-comptent-en-base-1000/" class="md-nav__link">
+      <a href="../3573-les-octets-se-comptent-en-base-1000/" class="md-nav__link">
         
   
   
@@ -4026,7 +3915,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3580-deux-mecanismes-parce-que-deux-questions/" class="md-nav__link">
+      <a href="../3580-deux-mecanismes-parce-que-deux-questions/" class="md-nav__link">
         
   
   
@@ -4054,7 +3943,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
+      <a href="../3624-un-fait-que-rien-ne-peut-faire-rougir-s-ancre-autrement/" class="md-nav__link">
         
   
   
@@ -4082,7 +3971,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3560-tourner-sans-conclure-a-trois-formes/" class="md-nav__link">
+      <a href="../3560-tourner-sans-conclure-a-trois-formes/" class="md-nav__link">
         
   
   
@@ -4110,7 +3999,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3661-un-garde-de-ci-porte-ses-propres-cas/" class="md-nav__link">
+      <a href="../3661-un-garde-de-ci-porte-ses-propres-cas/" class="md-nav__link">
         
   
   
@@ -4138,7 +4027,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3664-un-releve-qui-n-a-pas-ouvert-les-fichiers-est-une-hypothese/" class="md-nav__link">
+      <a href="../3664-un-releve-qui-n-a-pas-ouvert-les-fichiers-est-une-hypothese/" class="md-nav__link">
         
   
   
@@ -4166,7 +4055,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
+      <a href="../3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/" class="md-nav__link">
         
   
   
@@ -4194,7 +4083,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3539-un-etat-de-controle-se-lie-il-ne-se-photographie-pas/" class="md-nav__link">
+      <a href="../3539-un-etat-de-controle-se-lie-il-ne-se-photographie-pas/" class="md-nav__link">
         
   
   
@@ -4222,7 +4111,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3672-deux-cas-ne-font-pas-une-mecanique/" class="md-nav__link">
+      <a href="../3672-deux-cas-ne-font-pas-une-mecanique/" class="md-nav__link">
         
   
   
@@ -4250,7 +4139,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3668-un-e2e-attend-le-signal-du-callback-pas-le-retour-du-geste/" class="md-nav__link">
+      <a href="../3668-un-e2e-attend-le-signal-du-callback-pas-le-retour-du-geste/" class="md-nav__link">
         
   
   
@@ -4278,7 +4167,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3547-un-binding-declare-ce-qu-il-lit/" class="md-nav__link">
+      <a href="../3547-un-binding-declare-ce-qu-il-lit/" class="md-nav__link">
         
   
   
@@ -4306,7 +4195,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3540-un-cliquet-qui-compte-n-est-pas-la-preuve-de-la-regle/" class="md-nav__link">
+      <a href="../3540-un-cliquet-qui-compte-n-est-pas-la-preuve-de-la-regle/" class="md-nav__link">
         
   
   
@@ -4334,7 +4223,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3760-le-deficit-se-porte-il-ne-se-repartit-pas/" class="md-nav__link">
+      <a href="../3760-le-deficit-se-porte-il-ne-se-repartit-pas/" class="md-nav__link">
         
   
   
@@ -4362,7 +4251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3458-un-verdict-ne-juge-que-le-numero-qui-l-a-demande/" class="md-nav__link">
+      <a href="../3458-un-verdict-ne-juge-que-le-numero-qui-l-a-demande/" class="md-nav__link">
         
   
   
@@ -4390,7 +4279,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
+      <a href="../3507-l-amorcage-s-ecrit-d-un-seul-coup/" class="md-nav__link">
         
   
   
@@ -4418,7 +4307,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/" class="md-nav__link">
+      <a href="../3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/" class="md-nav__link">
         
   
   
@@ -4446,7 +4335,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3498-la-declaration-porte-sur-les-lectrices/" class="md-nav__link">
+      <a href="../3498-la-declaration-porte-sur-les-lectrices/" class="md-nav__link">
         
   
   
@@ -4474,7 +4363,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3500-le-code-de-sortie-distingue-le-manque-du-deplacement/" class="md-nav__link">
+      <a href="../3500-le-code-de-sortie-distingue-le-manque-du-deplacement/" class="md-nav__link">
         
   
   
@@ -4502,7 +4391,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
+      <a href="../2753-une-regle-absente-et-assumee-vaut-mieux-qu-une-regle-contournee/" class="md-nav__link">
         
   
   
@@ -4530,7 +4419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3269-un-ensemble-vide-se-constate-avant-de-filtrer/" class="md-nav__link">
+      <a href="../3269-un-ensemble-vide-se-constate-avant-de-filtrer/" class="md-nav__link">
         
   
   
@@ -4558,7 +4447,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
+      <a href="../2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
         
   
   
@@ -4586,7 +4475,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2729-un-script-publie-ne-se-modifie-plus/" class="md-nav__link">
+      <a href="../2729-un-script-publie-ne-se-modifie-plus/" class="md-nav__link">
         
   
   
@@ -4614,7 +4503,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2731-un-seul-processus-par-workspace/" class="md-nav__link">
+      <a href="../2731-un-seul-processus-par-workspace/" class="md-nav__link">
         
   
   
@@ -4642,7 +4531,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
+      <a href="../2732-on-n-ecrit-pas-plus-que-ce-qui-est-declare/" class="md-nav__link">
         
   
   
@@ -4670,7 +4559,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
+      <a href="../2736-le-clair-est-assume-et-annonce/" class="md-nav__link">
         
   
   
@@ -4698,7 +4587,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2744-la-publication-part-a-heure-fixe/" class="md-nav__link">
+      <a href="../2744-la-publication-part-a-heure-fixe/" class="md-nav__link">
         
   
   
@@ -4726,7 +4615,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/2745-une-vue-riche-se-decoupe-en-sous-vues/" class="md-nav__link">
+      <a href="../2745-une-vue-riche-se-decoupe-en-sous-vues/" class="md-nav__link">
         
   
   
@@ -4754,7 +4643,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3482-l-audit-ramasse-ce-qu-une-suppression-laisse/" class="md-nav__link">
+      <a href="../3482-l-audit-ramasse-ce-qu-une-suppression-laisse/" class="md-nav__link">
         
   
   
@@ -4782,7 +4671,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme/" class="md-nav__link">
+      <a href="../3561-une-garde-obligatoire-inventorie-les-chemins-qu-elle-ferme/" class="md-nav__link">
         
   
   
@@ -4810,7 +4699,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../decisions/3826-un-test-qui-mesure-monte-une-scene-habillee/" class="md-nav__link">
+      <a href="../3826-un-test-qui-mesure-monte-une-scene-habillee/" class="md-nav__link">
         
   
   
@@ -4835,10 +4724,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../decisions/3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3827 · Une affirmation de sécurité se lit, ou elle n'existe pas
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -4854,6 +4770,109 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-les-sondes-ont-mesure-et-qui-contredit-les-deux-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que les sondes ont mesuré, et qui contredit les deux issues
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#et-lecriture-insiste-plutot-que-dechouer-ou-de-renoncer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Et l'écriture insiste, plutôt que d'échouer ou de renoncer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trois-assumetrue-disparaissent-dont-un-qui-mentait-sur-sa-nature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trois assumeTrue disparaissent, dont un qui mentait sur sa nature
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-ecartees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives écartées
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -4920,7 +4939,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/" class="md-nav__link">
+      <a href="../../recette/" class="md-nav__link">
         
   
   
@@ -4948,7 +4967,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/fixtures/" class="md-nav__link">
+      <a href="../../recette/fixtures/" class="md-nav__link">
         
   
   
@@ -4976,7 +4995,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s1-premier-contact/" class="md-nav__link">
+      <a href="../../recette/sessions/s1-premier-contact/" class="md-nav__link">
         
   
   
@@ -5004,7 +5023,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s2-importer/" class="md-nav__link">
+      <a href="../../recette/sessions/s2-importer/" class="md-nav__link">
         
   
   
@@ -5032,7 +5051,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s3-verifier/" class="md-nav__link">
+      <a href="../../recette/sessions/s3-verifier/" class="md-nav__link">
         
   
   
@@ -5060,7 +5079,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
+      <a href="../../recette/sessions/s4-deposer-suivre/" class="md-nav__link">
         
   
   
@@ -5088,7 +5107,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s5-valider/" class="md-nav__link">
+      <a href="../../recette/sessions/s5-valider/" class="md-nav__link">
         
   
   
@@ -5116,7 +5135,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s6-exploiter-piloter/" class="md-nav__link">
+      <a href="../../recette/sessions/s6-exploiter-piloter/" class="md-nav__link">
         
   
   
@@ -5144,7 +5163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s7-reglages/" class="md-nav__link">
+      <a href="../../recette/sessions/s7-reglages/" class="md-nav__link">
         
   
   
@@ -5172,7 +5191,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
+      <a href="../../recette/sessions/s8-recuperer-une-nuit/" class="md-nav__link">
         
   
   
@@ -5200,7 +5219,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s9-installer-mettre-a-jour/" class="md-nav__link">
+      <a href="../../recette/sessions/s9-installer-mettre-a-jour/" class="md-nav__link">
         
   
   
@@ -5228,7 +5247,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/s10-le-poste-windows/" class="md-nav__link">
+      <a href="../../recette/sessions/s10-le-poste-windows/" class="md-nav__link">
         
   
   
@@ -5256,7 +5275,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/passe-ciblee-constats-en-attente/" class="md-nav__link">
+      <a href="../../recette/sessions/passe-ciblee-constats-en-attente/" class="md-nav__link">
         
   
   
@@ -5284,7 +5303,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../recette/sessions/passe-verification-stabilisation/" class="md-nav__link">
+      <a href="../../recette/sessions/passe-verification-stabilisation/" class="md-nav__link">
         
   
   
@@ -5319,7 +5338,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../cli/" class="md-nav__link">
+      <a href="../../cli/" class="md-nav__link">
         
   
   
@@ -5346,7 +5365,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../tests-et-qualite/" class="md-nav__link">
+      <a href="../../tests-et-qualite/" class="md-nav__link">
         
   
   
@@ -5373,7 +5392,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../audit-filtres-vues-tabulaires/" class="md-nav__link">
+      <a href="../../audit-filtres-vues-tabulaires/" class="md-nav__link">
         
   
   
@@ -5400,7 +5419,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../api-vigiechiro/" class="md-nav__link">
+      <a href="../../api-vigiechiro/" class="md-nav__link">
         
   
   
@@ -5427,7 +5446,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../performance/" class="md-nav__link">
+      <a href="../../performance/" class="md-nav__link">
         
   
   
@@ -5454,7 +5473,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../observabilite/" class="md-nav__link">
+      <a href="../../observabilite/" class="md-nav__link">
         
   
   
@@ -5481,7 +5500,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../captures/" class="md-nav__link">
+      <a href="../../captures/" class="md-nav__link">
         
   
   
@@ -5508,7 +5527,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../ci-cd-release/" class="md-nav__link">
+      <a href="../../ci-cd-release/" class="md-nav__link">
         
   
   
@@ -5535,7 +5554,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../reprendre-le-depot/" class="md-nav__link">
+      <a href="../../reprendre-le-depot/" class="md-nav__link">
         
   
   
@@ -5562,7 +5581,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../securite/" class="md-nav__link">
+      <a href="../../securite/" class="md-nav__link">
         
   
   
@@ -5609,10 +5628,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#le-modele-conceptuel-mcd-merise" class="md-nav__link">
+  <a href="#contexte" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Le modèle conceptuel (MCD Merise)
+        Contexte
       
     </span>
   </a>
@@ -5620,10 +5639,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#le-schema-physique-sqlite" class="md-nav__link">
+  <a href="#ce-que-les-sondes-ont-mesure-et-qui-contredit-les-deux-issues" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Le schéma physique (SQLite)
+        Ce que les sondes ont mesuré, et qui contredit les deux issues
       
     </span>
   </a>
@@ -5631,10 +5650,49 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#correspondance-concept-record-table" class="md-nav__link">
+  <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Correspondance concept → record → table
+        Décision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#et-lecriture-insiste-plutot-que-dechouer-ou-de-renoncer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Et l'écriture insiste, plutôt que d'échouer ou de renoncer
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trois-assumetrue-disparaissent-dont-un-qui-mentait-sur-sa-nature" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trois assumeTrue disparaissent, dont un qui mentait sur sa nature
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
       
     </span>
   </a>
@@ -5642,32 +5700,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#transformation-audio-de-loriginal-brut-aux-sequences-decoute-r10r11" class="md-nav__link">
+  <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Transformation audio : de l'original brut aux séquences d'écoute (R10/R11)
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enumerations-du-domaine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Énumérations du domaine
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#regenerer-le-mcd-mocodo" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Régénérer le MCD (Mocodo)
+        Alternatives écartées
       
     </span>
   </a>
@@ -5691,7 +5727,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/modele-de-donnees.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -5700,355 +5736,87 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/modele-de-donnees.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="modele-de-donnees-domaine">Modèle de données &amp; domaine<a class="headerlink" href="#modele-de-donnees-domaine" title="Permanent link">&para;</a></h1>
-<p>Le domaine s'organise autour d'une <strong>nuit de capture</strong>. Cette page relie le <strong>modèle conceptuel</strong>
-d'origine (le brief) à son <strong>implémentation</strong> (entités-<code>record</code> + tables SQLite).</p>
-<div class="admonition abstract">
-<p class="admonition-title">La source conceptuelle : le brief</p>
-<p>Le <strong><a href="https://brief.echonuit.fr/Analyse%20et%20conception/Mod%C3%A8le%20conceptuel/">modèle conceptuel du brief</a></strong>
-définit les 15 entités (C1–C15), leurs <strong>cardinalités</strong> et les <strong>règles métier</strong>, avec un
-diagramme de classes. Les <strong>noms y sont ceux de l'IHM</strong> (langage utilisateur). Cette page-ci montre
-comment ces concepts deviennent des records Java et des tables SQL.</p>
-</div>
-<h2 id="le-modele-conceptuel-mcd-merise">Le modèle conceptuel (MCD Merise)<a class="headerlink" href="#le-modele-conceptuel-mcd-merise" title="Permanent link">&para;</a></h2>
-<p>Un <strong>utilisateur</strong> déclare des <strong>sites de suivi</strong>, chacun avec des <strong>points d'écoute</strong>. Sur un point,
-il réalise des <strong>passages</strong> (une nuit). Un passage est la <strong>racine d'agrégat</strong> : il possède une
-<strong>session d'enregistrement</strong> (les enregistrements originaux copiés de la carte SD, les séquences
-d'écoute ralenties ×10, le journal du capteur, le relevé climatique), une <strong>sélection d'écoute</strong> pour
-la vérification, et (après dépôt) des <strong>résultats d'identification</strong> Tadarida (les <strong>observations</strong>,
-classées par <strong>taxon</strong>).</p>
-<p>C'est cet agrégat qui avance dans le <a href="../patterns/#machine-a-etats-moteurworkflowpassage">workflow à états</a>
-<code>Importé → … → Déposé</code>, plus <code>Récupéré</code> pour les nuits rapatriées de Vigie-Chiro, qui n'entrent
-pas dans cette file (#2581).</p>
-<p>Au <strong>niveau conceptuel</strong>, on raisonne avec le <strong>MCD Merise</strong> (la notation enseignée en France) :
-<strong>entités</strong> (identifiant souligné), <strong>associations</strong> porteuses d'un verbe, et <strong>cardinalités
-<code>(min,max)</code></strong> sur chaque patte. Les clés étrangères n'y figurent pas : elles sont <em>portées par les
-associations</em>.</p>
-<figure>
-  <img alt="Modèle conceptuel de données (MCD Merise) de la nuit de capture" src="../assets/nuit-de-capture.svg" width="100%" />
-<br />
-<figcaption>MCD Merise de la « nuit de capture ». Source <a href="assets/nuit-de-capture.mcd"><code>nuit-de-capture.mcd</code></a>, rendu avec <a href="https://www.mocodo.net/">Mocodo</a> (voir <a href="#regenerer-le-mcd-mocodo">Régénérer le MCD</a>).</figcaption>
-</figure>
-<div class="admonition note">
-<p class="admonition-title">MCD conceptuel ≠ schéma physique</p>
-<p>Ce MCD décrit le <strong>domaine</strong>, indépendamment du stockage. Sa traduction relationnelle (le
-<strong>schéma physique</strong> ci-dessous) ajoute les clés primaires techniques, les clés étrangères, et
-transforme l'association N:N <strong>Retenir</strong> (Sélection ↔ Séquence) en <strong>table de jonction</strong>
-(<code>selection_sequence</code>).</p>
-</div>
-<h2 id="le-schema-physique-sqlite">Le schéma physique (SQLite)<a class="headerlink" href="#le-schema-physique-sqlite" title="Permanent link">&para;</a></h2>
-<p>Le <strong>schéma physique</strong> est plus proche de la machine. On le donne en notation <strong>pattes-de-corbeille</strong>
-(IE / <em>crow's foot</em>, celle de Mermaid) : relations binaires, clés étrangères explicites. C'est la
-traduction du MCD ci-dessus. <strong>19 tables à l'origine</strong>, créées par
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/resources/db/migration/V01__schema.sql"><code>V01__schema.sql</code></a> ;
-le schéma courant en compte <strong><!--inv:tables-->34<!--/inv--></strong>, au terme des
-<strong><!--inv:migrations-->40<!--/inv--></strong> migrations versionnées ; clés étrangères
-<strong><code>ON DELETE CASCADE</code></strong> (supprimer un passage emporte sa session, ses séquences, ses observations…).</p>
-<div class="admonition note">
-<p class="admonition-title">Pourquoi ces deux chiffres sont balisés et pas le premier</p>
-<p>Les 19 tables d'origine sont un <strong>fait d'histoire</strong> : <code>V01__schema.sql</code> ne changera plus, les
-migrations étant en ajout seul. Les deux autres bougent à chaque migration, et ils avaient
-dérivé - la page annonçait 31 tables « après <code>V02</code>→<code>V35</code> » quand il y en avait 33 après <code>V38</code>.
-Le garde les recalcule désormais : le compte de tables vient du schéma <strong>appliqué</strong>, pas d'un
-comptage de <code>CREATE TABLE</code> (une reconstruction de table en crée une de plus et la renomme).</p>
-</div>
-<pre class="mermaid"><code>erDiagram
-    user ||--o{ monitoring_site : "déclare"
-    monitoring_site ||--o{ listening_point : "contient"
-    monitoring_site ||--o| site_tiers : "carré d'un tiers"
-    listening_point ||--o{ passage : "accueille"
-    campagne ||--o{ passage : "regroupe"
-    passage ||--o| passage_opportuniste : "hors protocole"
-    recorder ||--o{ passage : "enregistre"
-    recorder ||--o{ microphone : "équipe"
-    passage ||--|| recording_session : "produit"
-    recording_session ||--o{ original_recording : "contient"
-    original_recording ||--o{ listening_sequence : "découpe"
-    recording_session ||--|| sensor_log : "journal"
-    recording_session ||--|| climate_log : "climat"
-    passage ||--|| listening_selection : "sélection"
-    listening_selection }o--o{ listening_sequence : "selection_sequence"
-    passage ||--|| identification_results : "résultats"
-    identification_results ||--o{ observation : "contient"
-    listening_sequence ||--o{ observation : "porte"
-    taxon ||--o| taxon_prioritaire : "à enjeu (PNA)"
-    taxon ||--o{ observation : "identifie"
-    taxonomic_group ||--o{ taxon : "regroupe"</code></pre>
-<h2 id="correspondance-concept-record-table">Correspondance concept → record → table<a class="headerlink" href="#correspondance-concept-record-table" title="Permanent link">&para;</a></h2>
-<p>Le métier est modélisé en <strong><code>record</code> immuables</strong> (cf.
-<a href="../patterns/#objets-valeurs-records-immuables">Objets-valeurs</a>) ; les DAO les lisent/écrivent dans les
-tables. Les noms suivent trois registres : <strong>IHM/brief</strong> (français), <strong>record</strong> (français sans
-accents), <strong>SQL</strong> (anglais).</p>
-<table>
-<thead>
-<tr>
-<th>Brief</th>
-<th>Record</th>
-<th>Table</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>C1 · Utilisateur</td>
-<td><code>Utilisateur</code></td>
-<td><code>user</code></td>
-</tr>
-<tr>
-<td>C2 · Site de suivi</td>
-<td><code>Site</code></td>
-<td><code>monitoring_site</code></td>
-</tr>
-<tr>
-<td>C3 · Point d'écoute</td>
-<td><code>PointDEcoute</code></td>
-<td><code>listening_point</code> (+ table latérale <code>point_commune</code>, V38)</td>
-</tr>
-<tr>
-<td>C4 · Enregistreur</td>
-<td><code>Enregistreur</code></td>
-<td><code>recorder</code></td>
-</tr>
-<tr>
-<td>C4bis · Micro</td>
-<td><em>(microphone)</em></td>
-<td><code>microphone</code></td>
-</tr>
-<tr>
-<td>C5 · Passage</td>
-<td><code>Passage</code></td>
-<td><code>passage</code></td>
-</tr>
-<tr>
-<td>C6 · Session d'enregistrement</td>
-<td><code>SessionDEnregistrement</code></td>
-<td><code>recording_session</code></td>
-</tr>
-<tr>
-<td>C7 · Enregistrement original</td>
-<td><code>EnregistrementOriginal</code></td>
-<td><code>original_recording</code></td>
-</tr>
-<tr>
-<td>C8 · Séquence d'écoute</td>
-<td><code>SequenceDEcoute</code></td>
-<td><code>listening_sequence</code></td>
-</tr>
-<tr>
-<td>C9 · Journal du capteur</td>
-<td><code>JournalDuCapteur</code></td>
-<td><code>sensor_log</code></td>
-</tr>
-<tr>
-<td>C10 · Relevé climatique</td>
-<td><code>ReleveClimatique</code></td>
-<td><code>climate_log</code></td>
-</tr>
-<tr>
-<td>C11 · Sélection d'écoute</td>
-<td><code>SelectionDEcoute</code></td>
-<td><code>listening_selection</code> (+ <code>selection_sequence</code>, N:N)</td>
-</tr>
-<tr>
-<td>C12 · Résultats d'identification</td>
-<td><code>ResultatsIdentification</code></td>
-<td><code>identification_results</code></td>
-</tr>
-<tr>
-<td>C13 · Observation</td>
-<td><code>Observation</code></td>
-<td><code>observation</code></td>
-</tr>
-<tr>
-<td>C14 · Taxon</td>
-<td><code>Taxon</code></td>
-<td><code>taxon</code></td>
-</tr>
-<tr>
-<td>C15 · Groupe taxonomique</td>
-<td><code>GroupeTaxonomique</code></td>
-<td><code>taxonomic_group</code></td>
-</tr>
-</tbody>
-</table>
-<p>S'ajoutent des tables techniques : <code>saved_view</code> (vues sauvegardées de M-Multisite) et <code>schema_version</code>
-(suivi des <a href="../persistance/#les-migrations-de-schema">migrations</a>).</p>
-<div class="admonition note">
-<p class="admonition-title">Point publié sur Vigie-Chiro (V40, #3458)</p>
-<p>Depuis <code>V40__point_publie.sql</code>, la table latérale <code>point_publie</code> retient qu'un point d'écoute
-créé ici a été <strong>poussé</strong> vers la plateforme (<code>PUT /sites/{id}/localites</code>). Sans cette mémoire,
-l'écran reproposerait le geste indéfiniment.</p>
-<p>⚠️ <strong>À ne pas confondre avec <code>listening_point.synchronise</code></strong> (#1738), qui dit l'inverse :
-« <strong>rapatrié de</strong> la plateforme », et sert à masquer les points rapatriés inutilisés. Réutiliser
-ce drapeau ferait disparaître de la fiche un point qu'on vient de créer pour s'en servir, et
-mentirait sur sa provenance. Deux faits distincts, deux endroits.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Commune d'un point (V38, #2791)</p>
-<p>Depuis <code>V38__commune_du_point.sql</code>, la table latérale <code>point_commune</code> porte la commune d'un
-point d'écoute (<code>commune_name</code> + <code>commune_insee</code>), dérivée une fois de ses coordonnées GPS via
-l'API Géo puis persistée. L'<strong>absence de ligne</strong> dit « commune non résolue » (point sans GPS,
-hors ligne à la création) : le rattrapage la comblera. La commune s'attache au <strong>point</strong>, jamais
-au carré - un carré de 2 km peut chevaucher plusieurs communes. Département et région ne sont
-pas stockés : ils se dérivent du code INSEE via <code>RegionsFrancaises</code> (ADR 2791, alignée sur
-l'ADR 2351).</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Ancrage plateforme et certitude observateur (V21, #1139)</p>
-<p>Depuis <code>V21__observation_ancrage_certitude.sql</code>, la table <code>observation</code> porte trois colonnes
-nullable issues du contrat d'écriture VigieChiro (#1203) :</p>
+<h1 id="adr-3827-une-affirmation-de-securite-se-lit-ou-elle-nexiste-pas">ADR 3827 - Une affirmation de sécurité se lit, ou elle n'existe pas<a class="headerlink" href="#adr-3827-une-affirmation-de-securite-se-lit-ou-elle-nexiste-pas" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong><code>vigiechiro_data_id</code></strong> + <strong><code>vigiechiro_obs_index</code></strong> : l'<strong>ancrage plateforme</strong> d'une
-  observation importée de VigieChiro, c'est-à-dire le <code>_id</code> Eve de sa donnée (le WAV côté
-  serveur) et son <strong>indice brut</strong> dans le tableau <code>observations</code> de cette donnée : la cible
-  exacte de <code>PATCH /donnees/{id}/observations/{index}</code> (une observation n'a pas d'<code>_id</code> propre).
-  L'ancrage vient <strong>frais du serveur à chaque import</strong> et n'est jamais préservé d'un jeu à
-  l'autre (un re-compute régénère les <code>donnees</code>, donc les <code>_id</code>) ; <code>NULL</code> hors import VigieChiro.</li>
-<li><strong><code>observer_certainty</code></strong> : la <strong>certitude déclarée manuellement</strong> par l'observateur à la revue
-  (<code>SUR | PROBABLE | POSSIBLE</code>, énumération <code>Certitude</code>, jetons exacts du serveur).
-  <strong>Vide par défaut</strong>, jamais préremplie ni dérivée de <code>prob_observer</code> (qui reste la confiance
-  numérique Tadarida recopiée à la validation, héritage du format <code>_Vu</code>). C'est une décision
-  humaine : elle est <strong>préservée</strong> au réimport (<code>PreservationValidations</code>), et elle sera exigée
-  (avec le taxon) pour pousser une correction vers la plateforme (#723).</li>
+<li><strong>Statut</strong> : Accepté - 2026-08-16</li>
+<li><strong>Chantier</strong> : #3827, lot 3 des suites #3802</li>
+<li><strong>Prolonge</strong> : <a href="../3507-l-amorcage-s-ecrit-d-un-seul-coup/">ADR 3507</a></li>
+<li><strong>Vérification</strong> : certaine - <code>EcritureAtomiqueTest#creation_restreinte</code></li>
 </ul>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Empreintes et archivage (V23 à V25, EPIC #1297)</p>
-<p>Trois migrations rendent possible le passage <strong>archivé</strong> : consultable sans son audio, et
-réactivable si les fichiers d'origine reparaissent.</p>
+<h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
+<p>Deux affirmations vivaient dans le dépôt depuis des mois, l'une dans un doc-comment, l'autre dans
+<code>dev-docs/securite.md</code>, et <strong>aucune n'était vérifiée</strong> :</p>
 <ul>
-<li><strong><code>V23__empreintes_fichiers.sql</code></strong> : <code>listening_sequence</code> gagne <code>size_bytes</code> + <code>fingerprint</code>,
-  <code>original_recording</code> gagne <code>size_bytes</code>. L'empreinte est un <strong>SHA-256 des 64 premiers Kio</strong>
-  (<code>Empreintes.empreinteCourte</code>), pas du fichier entier : 113 µs par fichier, soit ~0,5 s pour
-  une nuit de 4806 séquences, contre plusieurs minutes pour une empreinte complète - et elle
-  suffit à distinguer deux WAV différents, dont les en-têtes et les premières trames diffèrent.
-  Elle est posée <strong>à l'import</strong> (<code>TransformationAudio</code>) ; les nuits déjà importées se rattrapent
-  avec <code>retro-empreintes</code> (<code>BackfillEmpreintes</code>).</li>
-<li><strong><code>V24__archivage_passage.sql</code></strong> : avait ajouté <code>recording_session.archived_at</code>. Le geste
-  d'archivage a été retiré (<a href="../decisions/0048-l-utilisateur-possede-ses-fichiers-l-app-observe/">ADR 0048</a>) :
-  la disponibilité de l'audio s'<strong>observe</strong> sur le disque (<code>DisponibiliteAudio</code>, cf.
-  <a href="../patterns/#etat-observe-un-statut-distant-nest-pas-un-statut-du-domaine">patterns</a>). Devenue
-  morte, la colonne a été <strong>retirée par <code>V31</code></strong> (#2429).</li>
-<li><strong><code>V25__purge_originaux_declaree.sql</code></strong> : avait ajouté <code>recording_session.originals_purged_at</code>. Le
-  geste de purge a été retiré et l'audit ne contrôle plus les bruts : ce sont des copies
-  <strong>optionnelles</strong> de ré-analyse (<a href="../decisions/0036-la-copie-des-bruts-est-une-option/">ADR 0036</a>),
-  absentes de la plupart des nuits, donc leur absence est l'état normal. Colonne également <strong>retirée
-  par <code>V31</code></strong> (#2429).</li>
+<li>que <code>Files.move(ATOMIC_MOVE)</code> se comporte différemment sous Windows quand la cible est <strong>ouverte</strong> -
+  c'était le <strong>motif fondateur</strong> du chantier #3518, et il est resté découvert jusqu'ici ;</li>
+<li>que le jeton VigieChiro « reste protégé par les <strong>ACL du profil utilisateur</strong> ». L'audit de dette du
+  2026-07-28 l'avait déjà relevé : le code « se repose sur les ACL du profil <strong>sans les contrôler
+  explicitement</strong> ».</li>
 </ul>
-<p>Ces deux marqueurs répondaient à la même question : <em>pourquoi</em> l'audio manque. La réponse ne
-change plus rien - <strong>l'utilisateur possède ses fichiers</strong>, leur absence n'est jamais une
-corruption. N'étant plus ni écrits ni lus, ils ont été <strong>retirés du schéma par <code>V31</code></strong> (#2429).</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Validation d'expert (V26, EPIC #1154)</p>
-<p><strong><code>V26__validation_expert.sql</code></strong> fait entrer en base le <strong>troisième avis</strong> : et la discussion qui
-l'entoure.</p>
-<p>VigieChiro distingue trois avis sur une même détection : Tadarida <strong>propose</strong> (<code>taxon_tadarida</code>),
-l'observateur <strong>corrige</strong> (<code>taxon_observer</code>), le validateur du MNHN <strong>tranche</strong>. Le troisième arrivait
-déjà du serveur à <strong>chaque</strong> import, dans la même charge utile, et le parseur le jetait. L'application
-présentait donc la correction de l'observateur comme le dernier mot, alors qu'un expert avait pu la
-réviser sans qu'on le voie jamais.</p>
+<p>⚠️ Les deux portaient sur le <strong>chemin d'amorçage</strong> de l'application, et sur le fichier qui contient le
+<strong>jeton</strong>.</p>
+<h2 id="ce-que-les-sondes-ont-mesure-et-qui-contredit-les-deux-issues">Ce que les sondes ont mesuré, et qui contredit les deux issues<a class="headerlink" href="#ce-que-les-sondes-ont-mesure-et-qui-contredit-les-deux-issues" title="Permanent link">&para;</a></h2>
+<p>Deux sondes jetables, dispatchées sous <strong>Windows Server 2025</strong>, écrites pour <strong>rapporter</strong> et non pour
+juger. Dans les deux cas, elles ont contredit ce que l'issue supposait.</p>
+<p><strong>#3777 redoutait un cas irreproductible.</strong> Elle prévenait que Java ouvre avec
+<code>FILE_SHARE_READ | WRITE | DELETE</code>, donc qu'un simple flux pourrait ne rien bloquer, et qu'un test
+écrit ainsi serait « vert sur les deux plateformes sans rien prouver ». Mesuré : <strong>les quatre</strong> façons
+de tenir la cible provoquent l'<code>AccessDeniedException</code>, y compris <code>Files.newInputStream</code>.</p>
+<p><strong>#3778 soupçonnait une protection absente.</strong> Mesuré : exactement <strong>trois</strong> entrées <code>ALLOW</code> - le
+propriétaire, <code>NT AUTHORITY\SYSTEM</code>, <code>BUILTIN\Administrators</code>. C'est l'équivalent de <code>600</code> sous POSIX,
+où <strong>root</strong> lit aussi. <strong>La doc disait vrai.</strong></p>
+<p>⚠️ Ce qu'on ignorait n'était donc pas si la protection existe : c'est qu'<strong>on n'en savait rien</strong>.</p>
+<h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p><strong>Une affirmation de sécurité s'exprime comme une propriété qu'un test peut lire, ou elle ne compte
+pas.</strong> <code>ProtectionFichier.restreinteAuProprietaire</code> dit « aucun autre compte ne peut lire ce fichier »
+- permissions POSIX ici, ACL là-bas. Le conditionnel quitte le test pour vivre dans un seul endroit
+éprouvé.</p>
+<p>⚠️ <strong>Ni POSIX ni ACL fait lever</strong>, plutôt que rendre <code>true</code>. Annoncer une protection depuis une
+<strong>ignorance</strong> serait exactement le faux vert que ce dispositif existe pour empêcher.</p>
+<h3 id="et-lecriture-insiste-plutot-que-dechouer-ou-de-renoncer">Et l'écriture insiste, plutôt que d'échouer ou de renoncer<a class="headerlink" href="#et-lecriture-insiste-plutot-que-dechouer-ou-de-renoncer" title="Permanent link">&para;</a></h3>
+<p>Cinq tentatives espacées de 150 ms, ~600 ms - assez pour traverser une analyse antivirus, trop court
+pour qu'un utilisateur croie l'application figée. Au-delà, un refus qui <strong>nomme</strong> la cause.</p>
+<p>Trois options étaient sur la table ; le porteur a tranché pour la reprise après que la mesure a montré
+que le cas n'est pas rare mais <strong>ordinaire</strong> sous Windows.</p>
+<p>⚠️ <strong>La reprise ne regarde pas le système d'exploitation.</strong> Sous POSIX, une <code>AccessDeniedException</code> est
+un vrai refus de droits : elle coûtera le butoir avant d'échouer. C'est le prix assumé pour ne pas
+déduire un comportement d'un nom de plateforme - ce que [ADR 3738 / <code>CouleurCli</code>] a appris à ne plus
+faire.</p>
+<h3 id="trois-assumetrue-disparaissent-dont-un-qui-mentait-sur-sa-nature">Trois <code>assumeTrue</code> disparaissent, dont un qui mentait sur sa nature<a class="headerlink" href="#trois-assumetrue-disparaissent-dont-un-qui-mentait-sur-sa-nature" title="Permanent link">&para;</a></h3>
+<p>L'un d'eux vivait <strong>dans un helper</strong>, pas en tête de test : sous Windows, <code>creation_restreinte</code>
+s'interrompait à l'appel de <code>permissions()</code>, <strong>emportant l'assertion suivante</strong> - qui n'avait rien de
+POSIX. Un test <strong>partiel</strong> qui se présentait comme <strong>sauté</strong>.</p>
+<p>Le cas qui exige vraiment POSIX - sa fixture <em>crée</em> un fichier <code>rw-rw-rw-</code> - porte désormais
+<code>@EnabledIf</code> : déclaratif, visible au rapport, et <strong>incapable d'interrompre un test au milieu</strong>.</p>
+<h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li><code>observation.taxon_validator</code> (FK → <code>taxon.code</code>) + <code>observation.validator_certainty</code>. Le code
-  hors référentiel est <strong>auto-enregistré en souche</strong> à l'import, comme celui de l'observateur : sans
-  souche, la clé étrangère ramènerait le code à <code>NULL</code> et l'application <strong>tairait l'avis qui fait
-  autorité</strong>.</li>
-<li><code>observation_message</code> : le <strong>fil de discussion</strong> (1-N, cascade sur <code>observation</code>). <code>rank_in_thread</code>
-  fige l'ordre du serveur : l'ajout s'y faisant par <code>$push</code>, cet ordre <strong>est</strong> l'ordre chronologique,
-  plus fiable qu'un tri sur des dates que le serveur ne garantit pas toutes.
-  <code>author_platform_id</code> est un <strong>objectid</strong>, jamais un nom.</li>
+<li><strong>La garantie est éprouvée chaque mardi</strong> sous Windows, au lieu d'être écrite.</li>
+<li><strong>Le refus de l'écriture est actionnable</strong> : il nomme la tenue au lieu de parler de droits.</li>
+<li>⚠️ <strong>La branche ACL est inatteignable sous Linux</strong> : PIT y laisse 8 mutants sans couverture, comme le
+  repli de lecture du verrou (#3714). C'est structurel, pas une lacune - la branche est exercée par le
+  passage sous Windows, et le dire évite qu'on la croie non testée.</li>
+<li>⚠️ <strong>Un test de câblage ne prouve pas la plateforme.</strong> Le cas qui traverse le vrai déplacement avec un
+  vrai lecteur passe sur les deux systèmes : son vert ne dit <strong>pas</strong> que Windows a emprunté la branche
+  de reprise. C'est la <strong>sonde</strong> qui l'établit, et elle est citée dans le doc-comment pour qu'on n'ait
+  pas à la refaire.</li>
 </ul>
-<p><strong>Reflet, pas saisie.</strong> Ces colonnes sont <strong>rafraîchies à chaque import</strong> : le serveur refuse (403)
-qu'un jeton d'<code>Observateur</code> pose un avis de validateur. Au réimport, la correction de l'observateur
-est donc <strong>préservée</strong> (c'est une saisie humaine locale) tandis que l'avis du validateur et le fil sont
-<strong>rafraîchis</strong> (si l'expert a changé d'avis, c'est <strong>le sien</strong> qui doit s'afficher, pas la copie qu'on
-en gardait). Deux natures différentes, deux règles différentes.</p>
-</div>
-<h2 id="transformation-audio-de-loriginal-brut-aux-sequences-decoute-r10r11">Transformation audio : de l'original brut aux séquences d'écoute (R10/R11)<a class="headerlink" href="#transformation-audio-de-loriginal-brut-aux-sequences-decoute-r10r11" title="Permanent link">&para;</a></h2>
-<p>Un <strong>enregistrement original</strong> (<code>original_recording</code>) est un ultrason mono 16 bits échantillonné très
-vite (<strong>384 kHz</strong>), donc <strong>inaudible</strong>. L'import le transforme en <strong>séquences d'écoute</strong>
-(<code>listening_sequence</code>) que l'humain peut écouter et que Tadarida a analysées. Le point dur est
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/importation/model/TransformationAudio.java"><code>TransformationAudio</code></a> ;
-l'<strong>ordre des opérations reproduit fidèlement la chaîne Vigie-Chiro/Tadarida</strong> (condition pour que
-l'<code>observations.csv</code>, produit sur les mêmes séquences, se raccroche à l'audio) :</p>
-<ol>
-<li><strong>Découper à 5 s réelles</strong> : au <strong>rythme source</strong> (<code>5 × frequenceSource</code> trames), et <strong>non</strong> au rythme
-   de sortie. Une séquence porte donc 5 s de l'enregistrement d'origine (la dernière peut être plus
-   courte). Nombre de séquences pour une durée <code>D</code> : <code>ceil(D / 5)</code>.</li>
-<li><strong>Expanser ×10</strong> : en <strong>réinterprétant</strong> le rythme d'échantillonnage (<code>frequenceSortie = source / 10</code>,
-   ex. 38 400 Hz) : <strong>aucun échantillon n'est recalculé</strong>, les mêmes octets PCM sont conservés. Une
-   séquence de 5 s réelles devient <strong>50 s à l'écoute</strong>, dans la bande audible.</li>
-</ol>
-<div class="admonition warning">
-<p class="admonition-title">Piège corrigé</p>
-<p>Découper <em>après</em> l'expansion et au rythme de <strong>sortie</strong> donnait des séquences de <strong>0,5 s réelles</strong>
-(10× trop courtes), désalignées des temps de l'<code>observations.csv</code> : qui sont en <strong>secondes réelles
-dans une séquence de 5 s</strong>. On découpe donc bien à 5 s <strong>au rythme source</strong>.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Unité des durées : secondes <strong>réelles</strong></p>
-<p>Les colonnes <code>duration_s</code> (<code>original_recording</code> <strong>et</strong> <code>listening_sequence</code>) et <code>source_offset_s</code>
-sont en <strong>secondes réelles d'acquisition</strong> (≈ 5 s pour une séquence). La durée d'<strong>écoute</strong> du WAV
-expansé vaut ×10 (≈ 50 s) : c'est <code>audio-view</code> qui l'obtient en rejouant au rythme de sortie, on ne
-la stocke pas. De même, les bornes <code>observation.debut_s</code>/<code>fin_s</code> (temps Tadarida) sont en secondes
-réelles dans la séquence de 5 s.</p>
-<p><strong>Réparation <code>V20__duree_reelle_sequences.sql</code> (#1051)</strong> : <code>listening_sequence.duration_s</code> était
-persisté <strong>×10</strong> (division par la fréquence de sortie au lieu de la fréquence d'acquisition dans
-<code>TransformationAudio</code>). Le fix code écrit désormais la durée réelle ; la migration V20 divise par 10
-les valeurs existantes (<code>WHERE duration_s IS NOT NULL</code>, <code>original_recording</code> intact).</p>
-</div>
-<p><strong>Nommage horodaté (clé de jointure).</strong> Chaque séquence porte l'<strong>heure réelle de son début</strong> :
-l'horodatage de l'original (<code>_AAAAMMJJ_HHMMSS</code>) <strong>décalé</strong> de <code>index × 5 s</code>, suivi d'un <code>_000</code>
-systématique, et non un index <code>_000</code>, <code>_001</code>… Exemple : <code>…_20260422_225849.wav</code> →
-<code>…_225849_000</code>, <code>…_225854_000</code>, <code>…_225859_000</code>… C'est exactement le nom que porte l'<code>observations.csv</code>,
-et <code>ServiceValidation</code> <strong>relie une observation à sa séquence par ce nom</strong> (sans extension).</p>
-<p><strong>Collisions.</strong> Des enregistrements peuvent se <strong>chevaucher sur la grille de 5 s</strong> : la séquence de
-queue d'un long (ex. <code>…_225332</code> de 10 s → séquence <code>…_225342_000</code>) tombe sur l'heure de début d'un
-enregistrement plus récent (<code>…_225342</code>, dont la tête vise aussi <code>…_225342_000</code>).
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/importation/model/ReconciliationNoms.java"><code>ReconciliationNoms</code></a>
-tranche de façon <strong>déterministe</strong> : le <strong>plus ancien enregistrement garde le <code>_000</code></strong> (c'est ce que
-référence l'<code>observations.csv</code>), le perdant passe en <strong><code>_001</code></strong> (disponible à l'écoute, sans
-observation associée : <strong>aucune donnée perdue</strong>). Comme le découpage est parallèle
-(<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/importation/model/DecoupageParallele.java"><code>DecoupageParallele</code></a>),
-chaque original écrit d'abord dans un <strong>dossier temporaire propre</strong>, puis les noms définitifs sont
-attribués en une passe séquentielle qui déplace les fichiers vers <code>transformes/</code>.</p>
-<p><strong>Déterminisme (R11).</strong> Mêmes octets en entrée ⇒ mêmes octets en sortie : découpage positionnel, PCM
-copié sans altération, en-tête canonique fixe. Relancer l'import (reprise, session réutilisée par
-quadruplet) réécrit des fichiers <strong>identiques au bit près</strong>.</p>
-<h2 id="enumerations-du-domaine">Énumérations du domaine<a class="headerlink" href="#enumerations-du-domaine" title="Permanent link">&para;</a></h2>
-<p>Plutôt que des codes magiques, les états sont des <strong>énums</strong> dans <code>commun.model</code> :
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/model/StatutWorkflow.java"><code>StatutWorkflow</code></a>
-(<code>IMPORTE → … → DEPOSE</code>), <code>Verdict</code> (OK / Douteux / À jeter), <code>MethodeSelection</code>, <code>Protocole</code>,
-<code>ModeValidation</code>. Chacune porte un <strong>libellé</strong> d'affichage, et les transitions de statut sont gardées
-par <a href="../patterns/#machine-a-etats-moteurworkflowpassage"><code>MoteurWorkflowPassage</code></a>.</p>
-<h2 id="regenerer-le-mcd-mocodo">Régénérer le MCD (Mocodo)<a class="headerlink" href="#regenerer-le-mcd-mocodo" title="Permanent link">&para;</a></h2>
-<p>Le MCD est <strong>versionné comme source</strong> (<a href="../assets/nuit-de-capture.mcd"><code>nuit-de-capture.mcd</code></a>, 17 entités
-+ 18 associations) et rendu avec <a href="https://www.mocodo.net/">Mocodo</a>, l'outil de référence pour le MCD
-Merise. Après modification de la source, régénérez le SVG :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>pip<span class="w"> </span>install<span class="w"> </span>mocodo<span class="w">                       </span><span class="c1"># une fois</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>dev-docs/assets
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mocodo<span class="w"> </span>-i<span class="w"> </span>nuit-de-capture.mcd<span class="w"> </span>-t<span class="w"> </span>arrange:wide<span class="o">=</span><span class="m">8</span><span class="w"> </span>--colors<span class="w"> </span>ocean<span class="w">   </span><span class="c1"># agencement auto + dessin SVG</span>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>--<span class="w"> </span>nuit-de-capture.mcd<span class="w">      </span><span class="c1"># cf. ci-dessous : l&#39;agencement réécrit la source</span>
-</code></pre></div>
-<p>⚠️ <code>arrange</code> <strong>réécrit <code>nuit-de-capture.mcd</code></strong> sous sa forme agencée (les boîtes réparties en grille,
-entités et associations entremêlées). Cette forme est illisible à la relecture et impossible à
-compléter à la main : ce dépôt versionne donc la forme <strong>linéaire</strong> (toutes les entités, puis toutes
-les associations) et ne garde l'agencement que dans le SVG. D'où le <code>git checkout</code> ci-dessus, à faire
-<strong>après</strong> avoir vérifié que le SVG est correct.</p>
-<p><code>arrange:wide=8</code> agence les boîtes sur ~8 colonnes (essayez <code>wide=6</code>/<code>7</code> pour un autre format) et
-<code>--colors ocean</code> applique la palette (cohérente avec le thème indigo du site ; <code>mocodo --help</code> liste
-les palettes). Mocodo
-sait aussi dériver le schéma relationnel (<code>-t mld</code>/<code>-t sql</code>) à partir de la <strong>même</strong> source : c'est
-exactement le passage <em>conceptuel → physique</em> décrit sur cette page.</p>
-<hr />
-<p>Le <strong>mécanisme</strong> d'accès à ces tables (DAO, migrations, transactions) est décrit dans
-<strong><a href="../persistance/">Persistance</a></strong>.</p>
+<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Laisser remonter l'échec</strong> : honnête, mais un antivirus qui passe au mauvais moment devient une
+  erreur que l'utilisateur ne peut ni comprendre ni corriger, sur le chemin de démarrage.</li>
+<li><strong>Retomber sur un remplacement non atomique</strong> : sacrifie ce que la classe existe pour tenir. Un
+  <code>connexion.json</code> tronqué se lit « non connecté », soit une déconnexion inexpliquée plutôt qu'une
+  erreur.</li>
+<li><strong>Garder les <code>assumeTrue</code></strong> : un saut est honnête, mais il laisse la propriété <strong>non vérifiée</strong> là où
+  elle compte le plus - et celui du helper ne se présentait même pas pour ce qu'il était.</li>
+</ul>
 
 
 
@@ -6084,7 +5852,7 @@ exactement le passage <em>conceptuel → physique</em> décrit sur cette page.</
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../persistance/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Persistance">
+          <a href="../3826-un-test-qui-mesure-monte-une-scene-habillee/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3826 · Un test qui mesure monte une scène habillée">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6094,20 +5862,20 @@ exactement le passage <em>conceptuel → physique</em> décrit sur cette page.</
                 Précédent
               </span>
               <div class="md-ellipsis">
-                Persistance
+                3826 · Un test qui mesure monte une scène habillée
               </div>
             </div>
           </a>
         
         
           
-          <a href="../glossaire/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Glossaire du domaine">
+          <a href="../../recette/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Méthode">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                Glossaire du domaine
+                Méthode
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -6148,10 +5916,10 @@ exactement le passage <em>conceptuel → physique</em> décrit sur cette page.</
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.instant", "navigation.tracking", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "content.action.edit", "content.action.view", "content.code.copy"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copi\u00e9 dans le presse-papier", "clipboard.copy": "Copier dans le presse-papier", "search.result.more.one": "1 de plus sur cette page", "search.result.more.other": "# de plus sur cette page", "search.result.none": "Aucun document trouv\u00e9", "search.result.one": "1 document trouv\u00e9", "search.result.other": "# documents trouv\u00e9s", "search.result.placeholder": "Taper pour d\u00e9marrer la recherche", "search.result.term.missing": "Non trouv\u00e9", "select.version": "S\u00e9lectionner la version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

@@ -4716,6 +4716,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3827 · Une affirmation de sécurité se lit, ou elle n'existe pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5811,8 +5839,21 @@ données d'exemple ou de test.</p>
   Le fichier est <strong>restreint au propriétaire</strong> (POSIX <code>600</code>) sur les systèmes qui le supportent, pour
   qu'un autre compte de la machine ne puisse pas lire le token. Sous Windows, il reste protégé par les
   <strong>ACL du profil utilisateur</strong> : le dossier de travail vit sous le profil, dont les autres comptes non
-  administrateurs n'ont pas la clé. Protection réelle, mais <strong>de nature différente</strong>, et c'est pourquoi
-  elle est écrite plutôt que sous-entendue.</p>
+  administrateurs n'ont pas la clé. Protection réelle, mais <strong>de nature différente</strong>.</p>
+<p>⚠️ <strong>Cette phrase a été affirmée pendant des mois sans que personne la vérifie</strong>, et l'audit de
+dette du 2026-07-28 le relevait : le code « se repose sur les ACL du profil <strong>sans les contrôler
+explicitement</strong> ». Mesuré depuis (#3778), par sonde sous Windows Server 2025 : le fichier porte
+exactement <strong>trois</strong> entrées <code>ALLOW</code> - son propriétaire, <code>NT AUTHORITY\SYSTEM</code> et
+<code>BUILTIN\Administrators</code>. C'est l'équivalent exact de <code>600</code> sous POSIX, où <strong>root</strong> lit aussi ce
+qu'il veut. <strong>La doc disait vrai</strong> - et c'est précisément ce qu'on ignorait.</p>
+<p>La propriété est désormais <strong>lue</strong>, et non plus affirmée :
+<code>commun.model.ProtectionFichier.restreinteAuProprietaire</code> l'exprime sur les deux systèmes -
+permissions POSIX ici, ACL là-bas -, et <code>EcritureAtomiqueTest</code> l'éprouve. ⚠️ Ni POSIX ni ACL fait
+<strong>lever</strong> plutôt que rendre <code>true</code> : annoncer une protection depuis une ignorance serait le faux
+vert que tout ce dispositif existe pour éviter.</p>
+<p>⚠️ La protection reste <strong>héritée</strong> du dossier de profil, pas posée par le produit. Elle est réelle
+et elle peut changer sans que rien ne le dise - d'où la lecture, et le test qui s'en sert chaque
+mardi (#3526).</p>
 <p>L'écriture passe par <code>commun.model.EcritureAtomique</code> (#2735), et non plus par un <code>writeString</code>
 suivi d'un <code>chmod</code>. La différence n'est pas cosmétique : restreindre <strong>après</strong> avoir écrit laisse
 une fenêtre pendant laquelle le fichier existe avec les permissions de l'umask, souvent <code>644</code>. Elle
@@ -5820,6 +5861,17 @@ se rouvrait à chaque <strong>création</strong> du fichier, donc à chaque reco
 supprime. Le secret n'atterrit désormais que dans un fichier <strong>créé déjà restreint</strong>, déplacé sur sa
 cible par un <code>ATOMIC_MOVE</code> - ce qui corrige au passage un <code>connexion.json</code> tronqué par une
 interruption, que le lecteur traduisait en « non connecté » sans rien dire.</p>
+<p>⚠️ <strong>Sous Windows, ce déplacement échoue dès qu'un lecteur tient la cible</strong> - mesuré par sonde sur
+Windows Server 2025 (#3777) : <code>Files.newInputStream</code>, <code>FileChannel</code>, <code>RandomAccessFile</code> et
+<code>FileChannel.lock()</code> provoquent <strong>tous</strong> une <code>AccessDeniedException</code>. Un simple lecteur suffit, il
+n'y a pas besoin d'un verrou. Or c'est le chemin du fichier d'amorçage, et les tenues concurrentes
+y sont <strong>ordinaires</strong> : un antivirus qui analyse au moment du remplacement, un outil de sauvegarde,
+une seconde instance qui lit.</p>
+<p>L'écriture <strong>insiste</strong> donc : cinq tentatives espacées de 150 ms, ~600 ms au total - assez pour
+traverser une analyse antivirus, trop court pour qu'un utilisateur croie l'application figée.
+Au-delà, le refus <strong>nomme</strong> la cause (« tenu ouvert par un autre programme ») plutôt que de parler
+de droits, ce qui enverrait chercher un problème qui n'existe pas sur un fichier dont on est
+propriétaire.</p>
 <p>Ce garde est <strong>structurel</strong> (<code>SecretsEcritsProtegesTest</code>), parce que la fenêtre est un état
 intermédiaire : après coup, les deux façons d'écrire laissent le même fichier à <code>600</code>, et aucun test
 d'état final ne les distingue.</p>

@@ -4833,6 +4833,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3827 · Une affirmation de sécurité se lit, ou elle n'existe pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6479,6 +6507,11 @@
 <td><a href="3826-un-test-qui-mesure-monte-une-scene-habillee/">3826</a></td>
 <td>L'ADR 3374 posait <code>Habillage</code> pour « les fenetres comme les captures » ; son garde ne parcourait que <code>src/main</code>, et ce silence sur les TESTS etait le trou - dix d'entre eux mesuraient une geometrie sur une scene montee a la main, donc avec la police de la MACHINE. ⚠️ Le mecanisme est un couplage d'ORDRE, pas une difference de plateforme : <code>Typographie.installer()</code> garde un <code>static boolean</code>, donc un test voit la bonne police si un voisin l'a installee avant lui. Mesure : meme commit, meme image <code>macos-26-arm64</code>, <strong>vert a 8 h 14 et rouge a 15 h 34</strong> ; joue SEUL, il echoue. ⚠️ Invisible depuis un poste Linux, ou <code>Noto Sans</code> est une police systeme : l'experience d'isolement y est aveugle par construction, et elle a failli servir de preuve. La regle ne vise PAS tous les <code>new Scene</code> - une centaine de tests ont raison de l'ecrire - mais l'USAGE : construire ET mesurer</td>
 <td>#3826, lot 1 de #3802</td>
+</tr>
+<tr>
+<td><a href="3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/">3827</a></td>
+<td>Deux affirmations vivaient depuis des mois sans etre verifiees, toutes deux sur le chemin d'AMORCAGE et sur le fichier du JETON : que <code>ATOMIC_MOVE</code> echoue sous Windows quand la cible est ouverte (le motif FONDATEUR du chantier #3518, reste decouvert), et que le jeton « reste protege par les ACL du profil ». ⚠️ Les deux sondes ont CONTREDIT leur issue : les quatre facons de tenir la cible provoquent le refus - un simple lecteur suffit -, et la protection est REELLE, exactement trois entrees <code>ALLOW</code>, l'equivalent de <code>600</code>. Ce qu'on ignorait n'etait pas si la protection existe : c'est qu'on n'en savait rien. Une propriete se LIT desormais (<code>ProtectionFichier</code>), et ni POSIX ni ACL fait LEVER plutot que rendre <code>true</code> - annoncer une protection depuis une ignorance serait le faux vert qu'on combat. Trois <code>assumeTrue</code> tombent, dont un qui vivait DANS un helper et interrompait le test au milieu, emportant une assertion qui n'avait rien de POSIX</td>
+<td>#3827, lot 3 de #3802</td>
 </tr>
 </tbody>
 </table>

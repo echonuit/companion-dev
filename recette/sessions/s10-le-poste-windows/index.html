@@ -4718,6 +4718,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3827 · Une affirmation de sécurité se lit, ou elle n'existe pas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -5822,14 +5850,21 @@ seule des trois.</p>
 </li>
 </ul>
 <h2 id="ce-que-la-session-ne-couvre-pas-et-pourquoi">Ce que la session ne couvre pas, et pourquoi<a class="headerlink" href="#ce-que-la-session-ne-couvre-pas-et-pourquoi" title="Permanent link">&para;</a></h2>
+<p>⚠️ <strong>Les deux points ci-dessous ont trouvé leur dispositif depuis</strong> (#3777 et #3778, livrés). Ce
+paragraphe disait « on ne sait pas encore reproduire » et « cela relève d'un port testable » : c'est
+désormais <strong>fait</strong>, et la session n'a plus à s'en préoccuper.</p>
 <ul>
-<li><strong><code>ATOMIC_MOVE</code> sur une cible ouverte</strong> (#3777) : le motif fondateur du lot, non éprouvé. Il demande
-  un <strong>dispositif</strong>, pas une observation - on ne sait pas encore reproduire la condition à la main de
-  façon fiable. À traiter par un test, pas par une case.</li>
-<li><strong>La protection du jeton par les ACL du profil</strong> (#3778) : affirmée par la doc, vérifiée par
-  personne. Une case de recette dirait « le fichier existe », pas « aucun autre compte ne peut le
-  lire ». Cela demande un second compte, et cela relève d'un port testable plutôt que d'un regard.</li>
+<li><strong><code>ATOMIC_MOVE</code> sur une cible ouverte</strong> : éprouvé par <code>EcritureAtomiqueTest</code>, sur un déplacement
+  <strong>injecté</strong> - la condition ne se fabrique pas sous POSIX, où le déplacement réussit quoi qu'on tienne
+  ouvert. Une sonde a mesuré sous Windows que <strong>les quatre</strong> façons de tenir la cible provoquent le
+  refus, y compris un simple <code>Files.newInputStream</code>.</li>
+<li><strong>La protection du jeton par les ACL du profil</strong> : lue par <code>ProtectionFichier.restreinteAuProprietaire</code>,
+  qui exprime la <strong>propriété</strong> - « aucun autre compte ne peut lire ce fichier » - sur les deux systèmes.
+  Mesuré : exactement trois entrées <code>ALLOW</code>, l'équivalent de <code>600</code>.</li>
 </ul>
+<p><strong>Ce qu'aucun des deux n'atteint, et qui reste à cette session</strong> : qu'un <strong>humain</strong> lise le refus et
+comprenne quoi faire. Un test vérifie qu'une chaîne contient les bons mots ; il ne vérifie pas qu'on
+les comprend devant l'écran.</p>
 
 
 
