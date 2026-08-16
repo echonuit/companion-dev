@@ -6357,13 +6357,21 @@ réactivation la ramène laisse la porte ouverte à un aller sans retour.</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S7-23</strong> · Onglet <strong>Emplacements</strong> : le <strong>dossier de travail</strong> et la <strong>base de données</strong> sont
       affichés, chacun avec son emplacement courant et son défaut.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S7-24</strong> · L'écran annonce que choisir un emplacement change <strong>où l'application ira lire au
-      prochain démarrage</strong>, et <strong>ne déplace pas</strong> les données existantes.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S7-25</strong> · Choisir un nouveau dossier de travail : un <strong>avis de redémarrage</strong> apparaît, et il est
-      difficile à manquer.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S7-26</strong> · Quitter, relancer, rouvrir les Réglages : l'emplacement affiché est bien le <strong>nouveau</strong>.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S7-27</strong> · Vérifier l'ancien dossier sur le disque : les données y sont <strong>toujours</strong>, conformément
-      à ce qu'annonçait S7-24.</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S7-38</strong> · Chaque chemin porte, <strong>à côté de lui</strong>, un bouton « Copier » ; le cliquer place ce
+      chemin dans le presse-papier, et ce qui s'y trouve est <strong>exactement</strong> ce que l'écran affiche
+      (le coller dans un éditeur pour le lire). Les deux rangées l'offrent (#3882).</p>
+<p>⚠️ Le numéro sort de la suite : les cases de S7 vont jusqu'à <strong>S7-37</strong>, et les renuméroter
+rendrait faux les renvois que ce script porte déjà entre ses propres cases (S7-24 est cité par
+S7-27, par exemple).
+- [ ] <strong>S7-24</strong> · L'écran annonce que choisir un emplacement change <strong>où l'application ira lire au
+  prochain démarrage</strong>, et <strong>ne déplace pas</strong> les données existantes.
+- [ ] <strong>S7-25</strong> · Choisir un nouveau dossier de travail : un <strong>avis de redémarrage</strong> apparaît, et il est
+  difficile à manquer.
+- [ ] <strong>S7-26</strong> · Quitter, relancer, rouvrir les Réglages : l'emplacement affiché est bien le <strong>nouveau</strong>.
+- [ ] <strong>S7-27</strong> · Vérifier l'ancien dossier sur le disque : les données y sont <strong>toujours</strong>, conformément
+  à ce qu'annonçait S7-24.</p>
+</li>
 </ul>
 <blockquote>
 <p>⚠️ S7-25 et S7-27 portent le constat qui a motivé #3459 : un utilisateur au disque saturé cherche à
