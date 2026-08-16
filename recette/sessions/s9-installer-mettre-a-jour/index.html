@@ -5949,11 +5949,18 @@ anciennes</strong> versions servies : <code>winget show Echonuit.VigieChiroCompa
 </li>
 <li><strong>S9-05</strong> · L'application est installée <strong>dans le dossier personnel</strong> (<code>%LOCALAPPDATA%</code>), pas dans
   <code>Program Files</code> : le scope <code>user</code> est bien celui qui a été servi.</li>
+<li>
+<p><strong>S9-14</strong> · Le bandeau d'annonce en haut de la fenêtre nomme les deux versions <strong>et</strong> dit de
+  <strong>fermer l'application avant d'installer</strong> (#3457). Sans cette phrase, l'installation lancée
+  fenêtre ouverte ne se termine pas, et rien n'en donne la raison.</p>
+<p>⚠️ Le numéro sort de la suite volontairement : les cases 06 à 13 sont citées ailleurs (#3621
+tranche sur <strong>S9-07</strong>), et les renuméroter rendrait ces renvois faux en silence.</p>
+</li>
 </ol>
 <p><strong>Étape 3 · La mise à jour REMPLACE, elle ne double pas</strong></p>
 <p>C'est la case pour laquelle cette session existe.</p>
 <ol>
-<li>Fermer l'application.</li>
+<li>Fermer l'application - ce que <strong>S9-14</strong> vérifie que le produit sait désormais demander.</li>
 <li>
 <p><code>winget upgrade Echonuit.VigieChiroCompanion</code></p>
 </li>
