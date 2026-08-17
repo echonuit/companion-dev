@@ -661,6 +661,10 @@
          <lastmod>2026-08-17</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3667-ce-que-la-cloture-a-decide-de-ne-pas-faire/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/3668-un-e2e-attend-le-signal-du-callback-pas-le-retour-du-geste/</loc>
          <lastmod>2026-08-17</lastmod>
     </url>
@@ -673,7 +677,19 @@
          <lastmod>2026-08-17</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3764-un-cas-joue-n-est-pas-un-cas-prouve/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/3769-une-option-qui-ne-veut-plus-rien-dire-se-refuse/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3774-le-clip-se-taille-sur-le-test/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3788-un-banc-qui-maximise-tout-ne-montre-pas-ce-qu-on-livre/</loc>
          <lastmod>2026-08-17</lastmod>
     </url>
     <url>

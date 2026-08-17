@@ -5141,6 +5141,118 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3667-ce-que-la-cloture-a-decide-de-ne-pas-faire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3667 · Ce que la clôture a décidé de ne pas faire, et pourquoi
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3764-un-cas-joue-n-est-pas-un-cas-prouve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3764 · Un cas joué n'est pas un cas prouvé
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3774-le-clip-se-taille-sur-le-test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3774 · Le clip se taille sur le test, et son contrôle porte sur la couverture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3788-un-banc-qui-maximise-tout-ne-montre-pas-ce-qu-on-livre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3788 · Un banc qui maximise tout ne montre pas ce qu'on livre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -6837,6 +6949,26 @@
 <td><a href="3840-le-signal-et-le-retour-se-partagent-la-fraicheur/">3840</a></td>
 <td>L'ADR 3537 reserve le signal aux ecritures STRUCTURELLES, ce qui laisse dehors les <code>update</code> - or Analyse affiche le taxon RETENU (<code>COALESCE(taxon_observer, taxon_tadarida)</code>), que le remplacer change. Le critere « les quatre comptes » n'explique donc pas pourquoi le produit reste juste : la fraicheur est portee par DEUX mecanismes, <code>SuitLaRevision</code> pendant qu'on regarde l'ecran, <code>RafraichirAuRetour</code> parce qu'on etait ailleurs. Ils ne sont PAS redondants ; retirer le second d'un ecran qui porte le premier casse la fraicheur en silence. ⚠️ Ma premiere version du test ne prouvait rien et restait verte sous cette mutation : la premiere validation INSERE (donc annonce), et son rechargement asynchrone relisait la base apres le remplacement silencieux. Un fait tenu par un autre dispositif que celui qu'on croit se demasque comme l'ADR 3624, en mutant ce qu'on pretend verifier</td>
 <td>#3840, suite de #3645</td>
+</tr>
+<tr>
+<td><a href="3667-ce-que-la-cloture-a-decide-de-ne-pas-faire/">3667</a></td>
+<td>Deux <strong>abstentions</strong> de la cloture, ecrites pour ne pas se re-debattre : la logique pure de la recette reste en portee test <strong>sans couverture de mutation</strong> (trois lancements PIT, trois fois zero mutant, la cause probable etant <code>Mutating from target/classes</code> - mais elle n est PAS etablie), et les deux <code>essai()</code> ne sont pas factorises (huit lignes partagees, et l ADR 3661 venait justement de supprimer le fichier commun). ⚠️ Ce que la premiere coute : l assurance repose sur 8 tests et un temoin passe a la main, la ou PIT avait trouve ailleurs 14 survivants qu une mutation manuelle n avait pas vus</td>
+<td>#3667, à la clôture de l'EPIC</td>
+</tr>
+<tr>
+<td><a href="3764-un-cas-joue-n-est-pas-un-cas-prouve/">3764</a></td>
+<td>Le garde de recette ne connaissait que <strong>couvert / non couvert</strong>, et cette dichotomie allait compter comme prouves deux cas que personne n aurait regardes - un scenario perceptif CITE son cas, c est son seul lien vers le script. Trois etats donc, ou l etat est une propriete du <strong>cas</strong> (marque <code>*perceptif*</code>, posee en passe 6, avant qu un test existe) et non du test, qui declare seulement ce qu il <strong>pretend prouver</strong>. ⚠️ Les deux sources se confrontent et rougissent quand elles se contredisent : c est ce recoupement qui empeche la marque de deriver comme la prose avait derive</td>
+<td>#3764, tranche (a) de l'EPIC #3667</td>
+</tr>
+<tr>
+<td><a href="3774-le-clip-se-taille-sur-le-test/">3774</a></td>
+<td>Trois choix du montage, chacun avec une reponse plausible et fausse : <code>t0</code> se <strong>mesure</strong> (arret moins duree) au lieu de s estimer, le clip se taille sur le <strong>test</strong> parce que c est ce que la JVM sait borner, et le controle porte sur la <strong>couverture</strong> et non sur la clarte des clips - l exiger ferait rougir un test de ViewModel qui n ouvre legitimement aucune fenetre. ⚠️ La premiere seance REELLE a refuse un alignement correct parce que les plages ne venaient que des tests cites : le travers evite par ailleurs, revenu par la fenetre du denominateur</td>
+<td>#3774, tranche (b) de l'EPIC #3667</td>
+</tr>
+<tr>
+<td><a href="3788-un-banc-qui-maximise-tout-ne-montre-pas-ce-qu-on-livre/">3788</a></td>
+<td><code>matchbox</code> maximise tout ce qu il affiche, et a fait mentir deux dispositifs : les tests de croissance de fenetre ne POUVAIENT pas passer (une fenetre deja maximisee ne grandit pas), et les clips montraient une mise en page qu on ne livre pas - donc qui les jugeait jugeait autre chose. Aucun compteur ne le disait ; le defaut n a ete vu qu en <strong>extrayant une image</strong>. ⚠️ Corollaire impose par le calcul : le seuil de luminance descend de 50 a 20, sans quoi une boite de dialogue de 400x250 rendrait 36 et serait declaree « rien a l ecran » sur un banc pourtant juste</td>
+<td>#3788, trouvé pendant la tranche (c) de #3667</td>
 </tr>
 <tr>
 <td><a href="3801-une-modale-ne-sert-qu-une-fois/">3801</a></td>
