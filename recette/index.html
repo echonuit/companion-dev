@@ -6243,67 +6243,87 @@ Campagne courante :
 valider). Règle d'unicité : un écran est déroulé <strong>en entier</strong> dans <strong>une seule</strong> session propriétaire ;
 ailleurs il n'est qu'écran de transit (seule la fluidité de la transition est notée). La base de recette
 <strong>vit d'une session à l'autre</strong>.</p>
+<p>⚠️ <strong>Ce tableau est le seul inventaire des sessions</strong>, état compris. Il ne se recopie nulle part, pas
+même plus bas dans cette page : c'est ainsi que « les huit sessions existent » a survécu à l'arrivée
+de la neuvième et de la dixième (#3885). Un test le confronte au dossier dans les deux sens
+(<code>InventaireDesSessionsTest</code>).</p>
 <table>
 <thead>
 <tr>
 <th>#</th>
 <th>Session (~1 h)</th>
+<th>État</th>
 <th>Écrans propriétaires</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>S1</td>
-<td>Premier contact (base vierge, connexion, déclarer un site)</td>
+<td><a href="sessions/s1-premier-contact/">Premier contact</a> (base vierge, connexion, déclarer un site)</td>
+<td><strong>jouée</strong> ⚠️</td>
 <td>accueil (dont le <strong>bandeau de compteurs vivant</strong>, #1376), Connexion, Mes sites, carré, Point</td>
 </tr>
 <tr>
 <td>S2</td>
-<td>Importer une nuit (carte SD vers le pivot)</td>
+<td><a href="sessions/s2-importer/">Importer une nuit</a> (carte SD vers le pivot)</td>
+<td><strong>jouée</strong></td>
 <td>importation (+ cas dégradés), Rattachement, passage, diagnostic</td>
 </tr>
 <tr>
 <td>S3</td>
-<td>Vérifier (pré-check + écoute + verdict)</td>
+<td><a href="sessions/s3-verifier/">Vérifier</a> (pré-check + écoute + verdict)</td>
+<td>à <strong>rejouer au delta</strong></td>
 <td>qualification (+ raccourcis clavier)</td>
 </tr>
 <tr>
 <td>S4</td>
-<td>Déposer et suivre (lot, dépôt réel, suivi)</td>
+<td><a href="sessions/s4-deposer-suivre/">Déposer et suivre</a> (lot, dépôt réel, suivi)</td>
+<td>écrite, <strong>à jouer</strong></td>
 <td>lot</td>
 </tr>
 <tr>
 <td>S5</td>
-<td>Valider (sur une nuit déposée)</td>
-<td><a href="sessions/s5-valider/">Sons &amp; validation</a> (partielle : parcours expert #2790), fiche espèce</td>
+<td><a href="sessions/s5-valider/">Valider</a> (sur une nuit déposée)</td>
+<td><strong>partielle</strong></td>
+<td>Sons &amp; validation (parcours expert #2790), fiche espèce</td>
 </tr>
 <tr>
 <td>S6</td>
-<td>Exploiter et piloter (vues agrégées)</td>
-<td><a href="sessions/s6-exploiter-piloter/">Activité de la nuit</a> (écrite), puis Carte &amp; passages, Espèces &amp; observations, Audit, recherche</td>
+<td><a href="sessions/s6-exploiter-piloter/">Exploiter et piloter</a> (vues agrégées)</td>
+<td><strong>partielle</strong></td>
+<td>Activité de la nuit, puis Carte &amp; passages, Espèces &amp; observations, Audit, recherche</td>
 </tr>
 <tr>
 <td>S7</td>
-<td>Réglages, interrupteurs OFF, états dégradés</td>
-<td><a href="sessions/s7-reglages/">Réglages</a> (tous les onglets, contribués par les features) + chrome</td>
+<td><a href="sessions/s7-reglages/">Réglages</a>, interrupteurs OFF, états dégradés</td>
+<td>écrite, <strong>à jouer</strong></td>
+<td>tous les onglets, contribués par les features, + chrome</td>
 </tr>
 <tr>
 <td>S8</td>
-<td>Récupérer une nuit déposée (P12 de bout en bout, carte SD réelle)</td>
+<td><a href="sessions/s8-recuperer-une-nuit/">Récupérer une nuit déposée</a> (P12 de bout en bout, carte SD réelle)</td>
+<td>écrite, <strong>à jouer</strong></td>
 <td>Connexion, Mes sites, Toutes mes nuits, passage</td>
 </tr>
 <tr>
 <td>S9</td>
 <td><a href="sessions/s9-installer-mettre-a-jour/">Installer et mettre à jour</a> (winget, machine Windows réelle)</td>
+<td>écrite, <strong>à jouer</strong> (#3621)</td>
 <td>aucun : la session se joue <strong>avant</strong> l'application</td>
 </tr>
 <tr>
 <td>S10</td>
 <td><a href="sessions/s10-le-poste-windows/">Le poste Windows</a> (verrou du dossier de travail, couleur en console)</td>
+<td>écrite, <strong>à jouer</strong></td>
 <td>aucun : comportements de <strong>plateforme</strong></td>
 </tr>
 </tbody>
 </table>
+<p>⚠️ <strong>« Jouée » se dit de la session telle qu'elle était.</strong> S1 porte <strong>huit cases écrites après sa
+dernière exécution</strong> - S1-30 à S1-33 (#3458) et S1-34 à S1-37 (#3806), dont une perceptive : elles
+n'ont <strong>jamais</strong> été exercées à la main. Une session ne se re-marque pas « à jouer » pour autant, mais
+la campagne suivante doit savoir par où reprendre, faute de quoi une capacité passe pour vérifiée par
+un script qui ne l'a pas couverte.</p>
 <p>Chaque session se joue en trois temps : une <strong>passe statique</strong> en solo (préparation, postée en
 commentaire), la <strong>session interactive</strong> (pilotage écran par écran), puis un <strong>triage à froid</strong>.</p>
 <h2 id="dou-viennent-les-cases-la-passe-6-dun-chantier">D'où viennent les cases : la passe 6 d'un chantier<a class="headerlink" href="#dou-viennent-les-cases-la-passe-6-dun-chantier" title="Permanent link">&para;</a></h2>
@@ -6364,12 +6384,10 @@ qu'un test <em>prouve</em>, et <code>CorrespondanceRecetteTest</code> les confro
 perceptif que du code prétend asserter, comme sur un scénario qui se déclare humain là où le script
 n'a rien marqué. Sans ce recoupement, la marque dériverait comme la prose avait dérivé avant #3728 -
 le script disait « perceptifs » en toutes lettres, et aucune machine ne le lisait.</p>
+<p>Les sessions, leur état et le lien vers leur script sont <strong>dans le tableau en tête de page</strong> - sans
+les compter ici, puisque c'est un compte recopié qui a produit #3885. S'y ajoutent les <strong>passes
+ciblées</strong>, qui ne sont pas des sessions et ne figurent donc pas au tableau :</p>
 <ul>
-<li><a href="sessions/s1-premier-contact/">S1 · Premier contact</a> : accueil, connexion, sites, points.</li>
-<li><a href="sessions/s2-importer/">S2 · Importer une nuit</a> : importation, passage, diagnostic (+ cas dégradés).</li>
-<li><a href="sessions/s3-verifier/">S3 · Vérifier</a> : qualification, raccourcis, écoute <em>(à rejouer au delta : écran refondu #1524)</em>.</li>
-<li><a href="sessions/s4-deposer-suivre/">S4 · Déposer et suivre</a> : lot, dépôt réel, suivi <em>(à jouer)</em>.</li>
-<li><a href="sessions/s7-reglages/">S7 · Réglages</a> : les onglets contribués par les features, les interrupteurs de fonctionnalités, le chrome et les états dégradés <em>(à jouer)</em>.</li>
 <li><a href="sessions/passe-ciblee-constats-en-attente/">Passe ciblée · constats en attente</a> : les huit
   constats qu'une image fixe ne peut pas juger, tranchés avant d'ouvrir les chantiers voisins
   <em>(jouée le 2026-08-07)</em>.</li>
@@ -6538,19 +6556,17 @@ d'environnement ou secret CI</strong>, pas depuis un fichier committé.</p>
 <ul>
 <li><code>dev-docs/recette/index.md</code> : <strong>cette page</strong>, la méthode.</li>
 <li>
-<p><code>dev-docs/recette/sessions/</code> : les <strong>scripts de session</strong> figés. S1 et S2 ont été jouées ; S3 est à
-  rejouer au delta ; S4, S7 et S8 sont écrites mais <strong>à jouer</strong> ; S5 et S6 restent <strong>partielles</strong>.</p>
-<p>⚠️ <strong>« Jouée » se dit de la session telle qu'elle était.</strong> S1 porte <strong>huit cases écrites après sa
-dernière exécution</strong> - S1-30 à S1-33 (#3787) et S1-34 à S1-37 (#3806), dont une perceptive : elles
-n'ont <strong>jamais</strong> été exercées à la main. Une session ne se re-marque pas « à jouer » pour autant,
-mais la campagne suivante doit savoir par où reprendre, faute de quoi une capacité passe pour
-vérifiée par un script qui ne l'a pas couverte.
-  Depuis #3517, <strong>les huit sessions existent</strong> : aucune n'est plus à écrire. S'y ajoutent les <strong>passes
-  ciblées</strong> listées plus haut.</p>
+<p><code>dev-docs/recette/sessions/</code> : les <strong>scripts de session</strong> figés, plus les <strong>passes ciblées</strong>. Leur
+  liste et leur état sont dans le tableau de la section « Le déroulé d'une campagne », en tête de
+  cette page, et <strong>nulle part ailleurs</strong>.</p>
 <p>⚠️ <strong>Cet inventaire est la seule source.</strong> Il a été recopié ailleurs - dans le cycle de chantier et
 dans <code>CONTRIBUTING.md</code> - et les trois copies ont divergé en <strong>quelques heures</strong> : S7 a été écrite
 (#3517) le jour même où les deux autres affirmaient qu'elle n'existait pas. Les renvois pointent
-désormais ici plutôt que de répéter la liste.
+désormais ici plutôt que de répéter la liste.</p>
+<p>⚠️ Et cette page s'était recopiée <strong>elle-même</strong> : ce paragraphe énumérait les sessions et leur
+état, en s'arrêtant à huit alors que le tableau en portait dix. Un avertissement qui ne surveille
+que l'extérieur ne voit pas le doublon qu'il abrite. La liste a donc été <strong>supprimée d'ici</strong>
+plutôt que corrigée - on ne garde pas un doublon, on le retire (#3885).
 - <code>recette/fixtures/spec/</code> : les <strong>specs</strong> (YAML) des cartes SD, matérialisées par le générateur
   déterministe ; voir <a href="fixtures/">Fixtures (générateur de cartes SD)</a>.
 - L'<strong>EPIC</strong> (label <code>recette</code>) : le déroulé vivant, les comptes-rendus, la task-list des issues.</p>

@@ -6098,7 +6098,7 @@
 </tbody>
 </table>
 <p>Ce déséquilibre n'est pas resté théorique. Ce chantier a produit, dans son propre code et pendant le lot qui interdit ce motif :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">return</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">&quot;✓ Import terminé : %d séquence(s) produite(s)…&quot;</span><span class="p">,</span><span class="w"> </span><span class="err">…</span><span class="p">);</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">return</span><span class="w"> </span><span class="n">String</span><span class="p">.</span><span class="na">format</span><span class="p">(</span><span class="s">"✓ Import terminé : %d séquence(s) produite(s)…"</span><span class="p">,</span><span class="w"> </span><span class="err">…</span><span class="p">);</span>
 </code></pre></div>
 <p>La coche est allée dans la chaîne parce que, dans une barre de statut, <strong>c'est le seul moyen de qualifier quoi que ce soit</strong>. C'est le mécanisme décrit par l'ADR 0038 - quand un type ne sait pas exprimer un cas, le cas sort du type - observé un cran plus bas : ici il n'y a même pas de type dont sortir.</p>
 <p>La garde de #2075 ne pouvait pas l'attraper : elle protège <code>RetourOperation</code>, et ceci est un <code>String</code>.</p>

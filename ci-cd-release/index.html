@@ -7180,7 +7180,7 @@ généré sous macOS se vérifie sous Linux, et réciproquement. C'est vérifié
 La signature de code reste cadrée en #2112, où elle est suspendue à une décision de financement.</p>
 <p>Chaque installeur embarque son <strong>runtime</strong> (jpackage, profil <code>-Pinstaller</code>) : l'utilisateur final
 <strong>n'installe pas Java</strong>. Construire un installeur localement :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./mvnw<span class="w"> </span>-Pinstaller<span class="w"> </span>-Djpackage.type<span class="o">=</span>deb<span class="w"> </span>-DskipTests<span class="w"> </span>verify<span class="w">   </span><span class="c1"># ou dmg / msi selon l&#39;OS</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./mvnw<span class="w"> </span>-Pinstaller<span class="w"> </span>-Djpackage.type<span class="o">=</span>deb<span class="w"> </span>-DskipTests<span class="w"> </span>verify<span class="w">   </span><span class="c1"># ou dmg / msi selon l'OS</span>
 </code></pre></div>
 <p>Le shade attache le fat-jar sous le <strong>classifier <code>shaded</code></strong> (<code>vigiechiro-*-shaded.jar</code>, #1188) : l'artefact
 principal <code>vigiechiro-*.jar</code> reste <strong>mince</strong>. jpackage empaquette donc le <code>-shaded</code>, et le packaging est
@@ -7376,8 +7376,8 @@ workflow</strong>, en nommant la cause.</p>
 <div class="admonition danger">
 <p class="admonition-title">La cause réelle, et elle n'était dans aucune de ces listes : 8 jours de durée de vie</p>
 <p>Ce qu'a fini par dire l'API, une fois la sonde réparée pour ne plus avaler sa réponse :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>The &#39;Microsoft Open Source&#39; enterprise forbids access via a personal access tokens (classic)
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>if the token&#39;s lifetime is greater than 8 days.  (HTTP 403)
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>The 'Microsoft Open Source' enterprise forbids access via a personal access tokens (classic)
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>if the token's lifetime is greater than 8 days.  (HTTP 403)
 </code></pre></div>
 <p><strong>403, pas 404.</strong> Le jeton était du bon type, au bon scope, valide et sans espace parasite. Seule
 sa <strong>durée de vie</strong> le disqualifiait, par une politique de l'entreprise qui héberge <code>winget-pkgs</code>.</p>
@@ -7539,7 +7539,7 @@ dans le job <code>lint</code>. Elle refuse toute référence non figée <strong>
 Sans elle, la prochaine action ajoutée le serait par tag et l'épinglage se déferait en silence - la
 forme même du défaut corrigé. Pour résoudre un tag :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># si l&#39;objet est de type « tag » (tag annoté), déréférencer :</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="c1"># si l'objet est de type « tag » (tag annoté), déréférencer :</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
 <h2 id="la-publication-part-a-heure-fixe-2744">La publication part à heure fixe (#2744)<a class="headerlink" href="#la-publication-part-a-heure-fixe-2744" title="Permanent link">&para;</a></h2>
@@ -8045,7 +8045,7 @@ avis de portée <code>development</code>, ce qu'est tout cet arbre : au 2026-08-
 <h3 id="le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose">⚠️ Le train ne commente pas les issues, et c'est le train qui l'impose<a class="headerlink" href="#le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose" title="Permanent link">&para;</a></h3>
 <p><code>@semantic-release/github</code> commente par défaut chaque issue et PR incluse dans une version. Le premier
 départ du train, déclenché à la main le 2026-08-06 sur <strong>104 commits</strong>, est tombé exactement là :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>TypeError: Cannot destructure property &#39;repository&#39; of &#39;(intermediate value)&#39; as it is undefined.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>TypeError: Cannot destructure property 'repository' of '(intermediate value)' as it is undefined.
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    at @semantic-release/github/lib/success.js:81
 </code></pre></div>
 <p>La cause n'est pas un bogue de circonstance, c'est une <strong>conséquence structurelle de l'ADR 2744</strong>. Le

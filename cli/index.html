@@ -6675,7 +6675,7 @@ commande crée et écrit <code>&lt;dossier de travail&gt;/logs</code> - les lect
 doit laisser une trace même sur une commande qui ne fait que lire, et deux processus qui écrivent
 chacun ses lignes dans un journal ne se corrompent pas, là où deux processus qui écrivent la même base
 le feraient (#3575).</p>
-<div class="highlight"><pre><span></span><code>C&#39;est aussi pourquoi `emplacements` **nomme** ce dossier : la trace retirée de la console doit
+<div class="highlight"><pre><span></span><code>C'est aussi pourquoi `emplacements` **nomme** ce dossier : la trace retirée de la console doit
 rester trouvable sans le deviner. `cli.bats` le vérifie des deux bouts - la pile est dans le
 fichier, et la commande désigne le dossier réellement écrit.
 </code></pre></div>
@@ -6768,7 +6768,7 @@ toute commande, donc une première invocation crée le schéma si besoin.</p>
 de commande <strong>n'a pas de table</strong>. Les gestes de revue offrent donc <strong>deux</strong> manières de désigner, exclusives
 et obligatoires (on ne pose pas un geste sans dire sur quoi), portées par la classe <strong>partagée</strong>
 <code>CiblesRevue</code> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 1. Chirurgical : sur des lignes qu&#39;on a LUES.</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 1. Chirurgical : sur des lignes qu'on a LUES.</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>./vigiechiro<span class="w"> </span>lister-observations<span class="w"> </span>--passage<span class="w"> </span><span class="m">3</span><span class="w"> </span>--statut<span class="w"> </span>NON_TOUCHEE
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>./vigiechiro<span class="w"> </span>valider-observations<span class="w"> </span>--observation<span class="w"> </span><span class="m">12</span>,13,14
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
@@ -6832,8 +6832,8 @@ non-douteuses ».</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>-DskipTests<span class="w"> </span>compile
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>org.codehaus.mojo:exec-maven-plugin:exec<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>-Dexec.executable<span class="o">=</span><span class="s2">&quot;</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java&quot;</span><span class="w"> </span>-Dexec.classpathScope<span class="o">=</span>runtime<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>-Dexec.args<span class="o">=</span><span class="s2">&quot;-cp %classpath fr.univ_amu.iut.cli.Cli --workspace /tmp/vigiechiro-cli lister-passages&quot;</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>-Dexec.executable<span class="o">=</span><span class="s2">"</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java"</span><span class="w"> </span>-Dexec.classpathScope<span class="o">=</span>runtime<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>-Dexec.args<span class="o">=</span><span class="s2">"-cp %classpath fr.univ_amu.iut.cli.Cli --workspace /tmp/vigiechiro-cli lister-passages"</span>
 </code></pre></div>
 <p><code>Cli.main(String[])</code> existe et reste le point d'entrée naturel pour un futur lanceur natif (jpackage).</p>
 <h2 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h2>
