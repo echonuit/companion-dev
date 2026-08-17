@@ -545,6 +545,18 @@
          <lastmod>2026-08-17</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3462-surcharger-une-feuille-tierce-se-declare-et-monte-en-specificite/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3464-le-ressort-va-au-vide-pas-au-libelle-qu-un-bouton-designe/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/3470-un-message-d-erreur-ne-montre-jamais-le-nom-de-son-enveloppe/</loc>
+         <lastmod>2026-08-17</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/3479-toute-table-n-a-pas-vocation-a-etre-exploree/</loc>
          <lastmod>2026-08-17</lastmod>
     </url>
