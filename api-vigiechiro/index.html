@@ -7207,7 +7207,7 @@ via le lien <code>ENTITE_PASSAGE</code> (créée en repli si l'import s'est fait
 <code>a_deposer|en_cours|depose|echec</code>, id distant, raison d'échec). Statuts <strong>honnêtes</strong> du passage :
 « Dépôt en cours » dès le premier téléversement entamé, « Déposé » <strong>seulement</strong> quand toutes les
 unités sont en ligne. Une interruption laisse « Dépôt en cours » ; la tentative suivante ne
-re-téléverse que les unités non confirmées (« Retenter les échecs » dans M-Lot). Détail : moteur
+re-téléverse que les unités non confirmées (« Reprendre le dépôt » dans M-Lot), <strong>sauf celles refusées définitivement</strong> (<code>echec_definitif</code>, #3469). Détail : moteur
 <code>lot/model/DepotVigieChiro</code>, suivi IHM <code>SuiviDepot</code> → table de dépôt (socle « suivi par unité »,
 cf. <a href="../patterns/">Patterns</a>).</p>
 <h3 id="reconciliation-avec-le-serveur-avant-depot-1046">Réconciliation avec le serveur avant dépôt (#1046)<a class="headerlink" href="#reconciliation-avec-le-serveur-avant-depot-1046" title="Permanent link">&para;</a></h3>
