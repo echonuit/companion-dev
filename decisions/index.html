@@ -5365,6 +5365,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3947-un-message-montre-a-l-utilisateur-se-compose-en-un-seul-endroit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3947 · Un message se compose en un seul endroit
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7101,6 +7129,11 @@
 <td><a href="3470-un-message-d-erreur-ne-montre-jamais-le-nom-de-son-enveloppe/">3470</a></td>
 <td>Un utilisateur a lu « java.lang.reflect.InvocationTargetException » et rien d autre de tout l incident. Le message n etait pas ABSENT mais PRESENT ET INUTILE, ce qui explique qu aucun test ne le signale : un texte non vide ressemble a un message. ⚠️ Le defaut n est PAS propre a la reflexion - TOUS les constructeurs <code>(Throwable)</code> de la JDK posent le <code>toString()</code> de leur cause comme message. On montre donc le message le plus profond QUI PARLE, jamais celui du maillon qu on tient. Ce n est PAS « prendre la cause racine » : la plus profonde peut etre un NPE muet, et derouler jusqu au bout appauvrirait l alerte en ayant l air de la corriger. La troisieme condition - ecarter un message qui n est que le toString() de sa cause - vient d un ROUGE INATTENDU ; sans elle on remplacait un nom de classe par un autre. Trois chemins non nominaux tenus, dont la chaine CYCLIQUE que <code>initCause</code> permet</td>
 <td>#3470, finitions de recette (#3424)</td>
+</tr>
+<tr>
+<td><a href="3947-un-message-montre-a-l-utilisateur-se-compose-en-un-seul-endroit/">3947</a></td>
+<td>L ADR 3470 avait ecrit la regle et n avait aligne QU UN appelant : huit autres composaient leur message a la main, dont le filet global de la CLI. ⚠️ L obstacle suppose etait faux - la regle ArchUnit EXCLUT le socle commun, rien n aurait rougi. Ce qui faisait tenir le montage etait l INLINING par javac d une constante de compilation, invisible et cassable sans rien faire rougir. CauseLisible descend donc en commun.model, et la constante du libelle s INVERSE : la vue cite le modele. ⚠️ Le repli « ou regarder » devient un PARAMETRE : la CLI n a pas de menu principal, et lui en designer un aurait mis une consigne inapplicable dans un terminal - le defaut de 3470 deplace d un cran par sa propre correction. Le cliquet ne compte que les TROIS formes decidables ; la forme nue est indiscernable d un refus metier</td>
+<td>#3947, cloture des finitions de recette (#3424)</td>
 </tr>
 <tr>
 <td><a href="3689-un-refus-se-rearme-sur-ce-qui-l-a-leve/">3689</a></td>
