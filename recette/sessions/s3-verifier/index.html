@@ -6427,77 +6427,77 @@ raccourcis clavier.</p>
 </table>
 <h2 id="le-script-une-case-un-fait-observable">Le script (une case = un fait observable)<a class="headerlink" href="#le-script-une-case-un-fait-observable" title="Permanent link">&para;</a></h2>
 <p><strong>Bloc 1 · Pré-check (3 feux, consultatif et explicatif)</strong></p>
-<ol>
-<li>Sur un passage Transformé, « Pré-check : » affiche 3 feux : Couverture horaire, Nombre de fichiers,
-   Cohérence du renommage.</li>
-<li>Chaque feu porte son pictogramme ✓ / ⚠ / ✖.</li>
-<li>Chaque feu <strong>explique la mesure et l'écart</strong> (l'infobulle dit le seuil et la valeur, pas juste
-   « à surveiller »).</li>
-<li>Sur la nuit réelle (peu de fichiers), « Nombre de fichiers » est orange.</li>
-<li>Sur le passage mélange (n°4), « Cohérence du renommage » est rouge.</li>
-<li>Avec un feu rouge, « Anomalie au pré-check (consultatif, non bloquant). » s'affiche.</li>
-<li>Un verdict reste enregistrable malgré un feu rouge (consultatif).</li>
-</ol>
+<ul>
+<li><strong>S3-01</strong> · Sur un passage Transformé, « Pré-check : » affiche 3 feux : Couverture horaire, Nombre de fichiers,
+  Cohérence du renommage.</li>
+<li><strong>S3-02</strong> · Chaque feu porte son pictogramme ✓ / ⚠ / ✖.</li>
+<li><strong>S3-03</strong> · Chaque feu <strong>explique la mesure et l'écart</strong> (l'infobulle dit le seuil et la valeur, pas juste
+  « à surveiller »).</li>
+<li><strong>S3-04</strong> · Sur la nuit réelle (peu de fichiers), « Nombre de fichiers » est orange.</li>
+<li><strong>S3-05</strong> · Sur le passage mélange (n°4), « Cohérence du renommage » est rouge.</li>
+<li><strong>S3-06</strong> · Avec un feu rouge, « Anomalie au pré-check (consultatif, non bloquant). » s'affiche.</li>
+<li><strong>S3-07</strong> · Un verdict reste enregistrable malgré un feu rouge (consultatif).</li>
+</ul>
 <p><strong>Bloc 2 · Échantillon + modale de sélection (#1462)</strong></p>
-<ol>
-<li>À l'ouverture, la sélection est déjà générée (RéparTemporel), sans écoute ni verdict.</li>
-<li>Le titre de liste est « Sélection d'écoute » et donne le compte.</li>
-<li>La table liste N° / Fichier / Durée / Écouté (○ / ✓) / <strong>Verdict</strong>.</li>
-<li>Les <strong>séquences tronquées</strong> sont <strong>écartées</strong> de l'échantillon (#1507).</li>
-<li>« Régénérer » direct ne demande confirmation que si au moins une séquence a été écoutée.</li>
-<li>« Personnaliser… » ouvre la modale « Personnaliser la sélection d'écoute » (2 méthodes RéparTemporel
-    / Aléatoire, curseur borné 10→30 par pas de 5, pré-réglée sur l'état courant).</li>
-<li>L'avertissement « Régénérer efface la progression d'écoute (le verdict est conservé) » est visible en
-    permanence.</li>
-<li>« Régénérer » applique, reconstruit et ferme ; la progression repart à 0.</li>
-<li>« Annuler » ne touche rien (méthode, taille, progression) : le test clé de #1462.</li>
-<li><code>Échap</code> <strong>ferme</strong> la modale (#1505).</li>
-</ol>
+<ul>
+<li><strong>S3-08</strong> · À l'ouverture, la sélection est déjà générée (RéparTemporel), sans écoute ni verdict.</li>
+<li><strong>S3-09</strong> · Le titre de liste est « Sélection d'écoute » et donne le compte.</li>
+<li><strong>S3-10</strong> · La table liste N° / Fichier / Durée / Écouté (○ / ✓) / <strong>Verdict</strong>.</li>
+<li><strong>S3-11</strong> · Les <strong>séquences tronquées</strong> sont <strong>écartées</strong> de l'échantillon (#1507).</li>
+<li><strong>S3-12</strong> · « Régénérer » direct ne demande confirmation que si au moins une séquence a été écoutée.</li>
+<li><strong>S3-13</strong> · « Personnaliser… » ouvre la modale « Personnaliser la sélection d'écoute » (2 méthodes RéparTemporel
+  / Aléatoire, curseur borné 10→30 par pas de 5, pré-réglée sur l'état courant).</li>
+<li><strong>S3-14</strong> · L'avertissement « Régénérer efface la progression d'écoute (le verdict est conservé) » est visible en
+  permanence.</li>
+<li><strong>S3-15</strong> · « Régénérer » applique, reconstruit et ferme ; la progression repart à 0.</li>
+<li><strong>S3-16</strong> · « Annuler » ne touche rien (méthode, taille, progression) : le test clé de #1462.</li>
+<li><strong>S3-17</strong> · <code>Échap</code> <strong>ferme</strong> la modale (#1505).</li>
+</ul>
 <p><strong>Bloc 3 · Écoute et verdict par fichier</strong></p>
-<ol>
-<li>Sélectionner une séquence affiche son détail sous « Séquence sélectionnée ».</li>
-<li>« Vue audio (sonogramme + spectrogramme) » affiche la séquence.</li>
-<li>Les commandes de la vue audio (« Lecture », « Temps ± », « Fréq. ± ») se <strong>voient</strong> comme des
-    boutons : chacune porte un contour net qui la détache du fond de la barre. C'est ce qui manquait
-    quand un utilisateur n'a lancé aucune écoute de toute une séance (#3462), le libellé étant
-    pourtant lisible.</li>
-<li>Dès le début de lecture, la séquence passe à « ✓ écoutée » (pas de latence au premier clic, #1509).</li>
-<li>La section « Votre verdict sur ce fichier » propose <strong>Bon / Mauvais / Inexploitable</strong>.</li>
-<li>Juger la séquence courante inscrit son verdict dans la colonne <strong>Verdict</strong> de la liste.</li>
-<li>La <strong>barre de répartition</strong> tricolore reflète les verdicts par fichier (segments Bon / Mauvais /
-    Inexploitable + queue grise « non jugé » qui recule), avec un <strong>résumé chiffré</strong> (pas la couleur
-    seule).</li>
-<li>L'axe des fréquences du spectrogramme <strong>s'ajuste au contenu</strong> (#1508).</li>
-<li>Sur un passage sans séquences : « Aucune séquence à écouter pour l'instant. ».</li>
-</ol>
+<ul>
+<li><strong>S3-18</strong> · Sélectionner une séquence affiche son détail sous « Séquence sélectionnée ».</li>
+<li><strong>S3-19</strong> · « Vue audio (sonogramme + spectrogramme) » affiche la séquence.</li>
+<li><strong>S3-20</strong> · Les commandes de la vue audio (« Lecture », « Temps ± », « Fréq. ± ») se <strong>voient</strong> comme des
+  boutons : chacune porte un contour net qui la détache du fond de la barre. C'est ce qui manquait
+  quand un utilisateur n'a lancé aucune écoute de toute une séance (#3462), le libellé étant
+  pourtant lisible.</li>
+<li><strong>S3-21</strong> · Dès le début de lecture, la séquence passe à « ✓ écoutée » (pas de latence au premier clic, #1509).</li>
+<li><strong>S3-22</strong> · La section « Votre verdict sur ce fichier » propose <strong>Bon / Mauvais / Inexploitable</strong>.</li>
+<li><strong>S3-23</strong> · Juger la séquence courante inscrit son verdict dans la colonne <strong>Verdict</strong> de la liste.</li>
+<li><strong>S3-24</strong> · La <strong>barre de répartition</strong> tricolore reflète les verdicts par fichier (segments Bon / Mauvais /
+  Inexploitable + queue grise « non jugé » qui recule), avec un <strong>résumé chiffré</strong> (pas la couleur
+  seule).</li>
+<li><strong>S3-25</strong> · L'axe des fréquences du spectrogramme <strong>s'ajuste au contenu</strong> (#1508).</li>
+<li><strong>S3-26</strong> · Sur un passage sans séquences : « Aucune séquence à écouter pour l'instant. ».</li>
+</ul>
 <p><strong>Bloc 4 · Verdict global du passage (proposé, dérivé, surchargeable)</strong></p>
-<ol>
-<li>La section « Verdict global du passage » porte le sous-titre « Décision d'ensemble pour toute la nuit,
-    pas pour un seul fichier ».</li>
-<li>Tant qu'aucune séquence n'est jugée, la puce « Verdict proposé » est <strong>masquée</strong>.</li>
-<li>Dès qu'une séquence est jugée, la puce affiche « Proposé : X » (OK / Utilisable / Inexploitable),
-    colorée, dérivée des verdicts par fichier.</li>
-<li>Le verdict proposé <strong>pré-remplit</strong> le verdict global.</li>
-<li>Surcharger le verdict (choisir autre chose que le proposé) affiche la mention « (surchargé) ».</li>
-<li>Les 3 boutons du verdict global sont <strong>OK / Utilisable / Inexploitable</strong> (plus « À jeter »).</li>
-<li>« Enregistrer le verdict » est grisé tant qu'aucun verdict global n'est posé, avec infobulle.</li>
-<li>Enregistrer met à jour VERDICT ACTUEL et STATUT (→ Vérifié) ; badge « Verdict enregistré » + regrisage.</li>
-<li>Choisir « Inexploitable » dit son <strong>effet réel</strong> (le passage ne pourra pas être déposé sans
-    requalification), sans le mot « lot » (#1510).</li>
-<li>Un passage au verdict <strong>Inexploitable</strong> est <strong>bloqué au dépôt</strong> (garde + affordance).</li>
-<li>Quitter avec un verdict non enregistré déclenche la garde de sortie.</li>
-<li>Rouvrir un passage Vérifié : le bandeau montre le verdict persisté, la répartition par fichier est
-    rechargée.</li>
-</ol>
+<ul>
+<li><strong>S3-27</strong> · La section « Verdict global du passage » porte le sous-titre « Décision d'ensemble pour toute la nuit,
+  pas pour un seul fichier ».</li>
+<li><strong>S3-28</strong> · Tant qu'aucune séquence n'est jugée, la puce « Verdict proposé » est <strong>masquée</strong>.</li>
+<li><strong>S3-29</strong> · Dès qu'une séquence est jugée, la puce affiche « Proposé : X » (OK / Utilisable / Inexploitable),
+  colorée, dérivée des verdicts par fichier.</li>
+<li><strong>S3-30</strong> · Le verdict proposé <strong>pré-remplit</strong> le verdict global.</li>
+<li><strong>S3-31</strong> · Surcharger le verdict (choisir autre chose que le proposé) affiche la mention « (surchargé) ».</li>
+<li><strong>S3-32</strong> · Les 3 boutons du verdict global sont <strong>OK / Utilisable / Inexploitable</strong> (plus « À jeter »).</li>
+<li><strong>S3-33</strong> · « Enregistrer le verdict » est grisé tant qu'aucun verdict global n'est posé, avec infobulle.</li>
+<li><strong>S3-34</strong> · Enregistrer met à jour VERDICT ACTUEL et STATUT (→ Vérifié) ; badge « Verdict enregistré » + regrisage.</li>
+<li><strong>S3-35</strong> · Choisir « Inexploitable » dit son <strong>effet réel</strong> (le passage ne pourra pas être déposé sans
+  requalification), sans le mot « lot » (#1510).</li>
+<li><strong>S3-36</strong> · Un passage au verdict <strong>Inexploitable</strong> est <strong>bloqué au dépôt</strong> (garde + affordance).</li>
+<li><strong>S3-37</strong> · Quitter avec un verdict non enregistré déclenche la garde de sortie.</li>
+<li><strong>S3-38</strong> · Rouvrir un passage Vérifié : le bandeau montre le verdict persisté, la répartition par fichier est
+  rechargée.</li>
+</ul>
 <p><strong>Bloc 5 · Clavier</strong></p>
-<ol>
-<li><code>↑</code>/<code>↓</code> dans la liste changent de séquence.</li>
-<li><code>Espace</code> lance/pause la lecture (#1504 : Espace opérant, ne déclenche pas un bouton focalisé).</li>
-<li><code>O</code>/<code>D</code>/<code>J</code> posent le verdict <strong>global</strong> (OK / Utilisable / Inexploitable).</li>
-<li><code>Entrée</code> enregistre (si verdict global choisi).</li>
-<li>Curseur dans le commentaire : O/D/J tapent la lettre (raccourcis de verdict suspendus).</li>
-<li>La légende clavier est visible (footer) et cohérente avec les libellés à l'écran (#1513).</li>
-</ol>
+<ul>
+<li><strong>S3-39</strong> · <code>↑</code>/<code>↓</code> dans la liste changent de séquence.</li>
+<li><strong>S3-40</strong> · <code>Espace</code> lance/pause la lecture (#1504 : Espace opérant, ne déclenche pas un bouton focalisé).</li>
+<li><strong>S3-41</strong> · <code>O</code>/<code>D</code>/<code>J</code> posent le verdict <strong>global</strong> (OK / Utilisable / Inexploitable).</li>
+<li><strong>S3-42</strong> · <code>Entrée</code> enregistre (si verdict global choisi).</li>
+<li><strong>S3-43</strong> · Curseur dans le commentaire : O/D/J tapent la lettre (raccourcis de verdict suspendus).</li>
+<li><strong>S3-44</strong> · La légende clavier est visible (footer) et cohérente avec les libellés à l'écran (#1513).</li>
+</ul>
 <h2 id="corrections-a-confirmer-constats-du-1407-tous-merges">Corrections à confirmer (constats du 14/07, tous mergés)<a class="headerlink" href="#corrections-a-confirmer-constats-du-1407-tous-merges" title="Permanent link">&para;</a></h2>
 <p>Ces constats de la passe pré-refonte sont <strong>corrigés</strong> ; le re-jeu les <strong>confirme</strong> au lieu de les
 trouver : #1504 (Espace opérant), #1505 (Échap ferme les modales), #1506 (pré-check explicatif), #1507

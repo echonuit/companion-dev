@@ -6356,132 +6356,132 @@ fixtures au carré 130711 (verrouillé). Les écritures plateforme n'arrivent qu
 </div>
 <h2 id="le-script-une-case-un-fait-observable">Le script (une case = un fait observable)<a class="headerlink" href="#le-script-une-case-un-fait-observable" title="Permanent link">&para;</a></h2>
 <p><strong>Étape 1 · Import nominal (<code>sd-nominale</code>, depuis le détail du carré 640380 → « 📥 Importer une nuit »)</strong></p>
-<ol>
-<li>Le champ « Dossier source » est en lecture seule.</li>
-<li>Le glisser-déposer d'un dossier est accepté.</li>
-<li>L'inspection annonce le journal détecté (LogPR1925492).</li>
-<li>L'inspection annonce le relevé climatique détecté.</li>
-<li>L'inspection compte 6 originaux.</li>
-<li>Aucun bandeau d'avertissement (cas nominal).</li>
-<li>L'inspection annonce le renommage à venir (lecture seule, originaux intacts).</li>
-<li>Le rattachement propose site, point, année, numéro.</li>
-<li>La carte de confirmation montre le carré et le point choisi en indigo.</li>
-<li>L'aperçu du préfixe <code>CarXXXXXX-AAAA-PassN-YY-</code> suit la saisie.</li>
-<li>Le formulaire ne porte <strong>plus</strong> de case « Conserver les originaux » : le réglage a rejoint
-    <strong>Réglages ▸ Import</strong> (#3471), où <a href="../s7-reglages/">S7</a> le déroule. Ici on vérifie seulement
-    qu'il n'en reste pas de trace, et que rien ne demande deux fois la même chose.</li>
-<li>« Importer cette nuit » affiche une barre de progression déterminée.</li>
-<li>Une estimation de temps restant s'affiche.</li>
-<li>Un bouton « Annuler » est disponible pendant l'import.</li>
-<li>La table de suivi par fichier montre l'état de chaque wav (attente / copie / transformation /
-    terminé).</li>
-<li>Le formulaire est gelé pendant l'import.</li>
-<li>Un message de succès conclut l'import.</li>
-</ol>
+<ul>
+<li><strong>S2-01</strong> · Le champ « Dossier source » est en lecture seule.</li>
+<li><strong>S2-02</strong> · Le glisser-déposer d'un dossier est accepté.</li>
+<li><strong>S2-03</strong> · L'inspection annonce le journal détecté (LogPR1925492).</li>
+<li><strong>S2-04</strong> · L'inspection annonce le relevé climatique détecté.</li>
+<li><strong>S2-05</strong> · L'inspection compte 6 originaux.</li>
+<li><strong>S2-06</strong> · Aucun bandeau d'avertissement (cas nominal).</li>
+<li><strong>S2-07</strong> · L'inspection annonce le renommage à venir (lecture seule, originaux intacts).</li>
+<li><strong>S2-08</strong> · Le rattachement propose site, point, année, numéro.</li>
+<li><strong>S2-09</strong> · La carte de confirmation montre le carré et le point choisi en indigo.</li>
+<li><strong>S2-10</strong> · L'aperçu du préfixe <code>CarXXXXXX-AAAA-PassN-YY-</code> suit la saisie.</li>
+<li><strong>S2-11</strong> · Le formulaire ne porte <strong>plus</strong> de case « Conserver les originaux » : le réglage a rejoint
+  <strong>Réglages ▸ Import</strong> (#3471), où <a href="../s7-reglages/">S7</a> le déroule. Ici on vérifie seulement
+  qu'il n'en reste pas de trace, et que rien ne demande deux fois la même chose.</li>
+<li><strong>S2-12</strong> · « Importer cette nuit » affiche une barre de progression déterminée.</li>
+<li><strong>S2-13</strong> · Une estimation de temps restant s'affiche.</li>
+<li><strong>S2-14</strong> · Un bouton « Annuler » est disponible pendant l'import.</li>
+<li><strong>S2-15</strong> · La table de suivi par fichier montre l'état de chaque wav (attente / copie / transformation /
+  terminé).</li>
+<li><strong>S2-16</strong> · Le formulaire est gelé pendant l'import.</li>
+<li><strong>S2-17</strong> · Un message de succès conclut l'import.</li>
+</ul>
 <p><strong>Étape 2 · Passage pivot (ouvert après l'import)</strong></p>
-<ol>
-<li>Le stepper marque « Importé » et « Transformé » comme franchis (un passage naît au statut
-    Transformé).</li>
-<li>Une seule carte porte le liseré « recommandée » : Vérifier.</li>
-<li>La carte « Sons &amp; validation » est grisée.</li>
-<li>Le grisé de « Sons &amp; validation » est expliqué (tooltip ou « après dépôt »).</li>
-<li>Le bandeau d'identité affiche date, plage horaire, enregistreur, statut, verdict.</li>
-<li>Le résumé affiche volume bruts, volume transformé, durée, nombre de séquences.</li>
-<li>« Voir la participation » est grisé (passage non lié) avec explication.</li>
-<li>« 🗑 Supprimer » est actif (passage non déposé).</li>
-<li>« ♻ Réactiver ce passage » est absent ou grisé quand l'audio est complet, avec explication.</li>
-</ol>
+<ul>
+<li><strong>S2-18</strong> · Le stepper marque « Importé » et « Transformé » comme franchis (un passage naît au statut
+  Transformé).</li>
+<li><strong>S2-19</strong> · Une seule carte porte le liseré « recommandée » : Vérifier.</li>
+<li><strong>S2-20</strong> · La carte « Sons &amp; validation » est grisée.</li>
+<li><strong>S2-21</strong> · Le grisé de « Sons &amp; validation » est expliqué (tooltip ou « après dépôt »).</li>
+<li><strong>S2-22</strong> · Le bandeau d'identité affiche date, plage horaire, enregistreur, statut, verdict.</li>
+<li><strong>S2-23</strong> · Le résumé affiche volume bruts, volume transformé, durée, nombre de séquences.</li>
+<li><strong>S2-24</strong> · « Voir la participation » est grisé (passage non lié) avec explication.</li>
+<li><strong>S2-25</strong> · « 🗑 Supprimer » est actif (passage non déposé).</li>
+<li><strong>S2-26</strong> · « ♻ Réactiver ce passage » est absent ou grisé quand l'audio est complet, avec explication.</li>
+</ul>
 <p><strong>Étape 3 · Modale « Modifier le passage »</strong></p>
-<ol>
-<li>Le libellé du bouton et le titre de la modale sont « Modifier le passage » (la doc dit « Modifier le
-    rattachement » : S2-C04).</li>
-<li>Les spinners Année et N° de passage fonctionnent.</li>
-<li>La météo se saisit (températures, vent, couverture).</li>
-<li>« Récupérer la météo » remplit les champs.</li>
-<li>Le matériel micro se saisit (position, hauteur, type en liste fermée).</li>
-<li>Le récapitulatif se met à jour en direct.</li>
-<li>Changer le numéro de passage déclenche la confirmation de renommage disque (garde).</li>
-</ol>
+<ul>
+<li><strong>S2-27</strong> · Le libellé du bouton et le titre de la modale sont « Modifier le passage » (la doc dit « Modifier le
+  rattachement » : S2-C04).</li>
+<li><strong>S2-28</strong> · Les spinners Année et N° de passage fonctionnent.</li>
+<li><strong>S2-29</strong> · La météo se saisit (températures, vent, couverture).</li>
+<li><strong>S2-30</strong> · « Récupérer la météo » remplit les champs.</li>
+<li><strong>S2-31</strong> · Le matériel micro se saisit (position, hauteur, type en liste fermée).</li>
+<li><strong>S2-32</strong> · Le récapitulatif se met à jour en direct.</li>
+<li><strong>S2-33</strong> · Changer le numéro de passage déclenche la confirmation de renommage disque (garde).</li>
+</ul>
 <p><strong>Étape 4 · Diagnostic (depuis le passage)</strong></p>
 <p><em>Écran refondu depuis la passe du 14/07 (#1673 ; #1497 GPS et #1498 soin de l'écran corrigés) : items
 alignés sur l'écran actuel, à confirmer au re-jeu.</em></p>
-<ol>
-<li>La courbe climatique T°/hygrométrie s'affiche, l'axe <strong>gradué en heures</strong>.</li>
-<li>Les anomalies détectées s'affichent (ou leur placeholder).</li>
-<li>Les évènements du journal s'affichent (ou leur placeholder).</li>
-<li>La cohérence horaire indique la fenêtre nocturne (coucher/lever du soleil), avec l'alerte
-    « hors nuit » si l'enregistrement déborde.</li>
-<li>L'état GPS du <strong>point d'écoute</strong> est <strong>toujours visible</strong> : « disponible » ou « non renseigné
-    (compléter la fiche site) ».</li>
-<li>La <strong>barre de statut</strong> (bas de fenêtre) affiche l'enregistreur diagnostiqué et le <strong>nombre de
-    mesures climatiques</strong>.</li>
-</ol>
+<ul>
+<li><strong>S2-34</strong> · La courbe climatique T°/hygrométrie s'affiche, l'axe <strong>gradué en heures</strong>.</li>
+<li><strong>S2-35</strong> · Les anomalies détectées s'affichent (ou leur placeholder).</li>
+<li><strong>S2-36</strong> · Les évènements du journal s'affichent (ou leur placeholder).</li>
+<li><strong>S2-37</strong> · La cohérence horaire indique la fenêtre nocturne (coucher/lever du soleil), avec l'alerte
+  « hors nuit » si l'enregistrement déborde.</li>
+<li><strong>S2-38</strong> · L'état GPS du <strong>point d'écoute</strong> est <strong>toujours visible</strong> : « disponible » ou « non renseigné
+  (compléter la fiche site) ».</li>
+<li><strong>S2-39</strong> · La <strong>barre de statut</strong> (bas de fenêtre) affiche l'enregistreur diagnostiqué et le <strong>nombre de
+  mesures climatiques</strong>.</li>
+</ul>
 <p><strong>Étape 5 · Cas dégradés (un import ou une inspection par fixture)</strong></p>
-<ol>
-<li><code>sd-melange</code> : bandeau « mélange » (2 enregistreurs), non bloquant.</li>
-<li><code>sd-incoherente</code> : bandeau « incohérence » journal↔wav (série et date), plus ferme.</li>
-<li><code>sd-multi-nuits</code> : la table des nuits apparaît (3 lignes, n° automatiques, cases Inclure).</li>
-<li><code>sd-multi-configs</code> : deux nuits, et le capteur a été <strong>reconfiguré entre les deux</strong> (384 kHz puis
-    256 kHz). Importer les deux, puis ouvrir chaque nuit : chacune annonce la fréquence
-    d'acquisition de <strong>sa</strong> session, et non celle de la première (#3460).</li>
-<li><code>sd-sans-journal</code> : l'absence de journal est signalée, l'import reste possible (mode dégradé).</li>
-<li><code>sd-journal-corrompu</code> : l'inspection échoue avec un message compréhensible.</li>
-<li><code>sd-prefixee</code> : bandeau « discordance de préfixe » si le rattachement ne correspond pas.</li>
-<li><code>sd-rejets</code> : l'import aboutit malgré le faux wav, la zone des rejets liste « nom - raison ».</li>
-<li><code>sd-nominale.zip</code> : la décompression affiche sa barre et son bouton Annuler avant l'inspection.</li>
-<li>Ré-inspection de <code>sd-nominale</code> : bandeau « nuit déjà importée », informatif.</li>
-<li>Rattachement au même point + année + n° : bandeau « n° déjà pris » avec « Utiliser ce n° » et</li>
-</ol>
+<ul>
+<li><strong>S2-40</strong> · <code>sd-melange</code> : bandeau « mélange » (2 enregistreurs), non bloquant.</li>
+<li><strong>S2-41</strong> · <code>sd-incoherente</code> : bandeau « incohérence » journal↔wav (série et date), plus ferme.</li>
+<li><strong>S2-42</strong> · <code>sd-multi-nuits</code> : la table des nuits apparaît (3 lignes, n° automatiques, cases Inclure).</li>
+<li><strong>S2-43</strong> · <code>sd-multi-configs</code> : deux nuits, et le capteur a été <strong>reconfiguré entre les deux</strong> (384 kHz puis
+  256 kHz). Importer les deux, puis ouvrir chaque nuit : chacune annonce la fréquence
+  d'acquisition de <strong>sa</strong> session, et non celle de la première (#3460).</li>
+<li><strong>S2-44</strong> · <code>sd-sans-journal</code> : l'absence de journal est signalée, l'import reste possible (mode dégradé).</li>
+<li><strong>S2-45</strong> · <code>sd-journal-corrompu</code> : l'inspection échoue avec un message compréhensible.</li>
+<li><strong>S2-46</strong> · <code>sd-prefixee</code> : bandeau « discordance de préfixe » si le rattachement ne correspond pas.</li>
+<li><strong>S2-47</strong> · <code>sd-rejets</code> : l'import aboutit malgré le faux wav, la zone des rejets liste « nom - raison ».</li>
+<li><strong>S2-48</strong> · <code>sd-nominale.zip</code> : la décompression affiche sa barre et son bouton Annuler avant l'inspection.</li>
+<li><strong>S2-49</strong> · Ré-inspection de <code>sd-nominale</code> : bandeau « nuit déjà importée », informatif.</li>
+<li><strong>S2-50</strong> · Rattachement au même point + année + n° : bandeau « n° déjà pris » avec « Utiliser ce n° » et</li>
+</ul>
 <p><strong>Bloc · Gestes de ligne (EPIC #1792)</strong> : non automatisable (rendu du popup).</p>
-<ol>
-<li>Pendant un import, clic droit sur une ligne du <strong>suivi des fichiers</strong> : le menu s'ouvre,
-    entièrement lisible.</li>
-<li>« Copier ▸ Nom du fichier » place le nom de l'enregistrement dans le presse-papier.</li>
-<li>« Colonnes… » y figure <strong>en dernier</strong> ; la disposition choisie n'est <strong>pas</strong> mémorisée
-    d'un import à l'autre (écran transitoire, assumé).
-    « 🗑 Écraser et réimporter » ; « Écraser » enchaîne deux confirmations (principe, puis liste de ce
-    qui sera supprimé).</li>
-</ol>
+<ul>
+<li><strong>S2-51</strong> · Pendant un import, clic droit sur une ligne du <strong>suivi des fichiers</strong> : le menu s'ouvre,
+  entièrement lisible.</li>
+<li><strong>S2-52</strong> · « Copier ▸ Nom du fichier » place le nom de l'enregistrement dans le presse-papier.</li>
+<li><strong>S2-53</strong> · « Colonnes… » y figure <strong>en dernier</strong> ; la disposition choisie n'est <strong>pas</strong> mémorisée
+  d'un import à l'autre (écran transitoire, assumé).
+  « 🗑 Écraser et réimporter » ; « Écraser » enchaîne deux confirmations (principe, puis liste de ce
+  qui sera supprimé).</li>
+</ul>
 <p><strong>Bloc · Décompression d'une grosse archive (#2733)</strong> : non automatisable (perception du temps réel).
 Nécessite une archive dont <strong>une seule entrée</strong> dépasse le gigaoctet - une nuit non découpée, ou un
 <code>.zip</code> fabriqué pour l'occasion. Les tests couvrent le mécanisme sur quelques mégaoctets ; ce qui se
 vérifie ici est ce qu'un humain <strong>ressent</strong>.</p>
-<ol>
-<li>Pendant la décompression d'un fichier de plusieurs Go, le <strong>volume écrit défile</strong> à côté du nom du
-    fichier, alors que le compteur « X / N fichiers » reste immobile.</li>
-<li>« Annuler » pendant ce fichier arrête la décompression <strong>sans attendre la fin du fichier</strong> : le
-    retour à l'état neutre est perçu comme immédiat, pas au bout de plusieurs minutes.</li>
-<li>Après cette annulation, aucun dossier <code>import-zip-*</code> ne subsiste dans le dossier de travail.</li>
-</ol>
+<ul>
+<li><strong>S2-54</strong> · Pendant la décompression d'un fichier de plusieurs Go, le <strong>volume écrit défile</strong> à côté du nom du
+  fichier, alors que le compteur « X / N fichiers » reste immobile.</li>
+<li><strong>S2-55</strong> · « Annuler » pendant ce fichier arrête la décompression <strong>sans attendre la fin du fichier</strong> : le
+  retour à l'état neutre est perçu comme immédiat, pas au bout de plusieurs minutes.</li>
+<li><strong>S2-56</strong> · Après cette annulation, aucun dossier <code>import-zip-*</code> ne subsiste dans le dossier de travail.</li>
+</ul>
 <p><strong>Bloc · Archive refusée (#2732)</strong> : automatisé au niveau unitaire, à confirmer <strong>à l'écran</strong> - c'est
 la lisibilité du bandeau qui se juge ici, pas la règle.</p>
-<ol>
-<li>Une archive dont le contenu décompressé dépasse la place disponible est refusée <strong>avant</strong> que quoi
-    que ce soit ne soit écrit ; le bandeau donne les deux volumes (nécessaire, disponible).</li>
-<li>Le bandeau du refus est lisible <strong>en entier</strong> : la phrase qui dit quoi faire n'est pas tronquée.</li>
-</ol>
+<ul>
+<li><strong>S2-57</strong> · Une archive dont le contenu décompressé dépasse la place disponible est refusée <strong>avant</strong> que quoi
+  que ce soit ne soit écrit ; le bandeau donne les deux volumes (nécessaire, disponible).</li>
+<li><strong>S2-58</strong> · Le bandeau du refus est lisible <strong>en entier</strong> : la phrase qui dit quoi faire n'est pas tronquée.</li>
+</ul>
 <p><strong>Étape 6 · Ce que l'import, le rattachement et la suppression </strong>annoncent<strong> (stabilisation #3424)</strong></p>
 <blockquote>
 <p>Ces six faits portent sur le <strong>compte rendu</strong>, pas sur l'action : dans les quatre cas, l'action était
 juste et le message mentait. Ils se jugent donc sur ce que l'écran <strong>dit</strong>, confronté à ce qui s'est
 réellement produit - et deux d'entre eux exigent de regarder <strong>ailleurs que dans l'application</strong>.</p>
 </blockquote>
-<ol>
-<li>🔌 Connecté, importer une nuit : le compte rendu annonce une participation créée, <strong>et</strong> elle existe
-    réellement sur la plateforme (« Voir la participation » l'ouvre). #3448</li>
-<li>La même annonce dit <strong>ce qu'il reste à faire</strong> : « pensez à la compléter sur le portail (météo,
-    matériel, commentaires) ». Sans cette suite, une création se lit comme une fiche terminée (#3473).
-    ⚠️ Numéro hors suite : les points 60 à 64 sont écrits, les renuméroter décalerait la section.</li>
-<li>🔒 Déconnecté, importer : le compte rendu <strong>ne prétend pas</strong> avoir créé de participation.</li>
-<li>Rattacher une nuit dont des séquences doivent être renommées : le compte rendu <strong>chiffre</strong> les
-    séquences renommées. #3449</li>
-<li>🔒 Faire échouer l'envoi (se déconnecter avant de valider) : le compte rendu dit <strong>à la fois</strong> le
-    renommage réussi <strong>et</strong> l'échec de l'envoi, et non l'échec seul.</li>
-<li>« 🗑 Supprimer » : la confirmation dit que les <strong>fichiers audio restent sur le disque</strong>, et affiche
-    <strong>où</strong>. #3482</li>
-<li>Après confirmation, regarder le disque : le dossier de la nuit est <strong>toujours là</strong>, conformément à
-    ce qu'annonçait la confirmation.</li>
-</ol>
+<ul>
+<li><strong>S2-59</strong> · 🔌 Connecté, importer une nuit : le compte rendu annonce une participation créée, <strong>et</strong> elle existe
+  réellement sur la plateforme (« Voir la participation » l'ouvre). #3448</li>
+<li><strong>S2-60</strong> · La même annonce dit <strong>ce qu'il reste à faire</strong> : « pensez à la compléter sur le portail (météo,
+  matériel, commentaires) ». Sans cette suite, une création se lit comme une fiche terminée (#3473).
+  ⚠️ Numéro hors suite : les points 60 à 64 sont écrits, les renuméroter décalerait la section.</li>
+<li><strong>S2-61</strong> · 🔒 Déconnecté, importer : le compte rendu <strong>ne prétend pas</strong> avoir créé de participation.</li>
+<li><strong>S2-62</strong> · Rattacher une nuit dont des séquences doivent être renommées : le compte rendu <strong>chiffre</strong> les
+  séquences renommées. #3449</li>
+<li><strong>S2-63</strong> · 🔒 Faire échouer l'envoi (se déconnecter avant de valider) : le compte rendu dit <strong>à la fois</strong> le
+  renommage réussi <strong>et</strong> l'échec de l'envoi, et non l'échec seul.</li>
+<li><strong>S2-64</strong> · « 🗑 Supprimer » : la confirmation dit que les <strong>fichiers audio restent sur le disque</strong>, et affiche
+  <strong>où</strong>. #3482</li>
+<li><strong>S2-65</strong> · Après confirmation, regarder le disque : le dossier de la nuit est <strong>toujours là</strong>, conformément à
+  ce qu'annonçait la confirmation.</li>
+</ul>
 <blockquote>
 <p>Le point 58 ne se coche pas sur le message : c'est exactement ce que #3448 a corrigé, l'écran
 annonçant une création qui n'avait pas eu lieu. Le fait observable est <strong>sur la plateforme</strong>.</p>

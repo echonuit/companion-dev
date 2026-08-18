@@ -6355,84 +6355,84 @@ vraie carte SD soit reconnue.</p>
 </ul>
 <h2 id="le-script-une-case-un-fait-observable">Le script (une case = un fait observable)<a class="headerlink" href="#le-script-une-case-un-fait-observable" title="Permanent link">&para;</a></h2>
 <p><strong>Étape 1 · La connexion devient une opération longue</strong></p>
-<ol>
-<li>Coller le jeton : l'avancement de la récupération s'affiche.</li>
-<li>La barre <strong>avance</strong> et son libellé nomme la nuit en cours (« Nuits k / N »), il ne reste pas figé.</li>
-<li>Une <strong>estimation du temps restant</strong> apparaît une fois l'avancement mesurable.</li>
-<li>Le bouton <strong>Annuler</strong> est atteignable pendant toute l'opération (pas masqué, pas hors fenêtre).</li>
-<li>L'avancement paraît <strong>dans</strong> la modale de connexion, sans seconde fenêtre, et « Fermer » y est grisé
-   tant que l'opération tourne (#2642).</li>
-<li>À la fin, la modale de connexion annonce l'identité <strong>et</strong> le résumé de ce qui a été récupéré.</li>
-</ol>
+<ul>
+<li><strong>S8-01</strong> · Coller le jeton : l'avancement de la récupération s'affiche.</li>
+<li><strong>S8-02</strong> · La barre <strong>avance</strong> et son libellé nomme la nuit en cours (« Nuits k / N »), il ne reste pas figé.</li>
+<li><strong>S8-03</strong> · Une <strong>estimation du temps restant</strong> apparaît une fois l'avancement mesurable.</li>
+<li><strong>S8-04</strong> · Le bouton <strong>Annuler</strong> est atteignable pendant toute l'opération (pas masqué, pas hors fenêtre).</li>
+<li><strong>S8-05</strong> · L'avancement paraît <strong>dans</strong> la modale de connexion, sans seconde fenêtre, et « Fermer » y est grisé
+  tant que l'opération tourne (#2642).</li>
+<li><strong>S8-06</strong> · À la fin, la modale de connexion annonce l'identité <strong>et</strong> le résumé de ce qui a été récupéré.</li>
+</ul>
 <p><strong>Étape 2 · Ce que le compte rendu affirme</strong></p>
-<ol>
-<li>Le résumé distingue les nuits <strong>récupérées</strong> de celles <strong>en attente d'analyse Vigie-Chiro</strong>.</li>
-<li>Couper le réseau avant une synchronisation, la relancer : le résumé dit « <strong>non récupérée(s), à
-   réessayer</strong> », et <strong>jamais</strong> « en attente d'analyse ». (C'est le défaut P1-C du chantier.)</li>
-<li>Les nombres annoncés correspondent à ce que la table montre réellement.</li>
-</ol>
+<ul>
+<li><strong>S8-07</strong> · Le résumé distingue les nuits <strong>récupérées</strong> de celles <strong>en attente d'analyse Vigie-Chiro</strong>.</li>
+<li><strong>S8-08</strong> · Couper le réseau avant une synchronisation, la relancer : le résumé dit « <strong>non récupérée(s), à
+  réessayer</strong> », et <strong>jamais</strong> « en attente d'analyse ». (C'est le défaut P1-C du chantier.)</li>
+<li><strong>S8-09</strong> · Les nombres annoncés correspondent à ce que la table montre réellement.</li>
+</ul>
 <p><strong>Étape 3 · Annuler, et reprendre</strong></p>
-<ol>
-<li>Lancer « Synchroniser depuis VigieChiro » depuis <strong>Mes sites</strong>, puis <strong>Annuler</strong> en cours.</li>
-<li>Le message dit que ce qui a été récupéré <strong>est conservé</strong> et que la suivante reprendra le reste.</li>
-<li>La table ne montre <strong>aucune nuit à moitié faite</strong> (une nuit a ses observations, ou n'en a aucune).</li>
-<li>Relancer la synchronisation : elle <strong>reprend</strong> le travail restant, sans recréer ce qui existe.</li>
-</ol>
+<ul>
+<li><strong>S8-10</strong> · Lancer « Synchroniser depuis VigieChiro » depuis <strong>Mes sites</strong>, puis <strong>Annuler</strong> en cours.</li>
+<li><strong>S8-11</strong> · Le message dit que ce qui a été récupéré <strong>est conservé</strong> et que la suivante reprendra le reste.</li>
+<li><strong>S8-12</strong> · La table ne montre <strong>aucune nuit à moitié faite</strong> (une nuit a ses observations, ou n'en a aucune).</li>
+<li><strong>S8-13</strong> · Relancer la synchronisation : elle <strong>reprend</strong> le travail restant, sans recréer ce qui existe.</li>
+</ul>
 <p><strong>Étape 4 · La fiche d'une nuit récupérée</strong></p>
-<ol>
-<li>La nuit apparaît avec ses <strong>observations</strong> et son décompte de séquences.</li>
-<li>« Audio » indique <strong>ABSENTE (0 / N)</strong>.</li>
-<li>« Réactiver ce passage » est <strong>actif</strong> (c'est le défaut d'origine du chantier).</li>
-<li>Les heures de la nuit sont marquées <strong>attestées par les enregistrements</strong>, pas « déclarées ».</li>
-</ol>
+<ul>
+<li><strong>S8-14</strong> · La nuit apparaît avec ses <strong>observations</strong> et son décompte de séquences.</li>
+<li><strong>S8-15</strong> · « Audio » indique <strong>ABSENTE (0 / N)</strong>.</li>
+<li><strong>S8-16</strong> · « Réactiver ce passage » est <strong>actif</strong> (c'est le défaut d'origine du chantier).</li>
+<li><strong>S8-17</strong> · Les heures de la nuit sont marquées <strong>attestées par les enregistrements</strong>, pas « déclarées ».</li>
+</ul>
 <p><strong>Étape 4 bis · Ce que le statut « Récupéré » change (EPIC #2581)</strong></p>
 <p>Le bandeau annonce <strong>« Récupéré »</strong>, pas « Déposé ». Chaque case ci-dessous est un geste dont la réponse
 a changé : à jouer une par une, l'œil sur le motif affiché autant que sur l'état du bouton.</p>
-<ol>
-<li>La pastille de statut est <strong>violette</strong>, distincte du bleu de « Déposé ».</li>
-<li><strong>Aucune frise</strong> de workflow : une seule étape, « Récupéré ». Les jalons Importé / Transformé /
-    Vérifié ne sont pas affichés comme franchis.</li>
-<li>La carte mise en avant est <strong>« Réactiver ce passage »</strong>.</li>
-<li><strong>Supprimer</strong> est <strong>actif</strong>. Le survol dit ce qu'il enlève (la copie locale) et ce qu'il laisse (la
-    participation).</li>
-<li><strong>Vérifier</strong> est <strong>grisé</strong>, et le motif dit « cette nuit vient de Vigie-Chiro, où elle est déjà
-    déposée : son verdict s'y décide », et <strong>non</strong> « cette nuit est déposée ».</li>
-<li><strong>Annuler le dépôt</strong> est <strong>visible mais désactivé</strong>, avec son motif. Il ne doit ni disparaître ni
-    être cliquable.</li>
-<li><strong>Modifier le passage</strong> ouvre la modale, mais l'année et le n° y sont <strong>verrouillés</strong>.</li>
-<li><strong>Sons &amp; validation</strong> est <strong>ouvert</strong> : les observations s'écoutent et se valident dès maintenant.</li>
-<li>Sur <strong>Carte &amp; passages</strong>, la vue <strong>« À réactiver »</strong> liste cette nuit, et le tri par statut la range
-    <strong>avec</strong> les nuits déposées, pas après elles.</li>
-<li>Sur <strong>Ma saison</strong>, sa case est <strong>remplie</strong> : le protocole est tenu pour cette nuit-là.</li>
-<li>La vue <strong>« Résultats à importer »</strong> la voit toujours : son état d'analyse se relève normalement.</li>
-</ol>
+<ul>
+<li><strong>S8-18</strong> · La pastille de statut est <strong>violette</strong>, distincte du bleu de « Déposé ».</li>
+<li><strong>S8-19</strong> · <strong>Aucune frise</strong> de workflow : une seule étape, « Récupéré ». Les jalons Importé / Transformé /
+  Vérifié ne sont pas affichés comme franchis.</li>
+<li><strong>S8-20</strong> · La carte mise en avant est <strong>« Réactiver ce passage »</strong>.</li>
+<li><strong>S8-21</strong> · <strong>Supprimer</strong> est <strong>actif</strong>. Le survol dit ce qu'il enlève (la copie locale) et ce qu'il laisse (la
+  participation).</li>
+<li><strong>S8-22</strong> · <strong>Vérifier</strong> est <strong>grisé</strong>, et le motif dit « cette nuit vient de Vigie-Chiro, où elle est déjà
+  déposée : son verdict s'y décide », et <strong>non</strong> « cette nuit est déposée ».</li>
+<li><strong>S8-23</strong> · <strong>Annuler le dépôt</strong> est <strong>visible mais désactivé</strong>, avec son motif. Il ne doit ni disparaître ni
+  être cliquable.</li>
+<li><strong>S8-24</strong> · <strong>Modifier le passage</strong> ouvre la modale, mais l'année et le n° y sont <strong>verrouillés</strong>.</li>
+<li><strong>S8-25</strong> · <strong>Sons &amp; validation</strong> est <strong>ouvert</strong> : les observations s'écoutent et se valident dès maintenant.</li>
+<li><strong>S8-26</strong> · Sur <strong>Carte &amp; passages</strong>, la vue <strong>« À réactiver »</strong> liste cette nuit, et le tri par statut la range
+  <strong>avec</strong> les nuits déposées, pas après elles.</li>
+<li><strong>S8-27</strong> · Sur <strong>Ma saison</strong>, sa case est <strong>remplie</strong> : le protocole est tenu pour cette nuit-là.</li>
+<li><strong>S8-28</strong> · La vue <strong>« Résultats à importer »</strong> la voit toujours : son état d'analyse se relève normalement.</li>
+</ul>
 <p><strong>Étape 5 · Réactiver depuis la carte SD</strong></p>
-<ol>
-<li>Désigner la carte : <strong>aucune question</strong> n'est posée à ce moment. Sur une carte qui ne contient que
-    des bruts, il ne doit <strong>jamais</strong> y en avoir - les tranches sont régénérées, il n'y a rien à laisser
-    en place (#2577). Si des séquences déjà transformées s'y trouvent, la question paraît <strong>dans la
-    modale</strong>, à la place des barres, et la procédure reprend après la réponse.</li>
-<li>La modale de réactivation montre ses <strong>deux barres de phase</strong>.</li>
-<li>À la fin, « Audio » passe à <strong>COMPLETE (N / N)</strong> et la nuit est <strong>écoutable</strong>.</li>
-<li>Ouvrir une séquence : le son correspond bien à l'observation affichée.</li>
-<li><strong>Le statut est passé à « Déposé »</strong> : la nuit a rejoint les nuits ordinaires, elle sort de la vue
-    « À réactiver », et « Annuler le dépôt » redevient actif. C'est la seule transition que le moteur
-    autorise depuis « Récupéré » : et elle ne doit se produire <strong>que</strong> si de l'audio est effectivement
-    revenu : une réactivation infructueuse laisse la nuit en « Récupéré ».</li>
-</ol>
+<ul>
+<li><strong>S8-29</strong> · Désigner la carte : <strong>aucune question</strong> n'est posée à ce moment. Sur une carte qui ne contient que
+  des bruts, il ne doit <strong>jamais</strong> y en avoir - les tranches sont régénérées, il n'y a rien à laisser
+  en place (#2577). Si des séquences déjà transformées s'y trouvent, la question paraît <strong>dans la
+  modale</strong>, à la place des barres, et la procédure reprend après la réponse.</li>
+<li><strong>S8-30</strong> · La modale de réactivation montre ses <strong>deux barres de phase</strong>.</li>
+<li><strong>S8-31</strong> · À la fin, « Audio » passe à <strong>COMPLETE (N / N)</strong> et la nuit est <strong>écoutable</strong>.</li>
+<li><strong>S8-32</strong> · Ouvrir une séquence : le son correspond bien à l'observation affichée.</li>
+<li><strong>S8-33</strong> · <strong>Le statut est passé à « Déposé »</strong> : la nuit a rejoint les nuits ordinaires, elle sort de la vue
+  « À réactiver », et « Annuler le dépôt » redevient actif. C'est la seule transition que le moteur
+  autorise depuis « Récupéré » : et elle ne doit se produire <strong>que</strong> si de l'audio est effectivement
+  revenu : une réactivation infructueuse laisse la nuit en « Récupéré ».</li>
+</ul>
 <p><strong>Étape 6 · Le rattrapage</strong></p>
-<ol>
-<li>Menu ☰ › <strong>Compléter une nuit récupérée</strong> : seules les nuits <strong>sans contenu</strong> y figurent.</li>
-<li>L'état de liste ne prétend plus qu'elles « n'existent pas sur cette machine ».</li>
-<li>Compléter une nuit : elle disparaît de la liste et gagne ses observations.</li>
-</ol>
+<ul>
+<li><strong>S8-34</strong> · Menu ☰ › <strong>Compléter une nuit récupérée</strong> : seules les nuits <strong>sans contenu</strong> y figurent.</li>
+<li><strong>S8-35</strong> · L'état de liste ne prétend plus qu'elles « n'existent pas sur cette machine ».</li>
+<li><strong>S8-36</strong> · Compléter une nuit : elle disparaît de la liste et gagne ses observations.</li>
+</ul>
 <p><strong>Étape 7 · La migration, sur une base qui a déjà servi (EPIC #2581)</strong></p>
-<ol>
-<li>Ouvrir une base <strong>antérieure</strong> au chantier, portant des nuits rapatriées en « Déposé ». Après
-    migration, elles portent <strong>« Récupéré »</strong>, et <strong>elles seules</strong> : une nuit que vous aviez déposée
-    garde « Déposé », même rattachée à sa participation.</li>
-<li>Le carré 130711 est le bon terrain : ses quatre nuits ont été rapatriées avant ce chantier.</li>
-</ol>
+<ul>
+<li><strong>S8-37</strong> · Ouvrir une base <strong>antérieure</strong> au chantier, portant des nuits rapatriées en « Déposé ». Après
+  migration, elles portent <strong>« Récupéré »</strong>, et <strong>elles seules</strong> : une nuit que vous aviez déposée
+  garde « Déposé », même rattachée à sa participation.</li>
+<li><strong>S8-38</strong> · Le carré 130711 est le bon terrain : ses quatre nuits ont été rapatriées avant ce chantier.</li>
+</ul>
 <h2 id="ce-que-la-session-doit-mesurer">Ce que la session doit mesurer<a class="headerlink" href="#ce-que-la-session-doit-mesurer" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>La lisibilité du statut</strong> : « Récupéré » se comprend-il sans explication, ou faut-il lire la doc ?
