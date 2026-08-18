@@ -4951,6 +4951,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../3960-un-garde-dit-la-couverture-qu-il-a-et-rend-l-etat-qu-il-emprunte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3960 · Un garde dit la couverture qu'il a, et rend l'état qu'il emprunte
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3962-l-information-se-porte-dans-le-type-pas-dans-la-prudence-des-phrases/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3962 · L'information se porte dans le type, pas dans la prudence des phrases
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3854-un-refus-ne-conseille-que-ce-qu-il-a-verifie/" class="md-nav__link">
         
   
@@ -5135,6 +5191,45 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#amendement-3964-cloture-du-lot-3900-le-contrat-sajoute-sur-mesure-jamais-par-symetrie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amendement (#3964, clôture du lot #3900) : le contrat s'ajoute sur mesure, jamais par symétrie
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amendement (#3964, clôture du lot #3900) : le contrat s&#39;ajoute sur mesure, jamais par symétrie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#un-ecran-a-deux-portes-retient-laquelle-a-servi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un écran à deux portes retient laquelle a servi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-prix-paye-ailleurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le prix payé ailleurs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6164,6 +6259,45 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#amendement-3964-cloture-du-lot-3900-le-contrat-sajoute-sur-mesure-jamais-par-symetrie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amendement (#3964, clôture du lot #3900) : le contrat s'ajoute sur mesure, jamais par symétrie
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Amendement (#3964, clôture du lot #3900) : le contrat s&#39;ajoute sur mesure, jamais par symétrie">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#un-ecran-a-deux-portes-retient-laquelle-a-servi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un écran à deux portes retient laquelle a servi
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#le-prix-paye-ailleurs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le prix payé ailleurs
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6269,6 +6403,51 @@ son critère décrit ce que le <strong>signal</strong> couvre, pas ce que le <st
 survenant <strong>pendant</strong> qu'un écran suiveur est affiché. Tous les chemins d'<code>update</code> partent de la CLI -
 un autre processus - ou du modèle de vue audio, qui est l'écran affiché quand il s'exécute. Si un
 traitement de fond venait à en remplacer un, la décision se rouvrirait.</p>
+<h2 id="amendement-3964-cloture-du-lot-3900-le-contrat-sajoute-sur-mesure-jamais-par-symetrie">Amendement (#3964, clôture du lot #3900) : le contrat s'ajoute sur mesure, jamais par symétrie<a class="headerlink" href="#amendement-3964-cloture-du-lot-3900-le-contrat-sajoute-sur-mesure-jamais-par-symetrie" title="Permanent link">&para;</a></h2>
+<p>Le relevé exhaustif des trente contrôleurs a rendu <strong>trois</strong> écrans sans aucun mécanisme de fraîcheur,
+et l'ADR ci-dessus donnait le critère pour trancher chacun.</p>
+<table>
+<thead>
+<tr>
+<th>Écran</th>
+<th>Verdict, après mesure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Synthese</code></td>
+<td>il agrège des observations <strong>et ouvre lui-même</strong> la fiche du passage, d'où la validation est atteignable : <code>RafraichirAuRetour</code></td>
+</tr>
+<tr>
+<td><code>Activite</code></td>
+<td>même donnée, même chemin : <code>RafraichirAuRetour</code></td>
+</tr>
+<tr>
+<td><code>Audit</code></td>
+<td>il audite la base, que tout écran qui écrit périme : <code>RafraichirAuRetour</code></td>
+</tr>
+<tr>
+<td><code>Importation</code></td>
+<td><strong>laissé tel quel</strong> : il porte <code>AuDepartEcran</code>, donc il se recharge déjà</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong><code>Importation</code> est le point de cet amendement.</strong> Ajouté « par symétrie », le contrat l'aurait fait
+relire deux fois à chaque entrée, sans qu'aucun test ne s'en plaigne. C'est en ouvrant le fichier
+qu'on voit qu'un autre mécanisme le couvre.</p>
+<h3 id="un-ecran-a-deux-portes-retient-laquelle-a-servi">Un écran à deux portes retient laquelle a servi<a class="headerlink" href="#un-ecran-a-deux-portes-retient-laquelle-a-servi" title="Permanent link">&para;</a></h3>
+<p><code>Activite</code> s'ouvre sur <strong>un</strong> passage, ou sur <strong>tous</strong> ceux d'un utilisateur, et ne retenait que le
+premier cas. Relire par la mauvaise porte afficherait le mauvais périmètre - <strong>pire que ne pas
+relire</strong>, parce que l'écran aurait alors l'air frais.</p>
+<h3 id="le-prix-paye-ailleurs">Le prix payé ailleurs<a class="headerlink" href="#le-prix-paye-ailleurs" title="Permanent link">&para;</a></h3>
+<p>Ajouter le contrat portait <code>ActiviteController</code> à WMC=49, au-dessus du plafond God-class du portail
+qualité. <code>//NOPMD</code> étant exclu par convention, le dessin d'une nuit - repère nocturne, séries,
+infobulles - est parti dans <code>CourbesActivite</code>. Il n'avait déjà plus sa place dans l'écran :
+<code>versSeries</code> était appelée par <code>ExportImageActivite</code>, <code>texteInfobulle</code> par son test. <strong>Un morceau
+qu'on appelle du dehors n'appartient pas à l'écran qui le contenait.</strong></p>
+<p>⚠️ En le déplaçant, j'ai d'abord réécrit <code>minutesDepuis18h</code> de mémoire au lieu de le reprendre tel
+quel - exactement la divergence contre laquelle le doc-comment de la nouvelle classe met en garde.
+Un déplacement se fait par copie littérale, puis vérification.</p>
 
 
 
