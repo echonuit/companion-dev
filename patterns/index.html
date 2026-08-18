@@ -7449,6 +7449,26 @@ jusque-là invisible.</p>
 <p><strong>Où le constat vit.</strong> Sur la <strong>portée de ce qu'il décrit</strong>, pas sur celle de ce qui l'a déclenché. Un
 écart de topologie (un point, un carré) sort de l'audit <strong>global</strong> ; l'audit ciblé d'une nuit
 (<code>auditerPassage</code>) le répéterait à chaque passage du même point sans rien apprendre.</p>
+<h2 id="surcharger-la-feuille-de-style-dune-bibliotheque-tierce">Surcharger la feuille de style d'une bibliothèque tierce<a class="headerlink" href="#surcharger-la-feuille-de-style-dune-bibliotheque-tierce" title="Permanent link">&para;</a></h2>
+<p><strong>Le problème.</strong> Un composant embarqué apporte <strong>sa</strong> feuille de style, et elle peut être en dessous de
+nos seuils. Mesuré sur la barre d'outils d'<code>audio-view</code> (#3462) : le texte des boutons était à
+<strong>10,68:1</strong>, très au-dessus du seuil, mais leur <strong>surface</strong> à <strong>1,17:1</strong> contre le fond - un bouton qui
+ne se voit pas comme un bouton. Éclaircir le texte, remède qu'on prend sans mesurer, n'aurait rien
+réparé.</p>
+<p><strong>La règle</strong> (<a href="../decisions/3462-surcharger-une-feuille-tierce-se-declare-et-monte-en-specificite/">ADR 3462</a>) :</p>
+<ul>
+<li>la surcharge vit dans <code>design.css</code>, jamais dans une feuille par feature ;</li>
+<li>elle <strong>monte en spécificité</strong> (<code>.audio-view .audio-view-toolbar .button</code> et non <code>.button</code>), parce que
+  la feuille tierce est chargée après la nôtre et gagnerait à égalité ;</li>
+<li>elle porte un <strong>test de contraste qui mesure sur le rendu</strong>, pas sur les valeurs déclarées
+  (<code>ContrasteVueAudioTest</code>). WCAG §1.4.11 accepte que le contraste vienne de la surface <strong>ou</strong> du
+  contour : le test retient <code>max(surface, contour)</code>, sans quoi il refuserait une correction valide.</li>
+</ul>
+<p>⚠️ <strong>C'est un dépassement assumé de l'<a href="../decisions/0046-une-classe-css-a-une-seule-feuille/">ADR 0046</a></strong>
+(« une classe CSS se définit dans une seule feuille »), et <strong>son garde ne peut pas le voir</strong> :
+<code>DoublonsFeuillesDeStyleTest</code> balaie <code>src/main/java/fr/univ_amu/iut</code>, or la feuille tierce vit dans un
+jar. Sans l'ADR, ce dépassement ne laisserait <strong>aucune trace</strong>. Le remède de 0046 - désambiguïser les
+noms - n'existe pas quand le nom appartient à une bibliothèque.</p>
 <h2 id="icones-dihm-un-pictogramme-se-pose-il-ne-secrit-pas">Icônes d'IHM : un pictogramme se pose, il ne s'écrit pas<a class="headerlink" href="#icones-dihm-un-pictogramme-se-pose-il-ne-secrit-pas" title="Permanent link">&para;</a></h2>
 <p><strong>Le problème.</strong> Les libellés portaient leurs pictogrammes <strong>en toutes lettres</strong> dans le <code>text</code> des
 FXML : <code>♻ Réactivation</code>, <code>☰</code>, <code>📤 Exporter…</code>. Un caractère dépend des <strong>polices installées</strong> sur la
