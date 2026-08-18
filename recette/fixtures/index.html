@@ -5473,6 +5473,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#provoquer-un-refus-de-depot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provoquer un refus de dépôt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ou-ca-vit" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6176,6 +6187,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#provoquer-un-refus-de-depot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Provoquer un refus de dépôt
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ou-ca-vit" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6385,6 +6407,46 @@ liste tenue à la main. Deux tests (esprit cliquet, sans JavaFX) amarrent le gé
 <p>Ces tests deviennent rouges si le générateur cesse de produire la bonne carte <strong>ou</strong> si un détecteur
 d'import change de comportement (<code>AnalyseMelange</code>, <code>AnalyseCoherence</code>, <code>PartitionNuits</code>,
 <code>AnalyseurLogPR</code>, <code>ServiceImport</code>, <code>ExtracteurZip</code>).</p>
+<h2 id="provoquer-un-refus-de-depot">Provoquer un refus de dépôt<a class="headerlink" href="#provoquer-un-refus-de-depot" title="Permanent link">&para;</a></h2>
+<p>Les cartes SD ci-dessus fournissent des <strong>données</strong> ; elles ne permettent pas de faire <strong>refuser</strong> un
+dépôt par la plateforme. Or c'est le seul endroit du produit où un refus est <strong>définitif</strong> : l'archive
+ne repartira pas telle quelle, la reprise cesse d'être offerte, et une reconnexion réarme les refus de
+droits mais jamais un contenu refusé (#3687, #3689). Sans levier, ces cases ne seraient pas rejouables.</p>
+<p>Le stub réseau des E2E CLI sert aussi l'application : <code>ConnexionModule#urlDeBase</code> est le <strong>seul</strong>
+endroit qui décide l'URL du client, et ce client est le singleton partagé par toutes les features.
+Pointer <code>VIGIECHIRO_URL</code> sur le stub suffit donc à détourner l'IHM.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 1. Le stub, avec le statut qu'on veut voir servir sur les routes de dépôt.</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">VIGIECHIRO_STUB_REFUS</span><span class="o">=</span><span class="m">403</span><span class="w"> </span>python3<span class="w"> </span>src/test/bats/stub_vigiechiro.py<span class="w"> </span>/tmp/port<span class="w"> </span>/tmp/journal<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="p">&amp;</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 2. L'application, pointée dessus.</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">VIGIECHIRO_URL</span><span class="o">=</span><span class="s2">"http://127.0.0.1:</span><span class="k">$(</span>cat<span class="w"> </span>/tmp/port<span class="k">)</span><span class="s2">"</span><span class="w"> </span>./mvnw<span class="w"> </span>javafx:run
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Statut</th>
+<th>Ce qu'il fait jouer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>403</code> (ou <code>401</code>)</td>
+<td>un refus de <strong>droits</strong> : réparable par une reconnexion, les unités se réarment</td>
+</tr>
+<tr>
+<td><code>422</code> (ou <code>400</code>)</td>
+<td>un <strong>contenu</strong> refusé : rien ne le répare, et le message ne conseille pas la reconnexion</td>
+</tr>
+<tr>
+<td><code>0</code> ou absent</td>
+<td>aucun refus, comportement nominal</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>Le refus ne porte que sur <code>/fichiers</code> et <code>/multipart</code></strong>, et c'est délibéré : refuser partout
+empêcherait de se connecter, donc d'<strong>atteindre</strong> le dépôt. Le cas à jouer est ce qui se passe <em>après</em>
+le refus, pas le refus lui-même.</p>
+<p>Les cas correspondants sont le bloc <strong>A5</strong> de la <a href="../sessions/s4-deposer-suivre/">session S4</a>.</p>
 <h2 id="ou-ca-vit">Où ça vit<a class="headerlink" href="#ou-ca-vit" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>recette/fixtures/spec/*.yaml</code> : les specs (source de vérité, versionnées).</li>

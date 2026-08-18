@@ -6421,6 +6421,29 @@ existant, jusqu'à la refonte des identifiants en <code>Sxx-NN</code> que la cam
 <li>« ↩ Annuler le dépôt » (M-Passage) : visible sur un passage déposé, avec confirmation.</li>
 <li>Passage archivé : les archives survivent-elles à la purge ?</li>
 </ol>
+<p><em>A5 · Refus définitif et réarmement (#3687, #3688, #3689, #3962)</em></p>
+<blockquote>
+<p><strong>Fixture.</strong> Lancer le stub avec <code>VIGIECHIRO_STUB_REFUS=403</code>, puis l'application avec
+<code>VIGIECHIRO_URL</code> pointée dessus (recette : <code>dev-docs/recette/fixtures.md</code>, § « Provoquer un refus de
+dépôt »). Le stub ne refuse que <code>/fichiers</code> et <code>/multipart</code> : on peut donc se connecter et atteindre
+le dépôt normalement, et <strong>c'est le point</strong> - le cas à jouer est ce qui se passe <em>après</em> le refus.</p>
+<p>Numéros pris <strong>au-delà du plus haut existant</strong>, pour la raison dite plus haut.</p>
+</blockquote>
+<ol>
+<li>Téléverser avec le stub en 403 : <strong>chaque</strong> archive part en échec, et la table donne la cause de
+    chacune au survol (« HTTP 403 »).</li>
+<li>Le bouton de téléversement <strong>cesse de s'appeler « Reprendre le dépôt »</strong> et redevient « Téléverser
+    sur Vigie-Chiro » : il n'y a plus rien à reprendre, et il ne le promet plus.</li>
+<li>Le compte rendu s'intitule « <strong>Dépôt incomplet</strong> », et non « Nuit déposée sur Vigie-Chiro ».</li>
+<li>Il dit le nombre d'archives refusées, <strong>et</strong> conseille la reconnexion - parce que ce refus-là
+    tient aux droits. <em>perceptif</em> : c'est la lisibilité de la phrase qu'on juge, pas sa présence.</li>
+<li>Arrêter le refus (<code>VIGIECHIRO_STUB_REFUS=0</code>, stub relancé), puis <strong>se reconnecter</strong> dans
+    l'application : les unités refusées redeviennent reprenables, et le bouton se réintitule
+    « Reprendre le dépôt » <strong>sans autre geste</strong>.</li>
+<li>Reprendre le dépôt : seules les archives refusées repartent, jamais celles déjà en ligne.</li>
+<li>Rejouer 70 à 73 avec <code>VIGIECHIRO_STUB_REFUS=422</code> : le compte rendu <strong>ne conseille pas</strong> la
+    reconnexion, parce qu'un contenu refusé ne se répare pas ainsi. Une reconnexion ne réarme rien.</li>
+</ol>
 <p><strong>Bloc B · Dépôt réel (130711, nuit du 05/07, ZIP, calcul lancé)</strong></p>
 <ol>
 <li>Réactivation : réimport de la nuit depuis la carte SD → empreinte vérifiée → passage réactivé.</li>
