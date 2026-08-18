@@ -6701,6 +6701,10 @@ absente (lancés en CI) :</p>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/check-doc-images.sh"><code>check-doc-images.sh</code></a></td>
 <td>Chaque capture <strong>référencée par une page de doc</strong> existe et est au manifeste. <em>(Aucune page ne pointe une image absente.)</em></td>
 </tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/check-doc-videos.sh"><code>check-doc-videos.sh</code></a></td>
+<td>Chaque parcours filmé <strong>référencé par une page</strong> existe, chaque film présent a encore son scénario au banc, et chaque chemin <strong>résout dans le site construit</strong>. <em>(La première version ne vérifiait que l'existence du fichier : elle est restée verte pendant que le site rendait un lecteur vide, MkDocs ne réécrivant pas les chemins du HTML brut.)</em></td>
+</tr>
 </tbody>
 </table>
 <h3 id="pourquoi-la-derniere-regle-lit-le-code-et-non-le-disque">Pourquoi la dernière règle lit le <strong>code</strong> et non le disque<a class="headerlink" href="#pourquoi-la-derniere-regle-lit-le-code-et-non-le-disque" title="Permanent link">&para;</a></h3>
