@@ -5425,6 +5425,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3978-un-point-de-passage-garantit-l-ensemble-pas-un-de-ses-membres/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3978 · Un point de passage garantit l'ensemble
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/3990-le-texte-se-lit-le-json-se-parse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3990 · Le texte se lit, le JSON se parse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7424,8 +7480,18 @@ analyse, fiche site, qualification) sur un socle <code>commun/view</code>.</p>
 <li><code>commun.view.ColonneBadge</code> : <code>cellule(Function&lt;S, String&gt; classe)</code> fabrique une cellule <strong>pastille</strong>
   dont la couleur est <strong>dérivée de la donnée de la ligne</strong> (jamais stockée). Les surcharges
   <code>classe(StatutWorkflow)</code> / <code>classe(Verdict)</code> couvrent les types de <code>commun.model</code> ;</li>
-<li><code>commun.view.design.css</code> : jetons sémantiques (<code>-badge-succes/avertissement/danger/info/neutre-*</code>) et
-  classes <code>.badge-*</code>, <strong>chargée par tous les FXML</strong> (plus de CSS de statut recopié par feature).</li>
+<li>
+<p><code>commun.view.design.css</code> : jetons sémantiques (<code>-badge-succes/avertissement/danger/info/neutre-*</code>) et
+  classes <code>.badge-*</code>, posée sur <strong>toute scène</strong> par
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/Habillage.java"><code>Habillage</code></a>
+  (plus de CSS de statut recopié par feature).</p>
+<p>⚠️ <strong>Le mécanisme est <code>Habillage</code>, pas la déclaration du FXML.</strong> Cette page a longtemps écrit
+« chargée par tous les FXML » : c'était vrai à 23 exemplaires sur 24, et surtout ça désignait le
+mauvais endroit. L'<a href="../decisions/3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/">ADR 3374</a>
+écarte explicitement la déclaration par FXML, qui « se serait défaite au onzième ». La plupart des
+vues la déclarent quand même, par héritage de leur écriture d'origine ; ce n'est pas ce qui la fait
+arriver.</p>
+</li>
 </ul>
 <p><strong>Le piège d'architecture (mapping feature → classe CSS).</strong> <code>ColonneBadge</code> vit dans <code>commun</code>, qui <strong>ne
 doit dépendre d'aucune feature</strong> (règle <code>ArchitectureTest.features_sans_cycle</code>). Le socle ne connaît donc

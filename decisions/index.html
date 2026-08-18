@@ -5449,6 +5449,62 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3978-un-point-de-passage-garantit-l-ensemble-pas-un-de-ses-membres/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3978 · Un point de passage garantit l'ensemble
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="3990-le-texte-se-lit-le-json-se-parse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3990 · Le texte se lit, le JSON se parse
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7200,6 +7256,16 @@
 <td><a href="3947-un-message-montre-a-l-utilisateur-se-compose-en-un-seul-endroit/">3947</a></td>
 <td>L ADR 3470 avait ecrit la regle et n avait aligne QU UN appelant : huit autres composaient leur message a la main, dont le filet global de la CLI. ⚠️ L obstacle suppose etait faux - la regle ArchUnit EXCLUT le socle commun, rien n aurait rougi. Ce qui faisait tenir le montage etait l INLINING par javac d une constante de compilation, invisible et cassable sans rien faire rougir. CauseLisible descend donc en commun.model, et la constante du libelle s INVERSE : la vue cite le modele. ⚠️ Le repli « ou regarder » devient un PARAMETRE : la CLI n a pas de menu principal, et lui en designer un aurait mis une consigne inapplicable dans un terminal - le defaut de 3470 deplace d un cran par sa propre correction. Le cliquet ne compte que les TROIS formes decidables ; la forme nue est indiscernable d un refus metier</td>
 <td>#3947, cloture des finitions de recette (#3424)</td>
+</tr>
+<tr>
+<td><a href="3978-un-point-de-passage-garantit-l-ensemble-pas-un-de-ses-membres/">3978</a></td>
+<td><code>Habillage.poser</code> verifiait la presence de base.css pour decider si le trio etait pose. Vrai de MainView, faux d EcranReglages - seul FXML a declarer palette+base sans design. ⚠️ Le symptome n a paru que dans la GALERIE : en production l ecran est empile dans le chrome dont il herite, et l utilisateur a toujours vu le produit. On en a tire un diagnostic faux et un correctif qui contredisait l ADR 3374 en silence, par la route qu elle ecarte. Un point de passage garantit l ENSEMBLE, jamais un de ses membres ; et son garde vit sur LUI, pas sur ses appelants. Troisieme occurrence du meme motif sur cette classe, et le garde d idempotence n en a attrape aucune : il rejoue sur une scene deja habillee, quand les defauts naissent au PREMIER appel</td>
+<td>#3978 et #3985, cloture des suites (#3424)</td>
+</tr>
+<tr>
+<td><a href="3990-le-texte-se-lit-le-json-se-parse/">3990</a></td>
+<td>La meme commande ecrit sa date DEUX FOIS differemment : « 15/06/2026 » dans son texte, « 2026-06-15 » dans son --json. Ce n est pas une incoherence - un format d echange est une INTERFACE, pas une preference d affichage, et le franciser casserait les scripts et le tri lexicographique. ⚠️ Le test du --json assertait huit cles et NI date NI deposeLe : rien n empechait de le franciser par souci de coherence, et rien ne l aurait signale. Les deux cles sont desormais assertees - une decision de NE PAS changer n est tenue que si un test rougit quand on la defait. Hors decision : deux commandes portent des DATETIMES a decalage, ou la question est de FUSEAU et non de format</td>
+<td>#3990, cloture des suites (#3424)</td>
 </tr>
 <tr>
 <td><a href="3689-un-refus-se-rearme-sur-ce-qui-l-a-leve/">3689</a></td>
