@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/0008-aucun-echec-silencieux-severite-a-l-emission/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4002-un-controle-se-juge-avec-ses-voisins-pas-seul/">
       
       
-        <link rel="prev" href="../0007-retours-http-type-scelle-reponse-api/">
+        <link rel="prev" href="../3990-le-texte-se-lit-le-json-se-parse/">
       
       
-        <link rel="next" href="../0009-la-nuit-est-l-unite-bornee-a-midi/">
+        <link rel="next" href="../../recette/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>0008 · Aucun échec silencieux - VigieChiro Companion · Doc développeur</title>
+        <title>4002 · Un contrôle se juge avec ses voisins - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0008-aucun-echec-silencieux-la-severite-de-journalisation-se-decide-a-lemission" class="md-skip">
+        <a href="#adr-4002-un-controle-se-juge-avec-ses-voisins-et-aucun-garde-ne-sait-le-faire" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              0008 · Aucun échec silencieux
+              4002 · Un contrôle se juge avec ses voisins
             
           </span>
         </div>
@@ -804,37 +804,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    0008 · Aucun échec silencieux
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
         
   
   
@@ -850,70 +823,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5487,10 +5396,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../4002-un-controle-se-juge-avec-ses-voisins-pas-seul/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4002 · Un contrôle se juge avec ses voisins
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -5506,6 +5442,92 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#le-fait" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le fait
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-les-gardes-du-depot-savent-dire-et-ce-quils-ne-savent-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que les gardes du dépôt savent dire, et ce qu'ils ne savent pas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-la-sequence-a-coute-et-qui-est-instructif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la séquence a coûté, et qui est instructif
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-ecartees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives écartées
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -6261,10 +6283,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
+  <a href="#le-fait" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Contexte
+        Le fait
       
     </span>
   </a>
@@ -6272,10 +6294,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
+  <a href="#ce-que-les-gardes-du-depot-savent-dire-et-ce-quils-ne-savent-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Décision
+        Ce que les gardes du dépôt savent dire, et ce qu'ils ne savent pas
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-la-sequence-a-coute-et-qui-est-instructif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la séquence a coûté, et qui est instructif
       
     </span>
   </a>
@@ -6321,7 +6365,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/0008-aucun-echec-silencieux-severite-a-l-emission.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4002-un-controle-se-juge-avec-ses-voisins-pas-seul.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -6330,39 +6374,157 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/0008-aucun-echec-silencieux-severite-a-l-emission.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4002-un-controle-se-juge-avec-ses-voisins-pas-seul.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-0008-aucun-echec-silencieux-la-severite-de-journalisation-se-decide-a-lemission">ADR 0008 - Aucun échec silencieux ; la sévérité de journalisation se décide à l'émission<a class="headerlink" href="#adr-0008-aucun-echec-silencieux-la-severite-de-journalisation-se-decide-a-lemission" title="Permanent link">&para;</a></h1>
+<h1 id="adr-4002-un-controle-se-juge-avec-ses-voisins-et-aucun-garde-ne-sait-le-faire">ADR 4002 - Un contrôle se juge avec ses voisins, et aucun garde ne sait le faire<a class="headerlink" href="#adr-4002-un-controle-se-juge-avec-ses-voisins-et-aucun-garde-ne-sait-le-faire" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - rétroactif</li>
-<li><strong>Chantier</strong> : EPIC #1523 (observabilité)</li>
-<li><strong>Vérification</strong> : probable - <code>scripts/adr/0008-echec-silencieux.py</code> (cliquet : 12)</li>
+<li><strong>Statut</strong> : Accepté - 2026-08-18</li>
+<li><strong>Chantier</strong> : #4002, passes 7 à 10 de la clôture des suites des finitions de recette (#3424)</li>
+<li><strong>Vérification</strong> : humaine - la cohérence entre deux contrôles voisins n'est pas assertable ; ce que le dépôt peut tenir, il le tient déjà (<code>ContrasteAATest</code>, <code>LisibiliteCapture</code>, <code>ScenesHabilleesTest</code>), et cette ADR existe pour dire ce qu'ils <strong>ne</strong> couvrent pas</li>
 </ul>
-<h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Des échecs disparaissaient sans laisser de trace : <code>catch</code> muets, tâches longues qui gelaient l'interface sans un mot, exceptions avalées par un contrat <em>best-effort</em>. Quand un utilisateur signalait « ça n'a pas marché », rien dans le système ne permettait de savoir <strong>quoi</strong>. Il fallait une journalisation - <strong>sans</strong> pour autant noyer le journal sous les issues <strong>normales</strong> (un refus métier, une annulation), sinon on cesse de le lire.</p>
-<h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<h2 id="le-fait">Le fait<a class="headerlink" href="#le-fait" title="Permanent link">&para;</a></h2>
+<p>Une remarque sur <strong>deux</strong> boutons d'un écran a fini par en corriger <strong>29</strong>, sur douze écrans. Entre les
+deux, quatre correctifs successifs, et chacun a <strong>révélé le suivant</strong> :</p>
+<table>
+<thead>
+<tr>
+<th>Correctif</th>
+<th>Ce qu'il a rendu visible</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>styler « Copier » pour qu'il ressemble à son jumeau du Lot</td>
+<td>« Choisir… », resté nu <strong>à côté de lui</strong></td>
+</tr>
+<tr>
+<td>styler les 29 boutons</td>
+<td>le <strong>☰</strong> de réglage des tables, qu'aucune classe n'habillait</td>
+</tr>
+<tr>
+<td>habiller le ☰</td>
+<td>sa <strong>hauteur</strong> : 42 px quand ses voisins tenaient en 34</td>
+</tr>
+<tr>
+<td>aligner les hauteurs</td>
+<td>sa <strong>largeur</strong> : +20 px, qui faisaient envelopper les puces de filtre</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>Les quatre fois, la CI était verte.</strong> Et les quatre fois, c'est un œil extérieur qui a vu le
+défaut - ni moi, ni les gardes.</p>
+<h2 id="ce-que-les-gardes-du-depot-savent-dire-et-ce-quils-ne-savent-pas">Ce que les gardes du dépôt savent dire, et ce qu'ils ne savent pas<a class="headerlink" href="#ce-que-les-gardes-du-depot-savent-dire-et-ce-quils-ne-savent-pas" title="Permanent link">&para;</a></h2>
+<p>Le dépôt est riche en gardes de rendu, et ils sont bons. Ils partagent une propriété : ils jugent un
+contrôle <strong>isolément</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Garde</th>
+<th>Ce qu'il tient</th>
+<th>Ce qu'il ne voit pas</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>LisibiliteCapture</code></td>
+<td>un texte tient dans son cadre, sans ellipse ni compression</td>
+<td>deux contrôles qui ne se ressemblent pas</td>
+</tr>
+<tr>
+<td><code>ContrasteAATest</code></td>
+<td>une surface se détache de son fond</td>
+<td>deux surfaces qui se détachent chacune, mais pas l'une de l'autre</td>
+</tr>
+<tr>
+<td><code>ScenesHabilleesTest</code></td>
+<td>toute fenêtre porte le trio du chrome</td>
+<td>ce que les feuilles font une fois posées</td>
+</tr>
+<tr>
+<td><code>PoliceCouvreLIhmTest</code></td>
+<td>chaque glyphe existe dans la police embarquée</td>
+<td>l'alignement de deux libellés voisins</td>
+</tr>
+<tr>
+<td>garde anti-troncature</td>
+<td>un libellé n'est pas rogné</td>
+<td>un libellé rogné <strong>parce que son voisin a grandi</strong></td>
+</tr>
+</tbody>
+</table>
+<p>La propriété manquante n'est pas la lisibilité d'un contrôle : c'est la <strong>cohérence d'une rangée</strong>.
+Elle porte sur des rapports - même hauteur, même famille visuelle, même poids - et non sur des seuils.</p>
+<h2 id="la-decision">La décision<a class="headerlink" href="#la-decision" title="Permanent link">&para;</a></h2>
+<p><strong>1. Cette lacune s'écrit, plutôt que de se croire couverte.</strong> Un dépôt qui a huit gardes de rendu
+donne l'impression que le rendu est gardé. Il ne l'est pas sur cet axe, et la conséquence pratique est
+qu'un vert complet ne dispense <strong>jamais</strong> de regarder une rangée.</p>
+<p><strong>2. On ne fabrique pas de garde pour autant, et c'est délibéré.</strong> Un test « tous les contrôles d'une
+<code>HBox</code> ont la même hauteur » rougirait sur du travail correct - une barre porte légitimement des
+entrées plus basses que ses actions, et « + Filtre » garde délibérément une apparence distincte parce
+que c'est une affordance d'ajout. Un garde qui crie sur du bon travail est un garde qu'on apprend à
+ignorer (<a href="../3774-le-clip-se-taille-sur-le-test/">ADR 3774</a>, point 3).</p>
+<p><strong>3. Ce qui est mécanisable l'a été.</strong> Ce qu'on pouvait rendre déterministe l'est :</p>
 <ul>
-<li><strong>Backend : <code>java.util.logging</code> (JUL).</strong> Zéro dépendance, cohérent avec le packaging (shade + jpackage). Un <code>FileHandler</code> tournant vers <code>&lt;workspace&gt;/logs/</code> + console, installé une fois à <code>App.start()</code> et <code>Cli.main()</code>. Les tests restent silencieux.</li>
-<li><strong>La sévérité se décide à l'émission</strong>, selon la <strong>nature</strong> de l'issue :</li>
-<li>une <strong>annulation</strong> (<code>OperationAnnuleeException</code>) ou un <strong>refus métier</strong> (<code>RegleMetierException</code>, et les <code>IllegalArgumentException</code> des validateurs) sont des issues <strong>normales</strong> → <strong>FINE</strong>, sans pile ;</li>
-<li>seul un <code>Throwable</code> <strong>inattendu</strong> (un vrai bug) part en <strong>WARNING/SEVERE avec</strong> sa pile.</li>
+<li>un <strong>jeton</strong> <code>-hauteur-controle-barre</code> dans <code>palette.css</code>, plutôt que cinq valeurs recopiées dans
+  cinq classes qui doivent rester d'accord ;</li>
+<li>une valeur choisie sur ce que les boutons <strong>rendaient déjà</strong> - 34 px - pour que l'alignement parte de
+  l'existant et non d'une valeur inventée.</li>
 </ul>
+<p><strong>4. ⚠️ Une classe qui nomme une intention sans rien faire est pire qu'une absence de classe.</strong> Cinq
+boutons portaient <code>action-primaire</code> / <code>action-secondaire</code>, que <strong>nulle feuille ne définit</strong>. Un lecteur
+de la source les croyait stylés ; un bouton nu, lui, ne ment pas. Ces deux classes ont été remplacées
+par les réelles.</p>
+<h2 id="ce-que-la-sequence-a-coute-et-qui-est-instructif">Ce que la séquence a coûté, et qui est instructif<a class="headerlink" href="#ce-que-la-sequence-a-coute-et-qui-est-instructif" title="Permanent link">&para;</a></h2>
+<p>⚠️ <strong>Trois causes supposées ont été écartées par la mesure avant la bonne</strong>, sur un seul aperçu refusé
+par le garde anti-troncature :</p>
+<table>
+<thead>
+<tr>
+<th>Cause supposée</th>
+<th>Ce que la mesure a dit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>l'espacement de la rangée</td>
+<td>rogné à 6 par #3952, puis à 4 : <strong>6 px gagnés sur 12 manquants</strong></td>
+</tr>
+<tr>
+<td>la largeur de la scène de capture</td>
+<td>portée à 1080, <strong>l'image est restée à 760</strong></td>
+</tr>
+<tr>
+<td>le plafond de colonne du formulaire</td>
+<td><strong>620 px</strong>, documenté, et jamais regardé</td>
+</tr>
+</tbody>
+</table>
+<p>Les deux premières auraient « marché », au sens où le garde serait passé. C'est le mode de panne à
+retenir : <strong>rogner jusqu'à ce que le garde passe est indiscernable, dans le journal, d'avoir corrigé la
+cause.</strong> Le plafond porté à 640, l'espacement a retrouvé sa valeur d'origine - le rognage de #3952
+traitait déjà le symptôme.</p>
+<p>Et une quatrième, après coup : la largeur du ☰. J'aurais parié sur la hauteur ; c'est une <strong>bissection</strong>
+sur les commits, et non un raisonnement, qui a désigné le bon.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Un échec inattendu laisse <strong>toujours</strong> une trace horodatée avec pile dans <code>&lt;workspace&gt;/logs/</code>, même si son message est nul - exactement la classe de bug visée.</li>
-<li>Les refus et annulations <strong>n'encombrent pas</strong> le journal d'erreurs : il reste lisible.</li>
-<li>La règle vaut à <strong>chaque surface</strong> : l'IHM route ses <code>Throwable</code> via un helper partagé ; la CLI applique la même distinction dans son handler d'exécution (un refus de validation n'y est plus une trace SEVERE).</li>
-<li>Corollaire outillage : un menu « Ouvrir le dossier des journaux » rend la trace accessible sans fouiller le disque.</li>
+<li>Toute revue visuelle regarde une <strong>rangée</strong>, pas un contrôle. La passe 8 du cycle dit déjà « ouvrir
+  les captures une par une » ; il faut y lire « et regarder ce qui est à côté ».</li>
+<li>Un changement dans <code>design.css</code> touche <strong>tous</strong> les écrans. La vérification locale de ce chantier
+  avait couvert cinq features sur six et manqué <code>audio.view</code> : c'est la CI qui a trouvé le test cassé.
+  Une feuille partagée se vérifie sur la suite entière, pas sur une sélection.</li>
+<li>Les 46 aperçus modifiés par ce chantier sont la trace de ce qu'une feuille partagée déplace.</li>
 </ul>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Une dépendance de logging (SLF4J+backend, Log4j).</strong> Alourdit le module-graph pour un besoin que JUL couvre, alors que jlink modulaire est déjà exclu.</li>
-<li><strong>Tout journaliser au même niveau.</strong> Noie les bugs sous les refus normaux : le journal devient du bruit qu'on cesse de consulter.</li>
+<li><strong>Un garde d'égalité des hauteurs par conteneur.</strong> Voir le point 2 : il rougirait sur des
+  différences voulues, et la première exception légitime le ferait désactiver.</li>
+<li><strong>Ne rien écrire, puisque le correctif est livré.</strong> C'est ce qui garantit que la prochaine fois se
+  découvrira de la même façon, c'est-à-dire par hasard et par quelqu'un d'autre.</li>
 </ul>
 
 
@@ -6399,7 +6561,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../0007-retours-http-type-scelle-reponse-api/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 0007 · Retours HTTP scellés (ReponseApi)">
+          <a href="../3990-le-texte-se-lit-le-json-se-parse/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3990 · Le texte se lit, le JSON se parse">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6409,20 +6571,20 @@
                 Précédent
               </span>
               <div class="md-ellipsis">
-                0007 · Retours HTTP scellés (ReponseApi)
+                3990 · Le texte se lit, le JSON se parse
               </div>
             </div>
           </a>
         
         
           
-          <a href="../0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 0009 · La nuit comme unité">
+          <a href="../../recette/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Méthode">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                0009 · La nuit comme unité
+                Méthode
               </div>
             </div>
             <div class="md-footer__button md-icon">
