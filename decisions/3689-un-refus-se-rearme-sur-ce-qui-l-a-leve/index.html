@@ -4841,6 +4841,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#amendement-3946-pas-de-rearmement-ne-veut-pas-dire-coince" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amendement (#3946) : « pas de réarmement » ne veut pas dire « coincé »
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6298,6 +6309,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#amendement-3946-pas-de-rearmement-ne-veut-pas-dire-coince" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amendement (#3946) : « pas de réarmement » ne veut pas dire « coincé »
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -6377,7 +6399,8 @@ offerte ; ça ne le sera plus le jour où elle cessera de l'être ». #3687 est 
 <ul>
 <li><strong>401 / 403</strong> - authentification, droits S3, URL signée expirée. Une <strong>reconnexion réussie</strong> peut les
   lever ;</li>
-<li><strong>400 / 422</strong> et autres 4xx - le contenu lui-même est refusé. Aucun événement extérieur ne le répare.</li>
+<li><strong>400 / 422</strong> et autres 4xx - le contenu lui-même est refusé. <strong>Aucun événement extérieur</strong> ne le
+  répare : il faut que le contenu change (voir l'amendement #3946 en fin de page).</li>
 </ul>
 <p>Le bouton ne réapparaît donc que quand <strong>quelque chose a réellement changé</strong>.</p>
 <h2 id="ce-que-la-decision-a-coute-et-pourquoi-cetait-le-prix-juste">Ce que la décision a coûté, et pourquoi c'était le prix juste<a class="headerlink" href="#ce-que-la-decision-a-coute-et-pourquoi-cetait-le-prix-juste" title="Permanent link">&para;</a></h2>
@@ -6404,6 +6427,27 @@ encore vrai. La prochaine tentative l'écrasera.</p>
 geste qui le lèverait est la <strong>régénération de l'archive</strong>, et il n'est pas câblé ici - une issue de
 suite le fera si le besoin se présente. Réarmer sur autre chose ramènerait le bouton que #3687 vient
 de faire taire.</p>
+<h2 id="amendement-3946-pas-de-rearmement-ne-veut-pas-dire-coince">Amendement (#3946) : « pas de réarmement » ne veut pas dire « coincé »<a class="headerlink" href="#amendement-3946-pas-de-rearmement-ne-veut-pas-dire-coince" title="Permanent link">&para;</a></h2>
+<p>L'issue de suite annoncée ci-dessus a été ouverte, puis <strong>fermée sans code</strong> : sa prémisse était
+fausse, et cette page y avait contribué.</p>
+<p>« Aucun événement extérieur ne le répare » vaut pour le <strong>drapeau</strong> <code>echec_definitif</code>, qu'aucun
+mécanisme ne remet à zéro. Il ne vaut <strong>pas</strong> pour l'unité, qui repart au dépôt suivant :</p>
+<ul>
+<li><code>restantes()</code> rend <code>WHERE statut != DEPOSE</code> : les refus définitifs en font partie ;</li>
+<li><code>DepotVigieChiro.deposer</code> les soumet <strong>tous</strong>, sans jamais consulter <code>definitif</code> - il ne fait que
+  l'enregistrer ;</li>
+<li><code>synchroniserPlan</code> <strong>conserve</strong> une ligne dont l'identifiant subsiste, et régénérer produit les
+  mêmes identifiants depuis la même liste source, donc la même empreinte : <code>exigerLotInchange</code> ne
+  refuse pas.</li>
+</ul>
+<p>Mesuré par <code>DepotVigieChiroTest#un_refus_definitif_repart_au_depot_suivant</code> : un 422, puis une archive
+régénérée que la plateforme accepte, et l'unité passe DÉPOSÉ au second dépôt.</p>
+<p>⚠️ <strong>Ce que #3687 a retiré, c'est la PROMESSE d'une reprise, pas la POSSIBILITÉ d'un nouvel essai.</strong>
+Confondre les deux a produit une issue, un avertissement faux dans la documentation utilisateur, et
+une assertion de test qui verrouillait la confusion - tous trois corrigés par #3946.</p>
+<p><strong>Conséquence sur ce que le produit dit</strong> : le geste étant vérifié, il se nomme (ADR 3854). Le compte
+rendu et la CLI conseillent désormais « régénérez les archives, puis relancez le téléversement » au
+lieu de se taire.</p>
 
 
 
