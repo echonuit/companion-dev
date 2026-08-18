@@ -4840,6 +4840,34 @@
   
   
     <li class="md-nav__item">
+      <a href="3689-un-refus-se-rearme-sur-ce-qui-l-a-leve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3689 · Un refus se réarme sur ce qui a levé sa cause
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="3827-une-affirmation-de-securite-se-lit-ou-elle-n-existe-pas/" class="md-nav__link">
         
   
@@ -7073,6 +7101,11 @@
 <td><a href="3470-un-message-d-erreur-ne-montre-jamais-le-nom-de-son-enveloppe/">3470</a></td>
 <td>Un utilisateur a lu « java.lang.reflect.InvocationTargetException » et rien d autre de tout l incident. Le message n etait pas ABSENT mais PRESENT ET INUTILE, ce qui explique qu aucun test ne le signale : un texte non vide ressemble a un message. ⚠️ Le defaut n est PAS propre a la reflexion - TOUS les constructeurs <code>(Throwable)</code> de la JDK posent le <code>toString()</code> de leur cause comme message. On montre donc le message le plus profond QUI PARLE, jamais celui du maillon qu on tient. Ce n est PAS « prendre la cause racine » : la plus profonde peut etre un NPE muet, et derouler jusqu au bout appauvrirait l alerte en ayant l air de la corriger. La troisieme condition - ecarter un message qui n est que le toString() de sa cause - vient d un ROUGE INATTENDU ; sans elle on remplacait un nom de classe par un autre. Trois chemins non nominaux tenus, dont la chaine CYCLIQUE que <code>initCause</code> permet</td>
 <td>#3470, finitions de recette (#3424)</td>
+</tr>
+<tr>
+<td><a href="3689-un-refus-se-rearme-sur-ce-qui-l-a-leve/">3689</a></td>
+<td>Depuis #3687 l ecran cesse de proposer une reprise sur une unite refusee definitivement, mais RIEN ne la rearme quand la cause exterieure est levee : une nuit dont toutes les archives ont ete refusees reste coincee. Les trois declencheurs evidents rearment tous A COTE de la cause - au lancement (un jeton se renouvelle a la CONNEXION), sur un geste « forcer la reprise » (le bouton qui ment, sous un autre nom), apres un delai (un droit refuse ne se repare pas seul). Une unite se rearme donc sur l evenement qui pouvait plausiblement lever SA cause : 401/403 par une reconnexion reussie, 400/422 jamais. ⚠️ Le prix : le statut n existait que dans le TEXTE de message_erreur, que le depot s interdit de relire - d ou une colonne cause_refus (V41), decidee a l emission</td>
+<td>#3689, suite de #3900</td>
 </tr>
 </tbody>
 </table>
