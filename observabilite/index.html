@@ -6128,6 +6128,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quand-cest-le-message-qui-explose-3956" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quand c'est le MESSAGE qui explose (#3956)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#dette-soldee" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6329,6 +6340,17 @@
     <span class="md-ellipsis">
       
         Ce que l'utilisateur lit d'une exception (#3470, #3947)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quand-cest-le-message-qui-explose-3956" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quand c'est le MESSAGE qui explose (#3956)
       
     </span>
   </a>
@@ -6543,6 +6565,38 @@ commande. Un terminal n'a pas de menu principal : lui en désigner un produirait
 donc d'apparence correcte, et inapplicable. C'est le défaut de l'ADR 3470 déplacé d'un cran par sa
 propre correction, et c'est pourquoi <code>OU_REGARDER_IHM</code> et <code>OU_REGARDER_CLI</code> sont deux constantes.</p>
 <p>Tout filet qui montre une exception à l'utilisateur passe par <code>CauseLisible</code>.</p>
+<h2 id="quand-cest-le-message-qui-explose-3956">Quand c'est le MESSAGE qui explose (#3956)<a class="headerlink" href="#quand-cest-le-message-qui-explose-3956" title="Permanent link">&para;</a></h2>
+<p>Le cas précédent suppose qu'on puisse <strong>lire</strong> le message. Sous Java 25, une panne d'injection Guice
+n'en offre pas : <code>ProvisionException.getMessage()</code> cherche les numéros de ligne pour composer son
+rapport, lit du bytecode <strong>major 69</strong> avec l'ASM embarqué de Guice 7.0.0, et lève
+<code>IllegalArgumentException: Unsupported class file major version 69</code>.</p>
+<p>⚠️ <strong>La pile se lit à l'envers de ce qu'on croit.</strong> Guice a d'abord échoué à fournir quelque chose ;
+c'est en <strong>racontant</strong> cet échec qu'il a explosé. Le message n'annonce pas le défaut, il annonce la
+panne du dispositif qui devait l'annoncer - et le vrai défaut est à trois <code>Caused by</code> de là. Guice le
+dit une ligne plus haut, et personne ne la lit :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>AVERTISSEMENT: Failed loading line numbers. ASM is probably out of date.
+</code></pre></div>
+<p><strong>Ce que le dépôt fait.</strong> <code>SignalementIncident</code> garde le chemin riche - il porte la pile entière et
+sert dans tous les autres cas - et <strong>retombe</strong> sur une description construite à la main quand le
+formatage lève. Chaque cause y est lue défensivement :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Exception non capturée sur le fil « JavaFX Application Thread ». Son rapport n'a pas pu être formaté
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>(java.lang.IllegalArgumentException : Unsupported class file major version 69). La chaîne des causes,
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>lue sans le formateur :
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    → com.google.inject.ProvisionException : message illisible (java.lang.IllegalArgumentException)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        à fr.univ_amu.iut.App.start(App.java:102)
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    causé par java.lang.Error : Unresolved compilation problem:
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>        à fr.univ_amu.iut.audit.view.ActionResetGuide.&lt;init&gt;(ActionResetGuide.java:1)
+</code></pre></div>
+<p>On perd la pile complète ; on garde le <strong>défaut</strong>. Le parcours des causes est borné à douze : une
+chaîne n'est pas garantie acyclique une fois que des <code>initCause</code> s'en mêlent, et un filet qui
+bouclerait ici referait #3700 par un autre chemin.</p>
+<p><strong>À la main, pour aller plus vite.</strong> Le drapeau désarme le formateur de Guice et fait paraître la
+cause immédiatement :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./mvnw<span class="w"> </span>javafx:run<span class="w"> </span>-Dguice_include_stack_traces<span class="o">=</span>OFF
+</code></pre></div>
+<p>⚠️ <strong>Le défaut est en amont.</strong> L'ASM de Guice 7.0.0 ne lit pas major 69 ; une version qui le lit
+règle tout, et rien de ce qui précède n'est perdu - le repli ne se déclenche que si le formatage
+échoue.</p>
 <h2 id="dette-soldee">Dette soldée<a class="headerlink" href="#dette-soldee" title="Permanent link">&para;</a></h2>
 <p>L'audit de suite (#1543, <strong>clos</strong>) a résorbé les points restants : les opérations de fond lourdes
 (import et publication VigieChiro, relevé d'analyses, rattachement, lancement du traitement serveur)
