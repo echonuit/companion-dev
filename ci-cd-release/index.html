@@ -7739,6 +7739,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>verifie-apt.sh</code></td>
+<td>aucun workflow n'appelle <code>apt-get</code> en direct : la porte <code>installer-paquets.sh</code> borne les délais et reprend</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>verifie-renvois-workflows.sh</code></td>
 <td>chaque <code>workflow_run</code> vise le <code>name:</code> d'un workflow existant</td>
 <td><code>lint.yml</code></td>
