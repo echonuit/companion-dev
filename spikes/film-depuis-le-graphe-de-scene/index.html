@@ -6237,6 +6237,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#4-lallocation-le-bassin-de-tampons-nest-pas-justifie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. L'allocation : le bassin de tampons n'est pas justifié
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ce-qui-reste-a-verifier" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6581,6 +6592,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#4-lallocation-le-bassin-de-tampons-nest-pas-justifie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. L'allocation : le bassin de tampons n'est pas justifié
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ce-qui-reste-a-verifier" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6817,27 +6839,52 @@ contenu occupe x de 90 à 1189 et y de 90 à 810, marges de 90 et 89 pixels, tit
 <code>CameraDeSceneTest</code> garde le placement en cinq cas.</p>
 <p>Ce qui rendait ce défaut dangereux est sa modestie : <strong>un bord amputé de cinquante pixels se lit
 comme une mise en page</strong>, pas comme un défaut. Il n'aurait fait rougir aucun test.</p>
+<h3 id="4-lallocation-le-bassin-de-tampons-nest-pas-justifie">4. L'allocation : le bassin de tampons n'est pas justifié<a class="headerlink" href="#4-lallocation-le-bassin-de-tampons-nest-pas-justifie" title="Permanent link">&para;</a></h3>
+<p><code>composer()</code> alloue une toile neuve et <code>snapshot</code> un <code>WritableImage</code> neuf à chaque image. La
+question posée était : faut-il un bassin de tampons rendus par le scribe après écriture ?</p>
+<p><strong>Non</strong>, et la mesure le dit. On a poussé la cadence jusqu'à ce que le compteur d'images perdues
+bouge, sur <code>ParcoursNavigationE2ETest</code> :</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: right;">Cadence</th>
+<th style="text-align: right;">Images écrites</th>
+<th style="text-align: right;">Images perdues</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: right;">10 img/s (nominale)</td>
+<td style="text-align: right;">212</td>
+<td style="text-align: right;"><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">25 img/s</td>
+<td style="text-align: right;">417</td>
+<td style="text-align: right;"><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">50 img/s</td>
+<td style="text-align: right;">710</td>
+<td style="text-align: right;"><strong>0</strong></td>
+</tr>
+<tr>
+<td style="text-align: right;">50 img/s, file étranglée à 1 au lieu de 60</td>
+<td style="text-align: right;">703</td>
+<td style="text-align: right;"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Le compteur n'est pas mort, il a été éprouvé</strong> : en ralentissant le scribe de 120 ms par image, il
+rapporte 45 pertes. Un zéro non éprouvé n'aurait rien valu.</p>
+<p>À cinq fois la cadence nominale, et même avec une file de profondeur 1, rien ne se perd. Le bassin
+serait donc une optimisation que rien ne justifie, et il coûterait cher en risque : il faudrait que
+le scribe rende chaque tampon, et un tampon rendu trop tôt réécrirait une image encore en attente.</p>
+<p>Le piège reste documenté au-dessus de <code>composer()</code>, parce que la tentation, elle, reviendra.</p>
 <h3 id="ce-qui-reste-a-verifier">Ce qui reste à vérifier<a class="headerlink" href="#ce-qui-reste-a-verifier" title="Permanent link">&para;</a></h3>
-<p>Ce conteneur n'a pas de banc de référence pour les deux points suivants.</p>
-<ol>
-<li>
 <p><strong>Le pipeline logiciel.</strong> Le rendu passe par Prism SW en headless. Quelques effets et mélanges
-   diffèrent à la marge du rendu matériel. Sans conséquence pour un film de recette, à vérifier
-   une fois si un test perceptif juge au pixel près.</p>
-</li>
-<li>
-<p><strong>L'allocation.</strong> <code>composer()</code> alloue une toile neuve et <code>snapshot</code> un <code>WritableImage</code> neuf à
-   chaque image, soit de l'ordre de 45 Mo par seconde à 10 images/s en 1280x900. À surveiller en
-   même temps que le débit.</p>
-</li>
-</ol>
-<p>⚠️ <strong>Réutiliser un ou deux tampons ne marcherait pas</strong>, et c'est un piège qui rend un film
-   silencieusement faux plutôt qu'absent : la file a une profondeur de 60 et le fil scribe consomme
-   en différé, donc jusqu'à 60 images attendent leur écriture. Écrire par-dessus l'une d'elles
-   remplacerait une image passée par une image présente. La forme juste est un <strong>petit bassin de
-   tampons</strong> que le scribe <strong>rend</strong> après écriture, le producteur comptant comme perdue une image
-   pour laquelle aucun tampon n'est libre, exactement comme il compte déjà celles que la file
-   refuse.</p>
+diffèrent à la marge du rendu matériel. Sans conséquence pour un film de recette, à vérifier une
+fois si un test perceptif juge au pixel près.</p>
 <p>Deux limites assumées : le curseur n'est pas rendu (il se dessine à partir d'un <code>EventFilter</code> sur
 <code>MOUSE_MOVED</code>, ce qui permet en échange de surligner le nœud touché), et les boîtes natives
 <code>FileChooser</code> restent invisibles. Cette seconde limite ne coûte rien ici, puisque TestFX ne sait pas
