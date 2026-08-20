@@ -7943,6 +7943,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>verifie-conditions-booleennes.sh</code></td>
+<td>une entrée <code>type: boolean</code> n'est jamais comparée à une <strong>chaîne</strong> dans un <code>if:</code> : <code>== 'true'</code> vaut toujours faux, <code>!= 'true'</code> toujours vrai, et le témoin « sans gestionnaire de fenêtres » installait donc quand même openbox</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>verifie-renvois-workflows.sh</code></td>
 <td>chaque <code>workflow_run</code> vise le <code>name:</code> d'un workflow existant</td>
 <td><code>lint.yml</code></td>
