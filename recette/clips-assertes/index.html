@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/recette/fixtures/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/recette/clips-assertes/">
       
       
-        <link rel="prev" href="../">
+        <link rel="prev" href="../clips/">
       
       
-        <link rel="next" href="../clips/">
+        <link rel="next" href="../sessions/s1-premier-contact/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Fixtures (générateur de cartes SD) - VigieChiro Companion · Doc développeur</title>
+        <title>Clips des cas assertés - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fixtures-le-generateur-de-cartes-sd" class="md-skip">
+        <a href="#les-clips-des-cas-assertes" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Fixtures (générateur de cartes SD)
+              Clips des cas assertés
             
           </span>
         </div>
@@ -5645,37 +5645,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Fixtures (générateur de cartes SD)
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../fixtures/" class="md-nav__link">
         
   
   
@@ -5691,92 +5664,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#le-format-de-spec" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Le format de spec
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#les-10-cartes-de-recette" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Les 10 cartes de recette
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#regenerer-les-cartes" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Régénérer les cartes
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#le-garde-fou" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Le garde-fou
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#provoquer-un-refus-de-depot" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Provoquer un refus de dépôt
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ou-ca-vit" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Où ça vit
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5814,10 +5701,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../clips-assertes/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clips des cas assertés
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -5833,6 +5747,821 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accueilapparencetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        AccueilApparenceTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AccueilApparenceTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-01-prismes_exposent_libelle_et_icone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-01 · prismes_exposent_libelle_et_icone
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#contratcartesaccueiltest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ContratCartesAccueilTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ContratCartesAccueilTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-01-chaque_carte_est_presentable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-01 · chaque_carte_est_presentable
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#mainviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MainViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MainViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-01-accueil_regroupe_en_deux_prismes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-01 · accueil_regroupe_en_deux_prismes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-02-bandeau_masque_si_base_vide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-02 · bandeau_masque_si_base_vide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-03-ctrl_f_active_la_recherche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-03 · ctrl_f_active_la_recherche
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-03-fil_ariane_reflete_le_parcours" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-03 · fil_ariane_reflete_le_parcours
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-09-bandeau_suit_une_mutation_sans_navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-09 · bandeau_suit_une_mutation_sans_navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-10-bandeau_suit_une_restauration_sans_navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-10 · bandeau_suit_une_restauration_sans_navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-29-menu_reglages_ouvre_l_ecran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-29 · menu_reglages_ouvre_l_ecran
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connexionmodaleviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConnexionModaleViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ConnexionModaleViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-04-connecter_sans_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-04 · connecter_sans_token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-04-copier_marque_page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-04 · copier_marque_page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-04-ouvrir_site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-04 · ouvrir_site
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connexionviewmodeltest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConnexionViewModelTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ConnexionViewModelTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-05-connecter_vide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-05 · connecter_vide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-06-connecter_invalide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-06 · connecter_invalide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-07-injoignable_conserve_le_jeton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-07 · injoignable_conserve_le_jeton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-08-connecter_valide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-08 · connecter_valide
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connexionmodaleconnecteeviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConnexionModaleConnecteeViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ConnexionModaleConnecteeViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-11-deconnexion_confirme_avant_effacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-11 · deconnexion_confirme_avant_effacement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messitesetatvideviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MesSitesEtatVideViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MesSitesEtatVideViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-12-l_etat_vide_explique_le_prerequis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-12 · l_etat_vide_explique_le_prerequis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-12-l_etat_vide_parait_sur_une_base_vierge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-12 · l_etat_vide_parait_sur_une_base_vierge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-12-l_etat_vide_porte_sa_porte_de_sortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-12 · l_etat_vide_porte_sa_porte_de_sortie
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modalesiteviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModaleSiteViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ModaleSiteViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-13-bouton_ferme_tant_que_le_carre_est_incomplet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-13 · bouton_ferme_tant_que_le_carre_est_incomplet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-23-edition_pre_remplit_et_enregistre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-23 · edition_pre_remplit_et_enregistre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-25-annuler_ne_cree_rien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-25 · annuler_ne_cree_rien
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validationformulairetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ValidationFormulaireTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ValidationFormulaireTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-13-gater_bouton_suit_la_validite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-13 · gater_bouton_suit_la_validite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-13-marquer_invalide_bascule_la_classe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-13 · marquer_invalide_bascule_la_classe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messitesviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MesSitesViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MesSitesViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-14-affiche_les_cartes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-14 · affiche_les_cartes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-15-entree_ouvre_le_detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-15 · entree_ouvre_le_detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-15-espace_ouvre_le_detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-15 · espace_ouvre_le_detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-15-une_carte_est_atteignable_au_clavier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-15 · une_carte_est_atteignable_au_clavier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-16-bouton_synchro_visible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-16 · bouton_synchro_visible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-17-overlay_occupation_masque_apres_chargement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-17 · overlay_occupation_masque_apres_chargement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sitedetailviewmodeltest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SiteDetailViewModelTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SiteDetailViewModelTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-18-fiche_identite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-18 · fiche_identite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-19-suppression_site_refusee_avec_passage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-19 · suppression_site_refusee_avec_passage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-20-cartes_points_gps_et_compteur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-20 · cartes_points_gps_et_compteur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-21-passages_tries_par_date_decroissante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-21 · passages_tries_par_date_decroissante
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sitedetailrenommageviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SiteDetailRenommageViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SiteDetailRenommageViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-22-renommer_met_a_jour_l_entete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-22 · renommer_met_a_jour_l_entete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modalepointviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModalePointViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ModalePointViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-24-ajouter_un_point_valide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-24 · ajouter_un_point_valide
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actionmenuwiringtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ActionMenuWiringTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ActionMenuWiringTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-28-agrege_et_ordonne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-28 · agrege_et_ordonne
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modalesiteverifiercarreviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModaleSiteVerifierCarreViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ModaleSiteVerifierCarreViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-30-carre_libre_le_verdict_s_affiche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-30 · carre_libre_le_verdict_s_affiche
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-31-carre_deja_declare_avertit_dans_la_modale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-31 · carre_deja_declare_avertit_dans_la_modale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-32-corriger_le_carre_efface_le_verdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-32 · corriger_le_carre_efface_le_verdict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-33-hors_connexion_l_encart_ne_nie_pas_le_carre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-33 · hors_connexion_l_encart_ne_nie_pas_le_carre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-34-recuperer_ferme_la_modale_et_passe_le_carre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-34 · recuperer_ferme_la_modale_et_passe_le_carre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-36-creer_se_ferme_avec_son_motif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-36 · creer_se_ferme_avec_son_motif
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigationsitesrapatriementtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NavigationSitesRapatriementTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NavigationSitesRapatriementTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-34-le_rapatriement_ouvre_la_fiche_et_rend_compte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-34 · le_rapatriement_ouvre_la_fiche_et_rend_compte
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rapatriementcarretest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RapatriementCarreTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RapatriementCarreTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-35-un_carre_rapatrie_est_rattache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-35 · un_carre_rapatrie_est_rattache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -6505,68 +7234,797 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#le-format-de-spec" class="md-nav__link">
+  <a href="#accueilapparencetest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Le format de spec
+        AccueilApparenceTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AccueilApparenceTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-01-prismes_exposent_libelle_et_icone" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-01 · prismes_exposent_libelle_et_icone
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#les-10-cartes-de-recette" class="md-nav__link">
+  <a href="#contratcartesaccueiltest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les 10 cartes de recette
+        ContratCartesAccueilTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ContratCartesAccueilTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-01-chaque_carte_est_presentable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-01 · chaque_carte_est_presentable
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#regenerer-les-cartes" class="md-nav__link">
+  <a href="#mainviewtest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Régénérer les cartes
+        MainViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MainViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-01-accueil_regroupe_en_deux_prismes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-01 · accueil_regroupe_en_deux_prismes
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#le-garde-fou" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#s1-02-bandeau_masque_si_base_vide" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Le garde-fou
+        S1-02 · bandeau_masque_si_base_vide
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#provoquer-un-refus-de-depot" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#s1-03-ctrl_f_active_la_recherche" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Provoquer un refus de dépôt
+        S1-03 · ctrl_f_active_la_recherche
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#ou-ca-vit" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#s1-03-fil_ariane_reflete_le_parcours" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Où ça vit
+        S1-03 · fil_ariane_reflete_le_parcours
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-09-bandeau_suit_une_mutation_sans_navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-09 · bandeau_suit_une_mutation_sans_navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-10-bandeau_suit_une_restauration_sans_navigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-10 · bandeau_suit_une_restauration_sans_navigation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-29-menu_reglages_ouvre_l_ecran" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-29 · menu_reglages_ouvre_l_ecran
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connexionmodaleviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConnexionModaleViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ConnexionModaleViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-04-connecter_sans_token" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-04 · connecter_sans_token
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-04-copier_marque_page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-04 · copier_marque_page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-04-ouvrir_site" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-04 · ouvrir_site
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connexionviewmodeltest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConnexionViewModelTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ConnexionViewModelTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-05-connecter_vide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-05 · connecter_vide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-06-connecter_invalide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-06 · connecter_invalide
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-07-injoignable_conserve_le_jeton" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-07 · injoignable_conserve_le_jeton
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-08-connecter_valide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-08 · connecter_valide
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#connexionmodaleconnecteeviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ConnexionModaleConnecteeViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ConnexionModaleConnecteeViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-11-deconnexion_confirme_avant_effacement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-11 · deconnexion_confirme_avant_effacement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messitesetatvideviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MesSitesEtatVideViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MesSitesEtatVideViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-12-l_etat_vide_explique_le_prerequis" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-12 · l_etat_vide_explique_le_prerequis
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-12-l_etat_vide_parait_sur_une_base_vierge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-12 · l_etat_vide_parait_sur_une_base_vierge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-12-l_etat_vide_porte_sa_porte_de_sortie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-12 · l_etat_vide_porte_sa_porte_de_sortie
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modalesiteviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModaleSiteViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ModaleSiteViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-13-bouton_ferme_tant_que_le_carre_est_incomplet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-13 · bouton_ferme_tant_que_le_carre_est_incomplet
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-23-edition_pre_remplit_et_enregistre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-23 · edition_pre_remplit_et_enregistre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-25-annuler_ne_cree_rien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-25 · annuler_ne_cree_rien
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#validationformulairetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ValidationFormulaireTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ValidationFormulaireTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-13-gater_bouton_suit_la_validite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-13 · gater_bouton_suit_la_validite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-13-marquer_invalide_bascule_la_classe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-13 · marquer_invalide_bascule_la_classe
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#messitesviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        MesSitesViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MesSitesViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-14-affiche_les_cartes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-14 · affiche_les_cartes
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-15-entree_ouvre_le_detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-15 · entree_ouvre_le_detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-15-espace_ouvre_le_detail" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-15 · espace_ouvre_le_detail
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-15-une_carte_est_atteignable_au_clavier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-15 · une_carte_est_atteignable_au_clavier
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-16-bouton_synchro_visible" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-16 · bouton_synchro_visible
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-17-overlay_occupation_masque_apres_chargement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-17 · overlay_occupation_masque_apres_chargement
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sitedetailviewmodeltest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SiteDetailViewModelTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SiteDetailViewModelTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-18-fiche_identite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-18 · fiche_identite
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-19-suppression_site_refusee_avec_passage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-19 · suppression_site_refusee_avec_passage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-20-cartes_points_gps_et_compteur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-20 · cartes_points_gps_et_compteur
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-21-passages_tries_par_date_decroissante" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-21 · passages_tries_par_date_decroissante
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sitedetailrenommageviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SiteDetailRenommageViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SiteDetailRenommageViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-22-renommer_met_a_jour_l_entete" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-22 · renommer_met_a_jour_l_entete
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modalepointviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModalePointViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ModalePointViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-24-ajouter_un_point_valide" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-24 · ajouter_un_point_valide
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#actionmenuwiringtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ActionMenuWiringTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ActionMenuWiringTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-28-agrege_et_ordonne" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-28 · agrege_et_ordonne
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#modalesiteverifiercarreviewtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ModaleSiteVerifierCarreViewTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ModaleSiteVerifierCarreViewTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-30-carre_libre_le_verdict_s_affiche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-30 · carre_libre_le_verdict_s_affiche
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-31-carre_deja_declare_avertit_dans_la_modale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-31 · carre_deja_declare_avertit_dans_la_modale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-32-corriger_le_carre_efface_le_verdict" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-32 · corriger_le_carre_efface_le_verdict
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-33-hors_connexion_l_encart_ne_nie_pas_le_carre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-33 · hors_connexion_l_encart_ne_nie_pas_le_carre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-34-recuperer_ferme_la_modale_et_passe_le_carre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-34 · recuperer_ferme_la_modale_et_passe_le_carre
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s1-36-creer_se_ferme_avec_son_motif" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-36 · creer_se_ferme_avec_son_motif
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#navigationsitesrapatriementtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NavigationSitesRapatriementTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NavigationSitesRapatriementTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-34-le_rapatriement_ouvre_la_fiche_et_rend_compte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-34 · le_rapatriement_ouvre_la_fiche_et_rend_compte
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rapatriementcarretest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        RapatriementCarreTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RapatriementCarreTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s1-35-un_carre_rapatrie_est_rattache" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S1-35 · un_carre_rapatrie_est_rattache
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -6587,7 +8045,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/recette/fixtures.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/recette/clips-assertes.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -6596,229 +8054,230 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/recette/fixtures.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/recette/clips-assertes.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="fixtures-le-generateur-de-cartes-sd">Fixtures : le générateur de cartes SD<a class="headerlink" href="#fixtures-le-generateur-de-cartes-sd" title="Permanent link">&para;</a></h1>
-<p>Les cartes SD de recette (arbres <code>LogPR&lt;serie&gt;.txt</code> + <code>PaRecPR&lt;serie&gt;_THLog.csv</code> + <code>bruts/*.wav</code>)
-pesaient autrefois plusieurs centaines de méga-octets et étaient <strong>faites à la main</strong> : impossibles à
-committer (binaire lourd, dépôt public et forké) et <strong>non rejouables</strong> (rien ne garantissait de les
-reconstruire à l'identique).</p>
-<p>On les décrit désormais par des <strong>specs déclaratives</strong> de quelques kilo-octets, sous
-<code>recette/fixtures/spec/</code>, qu'un <strong>générateur déterministe</strong> matérialise sur disque. La spec est la
-source de vérité ; l'arbre SD n'en est qu'un artefact reconstructible <strong>octet pour octet</strong> : le
-générateur ne tire <strong>aucune</strong> date de l'horloge ni <strong>aucun</strong> octet aléatoire.</p>
-<p>Le générateur vit en <strong>portée test</strong> (<code>src/test/java/fr/univ_amu/iut/recette/</code>) : l'application
-distribuée n'embarque pas la fabrique de fixtures ; ce sont les tests qui fabriquent WAV/ZIP.</p>
-<h2 id="le-format-de-spec">Le format de spec<a class="headerlink" href="#le-format-de-spec" title="Permanent link">&para;</a></h2>
-<p>Une spec est un fichier YAML. Tous les champs ont des valeurs par défaut raisonnables, donc une spec
-reste concise. Exemple commenté (le cas propre) :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">fixture</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sd-nominale</span><span class="w">            </span><span class="c1"># nom de la carte (= nom du sous-dossier généré)</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nt">but</span><span class="p">:</span><span class="w"> </span><span class="s">"Cas</span><span class="nv"> </span><span class="s">propre</span><span class="nv"> </span><span class="s">:</span><span class="nv"> </span><span class="s">6</span><span class="nv"> </span><span class="s">wav,</span><span class="nv"> </span><span class="s">un</span><span class="nv"> </span><span class="s">seul</span><span class="nv"> </span><span class="s">enregistreur,</span><span class="nv"> </span><span class="s">une</span><span class="nv"> </span><span class="s">seule</span><span class="nv"> </span><span class="s">nuit."</span>
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="nt">journal</span><span class="p">:</span><span class="w">                        </span><span class="c1"># journal du capteur LogPR&lt;serie&gt;.txt</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span><span class="nt">present</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                 </span><span class="c1"># false -&gt; aucun journal (mode dégradé)</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w">  </span><span class="nt">serie</span><span class="p">:</span><span class="w"> </span><span class="s">"1925492"</span><span class="w">              </span><span class="c1"># n° de série déclaré (nomme aussi le fichier)</span>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">nuit</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-04-22"</span><span class="w">            </span><span class="c1"># date de la 1re ligne (fixe dateDebut pour l'analyseur)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">sondePresente</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">           </span><span class="c1"># ajoute la ligne « Sonde ... présente »</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">corrompu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">               </span><span class="c1"># true -&gt; journal illisible (aucune série extractible)</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">sessions</span><span class="p">:</span><span class="w">                     </span><span class="c1"># REDÉMARRAGES supplémentaires du capteur (#3898), facultatif</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nuit</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-04-25"</span><span class="w">        </span><span class="c1">#   chacun repose ses paramètres après `nuit` ci-dessus</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">frequenceKhz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256</span><span class="w">         </span><span class="c1">#   et peut annoncer une autre fréquence d'acquisition</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nt">thlog</span><span class="p">:</span><span class="w">                          </span><span class="c1"># relevé climatique PaRecPR&lt;serie&gt;_THLog.csv</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">present</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">mesures</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">                    </span><span class="c1"># nombre de lignes de mesures déterministes</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="nt">wav</span><span class="p">:</span><span class="w">                            </span><span class="c1"># paramètres communs des WAV (RIFF mono 16 bits valide)</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">frequenceHz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">384000</span><span class="w">           </span><span class="c1"># inscrite dans l'en-tête ; divisible par 10 (règle R10)</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nt">dureeSecondes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.5</span><span class="w">            </span><span class="c1"># courte, pour des fixtures légères</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="nt">zip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                       </span><span class="c1"># produit aussi sd-nominale.zip (chemin de décompression)</span>
-<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nt">enregistreurs</span><span class="p">:</span><span class="w">                  </span><span class="c1"># un ou plusieurs enregistreurs présents dans bruts/</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serie</span><span class="p">:</span><span class="w"> </span><span class="s">"1925492"</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">horodatages</span><span class="p">:</span><span class="w">                </span><span class="c1"># PaRecPR&lt;serie&gt;_&lt;yyyyMMdd&gt;_&lt;HHmmss&gt;.wav</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_203922"</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_210515"</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="c1"># fauxWav: ["20260422_211500"]   # octets non-WAV : rejetés à l'import</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="nt">attendu</span><span class="p">:</span><span class="w">                        </span><span class="c1"># contrat de recette (voir « Le garde-fou »)</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="nt">aJournal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">  </span><span class="nt">aReleve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="nt">journalLisible</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">          </span><span class="c1"># false -&gt; l'inspection doit échouer</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="nt">plusieursEnregistreurs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># bandeau « mélange »</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="nt">incoherent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">             </span><span class="c1"># bandeau « incohérence »</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">nuits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                      </span><span class="c1"># nombre de nuits détectées</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="nt">etatNommage</span><span class="p">:</span><span class="w"> </span><span class="s">"BRUT"</span><span class="w">           </span><span class="c1"># BRUT, PREFIXE ou VIDE</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="nt">rejets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">                     </span><span class="c1"># &gt; 0 déclenche la vérification d'import réel</span>
-</code></pre></div>
-<p>Deux variantes utiles :</p>
-<ul>
-<li>
-<p><strong>Préfixe</strong> (carte déjà nommée en session) : un bloc <code>prefixe:</code> ajoute le préfixe R6
-  <code>Car&lt;carre&gt;-&lt;annee&gt;-Pass&lt;passage&gt;-&lt;point&gt;-</code> devant chaque nom de brut.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nt">prefixe</span><span class="p">:</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">carre</span><span class="p">:</span><span class="w"> </span><span class="s">"130711"</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">annee</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2026</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">passage</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">  </span><span class="nt">point</span><span class="p">:</span><span class="w"> </span><span class="s">"Z1"</span>
-</code></pre></div>
-</li>
-<li>
-<p><strong>Horodatages génératifs</strong> (grosses cartes) : au lieu de lister chaque fichier, on décrit une série
-  déterministe.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">enregistreurs</span><span class="p">:</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serie</span><span class="p">:</span><span class="w"> </span><span class="s">"1925492"</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="nt">horodatages</span><span class="p">:</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">      </span><span class="nt">debut</span><span class="p">:</span><span class="w"> </span><span class="s">"20260422_203000"</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">      </span><span class="nt">nombre</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">      </span><span class="nt">intervalleSecondes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">300</span>
-</code></pre></div>
-</li>
-</ul>
-<h2 id="les-10-cartes-de-recette">Les 10 cartes de recette<a class="headerlink" href="#les-10-cartes-de-recette" title="Permanent link">&para;</a></h2>
-<p>Chaque carte exerce <strong>une</strong> pathologie de l'assistant d'import (voir l'étape 5 de
-<a href="../sessions/s2-importer/">S2 · Importer une nuit</a>).</p>
-<table>
-<thead>
-<tr>
-<th>Carte</th>
-<th>Ce qu'elle exerce</th>
-<th>wav</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>sd-nominale</code> (+ <code>.zip</code>)</td>
-<td>cas propre ; l'archive exerce le chemin de décompression</td>
-<td>6</td>
-</tr>
-<tr>
-<td><code>sd-melange</code></td>
-<td>deux enregistreurs dans le même dossier -&gt; bandeau « mélange »</td>
-<td>6</td>
-</tr>
-<tr>
-<td><code>sd-incoherente</code></td>
-<td>journal et wav en désaccord (série + date) -&gt; bandeau « incohérence »</td>
-<td>3</td>
-</tr>
-<tr>
-<td><code>sd-multi-nuits</code></td>
-<td>trois nuits sous un journal unique -&gt; table des nuits</td>
-<td>6</td>
-</tr>
-<tr>
-<td><code>sd-multi-configs</code></td>
-<td>deux nuits, capteur <strong>reconfiguré entre les deux</strong> (384 puis 256 kHz) -&gt; chaque nuit doit recevoir les paramètres de <strong>sa</strong> session (#3460)</td>
-<td>4</td>
-</tr>
-<tr>
-<td><code>sd-sans-journal</code></td>
-<td>aucun <code>LogPR</code> -&gt; mode dégradé (import possible sans journal)</td>
-<td>3</td>
-</tr>
-<tr>
-<td><code>sd-journal-corrompu</code></td>
-<td><code>LogPR</code> illisible -&gt; l'inspection échoue avec un message clair</td>
-<td>3</td>
-</tr>
-<tr>
-<td><code>sd-prefixee</code></td>
-<td>bruts déjà préfixés <code>Car...</code> -&gt; état de nommage <code>PREFIXE</code></td>
-<td>3</td>
-</tr>
-<tr>
-<td><code>sd-rejets</code></td>
-<td>un faux wav parmi huit valides -&gt; l'import aboutit, zone des rejets</td>
-<td>9</td>
-</tr>
-<tr>
-<td><code>sd-grosse</code></td>
-<td>soixante wav -&gt; test de charge (progression, parallélisme, disque)</td>
-<td>60</td>
-</tr>
-</tbody>
-</table>
-<h2 id="regenerer-les-cartes">Régénérer les cartes<a class="headerlink" href="#regenerer-les-cartes" title="Permanent link">&para;</a></h2>
-<p>Le générateur ne fait pas partie du binaire ; on le lance en portée test via un goal de confort
-(non lié à une phase, jamais exécuté en CI ni au packaging) :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>env<span class="w"> </span>-u<span class="w"> </span>DISPLAY<span class="w"> </span>./mvnw<span class="w"> </span>-q<span class="w"> </span>test-compile<span class="w"> </span>exec:java@generer-sd<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-Dexec.args<span class="o">=</span><span class="s2">"recette/fixtures/spec /chemin/vers/dest"</span>
-</code></pre></div>
-<p>Chaque carte est écrite dans <code>dest/&lt;fixture&gt;/</code> (et <code>dest/&lt;fixture&gt;.zip</code> si la spec le demande). Deux
-exécutions produisent des octets <strong>identiques</strong>. Passer une seule spec au lieu du dossier ne génère
-que cette carte.</p>
-<h2 id="le-garde-fou">Le garde-fou<a class="headerlink" href="#le-garde-fou" title="Permanent link">&para;</a></h2>
-<p>Le bloc <code>attendu</code> de chaque spec est un <strong>contrat</strong> vérifié contre le <strong>code réel</strong>, pas contre une
-liste tenue à la main. Deux tests (esprit cliquet, sans JavaFX) amarrent le générateur à la réalité :</p>
-<ol>
-<li><code>GenerationCartesSDCliquetTest</code> : pour <strong>chaque</strong> spec, génère la carte puis vérifie que
-   l'<strong>inspection réelle</strong> (<code>InspecteurDossier</code>) constate la pathologie déclarée (mélange, incohérence,
-   nombre de nuits, état de nommage, nombre d'originaux, journal illisible), plus le <strong>round-trip</strong> du
-   zip via <code>ExtracteurZip</code>.</li>
-<li><code>GenerationCartesSDImportCliquetTest</code> : pour toute spec à rejets (<code>attendu.rejets &gt; 0</code>), lance un
-   <strong>import réel</strong> headless (<code>ServiceImport</code> sur base SQLite jetable) et vérifie <code>compte(REJETE)</code>.
-   C'est le seul cas de recette qui se joue à l'import et non à la seule inspection.</li>
-</ol>
-<p>Ces tests deviennent rouges si le générateur cesse de produire la bonne carte <strong>ou</strong> si un détecteur
-d'import change de comportement (<code>AnalyseMelange</code>, <code>AnalyseCoherence</code>, <code>PartitionNuits</code>,
-<code>AnalyseurLogPR</code>, <code>ServiceImport</code>, <code>ExtracteurZip</code>).</p>
-<h2 id="provoquer-un-refus-de-depot">Provoquer un refus de dépôt<a class="headerlink" href="#provoquer-un-refus-de-depot" title="Permanent link">&para;</a></h2>
-<p>Les cartes SD ci-dessus fournissent des <strong>données</strong> ; elles ne permettent pas de faire <strong>refuser</strong> un
-dépôt par la plateforme. Or c'est le seul endroit du produit où un refus est <strong>définitif</strong> : l'archive
-ne repartira pas telle quelle, la reprise cesse d'être offerte, et une reconnexion réarme les refus de
-droits mais jamais un contenu refusé (#3687, #3689). Sans levier, ces cases ne seraient pas rejouables.</p>
-<p>Le stub réseau des E2E CLI sert aussi l'application : <code>ConnexionModule#urlDeBase</code> est le <strong>seul</strong>
-endroit qui décide l'URL du client, et ce client est le singleton partagé par toutes les features.
-Pointer <code>VIGIECHIRO_URL</code> sur le stub suffit donc à détourner l'IHM.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 1. Le stub, avec le statut qu'on veut voir servir sur les routes de dépôt.</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nv">VIGIECHIRO_STUB_REFUS</span><span class="o">=</span><span class="m">403</span><span class="w"> </span>python3<span class="w"> </span>src/test/bats/stub_vigiechiro.py<span class="w"> </span>/tmp/port<span class="w"> </span>/tmp/journal<span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="p">&amp;</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># 2. L'application, pointée dessus.</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="nv">VIGIECHIRO_URL</span><span class="o">=</span><span class="s2">"http://127.0.0.1:</span><span class="k">$(</span>cat<span class="w"> </span>/tmp/port<span class="k">)</span><span class="s2">"</span><span class="w"> </span>./mvnw<span class="w"> </span>javafx:run
-</code></pre></div>
-<table>
-<thead>
-<tr>
-<th>Statut</th>
-<th>Ce qu'il fait jouer</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>403</code> (ou <code>401</code>)</td>
-<td>un refus de <strong>droits</strong> : réparable par une reconnexion, les unités se réarment</td>
-</tr>
-<tr>
-<td><code>422</code> (ou <code>400</code>)</td>
-<td>un <strong>contenu</strong> refusé : rien ne le répare, et le message ne conseille pas la reconnexion</td>
-</tr>
-<tr>
-<td><code>0</code> ou absent</td>
-<td>aucun refus, comportement nominal</td>
-</tr>
-</tbody>
-</table>
-<p>⚠️ <strong>Le refus ne porte que sur <code>/fichiers</code> et <code>/multipart</code></strong>, et c'est délibéré : refuser partout
-empêcherait de se connecter, donc d'<strong>atteindre</strong> le dépôt. Le cas à jouer est ce qui se passe <em>après</em>
-le refus, pas le refus lui-même.</p>
-<p>Les cas correspondants sont le bloc <strong>A5</strong> de la <a href="../sessions/s4-deposer-suivre/">session S4</a>.</p>
-<h2 id="ou-ca-vit">Où ça vit<a class="headerlink" href="#ou-ca-vit" title="Permanent link">&para;</a></h2>
-<ul>
-<li><code>recette/fixtures/spec/*.yaml</code> : les specs (source de vérité, versionnées).</li>
-<li><code>src/test/java/fr/univ_amu/iut/recette/</code> : le générateur (<code>GenerateurCartesSD</code>, <code>FabriqueWav</code>,
-  <code>LecteurSpec</code>, <code>SpecCarteSd</code>) et les deux garde-fous.</li>
-<li>Le rejeu déterministe complet (générer -&gt; importer via la <a href="../../cli/">CLI</a> -&gt; comparer à un golden)
-  prolonge ce socle : voir la section « Rejouer une campagne » de la <a href="../">méthode</a>.</li>
-</ul>
-<p>La décision de conception (specs déclaratives + générateur déterministe, portée test) est consignée dans
-l'<a href="../../decisions/0015-generateur-deterministe-cartes-sd-recette/">ADR 0015</a>.</p>
+<h1 id="les-clips-des-cas-assertes">Les clips des cas assertés<a class="headerlink" href="#les-clips-des-cas-assertes" title="Permanent link">&para;</a></h1>
+<p>Les cas <strong>assertés</strong> sont ceux qu'un test tranche tout seul : leur verdict ne demande pas qu'on
+regarde. Leur clip existe quand même, et il sert à autre chose - voir <em>ce que le test a vu</em> quand on
+cherche pourquoi il rougit, ou vérifier qu'il joue bien ce que son nom annonce.</p>
+<p>Pour les cas <strong>perceptifs</strong>, ceux dont le verdict revient à qui regarde, c'est l'autre page :
+<a href="../clips/">Regarder les clips de recette</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Un clip noir n'est pas un clip cassé</p>
+<p>Un test qui n'ouvre aucune fenêtre - un ViewModel, par exemple - produit un clip <strong>noir</strong>, et
+c'est le résultat juste. Il cite un cas, donc il a un extrait ; il ne montre rien, donc il
+s'audite en <strong>lisant</strong> le test. La part d'images utiles de chaque clip est publiée avec eux, dans
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/index.md"><code>index.md</code></a> - elle n'est pas recopiée ici, parce qu'elle change à chaque
+tournage et qu'une page ne saurait la tenir à jour.</p>
+</div>
+<p>Les adresses viennent de la pré-version roulante <code>clips-recette</code>, alimentée par le flux
+<strong>recette filmée</strong> avec <code>publier_les_clips</code>. Un lecteur vide dit que le tournage n'a pas eu lieu
+depuis que ce cas existe, pas que le produit est cassé.</p>
+<h2 id="accueilapparencetest">AccueilApparenceTest<a class="headerlink" href="#accueilapparencetest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-01-prismes_exposent_libelle_et_icone">S1-01 · <code>prismes_exposent_libelle_et_icone</code><a class="headerlink" href="#s1-01-prismes_exposent_libelle_et_icone" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/AccueilApparenceTest.prismes_exposent_libelle_et_icone.mp4"></video>
+
+<h2 id="contratcartesaccueiltest">ContratCartesAccueilTest<a class="headerlink" href="#contratcartesaccueiltest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-01-chaque_carte_est_presentable">S1-01 · <code>chaque_carte_est_presentable</code><a class="headerlink" href="#s1-01-chaque_carte_est_presentable" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ContratCartesAccueilTest.chaque_carte_est_presentable.mp4"></video>
+
+<h2 id="mainviewtest">MainViewTest<a class="headerlink" href="#mainviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-01-accueil_regroupe_en_deux_prismes">S1-01 · <code>accueil_regroupe_en_deux_prismes</code><a class="headerlink" href="#s1-01-accueil_regroupe_en_deux_prismes" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MainViewTest.accueil_regroupe_en_deux_prismes.mp4"></video>
+
+<h3 id="s1-02-bandeau_masque_si_base_vide">S1-02 · <code>bandeau_masque_si_base_vide</code><a class="headerlink" href="#s1-02-bandeau_masque_si_base_vide" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MainViewTest.bandeau_masque_si_base_vide.mp4"></video>
+
+<h3 id="s1-03-ctrl_f_active_la_recherche">S1-03 · <code>ctrl_f_active_la_recherche</code><a class="headerlink" href="#s1-03-ctrl_f_active_la_recherche" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MainViewTest.ctrl_f_active_la_recherche.mp4"></video>
+
+<h3 id="s1-03-fil_ariane_reflete_le_parcours">S1-03 · <code>fil_ariane_reflete_le_parcours</code><a class="headerlink" href="#s1-03-fil_ariane_reflete_le_parcours" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MainViewTest.fil_ariane_reflete_le_parcours.mp4"></video>
+
+<h3 id="s1-09-bandeau_suit_une_mutation_sans_navigation">S1-09 · <code>bandeau_suit_une_mutation_sans_navigation</code><a class="headerlink" href="#s1-09-bandeau_suit_une_mutation_sans_navigation" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MainViewTest.bandeau_suit_une_mutation_sans_navigation.mp4"></video>
+
+<h3 id="s1-10-bandeau_suit_une_restauration_sans_navigation">S1-10 · <code>bandeau_suit_une_restauration_sans_navigation</code><a class="headerlink" href="#s1-10-bandeau_suit_une_restauration_sans_navigation" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MainViewTest.bandeau_suit_une_restauration_sans_navigation.mp4"></video>
+
+<h3 id="s1-29-menu_reglages_ouvre_l_ecran">S1-29 · <code>menu_reglages_ouvre_l_ecran</code><a class="headerlink" href="#s1-29-menu_reglages_ouvre_l_ecran" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MainViewTest.menu_reglages_ouvre_l_ecran.mp4"></video>
+
+<h2 id="connexionmodaleviewtest">ConnexionModaleViewTest<a class="headerlink" href="#connexionmodaleviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-04-connecter_sans_token">S1-04 · <code>connecter_sans_token</code><a class="headerlink" href="#s1-04-connecter_sans_token" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ConnexionModaleViewTest.connecter_sans_token.mp4"></video>
+
+<h3 id="s1-04-copier_marque_page">S1-04 · <code>copier_marque_page</code><a class="headerlink" href="#s1-04-copier_marque_page" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ConnexionModaleViewTest.copier_marque_page.mp4"></video>
+
+<h3 id="s1-04-ouvrir_site">S1-04 · <code>ouvrir_site</code><a class="headerlink" href="#s1-04-ouvrir_site" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ConnexionModaleViewTest.ouvrir_site.mp4"></video>
+
+<h2 id="connexionviewmodeltest">ConnexionViewModelTest<a class="headerlink" href="#connexionviewmodeltest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-05-connecter_vide">S1-05 · <code>connecter_vide</code><a class="headerlink" href="#s1-05-connecter_vide" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ConnexionViewModelTest.connecter_vide.mp4"></video>
+
+<h3 id="s1-06-connecter_invalide">S1-06 · <code>connecter_invalide</code><a class="headerlink" href="#s1-06-connecter_invalide" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ConnexionViewModelTest.connecter_invalide.mp4"></video>
+
+<h3 id="s1-07-injoignable_conserve_le_jeton">S1-07 · <code>injoignable_conserve_le_jeton</code><a class="headerlink" href="#s1-07-injoignable_conserve_le_jeton" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ConnexionViewModelTest.injoignable_conserve_le_jeton.mp4"></video>
+
+<h3 id="s1-08-connecter_valide">S1-08 · <code>connecter_valide</code><a class="headerlink" href="#s1-08-connecter_valide" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ConnexionViewModelTest.connecter_valide.mp4"></video>
+
+<h2 id="connexionmodaleconnecteeviewtest">ConnexionModaleConnecteeViewTest<a class="headerlink" href="#connexionmodaleconnecteeviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-11-deconnexion_confirme_avant_effacement">S1-11 · <code>deconnexion_confirme_avant_effacement</code><a class="headerlink" href="#s1-11-deconnexion_confirme_avant_effacement" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ConnexionModaleConnecteeViewTest.deconnexion_confirme_avant_effacement.mp4"></video>
+
+<h2 id="messitesetatvideviewtest">MesSitesEtatVideViewTest<a class="headerlink" href="#messitesetatvideviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-12-l_etat_vide_explique_le_prerequis">S1-12 · <code>l_etat_vide_explique_le_prerequis</code><a class="headerlink" href="#s1-12-l_etat_vide_explique_le_prerequis" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesEtatVideViewTest.l_etat_vide_explique_le_prerequis.mp4"></video>
+
+<h3 id="s1-12-l_etat_vide_parait_sur_une_base_vierge">S1-12 · <code>l_etat_vide_parait_sur_une_base_vierge</code><a class="headerlink" href="#s1-12-l_etat_vide_parait_sur_une_base_vierge" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesEtatVideViewTest.l_etat_vide_parait_sur_une_base_vierge.mp4"></video>
+
+<h3 id="s1-12-l_etat_vide_porte_sa_porte_de_sortie">S1-12 · <code>l_etat_vide_porte_sa_porte_de_sortie</code><a class="headerlink" href="#s1-12-l_etat_vide_porte_sa_porte_de_sortie" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesEtatVideViewTest.l_etat_vide_porte_sa_porte_de_sortie.mp4"></video>
+
+<h2 id="modalesiteviewtest">ModaleSiteViewTest<a class="headerlink" href="#modalesiteviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-13-bouton_ferme_tant_que_le_carre_est_incomplet">S1-13 · <code>bouton_ferme_tant_que_le_carre_est_incomplet</code><a class="headerlink" href="#s1-13-bouton_ferme_tant_que_le_carre_est_incomplet" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteViewTest.bouton_ferme_tant_que_le_carre_est_incomplet.mp4"></video>
+
+<h3 id="s1-23-edition_pre_remplit_et_enregistre">S1-23 · <code>edition_pre_remplit_et_enregistre</code><a class="headerlink" href="#s1-23-edition_pre_remplit_et_enregistre" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteViewTest.edition_pre_remplit_et_enregistre.mp4"></video>
+
+<h3 id="s1-25-annuler_ne_cree_rien">S1-25 · <code>annuler_ne_cree_rien</code><a class="headerlink" href="#s1-25-annuler_ne_cree_rien" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteViewTest.annuler_ne_cree_rien.mp4"></video>
+
+<h2 id="validationformulairetest">ValidationFormulaireTest<a class="headerlink" href="#validationformulairetest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-13-gater_bouton_suit_la_validite">S1-13 · <code>gater_bouton_suit_la_validite</code><a class="headerlink" href="#s1-13-gater_bouton_suit_la_validite" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ValidationFormulaireTest.gater_bouton_suit_la_validite.mp4"></video>
+
+<h3 id="s1-13-marquer_invalide_bascule_la_classe">S1-13 · <code>marquer_invalide_bascule_la_classe</code><a class="headerlink" href="#s1-13-marquer_invalide_bascule_la_classe" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ValidationFormulaireTest.marquer_invalide_bascule_la_classe.mp4"></video>
+
+<h2 id="messitesviewtest">MesSitesViewTest<a class="headerlink" href="#messitesviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-14-affiche_les_cartes">S1-14 · <code>affiche_les_cartes</code><a class="headerlink" href="#s1-14-affiche_les_cartes" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesViewTest.affiche_les_cartes.mp4"></video>
+
+<h3 id="s1-15-entree_ouvre_le_detail">S1-15 · <code>entree_ouvre_le_detail</code><a class="headerlink" href="#s1-15-entree_ouvre_le_detail" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesViewTest.entree_ouvre_le_detail.mp4"></video>
+
+<h3 id="s1-15-espace_ouvre_le_detail">S1-15 · <code>espace_ouvre_le_detail</code><a class="headerlink" href="#s1-15-espace_ouvre_le_detail" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesViewTest.espace_ouvre_le_detail.mp4"></video>
+
+<h3 id="s1-15-une_carte_est_atteignable_au_clavier">S1-15 · <code>une_carte_est_atteignable_au_clavier</code><a class="headerlink" href="#s1-15-une_carte_est_atteignable_au_clavier" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesViewTest.une_carte_est_atteignable_au_clavier.mp4"></video>
+
+<h3 id="s1-16-bouton_synchro_visible">S1-16 · <code>bouton_synchro_visible</code><a class="headerlink" href="#s1-16-bouton_synchro_visible" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesViewTest.bouton_synchro_visible.mp4"></video>
+
+<h3 id="s1-17-overlay_occupation_masque_apres_chargement">S1-17 · <code>overlay_occupation_masque_apres_chargement</code><a class="headerlink" href="#s1-17-overlay_occupation_masque_apres_chargement" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/MesSitesViewTest.overlay_occupation_masque_apres_chargement.mp4"></video>
+
+<h2 id="sitedetailviewmodeltest">SiteDetailViewModelTest<a class="headerlink" href="#sitedetailviewmodeltest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-18-fiche_identite">S1-18 · <code>fiche_identite</code><a class="headerlink" href="#s1-18-fiche_identite" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/SiteDetailViewModelTest.fiche_identite.mp4"></video>
+
+<h3 id="s1-19-suppression_site_refusee_avec_passage">S1-19 · <code>suppression_site_refusee_avec_passage</code><a class="headerlink" href="#s1-19-suppression_site_refusee_avec_passage" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/SiteDetailViewModelTest.suppression_site_refusee_avec_passage.mp4"></video>
+
+<h3 id="s1-20-cartes_points_gps_et_compteur">S1-20 · <code>cartes_points_gps_et_compteur</code><a class="headerlink" href="#s1-20-cartes_points_gps_et_compteur" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/SiteDetailViewModelTest.cartes_points_gps_et_compteur.mp4"></video>
+
+<h3 id="s1-21-passages_tries_par_date_decroissante">S1-21 · <code>passages_tries_par_date_decroissante</code><a class="headerlink" href="#s1-21-passages_tries_par_date_decroissante" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/SiteDetailViewModelTest.passages_tries_par_date_decroissante.mp4"></video>
+
+<h2 id="sitedetailrenommageviewtest">SiteDetailRenommageViewTest<a class="headerlink" href="#sitedetailrenommageviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-22-renommer_met_a_jour_l_entete">S1-22 · <code>renommer_met_a_jour_l_entete</code><a class="headerlink" href="#s1-22-renommer_met_a_jour_l_entete" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/SiteDetailRenommageViewTest.renommer_met_a_jour_l_entete.mp4"></video>
+
+<h2 id="modalepointviewtest">ModalePointViewTest<a class="headerlink" href="#modalepointviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-24-ajouter_un_point_valide">S1-24 · <code>ajouter_un_point_valide</code><a class="headerlink" href="#s1-24-ajouter_un_point_valide" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModalePointViewTest.ajouter_un_point_valide.mp4"></video>
+
+<h2 id="actionmenuwiringtest">ActionMenuWiringTest<a class="headerlink" href="#actionmenuwiringtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-28-agrege_et_ordonne">S1-28 · <code>agrege_et_ordonne</code><a class="headerlink" href="#s1-28-agrege_et_ordonne" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ActionMenuWiringTest.agrege_et_ordonne.mp4"></video>
+
+<h2 id="modalesiteverifiercarreviewtest">ModaleSiteVerifierCarreViewTest<a class="headerlink" href="#modalesiteverifiercarreviewtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-30-carre_libre_le_verdict_s_affiche">S1-30 · <code>carre_libre_le_verdict_s_affiche</code><a class="headerlink" href="#s1-30-carre_libre_le_verdict_s_affiche" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteVerifierCarreViewTest.carre_libre_le_verdict_s_affiche.mp4"></video>
+
+<h3 id="s1-31-carre_deja_declare_avertit_dans_la_modale">S1-31 · <code>carre_deja_declare_avertit_dans_la_modale</code><a class="headerlink" href="#s1-31-carre_deja_declare_avertit_dans_la_modale" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteVerifierCarreViewTest.carre_deja_declare_avertit_dans_la_modale.mp4"></video>
+
+<h3 id="s1-32-corriger_le_carre_efface_le_verdict">S1-32 · <code>corriger_le_carre_efface_le_verdict</code><a class="headerlink" href="#s1-32-corriger_le_carre_efface_le_verdict" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteVerifierCarreViewTest.corriger_le_carre_efface_le_verdict.mp4"></video>
+
+<h3 id="s1-33-hors_connexion_l_encart_ne_nie_pas_le_carre">S1-33 · <code>hors_connexion_l_encart_ne_nie_pas_le_carre</code><a class="headerlink" href="#s1-33-hors_connexion_l_encart_ne_nie_pas_le_carre" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteVerifierCarreViewTest.hors_connexion_l_encart_ne_nie_pas_le_carre.mp4"></video>
+
+<h3 id="s1-34-recuperer_ferme_la_modale_et_passe_le_carre">S1-34 · <code>recuperer_ferme_la_modale_et_passe_le_carre</code><a class="headerlink" href="#s1-34-recuperer_ferme_la_modale_et_passe_le_carre" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteVerifierCarreViewTest.recuperer_ferme_la_modale_et_passe_le_carre.mp4"></video>
+
+<h3 id="s1-36-creer_se_ferme_avec_son_motif">S1-36 · <code>creer_se_ferme_avec_son_motif</code><a class="headerlink" href="#s1-36-creer_se_ferme_avec_son_motif" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ModaleSiteVerifierCarreViewTest.creer_se_ferme_avec_son_motif.mp4"></video>
+
+<h2 id="navigationsitesrapatriementtest">NavigationSitesRapatriementTest<a class="headerlink" href="#navigationsitesrapatriementtest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-34-le_rapatriement_ouvre_la_fiche_et_rend_compte">S1-34 · <code>le_rapatriement_ouvre_la_fiche_et_rend_compte</code><a class="headerlink" href="#s1-34-le_rapatriement_ouvre_la_fiche_et_rend_compte" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/NavigationSitesRapatriementTest.le_rapatriement_ouvre_la_fiche_et_rend_compte.mp4"></video>
+
+<h2 id="rapatriementcarretest">RapatriementCarreTest<a class="headerlink" href="#rapatriementcarretest" title="Permanent link">&para;</a></h2>
+<h3 id="s1-35-un_carre_rapatrie_est_rattache">S1-35 · <code>un_carre_rapatrie_est_rattache</code><a class="headerlink" href="#s1-35-un_carre_rapatrie_est_rattache" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/RapatriementCarreTest.un_carre_rapatrie_est_rattache.mp4"></video>
 
 
 
@@ -6854,7 +8313,7 @@ l'<a href="../../decisions/0015-generateur-deterministe-cartes-sd-recette/">ADR 
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Méthode">
+          <a href="../clips/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: Regarder les clips">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -6864,20 +8323,20 @@ l'<a href="../../decisions/0015-generateur-deterministe-cartes-sd-recette/">ADR 
                 Précédent
               </span>
               <div class="md-ellipsis">
-                Méthode
+                Regarder les clips
               </div>
             </div>
           </a>
         
         
           
-          <a href="../clips/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Regarder les clips">
+          <a href="../sessions/s1-premier-contact/" class="md-footer__link md-footer__link--next" aria-label="Suivant: S1 · Premier contact">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                Regarder les clips
+                S1 · Premier contact
               </div>
             </div>
             <div class="md-footer__button md-icon">
