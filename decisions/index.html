@@ -5672,6 +5672,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4071-un-point-d-entree-un-mot-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4071 · Un point d'entrée, un mot déclaré
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7629,6 +7657,11 @@
 <td><a href="3689-un-refus-se-rearme-sur-ce-qui-l-a-leve/">3689</a></td>
 <td>Depuis #3687 l ecran cesse de proposer une reprise sur une unite refusee definitivement, mais RIEN ne la rearme quand la cause exterieure est levee : une nuit dont toutes les archives ont ete refusees reste coincee. Les trois declencheurs evidents rearment tous A COTE de la cause - au lancement (un jeton se renouvelle a la CONNEXION), sur un geste « forcer la reprise » (le bouton qui ment, sous un autre nom), apres un delai (un droit refuse ne se repare pas seul). Une unite se rearme donc sur l evenement qui pouvait plausiblement lever SA cause : 401/403 par une reconnexion reussie, 400/422 jamais. ⚠️ Le prix : le statut n existait que dans le TEXTE de message_erreur, que le depot s interdit de relire - d ou une colonne cause_refus (V41), decidee a l emission</td>
 <td>#3689, suite de #3900</td>
+</tr>
+<tr>
+<td><a href="4071-un-point-d-entree-un-mot-declare/">4071</a></td>
+<td>Le cadrage disait « il n y a pas de troisieme voie » ; trois mesures l ont renverse HORS de Windows : le lanceur natif jpackage rend la sortie, l erreur separee et le code 2 sous Linux, et <code>arguments</code> ecrit le mot dans le <code>.cfg</code>, ou il ne sert QUE si personne n a donne d argument. Un point d entree unique lit donc un mot ECRIT - <code>ihm</code> ouvre la fenetre, tout le reste part en texte - au lieu de deduire d une absence, figure que ferme l ADR 3828. Deux enveloppes sur la MEME classe principale, la console reservee a Windows ou le sous-systeme est inscrit dans l en-tete PE a l edition de liens. ⚠️ Le second lanceur HERITE des <code>arguments</code> du premier : sans la cle, <code>vigiechiro</code> tape seul ouvrait la fenetre. ⚠️ Un cas n a pas d equivalent sur ce chemin - une borne abaissee par -D - et il SAUTE en le disant plutot que de rendre un vert creux, ce qui a fait ouvrir #4075</td>
+<td>#4071, suite de #619 et #2104</td>
 </tr>
 </tbody>
 </table>

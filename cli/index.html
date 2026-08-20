@@ -5557,6 +5557,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4071-un-point-d-entree-un-mot-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4071 · Un point d'entrée, un mot déclaré
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7417,14 +7445,22 @@ non-douteuses ».</p>
 reste</strong> part à la ligne de commande (#4071). Personne n'a à taper <code>ihm</code> pour ouvrir l'interface :
 chaque emballage l'écrit pour son double-clic - <code>jpackage --arguments ihm</code> le dépose dans le <code>.cfg</code> du
 lanceur, le script Flatpak porte le même défaut.</p>
+<p>La commande s'appelle <code>vigiechiro</code>, comme l'annonce déjà l'aide de picocli. C'est une <strong>seconde
+enveloppe</strong> posée par <code>--add-launcher</code> sur la même classe principale, et non un second point d'entrée :
+<code>VigieChiroCompanion lister-passages</code> répond exactement pareil. Elle existe pour deux raisons, dont
+une seule est technique - sous Windows, elle porte la console que le lanceur graphique ne peut pas
+avoir (ADR 4071) ; ailleurs, elle donne simplement à la commande le nom qu'on tape.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># archive portable Linux (et app-image)</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>bin/VigieChiroCompanion<span class="w"> </span>lister-passages
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>bin/vigiechiro<span class="w"> </span>lister-passages
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Flatpak</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>flatpak<span class="w"> </span>run<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span>lister-passages
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># .msi et archive portable Windows</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>bin<span class="se">\v</span>igiechiro.exe<span class="w"> </span>lister-passages
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># AppImage</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>./VigieChiroCompanion-2.185.0-linux-x86_64.AppImage<span class="w"> </span>lister-passages
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Flatpak</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>flatpak<span class="w"> </span>run<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span>lister-passages
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># AppImage</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>./VigieChiroCompanion-2.185.0-linux-x86_64.AppImage<span class="w"> </span>lister-passages
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Sous Flatpak, <code>--workspace</code> exige que l'appelant accorde le chemin</p>
