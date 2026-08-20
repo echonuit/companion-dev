@@ -7412,15 +7412,45 @@ geste qui ne touche rien est presque toujours une <strong>erreur de filtre</stro
 concernées ; <strong>absents</strong>, ils laissent passer <strong>les deux</strong> - ils ne veulent <strong>pas</strong> dire « seulement les
 non-douteuses ».</p>
 <h2 id="lancer-la-cli">Lancer la CLI<a class="headerlink" href="#lancer-la-cli" title="Permanent link">&para;</a></h2>
-<p>Il n'y a pas encore de lanceur empaqueté : on l'exécute via <code>exec-maven-plugin</code> (même mécanique que le
-<a href="../performance/">banc de performance</a>), avec le <strong>JDK 25 standard</strong> (comme la CI) :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>-DskipTests<span class="w"> </span>compile
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>org.codehaus.mojo:exec-maven-plugin:exec<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span>-Dexec.executable<span class="o">=</span><span class="s2">"</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java"</span><span class="w"> </span>-Dexec.classpathScope<span class="o">=</span>runtime<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span>-Dexec.args<span class="o">=</span><span class="s2">"-cp %classpath fr.univ_amu.iut.cli.Cli --workspace /tmp/vigiechiro-cli lister-passages"</span>
+<h3 id="depuis-un-produit-installe">Depuis un produit installé<a class="headerlink" href="#depuis-un-produit-installe" title="Permanent link">&para;</a></h3>
+<p>Le lanceur des emballages est un <strong>point d'entrée unique</strong> : le mot <code>ihm</code> ouvre la fenêtre, <strong>tout le
+reste</strong> part à la ligne de commande (#4071). Personne n'a à taper <code>ihm</code> pour ouvrir l'interface :
+chaque emballage l'écrit pour son double-clic - <code>jpackage --arguments ihm</code> le dépose dans le <code>.cfg</code> du
+lanceur, le script Flatpak porte le même défaut.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># archive portable Linux (et app-image)</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>bin/VigieChiroCompanion<span class="w"> </span>lister-passages
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Flatpak</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>flatpak<span class="w"> </span>run<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span>lister-passages
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># AppImage</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>./VigieChiroCompanion-2.185.0-linux-x86_64.AppImage<span class="w"> </span>lister-passages
 </code></pre></div>
-<p><code>Cli.main(String[])</code> existe et reste le point d'entrée naturel pour un futur lanceur natif (jpackage).</p>
+<div class="admonition warning">
+<p class="admonition-title">Sous Flatpak, <code>--workspace</code> exige que l'appelant accorde le chemin</p>
+<p>Le bac à sable n'ouvre que l'espace de travail par défaut (<code>~/Documents/VigieChiro-Companion</code>).
+Viser ailleurs demande donc les deux, l'accès <strong>et</strong> l'option :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>flatpak<span class="w"> </span>run<span class="w"> </span>--filesystem<span class="o">=</span>/chemin/ws<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>lister-passages<span class="w"> </span>--workspace<span class="w"> </span>/chemin/ws
+</code></pre></div>
+<p>Sans <code>--filesystem</code>, la commande échoue sur un dossier qu'elle ne voit pas, et non sur un refus
+explicite.</p>
+</div>
+<h3 id="depuis-les-sources">Depuis les sources<a class="headerlink" href="#depuis-les-sources" title="Permanent link">&para;</a></h3>
+<p>On l'exécute via <code>exec-maven-plugin</code> (même mécanique que le
+<a href="../performance/">banc de performance</a>), avec le <strong>JDK 25 standard</strong> (comme la CI) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>-DskipTests<span class="w"> </span>compile
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>org.codehaus.mojo:exec-maven-plugin:exec<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>-Dexec.executable<span class="o">=</span><span class="s2">"</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java"</span><span class="w"> </span>-Dexec.classpathScope<span class="o">=</span>runtime<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>-Dexec.args<span class="o">=</span><span class="s2">"-cp %classpath fr.univ_amu.iut.cli.Cli --workspace /tmp/vigiechiro-cli lister-passages"</span>
+</code></pre></div>
+<p><code>Cli.main(String[])</code> reste le point d'entrée direct, et c'est aussi celui vers lequel <code>Launcher</code>
+aiguille dans les emballages : le harnais <code>bats</code> peut donc viser l'un ou l'autre.</p>
+<p>⚠️ Une invocation <strong>sans aucun argument</strong> rend l'usage de la ligne de commande, elle n'ouvre pas la
+fenêtre - y compris pour <code>java -jar vigiechiro-*-shaded.jar</code>, qui demande désormais <code>ihm</code>. Déduire une
+demande d'interface de l'absence d'arguments serait la figure que refuse l'ADR 3828 : une condition
+ambiante tenant lieu de déclaration.</p>
 <h2 id="tests">Tests<a class="headerlink" href="#tests" title="Permanent link">&para;</a></h2>
 <p>La CLI est couverte par
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/cli/CliTest.java"><code>CliTest</code></a>
