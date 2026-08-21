@@ -8195,6 +8195,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>clips-orphelins.sh</code></td>
+<td>désigne les clips de la pré-version roulante que le <strong>dernier tournage n'a pas produits</strong>, et <strong>refuse un dossier de tournage vide</strong> : <code>--clobber</code> ne retire rien, donc un cas renommé laissait son clip en ligne, montrant un comportement disparu</td>
+<td><code>recette-filmee.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>verifie-renvois-workflows.sh</code></td>
 <td>chaque <code>workflow_run</code> vise le <code>name:</code> d'un workflow existant</td>
 <td><code>lint.yml</code></td>
