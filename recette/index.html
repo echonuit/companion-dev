@@ -5837,6 +5837,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ou-se-lit-le-verdict-4142" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Où se lit le verdict (#4142)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#le-clip-ce-quun-cas-perceptif-donne-a-regarder-3667" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6834,6 +6845,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#ou-se-lit-le-verdict-4142" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Où se lit le verdict (#4142)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#le-clip-ce-quun-cas-perceptif-donne-a-regarder-3667" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7092,7 +7114,7 @@ issues produites → renvois et décisions → notes de méthode.</p>
 <tr>
 <td><strong>Asserté</strong></td>
 <td>la CI, et elle rougit quand le logiciel a tort</td>
-<td>un test porte <code>@CasDeRecette("S1-02")</code></td>
+<td>un test porte <code>@CasDeRecette(value = "S1-02", portee = A_L_ECRAN)</code></td>
 </tr>
 <tr>
 <td><strong>Perceptif</strong></td>
@@ -7109,7 +7131,45 @@ issues produites → renvois et décisions → notes de méthode.</p>
 <p>⚠️ Le deuxième état n'est <strong>pas</strong> une couverture, et c'est tout l'enjeu. Un scénario qui <em>joue</em> un cas
 perceptif le cite comme n'importe quel test - c'est le seul lien vers le script - si bien que sans
 distinction il gonflerait le compte des couverts d'un cas que <strong>personne n'a regardé</strong>. Un tel
-scénario se déclare donc <code>@CasDeRecette("S1-26", jugement = HUMAIN)</code>.</p>
+scénario se déclare donc <code>@CasDeRecette(value = "S1-26", jugement = HUMAIN, portee = A_L_ECRAN)</code>.</p>
+<h3 id="ou-se-lit-le-verdict-4142">Où se lit le verdict (#4142)<a class="headerlink" href="#ou-se-lit-le-verdict-4142" title="Permanent link">&para;</a></h3>
+<p>Tout cas cité déclare aussi <strong>sa portée</strong>, et l'attribut n'a <strong>pas de valeur par défaut</strong> : c'est le
+compilateur qui pose la question, à l'écriture du test, quand celui qui écrit sait encore ce que son
+scénario truque.</p>
+<table>
+<thead>
+<tr>
+<th>Portée</th>
+<th>Ce que le clip prouve</th>
+<th>Ce qu'elle exige</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>A_L_ECRAN</code></td>
+<td>ce que le cas demande de constater est ce que la caméra enregistre</td>
+<td>rien de plus</td>
+</tr>
+<tr>
+<td><code>HORS_APPLICATION</code></td>
+<td>le geste côté produit, et lui seul</td>
+<td>une <strong>réserve</strong>, disant ce que le clip ne prouve pas</td>
+</tr>
+</tbody>
+</table>
+<p>Le second cas est celui des sessions dont l'objet est ailleurs : le dépôt reçu par Vigie-Chiro, la carte
+SD réelle, la nuit rapatriée du serveur, l'installeur sur un vrai poste, la commande dans un vrai
+terminal. Un clip bouchonné y montre un écran <strong>convaincant et creux</strong> - il ne devient pas faux, il
+devient muet sur son propre objet, ce qui est pire parce qu'on le regarde en croyant savoir.</p>
+<p><code>CorrespondanceRecetteTest</code> garde les deux sens : la réserve est exigée si et seulement si la portée est
+<code>HORS_APPLICATION</code>, et elle doit <strong>figurer sur la page du clip</strong>. Une réserve qui ne vit que dans le code
+ne borne rien : personne ne lit une annotation en regardant une vidéo.</p>
+<p>⚠️ Aujourd'hui, <strong>tous les cas cités sont à l'écran</strong>, sans exception. Ce n'est pas un hasard, et cela
+dit où est la difficulté : ce qui a été couvert jusqu'ici est précisément ce qui se filme sans réserve.
+Les quelque 220 cas dont le verdict est hors de l'application restent devant nous.</p>
+<p>Le compte n'est pas recopié ici : <code>CorrespondanceRecetteTest</code> l'imprime à chaque lancement, sous la forme
+« Portée des cas cités : N à l'écran, M hors application ». Un nombre écrit à la main dans une page dérive
+sans que rien ne le signale, et c'est exactement ce qui a produit #3885.</p>
 <p><strong>Les deux sources se tiennent l'une l'autre.</strong> Le script dit ce qu'un cas <em>demande</em>, le code dit ce
 qu'un test <em>prouve</em>, et <code>CorrespondanceRecetteTest</code> les confronte : il rougit sur un cas marqué
 perceptif que du code prétend asserter, comme sur un scénario qui se déclare humain là où le script
