@@ -6356,6 +6356,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#relever-une-borne-reglage-clevaleur-4075" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relever une borne : --reglage &lt;cle&gt;=&lt;valeur&gt; (#4075)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#le-dossier-de-travail-est-reserve-pendant-lecriture-3498" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6725,6 +6736,17 @@
     <span class="md-ellipsis">
       
         Workspace surchargeable
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relever-une-borne-reglage-clevaleur-4075" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Relever une borne : --reglage &lt;cle&gt;=&lt;valeur&gt; (#4075)
       
     </span>
   </a>
@@ -7323,6 +7345,30 @@ d'une fenêtre. La trace n'est pas perdue, elle est dans <code>&lt;workspace&gt;
 globale <code>--workspace &lt;dir&gt;</code> est consommée par <code>main()</code> <strong>avant</strong> de bâtir l'injecteur (elle positionne
 la propriété système <code>vigiechiro.workspace</code>, lue par <code>CommunModule</code>). Sans elle, le workspace par
 défaut est <code>&lt;Documents&gt;/VigieChiro-Companion</code>.</p>
+<h3 id="relever-une-borne-reglage-clevaleur-4075">Relever une borne : <code>--reglage &lt;cle&gt;=&lt;valeur&gt;</code> (#4075)<a class="headerlink" href="#relever-une-borne-reglage-clevaleur-4075" title="Permanent link">&para;</a></h3>
+<p>Sept bornes protègent la lecture d'une entrée externe : taille d'un fichier de la carte, corps d'une
+réponse, contenu d'une archive, hôtes admis pour un lien signé. Elles se surchargeaient <strong>par propriété
+JVM</strong>, et trois refus le conseillaient : « relancez avec <code>-Dvigiechiro.…</code> ».</p>
+<p>⚠️ <strong>Ce conseil était inapplicable pour qui installe le produit.</strong> Le lanceur jpackage passe ses
+arguments à <code>main</code>, jamais à la machine virtuelle : <code>-D</code> n'y existe pas. La seule issue chez
+l'utilisateur était de renoncer au fichier, ce que le doc-comment de <code>PlafondLecture</code> voulait
+précisément éviter.</p>
+<p>L'option est répétable, consommée par <code>main()</code> <strong>avant</strong> l'injecteur - même trajet que <code>--workspace</code>,
+et pour la même raison : les bornes sont lues à la construction des services.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>vigiechiro<span class="w"> </span>--reglage<span class="w"> </span>import.zip.max-entrees<span class="o">=</span><span class="m">5000</span><span class="w"> </span>importer<span class="w"> </span>--point<span class="w"> </span><span class="m">12</span><span class="w"> </span>--source<span class="w"> </span>/media/moi/CARTE
+</code></pre></div>
+<p>Les clés vivent dans le registre <code>CleDeReglage</code>, et <strong>rien d'autre ne les liste</strong> : une clé inconnue
+nomme celles qui existent, ce qui met la liste là où on en a besoin. Le registre est aussi ce qui rend
+l'option sûre - elle écrit une propriété système, donc sans lui elle en écrirait n'importe laquelle, y
+compris celles de la plateforme.</p>
+<div class="admonition note">
+<p class="admonition-title">Ce que cette option ne fait pas</p>
+<p>Elle ne rend pas ces bornes <strong>réglables</strong> : il n'y a toujours pas d'entrée dans l'écran Réglages,
+et cette décision tient - un naturaliste n'a pas à choisir une taille de corps de réponse. Ce qui
+change est qu'une limite atteinte <strong>nomme une porte de sortie qui existe</strong> là où l'utilisateur se
+trouve. Le message est le même à l'écran et au terminal : la ligne de commande est le seul endroit
+où ces bornes se relèvent, et inventer une consigne propre à l'écran promettrait un geste absent.</p>
+</div>
 <h3 id="le-dossier-de-travail-est-reserve-pendant-lecriture-3498">Le dossier de travail est réservé pendant l'écriture (#3498)<a class="headerlink" href="#le-dossier-de-travail-est-reserve-pendant-lecriture-3498" title="Permanent link">&para;</a></h3>
 <p>L'application graphique <strong>réserve</strong> le dossier de travail pour toute sa durée (<code>VerrouWorkspace</code>,</p>
 <h1 id="2731-la-cli-ne-le-demandait-jamais-et-ecrivait-donc-par-dessus-alors-que-la-doc-du-verrou-nomme">2731) ; la CLI ne le demandait jamais et écrivait donc par-dessus, alors que la doc du verrou nomme<a class="headerlink" href="#2731-la-cli-ne-le-demandait-jamais-et-ecrivait-donc-par-dessus-alors-que-la-doc-du-verrou-nomme" title="Permanent link">&para;</a></h1>
@@ -7413,18 +7459,18 @@ enregistrée</strong> dans l'application (préférer la variable d'environnement
 l'historique du shell).</p>
 <p>Ces codes rendent le <strong>cycle de dépôt complet scriptable</strong> (#984). Le dépôt <strong>ne déclenche pas</strong> le
 traitement serveur : il faut l'appeler explicitement.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">VIGIECHIRO_TOKEN</span><span class="o">=</span>…
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>vigiechiro<span class="w"> </span>deposer-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span>vigiechiro<span class="w"> </span>lancer-traitement-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span>vigiechiro<span class="w"> </span>verifier-depot-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="w">   </span><span class="c1"># après le calcul serveur</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">VIGIECHIRO_TOKEN</span><span class="o">=</span>…
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>vigiechiro<span class="w"> </span>deposer-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span>vigiechiro<span class="w"> </span>lancer-traitement-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="o">&amp;&amp;</span><span class="w"> </span>vigiechiro<span class="w"> </span>verifier-depot-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="w">   </span><span class="c1"># après le calcul serveur</span>
 </code></pre></div>
 <p>Le calcul serveur dure des dizaines de minutes (Tadarida tourne sur une ferme de calcul distante).
 L'application ne <strong>surveille</strong> jamais la plateforme d'elle-même : le site officiel ne le fait pas
 davantage : mais un script, lui, peut l'interroger à son rythme. C'est le rôle des codes de retour
 d'<code>etat-traitement-vigiechiro</code>, le <code>3</code> signifiant « patiente » :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># attendre la fin du calcul, puis importer les observations</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">until</span><span class="w"> </span>vigiechiro<span class="w"> </span>etat-traitement-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="p">;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">300</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>vigiechiro<span class="w"> </span>importer-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># attendre la fin du calcul, puis importer les observations</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">until</span><span class="w"> </span>vigiechiro<span class="w"> </span>etat-traitement-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span><span class="p">;</span><span class="w"> </span><span class="o">[</span><span class="w"> </span><span class="nv">$?</span><span class="w"> </span>-ne<span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">]</span><span class="p">;</span><span class="w"> </span><span class="k">do</span><span class="w"> </span>sleep<span class="w"> </span><span class="m">300</span><span class="p">;</span><span class="w"> </span><span class="k">done</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>vigiechiro<span class="w"> </span>importer-vigiechiro<span class="w"> </span>--passage<span class="w"> </span><span class="m">9</span>
 </code></pre></div>
 <p>En cas de dépôt à refaire de zéro (unités marquées déposées à tort), <code>reinitialiser-depot --passage 9</code>
 efface le plan local et ramène le passage à « Prêt à déposer » : les archives et la participation sont
@@ -7437,12 +7483,12 @@ toute commande, donc une première invocation crée le schéma si besoin.</p>
 de commande <strong>n'a pas de table</strong>. Les gestes de revue offrent donc <strong>deux</strong> manières de désigner, exclusives
 et obligatoires (on ne pose pas un geste sans dire sur quoi), portées par la classe <strong>partagée</strong>
 <code>CiblesRevue</code> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 1. Chirurgical : sur des lignes qu'on a LUES.</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>./vigiechiro<span class="w"> </span>lister-observations<span class="w"> </span>--passage<span class="w"> </span><span class="m">3</span><span class="w"> </span>--statut<span class="w"> </span>NON_TOUCHEE
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>./vigiechiro<span class="w"> </span>valider-observations<span class="w"> </span>--observation<span class="w"> </span><span class="m">12</span>,13,14
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># 2. Scripté : sur un sous-ensemble DÉCRIT, avec les MÊMES filtres que lister-observations.</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>./vigiechiro<span class="w"> </span>corriger-observations<span class="w"> </span>--taxon<span class="w"> </span>Pippip<span class="w"> </span>--passage<span class="w"> </span><span class="m">3</span><span class="w"> </span>--taxon-tadarida<span class="w"> </span>Pipkuh
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># 1. Chirurgical : sur des lignes qu'on a LUES.</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>./vigiechiro<span class="w"> </span>lister-observations<span class="w"> </span>--passage<span class="w"> </span><span class="m">3</span><span class="w"> </span>--statut<span class="w"> </span>NON_TOUCHEE
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>./vigiechiro<span class="w"> </span>valider-observations<span class="w"> </span>--observation<span class="w"> </span><span class="m">12</span>,13,14
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># 2. Scripté : sur un sous-ensemble DÉCRIT, avec les MÊMES filtres que lister-observations.</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>./vigiechiro<span class="w"> </span>corriger-observations<span class="w"> </span>--taxon<span class="w"> </span>Pippip<span class="w"> </span>--passage<span class="w"> </span><span class="m">3</span><span class="w"> </span>--taxon-tadarida<span class="w"> </span>Pipkuh
 </code></pre></div>
 <p><strong>La garantie</strong> : c'est le <strong>même</strong> <code>SelectionObservations</code> qui choisit pour lister et pour agir. Ce que
 <code>lister-observations --passage 3 --statut NON_TOUCHEE</code> <strong>montre</strong> est <strong>exactement</strong> ce que
@@ -7506,27 +7552,27 @@ enveloppe</strong> posée par <code>--add-launcher</code> sur la même classe pr
 <code>VigieChiroCompanion lister-passages</code> répond exactement pareil. Elle existe pour deux raisons, dont
 une seule est technique - sous Windows, elle porte la console que le lanceur graphique ne peut pas
 avoir (ADR 4071) ; ailleurs, elle donne simplement à la commande le nom qu'on tape.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># paquet Debian installé : la commande est dans le PATH</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>vigiechiro<span class="w"> </span>lister-passages
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># archive portable Linux (et app-image)</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>bin/vigiechiro<span class="w"> </span>lister-passages
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># .msi et archive portable Windows</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>bin<span class="se">\v</span>igiechiro.exe<span class="w"> </span>lister-passages
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Flatpak</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>flatpak<span class="w"> </span>run<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span>lister-passages
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># AppImage</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>./VigieChiroCompanion-2.185.0-linux-x86_64.AppImage<span class="w"> </span>lister-passages
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># paquet Debian installé : la commande est dans le PATH</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>vigiechiro<span class="w"> </span>lister-passages
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># archive portable Linux (et app-image)</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>bin/vigiechiro<span class="w"> </span>lister-passages
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="c1"># .msi et archive portable Windows</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>bin<span class="se">\v</span>igiechiro.exe<span class="w"> </span>lister-passages
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="c1"># Flatpak</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>flatpak<span class="w"> </span>run<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span>lister-passages
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="c1"># AppImage</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>./VigieChiroCompanion-2.185.0-linux-x86_64.AppImage<span class="w"> </span>lister-passages
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Sous Flatpak, <code>--workspace</code> exige que l'appelant accorde le chemin</p>
 <p>Le bac à sable n'ouvre que l'espace de travail par défaut (<code>~/Documents/VigieChiro-Companion</code>).
 Viser ailleurs demande donc les deux, l'accès <strong>et</strong> l'option :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>flatpak<span class="w"> </span>run<span class="w"> </span>--filesystem<span class="o">=</span>/chemin/ws<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>lister-passages<span class="w"> </span>--workspace<span class="w"> </span>/chemin/ws
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>flatpak<span class="w"> </span>run<span class="w"> </span>--filesystem<span class="o">=</span>/chemin/ws<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>lister-passages<span class="w"> </span>--workspace<span class="w"> </span>/chemin/ws
 </code></pre></div>
 <p>Sans <code>--filesystem</code>, la commande échoue sur un dossier qu'elle ne voit pas, et non sur un refus
 explicite.</p>
@@ -7534,19 +7580,19 @@ explicite.</p>
 <h3 id="depuis-les-sources">Depuis les sources<a class="headerlink" href="#depuis-les-sources" title="Permanent link">&para;</a></h3>
 <p>On l'exécute via <code>exec-maven-plugin</code> (même mécanique que le
 <a href="../performance/">banc de performance</a>), avec le <strong>JDK 25 standard</strong> (comme la CI) :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>-DskipTests<span class="w"> </span>compile
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>org.codehaus.mojo:exec-maven-plugin:exec<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>-Dexec.executable<span class="o">=</span><span class="s2">"</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java"</span><span class="w"> </span>-Dexec.classpathScope<span class="o">=</span>runtime<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>-Dexec.args<span class="o">=</span><span class="s2">"-cp %classpath fr.univ_amu.iut.cli.Cli --workspace /tmp/vigiechiro-cli lister-passages"</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">export</span><span class="w"> </span><span class="nv">JAVA_HOME</span><span class="o">=</span>~/.sdkman/candidates/java/25.0.2-open
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>-DskipTests<span class="w"> </span>compile
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>org.codehaus.mojo:exec-maven-plugin:exec<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>-Dexec.executable<span class="o">=</span><span class="s2">"</span><span class="nv">$JAVA_HOME</span><span class="s2">/bin/java"</span><span class="w"> </span>-Dexec.classpathScope<span class="o">=</span>runtime<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>-Dexec.args<span class="o">=</span><span class="s2">"-cp %classpath fr.univ_amu.iut.cli.Cli --workspace /tmp/vigiechiro-cli lister-passages"</span>
 </code></pre></div>
 <p><code>Cli.main(String[])</code> reste le point d'entrée direct, et c'est aussi celui vers lequel <code>Launcher</code>
 aiguille dans les emballages : le harnais <code>bats</code> peut donc viser l'un ou l'autre. En CI il vise le
 <strong>lanceur</strong>, par <code>VIGIECHIRO_LANCEUR</code> (#4071) ; sans cette variable, il retombe sur le fat-jar, ce qui
 reste la façon la plus rapide de le lancer en local :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>-DskipTests<span class="w"> </span>package<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>bats<span class="w"> </span>src/test/bats<span class="w">                       </span><span class="c1"># sur le fat-jar</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">VIGIECHIRO_LANCEUR</span><span class="o">=</span>target/dist/VigieChiroCompanion/bin/vigiechiro<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>bats<span class="w"> </span>src/test/bats<span class="w">                                                       </span><span class="c1"># sur le lanceur livré</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>-DskipTests<span class="w"> </span>package<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>bats<span class="w"> </span>src/test/bats<span class="w">                       </span><span class="c1"># sur le fat-jar</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">VIGIECHIRO_LANCEUR</span><span class="o">=</span>target/dist/VigieChiroCompanion/bin/vigiechiro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>bats<span class="w"> </span>src/test/bats<span class="w">                                                       </span><span class="c1"># sur le lanceur livré</span>
 </code></pre></div>
 <p>⚠️ Une invocation <strong>sans aucun argument</strong> rend l'usage de la ligne de commande, elle n'ouvre pas la
 fenêtre - y compris pour <code>java -jar vigiechiro-*-shaded.jar</code>, qui demande désormais <code>ihm</code>. Déduire une
