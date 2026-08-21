@@ -5735,6 +5735,34 @@
   
   
     <li class="md-nav__item">
+      <a href="4111-un-clip-montre-la-version-qu-on-valide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4111 · Un clip montre la version qu'on valide
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-nav__link">
         
   
@@ -7756,6 +7784,11 @@
 <td><a href="4103-un-canal-de-distribution-ne-depend-pas-d-un-geste/">4103</a></td>
 <td>Le Flatpak etait publie par un workflow MANUEL : rien ne reclamait ce geste, donc le paquet retardait sur les releases et une publication reussie qui le laisse en arriere est un etat parfaitement VERT. Mesure en verifiant sur un poste que la CLI de #4071 marchait : le manifeste extrayait le .deb 2.185.0 quand la 2.187.0 etait publiee, donc la commande absente du paquet pendant que la doc l annoncait. ⚠️ DEPASSE l ADR 2744, qui avait tranche « rien a rebrancher » : elle raisonnait a moyens constants - <code>release: released</code> ne part jamais au GITHUB_TOKEN - et <code>workflow_call</code> n est PAS un evenement, il s execute dans le run de l appelant. Le train appelle donc flatpak.yml apres avoir retire le brouillon. ⚠️ <code>needs: publish</code> et non <code>installers</code> : le checker interroge <code>releases/latest</code>, qui IGNORE les brouillons. ⚠️ Le chainage ne s observe qu au premier train, release.yml ne tournant pas sur les PR</td>
 <td>#4103, suite de #4071</td>
+</tr>
+<tr>
+<td><a href="4111-un-clip-montre-la-version-qu-on-valide/">4111</a></td>
+<td>Les clips de recette se tournaient A LA MAIN, et <code>recette-filmee.yml</code> posait lui-meme la condition de son branchement - le harnais de recette, aujourd hui en place (EPIC #3667 clos, 403 cas lus). Meme defaut que l ADR 4103 sur un autre dispositif : une version publiee sans tournage laisse en ligne les clips d une version anterieure, etat parfaitement VERT. ⚠️ Pire que pour un paquet : un clip a TOUJOURS l air juste, puisqu il montre un produit qui fonctionne. Le tournage part donc avec le train, apres <code>publish</code> - ni la veille, ni le matin, ni a chaque commit, qui sont trois suppositions de DATE quand la recette valide une VERSION. ⚠️ Et la pre-version dit desormais ce qu elle montre : automatiser sans nommer la version aurait produit des clips justes et INDATABLES, le defaut deplace d un cran. Cout mesure : 5 min pour 58 clips</td>
+<td>#4111, suite de #4103</td>
 </tr>
 </tbody>
 </table>
