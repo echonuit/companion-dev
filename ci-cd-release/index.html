@@ -5592,6 +5592,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4103-un-canal-de-distribution-ne-depend-pas-d-un-geste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4103 · Un canal de distribution ne dépend pas d'un geste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-nav__link">
         
   
@@ -7554,7 +7582,7 @@ publication.</p>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/flatpak.yml">flatpak.yml</a></td>
-<td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
+<td><strong>appelé par le train</strong> (<code>workflow_call</code> depuis <code>release.yml</code>), ou manuel</td>
 <td>Paquet Flatpak (cf. plus bas)</td>
 <td>—</td>
 </tr>
@@ -7935,7 +7963,20 @@ fat-jar embarquant déjà JavaFX.</p>
 sont exactement ce que la source du manifeste demande.</p>
 <p><strong>La montée de version est automatique</strong> : le bloc <code>x-checker-data</code> du manifeste est lu par
 <code>flatpak-external-data-checker</code> directement dans <code>flatpak.yml</code>, qui propose la mise à jour une fois le
-paquet reconstruit et démarré avec succès. Publier une version ne demande aucun geste côté paquet.</p>
+paquet reconstruit et démarré avec succès.</p>
+<p><strong>Et le workflow part avec le train</strong> (#4103) : <code>release.yml</code> l'appelle en <code>workflow_call</code> après avoir
+retiré le brouillon de la Release. Publier une version ne demande donc aucun geste côté paquet, ce qui
+n'était vrai qu'en théorie tant que le déclenchement restait manuel.</p>
+<p>⚠️ <strong>C'est un <code>workflow_call</code>, et pas un <code>release: released</code>.</strong> Ce dernier ne partirait jamais : la
+Release est dé-brouillonnée avec le <code>GITHUB_TOKEN</code>, et GitHub ne déclenche aucun workflow sur un
+événement produit par ce jeton. Un workflow appelé n'est pas un événement - il s'exécute dans le run de
+l'appelant - donc l'obstacle ne s'y applique pas. C'est le premier <code>workflow_call</code> du dépôt.</p>
+<p>⚠️ <strong>Le job dépend de <code>publish</code>, pas d'<code>installers</code></strong> : le checker interroge <code>releases/latest</code>, qui
+ignore les brouillons. Téléverser les assets ne suffit pas ; il faut que la Release en soit sortie.</p>
+<p>⚠️ <strong>Ce que le retard coûtait</strong>, avant : le paquet publié pouvait rester plusieurs versions en arrière
+sans que rien ne le dise. Mesuré le 2026-08-21 - manifeste sur le <code>.deb</code> 2.185.0 quand la 2.187.0 était
+publiée, donc la ligne de commande de #4071 absente du paquet pendant que la documentation
+l'annonçait.</p>
 <div class="admonition tip">
 <p class="admonition-title">Le <code>.desktop</code> de jpackage est invalide</p>
 <p>jpackage écrit <code>Categories=Unknown</code>, valeur que <code>desktop-file-validate</code> refuse. Le manifeste la
@@ -7947,8 +7988,8 @@ cette catégorie fautive.</p>
 <p><code>flatpak.yml</code> publie le paquet - construit et démarré par la même vérification - dans un dépôt Flatpak
 que ce projet héberge lui-même. C'est le seul canal Flatpak du projet.</p>
 <p><strong>En production depuis le 2026-08-15</strong> : <code>https://flatpak.echonuit.fr/fr.echonuit.VigieChiroCompanion.flatpakrepo</code>
-sert un dépôt <strong>signé</strong> (clé <code>1BA6A82DA9213B177B160E56CD450A9383707B17</code>), reconstruit à chaque
-<code>workflow_dispatch</code> de <code>flatpak.yml</code>. Installation côté utilisateur documentée dans la
+sert un dépôt <strong>signé</strong> (clé <code>1BA6A82DA9213B177B160E56CD450A9383707B17</code>), reconstruit à chaque train de
+publication, et à la demande par le <code>workflow_dispatch</code> de <code>flatpak.yml</code>. Installation côté utilisateur documentée dans la
 <a href="https://companion.echonuit.fr/prise-en-main/">documentation utilisateur</a>.</p>
 <p><strong>Mécanisme</strong> : la construction de <code>flatpak-builder</code> exporte vers <code>--repo</code>, en plus du <code>--install</code> local
 qui sert au démarrage réel. C'est ce dépôt-là, déjà éprouvé par le pas qui le précède, qu'un

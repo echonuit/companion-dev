@@ -5707,6 +5707,34 @@
   
   
     <li class="md-nav__item">
+      <a href="4103-un-canal-de-distribution-ne-depend-pas-d-un-geste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4103 · Un canal de distribution ne dépend pas d'un geste
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-nav__link">
         
   
@@ -7723,6 +7751,11 @@
 <td><a href="4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/">4079</a></td>
 <td>Le train du mercredi a REUSSI et n a rien livre : tag, CHANGELOG et Release crees, puis <code>installers</code> et <code>publish</code> SAUTES, brouillon sans un seul asset, run vert pendant huit jours. La sortie <code>tag</code> valait pourtant <code>v2.186.0</code> : la condition n etait pas fausse, elle n a JAMAIS ete evaluee. GitHub propage le « saute » de facon TRANSITIVE, et un <code>if:</code> sans fonction d etat est enveloppe en <code>success() &amp;&amp; (...)</code> sur tout le graphe amont. Le piege a ete arme par une amelioration : #3770 a mis en <code>needs</code> une garde que le train programme saute toujours. ⚠️ <code>!cancelled()</code> reprend la main, <code>needs.X.result == 'success'</code> referme ce qu il ouvre - seul, il publierait sur un amont ROUGE. ⚠️ La garde est la partie durable : deux <code>if:</code> corriges a la main se defont au prochain <code>needs</code> ajoute en amont, c est ainsi que le defaut est ne. ⚠️ Un vert de garde n est PAS un artefact parti</td>
 <td>#4079, EPIC livraison (#2104)</td>
+</tr>
+<tr>
+<td><a href="4103-un-canal-de-distribution-ne-depend-pas-d-un-geste/">4103</a></td>
+<td>Le Flatpak etait publie par un workflow MANUEL : rien ne reclamait ce geste, donc le paquet retardait sur les releases et une publication reussie qui le laisse en arriere est un etat parfaitement VERT. Mesure en verifiant sur un poste que la CLI de #4071 marchait : le manifeste extrayait le .deb 2.185.0 quand la 2.187.0 etait publiee, donc la commande absente du paquet pendant que la doc l annoncait. ⚠️ DEPASSE l ADR 2744, qui avait tranche « rien a rebrancher » : elle raisonnait a moyens constants - <code>release: released</code> ne part jamais au GITHUB_TOKEN - et <code>workflow_call</code> n est PAS un evenement, il s execute dans le run de l appelant. Le train appelle donc flatpak.yml apres avoir retire le brouillon. ⚠️ <code>needs: publish</code> et non <code>installers</code> : le checker interroge <code>releases/latest</code>, qui IGNORE les brouillons. ⚠️ Le chainage ne s observe qu au premier train, release.yml ne tournant pas sur les PR</td>
+<td>#4103, suite de #4071</td>
 </tr>
 </tbody>
 </table>
