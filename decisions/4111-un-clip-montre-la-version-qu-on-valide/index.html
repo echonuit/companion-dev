@@ -6921,9 +6921,41 @@ plutôt que de laisser croire à une correspondance.</p>
 <p>Cinq minutes pour 58 clips, mesurées le 2026-08-20. C'est l'usage - jouer la recette d'une version -
 qui décide du moment, pas la durée.</p>
 <h2 id="ce-que-la-decision-ne-couvre-pas">Ce que la décision NE couvre pas<a class="headerlink" href="#ce-que-la-decision-ne-couvre-pas" title="Permanent link">&para;</a></h2>
-<p><strong><code>capture-vues.yml</code></strong>, qui produit les PNG d'aperçu et pose exactement la même question. Son coût et
-son usage n'ont pas été mesurés ici, et l'aligner par symétrie serait la supposition que ce chantier
-reproche à l'existant. À rouvrir avec une mesure.</p>
+<p><strong><code>capture-vues.yml</code></strong>, qui produit les PNG d'aperçu.</p>
+<p>⚠️ <strong>La première rédaction disait qu'il « pose exactement la même question ». C'est faux, et la mesure
+l'a dit le jour même</strong> : il n'est pas manuel. Il tourne sur <code>push: main</code> <strong>et</strong> sur chaque
+<code>pull_request</code>, en cinq minutes, et publie ses aperçus par une PR auto-mergée. Le défaut que cette ADR
+corrige - un dispositif qui dépend d'un geste que rien ne réclame - ne l'atteint donc pas.</p>
+<p>Et son moment est <strong>l'inverse</strong> de celui retenu ici, à juste titre. Les deux ne se rangent pas de la
+même façon :</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Aperçus PNG</th>
+<th>Clips</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Où ils vivent</td>
+<td><strong>committés dans le dépôt</strong></td>
+<td>pièces jointes d'une pré-version <strong>roulante</strong>, hors git</td>
+</tr>
+<tr>
+<td>Ce qui les date</td>
+<td>l'historique git, par construction</td>
+<td>rien, sauf à le leur faire dire</td>
+</tr>
+<tr>
+<td>D'où le moment</td>
+<td>à chaque commit, pour rester alignés sur le code</td>
+<td>à la publication, pour montrer une <strong>version</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Ce n'est donc pas une incohérence entre deux dispositifs voisins : un artefact versionné avec le code
+suit le code, un artefact publié à côté suit les versions.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Le train gagne un second <code>workflow_call</code>, en parallèle du premier : environ cinq minutes de plus.</li>
