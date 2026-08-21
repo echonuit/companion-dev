@@ -7431,7 +7431,7 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>paquet</code></td>
 <td>push <code>main</code> + PR</td>
-<td>Assemblage du fat-jar (<code>package -DskipTests</code>) puis smoke-test, <strong>E2E CLI bats</strong> et idempotence du packaging. <strong>En parallèle</strong> de <code>build</code></td>
+<td>Assemblage du fat-jar (<code>package -DskipTests</code>), smoke-test, idempotence, app-image, puis <strong>E2E CLI bats sur le lanceur empaqueté</strong>. <strong>En parallèle</strong> de <code>build</code></td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
@@ -7601,8 +7601,8 @@ découlaient. Le premier, mesuré : 449 s de tests, puis 148 s d'E2E bats, puis 
 série</strong>, soit ~10 min avant le moindre verdict. Le second, plus gênant, était une <strong>dépendance
 fausse</strong> : les étapes de packaging ne s'exécutaient qu'après le succès des tests, donc une suite rouge
 <strong>masquait</strong> l'état du packaging, qu'on n'apprenait qu'au tour suivant.</p>
-<p>Or ces étapes ne dépendent que de l'<strong>assemblage</strong> : <code>package -DskipTests</code> suffit (~20 s en local, et
-les <!--inv:tests-bats-->111<!--/inv--> tests bats passent sur ce seul artefact). D'où la séparation :</p>
+<p>Or ces étapes ne dépendent pas de la suite de tests, mais de ce qu'on <strong>emballe</strong> : un
+<code>package -DskipTests</code> (~20 s en local) puis l'app-image que le job construit déjà. D'où la séparation :</p>
 <table>
 <thead>
 <tr>
@@ -7619,17 +7619,23 @@ les <!--inv:tests-bats-->111<!--/inv--> tests bats passent sur ce seul artefact)
 </tr>
 <tr>
 <td><code>paquet</code></td>
-<td>l'assemblage du fat-jar</td>
-<td>que le jar <strong>démarre</strong>, que la CLI répond, que le shade est idempotent</td>
+<td>l'assemblage, puis l'app-image</td>
+<td>que le jar <strong>démarre</strong>, que la CLI répond <strong>depuis le lanceur livré</strong>, que le shade est idempotent</td>
 </tr>
 </tbody>
 </table>
+<p>⚠️ Les <!--inv:tests-bats-->111<!--/inv--> tests bats visaient le fat-jar par <code>java -cp</code> jusqu'à #4071,
+c'est-à-dire un chemin qu'<strong>aucun utilisateur n'emprunte</strong>. Ils visent désormais <code>bin/vigiechiro</code> de
+l'app-image construite au-dessus, donc le runtime jlink réellement livré. Ils viennent pour cette
+raison <strong>après</strong> le garde-fou app-image, et non plus juste après le <code>package</code> - sans que rien ne change
+de job ni de coût, l'app-image étant déjà bâtie là. Le fat-jar, lui, reste éprouvé par le smoke-test
+qui le lance et lit son usage.</p>
 <p>Les deux tournent <strong>en parallèle</strong> et rendent leur verdict indépendamment : le chemin critique se
 ramène au plus long des deux, et un packaging cassé rougit même quand les tests échouent.</p>
 <div class="admonition warning">
 <p class="admonition-title">Ce qui ne gagne rien à être optimisé</p>
 <p>L'installation d'<code>apt</code>/<code>bats</code> coûte <strong>9 s</strong>, pas davantage : c'est vérifié. Le reste du harnais,
-ce sont <strong>les tests eux-mêmes</strong>, qui lancent chacun un JVM sur le fat-jar. Chercher un cache apt
+ce sont <strong>les tests eux-mêmes</strong>, qui lancent chacun un processus complet. Chercher un cache apt
 ici ne rapporte rien - l'hypothèse a été faite, mesurée, et démentie.</p>
 </div>
 <h2 id="la-release-semantic-release-jpackage">La release (semantic-release + jpackage)<a class="headerlink" href="#la-release-semantic-release-jpackage" title="Permanent link">&para;</a></h2>

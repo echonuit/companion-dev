@@ -7513,7 +7513,13 @@ explicite.</p>
 <a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">  </span>-Dexec.args<span class="o">=</span><span class="s2">"-cp %classpath fr.univ_amu.iut.cli.Cli --workspace /tmp/vigiechiro-cli lister-passages"</span>
 </code></pre></div>
 <p><code>Cli.main(String[])</code> reste le point d'entrée direct, et c'est aussi celui vers lequel <code>Launcher</code>
-aiguille dans les emballages : le harnais <code>bats</code> peut donc viser l'un ou l'autre.</p>
+aiguille dans les emballages : le harnais <code>bats</code> peut donc viser l'un ou l'autre. En CI il vise le
+<strong>lanceur</strong>, par <code>VIGIECHIRO_LANCEUR</code> (#4071) ; sans cette variable, il retombe sur le fat-jar, ce qui
+reste la façon la plus rapide de le lancer en local :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>./mvnw<span class="w"> </span>-q<span class="w"> </span>-DskipTests<span class="w"> </span>package<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>bats<span class="w"> </span>src/test/bats<span class="w">                       </span><span class="c1"># sur le fat-jar</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">VIGIECHIRO_LANCEUR</span><span class="o">=</span>target/dist/VigieChiroCompanion/bin/vigiechiro<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>bats<span class="w"> </span>src/test/bats<span class="w">                                                       </span><span class="c1"># sur le lanceur livré</span>
+</code></pre></div>
 <p>⚠️ Une invocation <strong>sans aucun argument</strong> rend l'usage de la ligne de commande, elle n'ouvre pas la
 fenêtre - y compris pour <code>java -jar vigiechiro-*-shaded.jar</code>, qui demande désormais <code>ihm</code>. Déduire une
 demande d'interface de l'absence d'arguments serait la figure que refuse l'ADR 3828 : une condition
