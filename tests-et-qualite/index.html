@@ -5648,6 +5648,62 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4134-un-banc-n-emprunte-pas-l-etat-partage-il-ouvre-le-sien/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4134 · Un banc n'emprunte pas l'état partagé, il ouvre le sien
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4142-un-cas-dit-ou-se-lit-son-verdict/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4142 · Un cas dit où se lit son verdict
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-nav__link">
         
   
@@ -7675,7 +7731,23 @@ l'ADR 3361 note que <code>sans-serif</code> se résout en « une police plus lar
 n'a pas été mesuré.</p>
 <p>Le remède ne dépend d'aucune machine : passer par <code>Habillage.scene(...)</code>, qui installe la police <strong>et</strong>
 pose le trio du chrome.</p>
-<h3 id="quatre-pieges-recurrents">Quatre pièges récurrents<a class="headerlink" href="#quatre-pieges-recurrents" title="Permanent link">&para;</a></h3>
+<h3 id="cinq-pieges-recurrents">Cinq pièges récurrents<a class="headerlink" href="#cinq-pieges-recurrents" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">La fenêtre du harnais est PARTAGÉE : on ne l'emprunte pas</p>
+<p>TestFX réutilise <strong>la même fenêtre primaire</strong> pour toutes les classes d'un même fork. Une classe
+qui la dimensionne, la déplace ou la <strong>ferme</strong> laisse cet état à toutes celles qui passent après
+elle - et seulement à celles-là, dans l'ordre où la répartition des forks les a mises. Le symptôme
+tombe alors sur une classe sans rapport, sous la forme d'un noeud « invisible ».</p>
+<p>Le défaut est revenu <strong>cinq fois</strong> : #1940, #1967, #3452, #4130, #4145.</p>
+<p>⚠️ <strong>Rendre la valeur ne rend pas la propriété.</strong> <code>setWidth</code> fait passer un Stage en
+dimensionnement <strong>explicite</strong>, et reposer la largeur d'entrée ne l'en fait pas sortir : il cesse
+définitivement de suivre les scènes qu'on lui pose. Deux bancs appliquaient consciencieusement
+cette restauration-là, en citant #3960 en commentaire, et figeaient quand même.</p>
+<p>Un banc qui doit dimensionner, déplacer ou fermer une fenêtre <strong>ouvre la sienne</strong> :
+<code>new Stage()</code>, <code>initOwner(celle du harnais)</code>, et on la referme en <code>@AfterEach</code>. Un scénario filmé
+passe par <code>recette.FenetreDuBanc</code>, qui demande la taille à la mise en page puis <code>sizeToScene()</code>.
+Voir l'<a href="../decisions/4134-un-banc-n-emprunte-pas-l-etat-partage-il-ouvre-le-sien/">ADR 4134</a>.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title"><code>assertThat(path).endsWith(Path)</code> canonicalise</p>
 <p>Cette forme appelle <code>toRealPath</code> et lève <code>NoSuchFileException</code> si le dossier n'existe pas (erreur
