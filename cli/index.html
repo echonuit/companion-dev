@@ -7450,17 +7450,20 @@ enveloppe</strong> posée par <code>--add-launcher</code> sur la même classe pr
 <code>VigieChiroCompanion lister-passages</code> répond exactement pareil. Elle existe pour deux raisons, dont
 une seule est technique - sous Windows, elle porte la console que le lanceur graphique ne peut pas
 avoir (ADR 4071) ; ailleurs, elle donne simplement à la commande le nom qu'on tape.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># archive portable Linux (et app-image)</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>bin/vigiechiro<span class="w"> </span>lister-passages
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># paquet Debian installé : la commande est dans le PATH</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>vigiechiro<span class="w"> </span>lister-passages
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># .msi et archive portable Windows</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>bin<span class="se">\v</span>igiechiro.exe<span class="w"> </span>lister-passages
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># archive portable Linux (et app-image)</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>bin/vigiechiro<span class="w"> </span>lister-passages
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Flatpak</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>flatpak<span class="w"> </span>run<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span>lister-passages
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># .msi et archive portable Windows</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>bin<span class="se">\v</span>igiechiro.exe<span class="w"> </span>lister-passages
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># AppImage</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>./VigieChiroCompanion-2.185.0-linux-x86_64.AppImage<span class="w"> </span>lister-passages
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="c1"># Flatpak</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>flatpak<span class="w"> </span>run<span class="w"> </span>fr.echonuit.VigieChiroCompanion<span class="w"> </span>lister-passages
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1"># AppImage</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>./VigieChiroCompanion-2.185.0-linux-x86_64.AppImage<span class="w"> </span>lister-passages
 </code></pre></div>
 <div class="admonition warning">
 <p class="admonition-title">Sous Flatpak, <code>--workspace</code> exige que l'appelant accorde le chemin</p>
