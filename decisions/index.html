@@ -5700,6 +5700,34 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4079 · Une condition de job nomme l'état qu'elle attend
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -7662,6 +7690,11 @@
 <td><a href="4071-un-point-d-entree-un-mot-declare/">4071</a></td>
 <td>Le cadrage disait « il n y a pas de troisieme voie » ; trois mesures l ont renverse HORS de Windows : le lanceur natif jpackage rend la sortie, l erreur separee et le code 2 sous Linux, et <code>arguments</code> ecrit le mot dans le <code>.cfg</code>, ou il ne sert QUE si personne n a donne d argument. Un point d entree unique lit donc un mot ECRIT - <code>ihm</code> ouvre la fenetre, tout le reste part en texte - au lieu de deduire d une absence, figure que ferme l ADR 3828. Deux enveloppes sur la MEME classe principale, la console reservee a Windows ou le sous-systeme est inscrit dans l en-tete PE a l edition de liens. ⚠️ Le second lanceur HERITE des <code>arguments</code> du premier : sans la cle, <code>vigiechiro</code> tape seul ouvrait la fenetre. ⚠️ Un cas n a pas d equivalent sur ce chemin - une borne abaissee par -D - et il SAUTE en le disant plutot que de rendre un vert creux, ce qui a fait ouvrir #4075</td>
 <td>#4071, suite de #619 et #2104</td>
+</tr>
+<tr>
+<td><a href="4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/">4079</a></td>
+<td>Le train du mercredi a REUSSI et n a rien livre : tag, CHANGELOG et Release crees, puis <code>installers</code> et <code>publish</code> SAUTES, brouillon sans un seul asset, run vert pendant huit jours. La sortie <code>tag</code> valait pourtant <code>v2.186.0</code> : la condition n etait pas fausse, elle n a JAMAIS ete evaluee. GitHub propage le « saute » de facon TRANSITIVE, et un <code>if:</code> sans fonction d etat est enveloppe en <code>success() &amp;&amp; (...)</code> sur tout le graphe amont. Le piege a ete arme par une amelioration : #3770 a mis en <code>needs</code> une garde que le train programme saute toujours. ⚠️ <code>!cancelled()</code> reprend la main, <code>needs.X.result == 'success'</code> referme ce qu il ouvre - seul, il publierait sur un amont ROUGE. ⚠️ La garde est la partie durable : deux <code>if:</code> corriges a la main se defont au prochain <code>needs</code> ajoute en amont, c est ainsi que le defaut est ne. ⚠️ Un vert de garde n est PAS un artefact parti</td>
+<td>#4079, EPIC livraison (#2104)</td>
 </tr>
 </tbody>
 </table>
