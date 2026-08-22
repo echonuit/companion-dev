@@ -8702,6 +8702,66 @@ verdict, un dépôt, un statut de workflow), que le signal n'annonce <strong>pas
 Les cinq écrans qui rechargent au retour déclarent donc les deux.</p>
 <p><strong>Principes.</strong> <strong>DIP</strong> (le service dépend d'un port, pas de JavaFX) et <strong>Observer</strong> (l'émetteur ignore
 ses lecteurs).</p>
+<h3 id="letat-quon-peut-demander-mais-pas-suivre">L'état qu'on peut demander mais pas suivre<a class="headerlink" href="#letat-quon-peut-demander-mais-pas-suivre" title="Permanent link">&para;</a></h3>
+<p><strong>Le problème.</strong> Le signal de mutation couvre la <strong>base</strong>. Il ne couvre pas les états qui vivent
+ailleurs : le jeton Vigie-Chiro est un fichier du workspace, et <code>ClientVigieChiro#estConnecte()</code>
+comme <code>StockageConnexion#estConnecte()</code> se <strong>demandent</strong> - ils ne se <strong>surveillent</strong> pas.</p>
+<p>Un écran qui ferme un geste faute de jeton (affordance #789, « empêcher plutôt qu'avertir ») n'avait donc
+aucun moyen d'apprendre qu'un jeton venait d'arriver. Le bouton « Récupérer depuis Vigie-Chiro »
+conseillait « connectez-vous depuis le menu principal » ; on suivait ce conseil, on revenait, et il
+répétait le même conseil. <strong>L'écran avait donné un conseil sans pouvoir voir qu'on l'avait suivi</strong>
+(#4205).</p>
+<p><strong>La solution.</strong> La même figure que ci-dessus, appliquée à un <strong>état</strong> plutôt qu'à un flux
+d'événements : un service qui n'est pas observable le devient par une <strong>couche mince</strong> au-dessus de lui.</p>
+<table>
+<thead>
+<tr>
+<th>Pièce</th>
+<th>Où</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>EtatConnexion</code></td>
+<td><code>commun.viewmodel</code></td>
+<td>le port, en lecture seule : <code>ReadOnlyBooleanProperty</code></td>
+</tr>
+<tr>
+<td><code>RefletDuJeton</code></td>
+<td><code>connexion.viewmodel</code></td>
+<td>l'implémentation : un reflet de <code>FournisseurToken</code>, relu sur demande</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Trois différences avec le signal de mutation</strong>, et chacune vient de ce qu'on observe un état et non
+des événements :</p>
+<ul>
+<li><strong>Un booléen, pas un compteur.</strong> Deux mutations successives doivent réveiller deux fois ; deux
+  lectures qui rendent « connecté » ne sont <strong>pas</strong> deux nouvelles. Reposer la même valeur ne réveille
+  personne, et c'est le comportement voulu.</li>
+<li><strong>Un seul émetteur, nommé.</strong> « Tu écris, tu signales » n'a pas de sens ici : il n'y a qu'un endroit
+  dans l'IHM où le jeton stocké change, la modale de connexion. Elle s'abonne à sa propre
+  <code>jetonEnregistreProperty</code>, ce qui couvre d'un seul branchement les cinq chemins qui rafraîchissent
+  (connexion, échec, refus, injoignable, déconnexion) - dont on en oublierait un à les recopier.</li>
+<li><strong>La valeur se lit au berceau.</strong> <code>RefletDuJeton</code> s'initialise depuis <code>FournisseurToken</code> à la
+  construction. Partir de <code>false</code> grisserait tous les gestes au démarrage d'une session déjà connectée,
+  jusqu'à la première ouverture de la modale.</li>
+</ul>
+<p><strong>Côté lecteur</strong>, pas de contrat de navigation : l'écran s'abonne explicitement, parce que la
+dépendance mérite d'être lue dans son code.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">etatConnexion</span><span class="p">.</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">etat</span><span class="w"> </span><span class="o">-&gt;</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">        </span><span class="n">etat</span><span class="p">.</span><span class="na">connecteProperty</span><span class="p">().</span><span class="na">addListener</span><span class="p">((</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">avant</span><span class="p">,</span><span class="w"> </span><span class="n">apres</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">rafraichirDepuisLaDonnee</span><span class="p">()));</span>
+</code></pre></div>
+<p>⚠️ <strong><code>Optional</code> chez les consommateurs, et non chez l'émetteur.</strong> La source de vérité
+(<code>FournisseurToken</code>) n'est liée que par <code>ConnexionModule</code> : un injecteur partiel (outils de capture) n'a
+aucun jeton, et « pas d'état de connexion » y est la réponse juste - un geste qui touche la plateforme
+s'y ferme, ce qui est prudent. La modale de connexion, elle, <strong>exige</strong> le reflet : elle ne s'ouvre que
+là où le module est chargé, et un <code>ifPresent</code> silencieux y rendrait l'application muette sur l'arrivée
+du jeton sans que rien ne rougisse.</p>
+<p>⚠️ <strong><code>OptionalBinder</code> veut un port, pas une classe concrète.</strong> <code>newOptionalBinder(binder(), X.class)</code>
+suivi de <code>setBinding().to(X.class)</code> fait pointer la liaison sur elle-même, et Guice refuse de démarrer.
+C'est la raison de la paire port/implémentation ici, et non un goût pour les interfaces.</p>
 <hr />
 <h3 id="un-etat-de-controle-se-lie-il-ne-se-photographie-pas">Un état de contrôle se lie, il ne se photographie pas<a class="headerlink" href="#un-etat-de-controle-se-lie-il-ne-se-photographie-pas" title="Permanent link">&para;</a></h3>
 <p><strong>Le problème.</strong> Un booléen est lu au moment où l'écran se construit, puis <strong>posé</strong> sur un contrôle :

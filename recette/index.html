@@ -7303,9 +7303,14 @@ devient muet sur son propre objet, ce qui est pire parce qu'on le regarde en cro
 <p><code>CorrespondanceRecetteTest</code> garde les deux sens : la réserve est exigée si et seulement si la portée est
 <code>HORS_APPLICATION</code>, et elle doit <strong>figurer sur la page du clip</strong>. Une réserve qui ne vit que dans le code
 ne borne rien : personne ne lit une annotation en regardant une vidéo.</p>
-<p>⚠️ Aujourd'hui, <strong>tous les cas cités sont à l'écran</strong>, sans exception. Ce n'est pas un hasard, et cela
-dit où est la difficulté : ce qui a été couvert jusqu'ici est précisément ce qui se filme sans réserve.
-Les quelque 220 cas dont le verdict est hors de l'application restent devant nous.</p>
+<p>⚠️ Un seul cas cité porte aujourd'hui <code>HORS_APPLICATION</code> : <strong>S1-04</strong>, « ouvrir le site sur la
+plateforme », dont le geste se termine dans un navigateur que le clip ne peut pas montrer. Sa réserve le
+dit, sur la page du clip. Le reste est à l'écran, et ce n'est pas un hasard : ce qui a été couvert
+jusqu'ici est précisément ce qui se filme sans réserve. Les quelque 220 cas dont le verdict est hors de
+l'application restent devant nous.</p>
+<p>Cette page a affirmé pendant un temps que <strong>tous</strong> les cas étaient à l'écran, alors que S1-04 ne l'était
+déjà plus. Une phrase de ce genre ne rougit nulle part : c'est pourquoi le <strong>compte</strong> vient de la
+machine, et pourquoi la phrase qui l'entoure doit se relire à chaque clôture.</p>
 <p>Le compte n'est pas recopié ici : <code>CorrespondanceRecetteTest</code> l'imprime à chaque lancement, sous la forme
 « Portée des cas cités : N à l'écran, M hors application ». Un nombre écrit à la main dans une page dérive
 sans que rien ne le signale, et c'est exactement ce qui a produit #3885.</p>
