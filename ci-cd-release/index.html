@@ -6433,6 +6433,33 @@
   
   
     <li class="md-nav__item">
+      <a href="../spikes/clips-perceptifs-sous-windows/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Spike · clips perceptifs sous Windows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../audit-filtres-vues-tabulaires/" class="md-nav__link">
         
   
@@ -7583,7 +7610,7 @@
 
 
 <h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
-<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->16<!--/inv--> workflows et le processus de
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->17<!--/inv--> workflows et le processus de
 publication.</p>
 <h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
 <table>
@@ -7714,6 +7741,12 @@ publication.</p>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/recette-filmee.yml">recette-filmee.yml</a></td>
 <td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
 <td>Éprouve qu'un runner <strong>pilote</strong> un test filmé, et pas seulement qu'il l'exécute. Porte son <strong>témoin</strong> : sans gestionnaire de fenêtres, le lancement doit être refusé (cf. plus bas)</td>
+<td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/spike-clips-windows.yml">spike-clips-windows.yml</a></td>
+<td><strong>poussée sur <code>spike/clips-windows-java</code></strong> + manuel</td>
+<td><strong>SPIKE, jetable.</strong> Filme les neuf cas perceptifs sur un runner <strong>windows-latest</strong> avec le banc en <strong>Java pur</strong> (<code>Scene.snapshot</code>), sans Xvfb ni gestionnaire de fenêtres, et verse les clips sur la pré-version <strong>séparée</strong> <code>clips-windows-spike</code>. Répond à « le poste Windows peut-il avoir ses clips ? », que <code>recette-filmee.yml</code> ne peut pas poser puisqu'il filme un bureau X. À supprimer avec sa page de spike si la réponse ne se transforme pas en chantier</td>
 <td>—</td>
 </tr>
 </tbody>
