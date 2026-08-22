@@ -7772,9 +7772,9 @@ publication.</p>
 <td>—</td>
 </tr>
 <tr>
-<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/spike-clips-windows.yml">spike-clips-windows.yml</a></td>
-<td><strong>poussée sur <code>spike/clips-windows-java</code></strong> + manuel</td>
-<td><strong>SPIKE, jetable.</strong> Filme les neuf cas perceptifs sur un runner <strong>windows-latest</strong> avec le banc en <strong>Java pur</strong> (<code>Scene.snapshot</code>), sans Xvfb ni gestionnaire de fenêtres, et verse les clips sur la pré-version <strong>séparée</strong> <code>clips-windows-spike</code>. Répond à « le poste Windows peut-il avoir ses clips ? », que <code>recette-filmee.yml</code> ne peut pas poser puisqu'il filme un bureau X. À supprimer avec sa page de spike si la réponse ne se transforme pas en chantier</td>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/tournage-recette.yml">tournage-recette.yml</a></td>
+<td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
+<td>Tourne les clips d'<strong>une session</strong>, sur la plateforme de son choix - <code>ubuntu</code>, <code>windows</code> ou <code>macos</code>, le banc en Java pur n'ayant besoin d'aucun écran. Répond à la limite que l'EPIC #4133 se donnait : « à 400 clips, ce serait des heures par passage ». La liste des classes est <strong>dérivée</strong> par <code>CorrespondanceRecetteTest</code>, jamais tenue à la main. ⚠️ Il ne <strong>publie pas</strong> : les clips restent en artefact, et <code>clips-recette</code> reste alimentée par <code>recette-filmee.yml</code> tant que le sort du banc bash n'est pas tranché</td>
 <td>—</td>
 </tr>
 </tbody>
