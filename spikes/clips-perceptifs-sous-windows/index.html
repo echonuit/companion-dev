@@ -7377,6 +7377,19 @@ qui tourne aujourd'hui est <a href="../../ci-cd-release/"><code>tournage-recette
 sur la plateforme de son choix. Cette page reste pour ce qu'elle a <strong>mesuré</strong> ; elle ne décrit
 plus un dispositif vivant.</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Ces clips ne se rafraîchissent plus tout seuls</p>
+<p>Les neuf pièces ont été retournées <strong>à la main</strong> le 22 août 2026, après que le banc a appris à
+dessiner le pointeur : ce sont donc les premiers clips de cette page où l'on voit le <strong>geste</strong> et
+non seulement son effet.</p>
+<p>⚠️ Aucun workflow n'alimente <code>clips-windows-spike</code> depuis le retrait de celui du spike, et
+<code>tournage-recette.yml</code> ne publie <strong>délibérément</strong> nulle part, pour qu'un second dispositif ne
+puisse pas contredire <code>recette-filmee.yml</code>. La date que portent ces clips est donc celle d'une
+<strong>main</strong>, pas d'un dispositif : si le banc change encore, cette page gèle sans que rien ne le
+signale.</p>
+<p>Les retourner demande de dispatcher <code>tournage-recette.yml</code> sur <code>S1</code>, <code>S4</code> et <code>S6</code> en <code>windows</code>,
+puis de verser les neuf <code>mp4</code> des artefacts sur la pré-version.</p>
+</div>
 <h2 id="la-question">La question<a class="headerlink" href="#la-question" title="Permanent link">&para;</a></h2>
 <p>La session <a href="../../recette/sessions/s10-le-poste-windows/">S10 · le poste Windows</a> n'a jamais eu de
 clips. Ce n'est pas un oubli : le banc bash filme le <strong>bureau X</strong>, et il lui faut Xvfb, openbox,
