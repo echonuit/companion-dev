@@ -6908,6 +6908,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#les-lectures-de-masse-passent-par-un-lot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les lectures de masse passent par un lot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les lectures de masse passent par un lot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comment-on-chiffre-une-lecture-repetee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comment on chiffre une lecture répétée
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -7160,6 +7188,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#les-lectures-de-masse-passent-par-un-lot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les lectures de masse passent par un lot
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les lectures de masse passent par un lot">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comment-on-chiffre-une-lecture-repetee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comment on chiffre une lecture répétée
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -7259,6 +7315,16 @@ complètes (avec les propriétés <code>-Dperf.*</code> de dimensionnement) sont
 </tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">Ces deux chiffres ont été relevés sur <strong>un seul carré</strong></p>
+<p>Le jeu du banc semait <strong>un</strong> site de dix points, quelle que soit la valeur de <code>perf.passages</code>. Les
+écrans lançaient pourtant une requête <strong>par site</strong> puis une <strong>par point</strong> : sur cette topologie, onze
+requêtes, noyées dans le bruit. Le relevé « ~18 ms ✅ » était donc exact <strong>et</strong> aveugle - un
+coordinateur départemental, cent cinquante carrés, en payait plus de quatre cents.</p>
+<p>Le jeu sème désormais <code>perf.sites</code> carrés (défaut <strong>40</strong>), et un test
+(<code>JeuDuBancTest</code>) refuse qu'il retombe à un. <strong>Les deux chiffres ci-dessus sont donc à refaire</strong> sur
+la nouvelle topologie : ils ne sont pas faux, ils mesuraient autre chose que ce qu'on croyait.</p>
+</div>
 <p>Sans l'index, la sélection faisait un <code>SCAN</code> (~75 ms froid) ; l'index la ramène à ~25 ms. Le gain est
 <strong>verrouillé par un test CI</strong> (non-régression du plan d'exécution).</p>
 <h3 id="o3-import-dune-nuit">O3 : import d'une nuit<a class="headerlink" href="#o3-import-dune-nuit" title="Permanent link">&para;</a></h3>
@@ -7363,6 +7429,73 @@ pour la même masse.</p>
 <li><strong>L'atomicité est un effet de bord bienvenu, pas le motif.</strong> Le motif est le coût ; mais une écriture de
   masse groupée ne laisse plus, en cas d'interruption, un état à moitié écrit.</li>
 </ul>
+<h2 id="les-lectures-de-masse-passent-par-un-lot">Les lectures de masse passent par un lot<a class="headerlink" href="#les-lectures-de-masse-passent-par-un-lot" title="Permanent link">&para;</a></h2>
+<p>La règle ci-dessus vaut pour les <strong>écritures</strong>. La même figure existe côté <strong>lectures</strong>, et elle a coûté
+davantage parce que rien ne la nommait.</p>
+<p>Un écran qui compose N lignes en interrogeant la base <strong>pour chacune</strong> paie N requêtes là où une seule
+suffirait. Ce n'est pas un <code>fsync</code> par ligne, donc c'est moins spectaculaire qu'une écriture de masse -
+mais le coût <strong>croît avec l'inventaire de l'utilisateur</strong>, c'est-à-dire qu'il est absent des jeux d'essai
+et maximal chez celui qui a le plus de données.</p>
+<p>Mesuré sur six chemins (#4251, #4271, #4278, #4280, #4283, #4286, #4293), à cent cinquante carrés :</p>
+<table>
+<thead>
+<tr>
+<th>Chemin</th>
+<th>Avant</th>
+<th>Après</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>« Mes sites »</td>
+<td>165-241 ms</td>
+<td>6-8 ms</td>
+</tr>
+<tr>
+<td>« Carte &amp; passages »</td>
+<td>339-377 ms</td>
+<td>15-18 ms</td>
+</tr>
+<tr>
+<td>« Ma saison »</td>
+<td>386-409 ms</td>
+<td>6-12 ms</td>
+</tr>
+<tr>
+<td>Audit de cohérence</td>
+<td>11 requêtes par nuit</td>
+<td>2</td>
+</tr>
+<tr>
+<td>Export des sons</td>
+<td>3 requêtes par son</td>
+<td>lecture unique</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La règle.</strong> Toute boucle qui compose des lignes à partir de la base lit <strong>par lot</strong> avant de boucler :
+<code>PointDao#findParSites</code>, <code>PassageDao#findParPoints</code>, <code>SequenceDao#findParIds</code>, ou un index construit
+depuis un <code>findAll()</code> quand la table porte une ligne par entité. Les lectures par identifiants passent
+par <code>LotsDeParametres.decouper</code> : SQLite refuse au-delà de quelques centaines de paramètres liés, et un
+remède contre la lenteur ne doit pas introduire un défaut de justesse.</p>
+<p>⚠️ <strong>Ce qui ne se lit pas par lot.</strong> Les tables de <strong>volume</strong> - originaux, séquences d'écoute - restent
+lues par session. Une nuit en porte des milliers : les charger toutes d'un bloc échangerait un défaut de
+lenteur contre un défaut de mémoire.</p>
+<h3 id="comment-on-chiffre-une-lecture-repetee">Comment on chiffre une lecture répétée<a class="headerlink" href="#comment-on-chiffre-une-lecture-repetee" title="Permanent link">&para;</a></h3>
+<p><strong>Pas au chronomètre.</strong> Trois façons de se tromper ont été rencontrées le même jour :</p>
+<ul>
+<li><strong>la première mesure d'un processus n'est pas une mesure</strong> : le démarrage de la JVM coûte ~300 ms quelle
+  que soit la taille des données, et comparer deux chiffres pris à des rangs différents compare deux
+  choses différentes ;</li>
+<li><strong>lire le code sous-compte</strong> : l'audit semblait faire six requêtes par nuit, le compteur en a trouvé
+  <strong>onze</strong> - cinq vivaient un appel plus bas ;</li>
+<li><strong>une autre session charge la machine</strong> : un banc filmé (<code>ffmpeg</code>) faisait varier les relevés du simple
+  au double.</li>
+</ul>
+<p>Ce qui marche est de <strong>compter les connexions ouvertes</strong>, en sous-classant <code>SourceDeDonnees</code>, puis de
+comparer ce compte à <strong>deux tailles de jeu</strong>. C'est déterministe, insensible à la charge, et cela attrape
+les requêtes <strong>où qu'elles vivent</strong> dans la pile d'appels. Deux exemples dans le dépôt :
+<code>RequetesDeLAuditTest</code> et <code>ExportObservationsEtSonsTest#l_export_lit_par_lot</code>.</p>
 
 
 
