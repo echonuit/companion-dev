@@ -5847,6 +5847,62 @@
   
   
     <li class="md-nav__item">
+      <a href="4234-un-motif-de-blocage-se-montre-il-ne-se-lit-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4234 · Un motif de blocage se montre
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4235-le-garde-d-abord-l-abstraction-ensuite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4235 · Le garde d'abord, l'abstraction ensuite
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-nav__link">
         
   
@@ -7943,6 +7999,16 @@
 <td><a href="4188-une-modale-se-filme-avec-son-ecran/">4188</a></td>
 <td>Cinq constats de la revue des clips disaient la meme chose sous cinq formes : <code>annuler ne cree rien</code> n avait aucun endroit ou se voir, <code>la fenetre se ferme, la fiche s ouvre</code> aucun ecran d arrivee a montrer. Ces tests montent <code>Modale*.fxml</code> SEULE, et le clip montre une modale flottant sur du NOIR - ni cause ni effet, c est-a-dire rien de ce qu un cas existe pour faire juger. Un cas qui passe par une modale se filme donc avec les DEUX ecrans qui l encadrent : celui d ou part le geste, fait par un clic sur son bouton, et celui ou l on retombe, tenu assez longtemps pour qu on voie ce qui a change. ⚠️ Il n y avait AUCUN obstacle technique : les modales du produit s ouvrent en <code>show()</code>, jamais en <code>showAndWait</code> - la raison qu on se donnait ne valait que pour les <code>Alert</code> du socle. La confusion a coute cinq clips illisibles et deux classes baties sur un double inutile. ⚠️ Les classes qui montent une modale seule gardent leurs ASSERTIONS, pas leur cas</td>
 <td>#4188, EPIC #4133</td>
+</tr>
+<tr>
+<td><a href="4234-un-motif-de-blocage-se-montre-il-ne-se-lit-pas/">4234</a></td>
+<td>L affordance #789 tient en deux temps : un geste impossible se ferme, et son motif nomme ce qui manque. Quatre cas de recette existaient pour faire juger le SECOND, et aucun ne le montrait : ils lisaient le texte de l infobulle par programme, l assertion passait, et le film ne montrait qu un bouton gris. « Ne montre pas ce qu il doit », disait la revue - le constat portait sur la moitie du cas qui n etait pas filmee. Un cas dont l objet est qu un geste dit ce qui l empeche FAIT PARAITRE ce motif par le survol, et l attente de son apparition est une ASSERTION : un motif qu on ne peut pas faire venir n existe pas pour l utilisateur. ⚠️ Ecarte : afficher le motif en permanence, ce serait changer le produit pour filmer le produit ; et <code>Tooltip.show(...)</code> pose par le test montrerait une bulle surgie de nulle part</td>
+<td>#4234, EPIC #4133</td>
+</tr>
+<tr>
+<td><a href="4235-le-garde-d-abord-l-abstraction-ensuite/">4235</a></td>
+<td>Le preambule d un scenario filme pesait 494 lignes pour cinquante cas, et les trois plus lourds 47 a 69 lignes POUR UN SEUL CAS : ecrire un cas neuf revenait a recopier celui du voisin. Le point decisif n est pas la : <code>FenetreDuBanc</code> EXISTAIT DEJA et faisait ce qu il fallait, et trois classes sur onze ne l utilisaient pas - elles avaient copie un preambule anterieur a sa creation. Une abstraction que rien n impose est contournee par le prochain copier-coller, c est-a-dire par ce qu elle pretendait supprimer. On pose donc le garde D ABORD, puis l abstraction. Le garde porte une liste d attente NOMMEE ET FINIE quand la migration ne peut pas se faire d un coup - une liste, pas un interrupteur - et un compteur d inspection qui refuse zero. ⚠️ Et il mesure la propriete, pas un proxy : chercher la chaine <code>MainView.fxml</code> a declare fautive la premiere classe migree, qui monte le chrome sans le nommer</td>
+<td>#4235, EPIC #4133</td>
 </tr>
 </tbody>
 </table>
