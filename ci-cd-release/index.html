@@ -8579,6 +8579,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>verifie-noms-d-etapes.sh</code></td>
+<td>aucun nom d'étape ou de job ne perd de texte à l'analyse YAML (un <code>#</code> non cité ouvre un commentaire)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>scripts/adr/verifie_scripts.py</code></td>
 <td>les scripts cités par les ADR</td>
 <td><code>lint.yml</code></td>
@@ -8596,7 +8601,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tbody>
 </table>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
-<p>Ces gardes sont elles-mêmes du shell, et le dépôt en compte <strong>31 scripts</strong> hors <code>node_modules</code>. Le
+<p>Ces gardes sont elles-mêmes du shell, et le dépôt en compte <strong>33 scripts</strong> hors <code>node_modules</code>. Le
 job <code>lint</code> les passe tous à <code>shellcheck</code>.</p>
 <p>Les <strong>réglages</strong> vivent dans <code>.shellcheckrc</code>, à la racine, et non dans le YAML : un contributeur qui
 lance <code>shellcheck son-script.sh</code> doit voir ce que voit la CI. Un réglage caché dans un workflow
