@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/0008-aucun-echec-silencieux-severite-a-l-emission/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/">
       
       
-        <link rel="prev" href="../0007-retours-http-type-scelle-reponse-api/">
+        <link rel="prev" href="../4248-un-banc-qui-filme-de-l-interieur-dessine-lui-meme-le-geste/">
       
       
-        <link rel="next" href="../0009-la-nuit-est-l-unite-bornee-a-midi/">
+        <link rel="next" href="../4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>0008 · Aucun échec silencieux - VigieChiro Companion · Doc développeur</title>
+        <title>4249 · Un fichier écrit par plusieurs JVM se reconstruit - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#adr-0008-aucun-echec-silencieux-la-severite-de-journalisation-se-decide-a-lemission" class="md-skip">
+        <a href="#adr-4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit-il-ne-sajoute-pas" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              0008 · Aucun échec silencieux
+              4249 · Un fichier écrit par plusieurs JVM se reconstruit
             
           </span>
         </div>
@@ -831,37 +831,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    0008 · Aucun échec silencieux
-  
-
-    
-  </span>
-  
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../0008-aucun-echec-silencieux-severite-a-l-emission/" class="md-nav__link">
         
   
   
@@ -877,70 +850,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -5906,10 +5815,37 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4249 · Un fichier écrit par plusieurs JVM se reconstruit
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -5925,6 +5861,70 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-ecartees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives écartées
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -7017,7 +7017,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/0008-aucun-echec-silencieux-severite-a-l-emission.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -7026,39 +7026,61 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/0008-aucun-echec-silencieux-severite-a-l-emission.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="adr-0008-aucun-echec-silencieux-la-severite-de-journalisation-se-decide-a-lemission">ADR 0008 - Aucun échec silencieux ; la sévérité de journalisation se décide à l'émission<a class="headerlink" href="#adr-0008-aucun-echec-silencieux-la-severite-de-journalisation-se-decide-a-lemission" title="Permanent link">&para;</a></h1>
+<h1 id="adr-4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit-il-ne-sajoute-pas">ADR 4249 - Un fichier écrit par plusieurs JVM se reconstruit, il ne s'ajoute pas<a class="headerlink" href="#adr-4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit-il-ne-sajoute-pas" title="Permanent link">&para;</a></h1>
 <ul>
-<li><strong>Statut</strong> : Accepté - rétroactif</li>
-<li><strong>Chantier</strong> : EPIC #1523 (observabilité)</li>
-<li><strong>Vérification</strong> : probable - <code>scripts/adr/0008-echec-silencieux.py</code> (cliquet : 12)</li>
+<li><strong>Statut</strong> : Accepté - 2026-08-23</li>
+<li><strong>Chantier</strong> : #4249, EPIC #4133</li>
+<li><strong>Vérification</strong> : certaine - <code>IndexDesCasTest#deux_jvm_de_meme_pid_ne_s_effacent_pas</code></li>
 </ul>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Des échecs disparaissaient sans laisser de trace : <code>catch</code> muets, tâches longues qui gelaient l'interface sans un mot, exceptions avalées par un contrat <em>best-effort</em>. Quand un utilisateur signalait « ça n'a pas marché », rien dans le système ne permettait de savoir <strong>quoi</strong>. Il fallait une journalisation - <strong>sans</strong> pour autant noyer le journal sous les issues <strong>normales</strong> (un refus métier, une annulation), sinon on cesse de le lire.</p>
+<p>Surefire tourne avec <code>forkCount=1C</code> : autant de JVM que de cœurs, et chacune filme les cas des classes
+qui lui échoient. L'index qui relie un cas de recette à son clip était écrit <strong>par ajout</strong> au même
+fichier.</p>
+<p>Mesuré sur un tournage à neuf clips : <strong>cinq lignes dans l'index</strong>, pour neuf fichiers bien présents sur
+le disque. Quatre cas filmés n'avaient aucune trace, et rien ne le signalait.</p>
+<p>Le premier remède, un fragment par JVM nommé par son PID, a tenu sous Linux et cédé sous macOS :
+<strong>trois fragments pour quatre JVM</strong>, et le cas S1-37 disparu. Le système avait réattribué un PID pendant
+le tournage, et le second fragment avait écrasé le premier.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p>Un fichier de sortie qu'alimentent plusieurs JVM se <strong>reconstruit depuis des fragments</strong>, un par JVM,
+sous une identité qui ne peut pas se répéter :</p>
 <ul>
-<li><strong>Backend : <code>java.util.logging</code> (JUL).</strong> Zéro dépendance, cohérent avec le packaging (shade + jpackage). Un <code>FileHandler</code> tournant vers <code>&lt;workspace&gt;/logs/</code> + console, installé une fois à <code>App.start()</code> et <code>Cli.main()</code>. Les tests restent silencieux.</li>
-<li><strong>La sévérité se décide à l'émission</strong>, selon la <strong>nature</strong> de l'issue :</li>
-<li>une <strong>annulation</strong> (<code>OperationAnnuleeException</code>) ou un <strong>refus métier</strong> (<code>RegleMetierException</code>, et les <code>IllegalArgumentException</code> des validateurs) sont des issues <strong>normales</strong> → <strong>FINE</strong>, sans pile ;</li>
-<li>seul un <code>Throwable</code> <strong>inattendu</strong> (un vrai bug) part en <strong>WARNING/SEVERE avec</strong> sa pile.</li>
+<li>chaque JVM écrit son fragment dans <code>index.d/</code>, nommé <code>pid + UUID</code> ;</li>
+<li>l'index final est <strong>reconstruit</strong> depuis tous les fragments, sous <code>FileLock</code>, à la fermeture de chaque
+  JVM.</li>
 </ul>
+<p>Le PID seul dit d'où vient le fragment, ce qui aide à lire un tournage. L'UUID garantit qu'il ne sera
+pas repris. Aucun des deux ne suffit.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<ul>
-<li>Un échec inattendu laisse <strong>toujours</strong> une trace horodatée avec pile dans <code>&lt;workspace&gt;/logs/</code>, même si son message est nul - exactement la classe de bug visée.</li>
-<li>Les refus et annulations <strong>n'encombrent pas</strong> le journal d'erreurs : il reste lisible.</li>
-<li>La règle vaut à <strong>chaque surface</strong> : l'IHM route ses <code>Throwable</code> via un helper partagé ; la CLI applique la même distinction dans son handler d'exécution (un refus de validation n'y est plus une trace SEVERE).</li>
-<li>Corollaire outillage : un menu « Ouvrir le dossier des journaux » rend la trace accessible sans fouiller le disque.</li>
-</ul>
+<p><strong>L'index est reconstruit N fois plutôt qu'une.</strong> C'est quelques millisecondes par fork, contre une
+écriture partielle qui ne corrompt jamais l'ensemble : une JVM tuée laisse un fragment incomplet, pas un
+index faux.</p>
+<p><strong>Le défaut d'origine était invisible à tout signal automatique.</strong> Les clips existaient, les tests
+passaient, l'index se construisait, les gardes étaient verts. Un index amputé ressemble trait pour trait
+à un index juste : il faut compter ses lignes contre les fichiers produits pour voir le manque. C'est
+pourquoi <code>IndexDesCasTest</code> compte, et pourquoi le constructeur qui reçoit l'identité est ouvert au
+paquet : sans cette couture, le défaut du PID réemployé n'est pas reproductible.</p>
+<p><strong>Un test écrit après coup peut verrouiller le défaut.</strong> Le premier <code>IndexDesCasTest</code> vérifiait que le
+second écrivain <strong>remplaçait</strong> le premier. Il était vert, et il figeait l'écrasement comme comportement
+attendu. Un test rédigé depuis le code observé décrit ce que le code fait, pas ce qu'il devrait faire :
+c'est le même piège que celui de l'<a href="../3960-un-garde-dit-la-couverture-qu-il-a-et-rend-l-etat-qu-il-emprunte/">ADR 3960</a>.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Une dépendance de logging (SLF4J+backend, Log4j).</strong> Alourdit le module-graph pour un besoin que JUL couvre, alors que jlink modulaire est déjà exclu.</li>
-<li><strong>Tout journaliser au même niveau.</strong> Noie les bugs sous les refus normaux : le journal devient du bruit qu'on cesse de consulter.</li>
+<li><strong>Sérialiser les écritures sur le fichier final.</strong> Un verrou tenu pendant toute l'écriture rend les
+  forks dépendants les uns des autres, et une JVM tuée laisse le verrou derrière elle.</li>
+<li><strong>Un seul écrivain à la fin du tournage.</strong> Il faudrait qu'une JVM sache que les autres ont fini, ce
+  que surefire ne lui dit pas.</li>
+<li><strong>Réemployer <code>VerrouWorkspace</code>.</strong> Il emploie le même <code>FileLock</code>, mais dans l'intention <strong>inverse</strong> :
+  il <strong>refuse</strong> un second processus par <code>tryLock</code> et attrape <code>OverlappingFileLockException</code>
+  (<a href="../2731-un-seul-processus-par-workspace/">ADR 2731</a>). Ici on veut les accueillir tous, et le verrou
+  ne sert qu'à sérialiser la reconstruction.</li>
 </ul>
 
 
@@ -7095,7 +7117,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../0007-retours-http-type-scelle-reponse-api/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 0007 · Retours HTTP scellés (ReponseApi)">
+          <a href="../4248-un-banc-qui-filme-de-l-interieur-dessine-lui-meme-le-geste/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 4248 · Un banc qui filme de l&#39;intérieur dessine lui-même le geste">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -7105,20 +7127,20 @@
                 Précédent
               </span>
               <div class="md-ellipsis">
-                0007 · Retours HTTP scellés (ReponseApi)
+                4248 · Un banc qui filme de l'intérieur dessine lui-même le geste
               </div>
             </div>
           </a>
         
         
           
-          <a href="../0009-la-nuit-est-l-unite-bornee-a-midi/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 0009 · La nuit comme unité">
+          <a href="../4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4079 · Une condition de job nomme l&#39;état qu&#39;elle attend">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                0009 · La nuit comme unité
+                4079 · Une condition de job nomme l'état qu'elle attend
               </div>
             </div>
             <div class="md-footer__button md-icon">
