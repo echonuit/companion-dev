@@ -6015,6 +6015,34 @@
   
   
     <li class="md-nav__item">
+      <a href="4296-on-compare-les-deux-bouts-du-clip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4296 · On compare les deux bouts du clip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/" class="md-nav__link">
         
   
@@ -8225,6 +8253,11 @@
 <td><a href="4287-un-ecart-se-lit-contre-le-plancher-de-son-cas/">4287</a></td>
 <td>Le bruit n'est pas une propriété du dispositif mais DU CAS : deux tournages du même commit sur deux runners donnent une médiane de 0,008 %, 48 cas sur 51 sous 0,05 %, et trois qui montent jusqu'à 0,809 %. Aucun seuil unique ne tient - le pire plancher AVEUGLERAIT 48 cas pour se protéger de trois (un libellé changé vaut 0,364 %, il passerait dessous), la médiane ferait CRIER ces trois-là à chaque tournage. Un écart se lit donc contre le plancher de son propre cas, tenu dans un fichier que <code>--plancher</code> accumule en gardant le PIRE observé. ⚠️ Le fichier porte le nombre de paires qui l'ont produit : un plancher tiré d'une seule paire ne prouve pas qu'un cas est stable, seulement qu'il l'était cette fois-là</td>
 <td>#4287, EPIC #4295</td>
+</tr>
+<tr>
+<td><a href="4296-on-compare-les-deux-bouts-du-clip/">4296</a></td>
+<td>L'ADR 4274 ne retenait que l'image finale, et sa contrepartie mordait précisément là où l'ADR 4166 demande le plus : un cas qui montre un état ET son contraire a son sens dans le CONTRASTE, dont la fin ne garde qu'un côté - plus un cas respectait 4166, moins la comparaison le couvrait. Mesuré sur 51 cas et deux paires, soit 102 mesures : le plancher de la PREMIÈRE image vaut 0,000 % sans exception, contre 0,008 % de médiane et 0,809 % au pire pour la dernière. ⚠️ Stable ne suffisait pas - une mesure toujours nulle peut être fidèle ou AVEUGLE : vérifié, deux cas différents ont des premières images distantes de 2,4 à 3 %. On compare donc les deux bouts, chacun contre son plancher, et le classement retient le plus grand des deux rapports. Les montages du début ne sortent que s'il a bougé, sans quoi cinquante fichiers identiques noieraient les deux qui comptent</td>
+<td>#4296, EPIC #4295</td>
 </tr>
 <tr>
 <td><a href="4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/">4249</a></td>

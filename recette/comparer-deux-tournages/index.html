@@ -5900,6 +5900,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../decisions/4296-on-compare-les-deux-bouts-du-clip/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4296 · On compare les deux bouts du clip
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/" class="md-nav__link">
         
   
@@ -6416,6 +6444,34 @@
     <span class="md-ellipsis">
       
         Deux silences que le fichier ne produit pas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-deux-bouts-et-ce-que-la-seconde-paire-a-appris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les deux bouts, et ce que la seconde paire a appris
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les deux bouts, et ce que la seconde paire a appris">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-images-du-debut-ne-sortent-que-si-le-debut-a-bouge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les images du début ne sortent que si le début a bougé
       
     </span>
   </a>
@@ -7299,6 +7355,34 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-deux-bouts-et-ce-que-la-seconde-paire-a-appris" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les deux bouts, et ce que la seconde paire a appris
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les deux bouts, et ce que la seconde paire a appris">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#les-images-du-debut-ne-sortent-que-si-le-debut-a-bouge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les images du début ne sortent que si le début a bougé
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-la-methode-ne-voit-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7561,6 +7645,28 @@ absolu de 0,084 %, soit moins qu'un mot changé - ne valent pas mieux que leur �
 inventer une mesure qui n'a pas été faite.</p>
 <p>Un fichier <strong>annoncé mais introuvable</strong> fait échouer la comparaison. Sans ce refus, les cinquante cas
 diraient tous « plancher inconnu » et personne n'irait chercher le chemin fautif.</p>
+<h2 id="les-deux-bouts-et-ce-que-la-seconde-paire-a-appris">Les deux bouts, et ce que la seconde paire a appris<a class="headerlink" href="#les-deux-bouts-et-ce-que-la-seconde-paire-a-appris" title="Permanent link">&para;</a></h2>
+<p>Depuis l'<a href="../../decisions/4296-on-compare-les-deux-bouts-du-clip/">ADR 4296</a>, la comparaison porte sur la
+<strong>première</strong> image du clip autant que sur la dernière. Chacune a son plancher, et le classement retient
+le plus grand des deux rapports.</p>
+<p>La première image est <strong>plus stable que la dernière</strong> : sur 51 cas et deux paires de tournages, soit
+102 mesures, son plancher vaut <strong>0,000 % sans exception</strong>. Elle n'est pas pour autant aveugle - les
+premières images de deux cas différents diffèrent de 2,4 à 3 %.</p>
+<div class="admonition warning">
+<p class="admonition-title">Un plancher haut peut n'être qu'un mauvais tirage</p>
+<p><code>chaque_carte_ouvre_ce_qu_elle_annonce</code> a rendu <strong>0,809 %</strong> sur la première paire et <strong>0,073 %</strong> sur
+la seconde, onze fois moins. Ce plancher n'était donc pas une propriété du cas.</p>
+<p>Sur les 51 cas, 3 planchers diffèrent de plus de 0,1 % d'une paire à l'autre, 10 de 0,01 à 0,1 %, et
+38 de moins de 0,01 %.</p>
+<p>⚠️ La règle du <strong>pire observé</strong> garde 0,809 % pour ce cas, définitivement. C'est le prix assumé de
+ne pas fabriquer de faux positifs : un plancher ne redescend jamais, donc <strong>un seul mauvais tirage
+aveugle un cas pour de bon</strong>. Avec assez de paires, un centile vaudrait mieux qu'un maximum ; avec
+deux, il n'y a pas de quoi le calculer.</p>
+</div>
+<h3 id="les-images-du-debut-ne-sortent-que-si-le-debut-a-bouge">Les images du début ne sortent que si le début a bougé<a class="headerlink" href="#les-images-du-debut-ne-sortent-que-si-le-debut-a-bouge" title="Permanent link">&para;</a></h3>
+<p>Son plancher valant zéro partout, produire ces montages systématiquement ferait cinquante fichiers
+identiques qui noieraient les deux ou trois qui comptent. Vérifié sur une comparaison réelle : 51
+montages de fin, <strong>zéro</strong> montage de début.</p>
 <h2 id="ce-que-la-methode-ne-voit-pas">Ce que la méthode ne voit pas<a class="headerlink" href="#ce-que-la-methode-ne-voit-pas" title="Permanent link">&para;</a></h2>
 <p>⚠️ <strong>L'image finale compare la destination, pas le chemin.</strong></p>
 <p>La dernière image est le seul instant où deux tournages sont comparables sans dépendre de leur cadence :
