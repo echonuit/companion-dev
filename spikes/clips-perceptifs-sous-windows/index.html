@@ -7768,7 +7768,7 @@ du calcul, c'est de l'attente délibérée. Aucun choix d'implémentation ne la 
 porte que sur le banc. C'est une contrainte du banc bash, pas du banc Java : une fois <code>IndexDesCas</code>
 corrigé, celui-ci tourne au <code>forkCount=1C</code> du dépôt, et les quatre classes descendent alors à
 1 min 54 s sous Linux. Sur neuf cas dont l'essentiel du temps est du sommeil, le parallélisme ne
-rapporte presque rien ; sur la planche entière, c'est l'inverse.</p>
+rapporte presque rien ; sur un tournage complet, c'est l'inverse.</p>
 <p>⚠️ Ne pas conclure « les deux bancs se valent » : ils ne coûtent pareil qu'<strong>à périmètre égal</strong>, et
 c'est le périmètre qui diffère.</p>
 <table>
@@ -7818,7 +7818,7 @@ donnait à surveiller : « le tournage met une dizaine de minutes pour 45 clips 
 heures par passage ». Filmer <strong>par session</strong> ne demande ici qu'un <code>-Dtest=</code>.</p>
 <h2 id="ce-que-le-remplacement-demanderait">Ce que le remplacement demanderait<a class="headerlink" href="#ce-que-le-remplacement-demanderait" title="Permanent link">&para;</a></h2>
 <p>Mesuré, pas supposé.</p>
-<p><strong>Une ligne suffit pour couvrir toute la planche.</strong> Ajouter <code>EnregistreurDeFilm</code> au fichier de
+<p><strong>Une ligne suffit pour couvrir tous les cas cités.</strong> Ajouter <code>EnregistreurDeFilm</code> au fichier de
 services de JUnit le rend actif partout où la détection automatique est demandée, comme
 <code>ReperesDeSeance</code> l'est déjà. Sonde faite sur deux classes non annotées : <code>ScenarioAccueilTest</code> rend
 des clips pleins, <code>ServiceQualificationTest</code> des clips qui s'arrêtent à leur carton et que l'index
@@ -7904,7 +7904,7 @@ publication, et le remplacer se fait par étapes, pas par suppression.</p>
 <tr>
 <td>5</td>
 <td>à ouvrir</td>
-<td>les deux bancs comparés sur la <strong>même planche</strong>, puis décider de <code>lance-test-filme.sh</code>, de ses 1 289 lignes et de ses cinq préconditions. Cela vaudra un ADR</td>
+<td>les deux bancs comparés sur le <strong>même tournage complet</strong>, puis décider de <code>lance-test-filme.sh</code>, de ses 1 289 lignes et de ses cinq préconditions. Cela vaudra un ADR</td>
 </tr>
 </tbody>
 </table>
