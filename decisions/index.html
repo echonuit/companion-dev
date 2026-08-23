@@ -5959,6 +5959,62 @@
   
   
     <li class="md-nav__item">
+      <a href="4274-on-compare-la-derniere-image-pas-le-chemin/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4274 · On compare la dernière image d'un clip, pas son chemin
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4287-un-ecart-se-lit-contre-le-plancher-de-son-cas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4287 · Un écart se lit contre le plancher de son propre cas
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/" class="md-nav__link">
         
   
@@ -8159,6 +8215,16 @@
 <td><a href="4248-un-banc-qui-filme-de-l-interieur-dessine-lui-meme-le-geste/">4248</a></td>
 <td>Le banc bash filme l'ÉCRAN (<code>x11grab</code>), donc le pointeur y figure parce que le système l'y dessine. Le banc Java rend le GRAPHE DE SCÈNE (<code>Scene.snapshot</code>), où le pointeur n'existe pas et où une touche pressée ne laisse aucune trace : une modale s'ouvrait sans qu'on voie ce qui l'avait ouverte (« dans S1-27, le clic qui ouvre la modale n'a pas le halo »). Un banc qui filme de l'intérieur dessine donc lui-même le geste : halo de l'appui, flèche ancrée par sa pointe, badge du raccourci. Il n'invente rien, il observe les événements par des filtres qui ne consomment pas. ⚠️ Corollaire assumé : pas d'événement, pas de dessin - un test qui lance le <code>Runnable</code> d'un accélérateur sans presser la touche ne produit aucun badge (#4242), et le défaut est alors dans le test</td>
 <td>#4248, EPIC #4133</td>
+</tr>
+<tr>
+<td><a href="4274-on-compare-la-derniere-image-pas-le-chemin/">4274</a></td>
+<td>Deux tournages du même scénario ne placent pas leurs gestes aux mêmes instants : comparer l'image n°40 de l'un à l'image n°40 de l'autre compare DEUX MOMENTS DIFFÉRENTS, et rend un écart qui ne parle que de cadence. À la fin du clip le scénario est POSÉ - mesuré, l'écart y retombe sous 0,01 % pour 48 cas sur 51. On compare donc la DERNIÈRE image, accompagnée de la présence du cas et de la durée du clip. ⚠️ Contrepartie assumée : on compare la destination, pas le chemin, et cette limite mord précisément là où l'ADR 4166 demande le plus - un cas qui montre un état ET son contraire a son sens dans le CONTRASTE entre deux moments, dont l'image finale ne garde qu'un</td>
+<td>#4274, EPIC #4295</td>
+</tr>
+<tr>
+<td><a href="4287-un-ecart-se-lit-contre-le-plancher-de-son-cas/">4287</a></td>
+<td>Le bruit n'est pas une propriété du dispositif mais DU CAS : deux tournages du même commit sur deux runners donnent une médiane de 0,008 %, 48 cas sur 51 sous 0,05 %, et trois qui montent jusqu'à 0,809 %. Aucun seuil unique ne tient - le pire plancher AVEUGLERAIT 48 cas pour se protéger de trois (un libellé changé vaut 0,364 %, il passerait dessous), la médiane ferait CRIER ces trois-là à chaque tournage. Un écart se lit donc contre le plancher de son propre cas, tenu dans un fichier que <code>--plancher</code> accumule en gardant le PIRE observé. ⚠️ Le fichier porte le nombre de paires qui l'ont produit : un plancher tiré d'une seule paire ne prouve pas qu'un cas est stable, seulement qu'il l'était cette fois-là</td>
+<td>#4287, EPIC #4295</td>
 </tr>
 <tr>
 <td><a href="4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/">4249</a></td>
