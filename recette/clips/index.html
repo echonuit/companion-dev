@@ -6129,6 +6129,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Où vivent les clips, et pourquoi pas ici">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#et-une-copie-sur-le-tag-de-chaque-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Et une copie sur le tag de chaque version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -6995,6 +7012,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Où vivent les clips, et pourquoi pas ici">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#et-une-copie-sur-le-tag-de-chaque-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Et une copie sur le tag de chaque version
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -7071,10 +7105,20 @@ qu'il le fait, et le verdict revient à qui regarde. Cette page est l'endroit o�
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/releases/tag/clips-recette"><code>clips-recette</code></a>.
 Ils ne sont pas dans le dépôt, et c'est délibéré.</p>
 <p>Une pièce jointe de publication ne pèse <strong>rien</strong> dans l'historique git : les 459 Mio attachés à
-<code>v2.185.0</code> n'y laissent aucun blob. À l'inverse, <code>.git</code> pèse aujourd'hui 957 Mio, dont <strong>79 % de
-PNG</strong> - 155 captures présentes au 22/08/2026, mais 4 507 versions dans l'historique, parce qu'une capture qui
-change d'octets produit un commit et qu'une capture à carte change d'octets à chaque exécution.
-Ranger des vidéos de la même façon reviendrait à recommencer, en plus lourd.</p>
+<code>v2.185.0</code> n'y laissent aucun blob. À l'inverse, les objets de <code>.git</code> pèsent <strong>966 Mio</strong>, dont
+<strong>866 Mio de PNG</strong> - 170 captures présentes au 23/08/2026, mais <strong>4 537 versions dans l'historique</strong>,
+parce qu'une capture qui change d'octets produit un commit et qu'une capture à carte change d'octets à
+chaque exécution. Ranger des vidéos de la même façon reviendrait à recommencer, en plus lourd.</p>
+<details class="note">
+<summary>Comment ce chiffre se remesure</summary>
+<p>Les objets, pack et vrac : <code>git count-objects -vH</code> (<code>size-pack</code> + <code>size</code>). Les blobs PNG et leur
+poids compressé :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>rev-list<span class="w"> </span>--objects<span class="w"> </span>--all<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>-E<span class="w"> </span><span class="s1">'\.png$'</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>cut<span class="w"> </span>-d<span class="s1">' '</span><span class="w"> </span>-f1<span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u<span class="w"> </span>&gt;<span class="w"> </span>/tmp/b.txt
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>cat-file<span class="w"> </span>--batch-check<span class="o">=</span><span class="s1">'%(objectsize:disk)'</span><span class="w"> </span>&lt;<span class="w"> </span>/tmp/b.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>awk<span class="w"> </span><span class="s1">'{s+=$1} END {print s/1048576, "Mio"}'</span>
+</code></pre></div>
+<p>Mesuré sur un clone de travail, toutes branches distantes rapatriées. Une mesure antérieure
+annonçait 79 % : la méthode n'en était pas consignée, et c'est précisément pourquoi elle l'est ici.</p>
+</details>
 <p>La pré-version est <strong>roulante</strong> : ses pièces sont remplacées à chaque tournage complet et leurs
 adresses ne changent pas. C'est ce qui permet à cette page de les écrire en dur.</p>
 <div class="admonition warning">
@@ -7082,6 +7126,51 @@ adresses ne changent pas. C'est ce qui permet à cette page de les écrire en du
 <p><code>clips-recette</code> porte le dernier tournage, pas un état figé. Elle est marquée pré-version pour
 qu'elle ne devienne jamais la « dernière version » du dépôt.</p>
 </div>
+<h3 id="et-une-copie-sur-le-tag-de-chaque-version">Et une copie sur le tag de chaque version<a class="headerlink" href="#et-une-copie-sur-le-tag-de-chaque-version" title="Permanent link">&para;</a></h3>
+<p>Depuis #4258, le tournage du train verse <strong>aussi</strong> ses clips sur le tag de la version qu'il vient de
+filmer, préfixés <code>bash-</code>. Les deux destinations ne servent pas à la même chose :</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th><code>clips-recette</code></th>
+<th>le tag <code>vX.Y.Z</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ce qu'on y trouve</td>
+<td>le <strong>dernier</strong> tournage</td>
+<td>le tournage de <strong>cette version-là</strong></td>
+</tr>
+<tr>
+<td>les adresses</td>
+<td>stables, mais leur <strong>contenu</strong> change</td>
+<td>immuables, contenu compris</td>
+</tr>
+<tr>
+<td>à quoi ça sert</td>
+<td>regarder la recette d'aujourd'hui</td>
+<td>comparer, et garder une trace</td>
+</tr>
+</tbody>
+</table>
+<p>Un tag ne bouge jamais : une adresse écrite vers <code>v2.188.0</code> montrera toujours ce que <code>v2.188.0</code>
+montrait. La suite des versions forme ainsi un historique visuel du produit, que <strong>rien ne
+reconstituera après coup</strong>.</p>
+<div class="admonition warning">
+<p class="admonition-title">L'historique commence à la version qui a suivi #4258</p>
+<p>Verser aujourd'hui des clips sur un tag ancien montrerait le produit d'aujourd'hui sous une
+version qui ne l'affichait pas. Les versions antérieures resteront donc sans clips, et c'est
+volontaire.</p>
+<p>Le constat qui a motivé ce choix : en cherchant un « avant » pour l'artefact visuel de la clôture
+de #4133, <strong>aucun clip antérieur au calque des gestes n'a été retrouvé</strong>. Les pièces de la
+pré-version du spike avaient été reversées par-dessus, et la date de publication d'une pré-version
+ne dit rien de la date de son contenu.</p>
+</div>
+<p>⚠️ Le préfixe <code>bash-</code> réserve la place du banc Java, dont les clips portent <strong>exactement les mêmes
+noms</strong> : 50 sur 51 sont communs aux deux bancs. Les verser tous deux sans préfixe les ferait s'écraser
+en silence.</p>
 <h2 id="produire-un-tournage-complet">Produire un tournage complet<a class="headerlink" href="#produire-un-tournage-complet" title="Permanent link">&para;</a></h2>
 <p>Le flux <strong>recette filmée</strong> (<code>workflow_dispatch</code>), avec <code>publier_les_clips</code> coché. Il dérive la liste
 des classes qui citent un cas, les filme d'une traite, découpe un clip par test, les remuxe en <code>mp4</code>
@@ -7119,7 +7208,7 @@ perdu la moitié, et un compte de fichiers ne le dirait pas.</p>
 </tbody>
 </table>
 <p>L'adresse d'un clip se déduit de son nom :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/&lt;Classe&gt;.&lt;test&gt;.mp4
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/&lt;Classe&gt;.&lt;test&gt;.mp4
 </code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Un lecteur vide n'est pas un cas rouge</p>
