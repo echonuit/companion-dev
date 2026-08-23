@@ -7155,8 +7155,9 @@ adresses ne changent pas. C'est ce qui permet à cette page de les écrire en du
 qu'elle ne devienne jamais la « dernière version » du dépôt.</p>
 </div>
 <h3 id="et-une-copie-sur-le-tag-de-chaque-version">Et une copie sur le tag de chaque version<a class="headerlink" href="#et-une-copie-sur-le-tag-de-chaque-version" title="Permanent link">&para;</a></h3>
-<p>Depuis #4258, le tournage du train verse <strong>aussi</strong> ses clips sur le tag de la version qu'il vient de
-filmer, préfixés <code>bash-</code>. Les deux destinations ne servent pas à la même chose :</p>
+<p>Depuis #4258, le train fait tourner <strong>les deux bancs</strong> sur la version qu'il vient de publier, et verse
+leurs clips sur son <strong>tag</strong> : préfixés <code>bash-</code> pour le banc historique, <code>java-</code> pour le banc en Java
+pur. Les deux destinations ne servent pas à la même chose :</p>
 <table>
 <thead>
 <tr>
@@ -7196,9 +7197,20 @@ de #4133, <strong>aucun clip antérieur au calque des gestes n'a été retrouvé
 pré-version du spike avaient été reversées par-dessus, et la date de publication d'une pré-version
 ne dit rien de la date de son contenu.</p>
 </div>
-<p>⚠️ Le préfixe <code>bash-</code> réserve la place du banc Java, dont les clips portent <strong>exactement les mêmes
-noms</strong> : 50 sur 51 sont communs aux deux bancs. Les verser tous deux sans préfixe les ferait s'écraser
-en silence.</p>
+<p>⚠️ Les préfixes ne sont pas décoratifs. Les deux bancs nomment leurs pièces <strong>exactement pareil</strong> :
+50 sur 51 sont communes. Sans préfixe, le second versement écraserait le premier <strong>en silence</strong>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Pourquoi les deux bancs, et pas encore l'un ou l'autre</p>
+<p>C'est la transition qui se prépare. Tant que le sort du banc bash n'est pas tranché, chaque
+version porte les deux tournages : ils se comparent alors sur le produit du jour, au lieu de se
+comparer sur une page datée qui mourra avec la décision. Le jour venu, il n'y aura qu'un des deux
+appels à retirer de <code>release.yml</code>.</p>
+<p>⚠️ Une différence compte dès aujourd'hui : le banc Java compare les cas <strong>obtenus</strong> aux cas
+<strong>attendus</strong> et échoue s'il en manque un, si bien qu'un tournage amputé ne peut pas se graver sur
+un tag. Le banc bash n'a pas cet oracle, son artefact n'emportant pas le compte attendu ; son
+index versé dit donc en tête ce qu'il contient, pour qu'un trou se constate au lieu de se
+deviner.</p>
+</div>
 <h2 id="produire-un-tournage-complet">Produire un tournage complet<a class="headerlink" href="#produire-un-tournage-complet" title="Permanent link">&para;</a></h2>
 <p>Le flux <strong>recette filmée</strong> (<code>workflow_dispatch</code>), avec <code>publier_les_clips</code> coché. Il dérive la liste
 des classes qui citent un cas, les filme d'une traite, découpe un clip par test, les remuxe en <code>mp4</code>

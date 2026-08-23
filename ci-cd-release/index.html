@@ -7970,7 +7970,7 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/tournage-recette.yml">tournage-recette.yml</a></td>
 <td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
-<td>Tourne les clips d'<strong>une session</strong>, sur la plateforme de son choix - <code>ubuntu</code>, <code>windows</code> ou <code>macos</code>, le banc en Java pur n'ayant besoin d'aucun écran. Répond à la limite que l'EPIC #4133 se donnait : « à 400 clips, ce serait des heures par passage ». La liste des classes est <strong>dérivée</strong> par <code>CorrespondanceRecetteTest</code>, jamais tenue à la main. ⚠️ Il ne <strong>publie pas</strong> : les clips restent en artefact, et <code>clips-recette</code> reste alimentée par <code>recette-filmee.yml</code> tant que le sort du banc bash n'est pas tranché</td>
+<td>Tourne les clips d'<strong>une session</strong>, sur la plateforme de son choix - <code>ubuntu</code>, <code>windows</code> ou <code>macos</code>, le banc en Java pur n'ayant besoin d'aucun écran. Répond à la limite que l'EPIC #4133 se donnait : « à 400 clips, ce serait des heures par passage ». La liste des classes est <strong>dérivée</strong> par <code>CorrespondanceRecetteTest</code>, jamais tenue à la main. Appelé <strong>aussi par le train</strong> (<code>workflow_call</code>), il verse alors ses clips préfixés <code>java-</code> sur le <strong>tag</strong> de la version, à côté de ceux du banc bash : c'est la transition qui se prépare, et le jour venu il n'y aura qu'un des deux appels à retirer (#4258). ⚠️ Il ne touche <strong>jamais</strong> à une pré-version roulante : <code>clips-java</code> est un instantané daté que la page de comparaison interroge</td>
 <td>—</td>
 </tr>
 </tbody>
