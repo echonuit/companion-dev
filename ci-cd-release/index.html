@@ -8690,6 +8690,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>verifie-portee-des-secrets.sh</code></td>
+<td>aucun secret <code>VIGIECHIRO_*</code> dans l'<code>env:</code> d'un <strong>job</strong> ni d'un workflow : la forme juste est l'<code>env:</code> d'un <strong>pas</strong>. Posé plus haut, il est offert à toute la suite de tests, que <code>ConnexionModule</code> pointe alors sur la production. Aucun rôle de la plateforme ne peut le rattraper - <code>Lecteur</code> est déclaré et aucune route ne l'accepte (#4303)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>verifie-butoirs.sh</code></td>
 <td>tout job porte un <code>timeout-minutes</code> : sans butoir, GitHub laisse courir six heures (<a href="../decisions/4028-tout-job-de-ci-porte-un-butoir/">ADR 4028</a>)</td>
 <td><code>lint.yml</code></td>
@@ -8807,7 +8812,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tbody>
 </table>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
-<p>Ces gardes sont elles-mêmes du shell, et le dépôt en compte <strong>33 scripts</strong> hors <code>node_modules</code>. Le
+<p>Ces gardes sont elles-mêmes du shell, et le dépôt en compte <strong>35 scripts</strong> hors <code>node_modules</code>. Le
 job <code>lint</code> les passe tous à <code>shellcheck</code>.</p>
 <p>Les <strong>réglages</strong> vivent dans <code>.shellcheckrc</code>, à la racine, et non dans le YAML : un contributeur qui
 lance <code>shellcheck son-script.sh</code> doit voir ce que voit la CI. Un réglage caché dans un workflow
