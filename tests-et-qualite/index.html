@@ -7278,8 +7278,8 @@ référence structurée ; le repo-root garde un mémo
 <td><strong>Portail qualité</strong> : PMD <code>failOnViolation</code> + seuils JaCoCo <strong>bloquants</strong></td>
 </tr>
 <tr>
-<td><code>./mvnw -Pmutation test</code></td>
-<td>Tests de <strong>mutation</strong> PIT (lent, à la demande)</td>
+<td><code>env -u DISPLAY ./mvnw -Pmutation test-compile org.pitest:pitest-maven:mutationCoverage -DtargetClasses=… -DtargetTests=…</code></td>
+<td>Tests de <strong>mutation</strong> PIT (lent, ciblé, à la demande). ⚠️ <code>-Pmutation test</code> <strong>ne mute rien</strong> : le profil n'a aucune liaison de phase, donc le goal n'est jamais invoqué - la commande lance toute la suite et rend zéro rapport, sans le dire.</td>
 </tr>
 <tr>
 <td><code>./mvnw pmd:check</code></td>
