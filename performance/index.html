@@ -7433,36 +7433,51 @@ complètes (avec les propriétés <code>-Dperf.*</code> de dimensionnement) sont
 <h3 id="o5-couche-donnees">O5 : couche données<a class="headerlink" href="#o5-couche-donnees" title="Permanent link">&para;</a></h3>
 <p>Les deux opérations critiques sont <strong>largement sous les cibles</strong> (facteur ~4 à ~10), grâce à l'index
 <code>idx_obs_results</code> posé en réponse au point #28 :</p>
+<p>Relevé du 24/08/2026, sur la topologie par défaut : <strong>40 carrés de 10 points</strong>, 1000 passages,
+4031 observations.</p>
 <table>
 <thead>
 <tr>
 <th>Opération</th>
 <th>Cible</th>
-<th>Froid (réf.)</th>
+<th>Froid (1ᵉʳ appel)</th>
+<th>Chaud (médiane de 20)</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Sélection ~4031 observations (<code>findByResults</code>)</td>
 <td>&lt; 100 ms</td>
-<td>~25 ms ✅</td>
+<td>34,4 ms ✅</td>
+<td>9,5 ms</td>
 </tr>
 <tr>
 <td>Tri/filtre ~1000 passages (multisite)</td>
 <td>&lt; 200 ms</td>
-<td>~18 ms ✅</td>
+<td>26,2 ms ✅</td>
+<td>8,2 ms</td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Les deux colonnes, et laquelle regarder</p>
+<p>Le <strong>froid</strong> dit ce que coûte le premier geste du jour, démarrage de la JVM compris. Le <strong>chaud</strong> dit
+ce que coûte l'opération elle-même. Pour juger une <strong>cible de capacité</strong>, c'est la seconde qui
+compte : une première mesure de processus coûte ~300 ms quelle que soit la taille des données, et
+noierait n'importe quel écart réel.</p>
+</div>
 <div class="admonition warning">
-<p class="admonition-title">Ces deux chiffres ont été relevés sur <strong>un seul carré</strong></p>
-<p>Le jeu du banc semait <strong>un</strong> site de dix points, quelle que soit la valeur de <code>perf.passages</code>. Les
-écrans lançaient pourtant une requête <strong>par site</strong> puis une <strong>par point</strong> : sur cette topologie, onze
-requêtes, noyées dans le bruit. Le relevé « ~18 ms ✅ » était donc exact <strong>et</strong> aveugle - un
-coordinateur départemental, cent cinquante carrés, en payait plus de quatre cents.</p>
-<p>Le jeu sème désormais <code>perf.sites</code> carrés (défaut <strong>40</strong>), et un test
-(<code>JeuDuBancTest</code>) refuse qu'il retombe à un. <strong>Les deux chiffres ci-dessus sont donc à refaire</strong> sur
-la nouvelle topologie : ils ne sont pas faux, ils mesuraient autre chose que ce qu'on croyait.</p>
+<p class="admonition-title">Ces chiffres remplacent un relevé fait sur <strong>un seul carré</strong></p>
+<p>Le jeu du banc semait <strong>un</strong> site de dix points, quelle que soit la valeur de <code>perf.passages</code>, et
+annonçait « ~25 ms » et « ~18 ms ». Les écrans lançaient pourtant une requête <strong>par site</strong> puis une
+<strong>par point</strong> : sur cette topologie, onze requêtes, noyées dans le bruit. Le relevé était donc exact
+<strong>et</strong> aveugle - un coordinateur départemental, cent cinquante carrés, en payait plus de quatre
+cents.</p>
+<p>Le jeu sème désormais <code>perf.sites</code> carrés (défaut <strong>40</strong>), et <code>JeuDuBancTest</code> refuse qu'il retombe à
+un. Les chiffres ci-dessus sont ceux de cette topologie-là.</p>
+<p>⚠️ Ils sont plus <strong>hauts</strong> que les anciens (34 contre 25, 26 contre 18) et c'est attendu : le jeu est
+quarante fois plus large. Ils restent très en deçà des cibles, et surtout ils mesurent enfin la
+dimension où le coût vivait.</p>
 </div>
 <p>Sans l'index, la sélection faisait un <code>SCAN</code> (~75 ms froid) ; l'index la ramène à ~25 ms. Le gain est
 <strong>verrouillé par un test CI</strong> (non-régression du plan d'exécution).</p>
