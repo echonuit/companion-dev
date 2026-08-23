@@ -6333,6 +6333,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-fichier-de-planchers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le fichier de planchers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le fichier de planchers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lenrichir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'enrichir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-silences-que-le-fichier-ne-produit-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deux silences que le fichier ne produit pas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-la-methode-ne-voit-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7165,6 +7204,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-fichier-de-planchers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le fichier de planchers
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Le fichier de planchers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lenrichir" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        L'enrichir
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-silences-que-le-fichier-ne-produit-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deux silences que le fichier ne produit pas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-la-methode-ne-voit-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7397,6 +7475,36 @@ Rapportés à leur propre plancher, ils se séparent :</p>
   changement localisé : c'est du bruit de rendu, et le chiffre brut le faisait passer pour un
   changement.</li>
 </ul>
+<h2 id="le-fichier-de-planchers">Le fichier de planchers<a class="headerlink" href="#le-fichier-de-planchers" title="Permanent link">&para;</a></h2>
+<p>Les planchers mesurés vivent dans <code>.github/assets/planchers-tournages.tsv</code>, une ligne par cas :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce   0.809   1
+</code></pre></div>
+<p>Le cas, son plancher en pourcentage, et <strong>le nombre de paires de tournages qui l'ont produit</strong>.</p>
+<p>Le flux de comparaison le passe automatiquement, et chaque cas est alors classé par son <strong>rapport à
+son propre bruit</strong> plutôt que par son écart absolu. Le résumé compte les cas « au-dessus de leur
+propre plancher », qui est le nombre à regarder.</p>
+<h3 id="lenrichir">L'enrichir<a class="headerlink" href="#lenrichir" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>compare-tournages.sh --plancher &lt;tournage A&gt; &lt;tournage B&gt; .github/assets/planchers-tournages.tsv
+</code></pre></div>
+<p>Relancer sur une <strong>autre</strong> paire garde le <strong>pire</strong> plancher observé et compte une paire de plus.</p>
+<div class="admonition warning">
+<p class="admonition-title">Le pire, et non la moyenne</p>
+<p>Un plancher qui sous-estime le bruit fabrique des faux positifs, c'est-à-dire exactement ce qu'on
+cherche à éviter. Mieux vaut rater un petit changement sur un cas instable que crier au changement
+à chaque tournage.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Le fichier livré ne porte qu'UNE paire</p>
+<p>Il le dit dans sa troisième colonne. Un cas dont le plancher est ressorti à 0,000 % n'est donc pas
+prouvé stable, et les rapports calculés dessus - « quatre-vingts fois son bruit » pour un écart
+absolu de 0,084 %, soit moins qu'un mot changé - ne valent pas mieux que leur échantillon.</p>
+<p>Chaque paire supplémentaire rend le fichier plus juste. Le lire, c'est lire aussi cette colonne.</p>
+</div>
+<h3 id="deux-silences-que-le-fichier-ne-produit-pas">Deux silences que le fichier ne produit pas<a class="headerlink" href="#deux-silences-que-le-fichier-ne-produit-pas" title="Permanent link">&para;</a></h3>
+<p>Un cas <strong>absent</strong> du fichier est annoncé « plancher inconnu ». Le prendre pour stable reviendrait à
+inventer une mesure qui n'a pas été faite.</p>
+<p>Un fichier <strong>annoncé mais introuvable</strong> fait échouer la comparaison. Sans ce refus, les cinquante cas
+diraient tous « plancher inconnu » et personne n'irait chercher le chemin fautif.</p>
 <h2 id="ce-que-la-methode-ne-voit-pas">Ce que la méthode ne voit pas<a class="headerlink" href="#ce-que-la-methode-ne-voit-pas" title="Permanent link">&para;</a></h2>
 <p>⚠️ <strong>L'image finale compare la destination, pas le chemin.</strong></p>
 <p>La dernière image est le seul instant où deux tournages sont comparables sans dépendre de leur cadence :
