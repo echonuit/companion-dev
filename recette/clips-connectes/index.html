@@ -6378,6 +6378,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-clips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les clips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les clips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s8-05-lavancement-parait-dans-la-modale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S8-05 · l'avancement paraît dans la modale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s8-06-la-modale-annonce-lidentite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S8-06 · la modale annonce l'identité
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#comment-en-produire" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7265,6 +7304,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-clips" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les clips
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Les clips">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s8-05-lavancement-parait-dans-la-modale" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S8-05 · l'avancement paraît dans la modale
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s8-06-la-modale-annonce-lidentite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S8-06 · la modale annonce l'identité
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#comment-en-produire" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7336,10 +7414,11 @@ ses fixtures. Ils vivent à part, sur la pré-version
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/releases/tag/clips-connectes"><code>clips-connectes</code></a>,
 et cette page dit pourquoi et comment les lire.</p>
 <div class="admonition warning">
-<p class="admonition-title">La pré-version est encore vide, et ce n'est pas une panne</p>
-<p>Aucun scénario n'appelle <code>BancDeRecette.connecteALaPlateforme()</code> à ce jour : le dispositif existe,
-les scénarios viennent avec #4307. Un lecteur vide sur cette page signifie donc « pas encore
-tourné », jamais « le produit est cassé ».</p>
+<p class="admonition-title">Un lecteur vide dit « pas encore tourné », jamais « le produit est cassé »</p>
+<p>La pré-version se peuple par un <strong>tournage</strong>, qui est manuel : tant qu'aucun tournage connecté n'a
+eu lieu depuis qu'un scénario existe, son lecteur reste vide. C'est la même règle que pour les deux
+autres pages, et <code>PageDesClipsTest</code> garde la correspondance entre les cas et les adresses, pas la
+présence des fichiers.</p>
 </div>
 <h2 id="ce-quun-clip-connecte-prouve-et-quun-autre-ne-peut-pas">Ce qu'un clip connecté prouve, et qu'un autre ne peut pas<a class="headerlink" href="#ce-quun-clip-connecte-prouve-et-quun-autre-ne-peut-pas" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../../decisions/4142-un-cas-dit-ou-se-lit-son-verdict/">ADR 4142</a> a mesuré que sur les 360 cas de
@@ -7402,6 +7481,31 @@ de ses pièces, à chaque passage :</p>
 <p>⚠️ Les pièces ne portent <strong>aucun préfixe</strong>, contrairement à celles d'un tag de version. La séparation
 est portée par la pré-version elle-même : un préfixe sert à distinguer deux populations rangées au même
 endroit, et il n'y en a qu'une ici.</p>
+<h2 id="les-clips">Les clips<a class="headerlink" href="#les-clips" title="Permanent link">&para;</a></h2>
+<!-- Les adresses sont gardées par `PageDesClipsTest` : chacune doit désigner un test qui existe, et
+     tout test citant un cas doit figurer sur l'une des pages de clips. Une adresse morte rend un
+     lecteur vide, et un lecteur vide se lit comme un défaut du produit. -->
+
+<h3 id="s8-05-lavancement-parait-dans-la-modale">S8-05 · l'avancement paraît dans la modale<a class="headerlink" href="#s8-05-lavancement-parait-dans-la-modale" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>L'avancement paraît <strong>dans</strong> la modale de connexion, sans seconde fenêtre, et « Fermer » y est grisé.</p>
+</blockquote>
+<p>Ce que ce clip montre et qu'un clip bouchonné ne montrerait pas : la progression suit une <strong>vraie</strong>
+latence réseau, celle du <code>GET /moi</code> puis des rapprocheurs. Bouchonnée, elle n'est qu'une temporisation
+choisie pour qu'il y ait quelque chose à filmer.</p>
+<video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-connectes/ScenarioConnecteConnexionTest.l_avancement_parait_dans_la_modale.mp4"></video>
+
+<h3 id="s8-06-la-modale-annonce-lidentite">S8-06 · la modale annonce l'identité<a class="headerlink" href="#s8-06-la-modale-annonce-lidentite" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>À la fin, la modale de connexion annonce l'identité <strong>et</strong> le résumé de ce qui a été récupéré.</p>
+</blockquote>
+<p>Le pseudo affiché est celui que la plateforme a rendu. Le résumé, lui, dépend de ce que le compte de
+tournage contient : c'est la première chose que ce clip apprendra.</p>
+<p>⚠️ Ce cas n'asserte que l'<strong>identité</strong>. Le résumé fait partie de ce que la case demande, mais son
+contenu dépend du compte : l'asserter aujourd'hui figerait une attente qu'aucune mesure ne soutient
+encore.</p>
+<video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-connectes/ScenarioConnecteConnexionTest.la_modale_annonce_l_identite.mp4"></video>
+
 <h2 id="comment-en-produire">Comment en produire<a class="headerlink" href="#comment-en-produire" title="Permanent link">&para;</a></h2>
 <p>Le flux <strong>tournage de recette</strong> (<code>tournage-recette.yml</code>, <code>workflow_dispatch</code>), avec le drapeau
 <strong><code>connecte</code></strong> coché.</p>
