@@ -841,6 +841,10 @@
          <lastmod>2026-08-23</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4251-une-lecture-de-masse-se-fait-par-lot-et-se-garde-en-comptant-des-requetes/</loc>
+         <lastmod>2026-08-23</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/4264-un-helper-partage-route-vers-le-fil-de-l-application/</loc>
          <lastmod>2026-08-23</lastmod>
     </url>
