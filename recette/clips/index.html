@@ -6115,6 +6115,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tourner-une-seule-session-ou-sur-une-autre-plateforme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tourner une seule session, ou sur une autre plateforme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deux-familles-deux-pages" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6970,6 +6981,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tourner-une-seule-session-ou-sur-une-autre-plateforme" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tourner une seule session, ou sur une autre plateforme
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#deux-familles-deux-pages" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7038,6 +7060,14 @@ des classes qui citent un cas, les filme d'une traite, découpe un clip par test
 et les verse sur la pré-version.</p>
 <p>Sans cette case, le flux garde son autre rôle : filmer <strong>une</strong> classe pour éprouver qu'un runner
 pilote réellement, ce qui est l'objet de <code>sans_gestionnaire_de_fenetres</code>.</p>
+<h2 id="tourner-une-seule-session-ou-sur-une-autre-plateforme">Tourner une seule session, ou sur une autre plateforme<a class="headerlink" href="#tourner-une-seule-session-ou-sur-une-autre-plateforme" title="Permanent link">&para;</a></h2>
+<p>Le flux <strong>tournage de recette</strong> (<code>tournage-recette.yml</code>, <code>workflow_dispatch</code>) prend deux entrées : la
+<strong>session</strong> (<code>toutes</code>, ou <code>S1</code> à <code>S11</code>) et la <strong>plateforme</strong> (<code>ubuntu</code>, <code>windows</code>, <code>macos</code>). Il tourne
+avec le banc en Java pur, qui n'a besoin ni de serveur X ni de gestionnaire de fenêtres.</p>
+<p>C'est le flux à prendre quand on travaille une session et qu'on veut revoir ses clips sans refaire les
+quatre cents autres, ou quand on veut savoir à quoi le produit ressemble sur un autre système.</p>
+<p>⚠️ Son garde compte les <strong>cas</strong>, pas les fichiers : un tournage qui rend « des clips » peut en avoir
+perdu la moitié, et un compte de fichiers ne le dirait pas.</p>
 <h2 id="deux-familles-deux-pages">Deux familles, deux pages<a class="headerlink" href="#deux-familles-deux-pages" title="Permanent link">&para;</a></h2>
 <table>
 <thead>

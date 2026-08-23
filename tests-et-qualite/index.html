@@ -7337,8 +7337,55 @@ comme un cas prouvé.</p>
 </tr>
 </tbody>
 </table>
-<p>Le montage et l'index par cas vivent côté script :
-<a href="../ci-cd-release/#le-montage-un-clip-par-test-un-index-par-cas-3774">CI/CD</a>.</p>
+<p><strong>Deux bancs tournent ces clips, et ils ne se ressemblent pas.</strong></p>
+<p>Le banc historique filme l'<strong>écran</strong> : <code>ffmpeg -f x11grab</code> sur un Xvfb, avec <code>openbox</code> et <code>xdotool</code>.
+Son montage et son index par cas vivent donc côté script
+(<a href="../ci-cd-release/#le-montage-un-clip-par-test-un-index-par-cas-3774">CI/CD</a>), et il ne tourne que
+sous Linux.</p>
+<p>Le banc en Java pur filme la <strong>scène</strong> : <code>Scene.snapshot</code> poussé dans <code>ffmpeg</code>, depuis la JVM du test.
+Il tourne sous Linux, Windows et macOS, sans serveur X ni gestionnaire de fenêtres, et il porte donc
+son montage et son index en Java :</p>
+<table>
+<thead>
+<tr>
+<th>Pièce (<code>recette/film/</code>)</th>
+<th>Rôle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CameraDeScene</code></td>
+<td>prend la scène à intervalle régulier et compose les fenêtres sur une toile unique</td>
+</tr>
+<tr>
+<td><code>EnregistreurDeFilm</code></td>
+<td>extension JUnit : ouvre l'encodeur autour d'un test, un fichier par test</td>
+</tr>
+<tr>
+<td><code>Encodeur</code></td>
+<td>pousse les images brutes dans <code>ffmpeg</code>, et sait dire ce qui manque quand il est absent</td>
+</tr>
+<tr>
+<td><code>IndexDesCas</code></td>
+<td>l'index par cas, écrit en <strong>fragments par JVM</strong> et reconstruit sous verrou (ADR 4249)</td>
+</tr>
+<tr>
+<td><code>CartonDeTitre</code></td>
+<td>le carton d'ouverture : le cas, son libellé, le test qui le joue</td>
+</tr>
+<tr>
+<td><code>Gestes</code> + <code>CalqueDesGestes</code></td>
+<td>observent les événements et dessinent le halo, la flèche et le badge (ADR 4248)</td>
+</tr>
+<tr>
+<td><code>PoliceDuBanc</code></td>
+<td>la typographie du produit, chargée dans AWT depuis le jar</td>
+</tr>
+</tbody>
+</table>
+<p>⚠️ <strong>Lequel des deux tourne n'est pas encore tranché.</strong> Le comparatif des deux bancs est dans
+<a href="../recette/comparer-les-deux-bancs/">Comparer les deux bancs</a>, et cette page-là est datée : elle
+mourra avec la décision.</p>
 <p>⚠️ <strong>Trois états, pas deux.</strong> Un cas « perceptif » n'est ni couvert ni à couvrir : le script le
 marque <code>*perceptif*</code>, et le mot « couvert » reste réservé à ce que la CI prouve. Compter un scénario
 joué parmi les couverts fabriquerait exactement le vert creux que ce harnais combat.</p>
