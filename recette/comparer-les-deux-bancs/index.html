@@ -7882,11 +7882,20 @@ comparent pas clip par clip : les cas perceptifs, qui portent des temps d'arrêt
 même prix aux deux bancs.</p>
 <h2 id="ce-qui-reste-a-trancher-et-que-cette-page-ne-dit-pas">Ce qui reste à trancher, et que cette page ne dit pas<a class="headerlink" href="#ce-qui-reste-a-trancher-et-que-cette-page-ne-dit-pas" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Trois ADR nomment <code>lance-test-filme.sh</code> comme leur vérification</strong> : 3774, 3788 et 3794. Retirer le
-  banc bash fera rougir <code>DocumentationAJourTest</code>, qui vérifie que la référence existe. Il faut donc
-  décider ce que deviennent ces trois vérifications <strong>avant</strong> de retirer quoi que ce soit.</li>
-<li>L'auto-test du banc bash <strong>se vérifie lui-même en permanence</strong> : 14 de ses 50 cas nomment un rouge
-  attendu. Les gardes du banc Java ont été éprouvés par mutation, mais <strong>à la main</strong>, une fois.</li>
+<li>
+<p><strong>Deux ADR nomment <code>lance-test-filme.sh</code> comme leur vérification</strong> : <a href="../../decisions/3774-le-clip-se-taille-sur-le-test/">3774</a>
+  et <a href="../../decisions/3788-un-banc-qui-maximise-tout-ne-montre-pas-ce-qu-on-livre/">3788</a>. Retirer le
+  banc bash fera rougir <code>DocumentationAJourTest.la_verification_declaree_par_une_adr_existe_vraiment</code>,
+  qui vérifie que la référence nommée existe. Il faut donc décider ce que deviennent ces deux
+  vérifications <strong>avant</strong> de retirer quoi que ce soit.</p>
+<p>⚠️ Cette page a d'abord annoncé <strong>trois</strong>, en comptant l'ADR 3794. C'était un comptage fait sur
+les fichiers qui <em>contiennent</em> la chaîne, et non sur ceux dont la <strong>puce de vérification</strong> la
+nomme : 3794 se vérifie par <code>verifie-inventaires-ci.sh</code>. L'ADR 4013 cite elle aussi un banc, mais
+c'est <code>filme-un-parcours.sh</code>, celui des films de <strong>documentation</strong> - un dispositif distinct, que
+le retrait du banc de recette ne touche pas.
+- L'auto-test du banc bash <strong>se vérifie lui-même en permanence</strong> : 14 de ses 50 cas nomment un rouge
+  attendu. Les gardes du banc Java ont été éprouvés par mutation, mais <strong>à la main</strong>, une fois.</p>
+</li>
 </ul>
 <h2 id="comment-regarder">Comment regarder<a class="headerlink" href="#comment-regarder" title="Permanent link">&para;</a></h2>
 <p>À gauche le banc <strong>bash</strong>, à droite le banc <strong>Java</strong>. Même cas, même test, deux tournages.</p>
