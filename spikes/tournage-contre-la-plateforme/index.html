@@ -6012,6 +6012,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../../decisions/4291-un-clip-tourne-contre-la-plateforme-ne-se-range-pas-avec-les-autres/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4291 · Un clip tourné contre la plateforme ne se range pas avec les autres
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../decisions/4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-nav__link">
         
   
@@ -7872,9 +7900,10 @@ les en-têtes et le corps envoyé.</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ L'en-tête de <code>tournage-recette.yml</code> dit « il ne PUBLIE pas, les clips restent en artefact ». C'est
-vrai du versement, et faux de la confidentialité : sur un dépôt public, un artefact est public. La
-phrase mérite d'être précisée le jour où ce mode existera.</p>
+<p>⚠️ L'en-tête de <code>tournage-recette.yml</code> disait « il ne PUBLIE pas, les clips restent en artefact ».
+C'était vrai du versement, et faux de la confidentialité : sur un dépôt public, un artefact est public.
+<strong>La phrase a été corrigée</strong> à la clôture du chantier, et le workflow verse désormais sur deux
+destinations qui lui sont propres.</p>
 <h3 id="les-parades-dans-lordre-ou-elles-doivent-etre-posees">Les parades, dans l'ordre où elles doivent être posées<a class="headerlink" href="#les-parades-dans-lordre-ou-elles-doivent-etre-posees" title="Permanent link">&para;</a></h3>
 <p><strong>Le jeton n'entre pas par l'écran.</strong> <code>ConnexionModule.jetonPonctuel()</code> lit la propriété système
 <code>vigiechiro.token</code>, sinon la variable d'environnement <code>VIGIECHIRO_TOKEN</code>, et ce jeton ponctuel
@@ -8103,12 +8132,11 @@ ne se range pas avec eux.</strong></p>
 <li><strong>la durée de vie du jeton</strong> : un jeton de tournage se révoque à la fin du run, donc il ne peut pas
    être celui du contrat hebdomadaire, qui vit de durer.</li>
 </ol>
-<p>Elle s'écrira en passe 10, comme le veut le cycle, et portera le numéro de son chantier : <strong>ADR 4291</strong>.</p>
-<p>⚠️ Ce que cette page <strong>ne dit pas</strong>, faute de l'avoir mesuré : combien de cas parmi les ~220 hors
-application deviendraient réellement filmables avec un jeton en lecture seule. La lecture donne les
-sites, les participations, les résultats et le journal de traitement, donc S8 (« récupérer une nuit
-déposée ») semble à portée et S4 (« déposer et suivre ») non, puisque déposer est une écriture. Ce tri
-demande de dérouler les deux scripts de session, cas par cas, et il n'a pas été fait ici.</p>
+<p>Elle a été écrite en passe 10 : <strong><a href="../../decisions/4291-un-clip-tourne-contre-la-plateforme-ne-se-range-pas-avec-les-autres/">ADR 4291</a></strong>.</p>
+<p>⚠️ Ce que cette page ne disait pas, faute de l'avoir mesuré, <strong>a été mesuré depuis</strong> : le tri des deux
+scripts de session, cas par cas, donne <strong>29 cas de S8 sur 38</strong> atteignables, et <strong>S4 hors de portée</strong> -
+elle écrit sans qu'aucun <code>DELETE</code> client ne le défasse, demande une carte SD réelle et attend deux
+heures le calcul Tadarida. Le détail vit dans l'EPIC #4291.</p>
 
 
 

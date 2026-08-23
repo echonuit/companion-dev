@@ -6010,6 +6010,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4291-un-clip-tourne-contre-la-plateforme-ne-se-range-pas-avec-les-autres/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4291 · Un clip tourné contre la plateforme ne se range pas avec les autres
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-nav__link">
         
   
@@ -7504,7 +7532,22 @@ en clair dans la base du même dossier déplacerait la serrure sans déplacer la
   par construction plutôt que par vigilance (cf. <a href="../observabilite/">Observabilité</a>).
 - Les workflows GitHub Actions tournent au <strong>moindre privilège</strong> (<code>maven.yml</code> : <code>permissions: contents:
   read</code>). N'élargir que là où c'est nécessaire (<code>contents: write</code> pour <code>capture-vues.yml</code>, qui pousse
-  les aperçus).</p>
+  les aperçus).
+- <strong>Un secret de plateforme ne se pose jamais dans l'<code>env:</code> d'un job</strong> (#4303), et
+  <code>verifie-portee-des-secrets.sh</code> le refuse. Le mécanisme ne se voit pas en lisant le YAML :
+  <code>ConnexionModule.jetonPonctuel()</code> lit <code>System.getenv</code>, les <strong>forks surefire héritent</strong> de
+  l'environnement du job, et l'URL de base vaut la <strong>production</strong> par défaut. Posé trop haut, un jeton
+  Vigie-Chiro n'est pas offert au pas qui en a besoin mais à <strong>toute la suite de tests</strong>.</p>
+<p>⚠️ <strong>Aucun rôle de la plateforme ne peut rattraper cela.</strong> Le rôle <code>Lecteur</code> est déclaré dans
+<code>ROLE_RULES</code> et <strong>aucune route ne l'accepte</strong> - <code>GET /sites</code>, <code>GET /participations</code>, <code>GET /donnees</code>
+et jusqu'au <code>GET /moi</code> exigent <code>Observateur</code>. Un jeton en lecture seule n'existe pas : la lecture
+seule ne tient que par la <strong>portée</strong> du secret et par le câblage du banc, qui lie sa propre source
+de jeton plutôt que d'emprunter celle du processus (#4304, ADR 4134).</p>
+<p>Le tournage connecté (<code>tournage-recette.yml</code>, drapeau <code>connecte</code>) emploie donc un secret <strong>qui lui
+est propre</strong>, <code>VIGIECHIRO_TOKEN_TOURNAGE</code>, distinct de celui du contrat hebdomadaire. Ce qui les
+sépare n'est pas l'accès - même compte, mêmes droits - mais le <strong>cycle de vie</strong> : celui du tournage
+est <strong>révoqué en fin de run</strong> (<code>POST /logout</code>, #4305), parce qu'il produit une image que rien ne
+masque et qui sera publiée. Le masquage de GitHub ne couvre que les <strong>journaux</strong>.</p>
 </li>
 </ul>
 <h2 id="ce-qui-nest-pas-protege-et-pourquoi">Ce qui n'est pas protégé, et pourquoi<a class="headerlink" href="#ce-qui-nest-pas-protege-et-pourquoi" title="Permanent link">&para;</a></h2>
