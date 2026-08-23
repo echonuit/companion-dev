@@ -5704,6 +5704,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4166-un-etat-ne-se-juge-que-contre-son-contraire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4166 · Un état se juge contre son contraire
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4188-une-modale-se-filme-avec-son-ecran/" class="md-nav__link">
         
   
@@ -7978,6 +8006,42 @@ PMD / ArchUnit ne se désactivent <strong>jamais</strong> pour « faire passer �
   Sans lui, il mesure la police de la <strong>machine hôte</strong> au lieu de celle du produit, et son verdict
   dépend de ce qui a tourné avant lui dans le même fork. <code>ScenesHabilleesTest</code> le garde (#3773).</li>
 </ul>
+<h3 id="un-cas-de-recette-montre-un-etat-et-son-contraire">Un cas de recette montre un état ET son contraire<a class="headerlink" href="#un-cas-de-recette-montre-un-etat-et-son-contraire" title="Permanent link">&para;</a></h3>
+<p>Un bouton grisé, un bandeau masqué, un voile qui a cédé, une liste qui n'a pas changé : ce sont des
+<strong>absences</strong>, et une absence n'a pas d'image. Un cas qui fait juger un état montre donc <strong>aussi</strong> le
+moment où la chose est là - sinon le spectateur regarde un écran immobile en cherchant ce qu'il devrait
+y voir.</p>
+<p>Trois formes, selon ce que le cas éprouve :</p>
+<table>
+<thead>
+<tr>
+<th>Forme</th>
+<th>Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>le contraire <strong>dans le temps</strong></td>
+<td><code>S1-19</code> ouvre sur le carré où les deux commandes sont actives, avant celui où elles ne le sont pas</td>
+</tr>
+<tr>
+<td>le contraire <strong>par le voisinage</strong></td>
+<td><code>S1-16</code> montre « Récupérer » grisé contre « + Nouveau site » en couleur</td>
+</tr>
+<tr>
+<td>le <strong>jumeau</strong>, dans un autre cas</td>
+<td><code>S1-25</code> montre qu'annuler n'ajoute rien, <code>S1-13</code> que valider ajoute</td>
+</tr>
+</tbody>
+</table>
+<p>Corollaire : <strong>un clip qui remplace le geste par son effet ne montre pas le produit.</strong> Il montre une
+conséquence dont la cause est hors champ. D'où la règle que le pointeur <strong>s'arrête</strong> sur sa cible avant
+d'appuyer (<code>GesteVisible</code>), et que le motif d'un blocage <strong>paraît</strong> au lieu d'être lu par programme
+(<a href="../decisions/4234-un-motif-de-blocage-se-montre-il-ne-se-lit-pas/">ADR 4234</a>).</p>
+<p>⚠️ La règle n'oblige pas à <strong>fabriquer</strong> le contraire. Quand il semble introuvable, la question est
+d'abord « sur quelles données ai-je mesuré ? ». <code>S1-17</code> a été déclaré infilmable au vu d'une fixture de
+deux sites ; sur cent cinquante carrés, le voile dure un demi-seconde.</p>
+<p>Voir <a href="../decisions/4166-un-etat-ne-se-juge-que-contre-son-contraire/">ADR 4166</a>.</p>
 <h3 id="certains-defauts-ne-se-voient-pas-depuis-ce-poste-il-faut-les-sonder">⚠️ Certains défauts ne se voient pas depuis ce poste - il faut les sonder<a class="headerlink" href="#certains-defauts-ne-se-voient-pas-depuis-ce-poste-il-faut-les-sonder" title="Permanent link">&para;</a></h3>
 <p>Quatre fois sur la campagne #3802, une mesure locale a rendu <strong>vert</strong> sans rien dire : <code>Noto Sans</code> est
 une police <strong>système</strong> sous Linux, <code>ATOMIC_MOVE</code> y réussit quoi qu'on tienne ouvert, la vue <strong>ACL</strong> n'y
