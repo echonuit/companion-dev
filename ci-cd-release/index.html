@@ -8527,6 +8527,16 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td>les scripts cités par les ADR</td>
 <td><code>lint.yml</code></td>
 </tr>
+<tr>
+<td><code>scripts/graphify/pont_ressources.py</code></td>
+<td>l'index de classe Java préfère la <strong>classe</strong> à la page <code>X.java</code>, et le compte des commandes CLI couvertes reste borné par le nombre de commandes</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>scripts/graphify/rebuild.py</code></td>
+<td><code>GRAPH_REPORT.md</code> annonce le corpus réel, et non un corpus vide suivi d'un verdict qui le contredit</td>
+<td><code>lint.yml</code></td>
+</tr>
 </tbody>
 </table>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
@@ -9215,7 +9225,7 @@ les cinq sixièmes de ce qu'il voyait, et annonçait 16 %. C'était le même tra
 </table>
 <p>Un montage refusé <strong>ne laisse aucun clip</strong> et fait échouer le lancement, même quand les tests sont
 verts - c'est justement le cas où personne n'irait vérifier.</p>
-<h3 id="la-planche-de-contact-tout-ce-qui-cite-un-cas-en-une-seance-3835">La planche de contact : tout ce qui cite un cas, en une séance (#3835)<a class="headerlink" href="#la-planche-de-contact-tout-ce-qui-cite-un-cas-en-une-seance-3835" title="Permanent link">&para;</a></h3>
+<h3 id="la-tournage-complet-tout-ce-qui-cite-un-cas-en-une-seance-3835">La tournage complet : tout ce qui cite un cas, en une séance (#3835)<a class="headerlink" href="#la-tournage-complet-tout-ce-qui-cite-un-cas-en-une-seance-3835" title="Permanent link">&para;</a></h3>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>--planche
 </code></pre></div>
 <p>Le montage taille déjà un clip par <strong>test</strong> et indexe par <strong>cas</strong>. Passer les seize classes citantes
@@ -9235,11 +9245,11 @@ honore <code>@FixtureDeRecette</code>. Une liste tenue à la main dériverait co
   rendre un index sans ligne - ce qui ressemble trait pour trait à une recette qui ne couvre rien.</li>
 </ul>
 <p>À quoi elle sert : le garde de #3728 vérifie qu'un identifiant cité <strong>existe</strong>, jamais que le test
-<strong>fait ce que le cas décrit</strong>. La planche rend cette relecture possible en regardant, plutôt qu'en
+<strong>fait ce que le cas décrit</strong>. Le tournage complet rend cette relecture possible en regardant, plutôt qu'en
 relisant seize classes.</p>
 <p>⚠️ <strong>Mais tous les cas ne s'auditent pas en regardant</strong>, et l'index le dit ligne par ligne. Un
 ViewModel cite des cas et n'ouvre aucune fenêtre : son clip est noir, et c'est le résultat <strong>juste</strong>.
-Cocher « vu » dessus serait un mensonge - un mensonge que la planche aurait encouragé si elle avait
+Cocher « vu » dessus serait un mensonge - un mensonge que le tournage complet aurait encouragé si elle avait
 proposé la même case à tout le monde.</p>
 <table>
 <thead>
