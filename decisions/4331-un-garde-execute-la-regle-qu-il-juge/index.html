@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4331-un-garde-execute-la-regle-qu-il-juge/">
       
       
-        <link rel="prev" href="../3269-un-ensemble-vide-se-constate-avant-de-filtrer/">
+        <link rel="prev" href="../4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/">
       
       
-        <link rel="next" href="../2729-un-script-publie-ne-se-modifie-plus/">
+        <link rel="next" href="../../recette/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Une restauration **vérifie en place**, et replace un dossier là où il peut réellement aller - VigieChiro Companion · Doc développeur</title>
+        <title>Un garde exécute la règle qu'il juge, il ne la relit pas - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#une-restauration-verifie-en-place-et-replace-un-dossier-la-ou-il-peut-reellement-aller" class="md-skip">
+        <a href="#un-garde-execute-la-regle-quil-juge-il-ne-la-relit-pas" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Une restauration **vérifie en place**, et replace un dossier là où il peut réellement aller
+              Un garde exécute la règle qu'il juge, il ne la relit pas
             
           </span>
         </div>
@@ -5511,44 +5511,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    2727 · Une restauration vérifie en place
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--stable"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/" class="md-nav__link">
         
   
   
@@ -5571,109 +5537,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Décision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#la-verification-porte-sur-la-sauvegarde-en-place-sans-zone-temporaire" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        La vérification porte sur la sauvegarde en place, sans zone temporaire
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#un-dossier-revient-a-son-emplacement-dorigine-sil-existe-encore" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Un dossier revient à son emplacement d'origine s'il existe encore
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tous-les-chemins-persistes-suivent-pas-seulement-la-racine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tous les chemins persistés suivent, pas seulement la racine
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -7888,10 +7751,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../4331-un-garde-execute-la-regle-qu-il-juge/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4331 · Un garde exécute la règle qu'il juge
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -7914,6 +7811,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-mesure-qui-a-tranche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La mesure qui a tranché
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-cette-decision-ne-dit-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cette décision ne dit pas
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -9012,6 +8984,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#la-mesure-qui-a-tranche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La mesure qui a tranché
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9019,45 +9002,6 @@
       
     </span>
   </a>
-  
-    <nav class="md-nav" aria-label="Décision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#la-verification-porte-sur-la-sauvegarde-en-place-sans-zone-temporaire" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        La vérification porte sur la sauvegarde en place, sans zone temporaire
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#un-dossier-revient-a-son-emplacement-dorigine-sil-existe-encore" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Un dossier revient à son emplacement d'origine s'il existe encore
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#tous-les-chemins-persistes-suivent-pas-seulement-la-racine" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tous les chemins persistés suivent, pas seulement la racine
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
   
 </li>
       
@@ -9073,10 +9017,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
+  <a href="#ce-que-cette-decision-ne-dit-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Alternatives écartées
+        Ce que cette décision ne dit pas
       
     </span>
   </a>
@@ -9100,7 +9044,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4331-un-garde-execute-la-regle-qu-il-juge.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -9109,76 +9053,65 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4331-un-garde-execute-la-regle-qu-il-juge.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="une-restauration-verifie-en-place-et-replace-un-dossier-la-ou-il-peut-reellement-aller">Une restauration <strong>vérifie en place</strong>, et replace un dossier là où il peut réellement aller<a class="headerlink" href="#une-restauration-verifie-en-place-et-replace-un-dossier-la-ou-il-peut-reellement-aller" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-03</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A17 · Ne rien inventer, ne rien effacer, n&#x27;écrire que ce qui est déclaré</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#2727, lot 1 (#2721) du chantier de dette #2720</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>RestaurationCompleteTest#restauration_sur_une_autre_machine</code></span></div></div>
+<h1 id="un-garde-execute-la-regle-quil-juge-il-ne-la-relit-pas">Un garde exécute la règle qu'il juge, il ne la relit pas<a class="headerlink" href="#un-garde-execute-la-regle-quil-juge-il-ne-la-relit-pas" title="Permanent link">&para;</a></h1>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-24</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A1 · La preuve précède l&#x27;affirmation</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4331 (passe 10 du lot de suites du chantier #4291)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>.github/scripts/verifie-decisions-du-tournage-connecte.sh</code>, <code>.github/scripts/verifie-jeton-vivant.sh</code>, <code>.github/scripts/revoque-jeton.sh</code></span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>La restauration complète déversait les dossiers de son à la racine du dossier de travail et ne
-touchait pas aux chemins persistés : la base restaurée continuait de désigner les emplacements de la
-machine d'origine. La promesse de la doc écrans, « remet la base et les dossiers de son », ne tenait
-donc que si l'on restaurait sur la machine <strong>et</strong> l'arborescence d'origine.</p>
-<p>L'issue proposait un remède en quatre temps : <strong>étaler dans une zone temporaire</strong>, vérifier contre le
-manifeste, réécrire les chemins, puis basculer. Deux de ces quatre temps ont été tenus tels quels ; le
-premier a été écarté en cours d'écriture, et le troisième s'est révélé plus large que prévu.</p>
-<h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<h3 id="la-verification-porte-sur-la-sauvegarde-en-place-sans-zone-temporaire">La vérification porte sur la sauvegarde <strong>en place</strong>, sans zone temporaire<a class="headerlink" href="#la-verification-porte-sur-la-sauvegarde-en-place-sans-zone-temporaire" title="Permanent link">&para;</a></h3>
-<p>Chaque dossier de la sauvegarde est confronté à l'inventaire du manifeste <strong>avant</strong> que rien ne soit
-touché. Une seule discordance annule tout, base comprise.</p>
-<p>La zone temporaire est écartée pour une raison de place, mesurée sur le cas ordinaire : restaurer
-40 Go <strong>par-dessus ses propres 40 Go</strong> demanderait 80 Go libres. Elle ferait donc échouer la
-restauration la plus courante, celle où l'on remet ses propres données, pour protéger d'un cas plus
-rare. Un dispositif de sûreté qui empêche l'usage normal n'est pas un dispositif de sûreté.</p>
-<p><strong>Ce qu'on perd, et c'est étroit</strong> : un disque qui se remplit <strong>pendant</strong> la copie laisse une
-destination à moitié écrite. La vérification de la destination <strong>après</strong> copie le voit et le dit, là
-où une zone temporaire l'aurait évité.</p>
-<h3 id="un-dossier-revient-a-son-emplacement-dorigine-sil-existe-encore">Un dossier revient à son emplacement d'origine <strong>s'il existe encore</strong><a class="headerlink" href="#un-dossier-revient-a-son-emplacement-dorigine-sil-existe-encore" title="Permanent link">&para;</a></h3>
-<p>Sinon il est placé dans le dossier de travail, et les chemins persistés désignent l'endroit réel.</p>
-<p>Le critère est que le dossier d'origine <strong>existe</strong>, et non que son parent soit créable. La nuance
-évite un piège coûteux : <code>/mnt/disque-a</code> est un point de montage <strong>vide</strong> quand le disque n'est pas
-branché. Le juger « créable » y déverserait des gigaoctets sur le disque système, que le montage du
-vrai disque <strong>masquerait</strong> ensuite : l'utilisateur verrait ses nuits disparaître en rebranchant son
-disque.</p>
-<p>⚠️ <strong>Conséquence assumée</strong> : restaurer une nuit qu'on vient de <strong>supprimer</strong> la remet dans le dossier
-de travail et non à sa place, puisque sa place n'existe plus. Le compte rendu le dit, et la base
-pointe au bon endroit.</p>
-<h3 id="tous-les-chemins-persistes-suivent-pas-seulement-la-racine">Tous les chemins persistés suivent, pas seulement la racine<a class="headerlink" href="#tous-les-chemins-persistes-suivent-pas-seulement-la-racine" title="Permanent link">&para;</a></h3>
-<p><code>recording_session.root_path</code> n'est pas le seul chemin en base : chaque original, chaque séquence
-d'écoute, le journal du capteur, le relevé climatique et le CSV Tadarida portent le leur, <strong>en
-absolu</strong>. Six tables.</p>
-<p>Cette clause n'est pas un détail d'implémentation, c'est <strong>la</strong> décision qui fait tenir la promesse.
-Ne réécrire que la racine donne une base qui <strong>paraît</strong> corrigée et une application qui ne retrouve
-plus un seul fichier. C'est l'état dans lequel cette fonctionnalité a d'abord été livrée : les tests
-Java relisaient <code>root_path</code> et concluaient au succès, tandis que l'E2E qui restaure sur une autre
-machine puis demande où est l'audio répondait <strong>PERDU</strong>.</p>
-<p>Un chemin situé <strong>hors</strong> de l'ancienne racine est laissé tel quel : un original resté sur la carte SD
-n'a pas bougé, et le rebaser désignerait un fichier qui n'a jamais été là.</p>
-<h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<p>Une règle de CI vit rarement dans un endroit commode. Trois formes se rencontrent dans ce dépôt :</p>
 <ul>
-<li>La restauration <strong>rend un compte rendu</strong> : ce qui a changé de place, et ce que la sauvegarde ne
-  contenait pas. Un geste qui déplace des gigaoctets et corrige la base ne peut pas se contenter de
-  « restauré ».</li>
-<li>Une sauvegarde <strong>antérieure au manifeste</strong> se restaure comme avant, et le bilan le dit plutôt que
-  de laisser croire à mieux.</li>
-<li>⚠️ L'inventaire des six tables est énuméré <strong>deux fois</strong> dans le code, ici et dans
-  <code>RattachementDao.reprefixerChemins</code>, le socle ne pouvant pas dépendre d'une feature. Une septième
-  table à chemin devra être ajoutée aux deux endroits : c'est le sujet de #3133.</li>
+<li>une valeur de YAML - <code>needs:</code>, <code>if:</code>, l'ordre des pas - qu'un garde lit par analyse ;</li>
+<li>un script de <code>.github/scripts/</code>, qui peut porter son propre <code>--auto-test</code> ;</li>
+<li><strong>du shell posé dans un <code>run:</code></strong>, c'est-à-dire du code exécutable rangé dans une chaîne de YAML.</li>
 </ul>
-<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
-<p><strong>Restaurer systématiquement dans le dossier de travail.</strong> Plus simple, mais déverse des gigaoctets
-sur le disque système d'un utilisateur dont le disque d'origine est branché.</p>
-<p><strong>Restaurer systématiquement à l'emplacement d'origine, en créant les dossiers manquants.</strong> Ne marche
-que sur la machine d'origine, c'est-à-dire pas dans le cas qui motive l'issue, et tombe dans le piège
-du point de montage vide.</p>
-<p><strong>Hacher le contenu des fichiers plutôt que l'inventaire.</strong> Doublerait le temps de la sauvegarde
-<strong>et</strong> celui de la restauration pour n'attraper en plus que la corruption silencieuse à taille égale,
-alors que le socle a déjà <code>original_recording.sha256</code> en base pour ce cas.</p>
+<p>La troisième forme se garde mal. Le réflexe est d'y chercher un motif : « le fichier contient-il bien
+<code>clips-connectes</code> ? », « la ligne dit-elle <code>|| code=000</code> ? ». Ce réflexe juge le <strong>texte</strong> d'un
+programme au lieu de son <strong>comportement</strong>, et le dépôt a payé pour savoir que les deux diffèrent.</p>
+<h2 id="la-mesure-qui-a-tranche">La mesure qui a tranché<a class="headerlink" href="#la-mesure-qui-a-tranche" title="Permanent link">&para;</a></h2>
+<p><code>verifie-jeton-vivant.sh</code> (#4328) portait un auto-test à six cas, tous verts, qui éprouvaient sa
+fonction de verdict. Lancé pour de bon contre un port mort, le script affichait :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>✗ LA PLATEFORME NE RÉPOND PAS (HTTP 000000)
+</code></pre></div>
+<p><code>curl -w '%{http_code}'</code> écrit <strong>déjà</strong> « 000 » quand la connexion échoue <strong>et</strong> sort non nul : le
+<code>|| echo 000</code> en ajoutait un second. Aucune relecture ne l'avait vu - il avait traversé trois écritures
+et deux revues - et aucun auto-test ne pouvait le voir, puisque tous éprouvaient le verdict et aucun
+l'appel.</p>
+<p>Le même défaut vivait à deux autres endroits, dont <code>api-live.yml</code>, où il n'existe <strong>que</strong> sous forme de
+<code>run:</code>. Il y a été trouvé en extrayant ce <code>run:</code> du YAML et en le lançant.</p>
+<h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
+<p><strong>Quand la règle à garder est du shell, le garde l'extrait et l'exécute.</strong> Il ne cherche pas son motif.</p>
+<p>Trois conséquences, et la troisième est celle qu'on oublie :</p>
+<p><strong>1. L'appel se sépare du verdict.</strong> Une fonction qui interroge, une fonction qui juge. La seconde
+s'éprouve par une table de codes ; la première s'éprouve en la lançant contre un port mort de la boucle
+locale - <code>http://127.0.0.1:1</code> -, ce qui ne demande aucun réseau et rougit en une milliseconde.</p>
+<p><strong>2. Le verdict se prend sur le MESSAGE, pas sur le code de sortie.</strong> En exécutant du shell dans un
+bac à sable, on remplace ses dépendances par des leurres qui échouent. Toute exécution sort alors non
+nulle, et un garde qui lirait le code passerait au vert en croyant avoir vu ce qu'il cherchait. C'est
+le faux vert le plus facile à construire de tout ce dispositif.</p>
+<p><strong>3. Ce qui ne peut pas être extrait le déclare.</strong> Un <code>run:</code> peut dépendre de son contexte au point
+qu'aucun bac à sable ne le reproduise. Le garde l'écrit dans son en-tête plutôt que d'emprunter la
+solidité de ses voisins.</p>
+<h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<p><code>verifie-decisions-du-tournage-connecte.sh</code> tient les trois décisions de l'ADR 4291. Pour la première -
+le refus de la source <code>clips-connectes</code> par la comparaison des tournages - il extrait la fonction
+<code>reprendre()</code> du YAML, remplace <code>gh</code> par un leurre, la lance sur <code>clips-connectes</code> et <strong>lit son
+message</strong>. Son contrôle de l'autre bord vérifie qu'une source ordinaire ne déclenche pas ce refus.</p>
+<p><code>verifie-jeton-vivant.sh</code> et <code>revoque-jeton.sh</code> portent chacun un cas d'auto-test qui exerce leur appel
+contre un port mort.</p>
+<p><code>api-live.yml</code> reste la limite connue : son <code>run:</code> a été extrait et lancé à la main pour éprouver sa
+correction, mais rien ne le rejouera. C'est écrit dans son commentaire, et suivi par #4385.</p>
+<h2 id="ce-que-cette-decision-ne-dit-pas">Ce que cette décision ne dit pas<a class="headerlink" href="#ce-que-cette-decision-ne-dit-pas" title="Permanent link">&para;</a></h2>
+<p>Elle ne dit pas qu'un garde par analyse est mauvais. L'ordre de deux pas, la présence d'une fonction
+d'état dans un <code>if:</code>, la portée d'un <code>env:</code> sont des propriétés du <strong>document</strong>, et s'y lisent très
+bien. La règle porte sur le cas où le document contient un <strong>programme</strong>.</p>
+<p>Elle ne dit pas non plus qu'exécuter dispense de la mutation. C'est l'inverse : un garde qui exécute se
+mesure comme les autres, en cassant ce qu'il prétend attraper et en le regardant rougir.</p>
 
 
 
@@ -9217,7 +9150,7 @@ alors que le socle a déjà <code>original_recording.sha256</code> en base pour 
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../3269-un-ensemble-vide-se-constate-avant-de-filtrer/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 3269 · Un ensemble vide se constate avant de filtrer">
+          <a href="../4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 4079 · Une condition de job nomme l&#39;état qu&#39;elle attend">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -9227,20 +9160,20 @@ alors que le socle a déjà <code>original_recording.sha256</code> en base pour 
                 Précédent
               </span>
               <div class="md-ellipsis">
-                3269 · Un ensemble vide se constate avant de filtrer
+                4079 · Une condition de job nomme l'état qu'elle attend
               </div>
             </div>
           </a>
         
         
           
-          <a href="../2729-un-script-publie-ne-se-modifie-plus/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 2729 · Un script publié ne se modifie plus">
+          <a href="../../recette/" class="md-footer__link md-footer__link--next" aria-label="Suivant: Méthode">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                2729 · Un script publié ne se modifie plus
+                Méthode
               </div>
             </div>
             <div class="md-footer__button md-icon">

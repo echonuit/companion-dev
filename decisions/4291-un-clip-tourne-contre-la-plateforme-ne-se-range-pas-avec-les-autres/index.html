@@ -7845,6 +7845,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4331-un-garde-execute-la-regle-qu-il-juge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4331 · Un garde exécute la règle qu'il juge
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -9062,10 +9097,17 @@ traque partout, et elle s'est produite ici sur le dispositif même qui devait la
 <p>Le tir a aussi prouvé ce qu'aucun auto-test ne prouve : la révocation a tourné <strong>alors que le film
 avait échoué</strong>, et la plateforme a rendu <code>200</code>.</p>
 <h2 id="ce-qui-nest-pas-garde-et-qui-le-sait">Ce qui n'est pas gardé, et qui le sait<a class="headerlink" href="#ce-qui-nest-pas-garde-et-qui-le-sait" title="Permanent link">&para;</a></h2>
-<p>⚠️ La décision <strong>1</strong> ne l'est pas. Le refus de <code>clips-connectes</code> vit dans un <code>if:</code> de workflow, et rien
-ne rougirait si on le retirait : la comparaison recommencerait à mesurer la plateforme en croyant
-mesurer le rendu. C'est le plus sournois des trois trous relevés en passe 6, et il est suivi par #4331.</p>
 <p>Les décisions <strong>2</strong> et <strong>3</strong> portent chacune leur garde autotesté, vues rouges sur mutation.</p>
+<p>La décision <strong>1</strong> ne l'était pas quand cette ADR a été écrite, et c'était le plus sournois des trois
+trous relevés en passe 6 : le refus de <code>clips-connectes</code> vivait dans un <code>if:</code> de workflow, et rien
+n'aurait rougi si on l'avait retiré - la comparaison serait revenue mesurer la plateforme en croyant
+mesurer le rendu.</p>
+<p>Elle l'est depuis #4331. <code>verifie-decisions-du-tournage-connecte.sh</code> tient les trois décisions de
+cette ADR, et il ne <strong>relit</strong> pas le refus : celui-ci vit dans un <code>run:</code>, donc du shell, et le garde
+l'extrait et le <strong>lance</strong> contre la source <code>clips-connectes</code> pour lire son message.</p>
+<p>Cette section est laissée telle qu'elle a été pensée, au passé, plutôt que supprimée : ce qu'elle
+disait était vrai, et un lecteur qui arrive par #4331 doit pouvoir retrouver pourquoi ce garde
+existe.</p>
 
 
 

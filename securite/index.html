@@ -7743,6 +7743,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4331-un-garde-execute-la-regle-qu-il-juge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4331 · Un garde exécute la règle qu'il juge
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -9237,6 +9272,27 @@ est propre</strong>, <code>VIGIECHIRO_TOKEN_TOURNAGE</code>, distinct de celui d
 sépare n'est pas l'accès - même compte, mêmes droits - mais le <strong>cycle de vie</strong> : celui du tournage
 est <strong>révoqué en fin de run</strong> (<code>POST /logout</code>, #4305), parce qu'il produit une image que rien ne
 masque et qui sera publiée. Le masquage de GitHub ne couvre que les <strong>journaux</strong>.</p>
+<p>Cette révocation a une conséquence qu'il faut connaître : <strong>après un tournage, le secret est posé
+et ne vaut plus rien</strong>. Le tournage l'<strong>éprouve</strong> donc par un <code>GET /moi</code> avant de filmer plutôt que
+de constater sa présence, et refuse en nommant la cause - « la plateforme refuse ce jeton » plutôt
+qu'un scénario qui rougit trois pas plus loin (#4328, <code>verifie-jeton-vivant.sh</code>). Il sépare
+« jeton mort » de « plateforme muette », qui n'appellent pas le même geste : poser un jeton frais
+pendant une panne d'Heroku ne servirait à rien.</p>
+</li>
+<li>
+<p><strong>Les textes d'un tournage sont balayés avant de partir en artefact</strong> (#4327,
+  <code>verifie-forme-du-jeton.sh</code>). Un jeton Vigie-Chiro a une forme exacte - trente-deux caractères de
+  <code>[A-Z0-9]</code>, mesuré dans <code>auth.py</code> - et le balayage a lieu <strong>avant</strong> l'envoi, l'envoi en dépendant :
+  sur un dépôt public, un artefact d'Actions se télécharge sans authentification, et le reprendre plus
+  tard serait déjà trop tard.</p>
+</li>
+<li>
+<p><strong>Un appel de workflow ne transmet que ce dont l'appelé se sert</strong> (#4349). <code>release.yml</code> passait
+  <code>secrets: inherit</code> à trois workflows appelés, dont un qui exécute les tests du produit : tout le
+  trousseau du dépôt leur était offert. Aucun n'était lu - ce n'était pas une fuite, c'était une
+  surface, et le raisonnement est celui de #2739. Une déclaration nominale côté <strong>appelé</strong> n'achète
+  rien tant que l'<strong>appelant</strong> hérite, et <code>verifie-portee-des-secrets.sh</code> tient désormais les deux
+  bouts.</p>
 </li>
 </ul>
 <h2 id="ce-qui-nest-pas-protege-et-pourquoi">Ce qui n'est pas protégé, et pourquoi<a class="headerlink" href="#ce-qui-nest-pas-protege-et-pourquoi" title="Permanent link">&para;</a></h2>
@@ -9270,6 +9326,11 @@ complémentaire, celle des <strong>non-protections assumées</strong> (<a href="
 <td>Les <strong>exports</strong> (CSV, sons)</td>
 <td>fichier choisi par l'utilisateur</td>
 <td>Ils sont faits pour être ouverts ailleurs : les chiffrer les rendrait inutilisables</td>
+</tr>
+<tr>
+<td>L'<strong>image</strong> d'un clip de recette</td>
+<td>pré-version <code>clips-connectes</code>, tag d'une version</td>
+<td>Le balayage de #4327 lit les <strong>textes</strong> et le dit : une image n'est lue par aucun garde, et le masquage de GitHub ne couvre que les journaux. Ce qui protège un clip est en <strong>amont</strong> - le jeton n'entre pas par l'écran, et il est révoqué en fin de tournage</td>
 </tr>
 </tbody>
 </table>
