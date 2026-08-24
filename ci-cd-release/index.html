@@ -10427,7 +10427,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie-portee-des-secrets.sh</code></td>
-<td>aucun secret <code>VIGIECHIRO_*</code> dans l'<code>env:</code> d'un <strong>job</strong> ni d'un workflow : la forme juste est l'<code>env:</code> d'un <strong>pas</strong>. Posé plus haut, il est offert à toute la suite de tests, que <code>ConnexionModule</code> pointe alors sur la production. Aucun rôle de la plateforme ne peut le rattraper - <code>Lecteur</code> est déclaré et aucune route ne l'accepte (#4303)</td>
+<td>aucun secret <code>VIGIECHIRO_*</code> dans l'<code>env:</code> d'un <strong>job</strong> ni d'un workflow : la forme juste est l'<code>env:</code> d'un <strong>pas</strong>. Posé plus haut, il est offert à toute la suite de tests, que <code>ConnexionModule</code> pointe alors sur la production. Aucun rôle de la plateforme ne peut le rattraper - <code>Lecteur</code> est déclaré et aucune route ne l'accepte (#4303). <strong>Second contrôle</strong> : aucun appel de workflow ne transmet le trousseau entier par héritage. Une déclaration nominale côté appelé n achète rien tant que l appelant hérite, et <code>release.yml</code> le faisait pour trois appels dont un qui exécute les tests du produit (#4349)</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
