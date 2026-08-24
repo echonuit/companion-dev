@@ -9410,6 +9410,29 @@ pas ici, pour ne pas diverger), et elle ne peut que <strong>rétrécir</strong> 
 </tr>
 </tbody>
 </table>
+<p>Depuis #4336, les confrontations qui portent sur les ADR lisent leur <strong>en-tête OKF</strong> et non plus des
+puces : <code>article:</code>, <code>verification:</code>, <code>enforced_by:</code> ou <code>loupe:</code>, <code>chantier:</code>. Une confrontation s'y
+est ajoutée, et elle vaut d'être dite parce qu'elle a servi deux fois dans la semaine de sa pose :</p>
+<table>
+<thead>
+<tr>
+<th>Ce qui est confronté</th>
+<th>À quoi</th>
+<th>Ce que ça empêche</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Le champ <code>title:</code> de l'en-tête d'une ADR</td>
+<td>Le titre de page de la même ADR</td>
+<td>Deux titres pour une seule décision : le premier alimente le site et les matrices, le second la lecture</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Et un avertissement, payé une fois.</strong> Ce test avait cessé de vérifier quoi que ce soit après la
+conversion des en-têtes : son motif ne trouvait plus rien, et son <code>continue</code> sur absence de
+déclaration avalait les 194 ADR. Il passait au <strong>vert</strong>. Un garde qui cesse de détecter ne rougit
+pas, il se tait ; c'est pourquoi ses confrontations sont éprouvées et non supposées.</p>
 <p>Deux détails qui comptent :</p>
 <ul>
 <li>Les commandes sont lues <strong>sur l'annotation</strong>, par réflexion - jamais instanciées. Leurs constructeurs
