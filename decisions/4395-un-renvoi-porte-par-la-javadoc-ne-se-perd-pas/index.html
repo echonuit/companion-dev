@@ -9123,7 +9123,7 @@
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'article A30 pose que l'ADR dit pourquoi, et que <strong>la javadoc la cite au lieu de la redire</strong>. Le
 renvoi <code>#N</code> est cette citation : il donne au lecteur d'un contrat l'accès à la discussion qui a
-produit la règle. La javadoc de production en porte <strong>4 076</strong>, dans 983 fichiers.</p>
+produit la règle. La javadoc de production cite <strong>3 111 issues distinctes</strong>, dans 983 fichiers.</p>
 <p>Le même article ouvre un cliquet de 3 641 lignes de prose narrative, sur 713 blocs. Les résorber
 demande de raccourcir ces blocs, et c'est là que les deux exigences se croisent : <strong>la citation vit
 dans la prose qu'on coupe.</strong></p>
@@ -9136,13 +9136,16 @@ de javadoc, et <strong>367 fichiers</strong> porteurs de dette ici ont là-bas u
 sa javadoc contractée est donc une référence de rédaction directement applicable, pour 55 % de la
 dette. Mais elle ne porte <strong>aucun</strong> renvoi. Sa rupture les a tous retirés, parce qu'ils n'ouvraient
 plus rien dans un dépôt détaché de ses issues.</p>
-<p><strong>Reprendre cette javadoc en bloc effacerait 1 882 renvois qui, ici, ouvrent de vraies issues.</strong>
+<p><strong>Reprendre cette javadoc en bloc effacerait 1 572 de ces renvois, qui ouvrent ici de vraies issues.</strong>
 C'est la perte que l'ADR <a href="../4334-ce-que-le-portage-a-decide-de-ne-pas-porter/">4334</a> a refusée au
 grain du commit, revenue au grain du bloc de javadoc.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Le nombre de renvois <code>#N</code> portés par les lignes <code>///</code> de <code>src/main/java</code> <strong>ne descend pas</strong>. Il est
-tenu par un plancher déclaré, que <code>scripts/adr/4395-renvois-en-javadoc.py</code> vérifie à chaque passage.</p>
-<p>Le plancher ouvre à <strong>4 076</strong>, mesuré sur <code>9da19a6f7</code>. Il se relève de ce qu'un chantier ajoute.
+<p>Le nombre d'issues <strong>distinctes</strong> que cite la javadoc de chaque fichier de <code>src/main/java</code>, sommé
+sur le dépôt, <strong>ne descend pas</strong>. Il est tenu par un plancher déclaré, que
+<code>scripts/adr/4395-renvois-en-javadoc.py</code> vérifie à chaque passage.</p>
+<p>Distinctes, et non occurrences : ce qui se perd est qu'un fichier <strong>cesse d'ouvrir</strong> une discussion,
+pas qu'il l'ouvre une fois au lieu de deux.</p>
+<p>Le plancher ouvre à <strong>3 111</strong>, mesuré sur <code>845240252</code>. Il se relève de ce qu'un chantier ajoute.
 L'abaisser est possible, et c'est une décision : la justifier dans cette ADR, comme on justifie un
 cliquet qui monte.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -9152,11 +9155,20 @@ resserrer. Un plancher compte ce qu'on possède : il borne par le bas, <strong>d
 la bonne nouvelle est de le relever. Les deux ne peuvent pas partager un champ sans qu'un lecteur
 pressé lise le mauvais sens, d'où <code>floor</code> à côté de <code>ratchet</code> dans l'en-tête, et
 <code>rapporte_plancher</code> à côté de <code>rapporte</code> dans le socle.</p>
-<p><strong>Le compte est global, pas par fichier.</strong> Un plancher par fichier demanderait de figer 983 valeurs
-et de les tenir à chaque édition légitime de javadoc : la discipline se paierait à chaque geste
-honnête, pour attraper une faute qui ne se commet qu'en masse. Le garde ne verrait donc pas dix
-renvois perdus dans un fichier compensés par dix ajoutés dans un autre. Ce n'est pas la menace ; la
-menace est la reprise de tranche, et un plancher global la voit au premier passage.</p>
+<p><strong>Le total est global, pas figé par fichier.</strong> Figer 983 valeurs et les tenir à chaque édition
+légitime ferait payer la discipline à chaque geste honnête, pour attraper une faute qui ne se commet
+qu'en masse. Le garde ne voit donc pas dix renvois perdus dans un fichier compensés par dix ajoutés
+dans un autre. Ce n'est pas la menace ; la menace est la reprise de tranche, et un plancher global la
+voit au premier passage.</p>
+<p><strong>Ce que la première application a corrigé.</strong> La version posée comptait les <strong>occurrences</strong>. Elle a
+été réfutée par le premier fichier où elle pouvait l'être, dans l'heure : <code>AttenteTuiles.java</code> citait
+<code>#3068</code> deux fois dans un bloc, la version contractée le cite une fois, et le garde a rougi sur une
+réécriture qui ne perdait rien. Mesuré sur les deux états : 4 076 occurrences contre 4 075, et
+<strong>3 111 renvois distincts dans les deux cas</strong>. Le plancher est passé de 4 076 à 3 111 sans qu'aucun
+renvoi ne disparaisse - les deux nombres ne mesurent pas la même chose, et il faut le dire pour qu'on
+ne lise pas cette baisse comme une perte. C'est #4398, et c'est
+<a href="../2941-un-cliquet-s-apprend-en-l-appliquant/">2941</a> à la lettre : sa première application est ce qui
+révèle sa définition.</p>
 <p><strong>Seules les lignes <code>///</code> comptent.</strong> Déplacer un renvoi d'un <code>///</code> vers un commentaire
 d'implémentation sera compté comme une perte, alors que ce n'est qu'un choix de rédaction. La
 contrepartie est assumée : elle pousse à garder la citation là où le lecteur du contrat la trouve,
@@ -9167,7 +9179,7 @@ encore de décision, et lui en donner une par ricochet serait légiférer sans a
 renvoi est là ou il n'y est pas.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Compter par fichier, en figeant 983 valeurs.</strong> Plus fin, et plus fragile : la table périmerait à
+<li><strong>Figer une valeur par fichier, 983 en tout.</strong> Plus fin, et plus fragile : la table périmerait à
   chaque édition légitime, et une table qu'on met à jour sans la lire ne garde plus rien.</li>
 <li><strong>Comparer au commit de base plutôt qu'à un plancher.</strong> Cela verrait la perte au fichier près, mais
   ferait dépendre le garde d'une référence git que le poste local n'a pas toujours. Un garde qui ne
