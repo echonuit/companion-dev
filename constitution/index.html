@@ -1020,6 +1020,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#a30-le-code-dit-ce-quil-fait-la-javadoc-dit-son-contrat-ladr-dit-pourquoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A30 : Le code dit ce qu'il fait, la javadoc dit son contrat, l'ADR dit pourquoi
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -7741,6 +7752,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4359 · Une javadoc contracte, elle ne raconte pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/" class="md-nav__link">
         
   
@@ -9390,6 +9436,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#a30-le-code-dit-ce-quil-fait-la-javadoc-dit-son-contrat-ladr-dit-pourquoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A30 : Le code dit ce qu'il fait, la javadoc dit son contrat, l'ADR dit pourquoi
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9427,7 +9484,7 @@
 <p>Les règles non négociables de ce dépôt et du produit qu'il livre. Une règle ne figure ici que si
 elle est <strong>opposable</strong> : quelque chose la refuse mécaniquement, ou son absence d'applicateur est
 déclarée.</p>
-<p><strong>Comment lire ce document.</strong> Vingt-six articles tiennent en une page ; ils suffisent à travailler.
+<p><strong>Comment lire ce document.</strong> Vingt-sept articles tiennent en une page ; ils suffisent à travailler.
 Sous chacun vit sa <strong>jurisprudence</strong> : les décisions d'architecture qui l'ont produit, une par cas,
 dans <code>dev-docs/decisions/</code>. On lit les articles ; on ne descend dans les cas que lorsqu'on en a
 besoin. Chaque ADR déclare son article en en-tête, et un garde refuse celle qui n'en déclare pas.</p>
@@ -9544,6 +9601,15 @@ le code tiers ne s'exécute pas avec les droits de publication.</p>
 <h3 id="a26-la-provenance-se-declare">A26 : La provenance se déclare<a class="headerlink" href="#a26-la-provenance-se-declare" title="Permanent link">&para;</a></h3>
 <p>Chaque décision porte qui l'a produite et qui l'a relue. L'assistance par agents est déclarée, pas
 déduite. L'identité de distribution est distincte de celle de l'auteur et de celle de la plateforme.</p>
+<h3 id="a30-le-code-dit-ce-quil-fait-la-javadoc-dit-son-contrat-ladr-dit-pourquoi">A30 : Le code dit ce qu'il fait, la javadoc dit son contrat, l'ADR dit pourquoi<a class="headerlink" href="#a30-le-code-dit-ce-quil-fait-la-javadoc-dit-son-contrat-ladr-dit-pourquoi" title="Permanent link">&para;</a></h3>
+<p>Trois endroits, un rôle chacun. Le <strong>code</strong> porte l'intention : un nom qui la dit, une fonction qui
+tient dans un écran, un type qui rend l'erreur impossible. Un commentaire qui explique un nom est un
+nom à changer ; un commentaire qui paraphrase la ligne suivante s'enlève. La <strong>javadoc</strong> dit le
+contrat - ce qu'on fournit, ce qu'on obtient, ce qui peut être nul - et s'adresse à qui appelle.
+L'<strong>ADR</strong> dit pourquoi, et la javadoc la <strong>cite</strong> au lieu de la redire.</p>
+<p>Ce qui est caduc s'enlève : <code>git log</code> garde l'histoire pour qui la cherche, et une javadoc dont une
+moitié est périmée ne se lit plus du tout. Un bloc de plus de huit lignes de prose est un suspect
+sous cliquet, dans le code de production ; un garde, lui, doit dire ce qu'il vérifie.</p>
 <hr />
 <!-- matrice engendree : ne pas editer a la main -->
 
@@ -9715,9 +9781,15 @@ déduite. L'identité de distribution est distincte de celle de l'auteur et de c
 <td style="text-align: right;">2</td>
 <td><code>DecisionsRespecteesTest#l_installeur_porte_l_identite_echonuit</code>, <code>DocumentationAJourTest#une_adr_recente_porte_le_numero_de_son_chantier</code></td>
 </tr>
+<tr>
+<td>A30 · Le code dit ce qu'il fait, la javadoc dit son contrat, l'ADR dit pourquoi</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td><code>scripts/adr/4359-javadoc-narratif.py</code></td>
+</tr>
 </tbody>
 </table>
-<p><strong>4 article(s) sur 26 ne sont tenus que par la relecture.</strong> C'est la liste des chantiers de garde restants, et elle se lit comme un inventaire, pas comme une fatalité.</p>
+<p><strong>4 article(s) sur 27 ne sont tenus que par la relecture.</strong> C'est la liste des chantiers de garde restants, et elle se lit comme un inventaire, pas comme une fatalité.</p>
 <ul>
 <li>A1 · La preuve précède l'affirmation</li>
 <li>A8 · La mutation mesure dès qu'un comportement est complet</li>
