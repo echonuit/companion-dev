@@ -9029,7 +9029,7 @@
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-24</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A28 · Un avertissement se dit en mots</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4366 (passe 9 du chantier #4334)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification probable</span><span class="adr-bandeau__valeur"><code>scripts/adr/4366-avertissement-en-pictogramme.py</code></span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Le corpus porte <strong>1 177 pictogrammes d'alerte</strong>, répartis dans <strong>459 fichiers</strong>. La densité, plus
+<p>Le corpus porte <strong>2 044 pictogrammes d'alerte</strong>, répartis dans <strong>624 fichiers</strong>. La densité, plus
 que le total, dit ce qui s'est passé :</p>
 <table>
 <thead>
@@ -9042,22 +9042,22 @@ que le total, dit ce qui s'est passé :</p>
 <tbody>
 <tr>
 <td><code>dev-docs/decisions/index.md</code></td>
-<td style="text-align: right;">67</td>
-<td>un toutes les <strong>4 lignes</strong></td>
+<td style="text-align: right;">106</td>
+<td>un toutes les <strong>3 lignes</strong></td>
 </tr>
 <tr>
 <td><code>scripts/doc-video/filme-un-parcours.sh</code></td>
-<td style="text-align: right;">100</td>
+<td style="text-align: right;">119</td>
 <td>un toutes les 17 lignes</td>
 </tr>
 <tr>
-<td><code>dev-docs/ci-cd-release.md</code> (avant découpage)</td>
-<td style="text-align: right;">33</td>
-<td>un toutes les 37 lignes</td>
+<td><code>dev-docs/ci-cd-release.md</code></td>
+<td style="text-align: right;">46</td>
+<td>un toutes les 29 lignes</td>
 </tr>
 </tbody>
 </table>
-<p>Sur une page où une ligne sur quatre commence par « attention », le lecteur cesse de voir le signe.
+<p>Sur une page où une ligne sur trois commence par « attention », le lecteur cesse de voir le signe.
 Il ne hiérarchise plus rien. Le défaut est difficile à repérer : une page saturée de marqueurs a la
 même apparence qu'une page où chaque marqueur compte.</p>
 <h2 id="le-defaut">Le défaut<a class="headerlink" href="#le-defaut" title="Permanent link">&para;</a></h2>
@@ -9088,8 +9088,12 @@ Toutes disent la même chose : effacer y serait falsifier.</p>
   libellés commençaient par un ⚠ » parle du caractère, il ne s'en sert pas pour alerter. L'effacer
   ne raccourcirait pas la phrase, il la rendrait fausse.</li>
 </ul>
-<p>Sur 1 177 occurrences, 1 105 ont été retirées. Les 72 restantes sont des citations du caractère ou
-des messages émis par le programme, et le garde ne les compte pas. Le cliquet est donc à zéro.</p>
+<p>Sur 2 044 occurrences, le garde en retient <strong>1 553</strong>. Les 491 autres sont du contenu montré, des
+blocs de code, des messages émis par le programme ou le caractère cité, et il ne les compte pas. Le
+cliquet ouvre donc à 1 553, et la résorption reste entière.</p>
+<p>Cette valeur est celle de <strong>cet</strong> arbre. La décision vient d'un dépôt où le nettoyage avait déjà eu
+lieu et où le cliquet valait zéro ; elle a été remesurée en arrivant ici, comme
+<a href="../4334-ce-que-le-portage-a-decide-de-ne-pas-porter/">4334</a> le demande de tout dispositif porté.</p>
 <p>Deux bornes tiennent ces cécités, parce qu'une exemption sans borne devient une zone franche. Le
 voisinage d'un autre marqueur se mesure à <strong>32 caractères</strong> de part et d'autre, et non sur la ligne
 entière : une ligne qui porte une flèche quelque part ne doit pas cesser d'être gardée. Et un appel
