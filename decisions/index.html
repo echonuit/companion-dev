@@ -7692,6 +7692,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4395 · Un renvoi porté par la javadoc ne se perd pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/" class="md-nav__link">
         
   
@@ -10148,6 +10183,11 @@
 <td><a href="4368-l-apostrophe-d-un-libelle-est-droite/">4368</a></td>
 <td><code>CONTRIBUTING.md</code> énonçait la règle depuis #4343 et rien ne la tenait. Mesure : 188 apostrophes courbes dans 68 fichiers, dont <strong>douze seulement</strong> dans des chaînes littérales, c'est-à-dire montrées à l'utilisateur ; deux écrans affichaient alors deux apostrophes différentes pour le même mot. Les douze sont corrigées et la zone tenue à zéro. Le garde ne lit ni les commentaires, ni le brief, ni les tests : un cliquet à 188 aurait fait porter une relecture de 68 fichiers à un défaut qui n'en concernait que trois</td>
 <td>#4368, EPIC #4334</td>
+</tr>
+<tr>
+<td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de 3 641 lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : 4 076 renvois dans 983 fichiers, dont 1 882 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>#4395, EPIC #4394</td>
 </tr>
 </tbody>
 </table>
