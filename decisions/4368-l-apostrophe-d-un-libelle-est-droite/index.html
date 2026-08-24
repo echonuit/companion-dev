@@ -7591,6 +7591,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#amendement-du-2026-08-24-la-regle-vaut-partout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amendement du 2026-08-24 : la règle vaut partout
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8900,6 +8911,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#amendement-du-2026-08-24-la-regle-vaut-partout" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Amendement du 2026-08-24 : la règle vaut partout
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -8996,6 +9018,40 @@ matrice de la constitution l'aurait compté comme tel.</p>
 une fois et pas deux.</p>
 <p>Les 176 restantes ne sont pas une dette tenue par un cliquet : elles sont hors du champ de cette
 décision, et le disent.</p>
+<h2 id="amendement-du-2026-08-24-la-regle-vaut-partout">Amendement du 2026-08-24 : la règle vaut partout<a class="headerlink" href="#amendement-du-2026-08-24-la-regle-vaut-partout" title="Permanent link">&para;</a></h2>
+<p>La décision ci-dessus bornait le garde aux chaînes littérales de <code>src/main/java</code>, au motif que douze
+apostrophes seulement atteignaient un écran et qu'un cliquet à 188 aurait fait porter une relecture
+de 68 fichiers à un défaut qui n'en concernait que trois.</p>
+<p><strong>Sébastien a tranché autrement le jour même : ce dépôt n'écrit que l'apostrophe ASCII, partout.</strong>
+L'alternative « un cliquet à 188 » reste écartée pour la raison donnée, mais la conclusion change :
+il ne s'agit plus de tenir une dette, il s'agit de normaliser d'un coup et de tenir zéro.</p>
+<p>172 occurrences normalisées dans 67 fichiers, plus un nom de fichier,
+« Capacité d'analyse.md », dont la citation suit.</p>
+<p>Trois exemptions restent, et aucune n'est un renoncement :</p>
+<table>
+<thead>
+<tr>
+<th>Exempté</th>
+<th>Pourquoi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>CHANGELOG.md</code></td>
+<td>engendré par semantic-release ; le corriger falsifierait le compte rendu, et sa <strong>source</strong> est le titre de PR, désormais gardé</td>
+</tr>
+<tr>
+<td>les trois SVG de Mocodo</td>
+<td>mesuré : leurs sources <code>.mcd</code> portent l'apostrophe <strong>droite</strong>, et l'outil substitue au rendu. Corriger le rendu serait défait à la régénération</td>
+</tr>
+<tr>
+<td>le signe <strong>cité</strong> plutôt qu'employé</td>
+<td><code>COURBE = "’"</code>, une classe de caractères, « choisir la droite ou la courbe » : ces lignes parlent du caractère. L'effacer les rendrait fausses (<a href="../3645-un-detecteur-textuel-s-exclut-de-son-corpus/">ADR 3645</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Le titre de PR est gardé à son tour, par <code>verifie-titre-pr.sh</code> : c'est la seule source du CHANGELOG,
+et le raisonnement est celui que l'ADR 2843 tient déjà pour le cadratin.</p>
 
 
 
