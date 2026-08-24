@@ -9086,12 +9086,12 @@
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-24</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A30 · Le code dit ce qu&#x27;il fait, la javadoc dit son contrat, l&#x27;ADR dit pourquoi</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4359 (l&#x27;article de la javadoc, détaché de #4342 par la règle de numérotation)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification probable</span><span class="adr-bandeau__valeur"><code>scripts/adr/4359-javadoc-narratif.py</code></span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Le code de production porte <strong>26 814 lignes de prose en javadoc pour 77 891 lignes de code</strong>. Les
-étiquettes de contrat - <code>@param</code>, <code>@return</code>, <code>@throws</code> - n'en font que <strong>7 %</strong>. Le reste est du
+<p>Le code de production porte <strong>33 410 lignes de prose en javadoc pour 78 496 lignes de code</strong>. Les
+étiquettes de contrat - <code>@param</code>, <code>@return</code>, <code>@throws</code> - n'en font que <strong>5,7 %</strong>. Le reste est du
 récit.</p>
-<p>La lecture des blocs les plus longs donne la même chose chaque fois : un bloc de 89 lignes racontant
-l'implémentation qu'il avait remplacée, un autre de 49 lignes pour une <strong>interface vide</strong> qui
-recopiait une ADR du corpus.</p>
+<p>La lecture des blocs les plus longs donne la même chose chaque fois : un bloc de 86 lignes qui
+raconte écran par écran ce que l'outil rend, un autre de 49 lignes pour une <strong>interface vide</strong>, qui
+recopie une ADR du corpus.</p>
 <h2 id="le-defaut">Le défaut<a class="headerlink" href="#le-defaut" title="Permanent link">&para;</a></h2>
 <p>Ce récit est l'histoire d'un dépôt qui n'existe plus. Le coût n'est pas la place : <strong>le lecteur qui
 cherche ce que fait une classe traverse d'abord ce qu'elle a été</strong>, sans savoir quelle phrase est
@@ -9125,14 +9125,15 @@ tenir une autre.</p>
 <p><strong>Le niveau est <code>probable</code>.</strong> La longueur se compte ; ce qu'il faut couper ne se décide pas
 mécaniquement. Un record de trente champs n'est pas un suspect : les étiquettes de contrat sont
 exclues, avec leurs suites, et deux cas du banc le tiennent.</p>
-<p><strong>Cent trente-six blocs lus</strong>, 2 936 lignes de prose devenues 1 769, cliquet à <strong>2 532</strong>. Une ADR y
-était recopiée <strong>quatre fois dans le même bloc</strong>. Le registre attendu est écrit dans
-<code>CONTRIBUTING.md</code> : il n'existait nulle part.</p>
-<p><strong>Un second garde, déterministe.</strong> Une ligne de javadoc répétée juste après elle-même est une coupe
-ratée. Le défaut est arrivé quinze fois d'un coup, et il a passé la compilation, spotless et les
-tests : le lecteur voyait la phrase deux fois, aucun garde ne la voyait. Il a une seconde forme,
-trouvée trois fois ensuite : la ligne d'avant n'est pas identique, elle est le début tronqué de la
-suivante. <code>verifie_javadoc_sans_doublon.py</code> refuse les deux, sur tout le code Java du dépôt.</p>
+<p><strong>Le cliquet ouvre à 3 641</strong>, sur 713 blocs dans 572 fichiers, et aucune tranche n'a encore été
+relue : c'est la valeur du premier relevé, celle d'où la résorption partira. Le registre attendu est
+écrit dans <code>CONTRIBUTING.md</code> : il n'existait nulle part.</p>
+<p><strong>Un second garde reste à écrire.</strong> Une ligne de javadoc répétée juste après elle-même est une coupe
+ratée, et elle passe la compilation, spotless et les tests : le lecteur voit la phrase deux fois,
+aucun garde ne la voit. Elle a une seconde forme, plus discrète : la ligne d'avant n'est pas
+identique, elle est le début tronqué de la suivante. Rien ne refuse ni l'une ni l'autre ici. Le
+dépôt jumeau a rencontré les deux en résorbant sa dette (#4334), ce qui dit quand ce garde devient
+nécessaire : au moment où les coupes commencent, pas avant.</p>
 <p><strong>Et tout n'est pas du récit.</strong> <code>ParserCsvTadarida</code> documente un format et un mapping de colonnes,
 <code>TransformationAudio</code> l'arithmétique du découpage. Ces blocs dépassent le seuil et le méritent : le
 cliquet ne descendra pas à zéro, il compte une dette, pas une faute.</p>
