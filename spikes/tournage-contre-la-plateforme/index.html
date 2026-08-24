@@ -7905,14 +7905,14 @@ C'était vrai du versement, et faux de la confidentialité : sur un dépôt publ
 <strong>La phrase a été corrigée</strong> à la clôture du chantier, et le workflow verse désormais sur deux
 destinations qui lui sont propres.</p>
 <h3 id="les-parades-dans-lordre-ou-elles-doivent-etre-posees">Les parades, dans l'ordre où elles doivent être posées<a class="headerlink" href="#les-parades-dans-lordre-ou-elles-doivent-etre-posees" title="Permanent link">&para;</a></h3>
-<p><strong>Le jeton n'entre pas par l'écran.</strong> <code>ConnexionModule.jetonPonctuel()</code> lit la propriété système
-<code>vigiechiro.token</code>, sinon la variable d'environnement <code>VIGIECHIRO_TOKEN</code>, et ce jeton ponctuel
-<strong>l'emporte</strong> sur la connexion enregistrée. Un tournage connecté doit donc l'injecter par là, jamais
-par le champ.</p>
-<p>⚠️ <strong>Ce que cette parade coûte, et il faut l'assumer</strong> : le cas qui vaudrait le plus, celui de la
-connexion elle-même (coller un jeton et voir le badge passer au vert), devient précisément celui qu'on
-ne peut pas filmer connecté. Un tournage connecté montre l'application <strong>déjà</strong> connectée. La connexion
-reste filmée avec un jeton bouchonné, et son clip garde alors sa réserve.</p>
+<p><strong>Le jeton entre par l'écran, et il meurt avec le run.</strong> C'était la parade proposée ici : ne jamais
+coller le jeton devant la caméra, en le déposant en coulisse pour que la modale se vérifie seule.</p>
+<p>⚠️ <strong>Elle a été retirée à l'usage</strong> (#4324). Le clip montrait alors une modale qui se connectait toute
+seule, sans qu'on voie ce qui l'avait connectée : illisible, et donc sans valeur de recette. Or le
+jeton est révoqué en fin de run, et un jeton mort n'est pas un secret. La parade coûtait le clip pour
+un risque que la révocation avait déjà supprimé.</p>
+<p>Ce qui la remplace tient en une dépendance : le versement des clips n'a lieu que si la plateforme a
+<strong>confirmé</strong> le retrait. « Le jeton est mort » cesse d'être un espoir pour devenir une condition.</p>
 <p><strong>Le jeton a une forme, contrairement à ce que nous croyions.</strong> <code>verifie-jeton.sh</code> explique qu'un jeton
 VigieChiro est « une chaîne opaque, sans préfixe distinctif, qu'aucun catalogue de fournisseur ne
 connaît », et c'est vrai des catalogues. Mais le code de la plateforme le tire dans <code>A-Z0-9</code> sur

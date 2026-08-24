@@ -6418,21 +6418,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#s8-05-lavancement-parait-dans-la-modale" class="md-nav__link">
+  <a href="#s8-01-s8-05-s8-06-coller-le-jeton-voir-lavancement-lire-lidentite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        S8-05 · l'avancement paraît dans la modale
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#s8-06-la-modale-annonce-lidentite" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        S8-06 · la modale annonce l'identité
+        S8-01, S8-05, S8-06 · coller le jeton, voir l'avancement, lire l'identité
       
     </span>
   </a>
@@ -6441,6 +6430,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-ces-clips-publient-et-le-compte-que-cela-engage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Ce que ces clips publient, et le compte que cela engage
+      
+    </span>
+  </a>
   
 </li>
       
@@ -7344,21 +7344,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#s8-05-lavancement-parait-dans-la-modale" class="md-nav__link">
+  <a href="#s8-01-s8-05-s8-06-coller-le-jeton-voir-lavancement-lire-lidentite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        S8-05 · l'avancement paraît dans la modale
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#s8-06-la-modale-annonce-lidentite" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        S8-06 · la modale annonce l'identité
+        S8-01, S8-05, S8-06 · coller le jeton, voir l'avancement, lire l'identité
       
     </span>
   </a>
@@ -7367,6 +7356,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ce-que-ces-clips-publient-et-le-compte-que-cela-engage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ⚠️ Ce que ces clips publient, et le compte que cela engage
+      
+    </span>
+  </a>
   
 </li>
       
@@ -7514,26 +7514,63 @@ endroit, et il n'y en a qu'une ici.</p>
      tout test citant un cas doit figurer sur l'une des pages de clips. Une adresse morte rend un
      lecteur vide, et un lecteur vide se lit comme un défaut du produit. -->
 
-<h3 id="s8-05-lavancement-parait-dans-la-modale">S8-05 · l'avancement paraît dans la modale<a class="headerlink" href="#s8-05-lavancement-parait-dans-la-modale" title="Permanent link">&para;</a></h3>
+<h3 id="s8-01-s8-05-s8-06-coller-le-jeton-voir-lavancement-lire-lidentite">S8-01, S8-05, S8-06 · coller le jeton, voir l'avancement, lire l'identité<a class="headerlink" href="#s8-01-s8-05-s8-06-coller-le-jeton-voir-lavancement-lire-lidentite" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p>L'avancement paraît <strong>dans</strong> la modale de connexion, sans seconde fenêtre, et « Fermer » y est grisé.</p>
+<p><strong>S8-01</strong> Coller le jeton : l'avancement de la récupération s'affiche.
+<strong>S8-05</strong> L'avancement paraît <strong>dans</strong> la modale, sans seconde fenêtre, et « Fermer » y est grisé.
+<strong>S8-06</strong> À la fin, la modale annonce l'identité <strong>et</strong> le résumé de ce qui a été récupéré.</p>
 </blockquote>
-<p>Ce que ce clip montre et qu'un clip bouchonné ne montrerait pas : la progression suit une <strong>vraie</strong>
-latence réseau, celle du <code>GET /moi</code> puis des rapprocheurs. Bouchonnée, elle n'est qu'une temporisation
-choisie pour qu'il y ait quelque chose à filmer.</p>
-<video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-connectes/ScenarioConnecteConnexionTest.l_avancement_parait_dans_la_modale.mp4"></video>
+<p>Un seul clip pour les trois, parce que c'est un seul geste : les couper en trois referait trois fois le
+préambule et casserait l'histoire.</p>
+<p>Il se déroule en <strong>quatre temps</strong>, dont trois que l'<a href="../../decisions/4188-une-modale-se-filme-avec-son-ecran/">ADR 4188</a>
+exige - une modale se filme avec l'écran d'où elle part et celui où elle rend. Ici c'est le <strong>même</strong>
+écran, l'accueil, mais il n'y revient pas identique :</p>
+<table>
+<thead>
+<tr>
+<th>Temps</th>
+<th>Ce qu'on voit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1 · l'écran de départ</td>
+<td>l'accueil <strong>sans</strong> bandeau de compteurs, et le geste qui ouvre la modale</td>
+</tr>
+<tr>
+<td>2 · la modale</td>
+<td>le jeton collé, l'avancement, « Fermer » grisé, puis l'identité et le résumé</td>
+</tr>
+<tr>
+<td>3 · l'écran d'arrivée</td>
+<td>l'accueil retrouvé, où le <strong>bandeau de compteurs a paru</strong> : il suit la donnée, et une synchronisation déroulée par-dessus l'accueil s'y voit sans qu'on ait navigué (#1376)</td>
+</tr>
+<tr>
+<td>4 · le menu rouvert</td>
+<td>l'entrée qui nomme désormais qui est connecté</td>
+</tr>
+</tbody>
+</table>
+<p>Le quatrième n'est pas exigé par l'ADR : c'est une <strong>confirmation de plus</strong> que la connexion a eu lieu,
+et ce qui permet de voir ses conséquences <strong>de bout en bout</strong>, sur les deux surfaces qu'elle change.</p>
+<p>Ce qu'il montre et qu'un clip bouchonné ne montrerait pas : la progression suit une <strong>vraie</strong> latence
+réseau, et l'identité affichée à la fin est celle que <code>GET /moi</code> a rendue.</p>
+<video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-connectes/ScenarioConnecteConnexionTest.coller_le_jeton_puis_lire_l_identite.mp4"></video>
 
-<h3 id="s8-06-la-modale-annonce-lidentite">S8-06 · la modale annonce l'identité<a class="headerlink" href="#s8-06-la-modale-annonce-lidentite" title="Permanent link">&para;</a></h3>
-<blockquote>
-<p>À la fin, la modale de connexion annonce l'identité <strong>et</strong> le résumé de ce qui a été récupéré.</p>
-</blockquote>
-<p>Le pseudo affiché est celui que la plateforme a rendu. Le résumé, lui, dépend de ce que le compte de
-tournage contient : c'est la première chose que ce clip apprendra.</p>
-<p>⚠️ Ce cas n'asserte que l'<strong>identité</strong>. Le résumé fait partie de ce que la case demande, mais son
-contenu dépend du compte : l'asserter aujourd'hui figerait une attente qu'aucune mesure ne soutient
-encore.</p>
-<video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-connectes/ScenarioConnecteConnexionTest.la_modale_annonce_l_identite.mp4"></video>
-
+<h2 id="ce-que-ces-clips-publient-et-le-compte-que-cela-engage">⚠️ Ce que ces clips publient, et le compte que cela engage<a class="headerlink" href="#ce-que-ces-clips-publient-et-le-compte-que-cela-engage" title="Permanent link">&para;</a></h2>
+<p><code>S8-06</code> montre l'identité que la plateforme a rendue. Un clip connecté porte donc, <strong>en clair et sur
+une pré-version publique</strong>, le nom du titulaire du compte employé et le résumé de ce que ce compte
+contient - combien de sites, combien de nuits, combien en attente d'analyse.</p>
+<p>Ce n'est pas un effet de bord : c'est <strong>exactement ce que la case demande</strong>, et un clip qui le
+masquerait ne montrerait plus son cas.</p>
+<p><strong>La décision (#4345) : le compte du mainteneur EST le compte de tournage dédié.</strong> Son nom figure déjà
+dans chaque commit de ce dépôt, donc la publication n'ajoute rien à ce qu'il révèle déjà de cette
+personne-là.</p>
+<p>⚠️ <strong>Et la propriété ne tient qu'à ce choix.</strong> Le jour où un tournage connecté emploierait le compte de
+quelqu'un d'autre - un étudiant, un observateur qui prête son accès - le clip publierait un nom que
+rien n'oblige à être public, et le résumé décrirait des données qui ne sont pas les nôtres. Poser
+<code>VIGIECHIRO_TOKEN_TOURNAGE</code> avec le jeton d'un tiers <strong>n'est donc pas</strong> un geste anodin, et rien dans
+le dispositif ne s'y oppose : c'est une règle, pas un garde.</p>
 <h2 id="comment-en-produire">Comment en produire<a class="headerlink" href="#comment-en-produire" title="Permanent link">&para;</a></h2>
 <p>Le flux <strong>tournage de recette</strong> (<code>tournage-recette.yml</code>, <code>workflow_dispatch</code>), avec le drapeau
 <strong><code>connecte</code></strong> coché.</p>
@@ -7541,10 +7578,13 @@ encore.</p>
 clips d'un écran hors ligne, convaincants et muets sur leur objet.</p>
 <h2 id="ce-que-le-jeton-ne-peut-pas-atteindre">Ce que le jeton ne peut pas atteindre<a class="headerlink" href="#ce-que-le-jeton-ne-peut-pas-atteindre" title="Permanent link">&para;</a></h2>
 <p>Trois barrières, et chacune tient quand la précédente a manqué.</p>
-<p><strong>Il n'entre pas par l'écran.</strong> Le champ du jeton est un <code>TextField</code> et non un <code>PasswordField</code> : ce
-qu'on y colle se lit, et le banc photographie le graphe de scène. Le jeton passe donc par
-<code>StockageConnexion</code>, déposé <strong>sans profil</strong>, ce qui fait revérifier la modale à son ouverture sans
-geste (#1369). Seul le geste de <strong>coller</strong> reste infilmable.</p>
+<p><strong>Il paraît à l'écran, et il y meurt.</strong> Le champ du jeton est un <code>TextField</code> et non un
+<code>PasswordField</code> : ce qu'on y colle se lit, et le banc photographie le graphe de scène. Le scénario
+<strong>colle donc son jeton devant la caméra</strong>, parce qu'une modale qui se connecte toute seule ne montre
+pas ce qui l'a connectée, et qu'un clip incompréhensible ne remplit pas son office.</p>
+<p>Ce qui rend cela sans conséquence est la <strong>révocation</strong> : le jeton ne vaut plus rien avant même que le
+clip soit regardé. Et ce n'est pas une hypothèse laissée en l'air - le versement n'a lieu que si la
+plateforme a <strong>confirmé</strong> le retrait (#4324). Sans confirmation, le clip n'est pas publié.</p>
 <p><strong>Il ne dépasse pas son pas.</strong> Posé dans l'<code>env:</code> d'un job, un jeton serait offert à toute la suite de
 tests, que <code>ConnexionModule</code> pointe alors sur la production. <code>verifie-portee-des-secrets.sh</code> le refuse
 ailleurs qu'au pas qui filme. Et le banc lui-même <strong>lie sa propre source de jeton</strong> : un scénario qui a
