@@ -1021,6 +1021,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a28-un-avertissement-se-dit-en-mots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A28 : Un avertissement se dit en mots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#a29-lergonomie-se-rattache-a-une-heuristique-nommee" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -7906,6 +7917,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4366-un-avertissement-se-dit-en-mots/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4366 · Un avertissement se dit en mots
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/" class="md-nav__link">
         
   
@@ -9556,6 +9602,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#a28-un-avertissement-se-dit-en-mots" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A28 : Un avertissement se dit en mots
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#a29-lergonomie-se-rattache-a-une-heuristique-nommee" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9625,17 +9682,14 @@
 <p>Les règles non négociables de ce dépôt et du produit qu'il livre. Une règle ne figure ici que si
 elle est <strong>opposable</strong> : quelque chose la refuse mécaniquement, ou son absence d'applicateur est
 déclarée.</p>
-<p><strong>Comment lire ce document.</strong> Vingt-neuf articles tiennent en une page ; ils suffisent à travailler.
+<p><strong>Comment lire ce document.</strong> Trente articles tiennent en une page ; ils suffisent à travailler.
 Sous chacun vit sa <strong>jurisprudence</strong> : les décisions d'architecture qui l'ont produit, une par cas,
 dans <code>dev-docs/decisions/</code>. On lit les articles ; on ne descend dans les cas que lorsqu'on en a
 besoin. Chaque ADR déclare son article en en-tête, et un garde refuse celle qui n'en déclare pas.</p>
-<p><strong>Deux numéros manquent, et c'est voulu.</strong> La numérotation saute de A26 à A29. A27 et A28 existent
-dans la ligne d'où vient cette constitution : le premier interdit un renvoi qui ne résout que dans un
-dépôt disparu, ce qui n'a pas d'objet ici où les renvois résolvent ; le second veut qu'un
-avertissement se dise en mots plutôt qu'en pictogramme, et ce dépôt en porte 1 259 dans 361 fichiers,
-ce qui demande sa propre mesure avant sa propre règle. Les numéros ne sont pas réattribués : une ADR
-qui cite un article le cite par son numéro, et un numéro qui change de sens est pire qu'un numéro
-absent.</p>
+<p><strong>Un numéro manque, et c'est voulu.</strong> La numérotation saute de A26 à A28. A27 existe dans la ligne
+d'où vient cette constitution : il interdit un renvoi qui ne résout que dans un dépôt disparu, ce qui
+n'a pas d'objet ici, où les renvois résolvent. Le numéro n'est pas réattribué : une ADR cite un
+article par son numéro, et un numéro qui change de sens est pire qu'un numéro absent.</p>
 <p><strong>Ce que la jurisprudence a révélé.</strong> Les 194 ADR se replient sur vingt-trois articles. Les trois
 autres n'ont produit aucune décision : la preuve qui précède l'affirmation (A1), la mutation qui
 mesure dès qu'un comportement est complet (A8), et l'interdiction de supprimer un avertissement
@@ -9749,6 +9803,11 @@ le code tiers ne s'exécute pas avec les droits de publication.</p>
 <h3 id="a26-la-provenance-se-declare">A26 : La provenance se déclare<a class="headerlink" href="#a26-la-provenance-se-declare" title="Permanent link">&para;</a></h3>
 <p>Chaque décision porte qui l'a produite et qui l'a relue. L'assistance par agents est déclarée, pas
 déduite. L'identité de distribution est distincte de celle de l'auteur et de celle de la plateforme.</p>
+<h3 id="a28-un-avertissement-se-dit-en-mots">A28 : Un avertissement se dit en mots<a class="headerlink" href="#a28-un-avertissement-se-dit-en-mots" title="Permanent link">&para;</a></h3>
+<p>Un pictogramme d'alerte n'apporte pas l'information : il annonce qu'il y en a une. Posé sur 1 187
+lignes et dans 459 fichiers, il ne distingue plus rien. Ce qui doit alerter se dit dans la phrase, ou
+dans l'encart que le format prévoit. Le pictogramme ne subsiste que là où il est le contenu montré :
+une maquette qui rend ce que l'écran affiche, un message que le programme émet.</p>
 <h3 id="a29-lergonomie-se-rattache-a-une-heuristique-nommee">A29 : L'ergonomie se rattache à une heuristique nommée<a class="headerlink" href="#a29-lergonomie-se-rattache-a-une-heuristique-nommee" title="Permanent link">&para;</a></h3>
 <p>Une décision qui porte sur l'usage - ce qu'un écran montre, ce qu'il refuse, ce qu'il fait attendre -
 déclare par le champ <code>heuristiques:</code> de son en-tête la ou les heuristiques qu'elle sert. Le
@@ -9946,6 +10005,12 @@ signature qu'elle surmonte.</p>
 <td><code>DecisionsRespecteesTest#l_installeur_porte_l_identite_echonuit</code>, <code>DocumentationAJourTest#une_adr_recente_porte_le_numero_de_son_chantier</code></td>
 </tr>
 <tr>
+<td>A28 · Un avertissement se dit en mots</td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">0</td>
+<td><code>scripts/adr/4366-avertissement-en-pictogramme.py</code></td>
+</tr>
+<tr>
 <td>A29 · L'ergonomie se rattache à une heuristique nommée</td>
 <td style="text-align: right;">1</td>
 <td style="text-align: right;">0</td>
@@ -9965,7 +10030,7 @@ signature qu'elle surmonte.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>5 article(s) sur 29 ne sont tenus que par la relecture.</strong> C'est la liste des chantiers de garde restants, et elle se lit comme un inventaire, pas comme une fatalité.</p>
+<p><strong>5 article(s) sur 30 ne sont tenus que par la relecture.</strong> C'est la liste des chantiers de garde restants, et elle se lit comme un inventaire, pas comme une fatalité.</p>
 <ul>
 <li>A1 · La preuve précède l'affirmation</li>
 <li>A8 · La mutation mesure dès qu'un comportement est complet</li>
