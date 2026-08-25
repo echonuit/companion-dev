@@ -9237,7 +9237,7 @@ qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant mo
 <h3 id="a-le-dossier-de-travail-deja-tenu-3693-3714">A. Le dossier de travail déjà tenu (#3693, #3714)<a class="headerlink" href="#a-le-dossier-de-travail-deja-tenu-3693-3714" title="Permanent link">&para;</a></h3>
 <ul class="task-list">
 <li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-01</strong> · Lancer l'application, la laisser ouverte. Lancer une <strong>seconde</strong> instance sur le
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-01</strong> · <em>geste: refus-du-dossier-deja-tenu</em> · <em>carton: une seconde instance démarre sur le même dossier de travail</em> · Lancer l'application, la laisser ouverte. Lancer une <strong>seconde</strong> instance sur le
   <strong>même</strong> dossier de travail.
   <strong>Attendu</strong> : la seconde refuse de démarrer, et son message <strong>nomme l'occupant</strong> - un identifiant
   et un poste, pas des parenthèses vides.
@@ -9245,17 +9245,17 @@ qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant mo
   nomme l'occupant y était <strong>inerte</strong> - le message affichait « déjà utilisé () ».</p>
 </li>
 <li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-02</strong> · Noter <strong>le texte exact</strong> du message, capture à l'appui.
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-02</strong> · <em>geste: refus-du-dossier-deja-tenu</em> · <em>carton: une seconde instance démarre sur le même dossier de travail</em> · Noter <strong>le texte exact</strong> du message, capture à l'appui.
   <strong>Attendu</strong> : il dit qui, depuis quand, et <strong>quoi faire</strong>. Un refus qui n'indique pas l'action
   suivante renvoie l'utilisateur à lui-même.</p>
 </li>
 <li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-03</strong> · Fermer la première instance. Relancer la seconde.
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-03</strong> · <em>hors-portée: la mort d'un processus et le relâchement de son verrou : ce que le cas observe est l'ABSENCE de trace, et aucun écran ne la montre</em> · Fermer la première instance. Relancer la seconde.
   <strong>Attendu</strong> : elle démarre. Le verrou relâché ne laisse pas de trace qui bloquerait le prochain
   lancement.</p>
 </li>
 <li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-04</strong> · Tuer la première instance <strong>brutalement</strong> (gestionnaire des tâches), puis relancer.
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-04</strong> · <em>hors-portée: un processus tué au gestionnaire des tâches, que le banc ne sait pas provoquer, et un démarrage réussi qui ne se distingue d'un démarrage ordinaire par rien de visible</em> · Tuer la première instance <strong>brutalement</strong> (gestionnaire des tâches), puis relancer.
   <strong>Attendu</strong> : le démarrage réussit. ⚠️ Un verrou de fichier est relâché par le système à la mort du
   processus ; si ce n'était pas le cas, l'utilisateur serait <strong>enfermé dehors</strong> par un plantage, et
   c'est le pire des refus - celui qu'on ne sait pas défaire.</p>
@@ -9267,21 +9267,21 @@ Le défaut d'origine venait précisément d'une heuristique qui décidait seule 
 seule des trois.</p>
 <ul class="task-list">
 <li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-05</strong> · Dans <strong>Windows Terminal</strong>, lancer <code>vigiechiro --help</code>.
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-05</strong> · <em>hors-portée: une console Windows réelle : le banc filme le graphe de scène JavaFX, pas un terminal</em> · Dans <strong>Windows Terminal</strong>, lancer <code>vigiechiro --help</code>.
   <strong>Attendu</strong> : l'aide est <strong>lisible</strong>. Colorisée ou non selon ce que rend la console, mais <strong>jamais</strong>
   de suites de caractères parasites du genre <code>←[1m</code>.</p>
 </li>
 <li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-06</strong> · Même chose dans <strong>PowerShell</strong>, puis dans <strong><code>cmd.exe</code></strong>.
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-06</strong> · <em>hors-portée: trois consoles Windows réelles - cmd.exe, PowerShell, Windows Terminal - hors du banc</em> · Même chose dans <strong>PowerShell</strong>, puis dans <strong><code>cmd.exe</code></strong>.
   <strong>Attendu</strong> : idem. ⚠️ <code>cmd.exe</code> est le plus susceptible d'afficher les échappements bruts : c'est
   la console la moins capable, et celle qu'un observateur institutionnel a le plus de chances d'ouvrir.</p>
 </li>
 <li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-07</strong> · Rediriger : <code>vigiechiro --help &gt; aide.txt</code>, puis ouvrir <code>aide.txt</code> dans le Bloc-notes.
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-07</strong> · <em>hors-portée: une redirection de sortie relue au Bloc-notes, hors du banc</em> · Rediriger : <code>vigiechiro --help &gt; aide.txt</code>, puis ouvrir <code>aide.txt</code> dans le Bloc-notes.
   <strong>Attendu</strong> : <strong>aucun</strong> caractère parasite. Le fichier est du texte nu.</p>
 </li>
 <li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-08</strong> · Poser <code>NO_COLOR=1</code> puis relancer S10-05.
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-08</strong> · <em>hors-portée: une variable d'environnement posée dans une console Windows réelle, hors du banc</em> · Poser <code>NO_COLOR=1</code> puis relancer S10-05.
   <strong>Attendu</strong> : aucune couleur, et l'aide reste lisible.</p>
 </li>
 </ul>
