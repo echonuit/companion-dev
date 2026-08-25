@@ -1071,6 +1071,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-corpus-du-garde-les-deux-arbres-4462" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le corpus du garde : les deux arbres (#4462)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9310,6 +9321,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-corpus-du-garde-les-deux-arbres-4462" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le corpus du garde : les deux arbres (#4462)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9372,6 +9394,36 @@
 <li>La règle vaut à <strong>chaque surface</strong> : l'IHM route ses <code>Throwable</code> via un helper partagé ; la CLI applique la même distinction dans son handler d'exécution (un refus de validation n'y est plus une trace SEVERE).</li>
 <li>Corollaire outillage : un menu « Ouvrir le dossier des journaux » rend la trace accessible sans fouiller le disque.</li>
 </ul>
+<h2 id="le-corpus-du-garde-les-deux-arbres-4462">Le corpus du garde : les deux arbres (#4462)<a class="headerlink" href="#le-corpus-du-garde-les-deux-arbres-4462" title="Permanent link">&para;</a></h2>
+<p>Le garde n'a jamais lu que <code>src/main/java</code>, et <strong>aucune décision ne l'y avait restreint</strong> : il est né avant que la question ne se pose. Un test qui avale son échec ment pourtant de la même façon qu'une classe de production, et plus mal : il rend vert sans avoir rien prouvé. Le corpus est donc les deux arbres.</p>
+<p>Les <strong>quatre</strong> <code>catch</code> au corps vide de <code>src/test/java</code> ont été arbitrés un par un avant d'entrer dans le cliquet, qui passe de 12 à 16 :</p>
+<table>
+<thead>
+<tr>
+<th>Endroit</th>
+<th>Ce que le catch vide y fait</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>SondeAccessibiliteTest:70</code></td>
+<td>l'exception est le comportement <strong>attendu</strong> : elle prouve que le dossier n'est pas inscriptible</td>
+</tr>
+<tr>
+<td><code>ParcoursMultisiteVersPassageE2ETest:216</code></td>
+<td>boucle de reprise ; l'assertion de l'appelant tranche si les trois essais échouent</td>
+</tr>
+<tr>
+<td><code>ParcoursSitesVersPassageE2ETest:144</code></td>
+<td>même boucle, même arbitrage</td>
+</tr>
+<tr>
+<td><code>BancDeRecetteUrlTest:110</code></td>
+<td>fermeture d'un guichet qui ne vit que le temps du cas</td>
+</tr>
+</tbody>
+</table>
+<p>Aucun n'est un échec avalé, et c'est pourquoi ils entrent dans le cliquet plutôt que de le faire rougir.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Une dépendance de logging (SLF4J+backend, Log4j).</strong> Alourdit le module-graph pour un besoin que JUL couvre, alors que jlink modulaire est déjà exclu.</li>
