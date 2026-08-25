@@ -9145,11 +9145,11 @@ anciennes</strong> versions servies : <code>winget show Echonuit.VigieChiroCompa
 <p><code>winget install Echonuit.VigieChiroCompanion --version 2.34.2</code></p>
 </li>
 <li>
-<p><strong>S9-01</strong> · L'installation se termine sans <strong>aucune</strong> invite UAC, en session standard.</p>
+<p><strong>S9-01</strong> · <em>hors-portée: winget sur une vraie machine Windows : le banc filme une scène JavaFX, pas un gestionnaire de paquets</em> · L'installation se termine sans <strong>aucune</strong> invite UAC, en session standard.</p>
 </li>
-<li><strong>S9-02</strong> · L'application apparaît dans le menu Démarrer sous <strong>« VigieChiro Companion »</strong> - le nom
+<li><strong>S9-02</strong> · <em>hors-portée: le menu Démarrer et « Applications installées » de Windows, hors du banc</em> · L'application apparaît dans le menu Démarrer sous <strong>« VigieChiro Companion »</strong> - le nom
   affiché, pas un identifiant technique.</li>
-<li><strong>S9-03</strong> · <code>winget list Echonuit.VigieChiroCompanion</code> rend la version <strong>2.34.2</strong>.</li>
+<li><strong>S9-03</strong> · <em>hors-portée: winget sur une vraie machine Windows : le banc filme une scène JavaFX, pas un gestionnaire de paquets</em> · <code>winget list Echonuit.VigieChiroCompanion</code> rend la version <strong>2.34.2</strong>.</li>
 </ol>
 <p><strong>Étape 2 · Elle démarre pour de vrai</strong></p>
 <ol>
@@ -9157,12 +9157,12 @@ anciennes</strong> versions servies : <code>winget show Echonuit.VigieChiroCompa
 <p>Lancer l'application depuis le menu Démarrer.</p>
 </li>
 <li>
-<p><strong>S9-04</strong> · La fenêtre s'ouvre et l'écran d'accueil s'affiche, sans message d'erreur.</p>
+<p><strong>S9-04</strong> · <em>hors-portée: l'enchaînement de DEUX versions servies. L'écran existe, mais ce que le cas prouve est sa cause - une montée de version que le banc ne peut pas provoquer : filmer l'écran seul serait le clip convaincant et creux de l'ADR 4142</em> · La fenêtre s'ouvre et l'écran d'accueil s'affiche, sans message d'erreur.</p>
 </li>
-<li><strong>S9-05</strong> · L'application est installée <strong>dans le dossier personnel</strong> (<code>%LOCALAPPDATA%</code>), pas dans
+<li><strong>S9-05</strong> · <em>hors-portée: le dossier personnel d'un utilisateur Windows après désinstallation, hors du banc</em> · L'application est installée <strong>dans le dossier personnel</strong> (<code>%LOCALAPPDATA%</code>), pas dans
   <code>Program Files</code> : le scope <code>user</code> est bien celui qui a été servi.</li>
 <li>
-<p><strong>S9-14</strong> · Le bandeau d'annonce en haut de la fenêtre nomme les deux versions <strong>et</strong> dit de
+<p><strong>S9-14</strong> · <em>geste: annonce-d-une-mise-a-jour</em> · <em>carton: une nouvelle version est publiée, et l'application l'apprend</em> · Le bandeau d'annonce en haut de la fenêtre nomme les deux versions <strong>et</strong> dit de
   <strong>fermer l'application avant d'installer</strong> (#3457). Sans cette phrase, l'installation lancée
   fenêtre ouverte ne se termine pas, et rien n'en donne la raison.</p>
 <p>⚠️ Le numéro sort de la suite volontairement : les cases 06 à 13 sont citées ailleurs (#3621
@@ -9177,13 +9177,13 @@ tranche sur <strong>S9-07</strong>), et les renuméroter rendrait ces renvois fa
 <p><code>winget upgrade Echonuit.VigieChiroCompanion</code></p>
 </li>
 <li>
-<p><strong>S9-06</strong> · La commande propose la montée et l'exécute, toujours <strong>sans invite UAC</strong>.</p>
+<p><strong>S9-06</strong> · <em>hors-portée: winget sur une vraie machine Windows : le banc filme une scène JavaFX, pas un gestionnaire de paquets</em> · La commande propose la montée et l'exécute, toujours <strong>sans invite UAC</strong>.</p>
 </li>
-<li><strong>S9-07</strong> · ⚠️ <strong>Paramètres → Applications installées</strong> ne contient <strong>qu'une seule</strong> entrée
+<li><strong>S9-07</strong> · <em>hors-portée: le menu Démarrer et « Applications installées » de Windows, hors du banc</em> · ⚠️ <strong>Paramètres → Applications installées</strong> ne contient <strong>qu'une seule</strong> entrée
   « VigieChiro Companion ». Deux entrées = l'<code>UpgradeCode</code> n'a pas joué, et c'est un <strong>défaut
   bloquant</strong> : chaque version deviendrait un produit Windows distinct.</li>
-<li><strong>S9-08</strong> · Le menu Démarrer ne porte <strong>qu'un seul</strong> raccourci.</li>
-<li><strong>S9-09</strong> · <code>winget list Echonuit.VigieChiroCompanion</code> rend la <strong>nouvelle</strong> version, et une seule
+<li><strong>S9-08</strong> · <em>hors-portée: le menu Démarrer et « Applications installées » de Windows, hors du banc</em> · Le menu Démarrer ne porte <strong>qu'un seul</strong> raccourci.</li>
+<li><strong>S9-09</strong> · <em>hors-portée: winget sur une vraie machine Windows : le banc filme une scène JavaFX, pas un gestionnaire de paquets</em> · <code>winget list Echonuit.VigieChiroCompanion</code> rend la <strong>nouvelle</strong> version, et une seule
   ligne.</li>
 </ol>
 <p><strong>Étape 4 · Les données de l'utilisateur ont survécu</strong></p>
@@ -9192,10 +9192,10 @@ tranche sur <strong>S9-07</strong>), et les renuméroter rendrait ces renvois fa
 <p>Rouvrir l'application.</p>
 </li>
 <li>
-<p><strong>S9-10</strong> · Le dossier de travail, les sites et les nuits d'avant la montée sont <strong>toujours là</strong> :
+<p><strong>S9-10</strong> · <em>hors-portée: l'enchaînement de DEUX versions servies. L'écran existe, mais ce que le cas prouve est sa cause - une montée de version que le banc ne peut pas provoquer : filmer l'écran seul serait le clip convaincant et creux de l'ADR 4142</em> · Le dossier de travail, les sites et les nuits d'avant la montée sont <strong>toujours là</strong> :
   la mise à jour a remplacé le programme, pas les données.</p>
 </li>
-<li><strong>S9-11</strong> · <strong>☰ → « À propos »</strong> affiche le <strong>nouveau</strong> numéro de version.</li>
+<li><strong>S9-11</strong> · <em>hors-portée: l'enchaînement de DEUX versions servies. L'écran existe, mais ce que le cas prouve est sa cause - une montée de version que le banc ne peut pas provoquer : filmer l'écran seul serait le clip convaincant et creux de l'ADR 4142</em> · <strong>☰ → « À propos »</strong> affiche le <strong>nouveau</strong> numéro de version.</li>
 </ol>
 <p><strong>Étape 5 · La désinstallation ne détruit pas le travail</strong></p>
 <ol>
@@ -9203,9 +9203,9 @@ tranche sur <strong>S9-07</strong>), et les renuméroter rendrait ces renvois fa
 <p><code>winget uninstall Echonuit.VigieChiroCompanion</code></p>
 </li>
 <li>
-<p><strong>S9-12</strong> · L'application disparaît du menu Démarrer et de « Applications installées ».</p>
+<p><strong>S9-12</strong> · <em>hors-portée: winget sur une vraie machine Windows : le banc filme une scène JavaFX, pas un gestionnaire de paquets</em> · L'application disparaît du menu Démarrer et de « Applications installées ».</p>
 </li>
-<li><strong>S9-13</strong> · Le <strong>dossier de travail de l'utilisateur</strong> (base et journaux, dans le dossier personnel)
+<li><strong>S9-13</strong> · <em>hors-portée: le dossier personnel d'un utilisateur Windows après désinstallation, hors du banc</em> · Le <strong>dossier de travail de l'utilisateur</strong> (base et journaux, dans le dossier personnel)
   est <strong>intact</strong> : désinstaller le programme n'efface pas les nuits.</li>
 </ol>
 <h2 id="hors-perimetre-de-cette-session">Hors périmètre de cette session<a class="headerlink" href="#hors-perimetre-de-cette-session" title="Permanent link">&para;</a></h2>
