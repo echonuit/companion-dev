@@ -9268,55 +9268,55 @@ conservé). La CLI, elle, refuse. À filmer dans le bloc A sur un passage marqu�
 <p><strong>Bloc A · Local, zéro écriture serveur (carré 640380, passages existants)</strong></p>
 <p><em>A1 · Préparer (passage n° 1, Vérifié / OK)</em></p>
 <ul>
-<li><strong>S4-01</strong> · Le stepper affiche 4 temps : « 1 · Préparer », « 2 · Générer les archives », « 3 · Téléverser »,
+<li><strong>S4-01</strong> · <em>geste: lire-le-stepper-du-depot</em> · Le stepper affiche 4 temps : « 1 · Préparer », « 2 · Générer les archives », « 3 · Téléverser »,
   « 4 · Marquer déposé ».</li>
-<li><strong>S4-02</strong> · L'étape courante est ① sur un passage Vérifié.</li>
-<li><strong>S4-03</strong> · La checklist de cohérence affiche une ligne par contrôle, même satisfait (✓ / ✗ / ⚠).</li>
-<li><strong>S4-04</strong> · Un ⚠ (relevé climatique absent) n'empêche pas de préparer.</li>
-<li><strong>S4-05</strong> · « Vérifier et préparer le lot » → statut « Prêt à déposer », étape courante ②.</li>
-<li><strong>S4-06</strong> · Sur un passage au verdict « À jeter » : la préparation est refusée, message qui nomme le passage.</li>
-<li><strong>S4-07</strong> · « Préparer » reste actif même avec un contrôle en ✗ (la fiche dit grisé, le code dit actif : S4-C05).</li>
+<li><strong>S4-02</strong> · <em>geste: lire-le-stepper-du-depot</em> · L'étape courante est ① sur un passage Vérifié.</li>
+<li><strong>S4-03</strong> · <em>geste: lire-la-checklist-de-coherence</em> · La checklist de cohérence affiche une ligne par contrôle, même satisfait (✓ / ✗ / ⚠).</li>
+<li><strong>S4-04</strong> · <em>geste: lire-la-checklist-de-coherence</em> · Un ⚠ (relevé climatique absent) n'empêche pas de préparer.</li>
+<li><strong>S4-05</strong> · <em>geste: preparer-le-lot</em> · « Vérifier et préparer le lot » → statut « Prêt à déposer », étape courante ②.</li>
+<li><strong>S4-06</strong> · <em>geste: un-verdict-a-jeter-refuse-la-preparation</em> · Sur un passage au verdict « À jeter » : la préparation est refusée, message qui nomme le passage.</li>
+<li><strong>S4-07</strong> · <em>geste: preparer-le-lot</em> · « Préparer » reste actif même avec un contrôle en ✗ (la fiche dit grisé, le code dit actif : S4-C05).</li>
 </ul>
 <p><em>A2 · Générer les archives</em></p>
 <ul>
-<li><strong>S4-08</strong> · La génération affiche une barre de progression déterminée.</li>
-<li><strong>S4-09</strong> · Le libellé « Compression X/N » donne une estimation du temps restant.</li>
-<li><strong>S4-10</strong> · Les actions sont neutralisées pendant la génération.</li>
-<li><strong>S4-11</strong> · Le tableau des archives permet de choisir/réordonner ses colonnes.</li>
-<li><strong>S4-12</strong> · Réglages ▸ Dépôt : le plafond d'archive (700 Mo par défaut) est réglable entre 50 et 700 Mo.</li>
-<li><strong>S4-13</strong> · Le nouveau plafond s'applique à la génération suivante sans redémarrage.</li>
-<li><strong>S4-14</strong> · Garde-fou disque : bandeau rouge et « Générer » désactivé <strong>avant</strong> le clic si l'espace est
+<li><strong>S4-08</strong> · <em>geste: generer-les-archives</em> · La génération affiche une barre de progression déterminée.</li>
+<li><strong>S4-09</strong> · <em>geste: generer-les-archives</em> · Le libellé « Compression X/N » donne une estimation du temps restant.</li>
+<li><strong>S4-10</strong> · <em>geste: generer-les-archives</em> · Les actions sont neutralisées pendant la génération.</li>
+<li><strong>S4-11</strong> · <em>geste: generer-les-archives</em> · Le tableau des archives permet de choisir/réordonner ses colonnes.</li>
+<li><strong>S4-12</strong> · <em>geste: regler-le-plafond-d-archive</em> · Réglages ▸ Dépôt : le plafond d'archive (700 Mo par défaut) est réglable entre 50 et 700 Mo.</li>
+<li><strong>S4-13</strong> · <em>geste: regler-le-plafond-d-archive</em> · Le nouveau plafond s'applique à la génération suivante sans redémarrage.</li>
+<li><strong>S4-14</strong> · <em>geste: le-garde-fou-disque-avant-de-generer</em> · Garde-fou disque : bandeau rouge et « Générer » désactivé <strong>avant</strong> le clic si l'espace est
   insuffisant.</li>
 </ul>
 <p><em>A3 · Téléverser (refus « site non relié »)</em></p>
 <ul>
-<li><strong>S4-15</strong> · « ☁ Téléverser sur Vigie-Chiro » est présent (l'application est connectée).</li>
-<li><strong>S4-16</strong> · Le clic échoue proprement avec « Site non rattaché à Vigie-Chiro… » (640380) : <strong>rien</strong> n'a été écrit.
+<li><strong>S4-15</strong> · <em>geste: un-site-non-rattache-refuse-le-televersement</em> · « ☁ Téléverser sur Vigie-Chiro » est présent (l'application est connectée).</li>
+<li><strong>S4-16</strong> · <em>geste: un-site-non-rattache-refuse-le-televersement</em> · Le clic échoue proprement avec « Site non rattaché à Vigie-Chiro… » (640380) : <strong>rien</strong> n'a été écrit.
   Le message <strong>nomme le geste à faire</strong> pour ce carré-là (#3854) : « Récupérer ce carré » si le carré
   existe en Point Fixe sur la plateforme, sinon l'activer sur le portail. Il ne dit <strong>jamais</strong>
   « synchronisez vos sites », qui ne ramène pas un carré sans nuit déposée.</li>
-<li><strong>S4-17</strong> · Rien, avant ce clic, n'annonçait le dépôt impossible sur ce site (S4-C01 : le garde-fou arrive après
+<li><strong>S4-17</strong> · <em>geste: un-site-non-rattache-refuse-le-televersement</em> · Rien, avant ce clic, n'annonçait le dépôt impossible sur ce site (S4-C01 : le garde-fou arrive après
   la génération).</li>
-<li><strong>S4-18</strong> · « 📂 Ouvrir le dossier (dépôt manuel) » ouvre le dossier <code>depot/</code>.</li>
-<li><strong>S4-19</strong> · Ce bouton est grisé sans archives, avec une infobulle explicative.</li>
-<li><strong>S4-20</strong> · Le chemin du dossier de dépôt porte, <strong>à côté de lui</strong>, un bouton « Copier » ; le cliquer place ce
+<li><strong>S4-18</strong> · <em>geste: le-dossier-de-depot-et-son-chemin</em> · « 📂 Ouvrir le dossier (dépôt manuel) » ouvre le dossier <code>depot/</code>.</li>
+<li><strong>S4-19</strong> · <em>geste: le-dossier-de-depot-et-son-chemin</em> · Ce bouton est grisé sans archives, avec une infobulle explicative.</li>
+<li><strong>S4-20</strong> · <em>geste: le-dossier-de-depot-et-son-chemin</em> · Le chemin du dossier de dépôt porte, <strong>à côté de lui</strong>, un bouton « Copier » ; le cliquer place ce
   chemin dans le presse-papier, et ce qui s'y trouve est <strong>exactement</strong> ce que l'écran affiche (le
   coller dans un éditeur pour le lire).</li>
-<li><strong>S4-21</strong> · Sur une nuit introuvable (chemin vide), ce bouton est <strong>grisé</strong> comme ses voisins, avec son
+<li><strong>S4-21</strong> · <em>geste: le-dossier-de-depot-et-son-chemin</em> · Sur une nuit introuvable (chemin vide), ce bouton est <strong>grisé</strong> comme ses voisins, avec son
   infobulle : il n'écrase pas le presse-papier avec du vide.</li>
 </ul>
 <p><em>A4 · Marquer déposé, réinitialiser, régression</em></p>
 <ul>
-<li><strong>S4-22</strong> · Sans participation liée, le bouton est « ✅ Marquer déposé ».</li>
-<li><strong>S4-23</strong> · Après « Marquer déposé » : statut « Déposé », et <strong>toutes</strong> les étapes du stepper sont franchies
+<li><strong>S4-22</strong> · <em>geste: marquer-depose-a-la-main</em> · Sans participation liée, le bouton est « ✅ Marquer déposé ».</li>
+<li><strong>S4-23</strong> · <em>geste: marquer-depose-a-la-main</em> · Après « Marquer déposé » : statut « Déposé », et <strong>toutes</strong> les étapes du stepper sont franchies
   (S4-C03 : y compris « Lancer la participation », qui n'a pas eu lieu).</li>
-<li><strong>S4-24</strong> · Sur le passage déposé, la carte « Sons &amp; validation » se déverrouille.</li>
-<li><strong>S4-25</strong> · « 🔄 Réinitialiser le dépôt » est visible, avec son infobulle.</li>
-<li><strong>S4-26</strong> · Après réinitialisation : table vidée, statut « Prêt à déposer », message explicite.</li>
-<li><strong>S4-27</strong> · <strong>#1514 à filmer</strong> : sur le passage déposé, la carte « Vérifier l'enregistrement » est-elle active ?
+<li><strong>S4-24</strong> · <em>geste: marquer-depose-a-la-main</em> · Sur le passage déposé, la carte « Sons &amp; validation » se déverrouille.</li>
+<li><strong>S4-25</strong> · <em>geste: reinitialiser-le-depot</em> · « 🔄 Réinitialiser le dépôt » est visible, avec son infobulle.</li>
+<li><strong>S4-26</strong> · <em>geste: reinitialiser-le-depot</em> · Après réinitialisation : table vidée, statut « Prêt à déposer », message explicite.</li>
+<li><strong>S4-27</strong> · <em>geste: marquer-depose-a-la-main</em> · <strong>#1514 à filmer</strong> : sur le passage déposé, la carte « Vérifier l'enregistrement » est-elle active ?
   Poser un nouveau verdict : le passage régresse-t-il en « Vérifié » en gardant sa date de dépôt ?</li>
-<li><strong>S4-28</strong> · « ↩ Annuler le dépôt » (M-Passage) : visible sur un passage déposé, avec confirmation.</li>
-<li><strong>S4-29</strong> · Passage archivé : les archives survivent-elles à la purge ?</li>
+<li><strong>S4-28</strong> · <em>geste: marquer-depose-a-la-main</em> · « ↩ Annuler le dépôt » (M-Passage) : visible sur un passage déposé, avec confirmation.</li>
+<li><strong>S4-29</strong> · <em>geste: un-passage-archive-garde-ses-archives</em> · Passage archivé : les archives survivent-elles à la purge ?</li>
 </ul>
 <p><em>A5 · Refus définitif et réarmement (#3687, #3688, #3689, #3962)</em></p>
 <blockquote>
@@ -9326,40 +9326,40 @@ dépôt »). Le stub ne refuse que <code>/fichiers</code> et <code>/multipart</c
 le dépôt normalement, et <strong>c'est le point</strong> - le cas à jouer est ce qui se passe <em>après</em> le refus.</p>
 </blockquote>
 <ul>
-<li><strong>S4-30</strong> · Téléverser avec le stub en 403 : <strong>chaque</strong> archive part en échec, et la table donne la cause de
+<li><strong>S4-30</strong> · <em>geste: un-depot-refuse-par-le-serveur</em> · Téléverser avec le stub en 403 : <strong>chaque</strong> archive part en échec, et la table donne la cause de
   chacune au survol (« HTTP 403 »).</li>
-<li><strong>S4-31</strong> · Le bouton de téléversement <strong>cesse de s'appeler « Reprendre le dépôt »</strong> et redevient « Téléverser
+<li><strong>S4-31</strong> · <em>geste: un-depot-refuse-par-le-serveur</em> · Le bouton de téléversement <strong>cesse de s'appeler « Reprendre le dépôt »</strong> et redevient « Téléverser
   sur Vigie-Chiro » : il n'y a plus rien à reprendre, et il ne le promet plus.</li>
-<li><strong>S4-32</strong> · Le compte rendu s'intitule « <strong>Dépôt incomplet</strong> », et non « Nuit déposée sur Vigie-Chiro ».</li>
+<li><strong>S4-32</strong> · <em>geste: un-depot-refuse-par-le-serveur</em> · Le compte rendu s'intitule « <strong>Dépôt incomplet</strong> », et non « Nuit déposée sur Vigie-Chiro ».</li>
 <li><strong>S4-33</strong> · <em>perceptif</em> · Il dit le nombre d'archives refusées, <strong>et</strong> conseille la reconnexion -
   parce que ce refus-là tient aux droits. C'est la <strong>lisibilité</strong> de la phrase qu'on juge, pas sa
   présence : une assertion la trancherait mal.</li>
-<li><strong>S4-34</strong> · Arrêter le refus (<code>VIGIECHIRO_STUB_REFUS=0</code>, stub relancé), puis <strong>se reconnecter</strong> dans
+<li><strong>S4-34</strong> · <em>geste: reprendre-un-depot-apres-un-refus</em> · Arrêter le refus (<code>VIGIECHIRO_STUB_REFUS=0</code>, stub relancé), puis <strong>se reconnecter</strong> dans
   l'application : les unités refusées redeviennent reprenables, et le bouton se réintitule
   « Reprendre le dépôt » <strong>sans autre geste</strong>.</li>
-<li><strong>S4-35</strong> · Reprendre le dépôt : seules les archives refusées repartent, jamais celles déjà en ligne.</li>
-<li><strong>S4-36</strong> · Rejouer S4-30 à S4-33 avec <code>VIGIECHIRO_STUB_REFUS=422</code> : le compte rendu <strong>ne conseille pas</strong> la
+<li><strong>S4-35</strong> · <em>geste: reprendre-un-depot-apres-un-refus</em> · Reprendre le dépôt : seules les archives refusées repartent, jamais celles déjà en ligne.</li>
+<li><strong>S4-36</strong> · <em>geste: un-refus-422-ne-conseille-pas-la-reconnexion</em> · Rejouer S4-30 à S4-33 avec <code>VIGIECHIRO_STUB_REFUS=422</code> : le compte rendu <strong>ne conseille pas</strong> la
   reconnexion, parce qu'un contenu refusé ne se répare pas ainsi. Une reconnexion ne réarme rien.</li>
 </ul>
 <p><strong>Bloc B · Dépôt réel (130711, nuit du 05/07, ZIP, calcul lancé)</strong></p>
 <ul>
-<li><strong>S4-37</strong> · Réactivation : réimport de la nuit depuis la carte SD → empreinte vérifiée → passage réactivé.</li>
-<li><strong>S4-38</strong> · Qualification : verdict OK posé.</li>
-<li><strong>S4-39</strong> · Réglages ▸ Dépôt : plafond d'archive abaissé (~50 Mo) pour obtenir plusieurs archives.</li>
-<li><strong>S4-40</strong> · La table de dépôt affiche une ligne par archive (en attente → en cours → déposé).</li>
-<li><strong>S4-41</strong> · Cinq lignes sont « en cours » simultanément (parallélisme de 5).</li>
-<li><strong>S4-42</strong> · Une barre de progression par archive reflète les octets envoyés.</li>
-<li><strong>S4-43</strong> · Couper le réseau pendant le dépôt : échecs avec raison au survol, le bouton devient « ↻ Reprendre le
+<li><strong>S4-37</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Réactivation : réimport de la nuit depuis la carte SD → empreinte vérifiée → passage réactivé.</li>
+<li><strong>S4-38</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Qualification : verdict OK posé.</li>
+<li><strong>S4-39</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Réglages ▸ Dépôt : plafond d'archive abaissé (~50 Mo) pour obtenir plusieurs archives.</li>
+<li><strong>S4-40</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · La table de dépôt affiche une ligne par archive (en attente → en cours → déposé).</li>
+<li><strong>S4-41</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Cinq lignes sont « en cours » simultanément (parallélisme de 5).</li>
+<li><strong>S4-42</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Une barre de progression par archive reflète les octets envoyés.</li>
+<li><strong>S4-43</strong> · <em>hors-portée: une manipulation du réseau en cours d'opération - coupure, bridage à quelques dizaines de ko/s - que le banc ne sait pas provoquer sans mentir sur la cause</em> · Couper le réseau pendant le dépôt : échecs avec raison au survol, le bouton devient « ↻ Reprendre le
   dépôt ».</li>
-<li><strong>S4-44</strong> · Reprendre ne renvoie que les archives manquantes.</li>
-<li><strong>S4-45</strong> · Fermer puis rouvrir l'écran : la table se réhydrate.</li>
-<li><strong>S4-46</strong> · Le passage ne devient « Déposé » que lorsque <strong>toutes</strong> les unités le sont.</li>
-<li><strong>S4-47</strong> · « 🚀 Lancer la participation » : la carte « Traitement Vigie-Chiro » apparaît (« Analyse planifiée »).</li>
-<li><strong>S4-48</strong> · « 🔄 Actualiser » relève l'état, <strong>sans polling</strong> automatique.</li>
-<li><strong>S4-49</strong> · Hors connexion, « Actualiser » dit « Impossible de joindre Vigie-Chiro » <strong>sans effacer</strong> le dernier
+<li><strong>S4-44</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Reprendre ne renvoie que les archives manquantes.</li>
+<li><strong>S4-45</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Fermer puis rouvrir l'écran : la table se réhydrate.</li>
+<li><strong>S4-46</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Le passage ne devient « Déposé » que lorsque <strong>toutes</strong> les unités le sont.</li>
+<li><strong>S4-47</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · « 🚀 Lancer la participation » : la carte « Traitement Vigie-Chiro » apparaît (« Analyse planifiée »).</li>
+<li><strong>S4-48</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · « 🔄 Actualiser » relève l'état, <strong>sans polling</strong> automatique.</li>
+<li><strong>S4-49</strong> · <em>hors-portée: une manipulation du réseau en cours d'opération - coupure, bridage à quelques dizaines de ko/s - que le banc ne sait pas provoquer sans mentir sur la cause</em> · Hors connexion, « Actualiser » dit « Impossible de joindre Vigie-Chiro » <strong>sans effacer</strong> le dernier
   état connu.</li>
-<li><strong>S4-50</strong> · Fermer/rouvrir l'application : le dernier état connu est réaffiché avec sa date, sans réseau.</li>
-<li><strong>S4-51</strong> · <strong>Noter l'identifiant de la participation</strong> (nettoyage manuel éventuel + matériau de S5).</li>
+<li><strong>S4-50</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Fermer/rouvrir l'application : le dernier état connu est réaffiché avec sa date, sans réseau.</li>
+<li><strong>S4-51</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · <strong>Noter l'identifiant de la participation</strong> (nettoyage manuel éventuel + matériau de S5).</li>
 </ul>
 <h3 id="traitement-en-lot-ce-quun-seul-poste-ne-peut-pas-prouver-2357">Traitement en lot : ce qu'un seul poste ne peut pas prouver (#2357)<a class="headerlink" href="#traitement-en-lot-ce-quun-seul-poste-ne-peut-pas-prouver-2357" title="Permanent link">&para;</a></h3>
 <blockquote>
@@ -9371,23 +9371,23 @@ précisément les deux propriétés qui ont motivé la conception séquentielle
 </blockquote>
 <p><em>Bloc E · Un lot de trois nuits, pour de vrai</em></p>
 <ul>
-<li><strong>S4-52</strong> · Cocher trois nuits (Ctrl+clic) : les quatre entrées de lot du menu principal (☰) s'activent et annoncent
+<li><strong>S4-52</strong> · <em>geste: cocher-des-nuits-et-lire-le-menu-de-lot</em> · Cocher trois nuits (Ctrl+clic) : les quatre entrées de lot du menu principal (☰) s'activent et annoncent
   « des 3 lignes cochées ».</li>
-<li><strong>S4-53</strong> · « Préparer le dépôt des 3 lignes cochées… » : l'annonce dit <strong>3 sur 3</strong>, aucune écartée.</li>
-<li><strong>S4-54</strong> · Rejouer la même action : l'annonce dit <strong>0 sur 3</strong>, les trois écartées « dépôt déjà préparé », et
+<li><strong>S4-53</strong> · <em>geste: ce-que-l-annonce-d-un-lot-chiffre</em> · « Préparer le dépôt des 3 lignes cochées… » : l'annonce dit <strong>3 sur 3</strong>, aucune écartée.</li>
+<li><strong>S4-54</strong> · <em>geste: ce-que-l-annonce-d-un-lot-chiffre</em> · Rejouer la même action : l'annonce dit <strong>0 sur 3</strong>, les trois écartées « dépôt déjà préparé », et
   « Rien ne sera fait » ; renoncer ne touche rien.</li>
-<li><strong>S4-55</strong> · Cocher une nuit déjà déposée avec deux nuits prêtes : l'annonce <strong>nomme</strong> la déposée et son motif.</li>
-<li><strong>S4-56</strong> · « Téléverser les 3 lignes cochées… » : le débit observé reste celui d'<strong>une</strong> nuit (5 unités de
+<li><strong>S4-55</strong> · <em>geste: ce-que-l-annonce-d-un-lot-chiffre</em> · Cocher une nuit déjà déposée avec deux nuits prêtes : l'annonce <strong>nomme</strong> la déposée et son motif.</li>
+<li><strong>S4-56</strong> · <em>hors-portée: ce qu'un seul poste ne peut pas prouver, comme le titre de la section le dit : un débit observé, un parallélisme réel, une reprise entre deux machines</em> · « Téléverser les 3 lignes cochées… » : le débit observé reste celui d'<strong>une</strong> nuit (5 unités de
   front, pas 15). À mesurer côté réseau, c'est le seul endroit où cela se voit.</li>
-<li><strong>S4-57</strong> · <strong>Annuler</strong> en cours de téléversement de la deuxième nuit : le lot s'arrête, la deuxième reste en
+<li><strong>S4-57</strong> · <em>hors-portée: ce qu'un seul poste ne peut pas prouver, comme le titre de la section le dit : un débit observé, un parallélisme réel, une reprise entre deux machines</em> · <strong>Annuler</strong> en cours de téléversement de la deuxième nuit : le lot s'arrête, la deuxième reste en
   « Dépôt en cours », la troisième est <strong>intacte</strong> (statut inchangé).</li>
-<li><strong>S4-58</strong> · Relancer le même lot : la deuxième <strong>reprend</strong> là où elle s'était arrêtée, la troisième part
+<li><strong>S4-58</strong> · <em>hors-portée: ce qu'un seul poste ne peut pas prouver, comme le titre de la section le dit : un débit observé, un parallélisme réel, une reprise entre deux machines</em> · Relancer le même lot : la deuxième <strong>reprend</strong> là où elle s'était arrêtée, la troisième part
   normalement, aucune archive n'est renvoyée deux fois.</li>
-<li><strong>S4-59</strong> · Le compte rendu final donne <strong>une ligne par nuit</strong>, dans l'ordre de la sélection.</li>
-<li><strong>S4-60</strong> · <strong>Débrancher le réseau</strong> avant « Importer les résultats des 3 lignes cochées… » : les trois
+<li><strong>S4-59</strong> · <em>geste: le-compte-rendu-d-un-lot</em> · Le compte rendu final donne <strong>une ligne par nuit</strong>, dans l'ordre de la sélection.</li>
+<li><strong>S4-60</strong> · <em>hors-portée: une manipulation du réseau en cours d'opération - coupure, bridage à quelques dizaines de ko/s - que le banc ne sait pas provoquer sans mentir sur la cause</em> · <strong>Débrancher le réseau</strong> avant « Importer les résultats des 3 lignes cochées… » : les trois
   remontent en échec avec un motif qui dit quoi faire (« Connectez-vous depuis le menu principal (☰) … »), et le
   lot va au bout au lieu de s'arrêter à la première.</li>
-<li><strong>S4-61</strong> · <strong>Réseau très dégradé</strong> (bridage à quelques dizaines de ko/s, ou coupures brèves répétées), pour
+<li><strong>S4-61</strong> · <em>hors-portée: une manipulation du réseau en cours d'opération - coupure, bridage à quelques dizaines de ko/s - que le banc ne sait pas provoquer sans mentir sur la cause</em> · <strong>Réseau très dégradé</strong> (bridage à quelques dizaines de ko/s, ou coupures brèves répétées), pour
   provoquer de vraies <strong>temporisations de reprise</strong> : pendant l'attente affichée « nouvelle tentative
   dans N s », cliquer <strong>Annuler</strong>. La main doit revenir <strong>sans attendre la fin du décompte</strong>.</li>
 </ul>
@@ -9395,9 +9395,9 @@ précisément les deux propriétés qui ont motivé la conception séquentielle
   qui n'attend pas : ils prouvent que l'attente est <strong>découpée</strong> et que le renoncement est <strong>lu</strong>
   entre deux tranches, jamais que la latence ressentie sur un vrai réseau reste acceptable
   (#2686, tranches de 200 ms).
-- <strong>S4-62</strong> · « Déclencher le calcul » sur une nuit déjà analysée : elle ressort en <strong>échec</strong> avec « relancer
+- <strong>S4-62</strong> · <em>geste: declencher-le-calcul-sur-une-nuit-deja-analysee</em> · « Déclencher le calcul » sur une nuit déjà analysée : elle ressort en <strong>échec</strong> avec « relancer
   effacerait les observations », jamais recalculée.
-- <strong>S4-63</strong> · Les mêmes gestes en ligne de commande : <code>vigiechiro traiter-passages --action televerser --passage
+- <strong>S4-63</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · Les mêmes gestes en ligne de commande : <code>vigiechiro traiter-passages --action televerser --passage
   … --json</code> rend le même verdict par passage, et un code de sortie non nul si l'un a échoué.</p>
 <p><em>Bloc F · Les deux mécanismes de lot, l'un après l'autre (#2755)</em></p>
 <blockquote>
@@ -9408,12 +9408,12 @@ pas. Aucun test ne les joue à la suite, et aucun ne le peut aujourd'hui : cliqu
 ouvre une vraie fenêtre de progression, que <code>TraitementLot</code> n'expose pas aux tests.</p>
 </blockquote>
 <ul>
-<li><strong>S4-64</strong> · « Compléter une nuit récupérée… » sur deux nuits, puis <strong>fermer la modale</strong> : les deux nuits
+<li><strong>S4-64</strong> · <em>geste: completer-des-nuits-puis-enchainer-un-lot</em> · « Compléter une nuit récupérée… » sur deux nuits, puis <strong>fermer la modale</strong> : les deux nuits
   complétées apparaissent dans le tableau de « Carte &amp; passages », avec leur statut réel.</li>
-<li><strong>S4-65</strong> · Enchaîner <strong>sans quitter l'écran</strong> : cocher ces deux nuits, « Préparer le dépôt des 2 lignes
+<li><strong>S4-65</strong> · <em>geste: completer-des-nuits-puis-enchainer-un-lot</em> · Enchaîner <strong>sans quitter l'écran</strong> : cocher ces deux nuits, « Préparer le dépôt des 2 lignes
   cochées… ». L'annonce les compte comme <strong>éligibles</strong> (et non « déjà déposé » ni « pas encore
   vérifié ») - c'est-à-dire que le tableau qu'on vient de rafraîchir dit la vérité.</li>
-<li><strong>S4-66</strong> · L'inverse : lancer un lot, puis rouvrir « Compléter une nuit récupérée… » <strong>sans quitter l'écran</strong>.
+<li><strong>S4-66</strong> · <em>geste: completer-des-nuits-puis-enchainer-un-lot</em> · L'inverse : lancer un lot, puis rouvrir « Compléter une nuit récupérée… » <strong>sans quitter l'écran</strong>.
   La liste des nuits à compléter est celle d'après le lot, pas celle d'avant.</li>
 </ul>
 <h3 id="metadonnees-ce-que-la-plateforme-affiche-vraiment-1828-1844-1845">Métadonnées : ce que la plateforme affiche vraiment (#1828, #1844, #1845)<a class="headerlink" href="#metadonnees-ce-que-la-plateforme-affiche-vraiment-1828-1844-1845" title="Permanent link">&para;</a></h3>
@@ -9426,35 +9426,35 @@ retour vert ne prouve donc rien ici. Préparer la fiche <strong>avant</strong> :
 <code>micro0_numero_serie</code> et un canal, pour pouvoir vérifier ensuite qu'ils ont survécu.</p>
 </blockquote>
 <ul>
-<li><strong>S4-67</strong> · Modale « Modifier le passage » : le champ <strong>Enregistreur</strong> propose le n° de série lu dans les noms de
+<li><strong>S4-67</strong> · <em>geste: saisir-l-enregistreur-d-un-passage</em> · Modale « Modifier le passage » : le champ <strong>Enregistreur</strong> propose le n° de série lu dans les noms de
   fichiers de la nuit (<code>LogPR…</code> / <code>PaRecPR…</code>).</li>
-<li><strong>S4-68</strong> · Saisir « INCONNU » est <strong>refusé</strong> (ce n'est pas une valeur, c'est un aveu d'ignorance).</li>
-<li><strong>S4-69</strong> · « Envoyer vers Vigie-Chiro » affiche un compte rendu, succès <strong>comme</strong> échec.</li>
-<li><strong>S4-70</strong> · Sur la <strong>fiche web</strong> rechargée : le n° de série <strong>apparaît</strong> dans le champ du formulaire (et pas
+<li><strong>S4-68</strong> · <em>geste: saisir-l-enregistreur-d-un-passage</em> · Saisir « INCONNU » est <strong>refusé</strong> (ce n'est pas une valeur, c'est un aveu d'ignorance).</li>
+<li><strong>S4-69</strong> · <em>geste: envoyer-les-metadonnees-et-lire-le-compte-rendu</em> · « Envoyer vers Vigie-Chiro » affiche un compte rendu, succès <strong>comme</strong> échec.</li>
+<li><strong>S4-70</strong> · <em>hors-portée: la fiche WEB de la plateforme, dans un navigateur. Aucun carton n'y peut rien : il remplace une ÉTAPE muette, pas l'observable lui-même</em> · Sur la <strong>fiche web</strong> rechargée : le n° de série <strong>apparaît</strong> dans le champ du formulaire (et pas
   seulement dans le JSON) - c'est le défaut de clé de #1844.</li>
-<li><strong>S4-71</strong> · Sur la <strong>fiche web</strong> : les <strong>températures</strong> de début et de fin de nuit apparaissent.</li>
-<li><strong>S4-72</strong> · Sur la <strong>fiche web</strong> : <code>micro0_numero_serie</code> et le canal renseignés au préalable sont <strong>toujours là</strong>
+<li><strong>S4-71</strong> · <em>hors-portée: la fiche WEB de la plateforme, dans un navigateur. Aucun carton n'y peut rien : il remplace une ÉTAPE muette, pas l'observable lui-même</em> · Sur la <strong>fiche web</strong> : les <strong>températures</strong> de début et de fin de nuit apparaissent.</li>
+<li><strong>S4-72</strong> · <em>hors-portée: la fiche WEB de la plateforme, dans un navigateur. Aucun carton n'y peut rien : il remplace une ÉTAPE muette, pas l'observable lui-même</em> · Sur la <strong>fiche web</strong> : <code>micro0_numero_serie</code> et le canal renseignés au préalable sont <strong>toujours là</strong>
   (l'envoi n'efface pas ce que l'application ne modélise pas).</li>
-<li><strong>S4-73</strong> · Sur une nuit dont l'enregistreur est inconnu, un envoi <strong>ne publie pas</strong> « INCONNU » : le champ reste
+<li><strong>S4-73</strong> · <em>geste: saisir-l-enregistreur-d-un-passage</em> · Sur une nuit dont l'enregistreur est inconnu, un envoi <strong>ne publie pas</strong> « INCONNU » : le champ reste
   vide sur la fiche web.</li>
-<li><strong>S4-74</strong> · Couper le réseau, « Envoyer » : la modale <strong>reste ouverte</strong>, la cause est à l'écran, et un second
+<li><strong>S4-74</strong> · <em>geste: envoyer-les-metadonnees-hors-connexion</em> · Couper le réseau, « Envoyer » : la modale <strong>reste ouverte</strong>, la cause est à l'écran, et un second
   essai une fois le réseau revenu aboutit.</li>
-<li><strong>S4-75</strong> · <code>logs/vigiechiro-0.log</code> porte une ligne par échange (méthode, chemin, issue, durée).</li>
-<li><strong>S4-76</strong> · Un refus serveur y figure <strong>avec le corps de la réponse</strong> (la cause, pas seulement le statut).</li>
-<li><strong>S4-77</strong> · <strong>Ouvrir le journal et y chercher le jeton</strong> : il n'y figure ni en clair, ni encodé, ni via une URL S3
+<li><strong>S4-75</strong> · <em>hors-portée: un fichier de journal à ouvrir hors de l'application</em> · <code>logs/vigiechiro-0.log</code> porte une ligne par échange (méthode, chemin, issue, durée).</li>
+<li><strong>S4-76</strong> · <em>hors-portée: un fichier de journal à ouvrir hors de l'application</em> · Un refus serveur y figure <strong>avec le corps de la réponse</strong> (la cause, pas seulement le statut).</li>
+<li><strong>S4-77</strong> · <em>hors-portée: un fichier de journal à ouvrir hors de l'application</em> · <strong>Ouvrir le journal et y chercher le jeton</strong> : il n'y figure ni en clair, ni encodé, ni via une URL S3
   signée (le journal doit pouvoir être joint à un signalement).</li>
 </ul>
 <p><strong>Bloc · Gestes de ligne des tableaux (EPIC #1792)</strong>, le rendu d'un menu contextuel ne se scripte pas :
 longueur des libellés, lisibilité d'un item grisé, position du popup près d'un bord.</p>
 <ul>
-<li><strong>S4-78</strong> · Clic droit sur une ligne du <strong>suivi des archives</strong> : le menu s'ouvre entièrement lisible, aucun
+<li><strong>S4-78</strong> · <em>geste: le-menu-contextuel-du-suivi-des-archives</em> · Clic droit sur une ligne du <strong>suivi des archives</strong> : le menu s'ouvre entièrement lisible, aucun
   libellé coupé.</li>
-<li><strong>S4-79</strong> · L'ordre y est « Ouvrir le dossier », « Copier », puis « Colonnes… » <strong>en dernier</strong>.</li>
-<li><strong>S4-80</strong> · « Ouvrir le dossier » ouvre bien le dossier <code>depot/</code> dans le gestionnaire de fichiers.</li>
-<li><strong>S4-81</strong> · « Copier ▸ Chemin du dossier » place un chemin <strong>collable</strong> dans le presse-papier (vérifier en
+<li><strong>S4-79</strong> · <em>geste: le-menu-contextuel-du-suivi-des-archives</em> · L'ordre y est « Ouvrir le dossier », « Copier », puis « Colonnes… » <strong>en dernier</strong>.</li>
+<li><strong>S4-80</strong> · <em>hors-portée: le presse-papiers ou le gestionnaire de fichiers du système, hors de l'écran</em> · « Ouvrir le dossier » ouvre bien le dossier <code>depot/</code> dans le gestionnaire de fichiers.</li>
+<li><strong>S4-81</strong> · <em>hors-portée: le presse-papiers ou le gestionnaire de fichiers du système, hors de l'écran</em> · « Copier ▸ Chemin du dossier » place un chemin <strong>collable</strong> dans le presse-papier (vérifier en
   collant dans une barre d'adresse).</li>
-<li><strong>S4-82</strong> · Clic droit sur une ligne de la <strong>table de dépôt</strong> : « Copier ▸ Identifiant » donne le nom du ZIP.</li>
-<li><strong>S4-83</strong> · Clic droit sur une ligne proche du <strong>bord bas</strong> de l'écran : le menu s'ouvre vers le haut et reste
+<li><strong>S4-82</strong> · <em>hors-portée: le presse-papiers ou le gestionnaire de fichiers du système, hors de l'écran</em> · Clic droit sur une ligne de la <strong>table de dépôt</strong> : « Copier ▸ Identifiant » donne le nom du ZIP.</li>
+<li><strong>S4-83</strong> · <em>geste: un-menu-contextuel-pres-du-bord-bas</em> · Clic droit sur une ligne proche du <strong>bord bas</strong> de l'écran : le menu s'ouvre vers le haut et reste
   entièrement visible.</li>
 </ul>
 <p><strong>Bloc C · Import rapide et publication des corrections (#1838, exige le vrai serveur)</strong></p>
@@ -9462,22 +9462,22 @@ longueur des libellés, lisibilité d'un item grisé, position du popup près d'
 annulation interrompt vraiment un téléchargement en cours. Les tests couvrent la logique ; ils ne
 peuvent pas dire si le premier import « paraît instantané » ni si « Annuler » rend la main.</p>
 <ul>
-<li><strong>S4-84</strong> · Sur la nuit analysée, « ☰ → Importer depuis Vigie-Chiro… » ramène les observations <strong>sans fenêtre de
+<li><strong>S4-84</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Sur la nuit analysée, « ☰ → Importer depuis Vigie-Chiro… » ramène les observations <strong>sans fenêtre de
   progression paginée</strong> (voie CSV) : noter la durée observée.</li>
-<li><strong>S4-85</strong> · Les observations sont à l'écran, colonne « Avis validateur » <strong>vide</strong> (le CSV ne la porte pas).</li>
-<li><strong>S4-86</strong> · « ☰ → Publier les corrections… » est <strong>actif</strong> (non grisé) sur cette nuit tout juste importée.</li>
-<li><strong>S4-87</strong> · Après avoir corrigé une observation et déclaré sa certitude, la confirmation annonce « N prête(s) à
+<li><strong>S4-85</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Les observations sont à l'écran, colonne « Avis validateur » <strong>vide</strong> (le CSV ne la porte pas).</li>
+<li><strong>S4-86</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · « ☰ → Publier les corrections… » est <strong>actif</strong> (non grisé) sur cette nuit tout juste importée.</li>
+<li><strong>S4-87</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Après avoir corrigé une observation et déclaré sa certitude, la confirmation annonce « N prête(s) à
   partir, et M à ancrer d'abord ».</li>
-<li><strong>S4-88</strong> · À l'accord, une fenêtre « Récupération des identifiants et des échanges avec le validateur… (page x/y) » s'affiche et
+<li><strong>S4-88</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · À l'accord, une fenêtre « Récupération des identifiants et des échanges avec le validateur… (page x/y) » s'affiche et
   <strong>progresse</strong> : noter la durée totale.</li>
-<li><strong>S4-89</strong> · Le bouton <strong>Annuler</strong> de cette fenêtre rend la main <strong>avant</strong> la fin, et le bandeau n'annonce aucune
+<li><strong>S4-89</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Le bouton <strong>Annuler</strong> de cette fenêtre rend la main <strong>avant</strong> la fin, et le bandeau n'annonce aucune
   publication.</li>
-<li><strong>S4-90</strong> · Après une publication menée à son terme, le bandeau annonce les corrections envoyées <strong>sans écart
+<li><strong>S4-90</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Après une publication menée à son terme, le bandeau annonce les corrections envoyées <strong>sans écart
   « sans ancrage »</strong>.</li>
-<li><strong>S4-91</strong> · Sur le portail Vigie-Chiro, l'observation porte le taxon et la certitude déclarés ici.</li>
-<li><strong>S4-92</strong> · Republier immédiatement : la publication repart <strong>sans</strong> repasser par la récupération des
+<li><strong>S4-91</strong> · <em>hors-portée: la fiche WEB de la plateforme, dans un navigateur. Aucun carton n'y peut rien : il remplace une ÉTAPE muette, pas l'observable lui-même</em> · Sur le portail Vigie-Chiro, l'observation porte le taxon et la certitude déclarés ici.</li>
+<li><strong>S4-92</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · Republier immédiatement : la publication repart <strong>sans</strong> repasser par la récupération des
   identifiants (ils sont désormais en base).</li>
-<li><strong>S4-93</strong> · « ☰ → Réimporter depuis Vigie-Chiro… » repasse, lui, par la fenêtre <strong>paginée</strong>, et la colonne « Avis
+<li><strong>S4-93</strong> · <em>hors-portée: un dépôt RÉEL sur la plateforme, c'est-à-dire une ÉCRITURE que le banc s'interdit : c'est ce qui protège les données de terrain</em> · « ☰ → Réimporter depuis Vigie-Chiro… » repasse, lui, par la fenêtre <strong>paginée</strong>, et la colonne « Avis
   validateur » se <strong>remplit</strong> si le MNHN a tranché.</li>
 </ul>
 <h2 id="constats-candidats-desk-check-a-confirmer-en-seance">Constats candidats (desk-check, à confirmer en séance)<a class="headerlink" href="#constats-candidats-desk-check-a-confirmer-en-seance" title="Permanent link">&para;</a></h2>
