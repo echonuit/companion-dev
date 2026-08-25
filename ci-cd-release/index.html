@@ -10746,6 +10746,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>scripts/adr/4359-blocs-relus.py</code></td>
+<td>le registre des blocs de javadoc <strong>relus et gardés volontairement</strong> ne porte aucune entrée périmée. L'empreinte porte sur le TEXTE du bloc : une édition l'invalide, ce qui force une nouvelle lecture au lieu de la présumer. Il <strong>ne fait pas baisser le cliquet</strong> - il mémorise une revue, il ne desserre pas une dette (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>scripts/adr/4395-renvois-en-javadoc.py</code></td>
 <td>le nombre de renvois <code>#N</code> portés par la javadoc de production <strong>ne descend pas</strong>. C'est un PLANCHER et non un cliquet : sa polarité est inversée, descendre est la perte. Il existe parce que la résorption de la javadoc coupe la prose où vivent ces citations, et qu'un renvoi perdu ne casse rien - il cesse d'ouvrir. Plancher à 3 111, article A30</td>
 <td><code>lint.yml</code></td>
