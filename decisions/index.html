@@ -8245,6 +8245,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4490-un-temoin-se-prouve-par-mutation-mecaniquement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4490 · Un témoin se prouve par mutation, et la mutation est mécanique
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -10548,6 +10583,11 @@
 <td><a href="4488-un-garde-de-code-lit-les-deux-arbres/">4488</a></td>
 <td>Sept gardes ne lisaient que <code>src/main/java</code>, et AUCUNE ADR ne les y avait restreints : elles sont nees avant que la question ne se pose. Un cliquet ne se plaint jamais qu on lui retire du corpus, si bien que l angle mort grandissait sans rien faire rougir. Le corpus par defaut d un garde de code devient les DEUX arbres ; qui n en lit qu un le dit, avec sa raison. Mesure d ouverture : zero suspect cote test pour les sept, donc aucun cliquet ne bouge. <code>2635-refus-sans-surface</code> reste bornee a la production, et c est une decision - ses trois suspects sont dans le test qui PROUVE l ADR 2635, lequel doit citer le glyphe du menu. Un cas de <code>verifie_scripts.py</code> tient le CORPUS la ou le temoin de chaque garde tient sa DETECTION : les deux se cassent separement</td>
 <td>#4488, passe 7 de la cloture de #4462</td>
+</tr>
+<tr>
+<td><a href="4490-un-temoin-se-prouve-par-mutation-mecaniquement/">4490</a></td>
+<td><code>verifie_scripts.py</code> clot sur « les N scripts charges DETECTENT leur violation temoin », et la phrase affirmait plus que ce que la suite verifie : un temoin peut exister, s executer, passer, et ne rien tenir. Celui du cliquet de longueur d ADR n affirmait que <code>isinstance(suspects(), list)</code> (#4487). L article A2 disait deja le geste, mais il reposait sur la discipline, et la discipline lache quand ca va vite. La mutation devient mecanique : chaque garde perd sa detection, la suite doit rougir, tolerance zero. La liste se DERIVE des appels <code>_charge</code> plutot que d un glob, un glob vieillissant etant le defaut meme que le script attrape. Cout mesure : 1,2 s pour 23 gardes. La cecite est nommee - la mutation ne touche que les fonctions de module, et l unique temoin hors de portee est ecrit</td>
+<td>#4490, passe 9 de la cloture de #4462</td>
 </tr>
 </tbody>
 </table>
