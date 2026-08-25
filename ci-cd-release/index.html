@@ -10847,6 +10847,21 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (cliquets ADR)</td>
 </tr>
 <tr>
+<td><code>verifie_javadoc_sans_doublon.py</code></td>
+<td>deux lignes de javadoc identiques et consécutives, ou un bloc recopié sur le membre suivant : une coupe ratée, jamais une intention</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>verifie_encart_de_revision.py</code></td>
+<td>une ADR dépassée le dit sous son titre, et l'encart n'annonce que ce que son en-tête déclare</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>verifie_taille_des_cibles.py</code></td>
+<td>une cible cliquable déclarée fait au moins 24 x 24 px (WCAG 2.5.8, niveau AA)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>verifie-epinglage.sh</code></td>
 <td>actions figées sur un SHA, aucune divergence de version</td>
 <td><code>lint.yml</code></td>
