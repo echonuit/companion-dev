@@ -9583,7 +9583,7 @@ comptage.</p>
 <tr>
 <th>Motif</th>
 <th>Ce qui le tient</th>
-<th>État au 2026-08-24</th>
+<th>État au 2026-08-26</th>
 </tr>
 </thead>
 <tbody>
@@ -9606,6 +9606,31 @@ comptage.</p>
 <td>apostrophe mêlée</td>
 <td><code>scripts/adr/4368-apostrophe-en-libelle.py</code>, <code>verifie-titre-pr.sh</code></td>
 <td>zéro partout, trois exemptions déclarées</td>
+</tr>
+<tr>
+<td>élision sans apostrophe</td>
+<td><code>.github/scripts/verifie-titre-pr.sh</code> et <code>verifie-corps-pr.sh</code></td>
+<td>tolérance zéro sur le titre ET le corps d'une PR ; la lettre isolée employée comme symbole en est sortie (#4483)</td>
+</tr>
+<tr>
+<td>javadoc jamais relue</td>
+<td><code>scripts/adr/4468-javadoc-non-relue.py</code>, article A31</td>
+<td>cliquet à <!--inv:cliquet-relecture-->1 983<!--/inv--> fichiers, soit tout le corpus : la relecture est le chantier, pas l'acquis</td>
+</tr>
+<tr>
+<td>commentaire long en corps de méthode</td>
+<td><code>scripts/adr/4472-commentaire-en-corps.py</code>, article A30</td>
+<td>cliquet à <!--inv:cliquet-commentaire-corps-->79<!--/inv-->, plus une loupe de densité qui ne bloque pas</td>
+</tr>
+<tr>
+<td>javadoc qui raconte son extraction</td>
+<td><code>scripts/adr/4476-javadoc-raconte-son-extraction.py</code>, article A30</td>
+<td>cliquet à <!--inv:cliquet-javadoc-extraction-->62<!--/inv--></td>
+</tr>
+<tr>
+<td>ADR qui raconte plus que sa décision</td>
+<td><code>scripts/adr/4477-longueur-des-adr.py</code>, article A30</td>
+<td>cliquet à <!--inv:cliquet-longueur-adr-->58<!--/inv--></td>
 </tr>
 <tr>
 <td>source vague, conjecture présentée en fait</td>
