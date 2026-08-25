@@ -9154,39 +9154,39 @@ l'audio d'une seule des deux étant présent.</p>
 <h2 id="le-script-une-case-un-fait-observable">Le script (une case = un fait observable)<a class="headerlink" href="#le-script-une-case-un-fait-observable" title="Permanent link">&para;</a></h2>
 <p><strong>Étape 1 · Isoler le sous-ensemble (vue audio)</strong></p>
 <ul>
-<li><strong>S5-01</strong> · Depuis « Espèces &amp; observations », un clic sur l'espèce ouvre la vue audio sur elle (toutes nuits).</li>
-<li><strong>S5-02</strong> · La puce « Lieu » liste communes, carrés et points réellement présents, dans cet ordre ; un carré
+<li><strong>S5-01</strong> · <em>geste: filtrer-les-observations-par-lieu</em> · Depuis « Espèces &amp; observations », un clic sur l'espèce ouvre la vue audio sur elle (toutes nuits).</li>
+<li><strong>S5-02</strong> · <em>geste: filtrer-les-observations-par-lieu</em> · La puce « Lieu » liste communes, carrés et points réellement présents, dans cet ordre ; un carré
   nommé paraît sous ses deux étiquettes, « 640380 · Vallon », et un carré sans nom sous son numéro
   seul.</li>
-<li><strong>S5-03</strong> · Cocher une commune restreint la table ; la barre de statut suit le sous-ensemble affiché.</li>
+<li><strong>S5-03</strong> · <em>geste: filtrer-les-observations-par-lieu</em> · Cocher une commune restreint la table ; la barre de statut suit le sous-ensemble affiché.</li>
 </ul>
 <p><strong>Étape 2 · Exporter (menu principal (☰))</strong></p>
 <ul>
-<li><strong>S5-04</strong> · L'item « Exporter les observations et les sons (ZIP)… » est actif dès qu'une observation est
+<li><strong>S5-04</strong> · <em>geste: exporter-observations-et-sons</em> · L'item « Exporter les observations et les sons (ZIP)… » est actif dès qu'une observation est
   affichée, et grisé avec explication quand la table est vide.</li>
-<li><strong>S5-05</strong> · La première ligne de la fenêtre de progression annonce le contenu (« N observation(s) ·
+<li><strong>S5-05</strong> · <em>geste: exporter-observations-et-sons</em> · La première ligne de la fenêtre de progression annonce le contenu (« N observation(s) ·
   M son(s) · ~X Mo ») <strong>avant</strong> toute copie.</li>
-<li><strong>S5-06</strong> · La barre avance fichier par fichier, le nom du son en cours se lit.</li>
-<li><strong>S5-07</strong> · Pendant l'export (plusieurs minutes sur une saison), la fenêtre reste vivante et « Annuler »
+<li><strong>S5-06</strong> · <em>geste: exporter-observations-et-sons</em> · La barre avance fichier par fichier, le nom du son en cours se lit.</li>
+<li><strong>S5-07</strong> · <em>hors-portée: la durée réelle d'un export sur une saison entière - « plusieurs minutes » - que l'objectif de la session nomme lui-même comme ce qu'aucun test ne peut affirmer. Un export de fixture dure une seconde, et une fenêtre vivante pendant une seconde ne prouve rien</em> · Pendant l'export (plusieurs minutes sur une saison), la fenêtre reste vivante et « Annuler »
   reste cliquable.</li>
-<li><strong>S5-08</strong> · Annuler en cours de copie : aucun fichier partiel ne subsiste à la destination.</li>
-<li><strong>S5-09</strong> · Relancer et laisser finir : le compte rendu chiffre observations, sons copiés, sons introuvables
+<li><strong>S5-08</strong> · <em>hors-portée: un fait de DISQUE que l'écran ne montre pas : ce que le cas observe est le contenu de la destination, pas ce que l'application affiche</em> · Annuler en cours de copie : aucun fichier partiel ne subsiste à la destination.</li>
+<li><strong>S5-09</strong> · <em>geste: exporter-observations-et-sons</em> · Relancer et laisser finir : le compte rendu chiffre observations, sons copiés, sons introuvables
   et taille de l'archive.</li>
 </ul>
 <p><strong>Étape 3 · Ouvrir l'archive hors application</strong></p>
 <ul>
-<li><strong>S5-10</strong> · L'archive s'ouvre avec l'outil d'archive du système (double-clic), sans avertissement.</li>
-<li><strong>S5-11</strong> · <code>observations.csv</code> s'ouvre dans un tableur, accents corrects, colonne « Commune » remplie là où
+<li><strong>S5-10</strong> · <em>hors-portée: un outil du système - archiveur, tableur, lecteur audio - hors du banc</em> · L'archive s'ouvre avec l'outil d'archive du système (double-clic), sans avertissement.</li>
+<li><strong>S5-11</strong> · <em>hors-portée: un outil du système - archiveur, tableur, lecteur audio - hors du banc</em> · <code>observations.csv</code> s'ouvre dans un tableur, accents corrects, colonne « Commune » remplie là où
   le lot 0 a résolu.</li>
-<li><strong>S5-12</strong> · Les sons sont rangés par dossier de nuit ; un WAV pris au hasard s'écoute avec le lecteur du
+<li><strong>S5-12</strong> · <em>hors-portée: un outil du système - archiveur, tableur, lecteur audio - hors du banc</em> · Les sons sont rangés par dossier de nuit ; un WAV pris au hasard s'écoute avec le lecteur du
   système et correspond à sa ligne CSV (nom de fichier).</li>
-<li><strong>S5-13</strong> · Les sons introuvables annoncés sont bien <strong>absents</strong> de <code>sons/</code> mais <strong>présents</strong> dans le CSV.</li>
+<li><strong>S5-13</strong> · <em>hors-portée: un fait de DISQUE que l'écran ne montre pas : ce que le cas observe est le contenu de la destination, pas ce que l'application affiche</em> · Les sons introuvables annoncés sont bien <strong>absents</strong> de <code>sons/</code> mais <strong>présents</strong> dans le CSV.</li>
 </ul>
 <p><strong>Étape 4 · Parité CLI</strong></p>
 <ul>
-<li><strong>S5-14</strong> · <code>vigiechiro exporter-sons --espece &lt;code&gt; --sortie &lt;zip&gt;</code> produit une archive de même structure
+<li><strong>S5-14</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · <code>vigiechiro exporter-sons --espece &lt;code&gt; --sortie &lt;zip&gt;</code> produit une archive de même structure
   (mêmes dossiers, même CSV) que le geste IHM sur le même sous-ensemble.</li>
-<li><strong>S5-15</strong> · <code>--passage</code> + <code>--espece</code> simultanés : refus expliqué, code 2, rien d'écrit.</li>
+<li><strong>S5-15</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · <code>--passage</code> + <code>--espece</code> simultanés : refus expliqué, code 2, rien d'écrit.</li>
 </ul>
 
 
