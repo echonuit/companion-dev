@@ -9202,14 +9202,14 @@ depuis que le postinst du dépôt a remplacé celui de jpackage.</p>
 <p>Ouvrir un terminal <strong>neuf</strong> (le <code>PATH</code> d'un terminal déjà ouvert peut être périmé).</p>
 </li>
 <li>
-<p><strong>S11-01</strong> · L'installation se termine <strong>sans erreur</strong> : <code>dpkg -l vigiechirocompanion</code> rend un statut
+<p><strong>S11-01</strong> · <em>hors-portée: un gestionnaire de paquets sur un bureau réel : le banc filme une scène JavaFX déjà lancée</em> · L'installation se termine <strong>sans erreur</strong> : <code>dpkg -l vigiechirocompanion</code> rend un statut
   <code>ii</code>, et non <code>iF</code>.</p>
 </li>
-<li><strong>S11-02</strong> · L'application apparaît dans le menu sous <strong>« VigieChiro Companion »</strong>, avec son icône.</li>
-<li><strong>S11-03</strong> · <code>vigiechiro --version</code> répond depuis le terminal, sans donner de chemin.</li>
-<li><strong>S11-04</strong> · Un double-clic sur l'entrée de menu ouvre <strong>la fenêtre</strong>, et non un terminal.</li>
-<li><strong>S11-05</strong> · <code>vigiechiro ihm</code> ouvre la fenêtre depuis le terminal.</li>
-<li><strong>S11-06</strong> · <code>vigiechiro lister-sites</code> répond en <strong>texte</strong> dans le terminal, sans ouvrir de fenêtre.</li>
+<li><strong>S11-02</strong> · <em>hors-portée: une entrée de menu d'un environnement de bureau, que le banc ne peut ni inscrire ni ouvrir</em> · L'application apparaît dans le menu sous <strong>« VigieChiro Companion »</strong>, avec son icône.</li>
+<li><strong>S11-03</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · <code>vigiechiro --version</code> répond depuis le terminal, sans donner de chemin.</li>
+<li><strong>S11-04</strong> · <em>hors-portée: un double-clic sur une entrée de menu. Filmer la fenêtre qui s'ouvre ne prouverait rien de sa CAUSE, et serait le clip convaincant et creux de l'ADR 4142</em> · Un double-clic sur l'entrée de menu ouvre <strong>la fenêtre</strong>, et non un terminal.</li>
+<li><strong>S11-05</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · <code>vigiechiro ihm</code> ouvre la fenêtre depuis le terminal.</li>
+<li><strong>S11-06</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · <code>vigiechiro lister-sites</code> répond en <strong>texte</strong> dans le terminal, sans ouvrir de fenêtre.</li>
 </ol>
 <h2 id="etape-2-ce-que-la-desinstallation-emporte">Étape 2 · Ce que la désinstallation emporte<a class="headerlink" href="#etape-2-ce-que-la-desinstallation-emporte" title="Permanent link">&para;</a></h2>
 <ol>
@@ -9217,10 +9217,10 @@ depuis que le postinst du dépôt a remplacé celui de jpackage.</p>
 <p><code>sudo apt remove vigiechirocompanion</code>.</p>
 </li>
 <li>
-<p><strong>S11-07</strong> · <code>vigiechiro</code> n'existe plus dans le terminal (<code>command -v vigiechiro</code> ne rend rien), et
+<p><strong>S11-07</strong> · <em>hors-portée: un gestionnaire de paquets sur un bureau réel : le banc filme une scène JavaFX déjà lancée</em> · <code>vigiechiro</code> n'existe plus dans le terminal (<code>command -v vigiechiro</code> ne rend rien), et
   aucun lien mort ne subsiste dans <code>/usr/bin</code>.</p>
 </li>
-<li><strong>S11-08</strong> · L'entrée a disparu du menu des applications.</li>
+<li><strong>S11-08</strong> · <em>hors-portée: une entrée de menu d'un environnement de bureau, que le banc ne peut ni inscrire ni ouvrir</em> · L'entrée a disparu du menu des applications.</li>
 </ol>
 <h2 id="etape-3-le-flatpak">Étape 3 · Le Flatpak<a class="headerlink" href="#etape-3-le-flatpak" title="Permanent link">&para;</a></h2>
 <ol>
@@ -9228,11 +9228,11 @@ depuis que le postinst du dépôt a remplacé celui de jpackage.</p>
 <p>Installer depuis le dépôt du projet, puis chercher l'application dans le menu.</p>
 </li>
 <li>
-<p><strong>S11-09</strong> · Le double-clic sur l'entrée de menu ouvre <strong>la fenêtre</strong>.</p>
+<p><strong>S11-09</strong> · <em>hors-portée: un double-clic sur une entrée de menu. Filmer la fenêtre qui s'ouvre ne prouverait rien de sa CAUSE, et serait le clip convaincant et creux de l'ADR 4142</em> · Le double-clic sur l'entrée de menu ouvre <strong>la fenêtre</strong>.</p>
 </li>
-<li><strong>S11-10</strong> · <code>flatpak run fr.echonuit.VigieChiroCompanion</code> <strong>sans argument</strong> ouvre la fenêtre, et
+<li><strong>S11-10</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · <code>flatpak run fr.echonuit.VigieChiroCompanion</code> <strong>sans argument</strong> ouvre la fenêtre, et
   n'affiche pas l'aide de la ligne de commande.</li>
-<li><strong>S11-11</strong> · <code>flatpak run fr.echonuit.VigieChiroCompanion lister-sites</code> répond en texte.</li>
+<li><strong>S11-11</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · <code>flatpak run fr.echonuit.VigieChiroCompanion lister-sites</code> répond en texte.</li>
 </ol>
 <h2 id="etape-4-lappimage">Étape 4 · L'AppImage<a class="headerlink" href="#etape-4-lappimage" title="Permanent link">&para;</a></h2>
 <ol>
@@ -9240,9 +9240,9 @@ depuis que le postinst du dépôt a remplacé celui de jpackage.</p>
 <p>Rendre le fichier exécutable, puis le lancer par double-clic depuis le gestionnaire de fichiers.</p>
 </li>
 <li>
-<p><strong>S11-12</strong> · Le double-clic ouvre <strong>la fenêtre</strong>.</p>
+<p><strong>S11-12</strong> · <em>hors-portée: un double-clic sur une entrée de menu. Filmer la fenêtre qui s'ouvre ne prouverait rien de sa CAUSE, et serait le clip convaincant et creux de l'ADR 4142</em> · Le double-clic ouvre <strong>la fenêtre</strong>.</p>
 </li>
-<li><strong>S11-13</strong> · <code>./VigieChiroCompanion-&lt;version&gt;-linux-x86_64.AppImage --version</code> répond en texte dans
+<li><strong>S11-13</strong> · <em>hors-portée: une réponse en texte dans un terminal : le banc filme une scène JavaFX, pas un shell</em> · <code>./VigieChiroCompanion-&lt;version&gt;-linux-x86_64.AppImage --version</code> répond en texte dans
   un terminal.</li>
 </ol>
 <h2 id="ce-que-cette-session-ne-prouve-pas">Ce que cette session ne prouve pas<a class="headerlink" href="#ce-que-cette-session-ne-prouve-pas" title="Permanent link">&para;</a></h2>
