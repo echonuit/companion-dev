@@ -9329,6 +9329,14 @@ pendant une panne d'Heroku ne servirait à rien.</p>
   rien tant que l'<strong>appelant</strong> hérite, et <code>verifie-portee-des-secrets.sh</code> tient désormais les deux
   bouts.</p>
 </li>
+<li>
+<p><strong>Un seul appel, trois lectures</strong> (#4385). Le contrôle du jeton, sa révocation et le pas
+  « Jeton valide ? » d'<code>api-live.yml</code> posaient la même question par trois <code>curl</code> recopiés :
+  c'est ainsi que le défaut du « HTTP 000000 » s'est retrouvé aux trois. La mesure vit
+  désormais dans <code>interroge-le-jeton.sh</code>, qui <strong>ne juge pas</strong> - un <code>401</code> refuse le départ d'un
+  tournage, avertit chez <code>api-live</code>, et vaut succès pour la révocation. Les faire converger
+  casserait l'une des trois en silence.</p>
+</li>
 </ul>
 <h2 id="ce-qui-nest-pas-protege-et-pourquoi">Ce qui n'est pas protégé, et pourquoi<a class="headerlink" href="#ce-qui-nest-pas-protege-et-pourquoi" title="Permanent link">&para;</a></h2>
 <p>Une page de sécurité qui n'énumère que ses protections se lit comme une promesse. Voici la liste
