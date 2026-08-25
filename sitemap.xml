@@ -925,6 +925,18 @@
          <lastmod>2026-08-25</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4475-un-test-dimensionne-son-stage-il-n-herite-pas-du-fork/</loc>
+         <lastmod>2026-08-25</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4476-une-javadoc-ne-raconte-pas-le-refactoring-qui-l-a-produite/</loc>
+         <lastmod>2026-08-25</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4477-une-adr-dit-sa-decision-et-l-incident-qui-l-a-produite/</loc>
+         <lastmod>2026-08-25</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/ergonomie/heuristiques/</loc>
          <lastmod>2026-08-25</lastmod>
     </url>
