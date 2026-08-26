@@ -9465,7 +9465,7 @@ fixtures au carré 130711 (verrouillé). Les écritures plateforme n'arrivent qu
 <p><strong>Étape 1 · Import nominal (<code>sd-nominale</code>, depuis le détail du carré 640380 → « 📥 Importer une nuit »)</strong></p>
 <ul>
 <li><strong>S2-01</strong> · <em>geste: designer-la-source-et-l-inspecter</em> · Le champ « Dossier source » est en lecture seule.</li>
-<li><strong>S2-02</strong> · <em>geste: designer-la-source-et-l-inspecter</em> · Le glisser-déposer d'un dossier est accepté.</li>
+<li><strong>S2-02</strong> · <em>geste: designer-la-source-et-l-inspecter</em> · <em>carton: le dossier est glissé-déposé sur l'écran</em> · Le glisser-déposer d'un dossier est accepté.</li>
 <li><strong>S2-03</strong> · <em>geste: designer-la-source-et-l-inspecter</em> · L'inspection annonce le journal détecté (LogPR1925492).</li>
 <li><strong>S2-04</strong> · <em>geste: designer-la-source-et-l-inspecter</em> · L'inspection annonce le relevé climatique détecté.</li>
 <li><strong>S2-05</strong> · <em>geste: designer-la-source-et-l-inspecter</em> · L'inspection compte 6 originaux.</li>
@@ -9477,6 +9477,19 @@ fixtures au carré 130711 (verrouillé). Les écritures plateforme n'arrivent qu
 <li><strong>S2-11</strong> · <em>geste: rattacher-la-nuit-a-son-point</em> · Le formulaire ne porte <strong>plus</strong> de case « Conserver les originaux » : le réglage a rejoint
   <strong>Réglages ▸ Import</strong> (#3471), où <a href="../s7-reglages/">S7</a> le déroule. Ici on vérifie seulement
   qu'il n'en reste pas de trace, et que rien ne demande deux fois la même chose.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Le clip de S2-12 à S2-16 est FREINÉ, et ne dit rien de la vitesse du produit</p>
+<p>Ces cinq cas portent sur ce qui se passe <strong>pendant</strong> l'import. Sur les cartes de recette, qui sont
+générées, l'opération dure des <strong>millisecondes</strong> : mesuré sur <code>sd-nominale</code> (6 wav) comme sur
+<code>sd-grosse</code> (60 wav), le compte rendu de fin est déjà là à l'instruction qui suit le clic. Grossir
+la carte ne change rien, c'est le travail lui-même qui est court.</p>
+<p>Le banc freine donc son exécuteur, d'environ une seconde par fichier
+(<code>ExecuteurTacheRalenti</code>). Le clip montre par conséquent une lenteur que le produit n'a pas.</p>
+<p>Ce qu'il démontre : ces cinq surfaces existent et s'enchaînent. Ce qu'il ne démontre <strong>pas</strong> :
+combien de temps un import prend. Sur une vraie carte SD, la durée se juge en séance, pas au clip.</p>
+</div>
+<ul>
 <li><strong>S2-12</strong> · <em>geste: importer-la-nuit</em> · « Importer cette nuit » affiche une barre de progression déterminée.</li>
 <li><strong>S2-13</strong> · <em>geste: importer-la-nuit</em> · Une estimation de temps restant s'affiche.</li>
 <li><strong>S2-14</strong> · <em>geste: importer-la-nuit</em> · Un bouton « Annuler » est disponible pendant l'import.</li>
