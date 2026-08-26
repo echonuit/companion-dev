@@ -9380,7 +9380,7 @@
 
 
 <h1 id="un-back-local-etalonne-les-sondes-il-ne-tourne-aucun-clip">Un back local étalonne les sondes, il ne tourne aucun clip<a class="headerlink" href="#un-back-local-etalonne-les-sondes-il-ne-tourne-aucun-clip" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-25</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A4 · Un cas joué n&#x27;est pas un cas prouvé</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4444 (EPIC #4416)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">non mécanisée, et le motif est déclaré</span></div></div>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-25</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A4 · Un cas joué n&#x27;est pas un cas prouvé</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4444 (EPIC #4416)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>BancDeRecetteUrlTest#le_banc_ignore_l_url_ambiante</code></span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Sur les 98 cas de recette déclarés hors de portée au palier 1 de l'EPIC #4416, 22 portent le même
@@ -9540,13 +9540,21 @@ détruit des archives.</p>
   aucune vérification ne change de couleur.</li>
 </ul>
 <h2 id="verification">Vérification<a class="headerlink" href="#verification" title="Permanent link">&para;</a></h2>
-<p><code>humaine</code>, et le motif est daté : <strong>le banc n'existe pas encore</strong>, et aucun dispositif du dépôt ne
-pointe aujourd'hui vers un back local. Déclarer <code>certaine</code> en nommant un garde à écrire serait
-l'affirmation sans preuve que l'article A1 refuse, comme l'ADR 4406 l'a énoncé la veille pour son
-générateur.</p>
-<p>Elle deviendra <code>certaine</code> le jour où le banc existera : un garde refusera alors qu'un scénario de
-recette filmé résolve son adresse de plateforme ailleurs que vers le bouchon ou vers la vraie
-plateforme, ce qui est la forme mécanisable de « il ne tourne aucun clip ».</p>
+<p><code>certaine</code> depuis le 2026-08-26, et le garde n'a pas eu à être écrit : <strong>il existait déjà</strong>.</p>
+<p>Cette section déclarait <code>humaine</code> avec un motif daté - le banc n'existait pas - et annonçait qu'un
+garde devrait refuser qu'un scénario de recette filmé résolve son adresse ailleurs que vers le
+bouchon ou la vraie plateforme. Le banc monté, la propriété s'est trouvée tenue par
+<code>BancDeRecetteUrlTest#le_banc_ignore_l_url_ambiante</code>, posé par #4332 pour une autre raison : un
+scénario qui n'a déclaré aucun serveur est épinglé sur <code>http://localhost:1</code>, l'idiome hors-ligne, et
+ses réponses deviennent <code>Injoignable</code>.</p>
+<p>Mesuré plutôt que déduit : la suite passe avec <code>VIGIECHIRO_URL=http://localhost:8080</code> - l'adresse du
+banc - réellement posée dans l'environnement, et elle <strong>rougit</strong> dès que l'épinglage est retiré. Le
+garde a donc été vu rouge sur la mutation qui le concerne, avec le banc en place.</p>
+<p>Un scénario connecté échappe à cet épinglage, et c'est voulu : il garde l'URL ambiante parce qu'il
+l'a précisément demandée. C'est le tournage connecté de l'ADR 4291, pas un clip qui s'égarerait.</p>
+<p>Ce qu'aucun garde ne tiendra, et qui reste une affaire de relecture : la frontière entre étalonner
+une sonde et s'appuyer sur elle. Une sonde écrite contre le banc et jamais tirée contre le rebut
+passerait au vert en n'ayant rien établi, et seul un lecteur peut le refuser.</p>
 <p>Ce qu'aucun garde ne tiendra, et qui restera une affaire de relecture : la frontière entre étalonner
 une sonde et s'appuyer sur elle. Une sonde écrite contre le banc et jamais tirée contre le rebut
 passerait au vert en n'ayant rien établi, et seul un lecteur peut le refuser.</p>
