@@ -11186,6 +11186,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td>la version d'OpenSpec <strong>résolue par le lockfile</strong> vaut le <code>generatedBy</code> que les douze fichiers de l'outil déclarent, et le manifeste l'épingle <strong>exactement</strong> : un intervalle laisserait le prochain <code>npm install</code> déplacer la version sans qu'aucun diff du manifeste ne le montre. Il lit le lockfile plutôt que d'appeler <code>openspec --version</code>, parce que c'est la version du dépôt qui fait foi et non celle du poste (#4512)</td>
 <td><code>lint.yml</code></td>
 </tr>
+<tr>
+<td><code>scripts/methode/verifie-sous-commandes-openspec.py</code></td>
+<td>les <strong>invocations</strong> citées dans les dix-huit fichiers d'OpenSpec existent dans l'outil épinglé, à <strong>deux niveaux</strong> : un garde qui ne lirait que le premier mot déclarerait <code>openspec new</code> valide et laisserait passer <code>openspec new frobnicate</code>. Il compare à l'outil épinglé et jamais à celui du <code>PATH</code>, qui peut être d'une autre version. Il est <strong>vert sur le corpus d'aujourd'hui</strong>, donc tout son poids porte sur son auto-test, dont le premier cas est un témoin vert et le dernier rejoue le faux positif de l'en-tête YAML (#4514)</td>
+<td><code>lint.yml</code>, job <code>outillage-release</code></td>
+</tr>
 </tbody>
 </table>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
