@@ -11176,6 +11176,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>.claude/skills/</code> est une copie à jour de <code>.agents/skills/</code> : une compétence corrigée à la source ne laisse pas un agent lire l'ancienne version</td>
 <td><code>lint.yml</code></td>
 </tr>
+<tr>
+<td><code>scripts/methode/verifie-version-openspec.py</code></td>
+<td>la version d'OpenSpec <strong>résolue par le lockfile</strong> vaut le <code>generatedBy</code> que les douze fichiers de l'outil déclarent, et le manifeste l'épingle <strong>exactement</strong> : un intervalle laisserait le prochain <code>npm install</code> déplacer la version sans qu'aucun diff du manifeste ne le montre. Il lit le lockfile plutôt que d'appeler <code>openspec --version</code>, parce que c'est la version du dépôt qui fait foi et non celle du poste (#4512)</td>
+<td><code>lint.yml</code></td>
+</tr>
 </tbody>
 </table>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
