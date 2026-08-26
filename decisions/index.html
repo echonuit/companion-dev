@@ -8315,6 +8315,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4546-un-corps-de-pr-ne-promet-pas-ce-que-la-forge-ne-fera-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4546 · Un corps de pull request ne promet pas ce que la forge ne fera pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -10628,6 +10663,11 @@
 <td><a href="4490-un-temoin-se-prouve-par-mutation-mecaniquement/">4490</a></td>
 <td><code>verifie_scripts.py</code> clot sur « les N scripts charges DETECTENT leur violation temoin », et la phrase affirmait plus que ce que la suite verifie : un temoin peut exister, s executer, passer, et ne rien tenir. Celui du cliquet de longueur d ADR n affirmait que <code>isinstance(suspects(), list)</code> (#4487). L article A2 disait deja le geste, mais il reposait sur la discipline, et la discipline lache quand ca va vite. La mutation devient mecanique : chaque garde perd sa detection, la suite doit rougir, tolerance zero. La liste se DERIVE des appels <code>_charge</code> plutot que d un glob, un glob vieillissant etant le defaut meme que le script attrape. Cout mesure : 1,2 s pour 23 gardes. La cecite est nommee - la mutation ne touche que les fonctions de module, et l unique temoin hors de portee est ecrit</td>
 <td>#4490, passe 9 de la cloture de #4462</td>
+</tr>
+<tr>
+<td><a href="4546-un-corps-de-pr-ne-promet-pas-ce-que-la-forge-ne-fera-pas/">4546</a></td>
+<td>Les trois refus du garde du corps de PR sont typographiques ; « Ferme #N » n'est pas de cette famille. La forge ne reconnaît que <code>close</code>, <code>fix</code> et <code>resolve</code> : la demande fusionne verte, l'issue reste ouverte, et rien ne le signale. Ce n'est pas une forme malheureuse, c'est une promesse non tenue. #4350 avait écarté un garde parce qu'il aurait cherché ce qui MANQUE et rougi sur tout lot d'un EPIC ; celui-ci cherche ce qui est PRÉSENT, forme jamais légitime, et « Refs #N » reste vert. <code>close</code> est absent de la liste des verbes, « Close #N » étant un mot-clé anglais valide : le refuser ferait réécrire en français ce qui marchait</td>
+<td>#4546, passe 10 de la clôture de #4502</td>
 </tr>
 </tbody>
 </table>
