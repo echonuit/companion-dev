@@ -9428,7 +9428,7 @@ Retour à la <a href="../../">méthode</a>.</p>
 <p>Vérifier ce qu'aucun test ne peut atteindre : que le paquet winget <strong>s'installe sans droits
 d'administration</strong>, que l'application <strong>démarre</strong> ensuite, et surtout que <code>winget upgrade</code>
 <strong>remplace</strong> la version en place au lieu de s'installer à côté d'elle.</p>
-<p>⚠️ Ce dernier point est le <strong>motif d'origine</strong> du chantier winget. L'<code>UpgradeCode</code> a été figé et le
+<p>Ce dernier point est le <strong>motif d'origine</strong> du chantier winget. L'<code>UpgradeCode</code> a été figé et le
 scope fixé à <code>user</code> <strong>avant</strong> la première soumission (ADR 0045) précisément pour que la mise à jour
 remplace ; sans quoi « la première mise à jour livrée aux utilisateurs casse ». Cette propriété n'a
 <strong>jamais été observée</strong> : elle demande deux versions servies et une vraie machine Windows.</p>
@@ -9480,7 +9480,7 @@ anciennes</strong> versions servies : <code>winget show Echonuit.VigieChiroCompa
 <p><strong>S9-14</strong> · <em>geste: annonce-d-une-mise-a-jour</em> · <em>carton: une nouvelle version est publiée, et l'application l'apprend</em> · Le bandeau d'annonce en haut de la fenêtre nomme les deux versions <strong>et</strong> dit de
   <strong>fermer l'application avant d'installer</strong> (#3457). Sans cette phrase, l'installation lancée
   fenêtre ouverte ne se termine pas, et rien n'en donne la raison.</p>
-<p>⚠️ Le numéro sort de la suite volontairement : les cases 06 à 13 sont citées ailleurs (#3621
+<p>Le numéro sort de la suite volontairement : les cases 06 à 13 sont citées ailleurs (#3621
 tranche sur <strong>S9-07</strong>), et les renuméroter rendrait ces renvois faux en silence.</p>
 </li>
 </ol>

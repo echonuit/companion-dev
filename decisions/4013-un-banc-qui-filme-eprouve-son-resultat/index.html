@@ -9429,7 +9429,7 @@
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le banc de documentation vérifie chaque geste avant de l'exécuter : <code>viser</code> lit le libellé à l'endroit
 visé, et refuse si ce n'est pas lui. C'était censé garantir qu'un film montre le parcours annoncé.</p>
-<p>⚠️ <strong>Ce n'était pas suffisant, et le banc a rendu ✅ sur un film où rien n'arrive.</strong> Un <code>viser</code> réussi
+<p><strong>Ce n'était pas suffisant, et le banc a rendu ✅ sur un film où rien n'arrive.</strong> Un <code>viser</code> réussi
 prouve qu'un bouton était là et qu'on a cliqué dessus. Il ne prouve <strong>jamais</strong> que le clic a fait
 quelque chose.</p>
 <p>Le seul geste du parcours qui ne passait pas par un libellé - le clic sur l'item d'une liste
@@ -9458,7 +9458,7 @@ ferait de toute façon.</p>
 <p><strong>5. Le banc tolère un reflux de mise en page, et il le DIT.</strong> <code>viser</code> balaie verticalement par pas de
 quatre pixels et annonce l'écart retenu. Refuser à chaque changement de deux lignes de CSS ne sert
 personne ; l'absorber en silence laisse les scénarios pourrir sans que personne ne le sache.</p>
-<p>⚠️ Le pas est de <strong>quatre</strong> pixels, pas huit : mesuré, un bouton se trouvait à dix pixels du point
+<p>Le pas est de <strong>quatre</strong> pixels, pas huit : mesuré, un bouton se trouvait à dix pixels du point
 visé ; à l'écart +8 la fenêtre de lecture le rognait et rendait « uler | | », à +10 elle rendait
 « + Ajouter ». Deux pixels séparaient le refus de la lecture juste.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>

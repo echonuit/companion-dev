@@ -9551,7 +9551,7 @@ personne n'avait prise, et que la machine ou l'habitude avait prise à sa place.
 </tr>
 </tbody>
 </table>
-<p>⚠️ Aucun des trois n'était un bug au sens ordinaire : rien ne plantait, aucun test ne rougissait. Ils
+<p>Aucun des trois n'était un bug au sens ordinaire : rien ne plantait, aucun test ne rougissait. Ils
 se ressemblent par ce qui <strong>manquait</strong> - un endroit où quelqu'un ait tranché.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Ce que l'utilisateur lit est décidé par le produit, à un endroit nommé.</strong> Trois conséquences, une par
@@ -9559,21 +9559,21 @@ défaut.</p>
 <h3 id="1-la-couleur-est-choisie-et-lutilisateur-a-le-dernier-mot-dans-les-deux-sens">1. La couleur est choisie, et l'utilisateur a le dernier mot dans les DEUX sens<a class="headerlink" href="#1-la-couleur-est-choisie-et-lutilisateur-a-le-dernier-mot-dans-les-deux-sens" title="Permanent link">&para;</a></h3>
 <p><code>CouleurCli</code> décide, sur des entrées <strong>fournies</strong>. <code>NO_COLOR</code> éteint, <code>FORCE_COLOR</code> allume, et
 <code>NO_COLOR</code> l'emporte : un refus explicite prime sur une demande explicite.</p>
-<p>⚠️ La règle antérieure disait « <code>NO_COLOR</code> donne le dernier mot à l'utilisateur ». Ce n'était pas faux,
+<p>La règle antérieure disait « <code>NO_COLOR</code> donne le dernier mot à l'utilisateur ». Ce n'était pas faux,
 c'était <strong>incomplet dans le sens rassurant</strong> - il n'y avait de dernier mot que pour éteindre.</p>
 <h3 id="2-un-instant-venu-dailleurs-se-traduit-avant-detre-montre">2. Un instant venu d'ailleurs se traduit avant d'être montré<a class="headerlink" href="#2-un-instant-venu-dailleurs-se-traduit-avant-detre-montre" title="Permanent link">&para;</a></h3>
 <p><code>EtatTraitementVigieChiro.depuis</code> lit les <strong>deux</strong> formes que la plateforme rend, et les dit en français
 dans le fuseau du lecteur.</p>
-<p>⚠️ L'UTC n'est pas un détail de présentation : « le 3 juillet à 19 h » n'est pas la même heure pour
+<p>L'UTC n'est pas un détail de présentation : « le 3 juillet à 19 h » n'est pas la même heure pour
 l'observateur que pour le serveur, et c'est l'observateur qui décide s'il attend ou revient demain.</p>
-<p>⚠️ <strong>Ce qu'on ne sait pas lire reste affiché tel quel.</strong> Perdre l'information vaudrait moins que
+<p><strong>Ce qu'on ne sait pas lire reste affiché tel quel.</strong> Perdre l'information vaudrait moins que
 l'afficher mal : un lecteur peut interpréter une chaîne étrange, jamais une absence.</p>
 <h3 id="3-deux-formes-dhorodatage-nommees-par-leur-usage">3. Deux formes d'horodatage, nommées par leur USAGE<a class="headerlink" href="#3-deux-formes-dhorodatage-nommees-par-leur-usage" title="Permanent link">&para;</a></h3>
 <p><code>Horodatage.dansUnePhrase</code> et <code>dansUnTableau</code>. Regardées <strong>en contexte</strong> plutôt qu'en liste, les
 divergences n'étaient pas une négligence : le « à » lit bien dans une phrase et mal dans une colonne,
 et les quatre sites sans « à » étaient précisément des tableaux. Le besoin était réel ; il manquait de
 le <strong>nommer</strong>.</p>
-<p>⚠️ <strong>C'est le nom qui empêche de se tromper, pas la discipline.</strong> <code>LISIBLE</code>, <code>QUAND</code>, <code>FORMAT_NUIT</code> -
+<p><strong>C'est le nom qui empêche de se tromper, pas la discipline.</strong> <code>LISIBLE</code>, <code>QUAND</code>, <code>FORMAT_NUIT</code> -
 les noms qu'on trouvait sur ces constantes - n'apprennent rien à celui qui choisit.</p>
 <h2 id="ce-que-la-decision-ne-couvre-pas">Ce que la décision NE couvre pas<a class="headerlink" href="#ce-que-la-decision-ne-couvre-pas" title="Permanent link">&para;</a></h2>
 <p>Deux autres familles de formateurs, aux exigences <strong>opposées</strong>, restent où elles sont :</p>
@@ -9587,14 +9587,14 @@ la prochaine campagne d'unification ne les avale pas.</p>
 <ul>
 <li><strong>Le nommage a corrigé un site tout seul</strong> : <code>nuitLisible</code> alimentait une <strong>cellule de tableau</strong> en
   écrivant « à ». Personne ne l'avait vu ; il a suffi d'avoir à choisir entre deux noms.</li>
-<li>⚠️ <strong>Et il m'a repris sur un autre.</strong> J'avais classé le refus du verrou en « phrase » ; son test a
+<li><strong>Et il m'a repris sur un autre.</strong> J'avais classé le refus du verrou en « phrase » ; son test a
   rougi en rappelant que <strong>#3640 l'avait délibérément aligné</strong> sur la table de choix d'une sauvegarde,
   « deux écrans plus loin ». Une décision documentée que j'allais renverser sans la voir. Elle vit
   désormais dans le doc-comment de <code>dansUnTableau</code>.</li>
 <li><strong>Trois aperçus ont changé</strong>, et exactement les bons : les trois de la modale de reconstruction ont
   maigri de 189 à 506 octets - la disparition du « à ». Celui du choix de sauvegarde n'a <strong>pas</strong> bougé,
   car ce site écrivait déjà sans.</li>
-<li>⚠️ <strong>Le fuseau est un paramètre, jamais <code>systemDefault()</code> en dur</strong> dans ce qui se teste :
+<li><strong>Le fuseau est un paramètre, jamais <code>systemDefault()</code> en dur</strong> dans ce qui se teste :
   <code>fuseau-alternatif</code> rejoue la suite sous <code>America/Cayenne</code> (ADR 3450), et figer « 21:00 » y ferait
   rougir un test qui ne constate aucun défaut.</li>
 </ul>

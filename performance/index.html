@@ -9635,7 +9635,7 @@ annonçait « ~25 ms » et « ~18 ms ». Les écrans lançaient pourtant une req
 cents.</p>
 <p>Le jeu sème désormais <code>perf.sites</code> carrés (défaut <strong>40</strong>), et <code>JeuDuBancTest</code> refuse qu'il retombe à
 un. Les chiffres ci-dessus sont ceux de cette topologie-là.</p>
-<p>⚠️ Ils sont plus <strong>hauts</strong> que les anciens (34 contre 25, 26 contre 18) et c'est attendu : le jeu est
+<p>Ils sont plus <strong>hauts</strong> que les anciens (34 contre 25, 26 contre 18) et c'est attendu : le jeu est
 quarante fois plus large. Ils restent très en deçà des cibles, et surtout ils mesurent enfin la
 dimension où le coût vivait.</p>
 </div>
@@ -9791,11 +9791,11 @@ et maximal chez celui qui a le plus de données.</p>
 <code>PointDao#findParSites</code>, <code>PassageDao#findParPoints</code>, <code>SequenceDao#findParIds</code>, ou un index construit
 depuis un <code>findAll()</code> quand la table porte une ligne par entité. Les lectures par identifiants passent
 par <code>LotsDeParametres.decouper</code>, qui borne la <strong>taille de la requête</strong>.</p>
-<p>⚠️ Cette page a d'abord justifié ce découpage par un refus de SQLite au-delà de « quelques centaines »
+<p>Cette page a d'abord justifié ce découpage par un refus de SQLite au-delà de « quelques centaines »
 de paramètres liés. C'est faux pour le pilote embarqué ici : <strong>cinquante mille passent</strong>, mesuré. Le
 découpage reste - une requête de cent kilo-octets de marqueurs ne se justifie pas davantage - mais il
 n'évite aucun échec, et le dire autrement ferait croire à une protection qui n'existe pas.</p>
-<p>⚠️ <strong>Ce qui ne se lit pas par lot.</strong> Les tables de <strong>volume</strong> - originaux, séquences d'écoute - restent
+<p><strong>Ce qui ne se lit pas par lot.</strong> Les tables de <strong>volume</strong> - originaux, séquences d'écoute - restent
 lues par session. Une nuit en porte des milliers : les charger toutes d'un bloc échangerait un défaut de
 lenteur contre un défaut de mémoire.</p>
 <h3 id="comment-on-chiffre-une-lecture-repetee">Comment on chiffre une lecture répétée<a class="headerlink" href="#comment-on-chiffre-une-lecture-repetee" title="Permanent link">&para;</a></h3>

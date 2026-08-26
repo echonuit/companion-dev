@@ -9436,7 +9436,7 @@ passe 6 exige un PIT ciblé sur les classes pures livrées.</p>
 <p><strong>Il n'a pas pu tourner.</strong> Trois lancements, trois fois <code>Created 0 mutation test units in pre scan</code>,
 y compris après avoir ajouté <code>${project.build.testOutputDirectory}</code> aux <code>mutableCodePaths</code> du profil.
 Le journal donne la cause probable dès sa première ligne : <code>Mutating from target/classes</code>.</p>
-<p>⚠️ <strong>Ce qui n'est pas établi</strong> : que ce soit la seule cause. Le troisième essai aurait dû lever
+<p><strong>Ce qui n'est pas établi</strong> : que ce soit la seule cause. Le troisième essai aurait dû lever
 l'obstacle s'il n'y avait que celui-là. Écrire « PIT ne mute pas le code de test » serait une
 hypothèse plausible présentée comme un fait.</p>
 <p><strong>Ce qui est décidé</strong> : ne pas déplacer cette logique vers <code>src/main</code> pour la rendre mutable. Elle
@@ -9452,7 +9452,7 @@ partagé était le réflexe.</p>
 <p><strong>Refusé, pour deux raisons mesurées.</strong></p>
 <p>Ce ne sont pas des doublons : l'un <strong>construit un manifeste</strong> depuis le corps du cas et le soumet au
 verdict, l'autre <strong>lance une commande</strong> quelconque. Le partagé se réduit à huit lignes de comptage.</p>
-<p>⚠️ Et surtout, <a href="../3661-un-garde-de-ci-porte-ses-propres-cas/">ADR 3661</a> a délibérément <strong>remis les cas
+<p>Et surtout, <a href="../3661-un-garde-de-ci-porte-ses-propres-cas/">ADR 3661</a> a délibérément <strong>remis les cas
 à l'intérieur de leur garde</strong>, en supprimant un fichier partagé. Un helper sourcé réintroduirait
 exactement la dépendance qu'elle venait de retirer.</p>
 <p>Ici, abstraire coûte plus que la duplication. La duplication et l'abstraction sont des outils, pas

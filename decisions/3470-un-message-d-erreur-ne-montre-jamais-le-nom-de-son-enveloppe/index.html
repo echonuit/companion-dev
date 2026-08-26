@@ -9541,7 +9541,7 @@ signalait - un texte non vide ressemble à un message.</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ <strong>Ce n'est pas propre à la réflexion</strong>, et c'est la trouvaille. <code>RuntimeException(Throwable)</code> - comme
+<p><strong>Ce n'est pas propre à la réflexion</strong>, et c'est la trouvaille. <code>RuntimeException(Throwable)</code> - comme
 <strong>tous</strong> les constructeurs <code>(Throwable)</code> de la bibliothèque standard - pose comme message le
 <code>toString()</code> de sa cause. La même chaîne inutile sort donc de n'importe quelle enveloppe.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
@@ -9569,7 +9569,7 @@ test qui vérifiait tout autre chose.</p>
 <li><strong>Le geste conseillé est cité, pas recopié.</strong> Le repli renvoie vers le menu, et son libellé est lu
   depuis <code>ActionOuvrirJournaux.LIBELLE</code>. La première rédaction disait « Journaux », entrée qui n'existe
   pas : c'est l'<a href="../3854-un-refus-ne-conseille-que-ce-qu-il-a-verifie/">ADR 3854</a> tenue par construction.</li>
-<li>⚠️ <strong>Et sans pictogramme.</strong> La deuxième rédaction employait « ☰ » ; <code>PoliceCouvreLIhmTest</code> l'a refusée,
+<li><strong>Et sans pictogramme.</strong> La deuxième rédaction employait « ☰ » ; <code>PoliceCouvreLIhmTest</code> l'a refusée,
   ce caractère n'étant pas dans la Noto Sans embarquée. Il se rendait sur la machine qui l'écrivait,
   précisément parce qu'une police système le couvre, et aurait divergé ailleurs
   (<a href="../0035-un-pictogramme-est-une-icone-pas-un-caractere/">ADR 0035</a>). La forme retenue est celle du

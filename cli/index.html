@@ -9590,7 +9590,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>lister-sites-vigiechiro</code></td>
 <td><code>[--portee mes\|plateforme] [--pages &lt;n&gt; \| --tout] [--point &lt;code&gt;] [--carre &lt;n&gt;] [--recenser] [--json] [--token &lt;jeton&gt;]</code></td>
 <td>#3003</td>
-<td><code>ClientVigieChiro.sitesPlateforme</code> / <code>ClientVigieChiro.mesSites</code> / <code>ClientVigieChiro.chercherCarre</code>. Interroge le <strong>catalogue de la plateforme</strong> (20 767 sites au 2026-08-14) ou vos sites. <code>--recenser</code> compte les sites par <strong>code de point</strong> : c'est ainsi qu'on établit qu'un code comme <code>Z1</code> est porté par des centaines de carrés (#2993). Chaque sortie porte son <strong>dénominateur</strong> (« 300 lus sur 20517 annoncés, 3 pages sur 206 ») et signale les sites <strong>sans point ponctuel</strong> (transects routiers, dont les localités sont des lignes) : un échantillon ne doit jamais passer pour un recensement. ⚠️ <strong><code>--carre</code> fait exception depuis #3769</strong> : il est porté par le <strong>serveur</strong> (<code>q=&lt;numéro&gt;</code>, filtre mesuré le 2026-08-14 - 20 767 → 1), donc en <strong>une</strong> requête au lieu de deux cents pages. Le gain n'est pas d'abord la vitesse : sans <code>--tout</code>, la commande lisait une page sur 208 et rendait un tableau <strong>vide sur un carré qui existe</strong>. Sa sortie annonce alors une <strong>recherche</strong> (« Recherche du carré 130711 sur toute la collection : 1 site(s) trouvé(s) ») et non une lecture partielle, et <code>--pages</code> / <code>--tout</code> sont <strong>refusés</strong> avec lui (exit 2) plutôt qu'acceptés sans effet. Les autres filtres (<code>--point</code>) restent appliqués <strong>chez nous</strong>, ce backend ignorant <code>where=</code> en silence</td>
+<td><code>ClientVigieChiro.sitesPlateforme</code> / <code>ClientVigieChiro.mesSites</code> / <code>ClientVigieChiro.chercherCarre</code>. Interroge le <strong>catalogue de la plateforme</strong> (20 767 sites au 2026-08-14) ou vos sites. <code>--recenser</code> compte les sites par <strong>code de point</strong> : c'est ainsi qu'on établit qu'un code comme <code>Z1</code> est porté par des centaines de carrés (#2993). Chaque sortie porte son <strong>dénominateur</strong> (« 300 lus sur 20517 annoncés, 3 pages sur 206 ») et signale les sites <strong>sans point ponctuel</strong> (transects routiers, dont les localités sont des lignes) : un échantillon ne doit jamais passer pour un recensement. <strong><code>--carre</code> fait exception depuis #3769</strong> : il est porté par le <strong>serveur</strong> (<code>q=&lt;numéro&gt;</code>, filtre mesuré le 2026-08-14 - 20 767 → 1), donc en <strong>une</strong> requête au lieu de deux cents pages. Le gain n'est pas d'abord la vitesse : sans <code>--tout</code>, la commande lisait une page sur 208 et rendait un tableau <strong>vide sur un carré qui existe</strong>. Sa sortie annonce alors une <strong>recherche</strong> (« Recherche du carré 130711 sur toute la collection : 1 site(s) trouvé(s) ») et non une lecture partielle, et <code>--pages</code> / <code>--tout</code> sont <strong>refusés</strong> avec lui (exit 2) plutôt qu'acceptés sans effet. Les autres filtres (<code>--point</code>) restent appliqués <strong>chez nous</strong>, ce backend ignorant <code>where=</code> en silence</td>
 </tr>
 <tr>
 <td><code>lister-participations-vigiechiro</code></td>
@@ -9638,7 +9638,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>lister-passages</code></td>
 <td><code>[--carre &lt;n&gt;] [--lieu &lt;texte&gt;…] [--annee &lt;a&gt;] [--statut &lt;s&gt;] [--verdict &lt;v&gt;] [--analyse &lt;e&gt;] [--campagne &lt;nom&gt;] [--json]</code></td>
 <td>P5, #3269</td>
-<td><code>RegistrePassages</code> (lecture). Les <strong>sept</strong> filtres sont ceux de l'écran « Carte &amp; passages » et passent par le <strong>même prédicat</strong> (<code>FiltresMultisite</code>, un record dont <code>accepte</code> ignore les critères non renseignés) ; <code>--lieu</code> lit <code>FiltresLieu</code>, comme <code>lister-observations</code>. Aucune règle n'est réécrite. ⚠️ <code>--analyse</code> porte un état <strong>déduit</strong> (<code>EtatAnalyse.deduire</code>) et non lu : « Déposé » sans relevé vaut <code>JAMAIS_RELEVE</code>, « Importé » vaut <code>SANS_OBJET</code>. Une base sans aucun passage le dit <strong>avant</strong> tout filtrage : sinon <code>--lieu</code> refuserait le lieu (ADR 3082) là où la vérité est qu'il n'y a rien. Un filtre qui ne retient rien le <strong>dit</strong> aussi</td>
+<td><code>RegistrePassages</code> (lecture). Les <strong>sept</strong> filtres sont ceux de l'écran « Carte &amp; passages » et passent par le <strong>même prédicat</strong> (<code>FiltresMultisite</code>, un record dont <code>accepte</code> ignore les critères non renseignés) ; <code>--lieu</code> lit <code>FiltresLieu</code>, comme <code>lister-observations</code>. Aucune règle n'est réécrite. <code>--analyse</code> porte un état <strong>déduit</strong> (<code>EtatAnalyse.deduire</code>) et non lu : « Déposé » sans relevé vaut <code>JAMAIS_RELEVE</code>, « Importé » vaut <code>SANS_OBJET</code>. Une base sans aucun passage le dit <strong>avant</strong> tout filtrage : sinon <code>--lieu</code> refuserait le lieu (ADR 3082) là où la vérité est qu'il n'y a rien. Un filtre qui ne retient rien le <strong>dit</strong> aussi</td>
 </tr>
 <tr>
 <td><code>solde-saison</code></td>
@@ -9842,7 +9842,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>audit-coherence</code></td>
 <td><code>[--passage &lt;id&gt;] [--gravite &lt;niveau&gt;] [--categorie &lt;nature&gt;] [--contient &lt;texte&gt;] [--json] [--online] [--token &lt;jeton&gt;]</code></td>
 <td>#1133, #1254, #1347</td>
-<td><code>ServiceAuditCoherence</code> : confronte <strong>disque, base et serveur</strong>. <code>--gravite</code> et <code>--categorie</code> sont les <strong>deux puces</strong> de l'écran « Audit de cohérence » (#3100), portées ici à la clôture de #3092 ; chacune retient une valeur <strong>exacte</strong>. ⚠️ Elles filtrent <strong>l'affichage seul</strong> : le <strong>code de sortie continue de juger le rapport entier</strong>, sans quoi <code>--gravite INFO</code> sur un workspace abîmé rendrait <code>0</code> et un script d'intégration conclurait que tout va bien. Sans <code>--passage</code>, audite tout le workspace ; avec, une seule nuit (utile après l'avoir réparée). <code>--online</code> ajoute les constats qui demandent le réseau (dépôts, points). <code>0</code> ssi aucun constat d'erreur</td>
+<td><code>ServiceAuditCoherence</code> : confronte <strong>disque, base et serveur</strong>. <code>--gravite</code> et <code>--categorie</code> sont les <strong>deux puces</strong> de l'écran « Audit de cohérence » (#3100), portées ici à la clôture de #3092 ; chacune retient une valeur <strong>exacte</strong>. Elles filtrent <strong>l'affichage seul</strong> : le <strong>code de sortie continue de juger le rapport entier</strong>, sans quoi <code>--gravite INFO</code> sur un workspace abîmé rendrait <code>0</code> et un script d'intégration conclurait que tout va bien. Sans <code>--passage</code>, audite tout le workspace ; avec, une seule nuit (utile après l'avoir réparée). <code>--online</code> ajoute les constats qui demandent le réseau (dépôts, points). <code>0</code> ssi aucun constat d'erreur</td>
 </tr>
 <tr>
 <td><code>sauvegarder</code></td>
@@ -9932,7 +9932,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>discussion</code></td>
 <td><code>--observation &lt;id&gt; [--message &lt;texte&gt; --confirmer]</code></td>
 <td>#1417, #1418</td>
-<td>Le <strong>fil d'échange avec le validateur</strong> du MNHN. Sans <code>--message</code>, le <strong>lit</strong> (le fil vient de la base, rafraîchi à chaque import). Avec, <strong>y répond</strong>, ⚠️ <strong>écriture définitive</strong> : le serveur ajoute par <code>$push</code> et n'offre aucune route de suppression. <code>--confirmer</code> est donc obligatoire, et le message n'est écrit localement <strong>qu'après</strong> que le serveur l'a accepté</td>
+<td>Le <strong>fil d'échange avec le validateur</strong> du MNHN. Sans <code>--message</code>, le <strong>lit</strong> (le fil vient de la base, rafraîchi à chaque import). Avec, <strong>y répond</strong>, <strong>écriture définitive</strong> : le serveur ajoute par <code>$push</code> et n'offre aucune route de suppression. <code>--confirmer</code> est donc obligatoire, et le message n'est écrit localement <strong>qu'après</strong> que le serveur l'a accepté</td>
 </tr>
 <tr>
 <td><code>emplacements</code></td>
@@ -9977,21 +9977,21 @@ sens</strong> :</p>
 </tbody>
 </table>
 <p>Les deux comptent dès qu'elles sont <strong>présentes et non vides</strong>, quelle que soit leur valeur - une seule
-lecture à retenir pour deux variables voisines. ⚠️ <strong><code>NO_COLOR</code> l'emporte</strong> quand les deux sont posées :
+lecture à retenir pour deux variables voisines. <strong><code>NO_COLOR</code> l'emporte</strong> quand les deux sont posées :
 un refus explicite prime sur une demande explicite. Se tromper dans ce sens affiche du texte nu ; se
 tromper dans l'autre crache des séquences d'échappement chez quelqu'un qui a demandé qu'on ne le fasse
 pas.</p>
-<p>⚠️ <code>FORCE_COLOR</code> a été ajoutée parce que la règle précédente ne donnait le dernier mot que dans <strong>un</strong>
+<p><code>FORCE_COLOR</code> a été ajoutée parce que la règle précédente ne donnait le dernier mot que dans <strong>un</strong>
 sens (#3796). Trois situations ordinaires en souffraient, et elles ont un point commun : la sortie est
 <strong>redirigée alors qu'un humain la lit</strong> - <code>… | less -R</code>, un journal de CI qui <strong>interprète</strong> l'ANSI (les
 Actions GitHub le font), un enrobage <code>script</code>/<code>unbuffer</code>. Dans les trois, l'utilisateur veut la couleur,
 la console sait l'afficher, et le produit refusait.</p>
-<p>⚠️ La décision vit dans <code>CouleurCli</code>, sur des <strong>entrées fournies</strong> plutôt que lues du système : la
+<p>La décision vit dans <code>CouleurCli</code>, sur des <strong>entrées fournies</strong> plutôt que lues du système : la
 console et l'environnement d'une JVM en cours ne se manipulent pas de façon portable, et c'est
 précisément cette non-portabilité qui avait créé le défaut. <code>cli.bats</code> garde par ailleurs les
 <strong>quatre</strong> cas sur la sortie réelle du binaire, dont deux qui n'existent que là : la couleur <strong>s'allume</strong>
 devant un vrai terminal, et <code>FORCE_COLOR</code> l'allume même redirigée.</p>
-<p>⚠️ Il faut un <strong>vrai pseudo-terminal</strong> (<code>script -qec</code>) pour les éprouver. Sans lui, deux cas sur quatre
+<p>Il faut un <strong>vrai pseudo-terminal</strong> (<code>script -qec</code>) pour les éprouver. Sans lui, deux cas sur quatre
 sont indiscernables : sous une sortie redirigée, l'aide est nue <strong>de toute façon</strong>, donc « <code>NO_COLOR</code>
 éteint » y serait vert sans rien prouver.</p>
 <h3 id="socle-registre-de-commandes-picocli-614">Socle : registre de commandes picocli (#614)<a class="headerlink" href="#socle-registre-de-commandes-picocli-614" title="Permanent link">&para;</a></h3>
@@ -10020,7 +10020,7 @@ appellent les services.</p>
   (<code>RegleMetierException</code> ou l'<code>IllegalArgumentException</code> des validateurs) sort en <code>2</code> (état intact) ; toute
   autre exception (échec inattendu, état incertain) en <code>1</code> (message seul, jamais la trace).</li>
 </ul>
-<p>⚠️ <strong>« Jamais la trace » n'était vrai qu'à moitié jusqu'à #3570</strong>, et de deux façons. D'abord
+<p><strong>« Jamais la trace » n'était vrai qu'à moitié jusqu'à #3570</strong>, et de deux façons. D'abord
 <code>Cli.main</code> amorce la journalisation et migre la base <strong>avant</strong> d'entrer dans la commande, donc hors du
 gestionnaire de picocli : une exception née là sortait par la JVM, <code>Exception in thread "main"</code> et pile
 complète, en code <code>1</code> - y compris un <code>RefusAvantEcriture</code> que #3498 avait pourtant appris à traduire en
@@ -10039,7 +10039,7 @@ défaut est <code>&lt;Documents&gt;/VigieChiro-Companion</code>.</p>
 <p>Sept bornes protègent la lecture d'une entrée externe : taille d'un fichier de la carte, corps d'une
 réponse, contenu d'une archive, hôtes admis pour un lien signé. Elles se surchargeaient <strong>par propriété
 JVM</strong>, et trois refus le conseillaient : « relancez avec <code>-Dvigiechiro.…</code> ».</p>
-<p>⚠️ <strong>Ce conseil était inapplicable pour qui installe le produit.</strong> Le lanceur jpackage passe ses
+<p><strong>Ce conseil était inapplicable pour qui installe le produit.</strong> Le lanceur jpackage passe ses
 arguments à <code>main</code>, jamais à la machine virtuelle : <code>-D</code> n'y existe pas. La seule issue chez
 l'utilisateur était de renoncer au fichier, ce que le doc-comment de <code>PlafondLecture</code> voulait
 précisément éviter.</p>
@@ -10075,7 +10075,7 @@ Interroger le réseau, ou écrire <strong>hors</strong> du dossier de travail (<
 d'amorçage, qui vit ailleurs et s'écrit d'un seul coup (#3507). C'est pourquoi <code>emplacements</code> est
 lectrice : elle sert à <strong>repointer</strong> le dossier de travail, et la verrouiller refuserait de déménager
 à qui déménage parce que la place actuelle est occupée.</p>
-<p>⚠️ <strong>Le journal fait exception.</strong> <code>Cli.main</code> amorce la journalisation avant tout, donc <strong>toute</strong>
+<p><strong>Le journal fait exception.</strong> <code>Cli.main</code> amorce la journalisation avant tout, donc <strong>toute</strong>
 commande crée et écrit <code>&lt;dossier de travail&gt;/logs</code> - les lectrices comprises. C'est voulu : un incident
 doit laisser une trace même sur une commande qui ne fait que lire, et deux processus qui écrivent
 chacun ses lignes dans un journal ne se corrompent pas, là où deux processus qui écrivent la même base
@@ -10084,7 +10084,7 @@ le feraient (#3575).</p>
 rester trouvable sans le deviner. `cli.bats` le vérifie des deux bouts - la pile est dans le
 fichier, et la commande désigne le dossier réellement écrit.
 </code></pre></div>
-<p>⚠️ La migration du schéma prend le verrou de son côté : une commande de lecture sur une base à mettre
+<p>La migration du schéma prend le verrou de son côté : une commande de lecture sur une base à mettre
 à jour peut donc être refusée, et c'est voulu - mettre à jour le schéma est une écriture.</p>
 <p><code>ClassementLectureEcritureTest</code> exige que <strong>chaque</strong> commande soit classée : elle porte le marqueur,
 ou elle figure dans la liste des écrivaines, tenue dans ce test. Le garde ne juge pas le classement -
@@ -10135,9 +10135,9 @@ utile.</p>
 nuit manquait, puis sortait en <code>0</code> : le fait était dit dans un texte qu'un script ne lit pas. Elle rend
 maintenant <strong><code>10</code></strong> quand la restauration laisse un <strong>manque</strong> - la sauvegarde ne dit pas d'où venaient
 les dossiers, ou une nuit connue de la base n'y était pas.</p>
-<p>⚠️ Pas <code>1</code> ni <code>2</code> : la restauration a <strong>réussi</strong>. Confondre « ça n'a pas marché » avec « ça a marché,
+<p>Pas <code>1</code> ni <code>2</code> : la restauration a <strong>réussi</strong>. Confondre « ça n'a pas marché » avec « ça a marché,
 regarde quand même » est exactement ce que <code>verifier-maj</code> a payé avant elle.</p>
-<p>⚠️ Et pas sur les dossiers simplement <strong>replacés ailleurs</strong>, qui restent <code>0</code> : c'est le cas normal
+<p>Et pas sur les dossiers simplement <strong>replacés ailleurs</strong>, qui restent <code>0</code> : c'est le cas normal
 d'une restauration sur une autre machine, l'usage principal de <code>--complet</code>, et le compte rendu nomme
 déjà l'ancienne et la nouvelle adresse. Un <code>10</code> permanent s'apprend à s'ignorer, et emporterait avec
 lui celui qui compte. L'IHM, elle, garde son avertissement sur les trois cas : elle parle à quelqu'un
@@ -10284,7 +10284,7 @@ reste la façon la plus rapide de le lancer en local :</p>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">VIGIECHIRO_LANCEUR</span><span class="o">=</span>target/dist/VigieChiroCompanion/bin/vigiechiro<span class="w"> </span><span class="se">\</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>bats<span class="w"> </span>src/test/bats<span class="w">                                                       </span><span class="c1"># sur le lanceur livré</span>
 </code></pre></div>
-<p>⚠️ Une invocation <strong>sans aucun argument</strong> rend l'usage de la ligne de commande, elle n'ouvre pas la
+<p>Une invocation <strong>sans aucun argument</strong> rend l'usage de la ligne de commande, elle n'ouvre pas la
 fenêtre - y compris pour <code>java -jar vigiechiro-*-shaded.jar</code>, qui demande désormais <code>ihm</code>. Déduire une
 demande d'interface de l'absence d'arguments serait la figure que refuse l'ADR 3828 : une condition
 ambiante tenant lieu de déclaration.</p>

@@ -9523,7 +9523,7 @@ donc un bouton absent de l'écran.</strong></p>
 <p>alors que <code>resultat.definitif()</code> <strong>et</strong> <code>resultat.cause()</code> sont disponibles à cette ligne même, portés
 par <code>TeleverseurArchive.Resultat</code> depuis #3688 et #3689. <code>BilanDepot.echecs</code> était une
 <code>List&lt;String&gt;</code> : l'information était jetée <strong>à l'endroit exact où elle existait</strong>.</p>
-<p>⚠️ C'est la <strong>même forme</strong> que le défaut de #3688, où le PUT S3 d'un seul bloc perdait le statut de sa
+<p>C'est la <strong>même forme</strong> que le défaut de #3688, où le PUT S3 d'un seul bloc perdait le statut de sa
 réponse. Corrigé une fois en amont, le motif survivait en aval - et deux surfaces le payaient.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Quand deux surfaces disent une chose fausse à partir d'une donnée appauvrie, on enrichit la donnée.</strong></p>
@@ -9541,7 +9541,7 @@ pas réparable » : sur un lot mêlé - deux refus de droits, un contenu refusé
 entièrement, alors que se reconnecter réparait deux archives sur trois.</p>
 <p><strong>Se taire quand le geste s'applique à une part, c'est perdre un geste vérifié.</strong> La phrase dit donc
 le compte : « 2 d'entre elles tenaient à vos droits : reconnectez-vous ».</p>
-<p>⚠️ <strong>Ce cas-là ne s'est pas trouvé en relisant le code.</strong> Il s'est vu <strong>en ouvrant l'aperçu</strong>, à la
+<p><strong>Ce cas-là ne s'est pas trouvé en relisant le code.</strong> Il s'est vu <strong>en ouvrant l'aperçu</strong>, à la
 passe 8, sur une bande où seize tests étaient verts.</p>
 <h2 id="le-titre-disait-deposee-quand-il-manquait-trois-archives">Le titre disait « déposée » quand il manquait trois archives<a class="headerlink" href="#le-titre-disait-deposee-quand-il-manquait-trois-archives" title="Permanent link">&para;</a></h2>
 <p>Même aperçu, même passe, second défaut. <code>titre(plan)</code> valait « Nuit déposée sur Vigie-Chiro » dès que

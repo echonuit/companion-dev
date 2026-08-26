@@ -9500,7 +9500,7 @@ presse-papier recevait le chemin : il passait, avec le bouton à cinq cents pixe
 propriété « ce bouton se lit comme désignant ce texte » n'est pas assertable.</p>
 <p>C'est le constat qui a fondé la passe 8 - <em>« un geste testé n'est pas un écran regardé »</em> - et cette
 ADR en donne la forme concrète pour un cas qui revient : <strong>trois occurrences en un seul chantier</strong>.</p>
-<p>⚠️ L'<a href="../3672-deux-cas-ne-font-pas-une-mecanique/">ADR 3672</a> refuse d'abstraire sur deux cas. Il y en a
+<p>L'<a href="../3672-deux-cas-ne-font-pas-une-mecanique/">ADR 3672</a> refuse d'abstraire sur deux cas. Il y en a
 trois, et le troisième n'a pas été trouvé en regardant mais <strong>par un garde</strong>, ce qui indique que la
 forme du défaut est stable.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -9512,7 +9512,7 @@ forme du défaut est stable.</p>
   chiffré le manque à <strong>6 px</strong> et refusé la capture ; la scène de <code>CaptureLot</code> est passée de 1180 à</li>
 <li>Prendre la marge au-delà du strict nécessaire est délibéré : un aperçu qui tient à six pixels
   près rougira au premier mot ajouté ailleurs.</li>
-<li>⚠️ <strong>Ce n'est pas une règle de mise en page générale.</strong> Elle ne dit rien des rangées où aucun contrôle
+<li><strong>Ce n'est pas une règle de mise en page générale.</strong> Elle ne dit rien des rangées où aucun contrôle
   ne désigne son voisin, ni des grilles. Elle porte sur un cas précis : <code>hgrow</code> sur un libellé <strong>suivi
   d'un contrôle qui le désigne</strong>.</li>
 </ul>

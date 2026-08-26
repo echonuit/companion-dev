@@ -9570,7 +9570,7 @@ localités avec coordonnées.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Un carré se rapatrie par son numéro</strong>, depuis la fenêtre de déclaration, via <code>GET /sites?q=</code>. Le site
 arrive rattaché, avec ses points positionnés, <strong>avant</strong> tout dépôt.</p>
-<p>⚠️ <strong>Et l'on n'élargit pas la synchronisation à <code>/moi/sites</code>.</strong> C'est une décision <strong>de ne pas faire</strong>,
+<p><strong>Et l'on n'élargit pas la synchronisation à <code>/moi/sites</code>.</strong> C'est une décision <strong>de ne pas faire</strong>,
 et elle est la plus coûteuse à refaire : elle a demandé un jeton, une sonde sur compte réel, et elle a
 retourné l'intuition de départ. Sans cette ADR, la piste se rouvrirait au premier lecteur qui remarque
 que la route existe.</p>
@@ -9601,11 +9601,11 @@ la même règle interdirait de modifier un site correctement rattaché.</p>
 <li><strong>Un seul mécanisme d'écriture</strong> : <code>ImportSiteDistant</code> est <strong>extrait</strong> de <code>RapprochementSites</code>, pas
   réécrit. Un carré arrivé par la synchronisation périodique et un carré rapatrié à la demande laissent
   le <strong>même état local</strong>.</li>
-<li>⚠️ <strong>Une différence est assumée</strong> : la synchronisation connaît <strong>tous</strong> les sites et peut purger les
+<li><strong>Une différence est assumée</strong> : la synchronisation connaît <strong>tous</strong> les sites et peut purger les
   correspondances qu'elle ne cite plus ; le rapatriement n'en connaît <strong>qu'un</strong> et se contente d'un
   <code>upsert</code>. Purger depuis une vue partielle effacerait des liens valides.</li>
 <li><strong>Le refus de dépôt s'appuie sur cette route</strong> (<a href="../3854-un-refus-ne-conseille-que-ce-qu-il-a-verifie/">ADR 3854</a>).</li>
-<li>⚠️ <strong>Le geste reste absent de la ligne de commande</strong> (#3856) : <code>creer-site</code> fabrique encore le doublon
+<li><strong>Le geste reste absent de la ligne de commande</strong> (#3856) : <code>creer-site</code> fabrique encore le doublon
   que l'écran empêche. La parité n'est donc pas tenue, et c'est écrit plutôt que tu.</li>
 </ul>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>

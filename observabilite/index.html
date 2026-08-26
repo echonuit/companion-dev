@@ -9622,7 +9622,7 @@ compose par <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/ma
 </blockquote>
 <p>La chaîne n'était pas absente, elle était <strong>exacte et sans valeur</strong>. Rien ne rougissait, parce qu'un
 texte non vide a l'air d'un message.</p>
-<p>⚠️ <strong>Et ce n'est pas propre à la réflexion.</strong> <code>RuntimeException(Throwable)</code> - comme <strong>tous</strong> les
+<p><strong>Et ce n'est pas propre à la réflexion.</strong> <code>RuntimeException(Throwable)</code> - comme <strong>tous</strong> les
 constructeurs <code>(Throwable)</code> de la bibliothèque standard - pose comme message le <code>toString()</code> de sa
 cause. La même chaîne inutile sort de n'importe quelle enveloppe.</p>
 <p><strong>La règle</strong> : on descend la chaîne des causes et l'on retient le <strong>dernier message informatif</strong>, en
@@ -9630,7 +9630,7 @@ cause. La même chaîne inutile sort de n'importe quelle enveloppe.</p>
 profonde peut être un <code>NullPointerException</code> muet, et dérouler jusqu'au bout <strong>appauvrirait</strong> l'alerte
 en ayant l'air de la corriger. Quand toute la chaîne est muette, le repli nomme le <strong>type court</strong> et
 renvoie au journal, jamais <code>null</code> ni un nom pleinement qualifié.</p>
-<p>⚠️ <strong>Deux formes à ne pas réécrire à la main</strong>, parce qu'elles produisent exactement ce que la règle
+<p><strong>Deux formes à ne pas réécrire à la main</strong>, parce qu'elles produisent exactement ce que la règle
 interdit :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">echec</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">echec</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">echec</span><span class="p">.</span><span class="na">toString</span><span class="p">();</span><span class="w">      </span><span class="c1">// « java.lang.XxxException »</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">echec</span><span class="p">.</span><span class="na">getMessage</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">echec</span><span class="p">.</span><span class="na">getClass</span><span class="p">().</span><span class="na">getSimpleName</span><span class="p">()</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">...</span><span class="w">      </span><span class="c1">// idem, en plus court</span>
@@ -9638,7 +9638,7 @@ interdit :</p>
 </code></pre></div>
 <p>Elles sont <strong>comptées</strong> : <code>scripts/adr/3947-message-enveloppe.py</code> porte un cliquet, et il ne descend
 jamais tout seul.</p>
-<p>⚠️ <strong>Chaque surface passe son « où regarder ».</strong> Le repli qui nomme le journal renvoie vers
+<p><strong>Chaque surface passe son « où regarder ».</strong> Le repli qui nomme le journal renvoie vers
 <code>menu principal &gt; Ouvrir le dossier des journaux</code> à l'écran, et vers le dossier <code>logs/</code> en ligne de
 commande. Un terminal n'a pas de menu principal : lui en désigner un produirait un message non vide,
 donc d'apparence correcte, et inapplicable. C'est le défaut de l'ADR 3470 déplacé d'un cran par sa
@@ -9649,7 +9649,7 @@ propre correction, et c'est pourquoi <code>OU_REGARDER_IHM</code> et <code>OU_RE
 n'en offre pas : <code>ProvisionException.getMessage()</code> cherche les numéros de ligne pour composer son
 rapport, lit du bytecode <strong>major 69</strong> avec l'ASM embarqué de Guice 7.0.0, et lève
 <code>IllegalArgumentException: Unsupported class file major version 69</code>.</p>
-<p>⚠️ <strong>La pile se lit à l'envers de ce qu'on croit.</strong> Guice a d'abord échoué à fournir quelque chose ;
+<p><strong>La pile se lit à l'envers de ce qu'on croit.</strong> Guice a d'abord échoué à fournir quelque chose ;
 c'est en <strong>racontant</strong> cet échec qu'il a explosé. Le message n'annonce pas le défaut, il annonce la
 panne du dispositif qui devait l'annoncer - et le vrai défaut est à trois <code>Caused by</code> de là. Guice le
 dit une ligne plus haut, et personne ne la lit :</p>
@@ -9673,7 +9673,7 @@ bouclerait ici referait #3700 par un autre chemin.</p>
 cause immédiatement :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>./mvnw<span class="w"> </span>javafx:run<span class="w"> </span>-Dguice_include_stack_traces<span class="o">=</span>OFF
 </code></pre></div>
-<p>⚠️ <strong>Le défaut est en amont.</strong> L'ASM de Guice 7.0.0 ne lit pas major 69 ; une version qui le lit
+<p><strong>Le défaut est en amont.</strong> L'ASM de Guice 7.0.0 ne lit pas major 69 ; une version qui le lit
 règle tout, et rien de ce qui précède n'est perdu - le repli ne se déclenche que si le formatage
 échoue.</p>
 <h2 id="dette-soldee">Dette soldée<a class="headerlink" href="#dette-soldee" title="Permanent link">&para;</a></h2>

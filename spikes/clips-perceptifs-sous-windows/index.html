@@ -9905,7 +9905,7 @@ plus un dispositif vivant.</p>
 <p>Les neuf pièces ont été retournées <strong>à la main</strong> le 22 août 2026, après que le banc a appris à
 dessiner le pointeur : ce sont donc les premiers clips de cette page où l'on voit le <strong>geste</strong> et
 non seulement son effet.</p>
-<p>⚠️ Aucun workflow n'alimente <code>clips-windows-spike</code> depuis le retrait de celui du spike, et
+<p>Aucun workflow n'alimente <code>clips-windows-spike</code> depuis le retrait de celui du spike, et
 <code>tournage-recette.yml</code> ne publie <strong>délibérément</strong> nulle part, pour qu'un second dispositif ne
 puisse pas contredire <code>recette-filmee.yml</code>. La date que portent ces clips est donc celle d'une
 <strong>main</strong>, pas d'un dispositif : si le banc change encore, cette page gèle sans que rien ne le
@@ -10155,7 +10155,7 @@ JVM, et <code>S1-37</code> manquait à l'index alors que son clip était bien l�
 fichier unique vers le numéro de processus, sans la retirer : un identifiant qui se réemploie
 n'identifie pas. L'identité porte désormais le <code>pid</code>, qui se lit et se rattache à une ligne de
 journal, suivi d'un UUID.</p>
-<p>⚠️ Un cas de garde <strong>verrouillait</strong> le défaut. Il rejouait deux fois la même identité et affirmait
+<p>Un cas de garde <strong>verrouillait</strong> le défaut. Il rejouait deux fois la même identité et affirmait
 qu'une seule ligne devait rester : il présentait donc l'écrasement comme le comportement voulu. Il
 porte maintenant sur la déduplication par cas et test, qui est la vraie promesse de l'index.</p>
 <p>Ce qui reste, et qui est nommé plutôt que masqué : un dossier de tournage <strong>réutilisé</strong> accumule les
@@ -10259,12 +10259,12 @@ existe pour cela. <strong>Mêmes classes, mêmes neuf cas, mêmes respirations, 
 <p><strong>+1,7 %.</strong> Autant dire rien, et c'était attendu : sur ces 106 secondes, <strong>89,8 sont des
 respirations</strong>, que les deux bancs paient à l'identique. Le temps d'un tournage perceptif n'est pas
 du calcul, c'est de l'attente délibérée. Aucun choix d'implémentation ne la rendra.</p>
-<p>⚠️ Ces deux colonnes sont mesurées <strong>à une seule JVM des deux côtés</strong>, pour que la comparaison ne
+<p>Ces deux colonnes sont mesurées <strong>à une seule JVM des deux côtés</strong>, pour que la comparaison ne
 porte que sur le banc. C'est une contrainte du banc bash, pas du banc Java : une fois <code>IndexDesCas</code>
 corrigé, celui-ci tourne au <code>forkCount=1C</code> du dépôt, et les quatre classes descendent alors à
 1 min 54 s sous Linux. Sur neuf cas dont l'essentiel du temps est du sommeil, le parallélisme ne
 rapporte presque rien ; sur un tournage complet, c'est l'inverse.</p>
-<p>⚠️ Ne pas conclure « les deux bancs se valent » : ils ne coûtent pareil qu'<strong>à périmètre égal</strong>, et
+<p>Ne pas conclure « les deux bancs se valent » : ils ne coûtent pareil qu'<strong>à périmètre égal</strong>, et
 c'est le périmètre qui diffère.</p>
 <table>
 <thead>

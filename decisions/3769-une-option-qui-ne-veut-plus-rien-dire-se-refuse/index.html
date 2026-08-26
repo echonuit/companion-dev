@@ -9495,7 +9495,7 @@ effet.</p>
 <p><code>--pages</code> et <code>--tout</code> avec <code>--carre</code> : la recherche porte sur la collection <strong>entière</strong>, il n'y a donc
 plus d'étendue à borner. Les accepter en silence serait exactement ce que ce dépôt reproche à <code>where=</code>
 côté plateforme - un paramètre qu'on croit avoir posé, et qui ne fait rien.</p>
-<p>⚠️ Le refus tombe <strong>avant</strong> toute lecture de jeton : un test <code>bats</code> exige que le message ne parle pas de
+<p>Le refus tombe <strong>avant</strong> toute lecture de jeton : un test <code>bats</code> exige que le message ne parle pas de
 jeton, donc qu'aucun réseau n'a été touché.</p>
 <h3 id="le-denominateur-ne-disparait-pas-il-change-de-nature">Le dénominateur ne disparaît pas, il change de nature<a class="headerlink" href="#le-denominateur-ne-disparait-pas-il-change-de-nature" title="Permanent link">&para;</a></h3>
 <p>« 1 site lu : collection complète » serait <strong>exact et pourtant trompeur</strong> - on n'a pas parcouru la
@@ -9513,7 +9513,7 @@ coup - c'est la même règle que ci-dessus, appliquée à nous-mêmes.</p>
   la ligne de commande (#3769).</li>
 <li><strong>Un usage devient impossible</strong> : <code>--carre</code> ne peut plus servir à échantillonner. C'est voulu ; il ne
   le servait qu'en donnant une réponse fausse.</li>
-<li>⚠️ <strong><code>q</code> cherche des mots entiers, pas des préfixes</strong> (<code>13071</code> ne ramène pas <code>130711</code>). Une éventuelle
+<li><strong><code>q</code> cherche des mots entiers, pas des préfixes</strong> (<code>13071</code> ne ramène pas <code>130711</code>). Une éventuelle
   recherche partielle ne pourra pas s'appuyer dessus.</li>
 </ul>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>

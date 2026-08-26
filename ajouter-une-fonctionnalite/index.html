@@ -9699,7 +9699,7 @@ la main serait la duplication que le chantier #3092 a supprimée.</p>
 <li>le <strong>ViewModel</strong> expose deux listes - <code>trucs()</code> (tout) et <code>trucsFiltres()</code> (une <code>FilteredList</code>) -
    plus son <code>Filtres&lt;Truc&gt;</code> ;</li>
 <li>la <strong>table</strong> se pose sur une <code>SortedList</code> <strong>par-dessus</strong> la liste filtrée, comparateur lié à celui
-   de la table. ⚠️ Une <code>FilteredList</code> posée nue est <strong>non modifiable</strong> : <code>TableView</code> renonce alors à
+   de la table. Une <code>FilteredList</code> posée nue est <strong>non modifiable</strong> : <code>TableView</code> renonce alors à
    trier et <strong>vide son <code>sortOrder</code> en silence</strong> ;</li>
 <li>un <strong>catalogue</strong> <code>CriteresMaFeature</code> déclare les critères (<code>CritereListe</code>, <code>CritereBooleen</code>,
    <code>CritereLieu</code>) ; les clés <strong>partagées</strong> viennent de <code>ClesCriteres</code>, les clés propres restent chez

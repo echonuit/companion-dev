@@ -9519,7 +9519,7 @@ décide du verdict.</p>
 <p>Mesuré : <code>CartesAccueilTest</code> a rendu <strong>vert à 8 h 14 et rouge à 15 h 34</strong>, sur le <strong>même commit</strong> et la
 <strong>même image</strong> <code>macos-26-arm64</code>. Puis, joué <strong>seul</strong> sous macOS - donc sans voisin -, il <strong>échoue</strong>.
 L'écart tient à 20,43 px contre 17,666 px selon la police rendue.</p>
-<p>⚠️ <strong>Le défaut ne se voit pas depuis un poste Linux.</strong> <code>Noto Sans</code> y est une police système : la suite
+<p><strong>Le défaut ne se voit pas depuis un poste Linux.</strong> <code>Noto Sans</code> y est une police système : la suite
 locale la trouve installée ou non. Une expérience d'isolement menée là est <strong>aveugle par
 construction</strong> - elle a été faite, elle n'a rien montré, et elle a failli servir de preuve.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
@@ -9542,11 +9542,11 @@ pas, un en règle qui passe par <code>Habillage</code>.</p>
 <li><strong>Le verdict de ces tests ne dépend plus de leurs voisins</strong>, ni de la machine qui les joue.</li>
 <li><strong>Ce que la règle coûte</strong> : un test de mesure ne peut plus se contenter de <code>new Scene</code>. C'est une
   ligne de plus, et elle dit ce qu'elle fait.</li>
-<li>⚠️ <strong>Le correctif est en grande partie prophylactique, et il faut le dire.</strong> Les dix passaient sous
+<li><strong>Le correctif est en grande partie prophylactique, et il faut le dire.</strong> Les dix passaient sous
   macOS : leurs assertions ont de la marge. Seul <code>CartesAccueilTest</code> était assez serré pour basculer.
   Ce qu'ils partagent est la <strong>faiblesse de structure</strong>, pas un défaut avéré - le jour où l'un resserre
   une assertion ou change un libellé, il bascule, et personne ne saura pourquoi.</li>
-<li>⚠️ <strong>Ce que la CI voit exactement n'est pas mesuré.</strong> L'ADR 3361 note que <code>sans-serif</code> se résout en
+<li><strong>Ce que la CI voit exactement n'est pas mesuré.</strong> L'ADR 3361 note que <code>sans-serif</code> se résout en
   « une police plus large » sur le runner Ubuntu. Si ce n'est pas <code>Noto Sans</code>, ces dix tests pouvaient
   y basculer aussi - la question reste ouverte, faute d'avoir sondé le runner.</li>
 </ul>

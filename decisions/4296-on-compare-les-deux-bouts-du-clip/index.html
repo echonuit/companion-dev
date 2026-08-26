@@ -9451,7 +9451,7 @@
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../4274-on-compare-la-derniere-image-pas-le-chemin/">ADR 4274</a> ne retenait que l'image finale, et
 écrivait sa contrepartie : on compare la destination, pas le chemin.</p>
-<p>⚠️ Cette limite mordait précisément là où l'<a href="../4166-un-etat-ne-se-juge-que-contre-son-contraire/">ADR 4166</a>
+<p>Cette limite mordait précisément là où l'<a href="../4166-un-etat-ne-se-juge-que-contre-son-contraire/">ADR 4166</a>
 demande le plus. Celle-ci exige qu'un cas qui fait juger un état montre <strong>cet état et son contraire dans
 le même clip</strong> : le geste offert puis empêché, le bouton grisé à côté d'un bouton actif. Pour ces cas,
 ce qui fait le cas est le contraste entre deux moments, et l'image finale n'en gardait qu'un. <strong>Plus un
@@ -9481,7 +9481,7 @@ cas respectait 4166, moins la comparaison le couvrait.</strong></p>
 </table>
 <p>La première image est donc <strong>plus stable que la dernière</strong>, sur les 51 cas sans exception. L'application
 vient de se monter, aucune animation n'a commencé.</p>
-<p>⚠️ <strong>Stable ne suffisait pas.</strong> Une mesure toujours nulle peut être parfaitement fidèle ou parfaitement
+<p><strong>Stable ne suffisait pas.</strong> Une mesure toujours nulle peut être parfaitement fidèle ou parfaitement
 aveugle, et les deux se lisent pareil. Vérifié : les premières images de deux cas <strong>différents</strong>
 diffèrent de 2,4 à 3 %. Elles distinguent donc bien les cas, au lieu de montrer le même écran d'accueil
 à tout le monde.</p>
@@ -9494,7 +9494,7 @@ de la fin, et celui du début reste <strong>inconnu</strong> plutôt que suppos�
 <p>Le classement se fait sur le <strong>plus grand des deux rapports</strong> : un cas qui a bougé à l'un ou l'autre
 bout remonte.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>Les images du début ne sont produites que si le début a bougé.</strong> Son plancher valant 0,000 % sur
+<p><strong>Les images du début ne sont produites que si le début a bougé.</strong> Son plancher valant 0,000 % sur
 les 51 cas, les produire systématiquement ferait cinquante montages strictement identiques - du bruit
 qui noierait les deux ou trois qui comptent. Vérifié sur une comparaison réelle : 51 montages de fin,
 <strong>zéro</strong> montage de début.</p>

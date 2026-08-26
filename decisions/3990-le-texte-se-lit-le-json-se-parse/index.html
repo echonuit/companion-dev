@@ -6768,7 +6768,7 @@
   <a href="#ce-que-le-garde-protege-et-qui-netait-garde-par-rien" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ Ce que le garde protège, et qui n'était gardé par rien
+        Ce que le garde protège, et qui n'était gardé par rien
       
     </span>
   </a>
@@ -9383,7 +9383,7 @@
   <a href="#ce-que-le-garde-protege-et-qui-netait-garde-par-rien" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ Ce que le garde protège, et qui n'était gardé par rien
+        Ce que le garde protège, et qui n'était gardé par rien
       
     </span>
   </a>
@@ -9482,7 +9482,7 @@ casserait tout consommateur en aval, et le tri lexicographique avec lui.</p>
 <p>L'en-tête d'<code>Horodatage</code> déclare donc le JSON aux côtés des deux familles qu'elle ne couvrait déjà
 pas - les noms de fichiers, qui doivent trier, et la lecture de fichiers tiers, qui doit rester fidèle
 au producteur.</p>
-<h2 id="ce-que-le-garde-protege-et-qui-netait-garde-par-rien">⚠️ Ce que le garde protège, et qui n'était gardé par rien<a class="headerlink" href="#ce-que-le-garde-protege-et-qui-netait-garde-par-rien" title="Permanent link">&para;</a></h2>
+<h2 id="ce-que-le-garde-protege-et-qui-netait-garde-par-rien">Ce que le garde protège, et qui n'était gardé par rien<a class="headerlink" href="#ce-que-le-garde-protege-et-qui-netait-garde-par-rien" title="Permanent link">&para;</a></h2>
 <p>Le test du <code>--json</code> assertait huit clés et <strong>ni <code>date</code> ni <code>deposeLe</code></strong>. Rien n'empêchait quelqu'un de
 franciser le JSON par souci de cohérence, et <strong>rien ne l'aurait signalé</strong> : les tests seraient restés
 verts, et le premier à s'en apercevoir aurait été l'utilisateur d'un script.</p>
@@ -9491,7 +9491,7 @@ de ne <strong>pas</strong> changer quelque chose n'est tenue que si un test roug
 <h2 id="ce-qui-reste-deliberement-hors-de-cette-decision">Ce qui reste délibérément hors de cette décision<a class="headerlink" href="#ce-qui-reste-deliberement-hors-de-cette-decision" title="Permanent link">&para;</a></h2>
 <p>Deux commandes portent, sous le même nom <code>dateDebut</code>, des <strong>datetimes avec décalage</strong> venus de l'API
 (<code>2026-07-03T22:00:00+02:00</code>) : <code>reconstruire-passage</code> et <code>lister-participations-vigiechiro</code>.</p>
-<p>⚠️ <strong><code>Horodatage.dateSeule</code> ne les parse pas et les rendrait inchangés, en silence</strong> - un correctif qui
+<p><strong><code>Horodatage.dateSeule</code> ne les parse pas et les rendrait inchangés, en silence</strong> - un correctif qui
 se présente en succès sans rien corriger. Et le fond y est autre : afficher un instant portant un
 décalage est une décision de <strong>fuseau</strong>, pas de format, sur un terrain qui a déjà mordu
 (<a href="../3406-une-nuit-porte-le-fuseau-de-son-site/">ADR 3406</a> : trois machines, trois instants envoyés).</p>

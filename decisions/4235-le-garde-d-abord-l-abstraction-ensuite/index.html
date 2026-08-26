@@ -9475,7 +9475,7 @@ attend.</p>
 <p><strong>Un compteur d'inspection</strong>, qui refuse zéro. Un garde vert qui n'a rien regardé est le faux vert le
 plus difficile à voir : personne ne relit un test qui passe. Cf.
 <a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">ADR 2748</a>.</p>
-<p>⚠️ <strong>Et il mesure la propriété, pas un proxy.</strong> Le premier jet cherchait la chaîne <code>MainView.fxml</code> pour
+<p><strong>Et il mesure la propriété, pas un proxy.</strong> Le premier jet cherchait la chaîne <code>MainView.fxml</code> pour
 décider qu'une classe montait le chrome. Il a déclaré fautive la première classe migrée sur
 <code>BancDeRecette</code> - qui monte le chrome sans le nommer, puisque le banc le nomme pour elle. Un garde qui
 mesure un proxy se trompe dès que le proxy change.</p>

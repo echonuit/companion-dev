@@ -9453,7 +9453,7 @@ des clips parfaitement valides.</p>
 job exécute</strong>. Trois pas, dont aucun ne se voit en lisant le YAML : <code>ConnexionModule.jetonPonctuel()</code>
 lit <code>System.getenv</code>, les forks surefire <strong>héritent</strong> de l'environnement du job, et
 <code>ConnexionModule.urlDeBase()</code> vaut la <strong>production</strong> par défaut.</p>
-<p>⚠️ Une parade structurelle a été cherchée, puis <strong>retirée après mesure</strong> : un compte rétrogradé au rôle
+<p>Une parade structurelle a été cherchée, puis <strong>retirée après mesure</strong> : un compte rétrogradé au rôle
 <code>Lecteur</code>, pour que le serveur refuse d'écrire plutôt que notre discipline. <code>grep -rn "roles=.Lecteur"</code>
 est <strong>vide</strong>. Le rôle est déclaré dans <code>ROLE_RULES</code> et <strong>aucune route ne l'accepte</strong>, <code>GET /moi</code>
 compris. Un jeton en lecture seule <strong>n'existe pas</strong> sur cette plateforme.</p>
@@ -9470,7 +9470,7 @@ les journaux. À terme ces clips sont publiés, et une fuite sur le tag d'une ve
 d'exposition de quatorze jours à la durée d'un tournage. Un jeton révocable ne peut pas être celui du
 contrat hebdomadaire, qui vit de durer : d'où un <strong>second secret sur le même compte</strong>, la plateforme
 stockant une carte de jetons par compte.</p>
-<p>⚠️ L'axe n'est <strong>pas</strong> l'accès. Même compte, mêmes droits, et un second secret de dépôt n'isole rien
+<p>L'axe n'est <strong>pas</strong> l'accès. Même compte, mêmes droits, et un second secret de dépôt n'isole rien
 puisque tout workflow du dépôt lit tout secret du dépôt. L'axe est le <strong>cycle de vie</strong>, et c'est la
 seule raison qui justifie deux secrets.</p>
 <h2 id="ce-que-le-premier-tir-a-appris-et-quaucun-vert-local-naurait-dit">Ce que le premier tir a appris, et qu'aucun vert local n'aurait dit<a class="headerlink" href="#ce-que-le-premier-tir-a-appris-et-quaucun-vert-local-naurait-dit" title="Permanent link">&para;</a></h2>

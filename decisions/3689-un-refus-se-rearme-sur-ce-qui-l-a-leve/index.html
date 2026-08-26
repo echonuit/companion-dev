@@ -9476,7 +9476,7 @@ cesse de proposer une reprise sur ces unités : le bouton ne promet plus ce qu'i
 <p>Mais <strong>rien ne les réarme</strong>. Seule une tentative réussie effaçait le drapeau - or c'est précisément la
 tentative qu'on n'offre plus. Une nuit dont toutes les archives ont été refusées reste donc coincée,
 sans recours et sans que rien ne le dise.</p>
-<p>⚠️ L'issue avait anticipé ce moment : « c'est acceptable aujourd'hui, parce que la reprise est encore
+<p>L'issue avait anticipé ce moment : « c'est acceptable aujourd'hui, parce que la reprise est encore
 offerte ; ça ne le sera plus le jour où elle cessera de l'être ». #3687 est ce jour-là.</p>
 <h2 id="les-trois-pistes-ecartees">Les trois pistes écartées<a class="headerlink" href="#les-trois-pistes-ecartees" title="Permanent link">&para;</a></h2>
 <p>Chacune réarme <strong>à côté</strong> de la cause :</p>
@@ -9522,7 +9522,7 @@ redevine.</p>
 <p>Distinguer les deux familles demandait donc une <strong>colonne</strong> (<code>cause_refus</code>, migration V41), décidée à
 l'émission depuis le statut HTTP. C'est une migration et un champ de plus ; c'était l'arbitrage, et il a
 été pris explicitement plutôt que contourné par une lecture de chaîne.</p>
-<p>⚠️ Une <strong>colonne</strong> et non un statut, pour la raison que V39 développe déjà : <code>restantes()</code> rend « tout
+<p>Une <strong>colonne</strong> et non un statut, pour la raison que V39 développe déjà : <code>restantes()</code> rend « tout
 sauf déposé », et <code>toutesDeposees()</code> vaut « <code>restantes()</code> est vide ». Un statut ferait basculer le
 passage en DÉPOSÉ alors qu'il manque des sons.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -9551,7 +9551,7 @@ mécanisme ne remet à zéro. Il ne vaut <strong>pas</strong> pour l'unité, qui
 </ul>
 <p>Mesuré par <code>DepotVigieChiroTest#un_refus_definitif_repart_au_depot_suivant</code> : un 422, puis une archive
 régénérée que la plateforme accepte, et l'unité passe DÉPOSÉ au second dépôt.</p>
-<p>⚠️ <strong>Ce que #3687 a retiré, c'est la PROMESSE d'une reprise, pas la POSSIBILITÉ d'un nouvel essai.</strong>
+<p><strong>Ce que #3687 a retiré, c'est la PROMESSE d'une reprise, pas la POSSIBILITÉ d'un nouvel essai.</strong>
 Confondre les deux a produit une issue, un avertissement faux dans la documentation utilisateur, et
 une assertion de test qui verrouillait la confusion - tous trois corrigés par #3946.</p>
 <p><strong>Conséquence sur ce que le produit dit</strong> : le geste étant vérifié, il se nomme (ADR 3854). Le compte

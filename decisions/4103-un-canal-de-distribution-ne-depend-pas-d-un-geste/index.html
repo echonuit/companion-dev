@@ -9555,7 +9555,7 @@ faisait à la publication, et le paquet retardait sur les releases.</p>
 manifeste extrayait encore le <code>.deb</code> <strong>2.185.0</strong> alors que la <strong>2.187.0</strong> était publiée depuis la
 veille. La commande n'existait donc pas dans le paquet installé, pendant que la documentation
 utilisateur l'annonçait.</p>
-<p>⚠️ <strong>Le retard n'est pas le défaut, il en est le symptôme.</strong> Le défaut est qu'un canal de distribution
+<p><strong>Le retard n'est pas le défaut, il en est le symptôme.</strong> Le défaut est qu'un canal de distribution
 dépende d'un geste que rien ne réclame : une publication réussie qui laisse le Flatpak où il était est
 un état parfaitement <strong>vert</strong>. Aucun dispositif ne pouvait rougir, parce qu'aucun ne regardait là.</p>
 <h2 id="ce-que-ladr-2744-avait-tranche-et-pourquoi-on-la-depasse">Ce que l'ADR 2744 avait tranché, et pourquoi on la dépasse<a class="headerlink" href="#ce-que-ladr-2744-avait-tranche-et-pourquoi-on-la-depasse" title="Permanent link">&para;</a></h2>
@@ -9600,7 +9600,7 @@ existe, pas avant.</p>
 <ul>
 <li><strong>Premier <code>workflow_call</code> du dépôt.</strong> Les dix-huit autres workflows restent indépendants.</li>
 <li><strong>Le train s'allonge</strong> d'une quinzaine de minutes le mercredi.</li>
-<li>⚠️ <strong>Le chaînage ne s'observe qu'au premier train</strong> : <code>release.yml</code> ne s'exécute pas sur les PR, donc
+<li><strong>Le chaînage ne s'observe qu'au premier train</strong> : <code>release.yml</code> ne s'exécute pas sur les PR, donc
   aucune PR ne peut prouver que l'appel part. Ce qui est vérifié avant fusion se limite à la validité
   du montage - conditions de job, butoirs, renvois, YAML. Le reste se constate mercredi.</li>
 </ul>

@@ -9467,7 +9467,7 @@ réseau</strong> y deviennent le même silence - et de ce silence unique, la gar
 <p>Ni les droits, ni la validité, ni la nature du jeton : sa <strong>durée de vie</strong>. Aucune des quatre
 hypothèses formulées ne l'envisageait, et le mainteneur a démenti deux fois, à raison, l'accusation
 portée contre son jeton.</p>
-<p>⚠️ <strong>Le coût n'est pas le temps perdu, c'est la confiance mal placée.</strong> Un dispositif qui conclut sans
+<p><strong>Le coût n'est pas le temps perdu, c'est la confiance mal placée.</strong> Un dispositif qui conclut sans
 preuve produit une affirmation qui <em>ressemble</em> à une mesure. On la croit, on cherche là où elle
 désigne, et on ne revient pas interroger l'instrument - c'est le dernier endroit qu'on soupçonne.</p>
 <p>La doctrine existait pourtant déjà dans ce dépôt, écrite pour #2748, dans <code>veille-contrat-api.sh</code> :</p>
@@ -9510,7 +9510,7 @@ HEAD amont, qui ne dépend d'aucun tag et mesure <strong>notre</strong> retard, 
 <p>Les seuils sont <strong>calibrés sur une mesure</strong> et non choisis : le pire écart du dépôt était de 143 jours,
 d'où 180 pour avertir et 365 pour rougir. La garde reste muette sur l'état sain du jour, et rouge sur
 le cas qui lui avait échappé.</p>
-<p>⚠️ Accepter « pas de tag » sans distinction rouvrirait le silence que l'ADR 3501 fermait. Trois cas,
+<p>Accepter « pas de tag » sans distinction rouvrirait le silence que l'ADR 3501 fermait. Trois cas,
 donc, séparés par le <strong>commentaire</strong> : une version annoncée que le SHA ne porte plus est un tag déplacé
 en amont, donc <strong>rouge</strong> ; une branche annoncée est un épinglage assumé, seul l'âge juge ; un
 commentaire <strong>absent</strong> ne permet pas de trancher, donc <strong>rouge</strong> plutôt que rassurant.</p>
@@ -9522,7 +9522,7 @@ commentaire <strong>absent</strong> ne permet pas de trancher, donc <strong>roug
 <li><strong>Un auto-test qui ne vérifie que des codes de sortie ne suffit pas.</strong> Neutraliser la reconnaissance
   du 403 ne change pas le verdict - la garde rougit de toute façon par le chemin générique. Seul un
   test sur le <strong>message</strong> distingue « rouge pour la bonne raison » de « rouge en accusant autre chose ».</li>
-<li>⚠️ <strong>Une neutralisation qui ne modifie rien rend un vert qui ne prouve rien.</strong> Rencontré deux fois
+<li><strong>Une neutralisation qui ne modifie rien rend un vert qui ne prouve rien.</strong> Rencontré deux fois
   pendant ce chantier, après #3293 : la première tentative n'avait pas appliqué sa substitution, et
   l'auto-test est resté vert. Vérifier que la ligne a <strong>effectivement</strong> changé fait partie de
   l'éprouvage.</li>

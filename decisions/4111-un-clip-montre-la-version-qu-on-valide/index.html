@@ -9514,7 +9514,7 @@ vert de plus.</p>
 </blockquote>
 <p>Cette condition est levée : l'EPIC #3667 est clos, #4056 a publié les clips, et
 <code>CorrespondanceRecetteTest</code> lit <strong>11 sessions et 403 cas</strong>.</p>
-<p>⚠️ Le défaut est celui de l'<a href="../4103-un-canal-de-distribution-ne-depend-pas-d-un-geste/">ADR 4103</a>, sur
+<p>Le défaut est celui de l'<a href="../4103-un-canal-de-distribution-ne-depend-pas-d-un-geste/">ADR 4103</a>, sur
 un autre dispositif : une version publiée sans tournage laisse en ligne les clips d'une version
 antérieure, et c'est un état parfaitement <strong>vert</strong>. Pire que pour un paquet : un clip <strong>a toujours
 l'air juste</strong>, puisqu'il montre bien un produit qui fonctionne. Rien, en le regardant, ne dit de
@@ -9552,14 +9552,14 @@ version publiée montre, <strong>par construction</strong>.</p>
 était manuel ; ça devient <strong>faux</strong> dès que le train l'appelle. Le corps se réécrit donc à chaque
 tournage : la version filmée, ou le SHA court quand le tournage est manuel - auquel cas il le <strong>dit</strong>
 plutôt que de laisser croire à une correspondance.</p>
-<p>⚠️ C'est la moitié qui compte. Automatiser sans nommer la version aurait produit des clips justes et
+<p>C'est la moitié qui compte. Automatiser sans nommer la version aurait produit des clips justes et
 <strong>indatables</strong> : le défaut d'origine déplacé d'un cran, pas corrigé.</p>
 <h3 id="3-le-cout-ne-decide-pas">3. Le coût ne décide pas<a class="headerlink" href="#3-le-cout-ne-decide-pas" title="Permanent link">&para;</a></h3>
 <p>Cinq minutes pour 58 clips, mesurées le 2026-08-20. C'est l'usage - jouer la recette d'une version -
 qui décide du moment, pas la durée.</p>
 <h2 id="ce-que-la-decision-ne-couvre-pas">Ce que la décision NE couvre pas<a class="headerlink" href="#ce-que-la-decision-ne-couvre-pas" title="Permanent link">&para;</a></h2>
 <p><strong><code>capture-vues.yml</code></strong>, qui produit les PNG d'aperçu.</p>
-<p>⚠️ <strong>La première rédaction disait qu'il « pose exactement la même question ». C'est faux, et la mesure
+<p><strong>La première rédaction disait qu'il « pose exactement la même question ». C'est faux, et la mesure
 l'a dit le jour même</strong> : il n'est pas manuel. Il tourne sur <code>push: main</code> <strong>et</strong> sur chaque
 <code>pull_request</code>, en cinq minutes, et publie ses aperçus par une PR auto-mergée. Le défaut que cette ADR
 corrige - un dispositif qui dépend d'un geste que rien ne réclame - ne l'atteint donc pas.</p>
@@ -9596,7 +9596,7 @@ suit le code, un artefact publié à côté suit les versions.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Le train gagne un second <code>workflow_call</code>, en parallèle du premier : environ cinq minutes de plus.</li>
-<li>⚠️ <strong>Le chaînage ne s'observe qu'au premier train</strong> : <code>release.yml</code> ne s'exécute pas sur les PR. Ce
+<li><strong>Le chaînage ne s'observe qu'au premier train</strong> : <code>release.yml</code> ne s'exécute pas sur les PR. Ce
   qui est vérifié avant fusion se limite au montage - conditions de job, butoirs, renvois, YAML.</li>
 <li>Un tournage manuel reste possible, et se distingue désormais d'un tournage de publication dans le
   corps de la pré-version.</li>

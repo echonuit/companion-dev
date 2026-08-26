@@ -9443,7 +9443,7 @@
   <a href="#et-une-voie-de-secours-motivee-par-ecrit-3561" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ Et une voie de secours, motivée par écrit (#3561)
+        Et une voie de secours, motivée par écrit (#3561)
       
     </span>
   </a>
@@ -9549,7 +9549,7 @@
   <a href="#module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ module-info.java est exclu de cette passe, et c'est un renoncement assumé
+        module-info.java est exclu de cette passe, et c'est un renoncement assumé
       
     </span>
   </a>
@@ -9959,7 +9959,7 @@
   <a href="#et-une-voie-de-secours-motivee-par-ecrit-3561" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ Et une voie de secours, motivée par écrit (#3561)
+        Et une voie de secours, motivée par écrit (#3561)
       
     </span>
   </a>
@@ -10065,7 +10065,7 @@
   <a href="#module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ module-info.java est exclu de cette passe, et c'est un renoncement assumé
+        module-info.java est exclu de cette passe, et c'est un renoncement assumé
       
     </span>
   </a>
@@ -10223,13 +10223,13 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>duree-du-portail</code></td>
 <td>push <code>main</code> + PR</td>
-<td>Compare la <strong>médiane</strong> des 12 dernières exécutions réussies sur <code>main</code> à celle des 12 d'avant, et <strong>avertit</strong> au-delà de 20 % d'écart. Une CI riche se dégrade par accumulation, jamais d'un coup : chaque ajout coûte trente secondes que personne ne remarque. ⚠️ Deux <strong>médianes</strong>, et non une exécution contre un seuil : sur trente exécutions, deux durent le double des autres, et un butoir aurait rougi sans qu'aucune PR soit fautive (#3508)</td>
+<td>Compare la <strong>médiane</strong> des 12 dernières exécutions réussies sur <code>main</code> à celle des 12 d'avant, et <strong>avertit</strong> au-delà de 20 % d'écart. Une CI riche se dégrade par accumulation, jamais d'un coup : chaque ajout coûte trente secondes que personne ne remarque. Deux <strong>médianes</strong>, et non une exécution contre un seuil : sur trente exécutions, deux durent le double des autres, et un butoir aurait rougi sans qu'aucune PR soit fautive (#3508)</td>
 <td>Non - il avertit</td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/suite-sous-windows-et-macos.yml">suite-sous-windows-et-macos.yml</a></td>
 <td><strong>hebdomadaire (mardi 6 h UTC)</strong> + manuel</td>
-<td>Lance la suite <strong>entière</strong> sous Windows et macOS, et <strong>conclut</strong> : rouge dès le premier échec, TestFX compté à part. Manuel jusqu'à #3526, le temps de savoir ce que la suite y donnait - 11 échecs sous Windows au premier relevé, 0 sous macOS. Programmé la <strong>veille</strong> du train de publication, dont il est désormais la condition (cf. plus bas). ⚠️ En manuel il peut être <strong>ciblé</strong> sur quelques classes (#3754, 2 min contre 48) : un passage ciblé sert à instruire, jamais à prouver</td>
+<td>Lance la suite <strong>entière</strong> sous Windows et macOS, et <strong>conclut</strong> : rouge dès le premier échec, TestFX compté à part. Manuel jusqu'à #3526, le temps de savoir ce que la suite y donnait - 11 échecs sous Windows au premier relevé, 0 sous macOS. Programmé la <strong>veille</strong> du train de publication, dont il est désormais la condition (cf. plus bas). En manuel il peut être <strong>ciblé</strong> sur quelques classes (#3754, 2 min contre 48) : un passage ciblé sert à instruire, jamais à prouver</td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
@@ -10277,13 +10277,13 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/codeql.yml">codeql.yml</a></td>
 <td>push <code>main</code> + PR + hebdomadaire (lundi 5 h UTC)</td>
-<td>Analyse statique de sécurité <strong>CodeQL</strong> sur le code Java (cf. plus bas). ⚠️ Le <code>schedule</code> n'est pas décoratif : les requêtes CodeQL évoluent, donc <strong>une base de code inchangée peut devenir signalable</strong> sans qu'aucun commit l'ait touchée</td>
+<td>Analyse statique de sécurité <strong>CodeQL</strong> sur le code Java (cf. plus bas). Le <code>schedule</code> n'est pas décoratif : les requêtes CodeQL évoluent, donc <strong>une base de code inchangée peut devenir signalable</strong> sans qu'aucun commit l'ait touchée</td>
 <td><strong>Oui</strong> sur PR</td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/securite-dependances.yml">securite-dependances.yml</a></td>
 <td>hebdomadaire (lundi 6 h UTC) + PR sur <code>pom.xml</code></td>
-<td>Rapport de vulnérabilités des dépendances livrées (cf. plus bas). ⚠️ Le filtre de chemins inclut le workflow lui-même : une étape que <strong>seul un <code>schedule</code> exerce</strong> peut être fusionnée cassée, et ce chemin la fait tourner sur la PR qui la modifie</td>
+<td>Rapport de vulnérabilités des dépendances livrées (cf. plus bas). Le filtre de chemins inclut le workflow lui-même : une étape que <strong>seul un <code>schedule</code> exerce</strong> peut être fusionnée cassée, et ce chemin la fait tourner sur la PR qui la modifie</td>
 <td>—</td>
 </tr>
 <tr>
@@ -10325,13 +10325,13 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/tournage-recette.yml">tournage-recette.yml</a></td>
 <td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
-<td>Tourne les clips d'<strong>une session</strong>, sur la plateforme de son choix - <code>ubuntu</code>, <code>windows</code> ou <code>macos</code>, le banc en Java pur n'ayant besoin d'aucun écran. Répond à la limite que l'EPIC #4133 se donnait : « à 400 clips, ce serait des heures par passage ». La liste des classes est <strong>dérivée</strong> par <code>CorrespondanceRecetteTest</code>, jamais tenue à la main. Appelé <strong>aussi par le train</strong> (<code>workflow_call</code>), il verse alors ses clips préfixés <code>java-</code> sur le <strong>tag</strong> de la version, à côté de ceux du banc bash : c'est la transition qui se prépare, et le jour venu il n'y aura qu'un des deux appels à retirer (#4258). ⚠️ Il ne touche <strong>jamais</strong> à une pré-version roulante : <code>clips-java</code> est un instantané daté que la page de comparaison interroge. ⚠️ Depuis #4304 il porte un drapeau <strong><code>connecte</code></strong> : le tournage parle alors à la VRAIE plateforme, en lecture, avec un secret <strong>propre au tournage</strong> posé dans l'<code>env:</code> du seul pas qui filme. Sans le secret il <strong>refuse de partir</strong>, un écran hors ligne étant convaincant et muet sur son objet</td>
+<td>Tourne les clips d'<strong>une session</strong>, sur la plateforme de son choix - <code>ubuntu</code>, <code>windows</code> ou <code>macos</code>, le banc en Java pur n'ayant besoin d'aucun écran. Répond à la limite que l'EPIC #4133 se donnait : « à 400 clips, ce serait des heures par passage ». La liste des classes est <strong>dérivée</strong> par <code>CorrespondanceRecetteTest</code>, jamais tenue à la main. Appelé <strong>aussi par le train</strong> (<code>workflow_call</code>), il verse alors ses clips préfixés <code>java-</code> sur le <strong>tag</strong> de la version, à côté de ceux du banc bash : c'est la transition qui se prépare, et le jour venu il n'y aura qu'un des deux appels à retirer (#4258). Il ne touche <strong>jamais</strong> à une pré-version roulante : <code>clips-java</code> est un instantané daté que la page de comparaison interroge. Depuis #4304 il porte un drapeau <strong><code>connecte</code></strong> : le tournage parle alors à la VRAIE plateforme, en lecture, avec un secret <strong>propre au tournage</strong> posé dans l'<code>env:</code> du seul pas qui filme. Sans le secret il <strong>refuse de partir</strong>, un écran hors ligne étant convaincant et muet sur son objet</td>
 <td>—</td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/comparer-tournages.yml">comparer-tournages.yml</a></td>
 <td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
-<td>Dit ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Prend deux sources - un tag de version ou <code>clips-recette</code> - et <strong>normalise les préfixes de banc</strong>, sans quoi <code>bash-Truc.mp4</code> et <code>Truc.mp4</code> passeraient pour deux cas différents. ⚠️ À la demande et non committé : la comparaison « dernière version contre tournante » change dès que l'un des deux bouge (#4274)</td>
+<td>Dit ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Prend deux sources - un tag de version ou <code>clips-recette</code> - et <strong>normalise les préfixes de banc</strong>, sans quoi <code>bash-Truc.mp4</code> et <code>Truc.mp4</code> passeraient pour deux cas différents. À la demande et non committé : la comparaison « dernière version contre tournante » change dès que l'un des deux bouge (#4274)</td>
 <td>—</td>
 </tr>
 </tbody>
@@ -10362,7 +10362,7 @@ dont le verdict s'affiche dans le <strong>résumé du run</strong>, vert compris
 <p>Elle ne <strong>persiste rien</strong> : l'historique des passages <em>est</em> la date recherchée, lue par
 <code>actions: read</code>. Un fichier commité, un artefact (90 jours) ou un cache (7 jours) deviendraient
 chacun une seconde chose à surveiller, dont la première panne serait, ici encore, un silence.</p>
-<p>⚠️ Elle reconnaît un passage vérifié au <strong>nom</strong> de son étape (<code>Contrat API (lecture seule)</code>).
+<p>Elle reconnaît un passage vérifié au <strong>nom</strong> de son étape (<code>Contrat API (lecture seule)</code>).
 Renommer cette étape sans reporter le nom dans <code>ETAPE_CONTRAT</code> casserait la détection : la veille
 refuse alors de conclure et dit que c'est <strong>elle</strong> qui est en cause, plutôt que d'annoncer un
 rassurant « jamais joué ». Son autotest tourne à chaque PR dans <code>lint.yml</code>, seul endroit où on la
@@ -10416,7 +10416,7 @@ fausse</strong> : les étapes de packaging ne s'exécutaient qu'après le succè
 </tr>
 </tbody>
 </table>
-<p>⚠️ Les <!--inv:tests-bats-->111<!--/inv--> tests bats visaient le fat-jar par <code>java -cp</code> jusqu'à #4071,
+<p>Les <!--inv:tests-bats-->111<!--/inv--> tests bats visaient le fat-jar par <code>java -cp</code> jusqu'à #4071,
 c'est-à-dire un chemin qu'<strong>aucun utilisateur n'emprunte</strong>. Ils visent désormais <code>bin/vigiechiro</code> de
 l'app-image construite au-dessus, donc le runtime jlink réellement livré. Ils viennent pour cette
 raison <strong>après</strong> le garde-fou app-image, et non plus juste après le <code>package</code> - sans que rien ne change
@@ -10703,13 +10703,13 @@ paquet reconstruit et démarré avec succès.</p>
 <p><strong>Et le workflow part avec le train</strong> (#4103) : <code>release.yml</code> l'appelle en <code>workflow_call</code> après avoir
 retiré le brouillon de la Release. Publier une version ne demande donc aucun geste côté paquet, ce qui
 n'était vrai qu'en théorie tant que le déclenchement restait manuel.</p>
-<p>⚠️ <strong>C'est un <code>workflow_call</code>, et pas un <code>release: released</code>.</strong> Ce dernier ne partirait jamais : la
+<p><strong>C'est un <code>workflow_call</code>, et pas un <code>release: released</code>.</strong> Ce dernier ne partirait jamais : la
 Release est dé-brouillonnée avec le <code>GITHUB_TOKEN</code>, et GitHub ne déclenche aucun workflow sur un
 événement produit par ce jeton. Un workflow appelé n'est pas un événement - il s'exécute dans le run de
 l'appelant - donc l'obstacle ne s'y applique pas. C'est le premier <code>workflow_call</code> du dépôt.</p>
-<p>⚠️ <strong>Le job dépend de <code>publish</code>, pas d'<code>installers</code></strong> : le checker interroge <code>releases/latest</code>, qui
+<p><strong>Le job dépend de <code>publish</code>, pas d'<code>installers</code></strong> : le checker interroge <code>releases/latest</code>, qui
 ignore les brouillons. Téléverser les assets ne suffit pas ; il faut que la Release en soit sortie.</p>
-<p>⚠️ <strong>Ce que le retard coûtait</strong>, avant : le paquet publié pouvait rester plusieurs versions en arrière
+<p><strong>Ce que le retard coûtait</strong>, avant : le paquet publié pouvait rester plusieurs versions en arrière
 sans que rien ne le dise. Mesuré le 2026-08-21 - manifeste sur le <code>.deb</code> 2.185.0 quand la 2.187.0 était
 publiée, donc la ligne de commande de #4071 absente du paquet pendant que la documentation
 l'annonçait.</p>
@@ -10993,7 +10993,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie-jeton-vivant.sh</code></td>
-<td>le jeton du tournage connecté est-il encore <strong>valide</strong>, et non seulement présent. Le tournage révoque le sien en fin de run sans retirer le secret : après un tournage il a l air parfaitement valide et ne vaut plus rien, et le scénario rougissait à trois pas de sa cause, sur un run qui finissait vert (#4328). ⚠️ Il rend <strong>trois</strong> verdicts et non deux, parce que « la plateforme ne répond pas » n appelle pas le même geste que « le jeton est mort ». ⚠️ C est la table de <code>revoque-jeton.sh</code> lue à l ENVERS : ici <code>401</code> est un refus</td>
+<td>le jeton du tournage connecté est-il encore <strong>valide</strong>, et non seulement présent. Le tournage révoque le sien en fin de run sans retirer le secret : après un tournage il a l air parfaitement valide et ne vaut plus rien, et le scénario rougissait à trois pas de sa cause, sur un run qui finissait vert (#4328). Il rend <strong>trois</strong> verdicts et non deux, parce que « la plateforme ne répond pas » n appelle pas le même geste que « le jeton est mort ». C est la table de <code>revoque-jeton.sh</code> lue à l ENVERS : ici <code>401</code> est un refus</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
@@ -11003,7 +11003,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie-forme-du-jeton.sh</code></td>
-<td>les TEXTES d un tournage - <code>tournage.log</code>, l index - avant qu ils ne partent en artefact. Un jeton Vigie-Chiro fait exactement 32 caractères de <code>[A-Z0-9]</code> (mesuré dans <code>auth.py</code>), et on exige au moins une lettre hors de <code>A-F</code> pour ne pas confondre avec une empreinte hexadécimale. Il tourne AVANT l envoi, parce qu un artefact de dépôt public se télécharge sans authentification, et l envoi en dépend. ⚠️ Il NE COUVRE PAS l image, et il le DIT dans son compte rendu : un garde muet sur sa portée est un faux vert avec des étapes en plus (#4327)</td>
+<td>les TEXTES d un tournage - <code>tournage.log</code>, l index - avant qu ils ne partent en artefact. Un jeton Vigie-Chiro fait exactement 32 caractères de <code>[A-Z0-9]</code> (mesuré dans <code>auth.py</code>), et on exige au moins une lettre hors de <code>A-F</code> pour ne pas confondre avec une empreinte hexadécimale. Il tourne AVANT l envoi, parce qu un artefact de dépôt public se télécharge sans authentification, et l envoi en dépend. Il NE COUVRE PAS l image, et il le DIT dans son compte rendu : un garde muet sur sa portée est un faux vert avec des étapes en plus (#4327)</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
@@ -11084,12 +11084,12 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>mesure-duree-portail.sh</code></td>
 <td>l'<strong>allongement</strong> du portail qualité, médiane contre médiane</td>
-<td><code>maven.yml</code> - ⚠️ il <strong>avertit</strong>, il ne bloque pas (autotest : <code>lint.yml</code>)</td>
+<td><code>maven.yml</code> - il <strong>avertit</strong>, il ne bloque pas (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
 <td><code>lance-test-filme.sh</code></td>
 <td>un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres</td>
-<td><code>recette-filmee.yml</code> - ⚠️ workflow <strong>manuel</strong></td>
+<td><code>recette-filmee.yml</code> - workflow <strong>manuel</strong></td>
 </tr>
 <tr>
 <td><code>filtrer-bruit-cartes.sh</code></td>
@@ -11194,15 +11194,15 @@ au vert : c'est un <code>SC2086</code>, classé « info », et c'est exactement 
 défaut dans <code>clips-orphelins.sh</code> (#4106). Un seuil qui laisse passer le défaut fondateur ne garde
 rien. Le seuil est un drapeau et non un réglage parce que <code>severity=</code> <strong>n'est pas lu</strong> depuis
 <code>.shellcheckrc</code> - vérifié.</p>
-<p>⚠️ <strong>La parité porte sur les réglages, pas sur la version.</strong> Mesuré en branchant ce pas : le runner
+<p><strong>La parité porte sur les réglages, pas sur la version.</strong> Mesuré en branchant ce pas : le runner
 a signalé un <code>SC2015</code> que shellcheck 0.11.0 ne signale plus en local. C'est donc la CI qui fait foi,
 et un poste plus récent peut être plus <strong>permissif</strong> - l'inverse du sens rassurant. Vérifier
 <code>shellcheck --version</code> avant de conclure d'un vert local.</p>
-<p>⚠️ <strong>Ce qui reste dehors</strong>, nommé plutôt que tu : <strong>trois notes de style</strong>, deux <code>SC2001</code> (un <code>sed</code>
+<p><strong>Ce qui reste dehors</strong>, nommé plutôt que tu : <strong>trois notes de style</strong>, deux <code>SC2001</code> (un <code>sed</code>
 là où une expansion suffirait, mais où l'expansion serait moins lisible) et un <code>SC2129</code> (des
 redirections successives dans une fixture d'auto-test). Un lancement à la main les montre ; la CI ne
 les impose pas.</p>
-<p>⚠️ <strong>Cinq neutralisations locales</strong>, chacune avec sa raison écrite sur place, et aucune globale :
+<p><strong>Cinq neutralisations locales</strong>, chacune avec sa raison écrite sur place, et aucune globale :
 deux <code>SC2064</code>/<code>SC2046</code> où l'expansion immédiate et le découpage sont le <strong>remède</strong> et non le défaut
 (le <code>trap</code> du banc de recette, le trajet du pointeur du banc de documentation), un <code>SC2020</code> où le
 doublon de <code>\n</code> est voulu, et deux <code>SC2094</code> où shellcheck croit voir une écriture qui vit dans une
@@ -11264,7 +11264,7 @@ révéler (#3693) - un dépôt qui aurait été publié tel quel.</p>
 <code>preuve-des-plateformes</code> interroge l'historique du workflow et refuse de publier si la dernière
 preuve remonte à plus de <strong>10 jours</strong> (un passage hebdomadaire manqué, plus la marge d'un <code>schedule</code>
 retardé).</p>
-<p>⚠️ <strong>Seuls les passages complets comptent.</strong> Depuis #3754 un passage peut être <strong>ciblé</strong> sur quelques
+<p><strong>Seuls les passages complets comptent.</strong> Depuis #3754 un passage peut être <strong>ciblé</strong> sur quelques
 classes, et l'API des runs ne dit pas quelles entrées ont été passées à un <code>workflow_dispatch</code> : le
 compter certifierait la suite entière sur la preuve de deux classes. Cette distinction n'est pas
 théorique - au moment d'écrire ces lignes, l'historique du dépôt contenait deux passages <code>success</code>,
@@ -11275,7 +11275,7 @@ classes. Sans le filtre, la veille aurait certifié la fraîcheur sur l'un ou l'
 train <strong>sans issue de secours</strong> : un mardi rouge sur une instabilité aurait bloqué la publication
 jusqu'au mardi suivant, aucun passage manuel ne pouvant produire de preuve. Un passage complet lancé à
 la main vaut donc preuve ; c'est le passage ciblé qui n'en est pas une.</p>
-<h3 id="et-une-voie-de-secours-motivee-par-ecrit-3561">⚠️ Et une voie de secours, motivée par écrit (#3561)<a class="headerlink" href="#et-une-voie-de-secours-motivee-par-ecrit-3561" title="Permanent link">&para;</a></h3>
+<h3 id="et-une-voie-de-secours-motivee-par-ecrit-3561">Et une voie de secours, motivée par écrit (#3561)<a class="headerlink" href="#et-une-voie-de-secours-motivee-par-ecrit-3561" title="Permanent link">&para;</a></h3>
 <p>Poser cette condition contredisait deux décisions, et la clôture du lot 3 l'a relevé :</p>
 <ul>
 <li>l'<strong>ADR 0041</strong> pose la règle qu'on avait sautée - « avant de rendre un check obligatoire, inventorier
@@ -11291,7 +11291,7 @@ la main vaut donc preuve ; c'est le passage ciblé qui n'en est pas une.</p>
 défaut. Renseignée, elle saute la garde, et la raison part <strong>dans le titre du run</strong> - donc dans
 l'historique des exécutions, pas seulement dans le log d'un job - puis dans son résumé. En dessous de
 <strong>20 caractères</strong>, elle est refusée : un contournement dont la trace est « x » n'en laisse pas.</p>
-<p>⚠️ Deux pièges, écrits sur place dans le workflow parce qu'ils se reproduisent :</p>
+<p>Deux pièges, écrits sur place dans le workflow parce qu'ils se reproduisent :</p>
 <ul>
 <li>tester <code>inputs.raison_du_contournement == ''</code> <strong>seul</strong> aurait désarmé la garde sur le <code>schedule</code> :
   <code>inputs</code> y est <strong>null</strong>, et une expression GitHub coule deux types différents en nombre, donc
@@ -11301,7 +11301,7 @@ l'historique des exécutions, pas seulement dans le log d'un job - puis dans son
   sur <code>.result != 'failure'</code>, le contournement aurait <strong>empêché</strong> la publication au lieu de la
   permettre.</li>
 </ul>
-<p>⚠️ Comme <code>ETAPE_CONTRAT</code> un cran plus haut, la détection repose sur un <strong>nom</strong>. Si aucun run examiné
+<p>Comme <code>ETAPE_CONTRAT</code> un cran plus haut, la détection repose sur un <strong>nom</strong>. Si aucun run examiné
 ne porte de marqueur, la veille refuse en disant que c'est <strong>elle</strong> qui est en cause - et distingue
 les deux causes : des exécutions toutes antérieures à la pose du marqueur (qui se résout seule), ou un
 <code>run-name:</code> renommé sans report.</p>
@@ -11311,7 +11311,7 @@ les deux causes : des exécutions toutes antérieures à la pose du marqueur (qu
 dans trois cas où un dispositif naïf rendrait un « 0 jour » rassurant : historique <strong>vide</strong> (la
 question n'a pas été posée), aucune exécution programmée réussie (preuve <strong>absente</strong>, pas périmée),
 date <strong>illisible</strong>. Son autotest tourne à chaque PR dans <code>lint.yml</code>.</p>
-<p>⚠️ Une différence avec la veille du contrat d'API, et elle compte : là-bas un <code>failure</code> <strong>prouve</strong> que
+<p>Une différence avec la veille du contrat d'API, et elle compte : là-bas un <code>failure</code> <strong>prouve</strong> que
 le contrat a été exercé ; ici le job de plateformes <strong>conclut</strong>, donc un <code>failure</code> est l'inverse d'une
 preuve. Le compter rendrait la veille verte au moment précis où la suite est cassée.</p>
 <h2 id="les-artefacts-publies-portent-une-attestation-de-provenance-2742">Les artefacts publiés portent une attestation de provenance (#2742)<a class="headerlink" href="#les-artefacts-publies-portent-une-attestation-de-provenance-2742" title="Permanent link">&para;</a></h2>
@@ -11330,7 +11330,7 @@ sont exclus - attester une empreinte de trois lignes n'apprend rien.</p>
 <p><strong>Les deux droits ajoutés au job sont bornés</strong> : <code>id-token: write</code> ne sert qu'à prouver à Sigstore qui
 construit, <code>attestations: write</code> n'écrit que dans le magasin d'attestations du dépôt. Ni l'un ni
 l'autre ne touche au code, aux issues ou aux pull requests - le moindre privilège de #2739 tient.</p>
-<p>⚠️ <strong>Elle ne remplace pas la signature des installeurs</strong> (#2112, EPIC #2104) : la signature parle aux
+<p><strong>Elle ne remplace pas la signature des installeurs</strong> (#2112, EPIC #2104) : la signature parle aux
 systèmes d'exploitation (SmartScreen, Gatekeeper), l'attestation parle à qui veut auditer. Les deux
 sont complémentaires, aucune ne rend l'autre inutile.</p>
 <h2 id="linventaire-des-dependances-livrees-et-sa-surveillance-2740">L'inventaire des dépendances livrées, et sa surveillance (#2740)<a class="headerlink" href="#linventaire-des-dependances-livrees-et-sa-surveillance-2740" title="Permanent link">&para;</a></h2>
@@ -11379,7 +11379,7 @@ fichiers temporaires et corrigés en 32.0.0 : GHSA-5mg8-w23w-74h3 (faible) et GH
 n'appelle ni <code>com.google.common.io.Files.createTempDir</code> ni <code>FileBackedOutputStream</code>. Guava est
 quand même contrainte à <code>33.4.8-jre</code> dans le <code>dependencyManagement</code> : un inventaire qui signale ce
 qu'on ne corrige pas cesse d'être lu.</p>
-<p>⚠️ <strong>Le premier <code>grep</code> de vérification était faux</strong> : <code>Files.createTempDir</code> correspond aussi au
+<p><strong>Le premier <code>grep</code> de vérification était faux</strong> : <code>Files.createTempDir</code> correspond aussi au
 début de <code>Files.createTempDirectory</code>, celui du <strong>JDK</strong>, employé par les outils de capture. Il
 annonçait trois appels là où il n'y en avait aucun. La question « est-ce que ça nous concerne ? »
 se pose sur les <strong>imports</strong>, pas sur la ressemblance des noms.</p>
@@ -11447,7 +11447,7 @@ reste à zéro jour, puisque son HEAD ne bouge pas non plus.</p>
 <p>Les seuils sont <strong>calibrés sur une mesure</strong>, pas choisis : au moment de la pose, le pire écart du dépôt
 était de <strong>143 jours</strong> (<code>anchore/scan-action</code>). La garde est donc muette sur l'état sain du jour, et le
 cas qui lui avait échappé (608 jours) est rouge.</p>
-<p>⚠️ <strong>Un épinglage hors tag reste licite</strong>, et c'est ce que winget-releaser exige désormais : le
+<p><strong>Un épinglage hors tag reste licite</strong>, et c'est ce que winget-releaser exige désormais : le
 commentaire dit alors l'intention (<code># main @ 2026-07-28</code>). La garde distingue trois cas, parce que
 confondre les deux derniers reviendrait à se rassurer :</p>
 <table>
@@ -11475,7 +11475,7 @@ confondre les deux derniers reviendrait à se rassurer :</p>
 <p>L'asymétrie est délibérée. L'amont publie pour des raisons qui ne nous regardent pas : un rouge à
 chaque release amont s'apprendrait à ignorer aussi vite qu'un garde muet. Une majeure de retard, elle,
 n'est pas du bruit de fond - c'est le cas qui a échappé à tout le monde pendant six mois.</p>
-<p>⚠️ <strong>Trois tentatives, parce que l'API bafouille.</strong> Vu en écrivant le garde : un appel qui rend la
+<p><strong>Trois tentatives, parce que l'API bafouille.</strong> Vu en écrivant le garde : un appel qui rend la
 liste attendue, rejoué à l'identique, revient vide. Sans reprise, ce hoquet se lirait « version
 indéterminée », donc rouge. Un échec qui <strong>persiste</strong> reste rouge, et c'est voulu : un SHA qui ne porte
 plus aucun tag est en soi une nouvelle - le tag a été déplacé ou supprimé en amont.</p>
@@ -11533,7 +11533,7 @@ voit que ce qu'on lui a appris ; un compilateur voit ce qu'il refuse.</p>
 <h3 id="les-1293-avertissements-et-pourquoi-on-ne-bloque-pas-dessus">Les 1293 avertissements, et pourquoi on ne bloque pas dessus<a class="headerlink" href="#les-1293-avertissements-et-pourquoi-on-ne-bloque-pas-dessus" title="Permanent link">&para;</a></h3>
 <p>Ce ne sont pas des défauts. Un job qui rougirait dessus serait désactivé en trois semaines, et on
 serait revenu au point de départ en ayant payé le trajet. <strong>Seules les erreurs bloquent.</strong></p>
-<h3 id="module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume">⚠️ <code>module-info.java</code> est exclu de cette passe, et c'est un renoncement assumé<a class="headerlink" href="#module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume" title="Permanent link">&para;</a></h3>
+<h3 id="module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume"><code>module-info.java</code> est exclu de cette passe, et c'est un renoncement assumé<a class="headerlink" href="#module-infojava-est-exclu-de-cette-passe-et-cest-un-renoncement-assume" title="Permanent link">&para;</a></h3>
 <p>Sous <code>plexus-compiler-eclipse</code>, ecj ne résout ni les modules automatiques (<code>com.google.gson</code>,
 <code>info.picocli</code>) ni <code>org.xerial.sqlitejdbc</code>, et rendait <strong>six erreurs qui ne disent rien du code</strong> -
 <code>useModulePath=false</code> n'y change rien. Le profil exclut donc <code>module-info.java</code> et compile sur le
@@ -11590,7 +11590,7 @@ touchée.</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ <strong>L'API accepte d'activer les deux derniers et ne le fait pas</strong> : elle rend <code>200</code> en les laissant à
+<p><strong>L'API accepte d'activer les deux derniers et ne le fait pas</strong> : elle rend <code>200</code> en les laissant à
 <code>disabled</code>. Il faut <strong>relire l'état</strong> pour s'en apercevoir - un appel qui réussit n'est pas un réglage
 qui s'applique. L'organisation est au plan <code>free</code>, où <code>advanced_security_enabled</code> vaut <code>false</code>.</p>
 <p><code>push_protection</code> <strong>refuse un <code>git push</code></strong> contenant un secret reconnu. C'est son intérêt, et c'est
@@ -11611,7 +11611,7 @@ hurlé sur chacune.</p>
 cinq usages légitimes - par le <strong>même</strong> motif que le balayage, et la CI lance les deux modes. Sans
 cela, un motif relâché passerait au vert sur un dépôt propre sans que rien ne le dise. Éprouvé :
 en portant le seuil de 12 à 40 caractères, l'autotest signale les quatre fuites non détectées.</p>
-<p>⚠️ Elle lit le contenu <strong>versionné</strong> (<code>git grep</code>) : un fichier non suivi lui échappe. C'est le bon
+<p>Elle lit le contenu <strong>versionné</strong> (<code>git grep</code>) : un fichier non suivi lui échappe. C'est le bon
 périmètre pour une garde de CI - ce qui part chez tout le monde - mais ce n'est pas un filet local.</p>
 <h2 id="les-droits-de-publication-sont-declares-par-job-2739">Les droits de publication sont déclarés par job (#2739)<a class="headerlink" href="#les-droits-de-publication-sont-declares-par-job-2739" title="Permanent link">&para;</a></h2>
 <p>Le plancher du workflow de release est en <strong>lecture seule</strong> ; chaque job déclare ce qu'il lui faut de
@@ -11653,7 +11653,7 @@ dans un workflow à <strong>plusieurs jobs</strong>, où les droits seraient acc
 liste attendue par job - #2742 a dû ajouter <code>id-token</code> et <code>attestations</code> pour les attestations, et une
 liste figée aurait rougi sur un ajout voulu, puis se serait fait élargir machinalement. Un workflow
 <strong>mono-job</strong> garde son plancher : plancher et job y désignent la même chose.</p>
-<p>⚠️ <strong>Ce que cela ne fait pas</strong> : <code>semantic-release</code> s'exécute toujours dans un job en écriture. L'en
+<p><strong>Ce que cela ne fait pas</strong> : <code>semantic-release</code> s'exécute toujours dans un job en écriture. L'en
 sortir suppose de réimplémenter en <code>git</code> + <code>gh</code> ce que font ses greffons d'écriture ; l'arbitrage,
 rendu, est consigné sur #2739.</p>
 <h2 id="loutillage-de-publication-est-fige-et-repete-a-blanc-2738">L'outillage de publication est figé, et répété à blanc (#2738)<a class="headerlink" href="#loutillage-de-publication-est-fige-et-repete-a-blanc-2738" title="Permanent link">&para;</a></h2>
@@ -11697,7 +11697,7 @@ sur la dérivation de la configuration, puis <code>semantic-release --dry-run</c
 <p>ne se verrait qu'à la <strong>prochaine release</strong>.</p>
 <p>Elle ne peut pas publier : <code>--dry-run</code> n'écrit rien, et la configuration d'analyse n'embarque <strong>aucun</strong>
 greffon d'écriture.</p>
-<p>⚠️ <strong>Ce qu'elle prouve dépend du déclencheur</strong> (#3345), et il faut le savoir avant de lire son vert :</p>
+<p><strong>Ce qu'elle prouve dépend du déclencheur</strong> (#3345), et il faut le savoir avant de lire son vert :</p>
 <table>
 <thead>
 <tr>
@@ -11725,7 +11725,7 @@ plancher <code>contents: read</code> du workflow il échouait donc sur <code>mai
 quand un checkout devenu obsolète le faisait sortir plus tôt : le vert signifiait alors « contrôle
 sauté ». Ce cas de sortie anticipée subsiste les jours de fusion dense ; le <code>concurrency</code> du workflow
 le borne sans le supprimer.</p>
-<p>⚠️ <strong>Le binaire se lance depuis la racine pour publier</strong> (<code>./.github/release/node_modules/.bin/semantic-release</code>) :
+<p><strong>Le binaire se lance depuis la racine pour publier</strong> (<code>./.github/release/node_modules/.bin/semantic-release</code>) :
 c'est <code>.releaserc.json</code> qui fait alors foi. Lancé <strong>depuis <code>.github/release/</code></strong>, c'est la configuration
 d'analyse que cosmiconfig trouve en premier. Les deux ont été vérifiées en local, greffon par greffon.</p>
 <h3 id="ce-que-le-lockfile-ne-figeait-pas-node-3264">Ce que le lockfile ne figeait pas : Node (#3264)<a class="headerlink" href="#ce-que-le-lockfile-ne-figeait-pas-node-3264" title="Permanent link">&para;</a></h3>
@@ -11741,11 +11741,11 @@ hautes)</strong> à <strong>7 (2 hautes)</strong>. Il <strong>réduit sans réso
 <code>npm</code> que <code>semantic-release</code> embarque, et <code>npm audit fix</code> le dit lui-même (<code>is a bundled dependency of
 npm@… · It cannot be fixed automatically</code>). Aucune version de <code>semantic-release</code> ne les corrige : il
 faut que <code>npm</code> publie, et que <code>semantic-release</code> reprenne.</p>
-<p>⚠️ <strong>Un compte d'alertes Dependabot n'est pas une mesure d'exposition.</strong> GitHub <strong>auto-écarte</strong> les
+<p><strong>Un compte d'alertes Dependabot n'est pas une mesure d'exposition.</strong> GitHub <strong>auto-écarte</strong> les
 avis de portée <code>development</code>, ce qu'est tout cet arbre : au 2026-08-04, quatre avis
 (<code>brace-expansion</code> ×3, <code>picomatch</code>) l'ont été sans que le compte affiché bouge. Pour cet arbre, c'est
 <code>npm audit</code> qui fait foi.</p>
-<h3 id="le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose">⚠️ Le train ne commente pas les issues, et c'est le train qui l'impose<a class="headerlink" href="#le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose" title="Permanent link">&para;</a></h3>
+<h3 id="le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose">Le train ne commente pas les issues, et c'est le train qui l'impose<a class="headerlink" href="#le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose" title="Permanent link">&para;</a></h3>
 <p><code>@semantic-release/github</code> commente par défaut chaque issue et PR incluse dans une version. Le premier
 départ du train, déclenché à la main le 2026-08-06 sur <strong>104 commits</strong>, est tombé exactement là :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>TypeError: Cannot destructure property 'repository' of '(intermediate value)' as it is undefined.
@@ -11761,7 +11761,7 @@ part <strong>une fois par semaine</strong>, il en compte une centaine : l'échec
 mercredi</strong>, à 6 h UTC, sans personne pour le voir.</p>
 <p><code>successCommentCondition: false</code> supprime l'appel. Le commentaire perdu n'était de toute façon pas
 souhaitable ici : il aurait notifié une centaine d'issues à chaque train.</p>
-<p>⚠️ <strong>Ce que cet échec laisse derrière lui</strong> est le vrai enseignement : le tag <code>v2.184.0</code> avait été
+<p><strong>Ce que cet échec laisse derrière lui</strong> est le vrai enseignement : le tag <code>v2.184.0</code> avait été
 créé et la Release déposée en brouillon <strong>avant</strong> l'étape qui a échoué. Le job <code>release</code> étant rouge,
 <code>installers</code> et <code>publish</code> ont été <strong>sautés</strong> - donc ni binaires attachés, ni brouillon levé. Une
 version peut donc exister à moitié. C'est ce qu'il faut regarder d'abord quand un train échoue :
@@ -11772,7 +11772,7 @@ donne : <strong>le runner pilote-t-il vraiment l'interface ?</strong></p>
 <p>Un lancement filmé tient à cinq conditions (cf. <code>lance-test-filme.sh</code>), dont deux dépendent de la
 <strong>machine</strong> : un gestionnaire de fenêtres doit tourner sur le <code>DISPLAY</code> visé, et <code>WAYLAND_DISPLAY</code>
 doit être absent.</p>
-<p>⚠️ Sans gestionnaire de fenêtres, le pointeur ne bouge pas - <strong>même pour <code>xdotool</code></strong> - et pourtant
+<p>Sans gestionnaire de fenêtres, le pointeur ne bouge pas - <strong>même pour <code>xdotool</code></strong> - et pourtant
 les tests s'exécutent sans erreur. Ils passent ou échouent pour de mauvaises raisons. Pire,
 certains passent <strong>avec un robot mort</strong> : un test qui affirme qu'une valeur reste inchangée est
 vrai si l'on ne clique nulle part.</p>
@@ -11781,7 +11781,7 @@ vrai si l'on ne clique nulle part.</p>
 verdict</strong> :
 dans ce mode, un lancement réussi devient un <strong>échec</strong> du workflow, puisqu'il prouverait que la
 vérification du pointeur ne garde rien.</p>
-<h3 id="le-gestionnaire-choisi-nest-pas-neutre-openbox-et-non-matchbox-3788">⚠️ Le gestionnaire choisi n'est pas neutre : openbox, et non matchbox (#3788)<a class="headerlink" href="#le-gestionnaire-choisi-nest-pas-neutre-openbox-et-non-matchbox-3788" title="Permanent link">&para;</a></h3>
+<h3 id="le-gestionnaire-choisi-nest-pas-neutre-openbox-et-non-matchbox-3788">Le gestionnaire choisi n'est pas neutre : openbox, et non matchbox (#3788)<a class="headerlink" href="#le-gestionnaire-choisi-nest-pas-neutre-openbox-et-non-matchbox-3788" title="Permanent link">&para;</a></h3>
 <p><code>matchbox-window-manager</code> <strong>maximise tout</strong> ce qu'il affiche - c'est son parti pris, il est fait pour
 de petits écrans. Le banc en a menti deux fois avant qu'on le voie :</p>
 <ul>
@@ -11808,12 +11808,12 @@ La séance dépose donc, à côté de la vidéo, un <strong>journal de repères<
 </code></pre></div>
 <p>Les instants sont des <strong>millisecondes depuis l'époque</strong>, la même grandeur que <code>date +%s%3N</code> : c'est
 ce qui permet au montage de les ramener à des positions dans la vidéo.</p>
-<p>⚠️ <strong>Tous</strong> les tests sont encadrés, y compris ceux qui ne citent aucun cas - leur colonne de cas est
+<p><strong>Tous</strong> les tests sont encadrés, y compris ceux qui ne citent aucun cas - leur colonne de cas est
 alors vide. Ce n'était pas le cas d'abord, et la première séance filmée réelle a montré pourquoi il
 le faut : le contrôle du montage vérifie que ce qui apparaît à l'écran tombe dans une plage connue,
 et un test non annoté qui ouvre une fenêtre lui semblait hors sujet. C'est l'<strong>index</strong>, et non ce
 journal, qui ne retient que les cas.</p>
-<p>⚠️ Deux propriétés vont ensemble, et seul le profil <code>recette-filmee</code> les pose :
+<p>Deux propriétés vont ensemble, et seul le profil <code>recette-filmee</code> les pose :
 <code>recette.autodetection</code> charge l'extension, <code>recette.reperes</code> lui dit où écrire. Un <code>mvn test</code>
 ordinaire ne voit ni l'une ni l'autre, ne charge donc rien et n'écrit rien. <code>CablageDesReperesTest</code>
 garde ce câblage, parce qu'il casserait <strong>en silence</strong> : une extension que le moteur n'appelle pas
@@ -11824,7 +11824,7 @@ moyen de constater que l'extension a bien été chargée. Le film, lui, sortirai
 <p>L'artefact contient <code>clips/</code>, un extrait par test cité, et son <code>index.md</code>, qui se lit <strong>par cas</strong>.
 Un cas couvert par plusieurs tests a plusieurs lignes ; le clip, lui, est taillé sur le <strong>test</strong>,
 parce que c'est ce que la JVM sait borner.</p>
-<p>⚠️ <strong>L'index ne donne aucune position dans le film livré</strong>, et c'est volontaire : ce film est
+<p><strong>L'index ne donne aucune position dans le film livré</strong>, et c'est volontaire : ce film est
 écourté par luminance, si bien qu'une position calculée sur le brut y serait fausse. Le clip est le
 point d'entrée, pas un horodatage.</p>
 <p><strong><code>t0</code> se mesure, il ne se suppose pas.</strong> Le journal consigne des instants d'horloge, la vidéo se
@@ -11835,7 +11835,7 @@ demande l'arrêt, puis en retranchant la durée du fichier obtenu.</p>
 ferait rougir un test de ViewModel, qui cite des cas et n'ouvre légitimement aucune fenêtre. Ce qui
 est exigé : les images où quelque chose est à l'écran doivent tomber <strong>dans</strong> les plages calculées.
 Un <code>t0</code> faux les fait toutes tomber à côté.</p>
-<p>⚠️ Les plages sont celles de <strong>tous</strong> les tests, pas seulement des tests cités. La première séance
+<p>Les plages sont celles de <strong>tous</strong> les tests, pas seulement des tests cités. La première séance
 réelle a refusé un alignement correct pour cette raison : <code>ConnexionModaleViewTest</code> compte dix tests
 dont trois annotés, et les sept autres ouvrent aussi des fenêtres - le contrôle jugeait hors sujet
 les cinq sixièmes de ce qu'il voyait, et annonçait 16 %. C'était le même travers que celui qu'il
@@ -11870,7 +11870,7 @@ verts - c'est justement le cas où personne n'irait vérifier.</p>
 <p>Le montage taille déjà un clip par <strong>test</strong> et indexe par <strong>cas</strong>. Passer les seize classes citantes
 à un même <code>-Dtest=A,B,C</code> rend donc, d'un coup, un index qui les couvre toutes : il n'y a rien à
 fusionner, là où seize séances auraient donné seize artefacts et une comptabilité à tenir de tête.</p>
-<p>⚠️ <strong>La liste se dérive, elle ne se tient pas à la main.</strong> Un <code>grep</code> sur <code>@CasDeRecette</code> ramène deux
+<p><strong>La liste se dérive, elle ne se tient pas à la main.</strong> Un <code>grep</code> sur <code>@CasDeRecette</code> ramène deux
 faux positifs sur dix-huit : l'annotation elle-même, dont la documentation contient un exemple, et
 les fixtures qui imitent un test sans rien couvrir. C'est <code>CorrespondanceRecetteTest</code> qui dépose la
 liste sous <code>target/recette/classes-citantes.txt</code>, parce qu'il balaie les annotations <strong>compilées</strong> et
@@ -11886,7 +11886,7 @@ honore <code>@FixtureDeRecette</code>. Une liste tenue à la main dériverait co
 <p>À quoi elle sert : le garde de #3728 vérifie qu'un identifiant cité <strong>existe</strong>, jamais que le test
 <strong>fait ce que le cas décrit</strong>. Le tournage complet rend cette relecture possible en regardant, plutôt qu'en
 relisant seize classes.</p>
-<p>⚠️ <strong>Mais tous les cas ne s'auditent pas en regardant</strong>, et l'index le dit ligne par ligne. Un
+<p><strong>Mais tous les cas ne s'auditent pas en regardant</strong>, et l'index le dit ligne par ligne. Un
 ViewModel cite des cas et n'ouvre aucune fenêtre : son clip est noir, et c'est le résultat <strong>juste</strong>.
 Cocher « vu » dessus serait un mensonge - un mensonge que le tournage complet aurait encouragé si elle avait
 proposé la même case à tout le monde.</p>

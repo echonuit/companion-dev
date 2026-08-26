@@ -9624,7 +9624,7 @@ Campagne courante :
 valider). Règle d'unicité : un écran est déroulé <strong>en entier</strong> dans <strong>une seule</strong> session propriétaire ;
 ailleurs il n'est qu'écran de transit (seule la fluidité de la transition est notée). La base de recette
 <strong>vit d'une session à l'autre</strong>.</p>
-<p>⚠️ <strong>Ce tableau est le seul inventaire des sessions</strong>, état compris. Il ne se recopie nulle part, pas
+<p><strong>Ce tableau est le seul inventaire des sessions</strong>, état compris. Il ne se recopie nulle part, pas
 même plus bas dans cette page : c'est ainsi que « les huit sessions existent » a survécu à l'arrivée
 de la neuvième et de la dixième (#3885). Un test le confronte au dossier dans les deux sens
 (<code>InventaireDesSessionsTest</code>).</p>
@@ -9641,7 +9641,7 @@ de la neuvième et de la dixième (#3885). Un test le confronte au dossier dans 
 <tr>
 <td>S1</td>
 <td><a href="sessions/s1-premier-contact/">Premier contact</a> (base vierge, connexion, déclarer un site)</td>
-<td><strong>jouée</strong> ⚠️</td>
+<td><strong>jouée</strong></td>
 <td>accueil (dont le <strong>bandeau de compteurs vivant</strong>, #1376), Connexion, Mes sites, carré, Point</td>
 </tr>
 <tr>
@@ -9706,7 +9706,7 @@ de la neuvième et de la dixième (#3885). Un test le confronte au dossier dans 
 </tr>
 </tbody>
 </table>
-<p>⚠️ <strong>« Jouée » se dit de la session telle qu'elle était.</strong> S1 porte <strong>huit cases écrites après sa
+<p><strong>« Jouée » se dit de la session telle qu'elle était.</strong> S1 porte <strong>huit cases écrites après sa
 dernière exécution</strong> - S1-30 à S1-33 (#3458) et S1-34 à S1-37 (#3806), dont une perceptive : elles
 n'ont <strong>jamais</strong> été exercées à la main. Une session ne se re-marque pas « à jouer » pour autant, mais
 la campagne suivante doit savoir par où reprendre, faute de quoi une capacité passe pour vérifiée par
@@ -9762,7 +9762,7 @@ issues produites → renvois et décisions → notes de méthode.</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ Le deuxième état n'est <strong>pas</strong> une couverture, et c'est tout l'enjeu. Un scénario qui <em>joue</em> un cas
+<p>Le deuxième état n'est <strong>pas</strong> une couverture, et c'est tout l'enjeu. Un scénario qui <em>joue</em> un cas
 perceptif le cite comme n'importe quel test - c'est le seul lien vers le script - si bien que sans
 distinction il gonflerait le compte des couverts d'un cas que <strong>personne n'a regardé</strong>. Un tel
 scénario se déclare donc <code>@CasDeRecette(value = "S1-26", jugement = HUMAIN, portee = A_L_ECRAN)</code>.</p>
@@ -9798,7 +9798,7 @@ devient muet sur son propre objet, ce qui est pire parce qu'on le regarde en cro
 <p><code>CorrespondanceRecetteTest</code> garde les deux sens : la réserve est exigée si et seulement si la portée est
 <code>HORS_APPLICATION</code>, et elle doit <strong>figurer sur la page du clip</strong>. Une réserve qui ne vit que dans le code
 ne borne rien : personne ne lit une annotation en regardant une vidéo.</p>
-<p>⚠️ Un seul cas cité porte aujourd'hui <code>HORS_APPLICATION</code> : <strong>S1-04</strong>, « ouvrir le site sur la
+<p>Un seul cas cité porte aujourd'hui <code>HORS_APPLICATION</code> : <strong>S1-04</strong>, « ouvrir le site sur la
 plateforme », dont le geste se termine dans un navigateur que le clip ne peut pas montrer. Sa réserve le
 dit, sur la page du clip. Le reste est à l'écran, et ce n'est pas un hasard : ce qui a été couvert
 jusqu'ici est précisément ce qui se filme sans réserve. Les quelque 220 cas dont le verdict est hors de
@@ -9833,13 +9833,13 @@ cas</strong> : on saute à l'extrait plutôt que de regarder trente minutes.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>ConnexionModaleViewTest<span class="w">   </span><span class="c1"># une classe</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>--planche<span class="w">                 </span><span class="c1"># tout ce qui cite un cas</span>
 </code></pre></div>
-<p>⚠️ <strong>L'index dit par quel moyen chaque cas s'audite</strong>, et c'est ce qui l'empêche d'inviter à cocher
+<p><strong>L'index dit par quel moyen chaque cas s'audite</strong>, et c'est ce qui l'empêche d'inviter à cocher
 n'importe quoi : « en regardant » quand quelque chose a paru à l'écran, « en lisant le test » quand
 rien n'a paru. Un test de ViewModel cite des cas et n'ouvre aucune fenêtre - son clip est noir, et
 c'est le résultat <strong>juste</strong>.</p>
 <p>Le mode d'emploi et les pièges du banc vivent dans
 <a href="../ci-cd-release/#un-runner-qui-execute-nest-pas-un-runner-qui-pilote-3710">CI/CD</a>.</p>
-<p>⚠️ <strong>Le clip ne rend pas le verdict, il le rend possible.</strong> Filmer une application cassée produit une
+<p><strong>Le clip ne rend pas le verdict, il le rend possible.</strong> Filmer une application cassée produit une
 vidéo parfaitement valide : ce qui fait foi reste l'assertion pour un cas asserté, et le <strong>regard
 d'un humain</strong> pour un cas perceptif.</p>
 <h2 id="la-fiche-devaluation-six-axes">La fiche d'évaluation : six axes<a class="headerlink" href="#la-fiche-devaluation-six-axes" title="Permanent link">&para;</a></h2>
@@ -9989,11 +9989,11 @@ d'environnement ou secret CI</strong>, pas depuis un fichier committé.</p>
 <p><code>dev-docs/recette/sessions/</code> : les <strong>scripts de session</strong> figés, plus les <strong>passes ciblées</strong>. Leur
   liste et leur état sont dans le tableau de la section « Le déroulé d'une campagne », en tête de
   cette page, et <strong>nulle part ailleurs</strong>.</p>
-<p>⚠️ <strong>Cet inventaire est la seule source.</strong> Il a été recopié ailleurs - dans le cycle de chantier et
+<p><strong>Cet inventaire est la seule source.</strong> Il a été recopié ailleurs - dans le cycle de chantier et
 dans <code>CONTRIBUTING.md</code> - et les trois copies ont divergé en <strong>quelques heures</strong> : S7 a été écrite
 (#3517) le jour même où les deux autres affirmaient qu'elle n'existait pas. Les renvois pointent
 désormais ici plutôt que de répéter la liste.</p>
-<p>⚠️ Et cette page s'était recopiée <strong>elle-même</strong> : ce paragraphe énumérait les sessions et leur
+<p>Et cette page s'était recopiée <strong>elle-même</strong> : ce paragraphe énumérait les sessions et leur
 état, en s'arrêtant à huit alors que le tableau en portait dix. Un avertissement qui ne surveille
 que l'extérieur ne voit pas le doublon qu'il abrite. La liste a donc été <strong>supprimée d'ici</strong>
 plutôt que corrigée - on ne garde pas un doublon, on le retire (#3885).

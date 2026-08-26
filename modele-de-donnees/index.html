@@ -9635,7 +9635,7 @@ accents), <strong>SQL</strong> (anglais).</p>
 <p>Depuis <code>V40__point_publie.sql</code>, la table latérale <code>point_publie</code> retient qu'un point d'écoute
 créé ici a été <strong>poussé</strong> vers la plateforme (<code>PUT /sites/{id}/localites</code>). Sans cette mémoire,
 l'écran reproposerait le geste indéfiniment.</p>
-<p>⚠️ <strong>À ne pas confondre avec <code>listening_point.synchronise</code></strong> (#1738), qui dit l'inverse :
+<p><strong>À ne pas confondre avec <code>listening_point.synchronise</code></strong> (#1738), qui dit l'inverse :
 « <strong>rapatrié de</strong> la plateforme », et sert à masquer les points rapatriés inutilisés. Réutiliser
 ce drapeau ferait disparaître de la fiche un point qu'on vient de créer pour s'en servir, et
 mentirait sur sa provenance. Deux faits distincts, deux endroits.</p>
@@ -9787,7 +9787,7 @@ Merise. Après modification de la source, régénérez le SVG :</p>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>mocodo<span class="w"> </span>-i<span class="w"> </span>nuit-de-capture.mcd<span class="w"> </span>-t<span class="w"> </span>arrange:wide<span class="o">=</span><span class="m">8</span><span class="w"> </span>--colors<span class="w"> </span>ocean<span class="w">   </span><span class="c1"># agencement auto + dessin SVG</span>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>git<span class="w"> </span>checkout<span class="w"> </span>--<span class="w"> </span>nuit-de-capture.mcd<span class="w">      </span><span class="c1"># cf. ci-dessous : l'agencement réécrit la source</span>
 </code></pre></div>
-<p>⚠️ <code>arrange</code> <strong>réécrit <code>nuit-de-capture.mcd</code></strong> sous sa forme agencée (les boîtes réparties en grille,
+<p><code>arrange</code> <strong>réécrit <code>nuit-de-capture.mcd</code></strong> sous sa forme agencée (les boîtes réparties en grille,
 entités et associations entremêlées). Cette forme est illisible à la relecture et impossible à
 compléter à la main : ce dépôt versionne donc la forme <strong>linéaire</strong> (toutes les entités, puis toutes
 les associations) et ne garde l'agencement que dans le SVG. D'où le <code>git checkout</code> ci-dessus, à faire

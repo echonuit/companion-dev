@@ -9463,9 +9463,9 @@ jamais écrire</strong>.</p>
 <li><code>RattachementImportViewModel.majApercu</code> prenait <code>nomsOriginaux.get(0)</code>, sans savoir lequel serait
   retenu.</li>
 </ul>
-<p>⚠️ <strong>Ce n'est pas un hasard de fixture.</strong> « 1648011 » précède « 1925492 » dans l'ordre des noms :
+<p><strong>Ce n'est pas un hasard de fixture.</strong> « 1648011 » précède « 1925492 » dans l'ordre des noms :
 l'aperçu tombait <strong>systématiquement</strong> sur la série écartée. Une carte mélangée sur deux le fera.</p>
-<p>⚠️ <strong>Et l'écran avait l'air juste.</strong> Le carré, le passage, le point, le préfixe : tout était correct.
+<p><strong>Et l'écran avait l'air juste.</strong> Le carré, le passage, le point, le préfixe : tout était correct.
 Seul le fichier d'exemple ne l'était pas. Sur le seul écran où l'utilisateur a besoin de comprendre
 ce qui sera pris et ce qui sera laissé, l'aperçu désignait précisément ce qui serait laissé.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
@@ -9477,7 +9477,7 @@ n'écrira pas est le défaut d'ici ; le faire quand on n'écrira <strong>rien</s
 <p><strong>3. La règle de tri ne se réécrit pas : elle s'appelle.</strong> <code>RapportInspection.nomsRetenus()</code> passe
 par <code>TriParSerie</code>, celle-là même que <code>ServiceImport</code> emploie. Deux copies d'une règle de tri finissent
 par diverger, et c'est l'écran qui le dit en dernier - trop tard.</p>
-<p>⚠️ <strong>La méthode vit sur le RAPPORT, pas sur le sous-VM d'inspection.</strong> L'y poser a fait basculer
+<p><strong>La méthode vit sur le RAPPORT, pas sur le sous-VM d'inspection.</strong> L'y poser a fait basculer
 <code>InspectionImportViewModel</code> en God Class au portail PMD (WMC 48). Le rapport connaît déjà ses
 originaux et son journal : c'est chez lui que la question a sa réponse.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>

@@ -9661,7 +9661,7 @@ l'espace libre de la destination. Un manque est un refus <strong>chiffré</stron
 geste que l'import, le lot et la restauration, que la sauvegarde était seule à ne pas faire (#3572).</p>
 <p>Elle se construit ensuite sous un nom de <strong>chantier</strong> (<code>en-chantier-vigiechiro-sauvegarde-complete-…</code>)
 et n'est <strong>renommée</strong> qu'après l'écriture du manifeste.</p>
-<p>⚠️ Le renommage ferme ce qu'un nettoyage à l'échec ne fermerait pas : une coupure de courant ou un
+<p>Le renommage ferme ce qu'un nettoyage à l'échec ne fermerait pas : une coupure de courant ou un
 <code>kill -9</code> ne laissent tourner aucun code. Sans lui, un dossier interrompu portait le nom d'une
 sauvegarde complète, <code>InventaireSauvegardes</code> le listait comme telle - il classe sur le <strong>préfixe</strong> du
 nom - et le restaurer empruntait <code>replacerSansManifeste</code>, le chemin d'avant #2726 : dossiers déversés à
@@ -9672,7 +9672,7 @@ sauvegarde est ancienne » et « cette sauvegarde est tronquée ».</p>
 <p>Le transport distingue déjà un incident rejouable d'un refus définitif : <code>ReponseApi.estReessayable()</code>,
 dont <code>PolitiqueReessai</code> se sert pour renoncer tout de suite sur un <code>4xx</code>. Depuis <code>V39__echec_definitif.sql</code>
 (#3469), le <strong>plan</strong> le retient aussi : <code>depot_unite.echec_definitif</code> porte ce que l'appel savait.</p>
-<p>⚠️ <strong>Une colonne, et non un statut <code>refuse</code> à côté de <code>echec</code>.</strong> Le réflexe serait le statut, et il serait
+<p><strong>Une colonne, et non un statut <code>refuse</code> à côté de <code>echec</code>.</strong> Le réflexe serait le statut, et il serait
 dangereux : <code>DepotUniteDao.restantes()</code> rend « tout sauf <code>depose</code> », et <code>toutesDeposees()</code> vaut
 « <code>restantes()</code> est vide ». Retirer les unités refusées de <code>restantes()</code> ferait donc basculer le passage
 en <strong>Déposé</strong> alors qu'il manque des sons. Avec une colonne, la mécanique de reprise ne bouge pas : c'est
@@ -9683,13 +9683,13 @@ après un refus ne doit plus être annoncée irrécupérable.</p>
 <p>Le garde pèse les racines de session avec <code>ArborescenceFichiers.peser</code>, qui rend <strong>ce qu'elle a lu et
 ce qu'elle n'a pas pu ouvrir</strong>. Si la liste des illisibles n'est pas vide, il refuse <strong>avant</strong> de
 comparer à la place libre, en nommant le dossier et sa cause système.</p>
-<p>⚠️ Le refus tombe avant la comparaison, pas après : annoncer « il manque N Go » sur une mesure
+<p>Le refus tombe avant la comparaison, pas après : annoncer « il manque N Go » sur une mesure
 incomplète enverrait l'utilisateur libérer de l'espace pour un problème de <strong>droits</strong>.</p>
 <p>La même pesée sert <code>InventaireSauvegardes</code>, qui <strong>ignore</strong> les illisibles et affiche ce qu'il sait :
 un affichage n'a pas à se briser parce qu'un dossier a résisté. Un geste, deux besoins, et c'est
 l'appelant qui tranche - comme <code>supprimerRecursivement</code> et <code>effacerAuMieux</code>
 (<a href="../decisions/3627-une-mesure-dit-ce-qu-elle-n-a-pas-pu-lire/">ADR 3627</a>, <a href="../decisions/3574-un-effacement-dit-son-contrat-dans-son-nom/">ADR 3574</a>).</p>
-<p>⚠️ Le parcours est une <strong>file explicite</strong> et non <code>Files.walk</code> : <code>walk</code> lève sur le premier dossier
+<p>Le parcours est une <strong>file explicite</strong> et non <code>Files.walk</code> : <code>walk</code> lève sur le premier dossier
 interdit et interrompt tout, alors qu'on veut mesurer le reste et rapporter ce qui a résisté.</p>
 <h3 id="partout-ailleurs-qui-parcourt-rattrape-ce-que-le-parcours-leve">Partout ailleurs, qui parcourt rattrape ce que le parcours lève<a class="headerlink" href="#partout-ailleurs-qui-parcourt-rattrape-ce-que-le-parcours-leve" title="Permanent link">&para;</a></h3>
 <p><code>Files.walk</code> reste employé ailleurs, et il y a un piège que neuf sites du dépôt ont partagé : il
@@ -9761,7 +9761,7 @@ le problème une fois la base remplacée.</p>
 <h3 id="ce-que-letalement-coute-et-pourquoi-il-nest-pas-toujours-possible">Ce que l'étalement coûte, et pourquoi il n'est pas toujours possible<a class="headerlink" href="#ce-que-letalement-coute-et-pourquoi-il-nest-pas-toujours-possible" title="Permanent link">&para;</a></h3>
 <p>L'étalement ramène la fenêtre d'une <strong>copie complète</strong> - des minutes, des gigaoctets - à une <strong>suite
 de renommages</strong>. Il se paie en place : la copie coexiste avec l'original jusqu'à la bascule.</p>
-<p>⚠️ C'est exactement ce que l'<a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/">ADR 2727</a>
+<p>C'est exactement ce que l'<a href="../decisions/2727-une-restauration-verifie-en-place-et-replace-ou-cest-possible/">ADR 2727</a>
 avait refusé, en chiffrant le cas ordinaire (« restaurer 40 Go par-dessus ses propres 40 Go
 demanderait 80 Go libres ») et en concluant qu'« un dispositif de sûreté qui empêche l'usage normal
 n'est pas un dispositif de sûreté ». Le reproche reste juste ; ce qui change, c'est qu'on n'est plus
@@ -9796,7 +9796,7 @@ obligé de choisir une fois pour toutes. Le régime est décidé <strong>par la 
 <p>Le besoin est compté <strong>par dossier d'accueil</strong>, et non en un total unique : une nuit dont le disque
 externe est rebranché y retourne, les autres vont dans le dossier de travail. Un total unique
 confronté à la seule place du dossier de travail se tromperait <strong>dans le sens dangereux</strong>.</p>
-<p>⚠️ En régime dégradé, <strong>dès la première bascule, « rien n'a été touché » cesse d'être vrai</strong>. Un refus
+<p>En régime dégradé, <strong>dès la première bascule, « rien n'a été touché » cesse d'être vrai</strong>. Un refus
 survenu ensuite est donc requalifié en incident : le laisser passer pour un refus donnerait à un
 script un code qui promet un état intact au-dessus d'un état partiel.</p>
 <p>Où revient un dossier : <strong>à son emplacement d'origine s'il existe encore et qu'il est inscriptible</strong>,
@@ -9953,7 +9953,7 @@ route ». Un script qui enchaîne ne peut agir que s'il sait lequel des deux s'e
 technique de persistance ». Réutiliser l'une pour l'autre brouillerait les deux notions : il
 manquait un <strong>troisième</strong> mot, pas un synonyme.</p>
 </div>
-<p>⚠️ La même vérification peut être un refus <strong>ou</strong> une panne selon <strong>quand</strong> elle a lieu. Confronter
+<p>La même vérification peut être un refus <strong>ou</strong> une panne selon <strong>quand</strong> elle a lieu. Confronter
 un dossier à son inventaire avant toute écriture est un refus ; l'y confronter après l'avoir copié
 est un incident. <code>RestaurationComplete.Moment</code> porte cette distinction plutôt que de la laisser au
 hasard d'un site de levée.</p>

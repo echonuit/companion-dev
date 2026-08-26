@@ -9476,7 +9476,7 @@ dossier de travail.</p>
 <p><strong>Une sauvegarde tronquée se faisait donc passer pour une sauvegarde d'ancien format</strong>, et se
 restaurait en mode dégradé sans que personne ne l'ait décidé. L'absence de manifeste voulait dire deux
 choses opposées, et rien ne les distinguait.</p>
-<p>⚠️ L'<a href="../3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/">ADR 3514</a> avait pourtant tranché le
+<p>L'<a href="../3514-restaurer-n-efface-pas-ce-que-la-sauvegarde-ignore/">ADR 3514</a> avait pourtant tranché le
 cas voisin : un manifeste <strong>présent mais abîmé</strong> est un refus explicite. Le manifeste <strong>absent</strong> n'avait
 jamais été interrogé.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
@@ -9504,7 +9504,7 @@ dispositif inopérant sans que rien ne le signale.</p>
 <li>La mesure d'un dossier vient d'<code>ArborescenceFichiers.octets</code>, remontée depuis <code>InventaireSauvegardes</code>
   où elle était privée. Une seconde implémentation aurait été la <strong>huitième</strong> variante du même parcours
   d'arborescence dans ce dépôt (#3574).</li>
-<li>⚠️ Le garde d'espace n'a <strong>pas</strong> de test <code>bats</code> : il dépend de la place réellement libre, que le
+<li>Le garde d'espace n'a <strong>pas</strong> de test <code>bats</code> : il dépend de la place réellement libre, que le
   harnais ne peut pas contraindre, et injecter un faux espace par propriété système serait une porte
   dérobée en production. Le renommage, lui, y est éprouvé.</li>
 </ul>

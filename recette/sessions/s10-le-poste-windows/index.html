@@ -9509,7 +9509,7 @@ qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant mo
 <li><strong>Ce qu'un humain lit</strong> quand le dossier de travail est déjà tenu par une autre instance ;</li>
 <li><strong>Ce qu'une vraie console Windows rend</strong> de la couleur de la CLI.</li>
 </ol>
-<p>⚠️ Ces deux comportements n'ont <strong>jamais été observés sur une machine Windows réelle</strong>. Ils sont
+<p>Ces deux comportements n'ont <strong>jamais été observés sur une machine Windows réelle</strong>. Ils sont
 éprouvés par des tests - c'est la raison d'être du lot - mais un test lit une chaîne, il ne lit pas un
 écran.</p>
 <h2 id="ce-que-la-ci-couvre-deja-et-quil-ne-faut-pas-rejouer">Ce que la CI couvre déjà, et qu'il ne faut pas rejouer<a class="headerlink" href="#ce-que-la-ci-couvre-deja-et-quil-ne-faut-pas-rejouer" title="Permanent link">&para;</a></h2>
@@ -9556,7 +9556,7 @@ qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant mo
   <strong>même</strong> dossier de travail.
   <strong>Attendu</strong> : la seconde refuse de démarrer, et son message <strong>nomme l'occupant</strong> - un identifiant
   et un poste, pas des parenthèses vides.
-  ⚠️ C'est le motif exact de #3693 : sous Windows le verrou est impératif, et la fonctionnalité qui
+  C'est le motif exact de #3693 : sous Windows le verrou est impératif, et la fonctionnalité qui
   nomme l'occupant y était <strong>inerte</strong> - le message affichait « déjà utilisé () ».</p>
 </li>
 <li class="task-list-item">
@@ -9571,13 +9571,13 @@ qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant mo
 </li>
 <li class="task-list-item">
 <p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-04</strong> · <em>hors-portée: un processus tué au gestionnaire des tâches, que le banc ne sait pas provoquer, et un démarrage réussi qui ne se distingue d'un démarrage ordinaire par rien de visible</em> · Tuer la première instance <strong>brutalement</strong> (gestionnaire des tâches), puis relancer.
-  <strong>Attendu</strong> : le démarrage réussit. ⚠️ Un verrou de fichier est relâché par le système à la mort du
+  <strong>Attendu</strong> : le démarrage réussit. Un verrou de fichier est relâché par le système à la mort du
   processus ; si ce n'était pas le cas, l'utilisateur serait <strong>enfermé dehors</strong> par un plantage, et
   c'est le pire des refus - celui qu'on ne sait pas défaire.</p>
 </li>
 </ul>
 <h3 id="b-la-couleur-dans-une-vraie-console-3738">B. La couleur dans une vraie console (#3738)<a class="headerlink" href="#b-la-couleur-dans-une-vraie-console-3738" title="Permanent link">&para;</a></h3>
-<p>⚠️ Trois consoles, trois comportements possibles : <code>cmd.exe</code>, <strong>PowerShell</strong>, et <strong>Windows Terminal</strong>.
+<p>Trois consoles, trois comportements possibles : <code>cmd.exe</code>, <strong>PowerShell</strong>, et <strong>Windows Terminal</strong>.
 Le défaut d'origine venait précisément d'une heuristique qui décidait seule ; ne pas se contenter d'une
 seule des trois.</p>
 <ul class="task-list">
@@ -9588,7 +9588,7 @@ seule des trois.</p>
 </li>
 <li class="task-list-item">
 <p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-06</strong> · <em>hors-portée: trois consoles Windows réelles - cmd.exe, PowerShell, Windows Terminal - hors du banc</em> · Même chose dans <strong>PowerShell</strong>, puis dans <strong><code>cmd.exe</code></strong>.
-  <strong>Attendu</strong> : idem. ⚠️ <code>cmd.exe</code> est le plus susceptible d'afficher les échappements bruts : c'est
+  <strong>Attendu</strong> : idem. <code>cmd.exe</code> est le plus susceptible d'afficher les échappements bruts : c'est
   la console la moins capable, et celle qu'un observateur institutionnel a le plus de chances d'ouvrir.</p>
 </li>
 <li class="task-list-item">
@@ -9601,7 +9601,7 @@ seule des trois.</p>
 </li>
 </ul>
 <h2 id="ce-que-la-session-ne-couvre-pas-et-pourquoi">Ce que la session ne couvre pas, et pourquoi<a class="headerlink" href="#ce-que-la-session-ne-couvre-pas-et-pourquoi" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>Les deux points ci-dessous ont trouvé leur dispositif depuis</strong> (#3777 et #3778, livrés). Ce
+<p><strong>Les deux points ci-dessous ont trouvé leur dispositif depuis</strong> (#3777 et #3778, livrés). Ce
 paragraphe disait « on ne sait pas encore reproduire » et « cela relève d'un port testable » : c'est
 désormais <strong>fait</strong>, et la session n'a plus à s'en préoccuper.</p>
 <ul>

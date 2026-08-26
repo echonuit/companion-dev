@@ -9521,7 +9521,7 @@ rapportera. Un chemin sans réponse est un <strong>blocage permanent</strong>.</
 <p><strong>L'ADR 2744 décidait le contraire</strong>, en toutes lettres : « Pourquoi <code>workflow_dispatch</code> reste : un
 correctif urgent n'attend pas le train. » Le job <code>preuve-des-plateformes</code> ne portait aucun <code>if</code>
 distinguant les déclencheurs : il gardait les deux.</p>
-<p>⚠️ Ce qui a tranché n'est pas le retard - un passage complet lancé à la main coûte ~50 min. C'est qu'un
+<p>Ce qui a tranché n'est pas le retard - un passage complet lancé à la main coûte ~50 min. C'est qu'un
 <strong>test instable et sans rapport</strong> aurait retenu un correctif de sécurité. Ce n'est pas une hypothèse :
 la même clôture a mesuré dix tests dont le verdict dépend de l'ordre d'exécution (#3773), et l'un d'eux
 a rendu <strong>vert à 8 h 14 et rouge à 15 h 34 sur le même commit et la même image</strong>.</p>
@@ -9545,7 +9545,7 @@ chemin doit rester ouvert, l'exception est <strong>explicite et tracée</strong>
 classes au lieu de 4600 - et l'API des runs ne dit pas quelles entrées ont été passées à un
 <code>workflow_dispatch</code>. Le workflow porte donc son périmètre dans son <code>run-name</code> : <code>[complet]</code> ou
 <code>[ciblé]</code>.</p>
-<p>⚠️ Filtrer sur le <strong>déclencheur</strong> aurait été plus simple, et c'est ce qui a été écrit d'abord. C'est
+<p>Filtrer sur le <strong>déclencheur</strong> aurait été plus simple, et c'est ce qui a été écrit d'abord. C'est
 précisément ce filtre qui fermait le chemin du correctif urgent : un passage manuel <em>complet</em> est une
 preuve tout aussi bonne qu'un passage programmé ; c'est le passage <em>ciblé</em> qui n'en est pas une.</p>
 <h3 id="deux-pieges-dexpression-github-tenus-pour-acquis-par-personne">Deux pièges d'expression GitHub, tenus pour acquis par personne<a class="headerlink" href="#deux-pieges-dexpression-github-tenus-pour-acquis-par-personne" title="Permanent link">&para;</a></h3>
@@ -9569,7 +9569,7 @@ et il ne part pas non plus sans qu'on ait écrit pourquoi il se passe de la preu
   illisible. Trois refus distincts plutôt qu'un silence.</li>
 <li><strong>Un contournement est visible pour toujours</strong> dans l'historique des runs, sans qu'il faille ouvrir
   un job. C'est ce qui rend l'exception supportable : elle ne s'oublie pas.</li>
-<li>⚠️ <strong>Le câblage n'a jamais tourné.</strong> <code>release.yml</code> est dormant (<code>ENABLE_RELEASE != 'true'</code>). Le
+<li><strong>Le câblage n'a jamais tourné.</strong> <code>release.yml</code> est dormant (<code>ENABLE_RELEASE != 'true'</code>). Le
   script est éprouvé sur les données réelles du dépôt et les expressions sont validées par
   <code>actionlint</code>, mais le graphe de jobs s'exécutera pour la première fois le jour de l'activation. Cela
   se dit, plutôt que de laisser croire que le dispositif a été vu à l'œuvre.</li>

@@ -9550,7 +9550,7 @@ pas du tout.</strong> Trois cas, trois gestes :</p>
 migrations donne un faux : une reconstruction de table crée une jumelle temporaire, copie, supprime
 l'originale et <strong>renomme</strong>. Le <code>CREATE</code> et le <code>DROP</code> ne se compensent que par hasard, et
 l'<code>ALTER TABLE ... RENAME</code> n'apparaît dans aucun des deux.</p>
-<p>⚠️ Sur ce schéma, le comptage statique tombait <strong>juste par coïncidence</strong> - la pire situation pour un
+<p>Sur ce schéma, le comptage statique tombait <strong>juste par coïncidence</strong> - la pire situation pour un
 garde, puisque rien ne signale qu'il mesure la mauvaise chose. Le décompte se prend donc en
 appliquant les migrations et en interrogeant <code>sqlite_master</code>.</p>
 <h3 id="deux-inventaires-du-meme-concept-declarent-leur-ecart">Deux inventaires du même concept déclarent leur écart<a class="headerlink" href="#deux-inventaires-du-meme-concept-declarent-leur-ecart" title="Permanent link">&para;</a></h3>

@@ -9503,7 +9503,7 @@ déclarer <code>palette + base</code> sans <code>design</code>. Mesuré :</p>
 </tbody>
 </table>
 <h2 id="ce-que-le-defaut-a-coute-et-pourquoi-il-est-instructif">Ce que le défaut a coûté, et pourquoi il est instructif<a class="headerlink" href="#ce-que-le-defaut-a-coute-et-pourquoi-il-est-instructif" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>Il a produit un diagnostic faux, et un correctif qui contredisait l'ADR 3374 en silence.</strong></p>
+<p><strong>Il a produit un diagnostic faux, et un correctif qui contredisait l'ADR 3374 en silence.</strong></p>
 <p>Le symptôme visible était un bouton primaire rendu en gris dans la galerie. On en a conclu à un défaut
 du <strong>produit</strong>, et on a ajouté <code>@design.css</code> au FXML - la route que 3374 écarte.</p>
 <p>C'était faux : <code>NavigationReglages.ouvrir()</code> <strong>empile</strong> la vue dans la zone centrale de <code>MainView</code>, dont
@@ -9518,7 +9518,7 @@ La présence d'un membre ne vaut jamais preuve de l'ensemble.</p>
 <p><strong>2. La déclaration dans le FXML reste écartée.</strong> Celle ajoutée à <code>EcranReglages.fxml</code> a été retirée,
 et le cliquet qui l'accompagnait avec elle : il exigeait des vues ce que l'ADR 3374 leur refuse. Un
 garde qui impose l'inverse de la règle est pire qu'aucun garde.</p>
-<p><strong>3. ⚠️ Le garde vit sur le point de passage, pas sur ses appelants.</strong> C'est ce qui distingue ce
+<p><strong>3. Le garde vit sur le point de passage, pas sur ses appelants.</strong> C'est ce qui distingue ce
 correctif du précédent : vérifier que 24 FXML déclarent une feuille, c'est garder la copie ; vérifier
 que <code>poser</code> rend le trio, c'est garder la règle.</p>
 <h2 id="ce-que-la-forme-du-defaut-apprend-et-qui-se-generalise">Ce que la forme du défaut apprend, et qui se généralise<a class="headerlink" href="#ce-que-la-forme-du-defaut-apprend-et-qui-se-generalise" title="Permanent link">&para;</a></h2>
@@ -9549,7 +9549,7 @@ que <code>poser</code> rend le trio, c'est garder la règle.</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ Et le garde d'idempotence existant n'a attrapé <strong>aucune</strong> des deux dernières : il rejoue <code>poser</code> sur
+<p>Et le garde d'idempotence existant n'a attrapé <strong>aucune</strong> des deux dernières : il rejoue <code>poser</code> sur
 une scène <strong>déjà habillée</strong>, quand les deux défauts naissent au <strong>premier</strong> appel, sur des formes
 d'entrée que personne n'avait inventoriées. Un garde peut couvrir la bonne propriété sur les mauvaises
 entrées, et son vert ne dit alors rien.</p>

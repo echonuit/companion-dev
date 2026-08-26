@@ -9514,7 +9514,7 @@
   2026-07-28 l'avait déjà relevé : le code « se repose sur les ACL du profil <strong>sans les contrôler
   explicitement</strong> ».</li>
 </ul>
-<p>⚠️ Les deux portaient sur le <strong>chemin d'amorçage</strong> de l'application, et sur le fichier qui contient le
+<p>Les deux portaient sur le <strong>chemin d'amorçage</strong> de l'application, et sur le fichier qui contient le
 <strong>jeton</strong>.</p>
 <h2 id="ce-que-les-sondes-ont-mesure-et-qui-contredit-les-deux-issues">Ce que les sondes ont mesuré, et qui contredit les deux issues<a class="headerlink" href="#ce-que-les-sondes-ont-mesure-et-qui-contredit-les-deux-issues" title="Permanent link">&para;</a></h2>
 <p>Deux sondes jetables, dispatchées sous <strong>Windows Server 2025</strong>, écrites pour <strong>rapporter</strong> et non pour
@@ -9526,20 +9526,20 @@ de tenir la cible provoquent l'<code>AccessDeniedException</code>, y compris <co
 <p><strong>#3778 soupçonnait une protection absente.</strong> Mesuré : exactement <strong>trois</strong> entrées <code>ALLOW</code> - le
 propriétaire, <code>NT AUTHORITY\SYSTEM</code>, <code>BUILTIN\Administrators</code>. C'est l'équivalent de <code>600</code> sous POSIX,
 où <strong>root</strong> lit aussi. <strong>La doc disait vrai.</strong></p>
-<p>⚠️ Ce qu'on ignorait n'était donc pas si la protection existe : c'est qu'<strong>on n'en savait rien</strong>.</p>
+<p>Ce qu'on ignorait n'était donc pas si la protection existe : c'est qu'<strong>on n'en savait rien</strong>.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Une affirmation de sécurité s'exprime comme une propriété qu'un test peut lire, ou elle ne compte
 pas.</strong> <code>ProtectionFichier.restreinteAuProprietaire</code> dit « aucun autre compte ne peut lire ce fichier »
 - permissions POSIX ici, ACL là-bas. Le conditionnel quitte le test pour vivre dans un seul endroit
 éprouvé.</p>
-<p>⚠️ <strong>Ni POSIX ni ACL fait lever</strong>, plutôt que rendre <code>true</code>. Annoncer une protection depuis une
+<p><strong>Ni POSIX ni ACL fait lever</strong>, plutôt que rendre <code>true</code>. Annoncer une protection depuis une
 <strong>ignorance</strong> serait exactement le faux vert que ce dispositif existe pour empêcher.</p>
 <h3 id="et-lecriture-insiste-plutot-que-dechouer-ou-de-renoncer">Et l'écriture insiste, plutôt que d'échouer ou de renoncer<a class="headerlink" href="#et-lecriture-insiste-plutot-que-dechouer-ou-de-renoncer" title="Permanent link">&para;</a></h3>
 <p>Cinq tentatives espacées de 150 ms, ~600 ms - assez pour traverser une analyse antivirus, trop court
 pour qu'un utilisateur croie l'application figée. Au-delà, un refus qui <strong>nomme</strong> la cause.</p>
 <p>Trois options étaient sur la table ; le porteur a tranché pour la reprise après que la mesure a montré
 que le cas n'est pas rare mais <strong>ordinaire</strong> sous Windows.</p>
-<p>⚠️ <strong>La reprise ne regarde pas le système d'exploitation.</strong> Sous POSIX, une <code>AccessDeniedException</code> est
+<p><strong>La reprise ne regarde pas le système d'exploitation.</strong> Sous POSIX, une <code>AccessDeniedException</code> est
 un vrai refus de droits : elle coûtera le butoir avant d'échouer. C'est le prix assumé pour ne pas
 déduire un comportement d'un nom de plateforme - ce que [ADR 3738 / <code>CouleurCli</code>] a appris à ne plus
 faire.</p>
@@ -9553,10 +9553,10 @@ POSIX. Un test <strong>partiel</strong> qui se présentait comme <strong>sauté<
 <ul>
 <li><strong>La garantie est éprouvée chaque mardi</strong> sous Windows, au lieu d'être écrite.</li>
 <li><strong>Le refus de l'écriture est actionnable</strong> : il nomme la tenue au lieu de parler de droits.</li>
-<li>⚠️ <strong>La branche ACL est inatteignable sous Linux</strong> : PIT y laisse 8 mutants sans couverture, comme le
+<li><strong>La branche ACL est inatteignable sous Linux</strong> : PIT y laisse 8 mutants sans couverture, comme le
   repli de lecture du verrou (#3714). C'est structurel, pas une lacune - la branche est exercée par le
   passage sous Windows, et le dire évite qu'on la croie non testée.</li>
-<li>⚠️ <strong>Un test de câblage ne prouve pas la plateforme.</strong> Le cas qui traverse le vrai déplacement avec un
+<li><strong>Un test de câblage ne prouve pas la plateforme.</strong> Le cas qui traverse le vrai déplacement avec un
   vrai lecteur passe sur les deux systèmes : son vert ne dit <strong>pas</strong> que Windows a emprunté la branche
   de reprise. C'est la <strong>sonde</strong> qui l'établit, et elle est citée dans le doc-comment pour qu'on n'ait
   pas à la refaire.</li>

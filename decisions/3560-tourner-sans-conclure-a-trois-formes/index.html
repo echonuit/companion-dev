@@ -9396,7 +9396,7 @@ premier écart neuf s'ajoute au bruit.</p>
 <p>Les deux dispositifs du lot tournent sur les PR. Une étape réservée à <code>main</code> n'est <strong>jamais jouée
 avant sa fusion</strong>, et peut donc être fusionnée cassée. Pour la mesure de durée, rien n'est écrit :
 rien n'exigeait de la réserver.</p>
-<h3 id="la-garde-de-dependances-bloque-aussi-en-local-contrairement-a-pmd-et-jacoco">⚠️ La garde de dépendances bloque aussi en local, contrairement à PMD et JaCoCo<a class="headerlink" href="#la-garde-de-dependances-bloque-aussi-en-local-contrairement-a-pmd-et-jacoco" title="Permanent link">&para;</a></h3>
+<h3 id="la-garde-de-dependances-bloque-aussi-en-local-contrairement-a-pmd-et-jacoco">La garde de dépendances bloque aussi en local, contrairement à PMD et JaCoCo<a class="headerlink" href="#la-garde-de-dependances-bloque-aussi-en-local-contrairement-a-pmd-et-jacoco" title="Permanent link">&para;</a></h3>
 <p>Le dépôt tient un principe écrit : ces deux-là restent tolérants en build local nu, « la CI fait foi ».
 <code>failOnWarning</code> s'en écarte, délibérément, pour trois raisons :</p>
 <ol>
@@ -9432,7 +9432,7 @@ n'éprouverait que lui-même. Le vrai dispositif est le build de la CI, exercé 
   d'analyse à zéro écart, <code>failOnWarning</code> actif.</li>
 <li><code>maven.yml</code> : job <code>duree-du-portail</code>, non bloquant, exercé par chaque PR.</li>
 <li><code>src/test/bats/scripts-ci.bats</code> : quatre cas, dont la série réelle du dépôt qui doit rester muette.</li>
-<li>⚠️ <strong>Un seul script de CI sur onze est éprouvé.</strong> Les dix autres rendent des jugements que rien ne
+<li><strong>Un seul script de CI sur onze est éprouvé.</strong> Les dix autres rendent des jugements que rien ne
   vérifie, et deux pannes vécues sur l'un d'eux ne vivent qu'en commentaire. Consigné en #3661.</li>
 </ul>
 

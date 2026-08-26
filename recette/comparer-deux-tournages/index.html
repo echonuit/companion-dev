@@ -9873,7 +9873,7 @@ premières images de deux cas différents diffèrent de 2,4 à 3 %.</p>
 la seconde, onze fois moins. Ce plancher n'était donc pas une propriété du cas.</p>
 <p>Sur les 51 cas, 3 planchers diffèrent de plus de 0,1 % d'une paire à l'autre, 10 de 0,01 à 0,1 %, et
 38 de moins de 0,01 %.</p>
-<p>⚠️ La règle du <strong>pire observé</strong> garde 0,809 % pour ce cas, définitivement. C'est le prix assumé de
+<p>La règle du <strong>pire observé</strong> garde 0,809 % pour ce cas, définitivement. C'est le prix assumé de
 ne pas fabriquer de faux positifs : un plancher ne redescend jamais, donc <strong>un seul mauvais tirage
 aveugle un cas pour de bon</strong>. Avec assez de paires, un centile vaudrait mieux qu'un maximum ; avec
 deux, il n'y a pas de quoi le calculer.</p>
@@ -9883,7 +9883,7 @@ deux, il n'y a pas de quoi le calculer.</p>
 identiques qui noieraient les deux ou trois qui comptent. Vérifié sur une comparaison réelle : 51
 montages de fin, <strong>zéro</strong> montage de début.</p>
 <h2 id="ce-que-la-methode-ne-voit-pas">Ce que la méthode ne voit pas<a class="headerlink" href="#ce-que-la-methode-ne-voit-pas" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>L'image finale compare la destination, pas le chemin.</strong></p>
+<p><strong>L'image finale compare la destination, pas le chemin.</strong></p>
 <p>La dernière image est le seul instant où deux tournages sont comparables sans dépendre de leur cadence :
 au milieu, l'image n°40 de l'un et l'image n°40 de l'autre montrent deux moments différents. Mais un cas
 dont l'objet est une <strong>transition</strong> - « la modale s'ouvre sans saut » - garderait une fin identique
@@ -9891,9 +9891,9 @@ alors que son milieu aurait bougé.</p>
 <p>La durée est le seul garde-fou bon marché contre cela, et il est grossier. C'est une limite assumée, pas
 un oubli.</p>
 <h2 id="une-mesure-impossible-nest-pas-rien-na-change">Une mesure impossible n'est pas « rien n'a changé »<a class="headerlink" href="#une-mesure-impossible-nest-pas-rien-na-change" title="Permanent link">&para;</a></h2>
-<p>⚠️ Deux dossiers vides font <strong>échouer</strong> la comparaison au lieu de rendre « aucun cas ne bouge », et une
+<p>Deux dossiers vides font <strong>échouer</strong> la comparaison au lieu de rendre « aucun cas ne bouge », et une
 mesure qui échoue se compte à part dans le résumé.</p>
-<p>⚠️ Et un <strong>outil absent</strong> est une panne d'installation, pas une mesure : le script refuse de commencer
+<p>Et un <strong>outil absent</strong> est une panne d'installation, pas une mesure : le script refuse de commencer
 et nomme ce qui manque, au lieu de rendre cinquante « ? » qui se liraient comme cinquante cas stables.
 Les deux ne se réparent pas au même endroit, donc ils ne doivent pas se lire pareil.</p>
 <p>Ce n'est pas de la prudence de principe : le premier jet de cet outil rendait « ? » sur les sept cas

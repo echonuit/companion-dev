@@ -9447,7 +9447,7 @@ disque, et le même utilisateur pouvait voir les deux à cinq minutes d'interval
 base 1024 étiquetées « Mo » (<code>ExportBiblioSons</code>, <code>ExporterSons</code>, <code>ExportObservationsEtSons</code>,
 <code>ExporteurAudio</code>), deux en base 1000 rendant un nombre nu suivi d'un « Go » écrit à la main
 (<code>FormatsLot</code>, <code>MoteurImport</code>), plus <code>LotViewModel</code> qui divisait par un million pour son titre.</p>
-<p>⚠️ <code>Formats.octetsLisibles</code> n'avait <strong>aucun test</strong>. Le formateur le plus employé du produit était sans
+<p><code>Formats.octetsLisibles</code> n'avait <strong>aucun test</strong>. Le formateur le plus employé du produit était sans
 garde, ce qui est aussi la raison pour laquelle les bases ont pu diverger sans que rien ne le dise.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Base 1000, étiquettes <code>Ko</code>/<code>Mo</code>/<code>Go</code>, et une seule implémentation.</strong></p>
@@ -9468,7 +9468,7 @@ qu'il ne déciderait à « 128 Go ».</p>
 <ul>
 <li>Les valeurs affichées <strong>changent partout</strong>, légèrement : un fichier de 4,5 Gio passe de « 4,2 Go » à
   « 4,5 Go ». Quatorze attendus de tests ont suivi.</li>
-<li>⚠️ Deux d'entre eux étaient <strong>pliés au formateur plutôt qu'à leur propre fixture</strong> : le compte rendu
+<li>Deux d'entre eux étaient <strong>pliés au formateur plutôt qu'à leur propre fixture</strong> : le compte rendu
   de dépôt posait <code>4_500_000_000L</code> et attendait « 4,2 Go ». L'assertion redevient cohérente avec ce
   qu'elle décrit.</li>
 <li>La justification écrite dans <code>LotViewModel</code> - « et non <code>Formats.octetsLisibles</code> qui raisonne en base

@@ -9512,7 +9512,7 @@ nom ne voulait pas dire la même chose. Relevé en les ouvrant une par une :</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ Quatre comportements, pas deux comme l'issue le supposait. Et <code>supprimerRecursivement</code> désignait à
+<p>Quatre comportements, pas deux comme l'issue le supposait. Et <code>supprimerRecursivement</code> désignait à
 la fois le premier et le troisième : <strong>une copie faite depuis le mauvais modèle changeait le
 comportement en cas de panne sans rien casser de visible.</strong></p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
@@ -9548,7 +9548,7 @@ qu'une fois.</p>
 <li>Le contrôle porte sur le <strong>geste</strong> - <code>Files.walk(...).sorted(reverseOrder())</code> - et non sur le nom de
   méthode : c'est justement le nom qui mentait.</li>
 </ul>
-<p>⚠️ <strong>Le premier test « continue après un échec » était creux</strong>, et c'est la mutation qui l'a dit : il
+<p><strong>Le premier test « continue après un échec » était creux</strong>, et c'est la mutation qui l'a dit : il
 opérait sur deux dossiers <strong>séparés</strong>, donc il ne prouvait rien du parcours. Arrêter au premier échec le
 laissait vert. Refait sur un arbre mixte - un fichier effaçable et un sous-dossier verrouillé dans la
 même arborescence - il tombe.</p>

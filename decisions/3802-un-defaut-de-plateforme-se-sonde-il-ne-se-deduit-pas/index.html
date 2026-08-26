@@ -9447,7 +9447,7 @@ soit la rigueur du relevé.</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ Dans les quatre cas, une suite locale <strong>verte</strong> ne disait rien. Et dans un cas, une expérience
+<p>Dans les quatre cas, une suite locale <strong>verte</strong> ne disait rien. Et dans un cas, une expérience
 d'isolement menée sur le poste a rendu vert et a <strong>failli servir de preuve</strong>.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Quand un défaut dépend de la plateforme, on le sonde là où il vit, avant d'écrire l'assertion.</strong></p>
@@ -9468,7 +9468,7 @@ contre quarante-huit en complet), on lit son tableau, <strong>puis</strong> on �
 <p>Une sonde qui aurait <em>asserté</em> l'hypothèse serait passée au rouge sans qu'on sache pourquoi, ou au vert
 en la confirmant par hasard.</p>
 <h3 id="ce-que-la-sonde-ne-remplace-pas">Ce que la sonde ne remplace pas<a class="headerlink" href="#ce-que-la-sonde-ne-remplace-pas" title="Permanent link">&para;</a></h3>
-<p>⚠️ <strong>Le test qui reste</strong> doit être éprouvable <strong>partout</strong>, donc passer par une couture d'injection -
+<p><strong>Le test qui reste</strong> doit être éprouvable <strong>partout</strong>, donc passer par une couture d'injection -
 <code>GestesFichiers</code>, <code>TailleFichier</code>, <code>CouleurCli</code>, <code>Deplacement</code>, <code>ProtectionFichier</code>. La sonde établit
 <strong>quel</strong> comportement câbler ; l'injection le rend rejouable.</p>
 <p>Les deux sont nécessaires, et l'un sans l'autre laisse la moitié du remède non jugée : le passage
@@ -9477,10 +9477,10 @@ hebdomadaire éprouve le <strong>câblage</strong>, la couture éprouve la <stro
 <ul>
 <li><strong>La sonde est jetable, son résultat ne l'est pas.</strong> Il vit dans le doc-comment du remède, avec le
   numéro du run - pour qu'on n'ait pas à la refaire.</li>
-<li>⚠️ <strong>Une limite doit être écrite quand elle existe.</strong> Trois remèdes de cette campagne portent une
+<li><strong>Une limite doit être écrite quand elle existe.</strong> Trois remèdes de cette campagne portent une
   branche inatteignable sous Linux, et leurs ADR le disent : sans cela, on croirait la couverture
   complète en lisant un rapport PIT.</li>
-<li>⚠️ <strong>Le vert d'un run ne vaut que si son tri conclut.</strong> Deux fois dans cette campagne, un run marqué
+<li><strong>Le vert d'un run ne vaut que si son tri conclut.</strong> Deux fois dans cette campagne, un run marqué
   <code>success</code> portait un tableau qui disait l'inverse - dont une sonde dont le verdict aurait fait écrire
   qu'un mécanisme démontré était réfuté. Lire le <strong>tableau</strong>, jamais la pastille.</li>
 </ul>

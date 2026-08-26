@@ -9502,7 +9502,7 @@ câblage de la modale, ce qui est un travail légitime et différent. Le <code>@
 scénario qui montre le geste. C'est le même mouvement que celui qui a sorti dix cas des tests de
 ViewModel (EPIC #4133).</p>
 <h2 id="ce-qui-rendait-la-regle-applicable-et-quon-ne-savait-pas">Ce qui rendait la règle applicable, et qu'on ne savait pas<a class="headerlink" href="#ce-qui-rendait-la-regle-applicable-et-quon-ne-savait-pas" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>Il n'y avait pas d'obstacle technique.</strong> Les modales du produit s'ouvrent en <code>show()</code>, jamais en
+<p><strong>Il n'y avait pas d'obstacle technique.</strong> Les modales du produit s'ouvrent en <code>show()</code>, jamais en
 <code>showAndWait</code> : <code>NavigationSites#afficherModale</code> le fait depuis toujours. Elles sont donc <strong>pilotables
 en headless</strong>, et la raison qu'on se donnait - « un dialogue fige TestFX » - ne valait que pour les
 <code>Alert</code> du socle, pas pour les modales de la feature.</p>
@@ -9512,7 +9512,7 @@ en headless</strong>, et la raison qu'on se donnait - « un dialogue fige TestFX
 <code>SiteDetailRenommageViewTest</code>, <code>ModalePointViewTest</code>. Les scénarios correspondants montent le vrai
 chrome et l'exécuteur <strong>asynchrone</strong> - en synchrone, le travail occupe le fil JavaFX et aucune image
 n'est rendue pendant l'attente que ces cas font juger.</p>
-<p>⚠️ Un clip qui montre les deux écrans est plus <strong>long</strong>. C'est le prix, et il est juste : la durée
+<p>Un clip qui montre les deux écrans est plus <strong>long</strong>. C'est le prix, et il est juste : la durée
 n'était jamais le problème, l'absence de contexte l'était.</p>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
 <p><strong>Poser un fond derrière la modale pour qu'elle ne flotte pas sur du noir.</strong> Cela aurait réglé

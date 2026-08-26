@@ -9465,7 +9465,7 @@ couvert par plusieurs tests. Découper par cas demanderait de concaténer des fe
 test, lui, est ce que la JVM sait <strong>borner</strong>. L'index fait la correspondance, et c'est gratuit.</p>
 <p>Les clips se taillent dans le <strong>brut</strong>, avant la coupe par luminance : sinon il faudrait propager le
 décalage qu'elle introduit, et l'oublier ne produirait pas de panne mais des extraits pris à côté.</p>
-<p><strong>3. ⚠️ Le contrôle porte sur la COUVERTURE, pas sur la clarté des clips.</strong> Exiger qu'un clip soit
+<p><strong>3. Le contrôle porte sur la COUVERTURE, pas sur la clarté des clips.</strong> Exiger qu'un clip soit
 clair ferait rougir un test de ViewModel, qui cite des cas et n'ouvre légitimement aucune fenêtre :
 un garde qui crie sur du bon travail est un garde qu'on apprend à ignorer.</p>
 <p>Ce qui est exigé : les images où quelque chose est à l'écran doivent tomber <strong>dans</strong> les plages
@@ -9486,7 +9486,7 @@ séance entière ; c'est l'index qui ne retient que les cas.</p>
 <p>La première séance <strong>réelle</strong> a refusé un alignement pourtant correct : 16 % de couverture. Les
 plages ne venaient alors que des tests cités, alors que <code>ConnexionModaleViewTest</code> compte dix tests
 dont trois annotés - les sept autres ouvrent aussi des fenêtres.</p>
-<p>⚠️ C'était <strong>le travers que ce même contrôle évitait par ailleurs</strong>, revenu par la fenêtre du
+<p>C'était <strong>le travers que ce même contrôle évitait par ailleurs</strong>, revenu par la fenêtre du
 dénominateur. Aucun film fabriqué ne pouvait le montrer : l'auto-test fournissait un journal où tous
 les tests étaient cités.</p>
 <p>Leçon générale : un dispositif éprouvé uniquement sur des données qu'il a lui-même fabriquées ne

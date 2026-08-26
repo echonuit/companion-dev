@@ -9491,7 +9491,7 @@ règle qu'il enfreint. Une zone à glob total (<code>*</code>) rouvrait le trou 
 <p><strong>1. Un garde s'exécute dans tous les cas qu'il nomme, et son nom ne nomme que ceux-là.</strong></p>
 <p>Concrètement, un banc qui vise deux largeurs <strong>boucle</strong> sur les deux, avec les constantes du produit
 (<code>TailleOuverture.LARGEUR_VOULUE</code>, <code>LARGEUR_MINIMALE</code>) plutôt que des littéraux.</p>
-<p>⚠️ <strong>Une boucle plutôt qu'une seconde exécution en intégration.</strong> Un garde qui ne rougirait qu'en CI
+<p><strong>Une boucle plutôt qu'une seconde exécution en intégration.</strong> Un garde qui ne rougirait qu'en CI
 ne protège pas celui qui écrit le code, et c'est précisément le régime dont ces deux-là sortaient.</p>
 <p><strong>2. La boucle vérifie d'abord qu'elle a obtenu ce qu'elle demandait.</strong></p>
 <p><code>assertThat(scene.getWidth()).isEqualTo(largeur, within(1.0))</code> avant chaque vérification. Une fenêtre
@@ -9513,7 +9513,7 @@ ordonnée 38 au lieu de 0.</p>
 </ol>
 <p>Ce qui a tranché n'est aucun raisonnement : c'est d'avoir <strong>relancé la suite avec les propriétés
 exactes du job</strong>. Rouge en local, de façon déterministe, en trois classes.</p>
-<p>⚠️ Et j'ai affirmé entre-temps que le rouge venait de <code>main</code>, sur la foi de deux <code>build</code> rouges qui
+<p>Et j'ai affirmé entre-temps que le rouge venait de <code>main</code>, sur la foi de deux <code>build</code> rouges qui
 portaient en réalité sur <strong>des tests différents</strong>. Deux échecs simultanés ne font pas une cause
 commune.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>

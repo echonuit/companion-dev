@@ -9437,7 +9437,7 @@ un fichier que la sauvegarde ne contient pas - un WAV rangé là à la main, un 
 fichier disparaît sans avoir été nommé.</p>
 <p><code>restaurer</code> ne doit pas devenir un moyen détourné d'effacer ce qui traînait là. La bascule <strong>refuse
 avant d'écrire</strong> quand la destination porte quelque chose d'inconnu de la sauvegarde.</p>
-<p>⚠️ Le refus porte sur les <strong>fichiers</strong>, pas sur les dossiers : un dossier vide supplémentaire n'est pas
+<p>Le refus porte sur les <strong>fichiers</strong>, pas sur les dossiers : un dossier vide supplémentaire n'est pas
 une donnée à protéger, et refuser dessus rendrait la restauration capricieuse pour rien.</p>
 <p>Ce cas a été découvert par un test qui <strong>est passé au vert tout seul</strong> : écrit pour vérifier autre
 chose, il a cessé d'échouer quand la copie a été déplacée vers une zone temporaire, révélant que le
@@ -9455,7 +9455,7 @@ dispositif qu'on ne surveille pas finit par valoir.</p>
 ramène le risque d'une copie de plusieurs minutes à une suite de renommages de quelques
 millisecondes. Ce n'est <strong>pas de l'atomicité</strong>, et il ne faut pas le dire : basculer trois dossiers,
 ce sont trois renommages, et aucune astuce ne les rendra indivisibles.</p>
-<p>⚠️ Cette décision est celle qu'un lecteur futur défera le plus volontiers, parce qu'un journal se
+<p>Cette décision est celle qu'un lecteur futur défera le plus volontiers, parce qu'un journal se
 conçoit facilement et que son absence ne laisse aucune trace dans le code. Elle est donc écrite ici,
 avec sa raison.</p>
 <h2 id="ce-que-cette-adr-ne-dit-plus">Ce que cette ADR ne dit plus<a class="headerlink" href="#ce-que-cette-adr-ne-dit-plus" title="Permanent link">&para;</a></h2>

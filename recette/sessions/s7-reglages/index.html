@@ -9714,7 +9714,7 @@ donc le changer en cours de route ne changeait rien. <strong>Un réglage vérifi
 après redémarrage, laisse passer exactement ce défaut-là</strong> - il aurait suffi que la valeur soit bonne
 par hasard.</p>
 <h2 id="lecran-ne-se-deroule-pas-depuis-cette-page">L'écran ne se déroule pas depuis cette page<a class="headerlink" href="#lecran-ne-se-deroule-pas-depuis-cette-page" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>Les onglets sont contribués par les features</strong>, et n'apparaissent que s'ils ont quelque chose à
+<p><strong>Les onglets sont contribués par les features</strong>, et n'apparaissent que s'ils ont quelque chose à
 montrer (<code>EcranReglagesController.estAffichable</code>). La liste <strong>change</strong> quand une feature est ajoutée ou
 désactivée, et c'est voulu.</p>
 <p>Ce script ne fige donc <strong>pas</strong> le nombre d'onglets : il déroule ceux qui sont <strong>présents</strong>. Une case qui
@@ -9731,7 +9731,7 @@ ici : c'est un <strong>constat</strong>, pas un échec, et il ouvre une issue po
 </code></pre></div>
 <p>Une carte <strong><code>sd-nominale</code></strong> suffit : elle ne sert qu'à l'étape 4, pour observer l'effet d'un réglage
 d'import. Il faut aussi une <strong>nuit déjà importée</strong> pour l'étape 3 (on n'écoute pas sans séquences).</p>
-<p>⚠️ <strong>Lancer l'application sans AUCUNE propriété <code>-Dvigiechiro.*</code>.</strong> Ce n'est pas une précaution de
+<p><strong>Lancer l'application sans AUCUNE propriété <code>-Dvigiechiro.*</code>.</strong> Ce n'est pas une précaution de
 forme : sur ce chemin précis, une propriété système <strong>gagne en silence</strong> sur le réglage persisté. C'est
 vrai de l'emplacement de travail (elle a produit un faux positif à l'instruction de #3459) <strong>et</strong> des
 fonctionnalités, dont la résolution consulte <code>vigiechiro.feature.&lt;id&gt;</code> <strong>avant</strong> le réglage enregistré.
@@ -9784,7 +9784,7 @@ réglage a un effet observable.</p>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S7-14</strong> · <em>geste: conserver-les-originaux-a-l-import</em> · Recocher, réimporter une troisième fois : <code>bruts/</code> est <strong>de retour</strong>.</li>
 </ul>
 <blockquote>
-<p>⚠️ <strong>Ne pas redémarrer entre S7-12 et S7-13.</strong> C'est tout l'objet de #3471 : le réglage était lu une
+<p><strong>Ne pas redémarrer entre S7-12 et S7-13.</strong> C'est tout l'objet de #3471 : le réglage était lu une
 fois au démarrage et mémorisé, donc le changer en cours de session ne changeait rien. Un redémarrage
 masquerait exactement le défaut que ces trois cases existent pour attraper.</p>
 <p>S7-14 n'est pas un doublon : il vérifie que le retour à la première valeur <strong>fonctionne aussi</strong>, et
@@ -9832,7 +9832,7 @@ réactivation la ramène laisse la porte ouverte à un aller sans retour.</p>
 <p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S7-38</strong> · <em>geste: lire-les-emplacements</em> · Chaque chemin porte, <strong>à côté de lui</strong>, un bouton « Copier » ; le cliquer place ce
       chemin dans le presse-papier, et ce qui s'y trouve est <strong>exactement</strong> ce que l'écran affiche
       (le coller dans un éditeur pour le lire). Les deux rangées l'offrent (#3882).</p>
-<p>⚠️ Le numéro sort de la suite : les cases de S7 vont jusqu'à <strong>S7-37</strong>, et les renuméroter
+<p>Le numéro sort de la suite : les cases de S7 vont jusqu'à <strong>S7-37</strong>, et les renuméroter
 rendrait faux les renvois que ce script porte déjà entre ses propres cases (S7-24 est cité par
 S7-27, par exemple).
 - [ ] <strong>S7-24</strong> · <em>geste: changer-le-dossier-de-travail</em> · L'écran annonce que choisir un emplacement change <strong>où l'application ira lire au
@@ -9845,7 +9845,7 @@ S7-27, par exemple).
 </li>
 </ul>
 <blockquote>
-<p>⚠️ S7-25 et S7-27 portent le constat qui a motivé #3459 : un utilisateur au disque saturé cherche à
+<p>S7-25 et S7-27 portent le constat qui a motivé #3459 : un utilisateur au disque saturé cherche à
 <strong>déplacer</strong>, là où le réglage <strong>repointe</strong>. Les deux cases vérifient que l'écran ne laisse pas croire
 autre chose. Le déplacement effectif des fichiers est un besoin distinct (#3486), pas un défaut de
 cet écran.</p>
@@ -9914,7 +9914,7 @@ laisserait croire qu'elle accepte tout.</p>
 <li><strong>le cas était mal écrit</strong> - il supposait un onglet, une fonctionnalité ou une donnée qu'on n'avait
    pas.</li>
 </ol>
-<p>⚠️ <strong>Avant d'ouvrir une issue sur un réglage qui « ne marche pas », vérifier qu'aucune propriété
+<p><strong>Avant d'ouvrir une issue sur un réglage qui « ne marche pas », vérifier qu'aucune propriété
 système ne le surcharge.</strong> C'est la première hypothèse à écarter sur cet écran, et celle qui a déjà
 coûté une instruction complète.</p>
 

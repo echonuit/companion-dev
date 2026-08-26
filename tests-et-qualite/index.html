@@ -9439,7 +9439,7 @@ référence structurée ; le repo-root garde un mémo
 </tr>
 <tr>
 <td><code>env -u DISPLAY ./mvnw -Pmutation test-compile org.pitest:pitest-maven:mutationCoverage -DtargetClasses=… -DtargetTests=…</code></td>
-<td>Tests de <strong>mutation</strong> PIT (lent, ciblé, à la demande). ⚠️ <code>-Pmutation test</code> <strong>ne mute rien</strong> : le profil n'a aucune liaison de phase, donc le goal n'est jamais invoqué - la commande lance toute la suite et rend zéro rapport, sans le dire.</td>
+<td>Tests de <strong>mutation</strong> PIT (lent, ciblé, à la demande). <code>-Pmutation test</code> <strong>ne mute rien</strong> : le profil n'a aucune liaison de phase, donc le goal n'est jamais invoqué - la commande lance toute la suite et rend zéro rapport, sans le dire.</td>
 </tr>
 <tr>
 <td><code>./mvnw pmd:check</code></td>
@@ -9500,7 +9500,7 @@ headless vient de <code>glass.platform=Headless</code>, pas de TestFX. Le <code>
 <p>C'est <strong>Guice 7.0.0</strong>, dans la génération de proxys AOP. La version précédente de cette page
 accusait Guava : c'est cette erreur qui a fait attendre une montée de Guava, laquelle a bien eu
 lieu (33.4.8-jre, #2740) <strong>sans rien changer</strong> - elle ne pouvait pas.</p>
-<p>⚠️ <strong>Ce n'est pas « rien à faire pour l'instant », c'est une échéance.</strong> La JEP 498 retirera
+<p><strong>Ce n'est pas « rien à faire pour l'instant », c'est une échéance.</strong> La JEP 498 retirera
 l'accès, et <code>--sun-misc-unsafe-memory-access=allow</code> (posé au <code>pom.xml</code> pour <code>javafx:run</code> et le
 lanceur jpackage, et au manifeste Flatpak) ne fait que la repousser. Le jour où le drapeau
 disparaît, l'application ne démarre plus.</p>
@@ -9766,16 +9766,16 @@ son montage et son index en Java :</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ <strong>Lequel des deux tourne n'est pas encore tranché.</strong> Le comparatif des deux bancs est dans
+<p><strong>Lequel des deux tourne n'est pas encore tranché.</strong> Le comparatif des deux bancs est dans
 <a href="../recette/comparer-les-deux-bancs/">Comparer les deux bancs</a>, et cette page-là est datée : elle
 mourra avec la décision.</p>
 <p>Ce qui lui survivra, c'est <a href="../recette/comparer-deux-tournages/">Comparer deux tournages</a> : depuis que
 chaque version porte les clips des deux bancs sur son tag, la comparaison se refait à la demande sur le
 produit du jour, au lieu d'être figée dans une page.</p>
-<p>⚠️ <strong>Trois états, pas deux.</strong> Un cas « perceptif » n'est ni couvert ni à couvrir : le script le
+<p><strong>Trois états, pas deux.</strong> Un cas « perceptif » n'est ni couvert ni à couvrir : le script le
 marque <code>*perceptif*</code>, et le mot « couvert » reste réservé à ce que la CI prouve. Compter un scénario
 joué parmi les couverts fabriquerait exactement le vert creux que ce harnais combat.</p>
-<p>⚠️ <strong>Un calcul alimenté par le classpath ne se voit pas rougir.</strong> <code>CorrespondanceRecetteTest</code> balaie
+<p><strong>Un calcul alimenté par le classpath ne se voit pas rougir.</strong> <code>CorrespondanceRecetteTest</code> balaie
 les annotations compilées : on ne peut lui présenter aucun jeu fabriqué, donc rien ne prouve qu'il
 range un cas du bon côté. Le tri vit pour cette raison dans <code>RepartitionDesCas</code>, qui reçoit des
 ensembles ordinaires - et ses tests lui montrent les situations que le dépôt ne contient pas, et ne
@@ -9947,7 +9947,7 @@ l'écrit pas du tout.</p>
 endroits quand il y en avait <strong>89</strong> - un facteur quatre, accumulé sans que rien ne le dise
 (#2749). Et personne n'avait mal fait : un chiffre juste le jour où on l'écrit devient faux tout
 seul.</p>
-<p>⚠️ Trois, et non deux : la correction n'en avait trouvé que deux, et le troisième a survécu une
+<p>Trois, et non deux : la correction n'en avait trouvé que deux, et le troisième a survécu une
 journée de plus, dans un encadré du même fichier. <strong>Un chiffre faux a des jumeaux</strong>, et le
 balayage qui corrige n'est pas celui qui compte - c'est l'audit d'harmonisation de la clôture qui
 a rendu le troisième.</p>
@@ -9960,7 +9960,7 @@ a rendu le troisième.</p>
 <li><strong>le chiffre est une mesure datée</strong> (« 66 aperçus sur 138 différaient le 6 août ») → il reste en
   dur, et c'est <strong>juste</strong> : ce n'est pas un inventaire, c'est un constat, et un constat a une date.</li>
 </ul>
-<p>⚠️ Le troisième cas se confond avec le premier au premier coup d'œil. Un balayage a compté « 51,
+<p>Le troisième cas se confond avec le premier au premier coup d'œil. Un balayage a compté « 51,
 66, 108 aperçus » comme des inventaires divergents : c'étaient trois <strong>deltas</strong> d'ADR, et le total,
 138, était juste partout. Lire la phrase entière avant de conclure à une dérive.</p>
 </div>
@@ -10146,7 +10146,7 @@ l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 </code></pre></div>
 </li>
 </ul>
-<p>⚠️ <strong><code>test-compile</code> n'est pas une commodité, c'est ce qui fait démarrer le minion.</strong> PIT hérite de
+<p><strong><code>test-compile</code> n'est pas une commodité, c'est ce qui fait démarrer le minion.</strong> PIT hérite de
 l'<code>argLine</code> de Surefire, qui contient deux valeurs posées par des greffons liés à des <strong>phases</strong> :
 <code>@{jacocoArgLine}</code> (<code>jacoco:prepare-agent</code>) et <code>${net.bytebuddy:byte-buddy-agent:jar}</code>
 (<code>dependency:properties</code>, phase <code>initialize</code>). Invoquer le <strong>but seul</strong>
@@ -10245,7 +10245,7 @@ mesure honnête donne 43 %.</p>
 périmètre des vues, <strong>1 expiration sur 280 mutants</strong>. C'est le périmètre qu'il fallait corriger, pas
 le butoir (#2768).</p>
 </div>
-<p>⚠️ <strong>PIT n'a plus d'analyse incrémentale.</strong> Depuis la version 1.25.x, le stockage de l'historique est un
+<p><strong>PIT n'a plus d'analyse incrémentale.</strong> Depuis la version 1.25.x, le stockage de l'historique est un
 greffon <strong>commercial</strong> (arcmutate). Les options <code>historyInputFile</code>/<code>historyOutputFile</code> figurent toujours
 au descripteur du greffon Maven, mais les passer sans lui ne les fait pas ignorer : PIT <strong>refuse de
 démarrer</strong>. Le descripteur dit que l'option existe, pas que la fonction est là (#2768).</p>
@@ -10254,7 +10254,7 @@ démarrer</strong>. Le descripteur dit que l'option existe, pas que la fonction 
 </code></pre></div>
 <p>Il trie les classes par nombre de survivants plutôt que d'afficher un pourcentage : le score situe, la
 liste travaille.</p>
-<p>⚠️ <strong>Lire le rapport, pas le résumé.</strong> <code>target/pit-reports/mutations.xml</code> écrit ses attributs en
+<p><strong>Lire le rapport, pas le résumé.</strong> <code>target/pit-reports/mutations.xml</code> écrit ses attributs en
 <strong>apostrophes simples</strong> (<code>status='SURVIVED'</code>). Un filtre écrit en guillemets doubles ne matche rien et
 annonce « 0 survivant » sur n'importe quel rapport - y compris sur une classe dont sept mutants
 survivaient. Le résumé imprimé en fin de course (<code>Generated N Killed M</code>) est la référence à recouper.</p>
@@ -10338,7 +10338,7 @@ vérifié que ce n'est pas un faux positif de l'analyseur, qui lit le bytecode e
 liaisons résolues à l'exécution ni les artefacts résolus avec un classifieur de plateforme. Les
 exclusions du <code>pom.xml</code> nomment chacune sa raison ; une exclusion sans motif est le même bruit sous un
 autre nom.</p>
-<p>⚠️ Ne pas mêler une <strong>déclaration</strong> à une <strong>montée de version</strong> : les deux dans la même PR rendent un
+<p>Ne pas mêler une <strong>déclaration</strong> à une <strong>montée de version</strong> : les deux dans la même PR rendent un
 éventuel rouge illisible.</p>
 <p><code>lint.yml</code> vérifie aussi la <strong>complétude des captures</strong> (cf. <a href="../captures/">Captures</a>). Une PR doit
 passer <strong>les deux</strong> workflows (cf. <a href="../ci-cd-release/">CI/CD et release</a>).</p>
@@ -10391,20 +10391,20 @@ y voir.</p>
 conséquence dont la cause est hors champ. D'où la règle que le pointeur <strong>s'arrête</strong> sur sa cible avant
 d'appuyer (<code>GesteVisible</code>), et que le motif d'un blocage <strong>paraît</strong> au lieu d'être lu par programme
 (<a href="../decisions/4234-un-motif-de-blocage-se-montre-il-ne-se-lit-pas/">ADR 4234</a>).</p>
-<p>⚠️ La règle n'oblige pas à <strong>fabriquer</strong> le contraire. Quand il semble introuvable, la question est
+<p>La règle n'oblige pas à <strong>fabriquer</strong> le contraire. Quand il semble introuvable, la question est
 d'abord « sur quelles données ai-je mesuré ? ». <code>S1-17</code> a été déclaré infilmable au vu d'une fixture de
 deux sites ; sur cent cinquante carrés, le voile dure un demi-seconde.</p>
 <p>Voir <a href="../decisions/4166-un-etat-ne-se-juge-que-contre-son-contraire/">ADR 4166</a>.</p>
-<h3 id="certains-defauts-ne-se-voient-pas-depuis-ce-poste-il-faut-les-sonder">⚠️ Certains défauts ne se voient pas depuis ce poste - il faut les sonder<a class="headerlink" href="#certains-defauts-ne-se-voient-pas-depuis-ce-poste-il-faut-les-sonder" title="Permanent link">&para;</a></h3>
+<h3 id="certains-defauts-ne-se-voient-pas-depuis-ce-poste-il-faut-les-sonder">Certains défauts ne se voient pas depuis ce poste - il faut les sonder<a class="headerlink" href="#certains-defauts-ne-se-voient-pas-depuis-ce-poste-il-faut-les-sonder" title="Permanent link">&para;</a></h3>
 <p>Quatre fois sur la campagne #3802, une mesure locale a rendu <strong>vert</strong> sans rien dire : <code>Noto Sans</code> est
 une police <strong>système</strong> sous Linux, <code>ATOMIC_MOVE</code> y réussit quoi qu'on tienne ouvert, la vue <strong>ACL</strong> n'y
 existe pas, et PIT y tourne - donc laisse sans couverture toute branche que seul Windows emprunte.</p>
 <p>La méthode qui marche, et qui coûte trois minutes depuis #3754 : une <strong>sonde jetable</strong> qui <strong>rapporte</strong>
 au lieu de juger, dispatchée sur la plateforme concernée, lue, <strong>puis</strong> traduite en assertion.</p>
-<p>⚠️ Les deux sondes de cette campagne ont <strong>contredit</strong> l'hypothèse qui les demandait. Une sonde qui
+<p>Les deux sondes de cette campagne ont <strong>contredit</strong> l'hypothèse qui les demandait. Une sonde qui
 aurait asserté l'hypothèse serait passée au rouge sans qu'on sache pourquoi.</p>
 <p>Détail : <a href="../decisions/3802-un-defaut-de-plateforme-se-sonde-il-ne-se-deduit-pas/">ADR 3802</a>.</p>
-<h3 id="la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne">⚠️ La police d'un test n'est pas celle du produit, sauf si on la lui donne<a class="headerlink" href="#la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne" title="Permanent link">&para;</a></h3>
+<h3 id="la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne">La police d'un test n'est pas celle du produit, sauf si on la lui donne<a class="headerlink" href="#la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne" title="Permanent link">&para;</a></h3>
 <p><code>Typographie.installer()</code> garde un <code>static boolean</code> : l'enregistrement de la police embarquée est
 <strong>global au JVM et fait une seule fois</strong>. Un test qui monte sa scène à la main voit donc la police du
 produit <strong>si un voisin l'a installée avant lui</strong>, et celle du système sinon - avec <code>reuseForks=true</code>,
@@ -10412,7 +10412,7 @@ c'est l'<strong>ordre d'exécution</strong> qui décide.</p>
 <p>Mesuré (#3773) : <code>CartesAccueilTest</code> a rendu <strong>vert à 8 h 14 et rouge à 15 h 34</strong>, sur le <strong>même
 commit</strong> et la <strong>même image</strong> <code>macos-26-arm64</code>. Puis, joué <strong>seul</strong> sous macOS - donc sans voisin -, il
 échoue. L'écart tient à 20,43 px contre 17,666 px selon la police effectivement rendue.</p>
-<p>⚠️ <strong>Ce défaut ne se voit pas depuis un poste Linux</strong> : <code>Noto Sans</code> y est une police système, donc
+<p><strong>Ce défaut ne se voit pas depuis un poste Linux</strong> : <code>Noto Sans</code> y est une police système, donc
 trouvée installée ou non. Une suite locale verte ne dit rien de cette propriété. Sur le runner Ubuntu,
 l'ADR 3361 note que <code>sans-serif</code> se résout en « une police plus large » - ce que la CI voit exactement
 n'a pas été mesuré.</p>
@@ -10426,7 +10426,7 @@ qui la dimensionne, la déplace ou la <strong>ferme</strong> laisse cet état à
 elle - et seulement à celles-là, dans l'ordre où la répartition des forks les a mises. Le symptôme
 tombe alors sur une classe sans rapport, sous la forme d'un noeud « invisible ».</p>
 <p>Le défaut est revenu <strong>cinq fois</strong> : #1940, #1967, #3452, #4130, #4145.</p>
-<p>⚠️ <strong>Rendre la valeur ne rend pas la propriété.</strong> <code>setWidth</code> fait passer un Stage en
+<p><strong>Rendre la valeur ne rend pas la propriété.</strong> <code>setWidth</code> fait passer un Stage en
 dimensionnement <strong>explicite</strong>, et reposer la largeur d'entrée ne l'en fait pas sortir : il cesse
 définitivement de suivre les scènes qu'on lui pose. Deux bancs appliquaient consciencieusement
 cette restauration-là, en citant #3960 en commentaire, et figeaient quand même.</p>
@@ -10461,7 +10461,7 @@ souvent <strong>avalée</strong> (l'écran fige). Découper <strong>préparation
 <p class="admonition-title">Dès que l'exécuteur est asynchrone : attendre le signal, pas le retour du clic</p>
 <p>Un test <code>*E2ETest</code> monte le <strong>vrai</strong> <code>RacineInjecteur</code>, pas le module de test qui rebranche
 <code>ExecuteurTacheSynchrone</code> (#793).</p>
-<p>⚠️ <strong>Ce n'est plus une propriété des seuls E2E</strong> (#3667). Un test de vue peut brancher
+<p><strong>Ce n'est plus une propriété des seuls E2E</strong> (#3667). Un test de vue peut brancher
 <code>ExecuteurTacheAsynchrone</code> <strong>délibérément</strong> : <code>ScenarioPerceptifConnexionTest</code> le fait, parce que
 le transitoire qu'il donne à voir - la zone de progression seule, avant le bandeau - n'existe pas
 autrement. En synchrone, la récupération occupe le fil JavaFX : aucune image n'est rendue pendant

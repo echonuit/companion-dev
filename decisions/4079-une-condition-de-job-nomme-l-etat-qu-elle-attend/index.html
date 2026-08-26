@@ -9489,11 +9489,11 @@ comportement attendu, et l'exiger autrement refuserait une forme juste.</p>
 seraient défaits au prochain <code>needs</code> ajouté en amont - c'est exactement ainsi que ce défaut est né.
 <code>verifie-conditions-de-job.sh</code> refuse le troisième.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>Le mode de défaillance corrigé se présentait comme un succès.</strong> C'est la même famille que les
+<p><strong>Le mode de défaillance corrigé se présentait comme un succès.</strong> C'est la même famille que les
 ADR portant sur les gardes qui acceptent à tort : rien ne rougit, rien ne lève, et seul l'inventaire
 des assets trahit que la chaîne s'est arrêtée au milieu. Un tableau de bord qui ne regarde que les
 runs rouges ne l'aurait jamais montré.</p>
-<p>⚠️ <strong>Ajouter un <code>needs</code> en amont d'un job change le comportement de tout son aval</strong>, y compris de
+<p><strong>Ajouter un <code>needs</code> en amont d'un job change le comportement de tout son aval</strong>, y compris de
 jobs qu'on ne touche pas et qu'on ne relit pas. #3770 était une bonne décision, correctement mise en
 œuvre pour le job qu'elle visait ; le dégât s'est produit deux crans plus bas.</p>
 <p>La numérotation garde un trou : la 2.186.0 n'a jamais été livrée, son brouillon a été supprimé et le

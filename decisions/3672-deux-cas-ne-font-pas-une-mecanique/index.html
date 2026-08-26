@@ -9500,7 +9500,7 @@ voyante de la même cause.</p>
 <p>Rendre les libellés observables demanderait de transformer <code>EtapeNavigation</code> - un <code>record</code> - en
 porteur de propriété, de faire suivre le chrome, et de tenir un cycle d'abonnement de plus. Pour
 <strong>deux</strong> écrans dont la correction locale tient en une méthode et un appel, c'est disproportionné.</p>
-<p>⚠️ Et la clause de réouverture ne se rejoue pas indéfiniment : à un <strong>troisième</strong> cas, la question
+<p>Et la clause de réouverture ne se rejoue pas indéfiniment : à un <strong>troisième</strong> cas, la question
 redevient légitime, parce que la duplication du geste commencerait alors à coûter plus que la
 mécanique.</p>
 <h2 id="le-piege-et-pourquoi-le-second-cas-ne-sest-pas-vu">Le piège, et pourquoi le second cas ne s'est pas vu<a class="headerlink" href="#le-piege-et-pourquoi-le-second-cas-ne-sest-pas-vu" title="Permanent link">&para;</a></h2>
@@ -9510,7 +9510,7 @@ fil dit « N° 2 », le bouton Retour « N° 7 ». C'est elle qui a fait remarqu
 <p>La fiche site ne le déclare pas : le fil retombe sur son repli historique et lit le <strong>même</strong> libellé
 figé. Les deux s'accordent alors <strong>sur la mauvaise valeur</strong>. Rien ne se contredit à l'écran, donc rien
 n'alerte : #3672 n'a été trouvée ni par l'usage ni par un test, mais par le balayage #3545.</p>
-<p>⚠️ <strong>Corollaire, contre-intuitif</strong> : déclarer <code>EmplacementNavigation</code> sur un écran dont le libellé
+<p><strong>Corollaire, contre-intuitif</strong> : déclarer <code>EmplacementNavigation</code> sur un écran dont le libellé
 d'étape est figé <strong>fabrique</strong> la contradiction au lieu de la corriger. Les deux se posent ensemble ou
 pas du tout.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -9519,7 +9519,7 @@ pas du tout.</p>
   relibellage, et nommera donc le troisième cas au lieu de le laisser passer inaperçu comme le second.</li>
 <li>Un ViewModel qui <strong>détient</strong> un <code>record</code> d'entité doit le relire après toute écriture qui le touche.
   <code>rafraichir()</code> recharge des listes ; il ne rafraîchit pas ce qu'on tient déjà.</li>
-<li>⚠️ Le mécanisme correct <strong>existait</strong> dans <code>SiteDetailViewModel#modifierSite</code>, qui réassignait
+<li>Le mécanisme correct <strong>existait</strong> dans <code>SiteDetailViewModel#modifierSite</code>, qui réassignait
   l'agrégat depuis le retour du service. Il était <strong>mort</strong> depuis que #1431 avait déporté l'édition
   dans une modale portant son propre ViewModel, et sa doc-comment disait encore « bouton header
   ✏ Modifier ». Trois tests l'exerçaient et passaient : ils n'ont jamais pu rougir, et le défaut qu'ils

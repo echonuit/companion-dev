@@ -9464,7 +9464,7 @@
 <p>Le garde d'espace de la sauvegarde (#3572) mesure ce qu'elle emportera avant de copier. Il s'appuyait
 sur <code>ArborescenceFichiers.octets</code>, qui parcourt l'arborescence et compte <strong>zéro</strong> pour un fichier dont
 la taille ne se lit pas.</p>
-<p>⚠️ <strong>Le constat de départ de #3627 était partiellement faux, et le sonder l'a montré.</strong> Il annonçait
+<p><strong>Le constat de départ de #3627 était partiellement faux, et le sonder l'a montré.</strong> Il annonçait
 qu'un droit refusé comptait pour zéro. Mesuré :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>tout lisible      : 6000 octets (attendu 6000)
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>dossier interdit  : LEVE UncheckedIOException : java.nio.file.AccessDeniedException
@@ -9511,7 +9511,7 @@ geste : rendre le dossier lisible, ou retirer la nuit concernée.</p>
 n'apprend ni ce que pèse le reste, ni combien de dossiers ont résisté. Le parcours est donc une file
 explicite, qui note le dossier fermé et continue - même choix que <code>effacerAuMieux</code>, qui ne s'arrête pas
 au premier récalcitrant.</p>
-<p>⚠️ Le test « est-ce un dossier ? » porte <code>NOFOLLOW_LINKS</code>, et lui seul. C'est ce que fait <code>Files.walk</code>
+<p>Le test « est-ce un dossier ? » porte <code>NOFOLLOW_LINKS</code>, et lui seul. C'est ce que fait <code>Files.walk</code>
 par défaut, et sans lui <strong>un lien vers un dossier ancêtre ferait tourner ce parcours sans fin</strong>.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
@@ -9523,7 +9523,7 @@ par défaut, et sans lui <strong>un lien vers un dossier ancêtre ferait tourner
   pas sur commande, un dossier en <code>chmod 000</code> fait échouer le parcours et non la pesée, et un lien mort
   est écarté par <code>isRegularFile</code> avant qu'on l'atteigne. Sans lui le test serait conditionnel, et un
   test qui s'abstient rend le même vert que celui qui s'exécute.</li>
-<li>⚠️ Une décision <strong>de ne pas faire</strong> : la mesure ne relit pas ce qu'elle a manqué, et n'essaie pas de
+<li>Une décision <strong>de ne pas faire</strong> : la mesure ne relit pas ce qu'elle a manqué, et n'essaie pas de
   distinguer un droit refusé d'un support démonté. La cause système est rapportée telle quelle ; c'est
   elle qui dit à l'utilisateur quoi débloquer.</li>
 <li>Une mesure partielle qui se présenterait comme complète est ce que l'<a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">ADR 2748</a>

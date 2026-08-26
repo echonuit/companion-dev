@@ -9556,7 +9556,7 @@ script Flatpak aussi, le lanceur jpackage également. Ils mouraient à la derni�
 </tr>
 </tbody>
 </table>
-<p>⚠️ La contrainte du sous-système graphique est <strong>propre à Windows</strong> : elle est inscrite dans l'en-tête
+<p>La contrainte du sous-système graphique est <strong>propre à Windows</strong> : elle est inscrite dans l'en-tête
 PE à l'édition de liens, aucun code Java ne la reprend à l'exécution. Sous Linux et macOS il n'y a pas
 d'en-tête PE, donc pas de dilemme. C'est bien pour cette raison que le JDK livre <code>java</code> <strong>et</strong> <code>javaw</code>.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
@@ -9566,7 +9566,7 @@ argument, tous vus rouges sur deux mutations avant d'être crus.</p>
 <p><code>Launcher</code> aiguille sur le premier argument : <code>ihm</code> ouvre la fenêtre, tout le reste part à <code>Cli</code>. Le
 mot n'est à la charge de personne : <code>jpackage --arguments ihm</code> l'écrit dans le <code>.cfg</code>, le script
 Flatpak porte le même défaut avec <code>"${@:-ihm}"</code>.</p>
-<p>⚠️ <strong>Une invocation sans aucun argument rend l'usage de la ligne de commande, elle n'ouvre pas la
+<p><strong>Une invocation sans aucun argument rend l'usage de la ligne de commande, elle n'ouvre pas la
 fenêtre.</strong> Traiter l'absence comme une demande d'interface serait une condition ambiante tenant lieu
 de déclaration, la figure que ferme l'ADR 3828 - laquelle autorise en retour ce qui est décidé « sur
 des entrées <strong>fournies</strong> », et un mot en est une.</p>
@@ -9574,7 +9574,7 @@ des entrées <strong>fournies</strong> », et un mot en est une.</p>
 <p><code>--add-launcher vigiechiro</code> pose une seconde porte sur la <strong>même</strong> <code>main-class</code>. Elle ne porte
 <code>win-console=true</code> que sous Windows ; le lanceur graphique ne gagne aucune console, sans quoi le menu
 Démarrer en ouvrirait une noire à chaque lancement.</p>
-<p>⚠️ Son fichier de propriétés porte <code>arguments=--help</code> <strong>obligatoirement</strong> : sans cette clé, le lanceur
+<p>Son fichier de propriétés porte <code>arguments=--help</code> <strong>obligatoirement</strong> : sans cette clé, le lanceur
 hérite de l'<code>ihm</code> du principal et <code>vigiechiro</code> tapé seul dans une console ouvre la fenêtre.</p>
 <h3 id="3-le-nom-expose-est-en-minuscules-et-ce-nest-pas-le-nom-du-produit">3. Le nom exposé est en minuscules, et ce n'est pas le nom du produit<a class="headerlink" href="#3-le-nom-expose-est-en-minuscules-et-ce-nest-pas-le-nom-du-produit" title="Permanent link">&para;</a></h3>
 <p><code>vigiechiro</code>, celui que l'aide de picocli annonce déjà. Le nom du produit reste
@@ -9597,7 +9597,7 @@ seule raison qu'un <code>bin/VigieChiroCompanion</code> ne se tape pas sous Unix
 <li><strong>Le harnais <code>bats</code> peut viser le lanceur réel</strong> au lieu de la classe, et faire passer les 66
   commandes par le chemin de l'utilisateur, runtime jlink compris - celui où #2299 avait laissé partir
   un paquet incapable de démarrer.</li>
-<li>⚠️ <strong>Un cas n'a pas d'équivalent sur ce chemin</strong> : <code>cli_avec_option_jvm</code> abaisse une borne par <code>-D</code>
+<li><strong>Un cas n'a pas d'équivalent sur ce chemin</strong> : <code>cli_avec_option_jvm</code> abaisse une borne par <code>-D</code>
   pour éprouver un refus (#2732). Le lanceur n'accepte aucune option JVM ; le test <strong>saute en le
   disant</strong> plutôt que de rendre un vert qui n'aurait rien éprouvé (ADR 2748). C'est ce trou qui a fait
   ouvrir #4075.</li>

@@ -9934,7 +9934,7 @@ c'est la <strong>réponse</strong> qui se perd.</p>
 </tr>
 </tbody>
 </table>
-<p>⚠ <strong>Une règle par verbe HTTP serait fausse.</strong> <code>PUT /donnees/…/messages</code> <strong>empile</strong> côté serveur : un
+<p><strong>Une règle par verbe HTTP serait fausse.</strong> <code>PUT /donnees/…/messages</code> <strong>empile</strong> côté serveur : un
 <code>PUT</code> peut parfaitement ne pas être idempotent. Et le <code>PATCH</code> avec <code>If-Match</code> ne duplique pas, mais
 rejoué après un succès dont la réponse s'est perdue il revient en <code>412</code> - l'utilisateur lirait « échec »
 sur une modification qui a bien eu lieu. L'arbitrage est <strong>par appel</strong>, écrit à côté de lui.</p>
@@ -10084,7 +10084,7 @@ prévenir : celle-ci rougit.</p>
 <tr>
 <td><code>sites</code></td>
 <td><code>/sites</code>, <code>/sites/{id}</code>, <code>/sites/liste</code>, <code>/moi/sites</code>, <code>/protocoles/{id}/sites[/grille_stoc\|/tracet]</code></td>
-<td>catalogue entier lisible et paginé (<strong>20 572 sites</strong> au 2026-08-05, recensés page par page). ⚠️ <code>/sites/liste</code> trompe deux fois : chaque document est réduit à son <code>_id</code> (759 Ko, non paginé), et son enveloppe n'est <strong>pas</strong> celle d'Eve (<code>_items</code> contient les documents <strong>puis le total</strong>, en deux blocs). Elle ne dispense pas de paginer <code>/sites</code> pour recenser les points</td>
+<td>catalogue entier lisible et paginé (<strong>20 572 sites</strong> au 2026-08-05, recensés page par page). <code>/sites/liste</code> trompe deux fois : chaque document est réduit à son <code>_id</code> (759 Ko, non paginé), et son enveloppe n'est <strong>pas</strong> celle d'Eve (<code>_items</code> contient les documents <strong>puis le total</strong>, en deux blocs). Elle ne dispense pas de paginer <code>/sites</code> pour recenser les points</td>
 </tr>
 <tr>
 <td><code>participations</code></td>
@@ -10094,7 +10094,7 @@ prévenir : celle-ci rougit.</p>
 <tr>
 <td><code>donnees</code></td>
 <td><code>/donnees</code>, <code>/donnees/{id}[/fichiers]</code>, <code>/participations/{id}/donnees</code></td>
-<td>⚠️ la collection nue <code>/donnees</code> est déclarée mais <strong>répond 503</strong> en pratique : passer par la participation</td>
+<td>la collection nue <code>/donnees</code> est déclarée mais <strong>répond 503</strong> en pratique : passer par la participation</td>
 </tr>
 <tr>
 <td><code>taxons</code></td>
@@ -10114,17 +10114,17 @@ prévenir : celle-ci rougit.</p>
 <tr>
 <td><code>fichiers</code></td>
 <td><code>/fichiers/{id}</code>, <code>/fichiers/{id}/acces</code></td>
-<td>⚠️ <strong>aucune route de collection</strong> : <code>/fichiers</code> n'existe pas en lecture, d'où son refus</td>
+<td><strong>aucune route de collection</strong> : <code>/fichiers</code> n'existe pas en lecture, d'où son refus</td>
 </tr>
 <tr>
 <td><code>grille_stoc</code></td>
 <td><code>/grille_stoc/rectangle</code>, <code>/grille_stoc/cercle</code></td>
-<td>⚠️ <strong>aucune route de collection</strong> : s'interroge par emprise</td>
+<td><strong>aucune route de collection</strong> : s'interroge par emprise</td>
 </tr>
 <tr>
 <td><code>actualites</code></td>
 <td><code>/moi/actualites</code>, <code>/actualites/validations</code></td>
-<td>⚠️ <strong>aucune route de collection</strong></td>
+<td><strong>aucune route de collection</strong></td>
 </tr>
 </tbody>
 </table>
@@ -10172,7 +10172,7 @@ mesuré, en lecture seule, le <strong>2026-08-14</strong> - six <code>GET</code>
 </table>
 <p><code>_sites_generic_list</code> (<code>vigiechiro/resources/sites.py</code>) pose <code>lookup['$text'] = {'$search': q}</code> quand
 <code>q</code> est présent, et <strong>l'index texte existe</strong> : le total annoncé bouge, ce que <code>where=</code> ne fait jamais.</p>
-<p>⚠️ <strong><code>$text</code> cherche des mots entiers, pas des préfixes.</strong> <code>13071</code> ne ramène pas <code>130711</code>. C'est ce
+<p><strong><code>$text</code> cherche des mots entiers, pas des préfixes.</strong> <code>13071</code> ne ramène pas <code>130711</code>. C'est ce
 qu'il faut pour un numéro de carré - aucun faux positif par troncature - et cela <strong>interdit</strong> d'en tirer
 une recherche partielle. Le titre d'un site (<code>Vigiechiro - Point Fixe-130711</code>) indexe le numéro comme un
 mot à lui seul, le tiret servant de séparateur.</p>
@@ -10181,7 +10181,7 @@ mot à lui seul, le tiret servant de séparateur.</p>
 posent la question de cette façon</strong> : la fenêtre de déclaration depuis #3787, la ligne de commande
 depuis #3769 (<code>lister-sites-vigiechiro --carre</code>, qui refuse désormais <code>--pages</code> et <code>--tout</code> : il n'y a
 plus d'étendue à borner).</p>
-<p>⚠️ Un <strong>troisième</strong> appelant s'en sert pour autre chose que chercher : le refus « site non rattaché »
+<p>Un <strong>troisième</strong> appelant s'en sert pour autre chose que chercher : le refus « site non rattaché »
 (<code>SynchronisationParticipation</code>, #3854) interroge <code>q</code> pour choisir son conseil - récupérer le carré, ou
 l'activer sur le portail. La requête ne part que sur ce chemin d'échec.</p>
 <p><strong>Rejouer la carte</strong> quand le miroir du source bouge (<code>SAE201/vigiechiro-api</code>) :</p>
@@ -10513,7 +10513,7 @@ pas une erreur, un <strong>état</strong>.</p>
 </tr>
 </tbody>
 </table>
-<p>⚠️ <strong>Le serveur REMPLACE le bloc <code>traitement</code> à chaque étape</strong>, il ne le complète pas : dès que le
+<p><strong>Le serveur REMPLACE le bloc <code>traitement</code> à chaque étape</strong>, il ne le complète pas : dès que le
 calcul démarre, <code>date_planification</code> <strong>disparaît</strong>. N'attendez jamais les trois dates ensemble
 (constaté en réel sur la participation canonique : <code>FINI</code> sans <code>date_planification</code>).</p>
 <p><strong>Un état SERVEUR, distinct du workflow local.</strong> <code>EtatTraitement</code> (<code>commun.api</code>) n'est <strong>pas</strong> une
@@ -10603,7 +10603,7 @@ régénère le CSV côté serveur ; inutile ici, le pipeline le produit déjà a
   mode de dépôt par défaut est cassé</strong>, et non, comme son libellé le laissait croire, qu'il faudrait
   revenir au WAV.</li>
 <li>
-<p><strong>PATCH <code>/sites/{id}</code></strong> : <strong>HTTP 403</strong> pour un observateur. ⚠️ <strong>Ce verdict était exact et la conclusion
+<p><strong>PATCH <code>/sites/{id}</code></strong> : <strong>HTTP 403</strong> pour un observateur. <strong>Ce verdict était exact et la conclusion
   qu'on en tirait était fausse</strong> (#3694). Il en avait été déduit que le « push point→site » était
   impossible ; la sonde éprouvait simplement <strong>la mauvaise route</strong>. Lecture de la source
   (<code>vigiechiro/resources/sites.py</code>) :</p>
@@ -10628,7 +10628,7 @@ régénère le CSV côté serveur ; inutile ici, le pipeline le produit déjà a
 <p>Le portail passe par la <strong>seconde</strong>, et c'est par elle qu'un point a pu être créé sur un carré
 appartenant à un autre observateur (<code>Z41</code> sur 130711, le 2026-07-04, une semaine <strong>avant</strong> que la
 sonde ne rende son 403).</p>
-<p>⚠️ <strong>Elle remplace la liste entière</strong> : <code>mongo_update = {'$set': {'localites': payload['localites']}}</code>.
+<p><strong>Elle remplace la liste entière</strong> : <code>mongo_update = {'$set': {'localites': payload['localites']}}</code>.
 Envoyer le seul point neuf <strong>efface tous les autres</strong> - 41 localités sur ce carré, sur la donnée d'un
 tiers. Même forme que le <code>PATCH</code> de <code>configuration</code> d'une participation (#1844) : on part du distant,
 on y ajoute, on renvoie l'ensemble.</p>
@@ -10650,7 +10650,7 @@ peut purger les correspondances qu'elle ne cite plus ; le rapatriement n'en conn
 contente d'un <code>upsert</code>.</p>
 <p>Le <strong>push</strong> l'est depuis #3458 : <code>PublicationPoint</code>, offert sur la carte du point
 de la fiche site (passerelle <code>PublicationPoint</code> activée par <code>PublicationPointModule</code>).</p>
-<p>⚠️ <strong>Le 403 de cette route n'est pas prédictible depuis Companion</strong>, et c'est ce qui décide de la
+<p><strong>Le 403 de cette route n'est pas prédictible depuis Companion</strong>, et c'est ce qui décide de la
 forme de l'action à l'écran. Deux cas y mènent, et rien ne les distingue dans la réponse :</p>
 <table>
 <thead>
@@ -10682,7 +10682,7 @@ forme de l'action à l'écran. Deux cas y mènent, et rien ne les distingue dans
 le dit dans ses propres mots : <em>« Now owner cannot remove localites »</em>), et seul un administrateur
 peut rouvrir un carré verrouillé. <strong><code>StatutPlateforme.VERROUILLE</code> s'inverse ici</strong> : état favorable
 pour déposer une nuit, état refusé pour ajouter un point sur son propre carré.</p>
-<p>⚠️ <strong>Un homonyme n'est pas le même point</strong> (#3458). La plateforme impose l'unicité du <code>nom</code> d'une
+<p><strong>Un homonyme n'est pas le même point</strong> (#3458). La plateforme impose l'unicité du <code>nom</code> d'une
 localité, et l'on pourrait croire qu'un nom déjà pris signifie « c'est déjà le nôtre ». Une
 participation <strong>nomme</strong> sa localité (<code>'point': {'type': 'string'}</code> au schéma des participations) :
 déplacer une localité déplacerait donc, sans préavis, toutes les nuits qui s'y rattachent, y compris

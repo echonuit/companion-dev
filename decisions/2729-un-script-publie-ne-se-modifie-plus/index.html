@@ -9455,7 +9455,7 @@ dont un script a dérivé ne doit pas recevoir en plus les migrations suivantes.
 <li>Un script publié devient <strong>immuable</strong>. Une correction se fait par une <strong>nouvelle</strong> migration.</li>
 <li>Un démarrage peut échouer sur un refus que seul un développeur comprendra. C'est assumé : le
   message nomme le fichier, et cette situation ne se produit que sur une base de développement.</li>
-<li>⚠️ <strong>Les migrations appliquées avant la mise en place des empreintes n'en ont aucune.</strong> Elles sont
+<li><strong>Les migrations appliquées avant la mise en place des empreintes n'en ont aucune.</strong> Elles sont
   <strong>étalonnées</strong> au premier lancement, sur le contenu actuel des scripts : l'empreinte fige le
   présent, elle ne juge pas le passé. Si un script avait <strong>déjà</strong> été modifié sur une base existante,
   l'étalonnage enregistrera la version modifiée et personne ne le saura. C'est irrattrapable, rien

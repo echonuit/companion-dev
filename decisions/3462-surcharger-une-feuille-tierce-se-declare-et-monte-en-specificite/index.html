@@ -6621,7 +6621,7 @@
   <a href="#ce-que-cette-decision-depasse-et-qui-ne-doit-pas-rester-tacite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ Ce que cette décision dépasse, et qui ne doit pas rester tacite
+        Ce que cette décision dépasse, et qui ne doit pas rester tacite
       
     </span>
   </a>
@@ -9439,7 +9439,7 @@
   <a href="#ce-que-cette-decision-depasse-et-qui-ne-doit-pas-rester-tacite" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ Ce que cette décision dépasse, et qui ne doit pas rester tacite
+        Ce que cette décision dépasse, et qui ne doit pas rester tacite
       
     </span>
   </a>
@@ -9530,7 +9530,7 @@ WCAG 1.4.11 accepte explicitement les deux leviers, surface <strong>ou</strong> 
 <p><code>#6b737b</code> rend <strong>3,77:1</strong> sur la barre sombre et <strong>3,76:1</strong> sur la barre claire du thème <code>:light</code>. Une
 seule déclaration sert donc les deux thèmes, et elle y survit : la bibliothèque ne pose de bordure dans
 aucun des deux, sa règle <code>:light</code> plus spécifique ne réécrivant que le fond et le texte.</p>
-<h2 id="ce-que-cette-decision-depasse-et-qui-ne-doit-pas-rester-tacite">⚠️ Ce que cette décision dépasse, et qui ne doit pas rester tacite<a class="headerlink" href="#ce-que-cette-decision-depasse-et-qui-ne-doit-pas-rester-tacite" title="Permanent link">&para;</a></h2>
+<h2 id="ce-que-cette-decision-depasse-et-qui-ne-doit-pas-rester-tacite">Ce que cette décision dépasse, et qui ne doit pas rester tacite<a class="headerlink" href="#ce-que-cette-decision-depasse-et-qui-ne-doit-pas-rester-tacite" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../0046-une-classe-css-a-une-seule-feuille/">ADR 0046</a> pose qu'<strong>une classe CSS se définit dans une
 seule feuille</strong>, parce que <em>« la cascade CSS ne dit jamais laquelle gagne de façon évidente, et le
 résultat dérive en silence »</em>.</p>
@@ -9540,7 +9540,7 @@ C'est exactement la forme que 0046 refuse.</p>
 - désambiguïser les noms - n'existe pas ici, le nom appartenant à la bibliothèque. Le seul autre chemin
 serait de corriger <code>audio-view</code> en amont, ce qui n'aurait rien livré à l'utilisateur avant une
 publication.</p>
-<p>⚠️ <strong>Et son garde ne peut pas le voir.</strong> <code>DoublonsFeuillesDeStyleTest</code> balaie
+<p><strong>Et son garde ne peut pas le voir.</strong> <code>DoublonsFeuillesDeStyleTest</code> balaie
 <code>src/main/java/fr/univ_amu/iut</code> : la feuille tierce vit dans un jar, hors de son champ. Le test est donc
 resté vert, et sans cette ADR le dépassement n'aurait laissé <strong>aucune trace</strong>.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
@@ -9549,7 +9549,7 @@ resté vert, et sans cette ADR le dépassement n'aurait laissé <strong>aucune t
   que le moteur CSS a effectivement appliquées aux nœuds. C'est ce que <code>ContrasteAATest</code> nomme
   lui-même comme son trou : <em>« seule une mesure sur rendu le donnerait »</em>. Un test qui lirait le CSS
   aurait rendu un <strong>vert faux</strong> sur une surcharge n'atteignant pas sa cible.</li>
-<li>⚠️ <strong>Une montée de version d'<code>audio-view</code> peut déplacer la cible sans que rien ne le dise.</strong> C'est le
+<li><strong>Une montée de version d'<code>audio-view</code> peut déplacer la cible sans que rien ne le dise.</strong> C'est le
   risque que 0046 décrivait, reporté à la frontière du jar. La mesure sur rendu est la seule chose qui
   l'attrape : elle rougit si le contraste retombe sous 3:1, quelle qu'en soit la cause.</li>
 <li><strong>Le défaut touchait deux écrans</strong>, pas un. La règle vit donc dans <code>design.css</code> et non dans

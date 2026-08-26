@@ -9509,7 +9509,7 @@ ce qui rend le signal assez peu coûteux pour qu'on l'émette à chaque écritur
 de plus de se tromper <strong>en silence</strong>, et le silence est précisément le mode de panne qu'on combat.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>⚠️ <strong>Un lecteur futur verra cinq contrôleurs déclarer les deux contrats et conclura à une
+<li><strong>Un lecteur futur verra cinq contrôleurs déclarer les deux contrats et conclura à une
   migration inachevée.</strong> C'est la raison d'être de cette ADR. Supprimer <code>RafraichirAuRetour</code> est un
   refactoring qui compile, qui laisse la suite verte sur les gardes du lot 4, et qui casse les cinq
   écrans sur les <code>update</code> - le défaut ne se verrait qu'en posant un verdict et en revenant.</li>

@@ -9458,7 +9458,7 @@ y passe tel quel.</p>
 <h2 id="ce-que-la-mesure-a-dementi-et-qui-a-change-la-forme-du-remede">Ce que la mesure a démenti, et qui a changé la forme du remède<a class="headerlink" href="#ce-que-la-mesure-a-dementi-et-qui-a-change-la-forme-du-remede" title="Permanent link">&para;</a></h2>
 <p>L'obstacle supposé était une règle d'architecture : <code>CauseLisible</code> vivait dans <code>commun.view</code>, donc la
 ligne de commande ne pouvait pas l'appeler.</p>
-<p>⚠️ <strong>C'était faux.</strong> La règle <code>ArchitectureTest.pas_de_dependance_inter_feature_vers_la_vue</code> <strong>exclut
+<p><strong>C'était faux.</strong> La règle <code>ArchitectureTest.pas_de_dependance_inter_feature_vers_la_vue</code> <strong>exclut
 explicitement le socle <code>commun</code></strong>. Rien n'aurait rougi.</p>
 <p>Ce qui faisait tenir le montage n'était pas une propriété d'architecture, c'était un <strong>détail de
 compilation</strong> : <code>ActionOuvrirJournaux.LIBELLE</code> étant une constante <code>static final</code> de type <code>String</code>,
@@ -9473,7 +9473,7 @@ composition de texte, pas une vue.</p>
 l'inverse de ce que #3470 avait posé, et c'est le point qui rend le déplacement tenable. L'ADR 3854
 (« un message qui renvoie vers une entrée de menu doit la nommer telle qu'elle s'écrit ») tient
 toujours par construction, puisque la citation reste un lien de compilation.</p>
-<p><strong>3. ⚠️ Le repli « où regarder » est un paramètre, pas une constante.</strong></p>
+<p><strong>3. Le repli « où regarder » est un paramètre, pas une constante.</strong></p>
 <p>C'est la décision qui a le plus failli manquer. Le repli de #3470 dit :</p>
 <blockquote>
 <p>…dans le journal de l'application (<strong>menu principal &gt; Ouvrir le dossier des journaux</strong>).</p>
@@ -9495,7 +9495,7 @@ cliquet qu'on apprend à ignorer.</p>
 <li>Huit sites composaient leur message à la main ; <strong>six sont alignés</strong>, et les deux restants
   (<code>RestaurationBase:172</code>, <code>MoteurTraitementGroupe:116</code>) sont <strong>comptés par le cliquet</strong> plutôt que
   corrigés en silence hors du périmètre soumis.</li>
-<li>⚠️ Le cliquet <strong>ne peut pas voir</strong> la forme nue. Son en-tête le dit, plutôt que d'emprunter la
+<li>Le cliquet <strong>ne peut pas voir</strong> la forme nue. Son en-tête le dit, plutôt que d'emprunter la
   solidité du voisin (<a href="../3540-un-cliquet-qui-compte-n-est-pas-la-preuve-de-la-regle/">ADR 3540</a>).</li>
 <li>Le script s'<strong>exclut de son corpus</strong> : <code>CauseLisible</code> porte les trois motifs dans sa documentation et
   se compterait elle-même, défaut mesuré par l'<a href="../3645-un-detecteur-textuel-s-exclut-de-son-corpus/">ADR 3645</a>.</li>

@@ -9489,7 +9489,7 @@ ce défaut : la cause et le symptôme n'ont aucun rapport, et le symptôme se d�
 <p>Sa troisième règle disait : <strong>un banc rend l'état partagé tel qu'il l'a trouvé</strong>. Les deux bancs
 concernés l'appliquaient, et le documentaient :</p>
 <blockquote>
-<p>⚠️ On REND la fenêtre telle qu'on l'a trouvée. TestFX réutilise la <strong>fenêtre primaire</strong> dans un fork
+<p>On REND la fenêtre telle qu'on l'a trouvée. TestFX réutilise la <strong>fenêtre primaire</strong> dans un fork
 unique […] C'est ce que le job <code>ordre-alternatif</code> a attrapé - et il avait raison (#3960).</p>
 </blockquote>
 <p>Ils reposaient la <strong>largeur</strong> d'entrée. Mesuré : cela ne rend pas la fenêtre. <code>setWidth</code> fait passer un
@@ -9547,14 +9547,14 @@ fermer la fenêtre de tout le monde.</p>
 <code>sizeToScene()</code> après l'affichage (<code>recette.FenetreDuBanc</code>). C'est la voie que <code>Modales</code> emprunte
 depuis #1940.</p>
 <h2 id="ce-que-cette-decision-a-coute-a-apprendre">Ce que cette décision a coûté à apprendre<a class="headerlink" href="#ce-que-cette-decision-a-coute-a-apprendre" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong><code>sizeToScene</code> défige.</strong> C'est ce qui en fait le bon geste - et ce qui rend aveugle tout garde qui
+<p><strong><code>sizeToScene</code> défige.</strong> C'est ce qui en fait le bon geste - et ce qui rend aveugle tout garde qui
 l'appelle avant de mesurer. Le premier jet du garde de propriété le faisait : son mutant a <strong>survécu</strong>,
 le garde défaisant le défaut avant de le chercher. <code>setScene</code> suffit, et c'est justement lui qui reste
 sans effet sur une fenêtre figée.</p>
-<p>⚠️ <strong>Le plancher masque la mesure.</strong> <code>App.start</code> pose 600 px de haut minimum (#3452). Deux scènes
+<p><strong>Le plancher masque la mesure.</strong> <code>App.start</code> pose 600 px de haut minimum (#3452). Deux scènes
 choisies <strong>sous</strong> ce plancher laissent la fenêtre à 600 dans les deux cas, et le garde rougit sur du
 code sain. La seconde scène doit franchir le plancher.</p>
-<p>⚠️ <strong>La classe qui garde était la cinquième fautive.</strong> <code>ModalesTest</code> héberge le garde de #1940 depuis
+<p><strong>La classe qui garde était la cinquième fautive.</strong> <code>ModalesTest</code> héberge le garde de #1940 depuis
 le début, et prenait le Stage du harnais <strong>comme modale</strong> - qu'un de ses tests ferme. Après elle, une
 scène de quarante lignes laissait la fenêtre au plancher, là où elle la portait à 720 quand la classe
 tournait seule.</p>

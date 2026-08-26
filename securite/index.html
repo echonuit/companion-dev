@@ -9571,7 +9571,7 @@ développeur de
 <li><strong>aucune coordonnée GPS</strong> de site sensible ;</li>
 <li><strong>aucune donnée personnelle</strong> d'observateur.</li>
 </ul>
-<p>⚠️ <strong>Une exception, assumée et bornée</strong> (#4345) : les clips du tournage connecté montrent
+<p><strong>Une exception, assumée et bornée</strong> (#4345) : les clips du tournage connecté montrent
 l'identité que la plateforme rend, parce que c'est ce que la case <code>S8-06</code> demande de constater. Le
 compte employé est celui du <strong>mainteneur</strong>, dont le nom figure déjà dans chaque commit ; la
 publication n'ajoute donc rien le concernant. Employer le jeton d'un <strong>tiers</strong> rendrait cette
@@ -9596,7 +9596,7 @@ données d'exemple ou de test.</p>
   qu'un autre compte de la machine ne puisse pas lire le token. Sous Windows, il reste protégé par les
   <strong>ACL du profil utilisateur</strong> : le dossier de travail vit sous le profil, dont les autres comptes non
   administrateurs n'ont pas la clé. Protection réelle, mais <strong>de nature différente</strong>.</p>
-<p>⚠️ <strong>Cette phrase a été affirmée pendant des mois sans que personne la vérifie</strong>, et l'audit de
+<p><strong>Cette phrase a été affirmée pendant des mois sans que personne la vérifie</strong>, et l'audit de
 dette du 2026-07-28 le relevait : le code « se repose sur les ACL du profil <strong>sans les contrôler
 explicitement</strong> ». Mesuré depuis (#3778), par sonde sous Windows Server 2025 : le fichier porte
 exactement <strong>trois</strong> entrées <code>ALLOW</code> - son propriétaire, <code>NT AUTHORITY\SYSTEM</code> et
@@ -9604,10 +9604,10 @@ exactement <strong>trois</strong> entrées <code>ALLOW</code> - son propriétair
 qu'il veut. <strong>La doc disait vrai</strong> - et c'est précisément ce qu'on ignorait.</p>
 <p>La propriété est désormais <strong>lue</strong>, et non plus affirmée :
 <code>commun.model.ProtectionFichier.restreinteAuProprietaire</code> l'exprime sur les deux systèmes -
-permissions POSIX ici, ACL là-bas -, et <code>EcritureAtomiqueTest</code> l'éprouve. ⚠️ Ni POSIX ni ACL fait
+permissions POSIX ici, ACL là-bas -, et <code>EcritureAtomiqueTest</code> l'éprouve. Ni POSIX ni ACL fait
 <strong>lever</strong> plutôt que rendre <code>true</code> : annoncer une protection depuis une ignorance serait le faux
 vert que tout ce dispositif existe pour éviter.</p>
-<p>⚠️ La protection reste <strong>héritée</strong> du dossier de profil, pas posée par le produit. Elle est réelle
+<p>La protection reste <strong>héritée</strong> du dossier de profil, pas posée par le produit. Elle est réelle
 et elle peut changer sans que rien ne le dise - d'où la lecture, et le test qui s'en sert chaque
 mardi (#3526).</p>
 <p>L'écriture passe par <code>commun.model.EcritureAtomique</code> (#2735), et non plus par un <code>writeString</code>
@@ -9617,7 +9617,7 @@ se rouvrait à chaque <strong>création</strong> du fichier, donc à chaque reco
 supprime. Le secret n'atterrit désormais que dans un fichier <strong>créé déjà restreint</strong>, déplacé sur sa
 cible par un <code>ATOMIC_MOVE</code> - ce qui corrige au passage un <code>connexion.json</code> tronqué par une
 interruption, que le lecteur traduisait en « non connecté » sans rien dire.</p>
-<p>⚠️ <strong>Sous Windows, ce déplacement échoue dès qu'un lecteur tient la cible</strong> - mesuré par sonde sur
+<p><strong>Sous Windows, ce déplacement échoue dès qu'un lecteur tient la cible</strong> - mesuré par sonde sur
 Windows Server 2025 (#3777) : <code>Files.newInputStream</code>, <code>FileChannel</code>, <code>RandomAccessFile</code> et
 <code>FileChannel.lock()</code> provoquent <strong>tous</strong> une <code>AccessDeniedException</code>. Un simple lecteur suffit, il
 n'y a pas besoin d'un verrou. Or c'est le chemin du fichier d'amorçage, et les tenues concurrentes
@@ -9647,7 +9647,7 @@ en clair dans la base du même dossier déplacerait la serrure sans déplacer la
   <code>ConnexionModule.jetonPonctuel()</code> lit <code>System.getenv</code>, les <strong>forks surefire héritent</strong> de
   l'environnement du job, et l'URL de base vaut la <strong>production</strong> par défaut. Posé trop haut, un jeton
   Vigie-Chiro n'est pas offert au pas qui en a besoin mais à <strong>toute la suite de tests</strong>.</p>
-<p>⚠️ <strong>Aucun rôle de la plateforme ne peut rattraper cela.</strong> Le rôle <code>Lecteur</code> est déclaré dans
+<p><strong>Aucun rôle de la plateforme ne peut rattraper cela.</strong> Le rôle <code>Lecteur</code> est déclaré dans
 <code>ROLE_RULES</code> et <strong>aucune route ne l'accepte</strong> - <code>GET /sites</code>, <code>GET /participations</code>, <code>GET /donnees</code>
 et jusqu'au <code>GET /moi</code> exigent <code>Observateur</code>. Un jeton en lecture seule n'existe pas : la lecture
 seule ne tient que par la <strong>portée</strong> du secret et par le câblage du banc, qui lie sa propre source
@@ -9735,7 +9735,7 @@ décider à la place de l'utilisateur où elles peuvent être rangées (#3212). 
 <code>ServiceSauvegarde.CE_QU_ELLE_EMPORTE</code> et sa variante complète : <strong>une seule source pour les deux
 surfaces</strong>, l'IHM la disant dans sa confirmation ou son compte rendu, la CLI sur sa sortie standard.
 Deux copies d'un même avertissement divergent (ADR 0014).</p>
-<p>⚠️ <strong>Ce que cela suppose du contexte</strong> : le produit vise le <strong>poste personnel</strong> d'un naturaliste, pas
+<p><strong>Ce que cela suppose du contexte</strong> : le produit vise le <strong>poste personnel</strong> d'un naturaliste, pas
 un terminal partagé en environnement hostile. Un poste compromis expose les données locales et le
 jeton. Si le produit venait à stocker un secret <strong>ré-utilisable ailleurs</strong> (mot de passe, clé d'API
 personnelle), ou si la plateforme délivrait un jeton de longue durée, l'arbitrage serait à rouvrir.</p>
@@ -9801,7 +9801,7 @@ gigaoctets) et chacun se surcharge par propriété système (<code>vigiechiro.im
 <code>…max-octets-par-entree</code>, <code>…max-octets-total</code>, <code>…marge-disque-octets</code>). Il n'y a <strong>pas</strong> de réglage
 dans l'écran Réglages : un naturaliste n'a pas à choisir un plafond d'entrées. C'est le message de
 refus qui nomme la limite atteinte et l'échappatoire.</p>
-<p>⚠️ Ces bornes protègent l'<strong>import par l'IHM</strong>, seul chemin qui accepte aujourd'hui une archive : la
+<p>Ces bornes protègent l'<strong>import par l'IHM</strong>, seul chemin qui accepte aujourd'hui une archive : la
 CLI ne prend qu'un dossier.</p>
 <h3 id="le-meme-raisonnement-en-memoire-3222">Le même raisonnement, en mémoire (#3222)<a class="headerlink" href="#le-meme-raisonnement-en-memoire-3222" title="Permanent link">&para;</a></h3>
 <p>Ce que #2732 a posé sur le disque, #3222 le pose sur la <strong>mémoire</strong> : six lectures chargeaient une

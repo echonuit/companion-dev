@@ -9530,7 +9530,7 @@ où une zone temporaire l'aurait évité.</p>
 branché. Le juger « créable » y déverserait des gigaoctets sur le disque système, que le montage du
 vrai disque <strong>masquerait</strong> ensuite : l'utilisateur verrait ses nuits disparaître en rebranchant son
 disque.</p>
-<p>⚠️ <strong>Conséquence assumée</strong> : restaurer une nuit qu'on vient de <strong>supprimer</strong> la remet dans le dossier
+<p><strong>Conséquence assumée</strong> : restaurer une nuit qu'on vient de <strong>supprimer</strong> la remet dans le dossier
 de travail et non à sa place, puisque sa place n'existe plus. Le compte rendu le dit, et la base
 pointe au bon endroit.</p>
 <h3 id="tous-les-chemins-persistes-suivent-pas-seulement-la-racine">Tous les chemins persistés suivent, pas seulement la racine<a class="headerlink" href="#tous-les-chemins-persistes-suivent-pas-seulement-la-racine" title="Permanent link">&para;</a></h3>
@@ -9551,7 +9551,7 @@ n'a pas bougé, et le rebaser désignerait un fichier qui n'a jamais été là.<
   « restauré ».</li>
 <li>Une sauvegarde <strong>antérieure au manifeste</strong> se restaure comme avant, et le bilan le dit plutôt que
   de laisser croire à mieux.</li>
-<li>⚠️ L'inventaire des six tables est énuméré <strong>deux fois</strong> dans le code, ici et dans
+<li>L'inventaire des six tables est énuméré <strong>deux fois</strong> dans le code, ici et dans
   <code>RattachementDao.reprefixerChemins</code>, le socle ne pouvant pas dépendre d'une feature. Une septième
   table à chemin devra être ajoutée aux deux endroits : c'est le sujet de #3133.</li>
 </ul>

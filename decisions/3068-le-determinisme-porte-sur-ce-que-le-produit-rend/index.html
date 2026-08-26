@@ -9499,7 +9499,7 @@ frontières de modules la rendent coûteuse à défaire :</p>
 <li>la voie douce - rediriger le cache de Gluon vers un dossier stable - est fermée elle aussi :
   <code>com.gluonhq.attach.storage</code> n'exporte son paquet d'implémentation qu'au module <code>attach.util</code>.</li>
 </ul>
-<p>⚠️ Une révision de cette ADR <strong>ne serait pas absurde</strong> le jour où l'une de ces contraintes tombe (un
+<p>Une révision de cette ADR <strong>ne serait pas absurde</strong> le jour où l'une de ces contraintes tombe (un
 point d'injection du retriever côté application, ou un <code>StorageService</code> configurable). Le « non » est
 motivé par un rapport coût/bénéfice, pas par un principe.</p>
 <p><strong>Ce qui change en pratique</strong> : la CI ne <strong>committe</strong> plus le bruit de ces seize aperçus. On garde la
@@ -9522,7 +9522,7 @@ revue se fait au <code>cmp</code> dehors, à l'œil dedans.</p>
 </blockquote>
 <p>Éprouvé : un changement de 40x12 px hors carte, sur l'aperçu où la carte couvre 72,9 % de l'image, est
 détecté - il pèse 0,07 %, qu'aucun seuil global n'aurait vu.</p>
-<p>⚠️ Un défaut <strong>distinct</strong> existait au même endroit, et a été corrigé : l'attente des tuiles était un
+<p>Un défaut <strong>distinct</strong> existait au même endroit, et a été corrigé : l'attente des tuiles était un
 délai fixe de six secondes, donc une course contre le réseau. Une capture pouvait partir avec des tuiles
 <strong>manquantes</strong> - un fond absent, pas une nuance de rendu. C'est désormais une condition sur l'état du
 graphe de scène, et les captures de carte sont passées de 48 s à 10 s. Les deux sujets se ressemblent et

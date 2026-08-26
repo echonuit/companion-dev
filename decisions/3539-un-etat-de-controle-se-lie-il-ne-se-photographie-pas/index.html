@@ -9488,10 +9488,10 @@ surface</strong>, et c'est le fait marquant du lot.</p>
 <p><strong>Ce qui se décide au montage, c'est le câblage ; ce qui varie, c'est la donnée.</strong> Une propriété porte
 l'état, le contrôle s'y <strong>lie</strong>, et la source qui l'alimente est réinterrogée au bon moment.</p>
 <p>Deux précautions, chacune mesurée sur un cas réel :</p>
-<p>⚠️ <strong>Ne pas dériver l'état de ce qui est affiché.</strong> Avant « Appliquer », les chemins sélectionnés dans
+<p><strong>Ne pas dériver l'état de ce qui est affiché.</strong> Avant « Appliquer », les chemins sélectionnés dans
 les réglages ne sont pas encore la configuration persistée : un bouton lié à eux s'allumerait sur une
 <strong>intention</strong>. Ce qui décide, c'est ce qui a été <strong>écrit</strong> (#3543).</p>
-<p>⚠️ <strong>Recalculer ne doit pas défaire un choix de l'utilisateur</strong> (ADR 3095). Repeupler la liste d'un
+<p><strong>Recalculer ne doit pas défaire un choix de l'utilisateur</strong> (ADR 3095). Repeupler la liste d'un
 <code>ComboBox</code> par <code>clear()</code> puis <code>addAll()</code> remet sa valeur à <code>null</code>, et une liaison bidirectionnelle
 propage ce <code>null</code> jusqu'au ViewModel : la saison se recharge <strong>sans filtre</strong>, et le tableau se rouvre
 en grand sous les yeux de l'utilisateur. <code>setAll</code> remplace le contenu sans passer par la liste vide
@@ -9558,7 +9558,7 @@ chaîne dans un appel à <code>empiler</code>.</p>
 </table>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>⚠️ <strong>La mesure d'entrée d'un balayage oriente le regard, et peut l'orienter à côté.</strong> Compter les
+<li><strong>La mesure d'entrée d'un balayage oriente le regard, et peut l'orienter à côté.</strong> Compter les
   <code>setDisable</code> désignait 138 sites dont zéro défaut, et manquait le seul vrai. Ce sont les <strong>lectures</strong>
   des trois premiers cas qui ont donné la forme à chercher.</li>
 <li><strong>Un relevé se rejoue</strong> (<a href="../3664-un-releve-qui-n-a-pas-ouvert-les-fichiers-est-une-hypothese/">ADR 3664</a>).

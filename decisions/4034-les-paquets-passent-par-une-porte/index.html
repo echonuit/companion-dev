@@ -9431,7 +9431,7 @@
 miroir du runner rendait <code>Ign:</code> sur toutes ses sources, APT basculait sur l'archive amont, et
 l'attente durait jusqu'au butoir du job - y compris <strong>sur <code>main</code></strong>, où <code>paquet</code> a été annulé deux fois
 de suite à quarante minutes alors qu'il passait en onze minutes le matin même.</p>
-<p>⚠️ Le remède avait été appliqué à <strong>une</strong> des trois. Les deux autres ont continué de pendre le
+<p>Le remède avait été appliqué à <strong>une</strong> des trois. Les deux autres ont continué de pendre le
 lendemain. C'est le motif de ce chantier : une leçon apprise à un seul endroit.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>1. Aucune étape n'appelle <code>apt-get</code> directement.</strong> <code>installer-paquets.sh</code> borne les délais
@@ -9445,13 +9445,13 @@ vite. Le seul levier restant quand l'hébergeur ralentit est de ne pas retéléc
 <p><strong>3. Le cache de l'état INSTALLÉ (<code>awalsh128/cache-apt-pkgs-action</code>) a un périmètre étroit.</strong> Il
 restaure des fichiers <strong>sans rejouer les scripts post-installation</strong>. Il sert là où rien n'est rendu
 - <code>bats</code>, <code>desktop-file-utils</code> - et nulle part ailleurs.</p>
-<p>⚠️ <strong>Ce qui compte n'est pas le paquet demandé, c'est ce qu'il TRAÎNE.</strong> J'avais rangé <code>ffmpeg</code> parmi
+<p><strong>Ce qui compte n'est pas le paquet demandé, c'est ce qu'il TRAÎNE.</strong> J'avais rangé <code>ffmpeg</code> parmi
 les « paquets de fichiers » en regardant son nom ; sa fermeture de dépendances tire <strong>dix paquets de
 polices</strong>. Le premier run qui a trouvé le cache a fait tomber cinq cas du banc de recette - tous ceux
 qui écrivent du texte dans une vidéo, <code>drawtext</code> cherchant sa police par fontconfig.</p>
 <p><code>verifie-apt.sh</code> refuse donc <code>fonts-*</code>, <code>flatpak*</code> et <code>ffmpeg</code> au cache de fichiers.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p>⚠️ <strong>Un cache ne se prouve pas au run qui le REMPLIT.</strong> Le run mesuré avant la fusion affichait
+<p><strong>Un cache ne se prouve pas au run qui le REMPLIT.</strong> Le run mesuré avant la fusion affichait
 <code>Cache not found</code> : il enregistrait. Le suivant, qui a trouvé la clé, est tombé. Un dispositif dont le
 défaut attend le second essai est exactement celui qu'une vérification unique laisse passer.</p>
 <p>Le gain, une fois le cache en service et mesuré sur <code>main</code> :</p>

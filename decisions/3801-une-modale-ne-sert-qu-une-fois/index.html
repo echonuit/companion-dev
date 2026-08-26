@@ -9543,7 +9543,7 @@ code de réinitialisation ne servait à rien. C'est vrai de la <strong>productio
 <p><code>preparerCreation</code> et <code>preparerEdition</code> lèvent une <code>IllegalStateException</code> si le mode a déjà été choisi.
 Le refus est <strong>explicite</strong> plutôt que silencieux : sans lui, une seconde préparation laisserait les
 champs de la précédente en place, et l'écran mentirait sans que rien ne le signale.</p>
-<p>⚠️ <strong>Cela renverse #1380</strong>, et ce renversement est le point de cette ADR. Ce que #1380 garantissait -
+<p><strong>Cela renverse #1380</strong>, et ce renversement est le point de cette ADR. Ce que #1380 garantissait -
 « une déclaration ne parle pas de portée » - reste garanti ; c'est le <strong>chemin</strong> par lequel il
 l'éprouvait qui disparaît, au profit de l'état où la production met réellement l'écran.</p>
 <h3 id="ce-qui-remplace-le-code-retire">Ce qui remplace le code retiré<a class="headerlink" href="#ce-qui-remplace-le-code-retire" title="Permanent link">&para;</a></h3>
@@ -9559,7 +9559,7 @@ que les longues méthodes masquaient. <code>preparerCreation</code> touchait neu
 sujets qui n'ont rien à se dire.</p>
 <p>Le versant <strong>« ce carré existe-t-il là-bas ? »</strong> (deux ports optionnels, un verdict, un geste) est donc
 extrait dans <code>CarreExistantViewModel</code>. Il ne lit du formulaire que le numéro qu'on lui passe.</p>
-<p>⚠️ <strong>Deux points d'entrée restent</strong> côté ViewModel - <code>chercherCarreExistant</code> et <code>rapatrierCarre</code> -
+<p><strong>Deux points d'entrée restent</strong> côté ViewModel - <code>chercherCarreExistant</code> et <code>rapatrierCarre</code> -
 parce que c'est la <strong>saisie</strong> qui décide s'il y a lieu d'appeler le réseau : un carré incomplet ne fait
 partir aucune requête. Les déplacer aurait rendu cette garde inatteignable depuis les données qui la
 fondent.</p>
@@ -9567,11 +9567,11 @@ fondent.</p>
 <ul>
 <li><strong>PIT : 59/71 tués (83 %) → 72/74 (97 %)</strong>, et les neuf mutants de réinitialisation ont disparu <strong>avec
   le code</strong>, ce qui vaut mieux que d'être tués.</li>
-<li>⚠️ <strong>Un faux vert a été pris au passage, par la remesure et non par la relecture.</strong> Un premier cas
+<li><strong>Un faux vert a été pris au passage, par la remesure et non par la relecture.</strong> Un premier cas
   écrit pour <code>effacerRetour</code> partait d'un carré <strong>invalide</strong> : <code>enregistrer</code> refusait avant d'écrire, si
   bien que le test comparait <code>AUCUN</code> à <code>AUCUN</code>. Il passait, et la ligne qu'il prétendait tenir se
   supprimait sans faire rougir personne.</li>
-<li>⚠️ <strong>Deux mutants restent, sur le rapatriement</strong>, marqués <code>NO_COVERAGE</code> alors que
+<li><strong>Deux mutants restent, sur le rapatriement</strong>, marqués <code>NO_COVERAGE</code> alors que
   <code>ModaleSiteVerifierCarreViewTest</code> les exerce : <strong>PIT n'attribue pas ce qui s'exécute sur le fil
   JavaFX</strong>. C'est un artefact de ciblage, pas une lacune - et le dire évite qu'on écrive un test creux
   pour faire tomber un chiffre.</li>

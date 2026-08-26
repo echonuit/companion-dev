@@ -9690,7 +9690,7 @@ maximum <strong>2,51 %</strong>. Le <strong>0,34 %</strong> annoncé auparavant 
 sous-estimait l'amplitude réelle. Une tuile absente en ferait 9,5 % : il ne s'agit donc pas d'un
 chargement incomplet, mais du <strong>rendu servi par OpenStreetMap</strong>, qui n'est pas identique à chaque
 requête.</p>
-<p>⚠️ Cette même matrice montre que les versions <strong>n'errent pas au hasard</strong> : 30 versions se réduisent à
+<p>Cette même matrice montre que les versions <strong>n'errent pas au hasard</strong> : 30 versions se réduisent à
 <strong>18 états distincts</strong>, dont un revenant <strong>7 fois</strong> à des dates non consécutives. La variation est donc
 <strong>discrète</strong>, ce qu'un bruit de rendu continu ne produirait jamais.</p>
 <p>Aucune attente ne corrige cela, et ça a été vérifié : la condition de stabilité est satisfaite, et
@@ -9783,9 +9783,9 @@ vieillir, c'est-à-dire retomber dans le défaut qu'ils corrigent.</p>
 <code>multisite-edition</code> tombait sur un tableau de données, comparé à rien), et elle avait servi à cacher
 autre chose - une estimation de temps restant, corrigée depuis à sa source
 (<a href="../decisions/3483-un-apercu-pose-ce-qu-il-ne-peut-pas-reproduire/">ADR 3483</a>).</p>
-<p>⚠️ Ce que le masque ne voit pas : un changement <strong>à l'intérieur</strong> de la carte - un marqueur déplacé,
+<p>Ce que le masque ne voit pas : un changement <strong>à l'intérieur</strong> de la carte - un marqueur déplacé,
 un carré recoloré. C'est l'arbitrage de l'ADR 3068, réduit au seul rectangle au lieu de toute l'image.</p>
-<p>⚠️ <code>apercu-passage-rattachement.png</code> bougeait aussi sans porter de carte, et la cause est désormais
+<p><code>apercu-passage-rattachement.png</code> bougeait aussi sans porter de carte, et la cause est désormais
 connue : <strong>écrire sur disque entre le <code>snapshot</code> et la fermeture du stage</strong> laisse passer une
 validation de formulaire, ce qui change les captures <strong>suivantes</strong> du même outil - mesuré à
 40 543 pixels. La mesure se fait pendant que la scène est montée, l'écriture après <code>RenduPng.ecrire</code>.</p>

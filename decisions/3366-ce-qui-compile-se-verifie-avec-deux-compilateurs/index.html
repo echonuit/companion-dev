@@ -4306,7 +4306,7 @@
   <a href="#module-infojava-est-exclu-de-cette-passe" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ module-info.java est exclu de cette passe
+        module-info.java est exclu de cette passe
       
     </span>
   </a>
@@ -9423,7 +9423,7 @@
   <a href="#module-infojava-est-exclu-de-cette-passe" class="md-nav__link">
     <span class="md-ellipsis">
       
-        ⚠️ module-info.java est exclu de cette passe
+        module-info.java est exclu de cette passe
       
     </span>
   </a>
@@ -9529,7 +9529,7 @@ Le remède, <code>./mvnw clean</code>, doit être redécouvert à chaque fois.</
   où <code>javac</code> assigne sans broncher à <code>List&lt;Map&lt;String, ?&gt;&gt;</code>. Deux occurrences, corrigées par un
   <strong>témoin de type explicite</strong>.</li>
 </ul>
-<p>⚠️ La quatrième n'est apparue qu'<strong>après</strong> avoir mis <code>module-info.java</code> de côté : ecj s'arrêtait avant
+<p>La quatrième n'est apparue qu'<strong>après</strong> avoir mis <code>module-info.java</code> de côté : ecj s'arrêtait avant
 d'atteindre les sources de test. Une mesure interrompue n'est pas une mesure.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Le dépôt compile avec deux compilateurs conformes, et les deux doivent accepter le code.</strong> Un
@@ -9550,7 +9550,7 @@ appris ; un compilateur voit ce qu'il refuse.</strong></p>
   personne - c'est exactement le défaut que l'<a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">ADR 2748</a>
   et #3382 viennent de traiter.</li>
 </ul>
-<h3 id="module-infojava-est-exclu-de-cette-passe">⚠️ <code>module-info.java</code> est exclu de cette passe<a class="headerlink" href="#module-infojava-est-exclu-de-cette-passe" title="Permanent link">&para;</a></h3>
+<h3 id="module-infojava-est-exclu-de-cette-passe"><code>module-info.java</code> est exclu de cette passe<a class="headerlink" href="#module-infojava-est-exclu-de-cette-passe" title="Permanent link">&para;</a></h3>
 <p>Sous <code>plexus-compiler-eclipse</code>, ecj ne résout ni les modules automatiques (<code>com.google.gson</code>,
 <code>info.picocli</code>) ni <code>org.xerial.sqlitejdbc</code>, et rendait <strong>six erreurs qui ne disent rien du code</strong> ;
 <code>useModulePath=false</code> n'y change rien. Le profil exclut donc <code>module-info.java</code> et compile sur le

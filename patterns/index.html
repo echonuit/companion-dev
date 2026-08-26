@@ -9846,11 +9846,11 @@ d'essai, et maximal chez celui qui a le plus de données. Sept chemins en souffr
 et <code>SequenceDao#findParIds</code> - et rendent leur résultat <strong>déjà groupé</strong>. Quand la table ne porte qu'une
 ligne par entité (journal, relevé, commune, rapprochement), un <code>findAll()</code> indexé en mémoire suffit :
 c'est ce que fait <code>ContexteAudit</code> pour l'audit complet, et <code>RegistrePassages</code> côté CLI depuis l'origine.</p>
-<p>⚠️ <strong>Les lectures par identifiants passent par <code>LotsDeParametres.decouper</code>.</strong> SQLite refuse au-delà de
+<p><strong>Les lectures par identifiants passent par <code>LotsDeParametres.decouper</code>.</strong> SQLite refuse au-delà de
 quelques centaines de paramètres liés : sans découpage, un inventaire un peu large ferait <strong>échouer</strong>
 l'appel là où la boucle, elle, marchait. Un remède contre la lenteur ne doit pas introduire un défaut de
 justesse.</p>
-<p>⚠️ <strong>Ce qui ne se lit pas par lot</strong> : les tables de <strong>volume</strong> (originaux, séquences d'écoute) restent
+<p><strong>Ce qui ne se lit pas par lot</strong> : les tables de <strong>volume</strong> (originaux, séquences d'écoute) restent
 lues par session. Une nuit en porte des milliers ; les charger d'un bloc échangerait un défaut de
 lenteur contre un défaut de mémoire.</p>
 <p><strong>Comment on le garde.</strong> En comptant des <strong>requêtes</strong>, jamais des millisecondes - un butoir en temps se
@@ -10039,7 +10039,7 @@ fichier tronqué</strong>. Deux points d'entrée, et le choix dit ce qu'on écri
 <li><code>ecrireSecret(cible, contenu)</code> pour un secret : le temporaire est <strong>créé d'emblée</strong> restreint au
   propriétaire, donc le secret n'existe à aucun instant dans un fichier plus permissif que lui.</li>
 </ul>
-<p>⚠️ <strong>Sur les JDK actuels, les deux donnent le même fichier</strong>, et c'est mesuré : <code>Files.createTempFile</code>
+<p><strong>Sur les JDK actuels, les deux donnent le même fichier</strong>, et c'est mesuré : <code>Files.createTempFile</code>
 sans attribut crée déjà <code>rw-------</code>. Ce qui les distingue est la <strong>garantie</strong>, pas le résultat observé -
 <code>ecrireSecret</code> l'exige et la garderait si le JDK changeait son défaut. C'est aussi pourquoi PIT ne peut
 pas distinguer les deux chemins : équivalence par construction, pas couverture manquante.</p>
@@ -10124,7 +10124,7 @@ puisque le point est qualifié par lui.</p>
 écran n'y a pas sa place. <code>LibellesCriteres</code> est de la <strong>présentation</strong>, et doit couvrir <strong>toutes</strong> les
 clés : un écran qui rend compte d'un critère qu'il n'offre pas nomme précisément celles qu'il ne
 connaît pas.</p>
-<p>⚠️ Un catalogue ne réécrit <strong>jamais</strong> une clé partagée en littéral : <code>ClesCriteresTest</code> le refuse. Sans
+<p>Un catalogue ne réécrit <strong>jamais</strong> une clé partagée en littéral : <code>ClesCriteresTest</code> le refuse. Sans
 cette garde, un cinquième écran nommerait « lieux » ce que quatre autres nomment « lieu », ou deux
 écrans nommeraient deux concepts « statut » - ce qui était arrivé.</p>
 <p><strong>Renommer une clé</strong> sans casser les vues déjà enregistrées passe par <code>CritereFiltre.nomsHerites()</code>
@@ -10134,7 +10134,7 @@ le compte rendu de restauration deviendrait muet sur de vraies clés inconnues.<
 <h3 id="les-domaines-sont-cascades">Les domaines sont cascadés<a class="headerlink" href="#les-domaines-sont-cascades" title="Permanent link">&para;</a></h3>
 <p>Depuis #3095, la liste de valeurs d'une puce se calcule sur les lignes que les <strong>autres</strong> critères
 laissent passer, via <code>Filtres.saufLui(cle)</code>, et se recalcule <strong>à l'ouverture</strong> du menu.</p>
-<p>⚠️ <strong>Le piège</strong> : passer la <code>FilteredList</code> de l'écran fait s'auto-effondrer la puce. Cette liste est
+<p><strong>Le piège</strong> : passer la <code>FilteredList</code> de l'écran fait s'auto-effondrer la puce. Cette liste est
 déjà filtrée par <strong>tous</strong> les critères, y compris celui qu'on peuple : une fois « Aix » coché, le menu
 n'offrirait plus qu'« Aix », et l'on ne pourrait jamais cocher une seconde commune. Un critère à
 domaine consomme donc <code>saufLui</code>, jamais la liste affichée.</p>
@@ -10199,7 +10199,7 @@ devenu <code>FiltresProbabilite.parSeuilMinimal</code>. Un nom qui dit son crit�
 la ligne de commande <strong>et</strong> par un catalogue d'écran ; un catalogue de <code>view</code> qui garderait sa propre
 copie finirait par diverger - c'est arrivé le jour même où #3219 a ajouté la recherche par nom de carré
 à « Ma saison ».</p>
-<p>⚠️ La comparaison de texte insensible à la casse et aux accents vit dans
+<p>La comparaison de texte insensible à la casse et aux accents vit dans
 <code>commun.model.NormalisationTexte.contient</code>, et nulle part ailleurs. Six catalogues en avaient
 re-déclaré une copie privée identique - dont deux écrites par ce chantier même. La méthode partagée
 <strong>normalise elle-même</strong> l'aiguille et refuse une aiguille <strong>vide</strong>, là où les copies laissaient tout
@@ -10217,7 +10217,7 @@ distinctes</strong> :</p>
 « Sons &amp; validation » a une table, « Carte &amp; passages » une, « Espèces &amp; observations » <strong>trois</strong>, et
 « Activité de la nuit » <strong>aucune</strong> - c'est un graphe. Une mémoire unique aurait confondu les trois
 tables de l'analyse et réclamé une table à un écran qui n'en a pas.</p>
-<p>⚠️ La restauration des filtres <strong>rend compte</strong> de ce qu'elle n'a pas su replacer : c'est le chemin le
+<p>La restauration des filtres <strong>rend compte</strong> de ce qu'elle n'a pas su replacer : c'est le chemin le
 plus discret des trois, puisque personne n'a rien demandé
 (<a href="../decisions/3093-une-restauration-rend-compte-de-deux-causes/">ADR 3093</a>).</p>
 <h3 id="tout-effacer-est-un-geste-pas-un-bouton">« Tout effacer » est un geste, pas un bouton<a class="headerlink" href="#tout-effacer-est-un-geste-pas-un-bouton" title="Permanent link">&para;</a></h3>
@@ -10227,7 +10227,7 @@ s'apprêtait à remettre. Sans le troisième volet, les filtres qu'on vient d'ef
 réouverture, et le bouton paraît n'avoir pas pris.</p>
 <p>Un écran sans table (« Activité de la nuit ») n'efface évidemment pas de tri, et son <code>accessibleText</code>
 le dit : « Effacer tous les filtres », sans « et le tri ».</p>
-<p>⚠️ « Carte &amp; passages » a porté le libellé « Réinitialiser » jusqu'à la clôture de #3092 - le geste y
+<p>« Carte &amp; passages » a porté le libellé « Réinitialiser » jusqu'à la clôture de #3092 - le geste y
 était pourtant déjà identique. C'est l'écran <strong>d'origine</strong> du geste, resté sous l'ancien nom quand il
 s'est généralisé : un cas d'école de divergence par ancienneté, qu'aucun test ne signale.</p>
 <h3 id="les-filtres-existent-aussi-en-ligne-de-commande">Les filtres existent aussi en ligne de commande<a class="headerlink" href="#les-filtres-existent-aussi-en-ligne-de-commande" title="Permanent link">&para;</a></h3>
@@ -10282,7 +10282,7 @@ complets plutôt que des exemples, et soldée par ses suites (#3269).</p>
 <p>Une réserve, que le tableau ne montre pas : le critère <strong>Lieu</strong> a trois dimensions à l'écran (commune,
 carré, point) et <strong>deux</strong> en ligne de commande, un code de point seul désignant autant de lieux qu'il y
 a de carrés. Écart assumé, porté par la clôture de #3151.</p>
-<p>⚠️ <strong>Lire l'inventaire dans les deux sens.</strong> La question habituelle - <em>chaque critère de l'écran a-t-il
+<p><strong>Lire l'inventaire dans les deux sens.</strong> La question habituelle - <em>chaque critère de l'écran a-t-il
 son option ?</em> - rate par construction l'asymétrie inverse. C'est ainsi qu'on a trouvé
 <code>lister-observations --certitude</code>, qui filtrait sans que l'écran offre la puce correspondante (#3336,
 livrée : Sons &amp; validation passe de 10 à 11 critères). Rien ne dit que ce soit la dernière.</p>
@@ -10299,7 +10299,7 @@ sixième écran :</p>
 <ul>
 <li><strong>Ses clés restent chez lui.</strong> <code>gravite</code>, <code>categorie</code> et <code>passage</code> ne sont partagées avec aucun autre
   écran : elles vivent dans <code>CriteresAudit</code>, pas dans <code>ClesCriteres</code>, dont le contrat ne porte que les
-  clés réellement communes. ⚠️ <code>categorie</code> n'a <strong>rien à voir</strong> avec le <code>groupe</code> taxonomique des autres
+  clés réellement communes. <code>categorie</code> n'a <strong>rien à voir</strong> avec le <code>groupe</code> taxonomique des autres
   écrans - c'est précisément la collision que <code>ClesCriteres</code> existe pour empêcher.</li>
 <li><strong>Un écran doit pouvoir rendre compte avant de recevoir des filtres.</strong> Celui-ci n'avait aucun bandeau
   de retour. Le lui ajouter n'était pas de la décoration : sans lui, la mémoire de session aurait remis
@@ -10392,7 +10392,7 @@ fenêtre dès que la barre d'ancrage paraissait (#1931).</p>
 un changement fait paraître du contenu ; la fenêtre s'ajuste à chacune. À poser à côté de
 <code>Modales.fermerParEchap</code>, qui répond à la même histoire (un comportement transverse que chaque modale
 réinventait).</p>
-<p>⚠️ <strong>Ajuster, oui ; figer, non.</strong> L'implémentation appelle <code>sizeToScene()</code> et <strong>rien d'autre</strong>. Une version
+<p><strong>Ajuster, oui ; figer, non.</strong> L'implémentation appelle <code>sizeToScene()</code> et <strong>rien d'autre</strong>. Une version
 qui gardait <code>max(taille avant, taille après)</code> pour « ne jamais rétrécir » a fait passer le <code>Stage</code> en
 dimensionnement <strong>explicite</strong> : il cesse alors définitivement de s'ajuster à ses scènes suivantes. Sans
 effet pour une modale que l'on jette après usage - mais le <code>Stage</code> du harnais TestFX est <strong>partagé par
@@ -10622,7 +10622,7 @@ analyse, fiche site, qualification) sur un socle <code>commun/view</code>.</p>
   classes <code>.badge-*</code>, posée sur <strong>toute scène</strong> par
   <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/commun/view/Habillage.java"><code>Habillage</code></a>
   (plus de CSS de statut recopié par feature).</p>
-<p>⚠️ <strong>Le mécanisme est <code>Habillage</code>, pas la déclaration du FXML.</strong> Cette page a longtemps écrit
+<p><strong>Le mécanisme est <code>Habillage</code>, pas la déclaration du FXML.</strong> Cette page a longtemps écrit
 « chargée par tous les FXML » : c'était vrai à 23 exemplaires sur 24, et surtout ça désignait le
 mauvais endroit. L'<a href="../decisions/3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/">ADR 3374</a>
 écarte explicitement la déclaration par FXML, qui « se serait défaite au onzième ». La plupart des
@@ -10723,7 +10723,7 @@ réparé.</p>
   (<code>ContrasteVueAudioTest</code>). WCAG §1.4.11 accepte que le contraste vienne de la surface <strong>ou</strong> du
   contour : le test retient <code>max(surface, contour)</code>, sans quoi il refuserait une correction valide.</li>
 </ul>
-<p>⚠️ <strong>C'est un dépassement assumé de l'<a href="../decisions/0046-une-classe-css-a-une-seule-feuille/">ADR 0046</a></strong>
+<p><strong>C'est un dépassement assumé de l'<a href="../decisions/0046-une-classe-css-a-une-seule-feuille/">ADR 0046</a></strong>
 (« une classe CSS se définit dans une seule feuille »), et <strong>son garde ne peut pas le voir</strong> :
 <code>DoublonsFeuillesDeStyleTest</code> balaie <code>src/main/java/fr/univ_amu/iut</code>, or la feuille tierce vit dans un
 jar. Sans l'ADR, ce dépassement ne laisserait <strong>aucune trace</strong>. Le remède de 0046 - désambiguïser les
@@ -10872,7 +10872,7 @@ les mélange finit par mentir. L'EPIC #1870 a migré onze écrans et en a trouv�
 </tr>
 </tbody>
 </table>
-<p>⚠ <strong>Le mot « compte rendu » a changé de sens</strong> avec l'<a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/">ADR 0031</a>. Il désignait ici ce qui s'appelle désormais <strong>retour d'opération</strong>. Le critère qui les sépare n'est pas la longueur actuelle mais l'<strong>extensibilité</strong> : un message qui concatène une partie variable est déjà un compte rendu, et un compte rendu n'a <strong>jamais</strong> sa place dans un bandeau - l'y loger revient à le tronquer.</p>
+<p><strong>Le mot « compte rendu » a changé de sens</strong> avec l'<a href="../decisions/0031-un-retour-n-est-pas-un-compte-rendu/">ADR 0031</a>. Il désignait ici ce qui s'appelle désormais <strong>retour d'opération</strong>. Le critère qui les sépare n'est pas la longueur actuelle mais l'<strong>extensibilité</strong> : un message qui concatène une partie variable est déjà un compte rendu, et un compte rendu n'a <strong>jamais</strong> sa place dans un bandeau - l'y loger revient à le tronquer.</p>
 <p><strong>Comment choisir.</strong> Si ce qu'il y a à dire peut grandir - une liste de refus, de fichiers, de passages -
 c'est un compte rendu. Si c'est une phrase dont la forme est connue d'avance, c'est un retour.</p>
 <p><strong>Et d'où vient le texte ?</strong> Le critère précédent regarde ce qu'on dit ; celui-ci regarde <strong>qui l'a
@@ -10884,7 +10884,7 @@ pas</strong> : son libellé porte <code>wrapText</code>, donc un long message en
 <p>La règle est donc : <strong>ce qui vient d'ailleurs se borne à sa porte d'entrée</strong>, qui est aussi le seul
 endroit où on peut l'enrichir. <code>RetourOperation.erreur(Throwable)</code> ajoute le geste attendu (ADR 2635)
 puis borne ; <code>erreur(String)</code> laisse passer entier, parce que nous l'avons écrit.</p>
-<p>⚠ <strong>Passer <code>refus.getMessage()</code> contourne les deux.</strong> C'est ce que faisaient dix-sept appels, dont
+<p><strong>Passer <code>refus.getMessage()</code> contourne les deux.</strong> C'est ce que faisaient dix-sept appels, dont
 quatorze perdaient au passage le « où le régler ». <code>MessageExterneBorneTest</code> refuse désormais cette
 forme, en lisant le source. Voir <a href="../decisions/2802-un-texte-qu-on-n-a-pas-ecrit-se-borne-a-son-entree/">ADR 2802</a>.</p>
 <p>Un état et un compte rendu ne partagent <strong>jamais</strong> de propriété, et un compte rendu ne se <strong>déduit</strong>
@@ -11188,11 +11188,11 @@ frontière d'une opération métier n'est <strong>pas visible depuis l'endroit q
 que la précédente n'est pas appliquée. Deux cent cinquante signaux, un réveil. Un endroit, sous test,
 au lieu d'une vigilance dans chaque appelant. Voir
 <a href="../decisions/3537-un-signal-se-pose-a-l-ecriture/">ADR 3537</a>.</p>
-<p>⚠️ <strong>Ce qui émet, et ce qui n'émet pas.</strong> Seules les mutations <strong>structurelles</strong> : celles qui peuvent
+<p><strong>Ce qui émet, et ce qui n'émet pas.</strong> Seules les mutations <strong>structurelles</strong> : celles qui peuvent
 changer l'inventaire affiché (sites, points, passages, observations). Une validation, un verdict, une
 disposition de colonnes ne changent aucun de ces nombres, et les annoncer ferait relire quatre
 <code>COUNT(*)</code> pour un affichage identique.</p>
-<p>⚠️ <strong>Un <code>grep</code> ne suffit pas à trouver les écritures.</strong> Deux inventaires successifs en ont manqué :
+<p><strong>Un <code>grep</code> ne suffit pas à trouver les écritures.</strong> Deux inventaires successifs en ont manqué :
 <code>CreationPassageArchive</code> nomme son DAO sur une ligne et appelle <code>insert</code> sur la suivante ;
 <code>MoteurImport</code> écrit le passage en <strong>SQL brut</strong>, hors de <code>PassageDao</code>. C'est le même constat que
 l'<a href="../decisions/3498-la-declaration-porte-sur-les-lectrices/">ADR 3498</a> fait sur les commandes CLI :
@@ -11211,12 +11211,12 @@ sens</strong>.</p>
 <p>Il ne connaît ni <code>RevisionDonnees</code>, ni écouteur, ni <code>addListener</code> : le <code>Navigateur</code> pose l'abonnement
 quand l'étape entre dans l'historique et le <strong>rend</strong> quand elle en sort, au même endroit que
 <a href="../navigation/#les-contrats-optionnels-dun-ecran"><code>AuDepartEcran</code></a>.</p>
-<p>⚠️ <strong>Pourquoi le cycle a quitté les écrans.</strong> Les cinq premiers l'ont porté eux-mêmes : un champ
+<p><strong>Pourquoi le cycle a quitté les écrans.</strong> Les cinq premiers l'ont porté eux-mêmes : un champ
 <code>ChangeListener</code>, un <code>addListener</code>, un <code>removeListener</code>. Trois lignes, cinq fois, dont <strong>une seule</strong>
 empêchait une fuite : <code>RevisionDonnees</code> est un singleton, un écran ne l'est pas, et un abonnement non
 rendu survit à sa vue. Un cycle de vie qu'on peut oublier est un cycle de vie mal placé. Le
 <code>Navigateur</code> porte déjà celui des quatre autres contrats ; celui-ci l'a rejoint.</p>
-<p>⚠️ <strong>L'abonnement se repère par la VUE, pas par l'étape.</strong> Une étape est un record remplaçable :
+<p><strong>L'abonnement se repère par la VUE, pas par l'étape.</strong> Une étape est un record remplaçable :
 <code>actualiserLibelleCourant</code> (#1213) la remplace par sa jumelle relibellée, un <code>setAll</code> retire puis
 replace l'accueil. Dans les deux cas l'écran n'a pas bougé, et ré-abonner ferait relire la base deux
 fois pour un seul import (<code>NavigateurTest#relibeller_ne_reabonne_pas</code>).</p>
@@ -11278,13 +11278,13 @@ dépendance mérite d'être lue dans son code.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">etatConnexion</span><span class="p">.</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">etat</span><span class="w"> </span><span class="o">-&gt;</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">        </span><span class="n">etat</span><span class="p">.</span><span class="na">connecteProperty</span><span class="p">().</span><span class="na">addListener</span><span class="p">((</span><span class="n">obs</span><span class="p">,</span><span class="w"> </span><span class="n">avant</span><span class="p">,</span><span class="w"> </span><span class="n">apres</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">rafraichirDepuisLaDonnee</span><span class="p">()));</span>
 </code></pre></div>
-<p>⚠️ <strong><code>Optional</code> chez les consommateurs, et non chez l'émetteur.</strong> La source de vérité
+<p><strong><code>Optional</code> chez les consommateurs, et non chez l'émetteur.</strong> La source de vérité
 (<code>FournisseurToken</code>) n'est liée que par <code>ConnexionModule</code> : un injecteur partiel (outils de capture) n'a
 aucun jeton, et « pas d'état de connexion » y est la réponse juste - un geste qui touche la plateforme
 s'y ferme, ce qui est prudent. La modale de connexion, elle, <strong>exige</strong> le reflet : elle ne s'ouvre que
 là où le module est chargé, et un <code>ifPresent</code> silencieux y rendrait l'application muette sur l'arrivée
 du jeton sans que rien ne rougisse.</p>
-<p>⚠️ <strong><code>OptionalBinder</code> veut un port, pas une classe concrète.</strong> <code>newOptionalBinder(binder(), X.class)</code>
+<p><strong><code>OptionalBinder</code> veut un port, pas une classe concrète.</strong> <code>newOptionalBinder(binder(), X.class)</code>
 suivi de <code>setBinding().to(X.class)</code> fait pointer la liaison sur elle-même, et Guice refuse de démarrer.
 C'est la raison de la paire port/implémentation ici, et non un goût pour les interfaces.</p>
 <hr />
@@ -11299,10 +11299,10 @@ la photo.</p>
 <p><strong>La règle.</strong> Ce qui se décide au montage, c'est le <strong>câblage</strong> ; ce qui varie, c'est la <strong>donnée</strong>.
 Une propriété porte l'état, le contrôle s'y lie (<code>disableProperty().bind(...)</code>,
 <code>VisibiliteGeree.lier(...)</code>), et ce qui l'alimente est réinterrogé au bon moment.</p>
-<p>⚠️ <strong>Ne pas dériver l'état de ce qui est affiché.</strong> Avant « Appliquer », les chemins sélectionnés ne
+<p><strong>Ne pas dériver l'état de ce qui est affiché.</strong> Avant « Appliquer », les chemins sélectionnés ne
 sont pas encore la configuration persistée : un bouton lié à eux s'allumerait sur une <strong>intention</strong>.
 Ce qui décide, c'est ce qui a été <strong>écrit</strong> (#3543).</p>
-<p>⚠️ <strong>Recalculer ne doit pas défaire un choix de l'utilisateur</strong> (<a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/">ADR 3095</a>).
+<p><strong>Recalculer ne doit pas défaire un choix de l'utilisateur</strong> (<a href="../decisions/3095-un-domaine-se-calcule-sans-son-propre-critere/">ADR 3095</a>).
 Repeupler la liste d'un <code>ComboBox</code> par <code>clear()</code> puis <code>addAll()</code> remet sa valeur à <code>null</code>, et une
 liaison bidirectionnelle propage ce <code>null</code> jusqu'au ViewModel : le filtre disparaît à chaque retour
 sur l'écran. <code>setAll</code> remplace le contenu sans passer par la liste vide (#3544).</p>
@@ -11396,7 +11396,7 @@ n'a franchi aucune des étapes ci-dessus, elle est arrivée par une autre porte.
 <code>ORDRE</code></strong>, et le moteur lui accorde une seule transition : <code>RECUPERE → DEPOSE</code>, quand la réactivation lui
 rend son audio. <code>suivant(RECUPERE)</code> est <strong>vide</strong> : sa suite dépend d'un événement, pas d'une place dans la
 file. Voir <a href="../decisions/2581-un-etat-qui-decide-de-l-affichage-se-declare/">ADR 2581</a>.</p>
-<p>⚠️ <strong>Le rang de tri n'est pas l'<code>ordinal()</code>.</strong> <code>RECUPERE</code> est déclaré <strong>en dernier</strong> dans l'énum, pour ne
+<p><strong>Le rang de tri n'est pas l'<code>ordinal()</code>.</strong> <code>RECUPERE</code> est déclaré <strong>en dernier</strong> dans l'énum, pour ne
 pas décaler les comparaisons existantes (« au moins vérifié »). Trier sur <code>ordinal()</code> le rangerait donc
 après « Déposé », par pur effet de bord de ce choix : <code>StatutWorkflow.rangDeProgression()</code> existe pour ça.</p>
 <p><strong>Principes.</strong> <strong>SRP</strong> (les règles de transition ne polluent ni l'énum ni les services) et un <strong>point
@@ -11446,10 +11446,10 @@ raison. Il ne cesse de l'être que le jour où l'ordre des écritures change.</p
 <p><strong>La règle.</strong> La liste énonce <strong>tout</strong> ce que le calcul lit, y compris <strong>dans les méthodes qu'il
 appelle</strong>. C'est là que les trois défauts du chantier #3536 se cachaient : le calcul était une référence
 de méthode, et la lecture deux niveaux plus bas.</p>
-<p>⚠️ <strong>Une lambda qui lit un champ n'a pas une dépendance manquante</strong>, elle a une dépendance <strong>absente du
+<p><strong>Une lambda qui lit un champ n'a pas une dépendance manquante</strong>, elle a une dépendance <strong>absente du
 modèle</strong>. Les deux se ressemblent à la lecture, et le remède diffère : rendre la valeur observable, puis
 la déclarer. Trois écrans y sont passés (#3548), un quatrième ensuite (#3752).</p>
-<p>⚠️ <strong>Attention aux valeurs constantes reposées.</strong> <code>comptage.set(ComptageAudio.VIDE)</code> sur une propriété
+<p><strong>Attention aux valeurs constantes reposées.</strong> <code>comptage.set(ComptageAudio.VIDE)</code> sur une propriété
 qui vaut déjà cette <strong>instance</strong> n'émet rien : <code>ObjectPropertyBase.set</code> compare par référence. Un chemin
 d'erreur qui « réinitialise » peut donc n'invalider <strong>aucune</strong> de ses dépendances déclarées.</p>
 <p><strong>Ce qui garde la règle, et ce qui ne la garde pas.</strong> Vérifier statiquement « lu ⊆ déclaré » est hors de
