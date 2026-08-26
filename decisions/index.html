@@ -8420,6 +8420,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4586-le-corpus-d-un-garde-se-declare-une-fois/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4586 · Le corpus d'un garde se déclare une fois, et sa liste se dérive
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -10681,7 +10716,7 @@
 </tr>
 <tr>
 <td><a href="4359-une-javadoc-contracte-elle-ne-raconte-pas/">4359</a></td>
-<td>Rien ne disait ce qu'une javadoc doit porter, et la mesure le montre : 3 641 lignes de prose au-delà de huit par bloc, sur 713 blocs dans 572 fichiers, ramenées à <!--inv:cliquet-javadoc-->743<!--/inv--> sur 319 blocs par les tranches du lot 2. Trois endroits, un rôle chacun : le code porte l'intention, la javadoc dit le contrat et s'adresse à qui appelle, l'ADR dit pourquoi et la javadoc la CITE au lieu de la redire. La dette se tient par un cliquet ouvert à sa valeur mesurée, pas par un nettoyage (article A9)</td>
+<td>Rien ne disait ce qu'une javadoc doit porter, et la mesure le montre : 3 641 lignes de prose au-delà de huit par bloc, sur 713 blocs dans 572 fichiers, ramenées à <!--inv:cliquet-javadoc-->742<!--/inv--> sur 319 blocs par les tranches du lot 2. Trois endroits, un rôle chacun : le code porte l'intention, la javadoc dit le contrat et s'adresse à qui appelle, l'ADR dit pourquoi et la javadoc la CITE au lieu de la redire. La dette se tient par un cliquet ouvert à sa valeur mesurée, pas par un nettoyage (article A9)</td>
 <td>#4359, EPIC #4334</td>
 </tr>
 <tr>
@@ -10701,7 +10736,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->743<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 129<!--/inv--> issues distinctes citées dans 983 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->742<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 129<!--/inv--> issues distinctes citées dans 983 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -10748,6 +10783,11 @@
 <td><a href="4546-un-corps-de-pr-ne-promet-pas-ce-que-la-forge-ne-fera-pas/">4546</a></td>
 <td>Les trois refus du garde du corps de PR sont typographiques ; « Ferme #N » n'est pas de cette famille. La forge ne reconnaît que <code>close</code>, <code>fix</code> et <code>resolve</code> : la demande fusionne verte, l'issue reste ouverte, et rien ne le signale. Ce n'est pas une forme malheureuse, c'est une promesse non tenue. #4350 avait écarté un garde parce qu'il aurait cherché ce qui MANQUE et rougi sur tout lot d'un EPIC ; celui-ci cherche ce qui est PRÉSENT, forme jamais légitime, et « Refs #N » reste vert. <code>close</code> est absent de la liste des verbes, « Close #N » étant un mot-clé anglais valide : le refuser ferait réécrire en français ce qui marchait</td>
 <td>#4546, passe 10 de la clôture de #4502</td>
+</tr>
+<tr>
+<td><a href="4586-le-corpus-d-un-garde-se-declare-une-fois/">4586</a></td>
+<td>#4488 avait decide que les gardes de code lisent les DEUX arbres, et <code>verifie_scripts.py</code> le tenait par une liste ECRITE A LA MAIN, qui avait derive : dix entrees pour quinze gardes portant le chemin de l arbre de test. Six n etaient verifies par rien, et un cliquet ne se plaint pas qu on lui retire du corpus. Le corpus se declare desormais dans <code>_commun.py</code>, la liste se DERIVE de ce que chaque garde importe (15 contre 10), et un refus interdit de recopier un chemin</td>
+<td>#4586, chantier #4502</td>
 </tr>
 </tbody>
 </table>
