@@ -8532,6 +8532,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#s8-02-s8-03-la-barre-avance-nuit-par-nuit-et-annonce-le-temps-restant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S8-02, S8-03 · la barre avance nuit par nuit, et annonce le temps restant
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9458,6 +9469,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#s8-02-s8-03-la-barre-avance-nuit-par-nuit-et-annonce-le-temps-restant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S8-02, S8-03 · la barre avance nuit par nuit, et annonce le temps restant
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -9660,6 +9682,36 @@ et ce qui permet de voir ses conséquences <strong>de bout en bout</strong>, sur
 <p>Ce qu'il montre et qu'un clip bouchonné ne montrerait pas : la progression suit une <strong>vraie</strong> latence
 réseau, et l'identité affichée à la fin est celle que <code>GET /moi</code> a rendue.</p>
 <video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-connectes/ScenarioConnecteConnexionTest.coller_le_jeton_puis_lire_l_identite.mp4"></video>
+
+<h3 id="s8-02-s8-03-la-barre-avance-nuit-par-nuit-et-annonce-le-temps-restant">S8-02, S8-03 · la barre avance nuit par nuit, et annonce le temps restant<a class="headerlink" href="#s8-02-s8-03-la-barre-avance-nuit-par-nuit-et-annonce-le-temps-restant" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>S8-02</strong> La barre <strong>avance</strong> et son libellé nomme la nuit en cours (« Nuits k / N »).
+<strong>S8-03</strong> Une <strong>estimation du temps restant</strong> apparaît une fois l'avancement mesurable.</p>
+</blockquote>
+<p>Ces deux cas se produisaient <strong>pendant</strong> le clip précédent sans que rien ne les asserte. Les y laisser
+paraissait économique : un seul geste, un seul préambule, cinq cas cités.</p>
+<p>C'était une erreur, et le premier tournage l'a dite. Les cinq cas n'ont pas la même condition
+d'existence. Se connecter s'observe toujours. Voir une barre avancer suppose des <strong>nuits à
+rapatrier</strong> : se connecter rejoue le rapatriement des nuits du compte (#2557), donc la durée suit ce
+qui reste à récupérer. Sur un compte à jour, il n'y a ni barre qui avance ni temps à estimer.</p>
+<p>Un test ne peut pas abandonner à moitié. Abandonner le geste entier perdait donc trois cas
+parfaitement observables, et c'est ce qui est arrivé : <strong>zéro cas sur cinq</strong> au lieu de trois.</p>
+<p>Deux clips au lieu d'un. Le décompte y perd, et c'est le bon prix : un geste qui n'a pas lieu ne doit
+pas emporter trois cas qui, eux, ont lieu.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ce lecteur peut rester vide sans qu'aucun défaut n'existe</p>
+<p>Le scénario déclare sa précondition plutôt que de la supposer. Quand le compte de tournage n'a plus
+rien à rapatrier, il <strong>abandonne</strong> en le disant, n'indexe aucun cas, et son clip n'est pas versé.
+Le verdict du tournage compte alors trois cas sur cinq, et c'est exact.</p>
+<p>Pour rejouer ce geste, il faut une participation sans passage local, ou un passage réduit à un
+squelette.</p>
+</div>
+<p>Ce que le dernier tournage a mesuré, et qui explique sa durée :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Connexion réussie · référentiel à jour : 1 site, 199 taxons,
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>2 nuit(s) récupérée(s) (sur 4, dont 2 en attente d'analyse Vigie-Chiro),
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>4 nuits opportunistes.
+</code></pre></div>
+<video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-connectes/ScenarioConnecteConnexionTest.la_barre_avance_nuit_par_nuit.mp4"></video>
 
 <h2 id="ce-que-ces-clips-publient-et-le-compte-que-cela-engage">⚠️ Ce que ces clips publient, et le compte que cela engage<a class="headerlink" href="#ce-que-ces-clips-publient-et-le-compte-que-cela-engage" title="Permanent link">&para;</a></h2>
 <p><code>S8-06</code> montre l'identité que la plateforme a rendue. Un clip connecté porte donc, <strong>en clair et sur
