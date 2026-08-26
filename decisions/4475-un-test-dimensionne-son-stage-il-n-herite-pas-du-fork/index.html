@@ -9503,10 +9503,21 @@ clic - ne corrigeait donc rien. Elle a servi à autre chose, et c'est ce qui com
 rendu la cause lisible</strong>. Les appels <code>attendreCliquable</code> sont conservés à ce titre.</p>
 <h2 id="la-dette-et-qui-la-tient">La dette, et qui la tient<a class="headerlink" href="#la-dette-et-qui-la-tient" title="Permanent link">&para;</a></h2>
 <p>87 classes posent une scène dimensionnée ; <strong>2</strong> dimensionnent leur stage - celles que la mutation a
-rendues rouges. Les 85 autres portent le même défaut latent.</p>
-<p>Elles ne sont pas corrigées en bloc, et c'est délibéré : une boîte de dialogue de 300 px tient dans
-600 et ne verra jamais rien, tandis qu'un test qui compte sur une petite fenêtre changerait de
-comportement. Le cliquet est posé à <strong>85</strong>, et chaque classe se solde quand on la touche.</p>
+rendues rouges. Le cliquet est posé à <strong>85</strong>.</p>
+<p><strong>Ce qu'il compte, et ce qu'il ne prouve pas</strong> (#4545). Il compte une <strong>forme</strong> : une taille affirmée
+sur la scène sans que la fenêtre la tienne. Poser une scène dimensionnée ne fige rien ; ces classes
+ne sont donc pas celles qui figeraient le Stage, ce sont celles qui <strong>subiraient</strong> un figement posé
+ailleurs.</p>
+<p>Or personne ne le pose. La suite entière jouée dans un <strong>fork unique</strong>, ordre inverse, les 813
+classes du dépôt avant <code>AppTest</code>, rend 5 099 tests et 0 échec : c'est la configuration la plus
+contaminante qui existe, et le garde d'ajustabilité y reste vert. Une première rédaction disait que
+les 85 autres portaient « le même défaut latent ». Le mécanisme est réel, deux mutations le
+reproduisent, mais aucune classe ne le déclenche aujourd'hui.</p>
+<p>Le cliquet reste, et c'est son office qui se nomme mieux : il empêche la 88e classe d'entrer, comme
+celui de l'ADR 4472 sur une population que le dépôt n'a pas non plus. Les 85 ne sont pas corrigées en
+bloc, et c'est délibéré : une boîte de dialogue de 300 px tient dans 600 et ne verra jamais rien,
+tandis qu'un test qui compte sur une petite fenêtre changerait de comportement. Chaque classe se
+solde quand on la touche.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p>Le niveau est <code>probable</code> : le cliquet voit qu'une taille est affirmée sans être tenue, il ne voit
 pas si l'écran déborde. À zéro il ne trie plus rien - il refuse - et un cas légitime se traite en
