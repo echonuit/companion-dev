@@ -11363,7 +11363,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>scripts/methode/synchronise-adaptateurs.py</code></td>
-<td><code>.claude/skills/</code> est une copie à jour de <code>.agents/skills/</code> : une compétence corrigée à la source ne laisse pas un agent lire l'ancienne version</td>
+<td><code>.claude/skills/</code> est une copie à jour de <code>.agents/skills/</code> : une compétence corrigée à la source ne laisse pas un agent lire l'ancienne version. Il regarde dans les <strong>deux sens</strong> : ce qui manque à la copie, et ce qu'elle porte <strong>en trop</strong>. Un dossier sans source est un orphelin, que tout renommage laissait derrière lui pendant que le garde annonçait « adaptateurs à jour » ; mesuré sur les cinq renommages de #4565. En écriture il est supprimé et <strong>nommé</strong>, en <code>--verifie</code> il fait rougir (#4593)</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
