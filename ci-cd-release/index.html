@@ -7402,6 +7402,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4515-adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4515 · Adopter un arbre amont quand il doit parler notre cycle
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4342-l-ergonomie-se-rattache-a-une-heuristique-nommee/" class="md-nav__link">
         
   
@@ -10883,7 +10918,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie-corps-pr.sh</code></td>
-<td>cadratin, apostrophe courbe et élision sans apostrophe dans le corps d'une PR</td>
+<td>cadratin, apostrophe courbe, élision sans apostrophe, et fermeture écrite en français (« Ferme #N ») dans le corps d'une PR</td>
 <td><code>corps-pr.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
@@ -11070,6 +11105,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>veille-plateformes.sh</code></td>
 <td>la suite a été éprouvée sous Windows et macOS il y a moins de 10 jours, par un passage <strong>programmé</strong></td>
 <td><code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>trie-les-echecs-de-plateforme.sh</code></td>
+<td>ce que la suite donne sur une plateforme, TestFX à part, et si le passage est bien <strong>allé au bout</strong> : un job coupé par <code>timeout-minutes</code> rendait le même tableau sous le titre « toutes les classes de test », 618 sur 758, sans un échec et avec un code 0 (#4544)</td>
+<td><code>suite-sous-windows-et-macos.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
 <td><code>veille-contrat-api.sh</code></td>

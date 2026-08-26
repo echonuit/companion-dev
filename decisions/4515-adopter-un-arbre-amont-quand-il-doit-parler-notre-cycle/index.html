@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4103-un-canal-de-distribution-ne-depend-pas-d-un-geste/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4515-adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle/">
       
       
-        <link rel="prev" href="../4071-un-point-d-entree-un-mot-declare/">
+        <link rel="prev" href="../4339-un-arbre-repris-d-un-outil-amont-se-declare/">
       
       
-        <link rel="next" href="../4111-un-clip-montre-la-version-qu-on-valide/">
+        <link rel="next" href="../4342-l-ergonomie-se-rattache-a-une-heuristique-nommee/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Un canal de distribution ne dépend pas d'un geste qu'on peut oublier - VigieChiro Companion · Doc développeur</title>
+        <title>Adopter un arbre amont quand il doit parler notre cycle, et le sortir de ses exemptions - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#un-canal-de-distribution-ne-depend-pas-dun-geste-quon-peut-oublier" class="md-skip">
+        <a href="#adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle-et-le-sortir-de-ses-exemptions" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Un canal de distribution ne dépend pas d'un geste qu'on peut oublier
+              Adopter un arbre amont quand il doit parler notre cycle, et le sortir de ses exemptions
             
           </span>
         </div>
@@ -6911,44 +6911,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    4103 · Un canal de distribution ne dépend pas d'un geste
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--stable"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../4103-un-canal-de-distribution-ne-depend-pas-d-un-geste/" class="md-nav__link">
         
   
   
@@ -6971,131 +6937,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-ladr-2744-avait-tranche-et-pourquoi-on-la-depasse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que l'ADR 2744 avait tranché, et pourquoi on la dépasse
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Décision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-needs-publish-jamais-installers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. needs: publish, jamais installers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-la-condition-nomme-letat-quelle-attend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. La condition nomme l'état qu'elle attend
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-un-echec-flatpak-ne-compromet-pas-la-release" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Un échec Flatpak ne compromet pas la Release
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#ce-que-la-decision-ne-couvre-pas" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que la décision NE couvre pas
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -7560,10 +7401,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../4515-adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4515 · Adopter un arbre amont quand il doit parler notre cycle
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -7586,6 +7461,81 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#trois-questions-decident-dans-cet-ordre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trois questions décident, dans cet ordre
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#alternatives-ecartees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Alternatives écartées
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -9454,17 +9404,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ce-que-ladr-2744-avait-tranche-et-pourquoi-on-la-depasse" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Ce que l'ADR 2744 avait tranché, et pourquoi on la dépasse
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9473,63 +9412,13 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Décision">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#1-needs-publish-jamais-installers" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        1. needs: publish, jamais installers
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#2-la-condition-nomme-letat-quelle-attend" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. La condition nomme l'état qu'elle attend
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#3-un-echec-flatpak-ne-compromet-pas-la-release" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Un échec Flatpak ne compromet pas la Release
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
-  <a href="#ce-que-la-decision-ne-couvre-pas" class="md-nav__link">
+  <a href="#trois-questions-decident-dans-cet-ordre" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Ce que la décision NE couvre pas
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
+        Trois questions décident, dans cet ordre
       
     </span>
   </a>
@@ -9541,6 +9430,17 @@
     <span class="md-ellipsis">
       
         Alternatives écartées
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
       
     </span>
   </a>
@@ -9564,7 +9464,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4103-un-canal-de-distribution-ne-depend-pas-d-un-geste.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4515-adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -9573,80 +9473,71 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4103-un-canal-de-distribution-ne-depend-pas-d-un-geste.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4515-adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="un-canal-de-distribution-ne-depend-pas-dun-geste-quon-peut-oublier">Un canal de distribution ne dépend pas d'un geste qu'on peut oublier<a class="headerlink" href="#un-canal-de-distribution-ne-depend-pas-dun-geste-quon-peut-oublier" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-21</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A20 · Le produit ne dépend pas de son outillage</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4103, suite de #4071</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>.github/scripts/verifie-conditions-de-job.sh</code></span></div></div>
+<h1 id="adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle-et-le-sortir-de-ses-exemptions">Adopter un arbre amont quand il doit parler notre cycle, et le sortir de ses exemptions<a class="headerlink" href="#adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle-et-le-sortir-de-ses-exemptions" title="Permanent link">&para;</a></h1>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-26</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A5 · La mesure fait foi, et dit d&#x27;où elle vient</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4515, chantier #4511 (mise en service d&#x27;OpenSpec)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>scripts/adr/2843-tiret-cadratin.py</code>, <code>scripts/adr/4366-avertissement-en-pictogramme.py</code>, <code>scripts/methode/verifie-sous-commandes-openspec.py</code></span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Le Flatpak était publié par un workflow <strong>manuel</strong>. Rien ne réclamait ce geste, donc personne ne le
-faisait à la publication, et le paquet retardait sur les releases.</p>
-<p>Mesuré le 2026-08-21, en vérifiant sur un poste que la ligne de commande de #4071 fonctionnait : le
-manifeste extrayait encore le <code>.deb</code> <strong>2.185.0</strong> alors que la <strong>2.187.0</strong> était publiée depuis la
-veille. La commande n'existait donc pas dans le paquet installé, pendant que la documentation
-utilisateur l'annonçait.</p>
-<p><strong>Le retard n'est pas le défaut, il en est le symptôme.</strong> Le défaut est qu'un canal de distribution
-dépende d'un geste que rien ne réclame : une publication réussie qui laisse le Flatpak où il était est
-un état parfaitement <strong>vert</strong>. Aucun dispositif ne pouvait rougir, parce qu'aucun ne regardait là.</p>
-<h2 id="ce-que-ladr-2744-avait-tranche-et-pourquoi-on-la-depasse">Ce que l'ADR 2744 avait tranché, et pourquoi on la dépasse<a class="headerlink" href="#ce-que-ladr-2744-avait-tranche-et-pourquoi-on-la-depasse" title="Permanent link">&para;</a></h2>
-<p>Elle avait examiné cette question exacte, et conclu <strong>de ne rien faire</strong> :</p>
-<blockquote>
-<p>Un argument tombe pour les canaux de packaging, mais rien n'y change aujourd'hui. […] Il n'y a donc
-rien à rebrancher, ni maintenant ni probablement plus tard.</p>
-</blockquote>
-<p>Deux choses la rouvrent, et aucune ne la contredit :</p>
-<ul>
-<li><strong>Elle raisonnait à moyens constants.</strong> Sa raison principale tient toujours : un <code>release: released</code>
-  produit au <code>GITHUB_TOKEN</code> ne déclenche jamais rien. Mais <code>workflow_call</code> n'est <strong>pas un
-  événement</strong> - un workflow appelé s'exécute dans le run de l'appelant - et cette voie n'apparaît nulle
-  part dans l'ADR. Ce n'est pas une décision qui change, c'est un moyen qui manquait.</li>
-<li><strong>Le coût de ne rien faire est maintenant mesuré.</strong> L'ADR l'estimait nul ; deux versions de retard et
-  une promesse fausse dans la documentation disent le contraire.</li>
-</ul>
-<p>Son second argument - « <code>flatpak.yml</code> reste le mécanisme qui produit <strong>et</strong> vérifie chaque
-publication » - est <strong>tenu</strong> : c'est ce workflow-là qu'on appelle, avec ses contrôles, dont celui de la
-ligne de commande ajouté par #4100.</p>
+<p>L'<a href="../4339-un-arbre-repris-d-un-outil-amont-se-declare/">ADR 4339</a> a posé la règle : ce qui vient d'un
+outil amont ne se réécrit pas, l'exemption se déclare nominativement, avec sa raison et la mesure qui
+la prouve.</p>
+<p>Le chantier #4511 a rencontré sa limite. Les six compétences OpenSpec décrivaient un cycle qui ignore
+celui du dépôt : ni bloc d'ouverture, ni issue à assigner, ni boucle rouge-vert-refactor, ni passes
+de clôture. Le canal prévu pour y injecter ces conventions sans toucher au texte est
+<code>openspec/config.yaml</code>, et le typage de la version épinglée le borne à quatre clés d'artefact et deux
+opérations.</p>
+<p><strong>Aucun point d'accroche pour <code>propose</code> ni pour <code>explore</code></strong>, c'est-à-dire pour les deux gestes
+d'ouverture, qui sont ceux où le cycle du dépôt a le plus à dire. La doctrine devait entrer dans les
+fichiers que l'agent lit au moment du geste, ou n'exister nulle part.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong><code>release.yml</code> appelle <code>flatpak.yml</code> après avoir retiré le brouillon de la Release.</strong> Le paquet part
-avec le train, et le déclenchement manuel reste pour les montées de version détectées hors train.</p>
-<h3 id="1-needs-publish-jamais-installers">1. <code>needs: publish</code>, jamais <code>installers</code><a class="headerlink" href="#1-needs-publish-jamais-installers" title="Permanent link">&para;</a></h3>
-<p>Le <code>flatpak-external-data-checker</code> interroge <code>releases/latest</code>, qui <strong>ignore les brouillons</strong>. Dépendre
-de l'étape qui téléverse les assets ne suffit donc pas : il faut celle qui sort la Release du
-brouillon. Une dépendance qui a l'air juste et qui rendrait le manifeste inchangé, sans erreur.</p>
-<h3 id="2-la-condition-nomme-letat-quelle-attend">2. La condition nomme l'état qu'elle attend<a class="headerlink" href="#2-la-condition-nomme-letat-quelle-attend" title="Permanent link">&para;</a></h3>
-<p><code>!cancelled() &amp;&amp; needs.publish.result == 'success'</code>. Sans cela, le « sauté » de
-<code>contournement-declare</code> se propagerait jusqu'ici et le train rendrait vert <strong>en n'ayant rien
-publié</strong> - le défaut que l'<a href="../4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/">ADR 4079</a> a
-nommé, reproduit par le correctif d'un autre.</p>
-<h3 id="3-un-echec-flatpak-ne-compromet-pas-la-release">3. Un échec Flatpak ne compromet pas la Release<a class="headerlink" href="#3-un-echec-flatpak-ne-compromet-pas-la-release" title="Permanent link">&para;</a></h3>
-<p>Elle est déjà publiée à ce stade. Ce qui change est qu'un paquet non publiable devient <strong>visible dans
-le run de publication</strong>, au lieu de rester un silence.</p>
-<h2 id="ce-que-la-decision-ne-couvre-pas">Ce que la décision NE couvre pas<a class="headerlink" href="#ce-que-la-decision-ne-couvre-pas" title="Permanent link">&para;</a></h2>
-<p><strong><code>winget.yml</code></strong>, manuel pour les mêmes raisons. Son coût n'a <strong>pas</strong> été mesuré : personne n'a
-constaté qu'un paquet winget en retard ait trompé quelqu'un. L'aligner par symétrie serait une
-supposition - exactement ce que ce chantier reproche à l'existant. À rouvrir le jour où la mesure
-existe, pas avant.</p>
-<h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Premier <code>workflow_call</code> du dépôt.</strong> Les dix-huit autres workflows restent indépendants.</li>
-<li><strong>Le train s'allonge</strong> d'une quinzaine de minutes le mercredi.</li>
-<li><strong>Le chaînage ne s'observe qu'au premier train</strong> : <code>release.yml</code> ne s'exécute pas sur les PR, donc
-  aucune PR ne peut prouver que l'appel part. Ce qui est vérifié avant fusion se limite à la validité
-  du montage - conditions de job, butoirs, renvois, YAML. Le reste se constate mercredi.</li>
-</ul>
+<p><strong>Un arbre amont s'adopte quand il doit parler notre cycle, et l'adoption le sort de ses
+exemptions.</strong></p>
+<p>L'ADR 4339 n'est pas renversée : sa règle vaut pour ce qui reste amont. Ce qui s'ajoute est le motif
+du passage. Un arbre amont se réécrit lorsque <strong>la convention à y inscrire n'a aucun autre canal</strong>,
+jamais parce que sa typographie déplaît.</p>
+<p>L'adoption est un tout et se paie en une fois : le texte se réécrit en français, tissé au cycle ; les
+exemptions disparaissent nominativement ; la provenance se déclare en en-tête par <code>origine:</code> ; et un
+dispositif garde ce que la réécriture met en jeu.</p>
+<p><strong>Ce qui reste en anglais est un contrat</strong>, pas de la prose : en-têtes structurels, <code>SHALL</code>, <code>MUST</code>,
+noms de sous-commandes et de champs JSON. Les traduire ferait échouer la lecture de ce que l'outil
+rend. La frontière se compte plutôt qu'elle ne se sent : neuf invocations, quinze champs.</p>
+<p><strong>L'adoption se fait par famille.</strong> Les six compétences sont adoptées ; les six commandes <code>opsx</code>
+restent amont avec leur exemption. Adopter ce qu'on ne réécrit pas encore laisserait un fichier sans
+exemption et sans raison d'en être sorti.</p>
+<h2 id="trois-questions-decident-dans-cet-ordre">Trois questions décident, dans cet ordre<a class="headerlink" href="#trois-questions-decident-dans-cet-ordre" title="Permanent link">&para;</a></h2>
+<p><strong>La convention a-t-elle un autre canal ?</strong> Si la configuration peut la porter, elle la porte. Ici le
+typage a été lu, pas supposé.</p>
+<p><strong>Le texte a-t-il encore une source vivante ?</strong> Un fichier adopté ne se régénère plus : <code>openspec
+update</code> le rendrait à l'anglais. Ce risque s'assume et se garde.</p>
+<p><strong>Ce qui reste en anglais se compte-t-il ?</strong> Une frontière décrite en mots dérive ; chiffrée, elle se
+vérifie.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
-<ul>
-<li><strong>Un second cron décalé de deux heures.</strong> Il repose sur une supposition de durée du train plutôt que
-  sur une dépendance déclarée : la figure que ce dépôt refuse ailleurs, et qui casserait le jour où la
-  publication déborde.</li>
-<li><strong>Un PAT ou une GitHub App</strong> pour re-déclencher <code>release: released</code>. Fonctionnerait, au prix d'un
-  secret de plus à faire vivre - pour un résultat que <code>workflow_call</code> obtient sans rien ajouter.</li>
-</ul>
+<p><strong>Injecter par la configuration.</strong> Écartée par la mesure : <code>rules</code> n'accepte que <code>proposal</code>, <code>specs</code>,
+<code>design</code> et <code>tasks</code>. Une clé pour <code>propose</code> n'échouerait même pas, elle avertirait et se perdrait en
+silence.</p>
+<p><strong>Une compétence maison à côté, les six intactes.</strong> Moins de travail et moins de dette, mais la
+doctrine reste à côté du geste au lieu d'être dedans. Rien ne garantit qu'un agent l'ouvre au bon
+moment, et une cérémonie qu'on peut ne pas voir est la première à sauter.</p>
+<p><strong>Adopter les douze d'un coup.</strong> Écartée par la mesure : les commandes ne dérivent pas des
+compétences, <code>archive</code> différant sur 67 lignes et <code>explore</code> sur 130. Les rendre dérivées aplatit un
+texte amont, et mérite son propre arbitrage.</p>
+<h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
+<p>Six fichiers de méthode de plus, en français, que le dépôt maintient. Ils entrent sous cinq régimes :
+tolérance zéro cadratin, apostrophe ASCII, avertissement dit en mots, registre éditorial, humaniseur.</p>
+<p>La table des exemptions de <code>2843-tiret-cadratin.py</code> passe de neuf entrées à trois, et le préfixe
+<code>REPRIS</code> de <code>4366</code> de trois à un. Ce qui reste ne nomme que les commandes.</p>
+<p><strong>Le dépôt hérite d'un risque qu'il n'avait pas</strong> : ses compétences peuvent décrire un contrat de
+ligne de commande périmé, en silence, si l'outil monte de version.
+<code>scripts/methode/verifie-sous-commandes-openspec.py</code> (#4514) est le prix de l'adoption, écrit avant
+elle pour tenir la réécriture pendant qu'elle se faisait.</p>
+<p>Une montée de version cesse d'être un <code>npm update</code> : elle demande de relire les six compétences
+contre le nouveau contrat, ce que le garde de version (#4512) rend visible.</p>
 
 
 
@@ -9685,7 +9576,7 @@ existe, pas avant.</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../4071-un-point-d-entree-un-mot-declare/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 4071 · Un point d&#39;entrée, un mot déclaré">
+          <a href="../4339-un-arbre-repris-d-un-outil-amont-se-declare/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 4339 · Un arbre repris d&#39;un outil amont se déclare">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -9695,20 +9586,20 @@ existe, pas avant.</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                4071 · Un point d'entrée, un mot déclaré
+                4339 · Un arbre repris d'un outil amont se déclare
               </div>
             </div>
           </a>
         
         
           
-          <a href="../4111-un-clip-montre-la-version-qu-on-valide/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4111 · Un clip montre la version qu&#39;on valide">
+          <a href="../4342-l-ergonomie-se-rattache-a-une-heuristique-nommee/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4342 · L&#39;ergonomie se rattache à une heuristique nommée">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                4111 · Un clip montre la version qu'on valide
+                4342 · L'ergonomie se rattache à une heuristique nommée
               </div>
             </div>
             <div class="md-footer__button md-icon">

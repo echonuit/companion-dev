@@ -7488,6 +7488,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4515-adopter-un-arbre-amont-quand-il-doit-parler-notre-cycle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4515 · Adopter un arbre amont quand il doit parler notre cycle
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4342-l-ergonomie-se-rattache-a-une-heuristique-nommee/" class="md-nav__link">
         
   
@@ -9635,6 +9670,49 @@ une fraction plus basse posée après une plus haute ne redescend pas, et l'esti
 sur l'ancienne. La capture était juste par accident de séquence, et rien ne le disait. Sans ce
 rouge-là, la règle serait restée invisible jusqu'au jour où un outil aurait posé une fraction
 décroissante.</p>
+<h3 id="une-trouvaille-se-consigne-en-issue-au-moment-ou-on-la-fait">Une trouvaille se consigne en ISSUE, au moment où on la fait<a class="headerlink" href="#une-trouvaille-se-consigne-en-issue-au-moment-ou-on-la-fait" title="Permanent link">&para;</a></h3>
+<p>Le paragraphe ci-dessus dit de <strong>lire</strong> la trouvaille. Celui-ci dit ce qu'on en fait ensuite, et le
+geste est immédiat : <strong>on ouvre l'issue tout de suite</strong>, avant de revenir au travail en cours.</p>
+<p>Pas à la clôture, et pas en commentaire. Un commentaire n'a pas d'état, ne se filtre pas, ne remonte
+dans aucune liste, et sort de la vue dès que sa pull request est fusionnée. Une trouvaille qui n'existe
+que là est perdue à la fusion.</p>
+<p><strong>Ce qui se perd n'est pas la trouvaille, c'est son détail.</strong> On se souvient trois jours plus tard
+qu'« il y avait un souci avec le tri des échecs ». On ne se souvient pas que le job avait été coupé à
+92 minutes sur un plafond de 90, que le tableau annonçait 618 classes sur 758, ni que le script rendait
+<code>0</code>. Ces trois nombres sont ce qui rend l'issue traitable, et ce sont exactement eux qui ne se
+retrouvent pas. Une issue de trois lignes écrite sur le coup vaut mieux qu'un paragraphe exact écrit de
+mémoire.</p>
+<p>Elle se rattache alors à l'un des deux endroits, et le choix ne se discute pas longtemps :</p>
+<ul>
+<li>à l'<strong>EPIC du chantier en cours</strong>, si elle tombe dans son périmètre ;</li>
+<li>sinon à l'<strong>EPIC des suites</strong> (<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/4562">#4562</a>),
+  qui est un <strong>sas</strong> : rien ne s'y traite directement, et la passe 9 le vide.</li>
+</ul>
+<p>En cas de doute, l'EPIC des suites. Un rattachement trop large se corrige en passe 9, qui est faite
+pour cela ; une trouvaille jamais écrite ne se corrige pas.</p>
+<p><strong>La seule dispense, et elle est étroite</strong> : une trouvaille <strong>corrigée dans la pull request en cours</strong>
+n'a pas besoin d'issue. Le corps de la PR la porte, et rien ne peut se perdre entre la trouvaille et
+son remède puisqu'ils voyagent ensemble. C'est le cas de l'auto-test absent découvert en traitant</p>
+<h1 id="4544-corrige-dans-la-meme-pr-et-jamais-consigne-ailleurs">4544, corrigé dans la même PR et jamais consigné ailleurs.<a class="headerlink" href="#4544-corrige-dans-la-meme-pr-et-jamais-consigne-ailleurs" title="Permanent link">&para;</a></h1>
+<p>Elle cesse de s'appliquer dès que le remède <strong>sort</strong> de cette PR, pour quelque raison que ce soit :
+périmètre, taille, ou simplement le fait qu'on le remette à plus tard. À cet instant précis, l'issue
+s'ouvre. « Je le corrige tout de suite » est la formule qui fait disparaître les trouvailles quand
+elle se révèle fausse une heure après.</p>
+<div class="admonition warning">
+<p class="admonition-title">Un compte rendu n'est pas une consignation</p>
+<p>Signaler la trouvaille dans le corps d'une pull request, dans un commentaire ou dans un rapport de
+fin de tâche <strong>ne compte pas</strong>. Le signalement y est réel et il est pourtant perdu, parce qu'un
+rapport long enterre ses propres trouvailles : qui le lit en diagonale retient la conclusion, pas
+les trois lignes du milieu.</p>
+<p>Vécu sur #4522, qui en a produit trois. Une seule est devenue une issue sur le coup, #4544, et
+c'est la seule qui n'a jamais risqué de disparaître. Les deux autres, #4553 et #4554, n'ont été
+ouvertes qu'après réclamation explicite, alors qu'elles avaient été <strong>décrites</strong> dès leur
+découverte. Le signalement ne manquait pas ; il n'avait simplement aucun support qui survive.</p>
+</div>
+<p><strong>Ce n'est pas une charge nouvelle.</strong> C'est le même travail que la passe 9 demandait déjà, fait au
+moment où le contexte est frais plutôt que reconstitué. Ce qui change est le coût : quelques minutes
+pendant qu'on a le message d'erreur sous les yeux, contre une demi-heure d'archéologie trois jours plus
+tard, pour un résultat moins juste.</p>
 <h3 id="refactor-a-chaque-tour-et-a-la-bonne-echelle">REFACTOR : à chaque tour, et à la bonne échelle<a class="headerlink" href="#refactor-a-chaque-tour-et-a-la-bonne-echelle" title="Permanent link">&para;</a></h3>
 <p><strong>Le refactoring appartient au cycle, pas seulement à la clôture.</strong> Il est <strong>tenté à chaque tour de
 boucle</strong>, c'est-à-dire des dizaines de fois par issue : pas nécessairement appliqué, mais
@@ -9752,8 +9830,12 @@ de sa <strong>pull request</strong>.</p>
 de cela ne doit rester <strong>uniquement</strong> en commentaire.</p>
 <ul>
 <li><strong>le corps</strong> dit l'<strong>état courant de la vérité</strong> : ce qu'on fait, pourquoi, ce qui a été décidé ;</li>
-<li><strong>les commentaires</strong> portent le <strong>journal</strong> : mesures, trouvailles incidentes, pistes essayées.</li>
+<li><strong>les commentaires</strong> portent le <strong>journal</strong> : mesures, pistes essayées, et la <strong>trace</strong> des
+  trouvailles incidentes.</li>
 </ul>
+<p>Une trouvaille incidente s'écrit donc à deux endroits, et le commentaire n'est pas le second : elle a
+<strong>déjà</strong> son issue, ouverte au moment où on l'a faite (voir « Une trouvaille se consigne en ISSUE »
+ci-dessus). Le commentaire en garde la trace dans le fil ; c'est l'issue qui la porte.</p>
 <p>D'où la règle : <strong>tout commentaire qui change la lecture de l'issue est suivi d'une édition du corps.</strong>
 Le commentaire reste comme trace, le corps porte la conclusion.</p>
 <p>C'est la généralisation d'une règle qui n'existait qu'au triage (étape 0) : « un recadrage laissé en
@@ -9830,8 +9912,8 @@ seul côté crée une asymétrie et une dette invisibles.</p>
 <li>vérifie que la CLI offre l'opération correspondante (commande ou option de <code>fr.univ_amu.iut.cli</code>)
   avec le <strong>même comportement</strong> : mêmes règles, mêmes formats, mêmes garde-fous ;</li>
 <li>en cas d'écart : <strong>aligner tout de suite</strong> si c'est petit (la commande ajoutée sera alors
-  documentée et testée par les passes suivantes), sinon <strong>créer une issue</strong> (passe 9) pour ne pas
-  perdre le contexte ;</li>
+  documentée et testée par les passes suivantes), sinon <strong>créer l'issue sur-le-champ</strong> et la rattacher
+  à l'EPIC du chantier ou à celui des suites, pour ne pas perdre le contexte ;</li>
 <li>si le chantier est <strong>purement présentationnel</strong>, le noter explicitement « sans objet côté CLI ».</li>
 </ul>
 <div class="admonition tip">
@@ -9938,8 +10020,8 @@ entier n'a jamais été regardé. L'inventaire se fait donc <strong>depuis le di
 (<code>git diff origin/main...</code>, toutes les PR confondues), pas depuis sa mémoire. Pour <strong>chaque capacité</strong>
 ajoutée ou changée - un service, un geste d'IHM, une commande CLI, une migration, un port, un état
 persisté - on note <strong>quel test la couvre et à quel niveau</strong>. « Aucun » est une réponse valable, mais
-elle doit être <strong>dite</strong> : un trou assumé devient une issue (passe 9), un trou tacite devient une
-régression. Trois familles concentrent les angles morts :</p>
+elle doit être <strong>dite</strong> : un trou assumé devient une issue <strong>immédiatement</strong>, un trou tacite
+devient une régression. Trois familles concentrent les angles morts :</p>
 <ul>
 <li><strong>les chemins non nominaux</strong> : le refus, l'erreur, l'annulation, l'état vide, la donnée absente, la
   <strong>feature désactivée</strong> (<a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/">ADR 0003</a>).
@@ -10180,10 +10262,32 @@ et l'affirmation devient un constat.</p>
 <p>Corollaire pour la rédaction : un pictogramme littéral n'a pas deux issues mais <strong>trois</strong> - rendu,
 absent, ou déformé. La troisième est la pire pour l'utilisateur, puisqu'elle se lit comme une faute de
 frappe dans le libellé.</p>
-<h3 id="9-passe-didentification-des-nouveaux-chantiers">9. Passe d'identification des nouveaux chantiers<a class="headerlink" href="#9-passe-didentification-des-nouveaux-chantiers" title="Permanent link">&para;</a></h3>
-<p>Un chantier en révèle d'autres (dette assumée, palier différé, idée née en chemin). Les <strong>cadrer</strong> et
-<strong>créer les issues</strong> correspondantes (reliées à un nouvel EPIC si elles forment un ensemble), pour ne
-pas perdre le contexte encore frais.</p>
+<h3 id="9-passe-de-consolidation-des-suites">9. Passe de consolidation des suites<a class="headerlink" href="#9-passe-de-consolidation-des-suites" title="Permanent link">&para;</a></h3>
+<p>Un chantier en révèle d'autres : dette assumée, palier différé, idée née en chemin.</p>
+<p><strong>Cette passe ne les découvre plus, elle les consolide.</strong> Chacune a déjà son issue, ouverte au moment
+où elle a été trouvée et rattachée soit à l'EPIC du chantier, soit à l'EPIC des suites
+(<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/4562">#4562</a>) - c'est la règle posée dans
+« Une trouvaille se consigne en ISSUE » plus haut. Arriver ici avec une page blanche est le signe que
+cette règle n'a pas été tenue, pas que le chantier n'a rien trouvé.</p>
+<p>Le travail est donc de <strong>relire</strong> ce qui s'est accumulé :</p>
+<ol>
+<li><strong>Relire l'EPIC des suites</strong>, et pas seulement ce que ce chantier-ci y a déposé : une trouvaille
+   d'un autre chantier peut avoir la même cause, et c'est ici qu'on s'en aperçoit.</li>
+<li><strong>Regrouper</strong> ce qui va ensemble, et créer l'EPIC qui les porte quand elles forment un ensemble.
+   Le tri se fait par <strong>cause</strong>, pas par mot-clé, comme à l'étape 0 de l'ouverture.</li>
+<li><strong>Trancher les rattachements</strong> : une issue appartient au chantier qui traite sa <strong>cause</strong>, pas à
+   celui qui a remarqué son symptôme. Un rattachement trop large posé dans l'urgence de la trouvaille
+   se corrige ici, et c'est le moment prévu pour cela.</li>
+<li><strong>Recadrer</strong> titre et corps de ce qui bouge. Une issue écrite en trois lignes sur le coup a rempli
+   son office, qui était de ne rien perdre ; elle mérite maintenant sa forme complète.</li>
+<li><strong>Ajouter ce que la clôture elle-même a révélé.</strong> Les passes 0 à 8 trouvent, elles aussi, et ce
+   qu'elles trouvent suit la même règle : une issue tout de suite, pas une note pour plus tard.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">L'EPIC des suites ne se ferme pas, il se vide</p>
+<p>Sa taille est un signal. S'il enfle sans que rien n'en sorte, ce ne sont pas les trouvailles qui
+sont trop nombreuses : ce sont les passes 9 qui ne le lisent pas.</p>
+</div>
 <h3 id="10-ecriture-des-adr-du-chantier">10. Écriture des ADR du chantier<a class="headerlink" href="#10-ecriture-des-adr-du-chantier" title="Permanent link">&para;</a></h3>
 <p>Toute <strong>décision structurante</strong> prise pendant le chantier - un choix d'architecture ou de domaine qu'un
 développeur futur pourrait raisonnablement remettre en cause faute d'en connaître les raisons - donne
@@ -10238,9 +10342,9 @@ douze pixels ne se juge pas à l'échelle 1 (cf. passe 8). Ce qui n'a <strong>pa
 une troncature laissée en l'état, montrée et assumée, vaut mieux qu'une omission.</p>
 </div>
 <h2 id="les-suites-dune-cloture-se-closent-aussi">Les suites d'une clôture se closent aussi<a class="headerlink" href="#les-suites-dune-cloture-se-closent-aussi" title="Permanent link">&para;</a></h2>
-<p>La passe 9 crée des issues ; la passe 11 les nomme « dette restante » et clôt l'EPIC. Ces issues, une
-fois livrées, forment un <strong>nouveau delta</strong> - et rien ne les rattrape si l'on considère que le chantier
-est fini.</p>
+<p>La passe 9 consolide les issues ouvertes en chemin ; la passe 11 les nomme « dette restante » et clôt
+l'EPIC. Ces issues, une fois livrées, forment un <strong>nouveau delta</strong> - et rien ne les rattrape si l'on
+considère que le chantier est fini.</p>
 <p>Le dépôt l'a vécu <strong>trois fois</strong> : les suites de l'EPIC #1662 ont formé l'EPIC #1863, dont les suites
 ont formé le delta clos par #1920 ; les suites de #1838 ont eu leur propre clôture (#1921). Le patron
 est donc régulier, pas accidentel.</p>
