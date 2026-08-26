@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4565-un-nom-de-competence-dit-le-geste/">
       
       
-        <link rel="prev" href="../4342-l-ergonomie-se-rattache-a-une-heuristique-nommee/">
+        <link rel="prev" href="../4516-une-commande-nomme-un-geste/">
       
       
-        <link rel="next" href="../4343-la-prose-visible-se-relit-a-l-humaniseur/">
+        <link rel="next" href="../4342-l-ergonomie-se-rattache-a-une-heuristique-nommee/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Une javadoc contracte, elle ne raconte pas : le code dit quoi, l'ADR dit pourquoi - VigieChiro Companion · Doc développeur</title>
+        <title>Le nom d'une compétence dit le geste, sauf quand le métier en a déjà un - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#une-javadoc-contracte-elle-ne-raconte-pas-le-code-dit-quoi-ladr-dit-pourquoi" class="md-skip">
+        <a href="#le-nom-dune-competence-dit-le-geste-sauf-quand-le-metier-en-a-deja-un" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Une javadoc contracte, elle ne raconte pas : le code dit quoi, l'ADR dit pourquoi
+              Le nom d'une compétence dit le geste, sauf quand le métier en a déjà un
             
           </span>
         </div>
@@ -7471,10 +7471,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../4565-un-nom-de-competence-dit-le-geste/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4565 · Le nom d'une compétence dit le geste
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -7497,6 +7531,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trois-ne-changent-pas-et-cest-la-moitie-quon-oublie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trois ne changent pas, et c'est la moitié qu'on oublie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-le-refus-de-renommer-coute-et-qui-le-paie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que le refus de renommer coûte, et qui le paie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-lhumaniseur-garde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que « l'humaniseur » garde
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -7541,44 +7667,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    4359 · Une javadoc contracte, elle ne raconte pas
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--stable"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../4359-une-javadoc-contracte-elle-ne-raconte-pas/" class="md-nav__link">
         
   
   
@@ -7601,70 +7693,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#le-defaut" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Le défaut
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -9498,17 +9526,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#le-defaut" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Le défaut
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9516,6 +9533,45 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#trois-ne-changent-pas-et-cest-la-moitie-quon-oublie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Trois ne changent pas, et c'est la moitié qu'on oublie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-le-refus-de-renommer-coute-et-qui-le-paie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que le refus de renommer coûte, et qui le paie
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-lhumaniseur-garde" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que « l'humaniseur » garde
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -9547,7 +9603,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4565-un-nom-de-competence-dit-le-geste.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -9556,191 +9612,98 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4565-un-nom-de-competence-dit-le-geste.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="une-javadoc-contracte-elle-ne-raconte-pas-le-code-dit-quoi-ladr-dit-pourquoi">Une javadoc contracte, elle ne raconte pas : le code dit quoi, l'ADR dit pourquoi<a class="headerlink" href="#une-javadoc-contracte-elle-ne-raconte-pas-le-code-dit-quoi-ladr-dit-pourquoi" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-24</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A30 · Le code dit ce qu&#x27;il fait, la javadoc dit son contrat, l&#x27;ADR dit pourquoi</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4359 (l&#x27;article de la javadoc, détaché de #4342 par la règle de numérotation)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification probable</span><span class="adr-bandeau__valeur"><code>scripts/adr/4359-javadoc-narratif.py</code>, <code>scripts/adr/4359-blocs-relus.py</code></span></div></div>
+<h1 id="le-nom-dune-competence-dit-le-geste-sauf-quand-le-metier-en-a-deja-un">Le nom d'une compétence dit le geste, sauf quand le métier en a déjà un<a class="headerlink" href="#le-nom-dune-competence-dit-le-geste-sauf-quand-le-metier-en-a-deja-un" title="Permanent link">&para;</a></h1>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-26</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A30 · Le code dit ce qu&#x27;il fait, la javadoc dit son contrat, l&#x27;ADR dit pourquoi</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4565, chantier #4511 (mise en service d&#x27;OpenSpec)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">aucun motif textuel ne décide si un nom désigne un geste ou une chose ; le générateur tient la cohérence des dossiers, la relecture tient le nom Loupe : <code>scripts/methode/synchronise-adaptateurs.py</code></span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Le code de production porte <strong>33 410 lignes de prose en javadoc pour 78 496 lignes de code</strong>. Les
-étiquettes de contrat - <code>@param</code>, <code>@return</code>, <code>@throws</code> - n'en font que <strong>5,7 %</strong>. Le reste est du
-récit.</p>
-<p>La lecture des blocs les plus longs donne la même chose chaque fois : un bloc de 86 lignes qui
-raconte écran par écran ce que l'outil rend, un autre de 49 lignes pour une <strong>interface vide</strong>, qui
-recopie une ADR du corpus.</p>
-<h2 id="le-defaut">Le défaut<a class="headerlink" href="#le-defaut" title="Permanent link">&para;</a></h2>
-<p>Ce récit est l'histoire d'un dépôt qui n'existe plus. Le coût n'est pas la place : <strong>le lecteur qui
-cherche ce que fait une classe traverse d'abord ce qu'elle a été</strong>, sans savoir quelle phrase est
-encore vraie. Une javadoc dont une moitié est périmée se saute, et le contrat se perd avec le
-récit.</p>
-<p>Trois natures se mélangent, et seule la lecture les sépare :</p>
-<ul>
-<li><strong>ce qui est caduc</strong> - un défaut corrigé, une implémentation retirée, un choix qu'on ne referait
-  plus. <code>git log</code> le garde pour qui le cherche ;</li>
-<li><strong>une décision recopiée</strong> - le corpus la porte déjà, et deux exemplaires dérivent. Cela se
-  <strong>cite</strong>, ce que l'article A5 demande de tout inventaire ;</li>
-<li><strong>ce que le code dit déjà</strong> - un commentaire qui paraphrase la ligne suivante. Si la ligne n'est
-  pas claire, c'est elle qu'il faut réécrire.</li>
-</ul>
+<p>L'<a href="../4516-une-commande-nomme-un-geste/">ADR 4516</a> a posé « une commande nomme un geste, pas un
+fournisseur » pour les six flux d'OpenSpec. Les treize compétences maison n'avaient jamais été
+passées à ce filtre : cinq nommaient déjà un geste, huit nommaient une chose. Le dépôt était à moitié
+cohérent, et personne ne l'avait décidé : les noms s'étaient posés au fil des chantiers.</p>
+<p><strong>Le comptage aurait envoyé au mauvais endroit.</strong> Un relevé naïf rend 353 occurrences pour les huit,
+dont 178 pour le seul mot <code>mutation</code>. L'ouverture des citations en rend <strong>22 qui désignent vraiment
+une compétence</strong>, dont deux dans des ADR immuables. Le reste nomme autre chose : l'étape 0 « le
+triage », le profil Maven <code>mutation</code>, le profil Maven <code>recette-filmee</code>. Un comptage n'est pas une
+lecture, et c'est la lecture qui a rendu ce lot faisable.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Trois endroits, un rôle chacun.</p>
-<p><strong>Le code dit ce qu'il fait.</strong> Un nom qui dit son intention, une fonction qui tient dans un écran,
-un type qui rend l'erreur impossible. Un commentaire qui explique un nom est un nom à changer.</p>
-<p><strong>La javadoc dit le contrat</strong> : ce qu'on doit fournir, ce qu'on obtient, ce qui peut être nul, ce
-qui est garanti. Elle s'adresse à qui appelle, pas à qui a écrit.</p>
-<p><strong>L'ADR dit pourquoi</strong>, et la javadoc la <strong>cite</strong> au lieu de la redire.</p>
-<p><strong>Le seuil dépend de ce que le bloc surmonte</strong>, et le compte est en <strong>lignes au-delà</strong>. Un seuil
-unique mesurait mal : c'est dans la javadoc de classe que le pourquoi a sa place, et un seuil taillé
-pour une méthode l'y comptait comme de la dette.</p>
+<p><strong>Le nom d'une compétence dit le geste qu'on fait.</strong> Cinq changent.</p>
 <table>
 <thead>
 <tr>
-<th>nature</th>
-<th style="text-align: right;">blocs</th>
-<th style="text-align: right;">médiane</th>
-<th style="text-align: right;">9ᵉ décile</th>
-<th style="text-align: right;">seuil</th>
+<th>Avant</th>
+<th>Après</th>
+<th>Citations réécrites</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>type (classe, record, enum, interface)</td>
-<td style="text-align: right;">1 411</td>
-<td style="text-align: right;">7</td>
-<td style="text-align: right;">14</td>
-<td style="text-align: right;"><strong>15</strong></td>
+<td><code>humaniseur</code></td>
+<td><code>humaniser</code></td>
+<td>11</td>
 </tr>
 <tr>
-<td>méthode</td>
-<td style="text-align: right;">4 809</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">5</td>
-<td style="text-align: right;"><strong>8</strong></td>
+<td><code>triage</code></td>
+<td><code>trier-les-issues</code></td>
+<td>4</td>
 </tr>
 <tr>
-<td>champ</td>
-<td style="text-align: right;">836</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;"><strong>8</strong></td>
+<td><code>revue-visuelle</code></td>
+<td><code>revoir-les-ecrans</code></td>
+<td>3</td>
 </tr>
 <tr>
-<td>constante d'enum</td>
-<td style="text-align: right;">127</td>
-<td style="text-align: right;">1</td>
-<td style="text-align: right;">3</td>
-<td style="text-align: right;"><strong>8</strong></td>
+<td><code>audit-croise</code></td>
+<td><code>confronter-un-arbitrage</code></td>
+<td>1</td>
 </tr>
 <tr>
-<td>autre</td>
-<td style="text-align: right;">38</td>
-<td style="text-align: right;">2</td>
-<td style="text-align: right;">4</td>
-<td style="text-align: right;"><strong>8</strong></td>
+<td><code>recette-filmee</code></td>
+<td><code>filmer-une-recette</code></td>
+<td>1</td>
 </tr>
 </tbody>
 </table>
-<p>Chaque seuil est posé <strong>au-dessus du 9ᵉ décile de sa nature</strong> : il laisse passer le régime normal du
-dépôt et ne signale que ce qui en sort. Un seuil de 8 sur les types signalait <strong>495</strong> blocs ici,
-contre <strong>104</strong> au seuil de 15 : quatre blocs sur cinq relevaient du régime normal d'une classe.</p>
-<p>Ces seuils viennent de la ligne d'origine. Ils sont repris parce que la distribution mesurée <strong>ici</strong>
-les confirme - 9ᵉ décile à 14 pour les types, à 5 pour les méthodes - et non parce qu'ils y étaient.
-Deux corpus indépendants tombent au même endroit.</p>
-<p>Le grain de la <strong>ligne</strong> a été choisi après coup : au grain du bloc, un bloc de 50 lignes réécrit en
-22 ne bougeait pas le compte, ce qui poussait à couper du <strong>contrat</strong> pour passer sous le seuil. Le
-cliquet descend par tranches, chaque bloc <strong>lu</strong>.</p>
+<h3 id="trois-ne-changent-pas-et-cest-la-moitie-quon-oublie">Trois ne changent pas, et c'est la moitié qu'on oublie<a class="headerlink" href="#trois-ne-changent-pas-et-cest-la-moitie-quon-oublie" title="Permanent link">&para;</a></h3>
+<p><code>tdd</code>, <code>mutation</code> et <code>worktree</code> gardent leur nom. Ils désignent un métier ou un objet que la
+profession nomme ainsi, et les traduire en verbe les rendrait moins reconnaissables, pas plus. Le but
+de la règle est qu'on <strong>trouve</strong> la compétence, pas qu'on admire la règle.</p>
+<p>Cette décision ne laisse aucune trace dans le dépôt, puisqu'elle ne change rien. C'est exactement
+pourquoi elle est écrite ici : sans cela, le prochain qui relira les noms rouvrira la question sans
+savoir qu'elle a été tranchée.</p>
+<h3 id="ce-que-le-refus-de-renommer-coute-et-qui-le-paie">Ce que le refus de renommer coûte, et qui le paie<a class="headerlink" href="#ce-que-le-refus-de-renommer-coute-et-qui-le-paie" title="Permanent link">&para;</a></h3>
+<p><code>mutation</code> nomme aussi un profil Maven. Le même jeton entre apostrophes désigne donc deux choses, et
+seules trois de ses sept citations sont la compétence. Le coût est assumé : le contexte lève
+l'ambiguïté, et renommer une technique que la profession appelle ainsi la rendrait introuvable.</p>
+<p><code>recette-filmee</code> portait la même collision, quatre citations sur cinq étant le profil Maven. Là, le
+renommage la <strong>retire</strong> : le profil garde son nom, la compétence prend le geste. La collision n'était
+pas la raison du renommage, mais elle le rend plus utile qu'il n'y paraissait.</p>
+<h3 id="ce-que-lhumaniseur-garde">Ce que « l'humaniseur » garde<a class="headerlink" href="#ce-que-lhumaniseur-garde" title="Permanent link">&para;</a></h3>
+<p>Le titre de l'article A31, « La prose visible se relit à l'humaniseur », ne change pas. Il emploie un
+nom commun pour l'instrument, ce qui reste vrai quel que soit le nom du dossier. De même pour
+l'<a href="../4343-la-prose-visible-se-relit-a-l-humaniseur/">ADR 4343</a>, immuable, qui consigne ce qui était
+vrai quand elle a été écrite. <strong>Une ADR ne se réécrit pas parce qu'un dossier a bougé.</strong> Ce qui
+change est ce qui nomme la compétence : la ligne du corps d'A31, le tableau d'<code>AGENTS.md</code>, les
+renvois entre compétences.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p><strong>Les deux arbres Java</strong>, production et tests. Le cliquet s'est d'abord borné à la production, au
-motif qu'« un garde doit dire ce qu'il vérifie, c'est l'article A2, et sa javadoc est cette
-déclaration ».</p>
-<p><strong>Ce motif attribuait à A2 ce qu'il ne dit pas.</strong> A2 énonce qu'un garde est vu rouge sur sa propre
-mutation, et sa seule clause d'exclusion est étroite : « un détecteur textuel s'exclut de son propre
-corpus » - le garde des cadratins ne compte pas les cadratins de son source. Rien n'y exempte la
-javadoc d'un garde de la discipline de longueur, et rien n'y parle du code de test. <strong>A2 n'est donc
-pas en cause, son usage l'était.</strong></p>
-<p>Un commentaire de classe de test se lit comme un autre et vieillit pareil. L'exclure du compte
-revenait à dire qu'il n'a pas à être juste, et la maîtrise de la dette vaut pour les tests comme
-pour le reste. Les distributions des deux arbres sont d'ailleurs les mêmes - 9ᵉ décile à 14 pour les
-types, à 5 pour les méthodes - donc les mêmes seuils, sans réglage propre aux tests.</p>
-<p>Les gardes écrits en Java, <code>ContrasteAATest</code>, <code>DoublonsFeuillesDeStyleTest</code>,
-<code>DocumentationAJourTest</code>, gardent leur déclaration entière : c'est du <strong>contrat</strong>, et le registre
-<code>4359-blocs-relus.tsv</code> est fait pour l'inscrire une fois lue. Une exception qui <strong>sort du corpus</strong>
-est un angle mort ; une exception <strong>inscrite</strong> reste comptée et se relit.</p>
-<p><strong>Le niveau est <code>probable</code>.</strong> La longueur se compte ; ce qu'il faut couper ne se décide pas
-mécaniquement. Un record de trente champs n'est pas un suspect : les étiquettes de contrat sont
-exclues, avec leurs suites, et deux cas du banc le tiennent.</p>
-<p><strong>Le cliquet a ouvert à 3 641</strong>, sur 713 blocs dans 572 fichiers. Il vaut
-<strong><!--inv:cliquet-javadoc-->743<!--/inv--></strong> sur 319 blocs dans 254 fichiers, après les tranches</p>
-<h1 id="4397-4401-4424-et-celle-de-4502-le-registre-attendu-est-ecrit-dans-contributingmd-il">4397, #4401, #4424 et celle de #4502. Le registre attendu est écrit dans <code>CONTRIBUTING.md</code> : il<a class="headerlink" href="#4397-4401-4424-et-celle-de-4502-le-registre-attendu-est-ecrit-dans-contributingmd-il" title="Permanent link">&para;</a></h1>
-<p>n'existait nulle part.</p>
-<p><strong>Un bloc relu et gardé volontairement s'inscrit, et son inscription se périme</strong> (#4414). Cette
-décision dit plus haut que le cliquet ne descendra pas à zéro. Rien ne distinguait pourtant un bloc
-qu'on avait ouvert et décidé de garder d'un bloc qu'on n'avait jamais lu : chaque tranche rouvrait
-les deux. <code>scripts/adr/4359-blocs-relus.tsv</code> mémorise la lecture, et
-<code>scripts/adr/4359-blocs-relus.py</code> la tient honnête.</p>
-<p><strong>Le registre ne fait pas baisser le cliquet, et c'est la décision.</strong> La dette reste annoncée en
-entier. Il dit « ce bloc a été lu », pas « cette dette n'existe plus » : confondre les deux
-transformerait une <strong>mémoire de revue</strong> en <strong>desserrement</strong>, et ferait descendre le compteur sans
-qu'une seule ligne ait été corrigée.</p>
-<p><strong>Un bloc s'identifie par l'empreinte de son texte.</strong> Trois autres formes ont été confrontées, et
-chacune produit un faux vert : une entrée <code>Fichier.java:120</code> se fait détourner par une insertion en
-amont, qui donne l'exemption à un autre bloc ; une entrée par nom de membre est héritée par une
-surcharge que personne n'a relue ; une marque dans le bloc voyage par copier-coller sans que la
-demande de fusion ne touche le garde, donc sans le signal central que l'ADR
-<a href="../4339-un-arbre-repris-d-un-outil-amont-se-declare/">4339</a> exige. L'empreinte est insensible aux
-deux premiers et invalidée par toute édition - une prose réécrite n'a pas été relue sous sa forme
-actuelle. Mesuré avant d'être retenu : <strong>680 blocs sous cliquet, 680 empreintes distinctes, aucune
-collision</strong>. Une réindentation, elle, ne l'invalide pas : les marges sont retirées avant le calcul.</p>
-<p><strong>Ce que le registre ne voit pas</strong>, et qui recoupe la loupe ci-dessous : un bloc devenu faux parce
-que le <strong>code</strong> a changé sous lui garde son empreinte. Les deux dispositifs se lisent ensemble.</p>
-<p><strong>Une loupe dit où regarder avant de couper</strong> (#4415). Contracter un bloc <strong>déjà faux</strong> ne le
-corrige pas : il le préserve, en plus court et donc plus crédible. <code>loupe-4359-javadoc-vieillie.py</code>
-liste les blocs sous cliquet dont le <strong>code</strong> a bougé après eux - 116 des 680 au jour de sa pose.</p>
-<p>Le signal est grossier, et c'est assumé : un commit qui n'a touché qu'une accolade fait remonter la
-date sans rien invalider. Elle ne bloque donc rien et ne porte pas de cliquet. Sa vraie limite est
-ailleurs, et elle compte : un bloc <strong>faux dès le premier jour</strong> porte la même date que son code, et
-plus de la moitié du corpus est dans ce cas. La loupe hiérarchise une revue, elle ne la remplace pas.</p>
-<p>Ce qui l'a motivée est mesuré. Sur soixante fichiers porteurs de dette, 27 % avaient vu leur code
-bouger après leur javadoc. Et la première tranche de douze fichiers ouverts en a trouvé <strong>deux</strong>
-qui mentaient - l'un annonçant quatre onglets là où le code en rend six, l'autre décrivant le
-comportement d'avant sa propre correction. Tous deux attrapés <strong>par accident</strong>, parce qu'ils se
-contredisaient eux-mêmes ; un bloc faux et cohérent serait passé.</p>
-<p><strong>Un second garde reste à écrire.</strong> Une ligne de javadoc répétée juste après elle-même est une coupe
-ratée, et elle passe la compilation, spotless et les tests : le lecteur voit la phrase deux fois,
-aucun garde ne la voit. Elle a une seconde forme, plus discrète : la ligne d'avant n'est pas
-identique, elle est le début tronqué de la suivante. Rien ne refuse ni l'une ni l'autre ici. Le
-dépôt jumeau a rencontré les deux en résorbant sa dette (#4334), ce qui dit quand ce garde devient
-nécessaire : au moment où les coupes commencent, pas avant.</p>
-<p><strong>Et tout n'est pas du récit.</strong> <code>ParserCsvTadarida</code> documente un format et un mapping de colonnes,
-<code>TransformationAudio</code> l'arithmétique du découpage. Ces blocs dépassent le seuil et le méritent : le
-cliquet ne descendra pas à zéro, il compte une dette, pas une faute.</p>
-<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Compter toutes les lignes de commentaire.</strong> Un record bien documenté deviendrait le pire
-  suspect du dépôt.</li>
-<li><strong>Le pourcentage de commentaire par fichier.</strong> Meilleur pour <strong>choisir quoi lire</strong> : il désigne
-  les petites interfaces où le commentaire a mangé le code - <code>SuitLaRevision</code> portait 36 lignes pour
-  4 de code. Mauvais comme cliquet : le dénominateur étant le code, un port d'une méthode plafonne
-  haut quoi qu'on fasse, et le cliquet pousserait à couper du contrat là où il compte le plus.</li>
-<li><strong>Compter les blocs trop longs plutôt que leurs lignes.</strong> Essayé : le compte ne bougeait pas d'un
-  bloc de 50 lignes réécrit en 22.</li>
-<li><strong>Une passe mécanique de suppression.</strong> Le motif est trivial à trouver, le remède ne l'est pas.</li>
-<li><strong>Interdire la prose en javadoc.</strong> Une classe difficile mérite un paragraphe.</li>
+<li>Les cinq dossiers du fonds sont déplacés, leur en-tête <code>name:</code> suit, et les adaptateurs sont
+  régénérés. Un renommage de compétence renomme aussi la commande, puisqu'elles s'invoquent au nom nu.</li>
+<li><strong>Le générateur ne voit pas une copie devenue orpheline.</strong> <code>synchronise-adaptateurs.py</code> n'itère que
+  sur la source : après un renommage, <code>.claude/skills/&lt;ancien&gt;</code> survivait et le garde restait vert en
+  annonçant « adaptateurs à jour ». Les cinq orphelins sont retirés à la main ici ; le mécanisme est
+  traité par #4593. C'est l'article A3 sous un troisième visage, après #4566 : un dispositif qui
+  compare deux arbres doit regarder dans les deux sens.</li>
+<li>Vérification <strong>humaine</strong>, et elle ne se mécanisera pas : aucun motif textuel ne décide si un nom
+  désigne un geste ou une chose. Le générateur tient la cohérence des dossiers, la relecture tient le
+  nom.</li>
 </ul>
-<h2 id="la-jurisprudence-du-cliquet">La jurisprudence du cliquet<a class="headerlink" href="#la-jurisprudence-du-cliquet" title="Permanent link">&para;</a></h2>
-<p>Le cliquet de cette décision suit deux ADR antérieures.
-<a href="../2867-une-dette-se-tient-par-un-cliquet/">2867</a> pose qu'une dette se tient par un compteur qui ne
-remonte pas, plutôt que par un nettoyage qu'on remet.
-<a href="../2941-un-cliquet-s-apprend-en-l-appliquant/">2941</a> ajoute que sa valeur d'ouverture se mesure, et
-que le resserrer est un geste distinct de le poser.</p>
-<p><a href="../3540-un-cliquet-qui-compte-n-est-pas-la-preuve-de-la-regle/">3540</a> dit la limite : un compteur qui
-ne monte pas prouve que rien ne s'ajoute, pas que la règle est comprise. C'est pourquoi le garde rend
-des suspects et non des fautes.</p>
 
 
 
@@ -9779,7 +9742,7 @@ des suspects et non des fautes.</p>
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../4342-l-ergonomie-se-rattache-a-une-heuristique-nommee/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 4342 · L&#39;ergonomie se rattache à une heuristique nommée">
+          <a href="../4516-une-commande-nomme-un-geste/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 4516 · Une commande nomme un geste, et cite la compétence">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -9789,20 +9752,20 @@ des suspects et non des fautes.</p>
                 Précédent
               </span>
               <div class="md-ellipsis">
-                4342 · L'ergonomie se rattache à une heuristique nommée
+                4516 · Une commande nomme un geste, et cite la compétence
               </div>
             </div>
           </a>
         
         
           
-          <a href="../4343-la-prose-visible-se-relit-a-l-humaniseur/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4343 · La prose visible se relit à l&#39;humaniseur">
+          <a href="../4342-l-ergonomie-se-rattache-a-une-heuristique-nommee/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4342 · L&#39;ergonomie se rattache à une heuristique nommée">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                4343 · La prose visible se relit à l'humaniseur
+                4342 · L'ergonomie se rattache à une heuristique nommée
               </div>
             </div>
             <div class="md-footer__button md-icon">
