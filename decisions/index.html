@@ -8427,6 +8427,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4571-une-fusion-sans-verdict-se-refuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4571 · Fusionner en rouge est un choix, fusionner sans couleur est un accident
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4586-le-corpus-d-un-garde-se-declare-une-fois/" class="md-nav__link">
         
   
@@ -8435,6 +8470,41 @@
     
   
     4586 · Le corpus d'un garde se déclare une fois, et sa liste se dérive
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4598-le-titre-se-verifie-avant-l-ouverture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4598 · Le titre de PR se vérifie avant l'ouverture, et les titres d'issue ne s'alignent pas
   
 
     
@@ -10785,9 +10855,19 @@
 <td>#4546, passe 10 de la clôture de #4502</td>
 </tr>
 <tr>
+<td><a href="4571-une-fusion-sans-verdict-se-refuse/">4571</a></td>
+<td>L'ADR 0041 assume qu'on fusionne en rouge : l'information est visible, l'ignorer est un choix. Elle n'avait pas rencontré l'autre cas. #4560 a été fusionnée à 17:13:02Z avec zéro run sur son commit de tête - les sept sont nés à 17:15, deux minutes trop tard - et a laissé <code>main</code> rouge. Un rouge passé outre engage qui le fait ; une fusion sans verdict n'engage personne, faute d'avoir rien eu à lire. Le refus vit du côté du contributeur et non de la forge, parce que le coût d'un check requis est déjà mesuré et qu'un mainteneur unique dispose de toute façon du contournement. Le garde ne juge pas la couleur, et refuse quand il ne sait pas lire</td>
+<td>#4571, sas des suites #4562</td>
+</tr>
+<tr>
 <td><a href="4586-le-corpus-d-un-garde-se-declare-une-fois/">4586</a></td>
 <td>#4488 avait decide que les gardes de code lisent les DEUX arbres, et <code>verifie_scripts.py</code> le tenait par une liste ECRITE A LA MAIN, qui avait derive : dix entrees pour quinze gardes portant le chemin de l arbre de test. Six n etaient verifies par rien, et un cliquet ne se plaint pas qu on lui retire du corpus. Le corpus se declare desormais dans <code>_commun.py</code>, la liste se DERIVE de ce que chaque garde importe (15 contre 10), et un refus interdit de recopier un chemin</td>
 <td>#4586, chantier #4502</td>
+</tr>
+<tr>
+<td><a href="4598-le-titre-se-verifie-avant-l-ouverture/">4598</a></td>
+<td>Quatre PR rouges le même jour sur l'espace avant les deux-points. Le dépôt pratique deux conventions à un caractère d'écart, et c'est la plus écrite qui est fausse en PR : 62 des 100 derniers titres d'issue la portent, les 100 dernières PR fusionnées sont à zéro. Le défaut n'entre pas au commit, les quatre partant d'une branche aux sujets conformes et 286 des 297 sujets de branche l'étant : il entre à la frappe du titre, que <code>gh pr create --fill</code> impose dès qu'une branche porte plus d'un commit (10 des 30 dernières PR). Le remède ne crée aucune règle, il fait lancer <code>verifie-titre-pr.sh</code> avant l'ouverture. Aligner les titres d'issue est ÉCARTÉ : soixante-deux renommages pour couvrir un des quatre défauts</td>
+<td>#4598</td>
 </tr>
 </tbody>
 </table>
