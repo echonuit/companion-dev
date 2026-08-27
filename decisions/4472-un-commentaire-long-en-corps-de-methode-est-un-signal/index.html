@@ -9744,7 +9744,14 @@ c'est la règle du dépôt : <em>ce qui n'est pas compté grandit</em>.</p>
 <p><strong>Un bloc de <code>//</code> dans un corps de méthode a un budget de 8 lignes</strong>, et chaque ligne au-delà compte
 une. Le seuil est le double du 9ᵉ décile : il laisse passer le régime normal et ne signale que ce qui
 en sort franchement.</p>
-<p>Le cliquet est posé à <strong><!--inv:cliquet-commentaire-corps-->79<!--/inv--></strong>, l'état du jour.</p>
+<p>Le cliquet est posé à <strong><!--inv:cliquet-commentaire-corps-->43<!--/inv--></strong>, l'état du jour.</p>
+<p><strong>79 → 43</strong> (#4583). Le chantier #4502 avait écarté ce ruban en invoquant cette ADR, et le motif
+n'avait pas voix : son objet était d'aligner sur <code>vigiechiro-companion</code>, qui en compte 59.</p>
+<p>Huit blocs sur vingt-sept ont été ouverts et contractés, aucun raccourci pour atteindre un chiffre.
+Tous portaient de l'histoire que <code>git log</code> garde déjà, chacun citant l'issue qui l'explique ; ce qui
+reste dit le contrat au présent. Les dix-neuf autres restent tels quels, et c'est ce que cette ADR
+annonçait : un bloc long peut être justifié. Ils tiennent une formule, un seuil et sa mesure, une
+limite déclarée, ou ce qu'une sonde ne doit surtout pas faire.</p>
 <p>Les chiffres sont ceux de <strong>ce</strong> dépôt. Le seuil vient de la ligne d'origine et il est repris parce
 que la distribution mesurée ici le confirme : même médiane, même 9ᵉ décile, et aucun bloc au-dessus
 de quinze lignes là où elle en comptait un.</p>
