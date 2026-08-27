@@ -9736,33 +9736,34 @@ ce qui vit sous 600 px tombe hors du rectangle que le clic exige.</p>
 chaque passe, donc la contamination se produit ou non selon la composition du fork. Un test lancé
 seul est toujours vert - ce qui a fait conclure deux fois de suite qu'il n'y avait rien.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p><strong>Un <code>@Start</code> qui affirme une taille de scène dimensionne aussi son stage.</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">stage</span><span class="p">.</span><span class="na">setScene</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">Scene</span><span class="p">(</span><span class="n">vue</span><span class="p">,</span><span class="w"> </span><span class="mi">980</span><span class="p">,</span><span class="w"> </span><span class="mi">980</span><span class="p">));</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">stage</span><span class="p">.</span><span class="na">setWidth</span><span class="p">(</span><span class="mi">980</span><span class="p">);</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">stage</span><span class="p">.</span><span class="na">setHeight</span><span class="p">(</span><span class="mi">980</span><span class="p">);</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">stage</span><span class="p">.</span><span class="na">show</span><span class="p">();</span>
+<p><strong>Un <code>@Start</code> qui affirme une taille de scène la fait tenir par sa fenêtre, sans la figer.</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">FenetreAjustable</span><span class="p">.</span><span class="na">poser</span><span class="p">(</span><span class="n">stage</span><span class="p">,</span><span class="w"> </span><span class="n">vue</span><span class="p">,</span><span class="w"> </span><span class="mi">980</span><span class="p">,</span><span class="w"> </span><span class="mi">980</span><span class="p">);</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">FenetreAjustable</span><span class="p">.</span><span class="na">afficher</span><span class="p">(</span><span class="n">stage</span><span class="p">);</span><span class="w"> </span><span class="c1">// show(), puis sizeToScene()</span>
 </code></pre></div>
+<p><strong>La première rédaction prescrivait <code>setWidth</code> / <code>setHeight</code>, et c'était l'inverse</strong> (#4582). Ces
+deux appels font passer un Stage en dimensionnement explicite : il cesse de s'ajuster aux scènes
+suivantes, donc il corrige la classe courante en contaminant celles d'après.
+<code>ConventionsDEcritureTest.aucun_stage_recu_n_est_fige</code> (#4134) le refuse, et depuis avant cette ADR.
+Appliqué aux 80 classes, le remède prescrit ici aurait fait rougir ce test 80 fois ; personne ne
+l'ayant appliqué en bloc, la contradiction n'a jamais rougi.</p>
 <p><strong>Attendre ne pouvait rien</strong>, et c'est ce qui rend cette ADR nécessaire : un nœud à <code>y=774</code> dans une
 scène de 600 n'y entrera jamais. La première tentative de correctif - attendre le prédicat exact du
 clic - ne corrigeait donc rien. Elle a servi à autre chose, et c'est ce qui compte ici : <strong>elle a
 rendu la cause lisible</strong>. Les appels <code>attendreCliquable</code> sont conservés à ce titre.</p>
 <h2 id="la-dette-et-qui-la-tient">La dette, et qui la tient<a class="headerlink" href="#la-dette-et-qui-la-tient" title="Permanent link">&para;</a></h2>
-<p>87 classes posent une scène dimensionnée ; <strong>2</strong> dimensionnent leur stage - celles que la mutation a
-rendues rouges. Le cliquet est posé à <strong>85</strong>.</p>
-<p><strong>Ce qu'il compte, et ce qu'il ne prouve pas</strong> (#4545). Il compte une <strong>forme</strong> : une taille affirmée
-sur la scène sans que la fenêtre la tienne. Poser une scène dimensionnée ne fige rien ; ces classes
-ne sont donc pas celles qui figeraient le Stage, ce sont celles qui <strong>subiraient</strong> un figement posé
-ailleurs.</p>
-<p>Or personne ne le pose. La suite entière jouée dans un <strong>fork unique</strong>, ordre inverse, les 813
-classes du dépôt avant <code>AppTest</code>, rend 5 099 tests et 0 échec : c'est la configuration la plus
-contaminante qui existe, et le garde d'ajustabilité y reste vert. Une première rédaction disait que
-les 85 autres portaient « le même défaut latent ». Le mécanisme est réel, deux mutations le
-reproduisent, mais aucune classe ne le déclenche aujourd'hui.</p>
-<p>Le cliquet reste, et c'est son office qui se nomme mieux : il empêche la 88e classe d'entrer, comme
-celui de l'ADR 4472 sur une population que le dépôt n'a pas non plus. Les 85 ne sont pas corrigées en
-bloc, et c'est délibéré : une boîte de dialogue de 300 px tient dans 600 et ne verra jamais rien,
-tandis qu'un test qui compte sur une petite fenêtre changerait de comportement. Chaque classe se
-solde quand on la touche.</p>
+<p><strong>Zéro</strong> (#4582). Les 80 classes qui posaient une scène dimensionnée sur le stage reçu passent par
+<code>FenetreAjustable</code>, et le cliquet est devenu un <strong>refus</strong> : l'article A9 veut qu'une zone au plancher
+soit gardée par un refus, faute de quoi le zéro ne reste pas zéro.</p>
+<p>Deux suspects n'en étaient pas. <code>ModalesTest</code> et <code>ModalesCentrageTest</code> posent leur scène sur un
+<code>new Stage()</code> à elles, que rien ne partage - le cas que <code>ConventionsDEcritureTest</code> écarte déjà en
+disant qu'une fenêtre à soi n'est plus reçue. Le détecteur les exempte, et deux témoins tiennent
+l'exemption, dont celui qui la rend sûre : une pose privée ne masque pas la pose partagée qui la
+suit.</p>
+<p>Ce que le cliquet comptait est une <strong>forme</strong> : une taille affirmée sans que la fenêtre la tienne.
+Avant ce lot, la suite entière en fork unique et ordre inverse rendait déjà 5 099 tests et 0 échec
+(#4545) - le mécanisme est réel, deux mutations le reproduisent, aucune classe ne le déclenchait.
+Corriger la forme n'a donc pas réparé un défaut vivant : cela aligne le dépôt sur sa référence, qui
+compte zéro, et ferme la porte à la classe suivante.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p>Le niveau est <code>probable</code> : le cliquet voit qu'une taille est affirmée sans être tenue, il ne voit
 pas si l'écran déborde. À zéro il ne trie plus rien - il refuse - et un cas légitime se traite en
