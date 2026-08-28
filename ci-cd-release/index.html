@@ -8417,6 +8417,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4636-l-inventaire-du-portage-lit-les-contrats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4636 · L'inventaire du portage lit les contrats, pas les noms de fichiers
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4617-le-portail-voit-les-tests-et-le-code-mort/" class="md-nav__link">
         
   
@@ -11215,6 +11250,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>4468-javadoc-non-relue.py</code></td>
 <td>les fichiers Java dont la javadoc n'a jamais été relue, ou l'a été puis réécrite : l'empreinte du manifeste <code>scripts/methode/relus.txt</code> en fait foi</td>
 <td><code>lint.yml</code> (cliquets ADR, autotest dédié)</td>
+</tr>
+<tr>
+<td><code>scripts/methode/contrats-des-gardes.py</code></td>
+<td>le contrat de chaque garde - geste, ADR, population, seuil, verdict - et les écarts entre deux arbres, appariés par le geste et non par le nom de fichier. <strong>Hors CI</strong> : il lit deux arbres, et l'autre n'existe pas sur le runner (ADR 4636)</td>
+<td>à la main, à l'ouverture d'un lot de portage</td>
 </tr>
 <tr>
 <td><code>scripts/methode/couverture-relecture.py</code></td>

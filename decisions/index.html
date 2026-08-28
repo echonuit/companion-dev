@@ -8532,6 +8532,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4636-l-inventaire-du-portage-lit-les-contrats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4636 · L'inventaire du portage lit les contrats, pas les noms de fichiers
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4617-le-portail-voit-les-tests-et-le-code-mort/" class="md-nav__link">
         
   
@@ -10938,6 +10973,11 @@
 <td><a href="4586-le-corpus-d-un-garde-se-declare-une-fois/">4586</a></td>
 <td>#4488 avait decide que les gardes de code lisent les DEUX arbres, et <code>verifie_scripts.py</code> le tenait par une liste ECRITE A LA MAIN, qui avait derive : dix entrees pour quinze gardes portant le chemin de l arbre de test. Six n etaient verifies par rien, et un cliquet ne se plaint pas qu on lui retire du corpus. Le corpus se declare desormais dans <code>_commun.py</code>, la liste se DERIVE de ce que chaque garde importe (15 contre 10), et un refus interdit de recopier un chemin</td>
 <td>#4586, chantier #4502</td>
+</tr>
+<tr>
+<td><a href="4636-l-inventaire-du-portage-lit-les-contrats/">4636</a></td>
+<td>L'inventaire du portage comparait des NOMS de fichiers, apres normalisation de deux conventions de nommage - et c'est cette difference-la qui avait rendu une loupe portee inerte, comptee comme presente et ne rapportant rien. Un releve lit desormais ce qu'un garde DECLARE : geste, ADR, population, seuil, verdict. Il montre sans juger, 33 ecarts sur 30 gestes au premier passage. Deux limites declarees : le predicat ne se compare pas, et l'appariement par le geste laisse deux gardes du meme sujet en deux absences</td>
+<td>#4636, EPIC #4634</td>
 </tr>
 <tr>
 <td><a href="4617-le-portail-voit-les-tests-et-le-code-mort/">4617</a></td>
