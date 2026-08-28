@@ -8497,6 +8497,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4617-le-portail-voit-les-tests-et-le-code-mort/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4617 · Le portail regarde les deux zones, et le code mort compte
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4598-le-titre-se-verifie-avant-l-ouverture/" class="md-nav__link">
         
   
@@ -10863,6 +10898,11 @@
 <td><a href="4586-le-corpus-d-un-garde-se-declare-une-fois/">4586</a></td>
 <td>#4488 avait decide que les gardes de code lisent les DEUX arbres, et <code>verifie_scripts.py</code> le tenait par une liste ECRITE A LA MAIN, qui avait derive : dix entrees pour quinze gardes portant le chemin de l arbre de test. Six n etaient verifies par rien, et un cliquet ne se plaint pas qu on lui retire du corpus. Le corpus se declare desormais dans <code>_commun.py</code>, la liste se DERIVE de ce que chaque garde importe (15 contre 10), et un refus interdit de recopier un chemin</td>
 <td>#4586, chantier #4502</td>
+</tr>
+<tr>
+<td><a href="4617-le-portail-voit-les-tests-et-le-code-mort/">4617</a></td>
+<td>Une méthode privée jamais appelée a vécu à soixante-quinze lignes de la version correcte du même helper (#4554). Deux trous, qu'il ne faut pas confondre : le jeu ne portait que sept règles de conception, donc le code mort n'était couvert <strong>nulle part</strong>, production comprise ; et l'assiette laissait dehors 52 % du Java. <code>UnusedPrivateMethod</code> entre, en écartant les méthodes du <code>FXMLLoader</code> par leur forme et non les 42 contrôleurs entiers. Les littéraux dupliqués ne comptent pas en zone de test, où les répéter est le geste juste : ils font 1 366 des 1 428 signalements, et zéro en production. Le filtre vit dans le cliquet parce que PMD ne sait pas l'exprimer, quatre formes essayées</td>
+<td>#4617, sas des suites #4562</td>
 </tr>
 <tr>
 <td><a href="4598-le-titre-se-verifie-avant-l-ouverture/">4598</a></td>
