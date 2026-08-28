@@ -8333,6 +8333,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4610-deux-seuils-d-indiscernabilite-parce-que-l-erreur-ne-coute-pas-la-meme-chose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4610 · Deux seuils d'indiscernabilité
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4621-sur-une-frontiere-on-nomme-les-candidats-sans-en-choisir-un/" class="md-nav__link">
         
   
@@ -8376,6 +8411,41 @@
     
   
     4656 · Devant une copie morte, on cherche où le geste vit
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4671-le-controle-du-carre-a-deux-sources-et-l-ecran-garde-la-plateforme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4671 · Le contrôle du carré a deux sources
   
 
     
@@ -10693,6 +10763,17 @@ d'un côté commun, quatre le sont à un coin - mesuré le 2026-08-27, 997,7 m e
 proche » n'y désigne rien, et la représentation par centres ne peut pas porter la convention
 d'intervalle semi-ouvert qui trancherait. L'appelant reçoit donc les candidats et laisse l'observateur
 décider : lui seul sait où était son micro.</p>
+<p><strong>La même règle, deux sources, un seul texte</strong> (#4671). La frontière se lit dans les deux sens : pour
+<strong>proposer</strong> un carré, les candidats indiscernables se nomment et aucun ne se choisit ; pour
+<strong>contrôler</strong> un carré déjà déclaré, il concorde s'il figure parmi eux - l'observateur a raison quel que
+soit celui des deux qu'il a écrit.</p>
+<p>Le contrôle a deux appelants qui n'interrogent pas la même source : l'écran demande à la plateforme,
+<code>ajouter-point</code> lit le carroyage embarqué. <code>ConfrontationCarre</code> porte le verdict pour les deux, et le
+seuil avec lui. Deux copies auraient dérivé, et l'écran aurait fini par dire d'une position ce que la
+ligne de commande en nie - c'est la raison qui avait déjà fait naître <code>ConversionGeographique</code> (#4673),
+et elle se répète assez pour valoir règle.</p>
+<p>Le seuil du contrôle vaut <strong>le double</strong> de celui de la proposition, et c'est délibéré : proposer un
+numéro faux et plausible se paie cher, tandis que taire un contrôle ne coûte qu'un contrôle.</p>
 <p><strong>Une dimension qui change d'écriture déclare de quel côté</strong> (<a href="../decisions/3158-une-valeur-memorisee-se-rattrape-par-dimension/">ADR 3158</a>).
 Une vue mémorise le <strong>texte</strong> coché : requalifier une entrée le rend introuvable. Le socle demande donc
 au critère ce que la valeur désigne, plutôt que de comparer des chaînes qu'il ne sait pas interpréter.

@@ -8357,6 +8357,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4610-deux-seuils-d-indiscernabilite-parce-que-l-erreur-ne-coute-pas-la-meme-chose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4610 · Deux seuils d'indiscernabilité
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4621-sur-une-frontiere-on-nomme-les-candidats-sans-en-choisir-un/" class="md-nav__link">
         
   
@@ -8400,6 +8435,41 @@
     
   
     4656 · Devant une copie morte, on cherche où le geste vit
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4671-le-controle-du-carre-a-deux-sources-et-l-ecran-garde-la-plateforme/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4671 · Le contrôle du carré a deux sources
   
 
     
@@ -11126,7 +11196,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->742<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 167<!--/inv--> issues distinctes citées dans 983 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->742<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 193<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -11160,6 +11230,11 @@
 <td>#4578, chantier #4573</td>
 </tr>
 <tr>
+<td><a href="4610-deux-seuils-d-indiscernabilite-parce-que-l-erreur-ne-coute-pas-la-meme-chose/">4610</a></td>
+<td>Sur une frontière, plusieurs carrés sont à distance STRICTEMENT égale, et un écart de distance décide qui est trop proche pour être départagé. Deux classes posaient ce seuil, à 50 m et à 100 m, en écrivant DEUX FOIS la même justification. Les valeurs restent : proposer écrit un numéro que l'observateur validera sans le relire - faux et plausible, il contamine le préfixe de tous ses fichiers - tandis que contrôler commente un numéro déjà écrit, où l'excès de zèle accuse à tort quelqu'un qui avait raison. Un seul type les porte, comme l'ADR 4578 l'avait fait pour les conversions : une divergence documentée dans une seule classe n'avertit que qui ouvre celle-là</td>
+<td>#4610, EPIC #4671</td>
+</tr>
+<tr>
 <td><a href="4621-sur-une-frontiere-on-nomme-les-candidats-sans-en-choisir-un/">4621</a></td>
 <td>Sur une frontière, « le carré le plus proche » ne désigne rien : deux centres à 997,7 m chacun au milieu d'un côté, quatre à 1 412 m au coin, et 5 m de décalage font basculer le premier. La grille ne stockant que des CENTRES, sa représentation ne peut pas porter la convention d'intervalle semi-ouvert qui trancherait - aucune question ne rendra la bonne réponse, parce qu'il n'y en a pas une. Les candidats se nomment, rangés par NUMÉRO pour que l'ordre ne suggère pas la préférence que la phrase refuse</td>
 <td>#4621, chantier #4573</td>
@@ -11168,6 +11243,11 @@
 <td><a href="4656-une-copie-morte-se-supprime-la-ou-le-geste-vit/">4656</a></td>
 <td>Le chantier de code mort a rencontré sept familles de copies, et sept fois la même réponse : aucune n'attendait d'être factorisée, toutes étaient le résidu d'un geste <strong>remplacé par une meilleure forme</strong>. Devant une méthode morte, la question n'est donc pas « qui l'appelait ? » mais « où vit le même geste aujourd'hui ? ». Les deux ne mènent pas au même endroit : la première invite à rebrancher ou extraire, la seconde fait voir que le travail est déjà fait ailleurs. Factoriser les six <code>executer</code> aurait redonné un nom propre à une requête concaténée sur un <code>Statement</code> brut, quand le dépôt est passé aux <code>PreparedStatement</code></td>
 <td>#4656, passe 10 de la clôture</td>
+</tr>
+<tr>
+<td><a href="4671-le-controle-du-carre-a-deux-sources-et-l-ecran-garde-la-plateforme/">4671</a></td>
+<td>L'ADR 4577 range « quel carré couvre cette position » du côté de la géométrie, donc du hors ligne, et le contrôle pose pourtant cette question au RÉSEAU. L'écran garde la plateforme parce que le contrôle en ligne distingue une issue de plus - Indisponible, qui SE TAIT - et que basculer supprimerait ce cas, ses tests et la nuance de #733 au profit d'une cohérence apparente. La ligne de commande, elle, contrôle hors ligne : ajouter-point est une commande locale, et y faire entrer un appel la changerait de nature. Deux sources, une seule règle de verdict</td>
+<td>#4671, passe 2 de la clôture</td>
 </tr>
 <tr>
 <td><a href="4475-un-test-dimensionne-son-stage-il-n-herite-pas-du-fork/">4475</a></td>
@@ -11211,7 +11291,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->996<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 009<!--/inv--> renvois que rien ne garde - dont 275 pointant vers une issue que la production ne cite NULLE PART, soit 152 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>

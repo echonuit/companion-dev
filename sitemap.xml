@@ -993,6 +993,10 @@
          <lastmod>2026-08-28</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4610-deux-seuils-d-indiscernabilite-parce-que-l-erreur-ne-coute-pas-la-meme-chose/</loc>
+         <lastmod>2026-08-28</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/4617-le-portail-voit-les-tests-et-le-code-mort/</loc>
          <lastmod>2026-08-28</lastmod>
     </url>
@@ -1006,6 +1010,10 @@
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/4656-une-copie-morte-se-supprime-la-ou-le-geste-vit/</loc>
+         <lastmod>2026-08-28</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4671-le-controle-du-carre-a-deux-sources-et-l-ecran-garde-la-plateforme/</loc>
          <lastmod>2026-08-28</lastmod>
     </url>
     <url>
