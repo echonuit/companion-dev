@@ -7509,6 +7509,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../4627-le-paquet-fige-la-selection-d-ecoute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4627 · Le paquet fige la sélection d'écoute
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4565-un-nom-de-competence-dit-le-geste/" class="md-nav__link">
         
   
@@ -10151,19 +10186,23 @@
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'ADR 4395 pose qu'un renvoi porté par la javadoc ne se perd pas, et son plancher garde les renvois
 de <code>src/main/java</code>. Il n'a jamais lu <code>src/test/java</code>.</p>
-<p>Mesuré le 2026-08-28 : <strong><!--inv:plancher-renvois-test-->1 009<!--/inv--> renvois distincts</strong> y vivent, dans 608 fichiers sur 825, et rien ne les
-garde. Le trou a été trouvé en passe 7 de la clôture de #4502, en mesurant pourquoi deux gardes sur
-treize lisaient la production seule. L'autre, <code>2635</code>, était une exception justifiée ; celui-ci était
-un oubli.</p>
-<p><strong>Ce que l'arbre de test apporte, et qu'aucun autre ne porte.</strong> Sur ces 990 renvois, <strong>274</strong> pointent
-vers une issue que la production ne cite nulle part : 151 discussions dont le seul lien dans le code
-est un test. Les perdre ne renvoie pas le lecteur ailleurs, cela coupe le fil.</p>
-<p>Les 716 autres doublent un renvoi de production, et c'est voulu : le comptage somme les issues
+<p>À l'ouverture, le 2026-08-28 : <strong>996 renvois distincts</strong> y vivaient, et rien ne les gardait. Le trou
+a été trouvé en passe 7 de la clôture de #4502, en mesurant pourquoi deux gardes sur treize lisaient
+la production seule. L'autre, <code>2635</code>, était une exception justifiée ; celui-ci était un oubli.</p>
+<p>Le plancher vaut aujourd'hui <strong><!--inv:plancher-renvois-test-->1 009<!--/inv--></strong>, sur 608 fichiers
+porteurs parmi 825. Ce chiffre-là <strong>bouge</strong> - il se relève de ce que chaque lot ajoute - alors que la
+mesure d'ouverture ci-dessus est figée : les mêler dans une phrase datée la rendrait fausse au
+premier relevé, et c'est ce que #4683 a corrigé ici.</p>
+<p><strong>Ce que l'arbre de test apporte, et qu'aucun autre ne porte.</strong> Sur ces 1 009 renvois, <strong>274</strong>
+pointent vers une issue que la production ne cite nulle part : 151 discussions dont le seul lien dans
+le code est un test. Les perdre ne renvoie pas le lecteur ailleurs, cela coupe le fil.</p>
+<p>Les 735 autres doublent un renvoi de production, et c'est voulu : le comptage somme les issues
 distinctes <strong>par fichier</strong>, parce qu'un lecteur qui ouvre un test a besoin du lien dans ce test, pas
 dans une classe voisine.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Deux planchers, un par arbre, et surtout pas un seul sur les deux.</strong></p>
-<p>Un plancher unique à 4 155 laisserait une perte d'un côté se compenser par un gain de l'autre : total
+<p>Un plancher unique - la somme des deux, 4 202 au moment d'écrire - laisserait une perte d'un côté
+se compenser par un gain de l'autre : total
 stable, verdict vert, et un renvoi perdu en production payé par un renvoi ajouté dans un test. C'est
 le défaut des populations réunies sous un compteur, et il est le même que celui des populations
 emboîtées, mesuré en confrontant l'arbitrage du portage.</p>
@@ -10178,6 +10217,13 @@ démontre la disjonction, et elle ne se déduit pas du code.</p>
 <p>Deux seuils à relever au lieu d'un, chacun à sa mesure. Le plancher monte à chaque lot qui pose des
 renvois, et il monte maintenant deux fois plus souvent. C'est le prix de la disjonction, et il est
 préféré à un compteur qui se tiendrait tout seul en se compensant.</p>
+<p><strong>Et depuis #4683, ne pas relever refuse.</strong> Un plancher périmé rendait <code>0</code> en annonçant sa
+péremption ; il rend <code>1</code>. La disjonction double donc aussi le <strong>dérangement</strong> : ajouter un renvoi
+d'un côté rougit jusqu'à ce que ce côté-là suive. Le prix reste tenable parce que le relevé est un
+geste et non six - <code>scripts/methode/releve-les-planchers.py --ecrire</code> lit le verdict du garde et pose
+la mesure aux trois endroits de chaque seuil. La polarité complète est écrite en
+<a href="../4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a> ; elle vaut pour ce plancher-ci sans
+être redite.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <p><strong>Un plancher unique sur les deux arbres.</strong> Écarté pour la compensation ci-dessus.</p>
 <p><strong>Étendre le plancher 4395 à <code>src/test</code>.</strong> Même défaut sous un autre nom : une seule valeur, deux

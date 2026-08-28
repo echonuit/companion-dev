@@ -16,7 +16,7 @@
         <link rel="prev" href="../4516-une-commande-nomme-un-geste/">
       
       
-        <link rel="next" href="../4565-un-nom-de-competence-dit-le-geste/">
+        <link rel="next" href="../4627-le-paquet-fige-la-selection-d-ecoute/">
       
       
         
@@ -7624,6 +7624,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../4627-le-paquet-fige-la-selection-d-ecoute/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4627 · Le paquet fige la sélection d'écoute
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4565-un-nom-de-competence-dit-le-geste/" class="md-nav__link">
         
   
@@ -10160,6 +10195,15 @@
 <h1 id="un-avis-de-relecteur-se-range-a-cote-du-notre-il-ne-le-remplace-pas">Un avis de relecteur se range à côté du nôtre, il ne le remplace pas<a class="headerlink" href="#un-avis-de-relecteur-se-range-a-cote-du-notre-il-ne-le-remplace-pas" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-27</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A17 · Ne rien inventer, ne rien effacer, n&#x27;écrire que ce qui est déclaré</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4517, chantier #4511 (mise en service d&#x27;OpenSpec), pour l&#x27;EPIC produit #3848</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">le lot 0 rend un document, pas du code : aucun garde ne tient encore cette décision. Les scénarios qui la vérifieront sont écrits dans la delta spec du changement `emporter-une-nuit`, et les gardes arrivent avec les lots qui la réalisent (#4624 à #4628)</span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>Amendée le 2026-08-28</strong> par <a href="../4627-le-paquet-fige-la-selection-d-ecoute/">ADR 4627</a> : le
+paquet n'emporte pas toutes les séquences de la nuit mais celles de la <strong>sélection</strong>, et la
+sélection est figée. Deux tirages indépendants se recouvrent sur <code>t × t / N</code> séquences,
+soit environ deux sur trente pour une nuit de cinq cents : les deux colonnes de cette ADR
+supposent que les verdicts tombent sur la même ligne, ce que seule une sélection commune
+garantit.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Une nuit commencée sur un poste ne peut pas être reprise sur un autre. Le besoin et ses deux
 scénarios de terrain sont dans l'EPIC #3848 ; ce lot en instruit le périmètre.</p>
@@ -10267,13 +10311,13 @@ notion à valeur unique. La faire passer à N déborde très largement ce chanti
         
         
           
-          <a href="../4565-un-nom-de-competence-dit-le-geste/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4565 · Le nom d&#39;une compétence dit le geste">
+          <a href="../4627-le-paquet-fige-la-selection-d-ecoute/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4627 · Le paquet fige la sélection d&#39;écoute">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                4565 · Le nom d'une compétence dit le geste
+                4627 · Le paquet fige la sélection d'écoute
               </div>
             </div>
             <div class="md-footer__button md-icon">

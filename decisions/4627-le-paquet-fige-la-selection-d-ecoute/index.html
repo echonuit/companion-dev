@@ -10,13 +10,13 @@
       
       
       
-        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/">
+        <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/4627-le-paquet-fige-la-selection-d-ecoute/">
       
       
-        <link rel="prev" href="../4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">
+        <link rel="prev" href="../4517-un-avis-de-relecteur-se-range-a-cote/">
       
       
-        <link rel="next" href="../4251-une-lecture-de-masse-se-fait-par-lot-et-se-garde-en-comptant-des-requetes/">
+        <link rel="next" href="../4565-un-nom-de-competence-dit-le-geste/">
       
       
         
@@ -27,7 +27,7 @@
     
     
       
-        <title>Un fichier écrit par plusieurs JVM se reconstruit, il ne s'ajoute pas - VigieChiro Companion · Doc développeur</title>
+        <title>Le paquet fige la sélection d'écoute, parce que deux tirages ne se comparent pas - VigieChiro Companion · Doc développeur</title>
       
     
     
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit-il-ne-sajoute-pas" class="md-skip">
+        <a href="#le-paquet-fige-la-selection-decoute-parce-que-deux-tirages-ne-se-comparent-pas" class="md-skip">
           Aller au contenu
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Un fichier écrit par plusieurs JVM se reconstruit, il ne s'ajoute pas
+              Le paquet fige la sélection d'écoute, parce que deux tirages ne se comparent pas
             
           </span>
         </div>
@@ -7506,10 +7506,44 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../4627-le-paquet-fige-la-selection-d-ecoute/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4627 · Le paquet fige la sélection d'écoute
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -7532,6 +7566,98 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table des matières
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#contexte" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Contexte
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#la-mesure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La mesure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Décision
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-cela-repare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cela répare
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-cela-coute-et-qui-est-assume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cela coûte, et qui est assumé
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consequences" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Conséquences
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -7786,44 +7912,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    4249 · Un fichier écrit par plusieurs JVM se reconstruit
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--stable"></span>
-  
-
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit/" class="md-nav__link">
         
   
   
@@ -7846,70 +7938,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table des matières">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table des matières
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#contexte" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Contexte
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#decision" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Décision
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#consequences" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
-      
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -10093,6 +10121,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#la-mesure" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La mesure
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10101,6 +10140,34 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Décision">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-cela-repare" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cela répare
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-cela-coute-et-qui-est-assume" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que cela coûte, et qui est assumé
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -10108,17 +10175,6 @@
     <span class="md-ellipsis">
       
         Conséquences
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#alternatives-ecartees" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Alternatives écartées
       
     </span>
   </a>
@@ -10142,7 +10198,7 @@
 
 
   
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/edit/main/dev-docs/decisions/4627-le-paquet-fige-la-selection-d-ecoute.md" title="Editer cette page" class="md-content__button md-icon" rel="edit">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"/></svg>
     </a>
@@ -10151,58 +10207,84 @@
     
       
     
-    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4249-un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit.md" title="Consulter la source de cette page" class="md-content__button md-icon">
+    <a href="https://github.com/echonuit/vigiechiro-pr-companion/raw/main/dev-docs/decisions/4627-le-paquet-fige-la-selection-d-ecoute.md" title="Consulter la source de cette page" class="md-content__button md-icon">
       
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"/></svg>
     </a>
   
 
 
-<h1 id="un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit-il-ne-sajoute-pas">Un fichier écrit par plusieurs JVM se reconstruit, il ne s'ajoute pas<a class="headerlink" href="#un-fichier-ecrit-par-plusieurs-jvm-se-reconstruit-il-ne-sajoute-pas" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-23</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A17 · Ne rien inventer, ne rien effacer, n&#x27;écrire que ce qui est déclaré</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4249, EPIC #4133</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>IndexDesCasTest#deux_jvm_de_meme_pid_ne_s_effacent_pas</code></span></div></div>
+<h1 id="le-paquet-fige-la-selection-decoute-parce-que-deux-tirages-ne-se-comparent-pas">Le paquet fige la sélection d'écoute, parce que deux tirages ne se comparent pas<a class="headerlink" href="#le-paquet-fige-la-selection-decoute-parce-que-deux-tirages-ne-se-comparent-pas" title="Permanent link">&para;</a></h1>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-28</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A5 · La mesure fait foi, et dit d&#x27;où elle vient</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4627, chantier #4511 (mise en service d&#x27;OpenSpec), pour l&#x27;EPIC produit #3848</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">aucun garde ne tient une décision d&#x27;échantillonnage ; le refus de régénérer sur une nuit venue d&#x27;un paquet est décrit dans la delta spec du changement `emporter-une-nuit` et sera couvert par le lot qui la réalise</span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
-<p>Surefire tourne avec <code>forkCount=1C</code> : autant de JVM que de cœurs, et chacune filme les cas des classes
-qui lui échoient. L'index qui relie un cas de recette à son clip était écrit <strong>par ajout</strong> au même
-fichier.</p>
-<p>Mesuré sur un tournage à neuf clips : <strong>cinq lignes dans l'index</strong>, pour neuf fichiers bien présents sur
-le disque. Quatre cas filmés n'avaient aucune trace, et rien ne le signalait.</p>
-<p>Le premier remède, un fragment par JVM nommé par son PID, a tenu sous Linux et cédé sous macOS :
-<strong>trois fragments pour quatre JVM</strong>, et le cas S1-37 disparu. Le système avait réattribué un PID pendant
-le tournage, et le second fragment avait écrasé le premier.</p>
+<p>L'<a href="../4517-un-avis-de-relecteur-se-range-a-cote/">ADR 4517</a> a posé que l'avis d'un relecteur se range à
+côté du nôtre, dans deux colonnes de <code>selection_sequence</code>. Elle en tirait une conséquence sur le
+contenu du paquet : il emporte <strong>toutes</strong> les séquences transformées de la nuit, pour que le relecteur
+puisse régénérer sa propre sélection d'écoute plutôt que de subir celle de l'expéditeur.</p>
+<p>Cette conséquence ne tient pas, et c'est une arithmétique qui le montre.</p>
+<h2 id="la-mesure">La mesure<a class="headerlink" href="#la-mesure" title="Permanent link">&para;</a></h2>
+<p>La sélection d'écoute tire <code>t</code> séquences réparties sur une nuit qui en porte <code>N</code>, avec <code>t</code> entre dix
+et trente. Deux tirages indépendants se recouvrent en espérance sur <code>t × t / N</code> séquences.</p>
+<table>
+<thead>
+<tr>
+<th>Séquences dans la nuit</th>
+<th>Jugées par les deux, sur un tirage de 30</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>environ 9</td>
+</tr>
+<tr>
+<td>500</td>
+<td>environ <strong>2</strong></td>
+</tr>
+<tr>
+<td>1000</td>
+<td>environ <strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p><code>N</code> n'est pas mesuré dans ce dépôt, et ce tableau ne prétend pas le fixer. Il suffit à établir le
+sens de la variation : dès que la nuit est grande devant le tirage, les deux échantillons sont
+<strong>quasi disjoints</strong>.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
-<p>Un fichier de sortie qu'alimentent plusieurs JVM se <strong>reconstruit depuis des fragments</strong>, un par JVM,
-sous une identité qui ne peut pas se répéter :</p>
-<ul>
-<li>chaque JVM écrit son fragment dans <code>index.d/</code>, nommé <code>pid + UUID</code> ;</li>
-<li>l'index final est <strong>reconstruit</strong> depuis tous les fragments, sous <code>FileLock</code>, à la fermeture de chaque
-  JVM.</li>
-</ul>
-<p>Le PID seul dit d'où vient le fragment, ce qui aide à lire un tournage. L'UUID garantit qu'il ne sera
-pas repris. Aucun des deux ne suffit.</p>
+<p><strong>Le paquet emporte les séquences de la sélection, et la sélection est figée.</strong> Le relecteur juge le
+même échantillon que l'expéditeur ; la régénération est refusée sur une nuit venue d'un paquet, avec
+un motif qui dit pourquoi.</p>
+<h3 id="ce-que-cela-repare">Ce que cela répare<a class="headerlink" href="#ce-que-cela-repare" title="Permanent link">&para;</a></h3>
+<p>Deux avis sur des échantillons disjoints ne se confrontent pas. Les deux colonnes de l'ADR 4517
+supposent que les deux verdicts tombent sur la <strong>même ligne</strong> : sans sélection commune, elles ne
+serviraient qu'aux une ou deux séquences tirées par hasard des deux côtés, et le reste demanderait
+une réconciliation que personne ne veut écrire.</p>
+<p>Figer la sélection est donc ce qui rend la décision 4517 opérante, et non une restriction qu'on lui
+ajoute.</p>
+<h3 id="ce-que-cela-coute-et-qui-est-assume">Ce que cela coûte, et qui est assumé<a class="headerlink" href="#ce-que-cela-coute-et-qui-est-assume" title="Permanent link">&para;</a></h3>
+<p>Le relecteur ne peut plus <strong>contester l'échantillonnage</strong>. S'il juge le tirage mal réparti, il le dit
+hors de l'outil. C'était l'argument qui avait fait retenir « toutes les séquences » ; il pesait moins
+que l'incomparabilité qu'il produisait.</p>
+<p><em>Écarté : retirer le <code>UNIQUE</code> sur <code>listening_selection.passage_id</code></em> pour porter deux sélections par
+passage. Ce serait la voie qui préserve la régénération, et l'ADR 4517 l'a déjà écartée sur la
+mesure : vingt-trois classes lisent le verdict d'un passage comme une notion à valeur unique.</p>
+<p><em>Écarté : garder l'avis revenu comme un document à côté</em>, hors de la sélection. Un avis qui vit dans
+un document se lit mais ne se manipule pas : il ne s'affiche pas près de la séquence qu'il juge, ne
+se filtre pas, ne s'agrège pas.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p><strong>L'index est reconstruit N fois plutôt qu'une.</strong> C'est quelques millisecondes par fork, contre une
-écriture partielle qui ne corrompt jamais l'ensemble : une JVM tuée laisse un fragment incomplet, pas un
-index faux.</p>
-<p><strong>Le défaut d'origine était invisible à tout signal automatique.</strong> Les clips existaient, les tests
-passaient, l'index se construisait, les gardes étaient verts. Un index amputé ressemble trait pour trait
-à un index juste : il faut compter ses lignes contre les fichiers produits pour voir le manque. C'est
-pourquoi <code>IndexDesCasTest</code> compte, et pourquoi le constructeur qui reçoit l'identité est ouvert au
-paquet : sans cette couture, le défaut du PID réemployé n'est pas reproductible.</p>
-<p><strong>Un test écrit après coup peut verrouiller le défaut.</strong> Le premier <code>IndexDesCasTest</code> vérifiait que le
-second écrivain <strong>remplaçait</strong> le premier. Il était vert, et il figeait l'écrasement comme comportement
-attendu. Un test rédigé depuis le code observé décrit ce que le code fait, pas ce qu'il devrait faire :
-c'est le même piège que celui de l'<a href="../3960-un-garde-dit-la-couverture-qu-il-a-et-rend-l-etat-qu-il-emprunte/">ADR 3960</a>.</p>
-<h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Sérialiser les écritures sur le fichier final.</strong> Un verrou tenu pendant toute l'écriture rend les
-  forks dépendants les uns des autres, et une JVM tuée laisse le verrou derrière elle.</li>
-<li><strong>Un seul écrivain à la fin du tournage.</strong> Il faudrait qu'une JVM sache que les autres ont fini, ce
-  que surefire ne lui dit pas.</li>
-<li><strong>Réemployer <code>VerrouWorkspace</code>.</strong> Il emploie le même <code>FileLock</code>, mais dans l'intention <strong>inverse</strong> :
-  il <strong>refuse</strong> un second processus par <code>tryLock</code> et attrape <code>OverlappingFileLockException</code>
-  (<a href="../2731-un-seul-processus-par-workspace/">ADR 2731</a>). Ici on veut les accueillir tous, et le verrou
-  ne sert qu'à sérialiser la reconstruction.</li>
+<li><strong>Le paquet maigrit d'un ordre de grandeur.</strong> Il porte dix à trente séquences au lieu de toutes
+  celles de la nuit. Le plan annonce quand même son volume avant d'écrire : une clé pleine reste une
+  clé pleine.</li>
+<li><strong>Le code de <code>PlanDePaquet</code> et de <code>EcrivainPaquet</code> ne change pas.</strong> Le plan reçoit la liste des
+  séquences à emporter ; c'est l'appelant qui la choisit. Une décision de conception qui ne coûte
+  aucune ligne est assez rare pour être notée.</li>
+<li><strong>Le refus de régénérer doit dire sa cause.</strong> « La sélection est celle de l'expéditeur » se
+  comprend ; un bouton grisé sans motif ne se comprend pas.</li>
+<li>La question du contenu du paquet, que l'EPIC #3848 posait comme « les séquences transformées
+  suffisent-elles, ou faut-il les bruts ? », se referme sans que les bruts aient jamais été en jeu :
+  ce qui décidait était la comparabilité des avis, pas la réactivabilité de la nuit.</li>
 </ul>
 
 
@@ -10242,7 +10324,7 @@ c'est le même piège que celui de l'<a href="../3960-un-garde-dit-la-couverture
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 4395 · Un renvoi porté par la javadoc ne se perd pas">
+          <a href="../4517-un-avis-de-relecteur-se-range-a-cote/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 4517 · Un avis de relecteur se range à côté du nôtre">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -10252,20 +10334,20 @@ c'est le même piège que celui de l'<a href="../3960-un-garde-dit-la-couverture
                 Précédent
               </span>
               <div class="md-ellipsis">
-                4395 · Un renvoi porté par la javadoc ne se perd pas
+                4517 · Un avis de relecteur se range à côté du nôtre
               </div>
             </div>
           </a>
         
         
           
-          <a href="../4251-une-lecture-de-masse-se-fait-par-lot-et-se-garde-en-comptant-des-requetes/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4251 · Une lecture de masse se fait par lot">
+          <a href="../4565-un-nom-de-competence-dit-le-geste/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4565 · Le nom d&#39;une compétence dit le geste">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                4251 · Une lecture de masse se fait par lot
+                4565 · Le nom d'une compétence dit le geste
               </div>
             </div>
             <div class="md-footer__button md-icon">
