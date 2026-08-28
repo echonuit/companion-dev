@@ -969,7 +969,15 @@
          <lastmod>2026-08-28</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4576-le-format-r1-se-retablit-a-l-entree-pas-au-point-de-comparaison/</loc>
+         <lastmod>2026-08-28</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/4577-le-carre-d-une-position-se-calcule-hors-ligne/</loc>
+         <lastmod>2026-08-28</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4578-deux-precisions-de-conversion-coexistent-parce-qu-elles-ne-servent-pas-a-la-meme-chose/</loc>
          <lastmod>2026-08-28</lastmod>
     </url>
     <url>

@@ -8252,6 +8252,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4576-le-format-r1-se-retablit-a-l-entree-pas-au-point-de-comparaison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4576 · Le format R1 se rétablit à l'entrée
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4577-le-carre-d-une-position-se-calcule-hors-ligne/" class="md-nav__link">
         
   
@@ -8260,6 +8295,41 @@
     
   
     4577 · Le carré d'une position se calcule hors ligne
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4578-deux-precisions-de-conversion-coexistent-parce-qu-elles-ne-servent-pas-a-la-meme-chose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4578 · Deux précisions de conversion coexistent
   
 
     
@@ -11040,9 +11110,19 @@
 <td>#4468, chantier #4394</td>
 </tr>
 <tr>
+<td><a href="4576-le-format-r1-se-retablit-a-l-entree-pas-au-point-de-comparaison/">4576</a></td>
+<td>La règle R1 veut six chiffres, zéro de gauche compris ; les DEUX sources qui rendent un numéro l'amputent - <code>grille_stoc</code> et le référentiel embarqué, soit 13 342 mailles sur 137 481. L'amputation ne se voit pas : un numéro à cinq chiffres est plausible, et chaque lecteur qui le compare sans le savoir obtient un faux négatif silencieux. Deux l'ont fait pendant des mois, dont l'emprise cartographique, qui ne criait pas : elle se rabattait sur son repli, et un carré de département 01 à 09 sans point géolocalisé n'était pas tracé du tout. Le format se rétablit donc à l'ENTRÉE, une fois par entrée - réparer le point de comparaison ne guérit que le lecteur qui se plaint, jamais celui qui se tait</td>
+<td>#4576, chantier #4573</td>
+</tr>
+<tr>
 <td><a href="4577-le-carre-d-une-position-se-calcule-hors-ligne/">4577</a></td>
 <td>Deux questions se ressemblent : « quel carré couvre cette position » est de la GÉOMÉTRIE, « ce carré existe-t-il en Point Fixe » est du PORTAIL. #733 les a confondues, et ce chantier a refait la confusion pendant trois lots. Le carroyage national est pourtant embarqué depuis #325 - 137 481 mailles - et reproduit la plateforme au centimètre : 374,9 m mesurés contre un centroïde à 4 cm. Le geste se calcule donc hors ligne et reste offert sans jeton, dans le cas d'usage même qui a ouvert le chantier : une relève chez soi, un import le lendemain</td>
 <td>#4577, chantier #4573</td>
+</tr>
+<tr>
+<td><a href="4578-deux-precisions-de-conversion-coexistent-parce-qu-elles-ne-servent-pas-a-la-meme-chose/">4578</a></td>
+<td>Trois classes convertissaient des degrés en mètres avec deux valeurs pour la même grandeur : 111,0 km par degré pour DESSINER, 111 132 m pour MESURER. L'écart de 0,12 % ne se voit pas sur une maille de 2 km, et déplace le seuil des 50 m qui juge deux candidats indiscernables. Unifier coûte dans les deux sens - la mesure dérive, ou toutes les captures cartographiques changent pour un dessin identique à l'œil. Les deux précisions restent, portées par UN type qui dit l'usage à côté de la valeur : la passe 7 avait d'abord documenté la divergence dans une seule des trois classes, ce qui n'avertit que qui ouvre celle-là</td>
+<td>#4578, chantier #4573</td>
 </tr>
 <tr>
 <td><a href="4621-sur-une-frontiere-on-nomme-les-candidats-sans-en-choisir-un/">4621</a></td>

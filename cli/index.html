@@ -8137,6 +8137,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4576-le-format-r1-se-retablit-a-l-entree-pas-au-point-de-comparaison/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4576 · Le format R1 se rétablit à l'entrée
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4577-le-carre-d-une-position-se-calcule-hors-ligne/" class="md-nav__link">
         
   
@@ -8145,6 +8180,41 @@
     
   
     4577 · Le carré d'une position se calcule hors ligne
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4578-deux-precisions-de-conversion-coexistent-parce-qu-elles-ne-servent-pas-a-la-meme-chose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4578 · Deux précisions de conversion coexistent
   
 
     
@@ -10010,6 +10080,12 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>--carre &lt;n&gt; [--nom ..] [--protocole ..] [--commentaire ..]</code></td>
 <td>A10</td>
 <td><code>RapatriementCarre.rapatrier</code></td>
+</tr>
+<tr>
+<td><code>situer-carre</code></td>
+<td><code>--position "&lt;lat, lon&gt;"</code></td>
+<td>A10</td>
+<td><code>PropositionCarre.pour</code>. <strong>Aucun réseau</strong> : le carroyage national est embarqué (137 481 mailles, métropole), et c'est ce qui rend la commande utile à un script - traiter un lot de nuits dont on a les positions GPS sans ouvrir l'application. Trois issues distinguées par le <strong>code de sortie</strong>, pour qu'un script tranche sans lire la prose : un carré unique s'écrit sur la sortie standard (exit 0) ; sur une <strong>frontière</strong> les candidats s'y écrivent tous et le motif part sur l'erreur (exit 1), parce que deux centres à distance égale ne se départagent pas ; hors métropole rien ne s'écrit (exit 1) ; un texte illisible rend un code d'<strong>usage</strong> (exit 2), qui n'est pas la même chose qu'une position sans carré</td>
 </tr>
 <tr>
 <td><code>modifier-site</code></td>
