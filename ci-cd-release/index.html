@@ -8347,6 +8347,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4659-une-cloture-sans-trace-ne-se-distingue-pas-d-une-cloture-absente/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4659 · Une clôture sans trace ne se distingue pas d'une clôture absente
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4671-le-controle-du-carre-a-deux-sources-et-l-ecran-garde-la-plateforme/" class="md-nav__link">
         
   
@@ -11770,6 +11805,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>mesure-duree-portail.sh</code></td>
 <td>l'<strong>allongement</strong> du portail qualité, médiane contre médiane</td>
 <td><code>maven.yml</code> - il <strong>avertit</strong>, il ne bloque pas (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>verifie-cloture-consignee.sh</code></td>
+<td>un EPIC clos <strong>sans trace de clôture</strong>. Le dépôt écrit à trois endroits que tout chantier se clôt par douze passes, et rien ne le vérifiait : 43 sur 64 n'en portaient aucune. La cause n'était pas l'inattention - la compétence <code>clore-un-chantier</code> ne mentionnait nulle part le modèle à coller, et qui la suivait à la lettre ne laissait donc aucune trace (<a href="../decisions/4659-une-cloture-sans-trace-ne-se-distingue-pas-d-une-cloture-absente/">ADR 4659</a>). <strong>Cliquet</strong> à 42, qui ne peut que descendre : les anciennes sont assumées, une de plus rougit. Il <strong>refuse</strong> si la forge ne répond pas</td>
+<td><code>lint.yml</code> - bloquant (autotest : <code>lint.yml</code>, hors ligne)</td>
 </tr>
 <tr>
 <td><code>lance-test-filme.sh</code></td>
