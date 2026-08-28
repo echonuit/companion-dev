@@ -8228,6 +8228,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4577-le-carre-d-une-position-se-calcule-hors-ligne/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4577 · Le carré d'une position se calcule hors ligne
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4621-sur-une-frontiere-on-nomme-les-candidats-sans-en-choisir-un/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4621 · Sur une frontière, on nomme les candidats sans en choisir un
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4475-un-test-dimensionne-son-stage-il-n-herite-pas-du-fork/" class="md-nav__link">
         
   
@@ -10463,6 +10533,25 @@ tiennent dans une seule entrée, « 640380 · Vallon ». <code>CritereLieu.carre
 écrivent cette règle une fois pour les quatre écrans ; l'écriture partagée vit en
 <code>commun.model.LieuQualifie</code>, la <strong>ligne de commande</strong> devant la lire aussi (<code>FiltresLieu</code>), et un modèle
 ne pouvant pas dépendre d'une vue.</p>
+<p><strong>Le carroyage répond dans les deux sens, et normalise son format à la lecture</strong> (chantier #4573).
+Le référentiel embarqué <code>carrenat.csv.gz</code> (137 481 mailles, toute la métropole) donne le centroïde
+d'un numéro, et donc aussi le numéro d'une position : le carré d'un point est la maille de centroïde
+le plus proche, la partition par centre le plus proche d'un réseau de mailles carrées étant le
+découpage lui-même. Ce sens inverse rend <code>GET /grille_stoc/cercle</code> <strong>inutile pour proposer un carré</strong> :
+le calcul est local, donc hors ligne, et le portail garde la seule question qui le concerne, « ce
+carré existe-t-il en Point Fixe ».</p>
+<p>Le piège, et il a mordu deux fois : <strong>le référentiel comme la grille du portail amputent le zéro de
+gauche des départements 01 à 09</strong>, alors que la règle R1 et le catalogue des sites imposent six
+chiffres. 13 342 numéros sur 137 481 sont concernés. <code>NumeroDeCarre.surSixChiffres</code> rétablit la forme,
+et <code>CarroyageNational</code> bâtit sa table dessus : une classe qui rendrait du rembourré tout en cherchant
+du brut ne pourrait pas se redonner ce qu'elle vient de rendre. Un lecteur qui compare un numéro sans
+passer par là obtient un faux négatif silencieux - c'était le cas de <code>ControleCarreStoc</code> (#4592) et de
+l'emprise cartographique, qui retombait sur son repli pour ces 13 342 mailles.</p>
+<p><strong>Sur une frontière, on nomme sans choisir.</strong> Deux centres sont à distance strictement égale au milieu
+d'un côté commun, quatre le sont à un coin - mesuré le 2026-08-27, 997,7 m et 1 412 m. « Le plus
+proche » n'y désigne rien, et la représentation par centres ne peut pas porter la convention
+d'intervalle semi-ouvert qui trancherait. L'appelant reçoit donc les candidats et laisse l'observateur
+décider : lui seul sait où était son micro.</p>
 <p><strong>Une dimension qui change d'écriture déclare de quel côté</strong> (<a href="../decisions/3158-une-valeur-memorisee-se-rattrape-par-dimension/">ADR 3158</a>).
 Une vue mémorise le <strong>texte</strong> coché : requalifier une entrée le rend introuvable. Le socle demande donc
 au critère ce que la valeur désigne, plutôt que de comparer des chaînes qu'il ne sait pas interpréter.
