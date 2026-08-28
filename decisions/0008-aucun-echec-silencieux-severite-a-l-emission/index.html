@@ -1082,6 +1082,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tolerance-zero-4585" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tolérance zéro (#4585)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9647,6 +9658,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#tolerance-zero-4585" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tolérance zéro (#4585)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#alternatives-ecartees" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -9711,34 +9733,29 @@
 </ul>
 <h2 id="le-corpus-du-garde-les-deux-arbres-4462">Le corpus du garde : les deux arbres (#4462)<a class="headerlink" href="#le-corpus-du-garde-les-deux-arbres-4462" title="Permanent link">&para;</a></h2>
 <p>Le garde n'a jamais lu que <code>src/main/java</code>, et <strong>aucune décision ne l'y avait restreint</strong> : il est né avant que la question ne se pose. Un test qui avale son échec ment pourtant de la même façon qu'une classe de production, et plus mal : il rend vert sans avoir rien prouvé. Le corpus est donc les deux arbres.</p>
-<p>Les <strong>quatre</strong> <code>catch</code> au corps vide de <code>src/test/java</code> ont été arbitrés un par un avant d'entrer dans le cliquet, qui passe de 12 à 16 :</p>
-<table>
-<thead>
-<tr>
-<th>Endroit</th>
-<th>Ce que le catch vide y fait</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SondeAccessibiliteTest:70</code></td>
-<td>l'exception est le comportement <strong>attendu</strong> : elle prouve que le dossier n'est pas inscriptible</td>
-</tr>
-<tr>
-<td><code>ParcoursMultisiteVersPassageE2ETest:216</code></td>
-<td>boucle de reprise ; l'assertion de l'appelant tranche si les trois essais échouent</td>
-</tr>
-<tr>
-<td><code>ParcoursSitesVersPassageE2ETest:144</code></td>
-<td>même boucle, même arbitrage</td>
-</tr>
-<tr>
-<td><code>BancDeRecetteUrlTest:110</code></td>
-<td>fermeture d'un guichet qui ne vit que le temps du cas</td>
-</tr>
-</tbody>
-</table>
-<p>Aucun n'est un échec avalé, et c'est pourquoi ils entrent dans le cliquet plutôt que de le faire rougir.</p>
+<p>Les <strong>quatre</strong> <code>catch</code> au corps vide de <code>src/test/java</code> avaient été arbitrés un par un avant
+d'entrer dans le cliquet, qui passait alors de 12 à 16.</p>
+<h2 id="tolerance-zero-4585">Tolérance zéro (#4585)<a class="headerlink" href="#tolerance-zero-4585" title="Permanent link">&para;</a></h2>
+<p><strong>16 → 0</strong>, et le cliquet devient un <strong>refus</strong> : l'article A9 veut qu'une zone au plancher soit
+gardée par un refus, sinon le zéro ne reste pas zéro. Ce ruban ne s'alignait pas par résorption, le
+dépôt de référence portant les mêmes douze en production et n'en voyant que douze parce que son garde
+ne lit pas l'arbre de test.</p>
+<p>Aucun des seize n'était un oubli : tous portaient une variable nommée et un commentaire. La question
+n'était donc pas qui avait oublié, mais si ce silence était le bon niveau de sévérité, ce que cette
+ADR fait décider à l'émission.</p>
+<p><strong>Douze émettent.</strong> <code>FINE</code> pour ce qui est attendu - une ligne de référentiel non conforme, une date
+impossible, une suppression au mieux - et <code>WARNING</code> pour ce qui laisse un état bancal : une session à
+moitié repréfixée, une ancienne session restée sous <code>.remplace</code>, un corps de réponse non-JSON. Le
+commentaire reste et dit le pourquoi ; le journal dit que c'est arrivé.</p>
+<p><strong>Quatre disparaissent</strong>, la condition se testant au lieu de se rattraper.
+<code>SondeAccessibiliteTest</code> mesure dans une variable ce que son <code>assumeTrue</code> lit, <code>BancDeRecetteUrlTest</code>
+laisse la fermeture remonter, et les deux boucles de reprise E2E gardent leur dernière cause pour la
+joindre à leur rapport.</p>
+<p><strong>Un arbitrage de cette ADR était faux.</strong> Elle écrivait de <code>ParcoursSitesVersPassageE2ETest</code> « même
+boucle, même arbitrage : l'assertion de l'appelant tranche si les trois essais échouent ». Sa boucle
+rendait la main <strong>en silence</strong> après trois échecs, et le cas continuait comme si la navigation avait
+abouti pour échouer plus loin, sur un nœud absent, très loin de sa cause. C'est l'échec avalé que
+cette ADR refuse, et il vivait dans sa propre liste d'exceptions.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Une dépendance de logging (SLF4J+backend, Log4j).</strong> Alourdit le module-graph pour un besoin que JUL couvre, alors que jlink modulaire est déjà exclu.</li>
