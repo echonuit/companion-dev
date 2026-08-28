@@ -9852,14 +9852,15 @@ rend 1 366 des 1 428 signalements du dépôt, tous en zone de test, <strong>zér
 bien au-delà de sa cible, production comprise ; une seconde exécution du plugin n'est jamais
 appliquée, le goal <code>check</code> déclenchant <code>pmd:pmd</code> en fork avec la configuration <strong>globale</strong> ; et
 <code>failOnViolation</code> est binaire là qu'il faut un cliquet.</p>
-<p><strong>Le cliquet est à 55</strong> : 32 <code>NcssCount</code>, 15 <code>UnusedPrivateMethod</code> dont 9 en production,
-5 <code>GodClass</code>, 2 <code>ExcessiveParameterList</code>, 1 <code>CyclomaticComplexity</code>.</p>
+<p><strong>Le cliquet est à 46</strong> : 32 <code>NcssCount</code>, 6 <code>UnusedPrivateMethod</code> toutes en zone de test,
+5 <code>GodClass</code>, 2 <code>ExcessiveParameterList</code>, 1 <code>CyclomaticComplexity</code>. <strong>La production ne porte plus
+aucune méthode morte.</strong></p>
 <p><strong>Une méthode retirée n'est pas une violation retirée.</strong> Trois surcharges sont parties pour deux
 violations : <code>MultisiteVueIntegrationTest</code> portait un escalier <code>ligne(...)</code> à 6, 7 puis 9 arguments,
 et PMD ne signalait que la première, la deuxième lui paraissant vivante puisqu'appelée par la morte.
 Les retirer d'un coup n'a coûté qu'une violation. Le cliquet ne descend donc pas du nombre de
 méthodes supprimées, et seule la re-mesure tranche.</p>
-<p>Posé à 62, il est monté à 63 puis descendu à 57 et 55 au fil du chantier #4656.</p>
+<p>Posé à 62, il est monté à 63 puis descendu à 57, 55 et 46 au fil du chantier #4656.</p>
 <p>Il a été posé à 62 et relevé d'un cran le lendemain, ce qui mérite d'être dit plutôt que lissé.
 <code>SynchronisationParticipationTest</code> a franchi le seuil <code>NcssCount</code> en gagnant les cas qui ferment un
 défaut d'écriture concurrente (#4632), fusionné entre la mesure et la mise en place. Allonger une
