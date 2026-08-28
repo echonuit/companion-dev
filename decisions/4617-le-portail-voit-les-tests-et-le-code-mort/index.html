@@ -9747,8 +9747,18 @@ rend 1 366 des 1 428 signalements du dépôt, tous en zone de test, <strong>zér
 bien au-delà de sa cible, production comprise ; une seconde exécution du plugin n'est jamais
 appliquée, le goal <code>check</code> déclenchant <code>pmd:pmd</code> en fork avec la configuration <strong>globale</strong> ; et
 <code>failOnViolation</code> est binaire là qu'il faut un cliquet.</p>
-<p><strong>Le cliquet est à 62</strong>, la mesure du jour : 31 <code>NcssCount</code>, 23 <code>UnusedPrivateMethod</code> dont 9 en
-production, 5 <code>GodClass</code>, 2 <code>ExcessiveParameterList</code>, 1 <code>CyclomaticComplexity</code>.</p>
+<p><strong>Le cliquet est à 63</strong> : 32 <code>NcssCount</code>, 23 <code>UnusedPrivateMethod</code> dont 9 en production,
+5 <code>GodClass</code>, 2 <code>ExcessiveParameterList</code>, 1 <code>CyclomaticComplexity</code>.</p>
+<p>Il a été posé à 62 et relevé d'un cran le lendemain, ce qui mérite d'être dit plutôt que lissé.
+<code>SynchronisationParticipationTest</code> a franchi le seuil <code>NcssCount</code> en gagnant les cas qui ferment un
+défaut d'écriture concurrente (#4632), fusionné entre la mesure et la mise en place. Allonger une
+classe de test pour couvrir un cas de plus est le geste juste : refuser cette montée pousserait à
+ne pas couvrir, ce qu'aucun seuil de longueur ne vaut.</p>
+<p><strong>Ce que cet incident apprend sur le cliquet lui-même.</strong> Sa valeur porte sur l'arbre ENTIER, donc
+elle vieillit dès qu'une autre demande est fusionnée. Une branche mesurée puis rebasée doit être
+<strong>re-mesurée avant d'être poussée</strong> : le premier passage a laissé <code>main</code> rouge parce que le rebase
+avait nettoyé <code>target/</code>, que le garde a refusé de conclure faute de rapport, et que ce refus a été
+lu comme une vérification. Un garde qui refuse dit qu'il n'a rien mesuré, pas que tout va bien.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p><strong>Ce qu'on gagne.</strong> La moitié du dépôt qui n'était jugée par rien l'est désormais, et le code mort
 a un garde, dans les deux zones.</p>
