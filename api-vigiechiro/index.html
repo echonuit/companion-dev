@@ -10644,7 +10644,7 @@ prévenir : celle-ci rougit.</p>
 <tr>
 <td><code>grille_stoc</code></td>
 <td><code>/grille_stoc/rectangle</code>, <code>/grille_stoc/cercle</code></td>
-<td><strong>aucune route de collection</strong> : s'interroge par emprise. Une maille est un <strong><code>Point</code></strong>, son centre, et ses <code>coordinates</code> sont en <strong><code>[lon, lat]</code></strong> - l'ordre GeoJSON, à rebours des localités d'un site. Son <code>numero</code> est amputé de son zéro de gauche dans les départements 01 à 09 : la grille rend <code>40110</code> là où le catalogue déclare <code>040110</code>. Mesuré le 2026-08-26 (#4576)</td>
+<td><strong>aucune route de collection</strong> : s'interroge par emprise. Une maille est un <strong><code>Point</code></strong>, son centre, et ses <code>coordinates</code> sont en <strong><code>[lon, lat]</code></strong> - l'ordre GeoJSON, à rebours des localités d'un site. Son <code>numero</code> est amputé de son zéro de gauche dans les départements 01 à 09 : la grille rend <code>40110</code> là où le catalogue déclare <code>040110</code>. Mesuré le 2026-08-26 (#4576). Son <code>$near</code> trie par distance croissante, mais <strong>à distance égale il ne garantit aucun ordre</strong>, et sur une frontière deux mailles sont à distance strictement égale - 997,7 m chacune au milieu d'un côté, 1 412 m pour quatre à un coin. Un décalage de 5 m fait basculer le premier élément : qui en a besoin recalcule les distances depuis <code>centre</code> plutôt que de se fier au rang. Mesuré le 2026-08-27 (#4610)</td>
 </tr>
 <tr>
 <td><code>actualites</code></td>
