@@ -9907,6 +9907,21 @@ et voulus.</p>
 <p><strong>Il ne tourne pas en CI</strong>, parce qu'il lit deux arbres et que l'autre n'existe pas sur le runner.
 Seul son auto-test y tourne, et c'est nécessaire : l'outil qui doit voir les gardes hors service
 serait sinon le premier à l'être.</p>
+<h2 id="les-exemptions-aussi-4662">Les exemptions aussi (#4662)<a class="headerlink" href="#les-exemptions-aussi-4662" title="Permanent link">&para;</a></h2>
+<p>Le relevé rend en plus le <strong>nombre</strong> d'exemptions que chaque garde déclare : ce qu'il s'interdit de
+lire, et que ce dépôt a dû lui ajouter pour son propre contexte. C'est ce qu'un portage écrase sans
+qu'aucun diff paraisse fautif - le fichier importé est correct, son diff est propre, et il retire en
+silence le contexte de la cible.</p>
+<p>Le nombre et non la liste : deux arbres n'exemptent pas les mêmes fichiers, et confronter des chemins
+qui n'existent que d'un côté ne dirait rien.</p>
+<p><strong>Le mécanisme ne s'est jamais produit ici</strong>, mesuré : les seize retraits que l'histoire des gardes
+porte sont tous des élargissements annoncés dans leur sujet, ou des reformatages.</p>
+<p>Il a failli une fois. Le garde de l'apostrophe d'ici porte cinq exemptions, dont trois nomment des
+SVG engendrés propres à ce dépôt ; celui d'en face n'en a aucune et lit les SVG. Le porter tel quel,
+ce que #4637 annonçait, aurait fait rougir le garde sur au moins 22 occurrences dans des fichiers que
+la régénération réécrirait. Le relevé rend cet écart : « exemptions : ici 5 / ailleurs 0 ».</p>
+<p>Aucun <strong>garde</strong> n'est posé pour autant : un dispositif contre un défaut jamais survenu se défend
+moins bien qu'un instrument qui le rend visible avant qu'il n'arrive.</p>
 <h2 id="les-deux-limites-declarees">Les deux limites, déclarées<a class="headerlink" href="#les-deux-limites-declarees" title="Permanent link">&para;</a></h2>
 <p><strong>Le prédicat n'est pas comparé.</strong> Deux motifs d'expression régulière ne se confrontent pas
 mécaniquement, et prétendre le faire rendrait un verdict que rien ne fonde.</p>
