@@ -9782,8 +9782,12 @@ rend 1 366 des 1 428 signalements du dépôt, tous en zone de test, <strong>zér
 bien au-delà de sa cible, production comprise ; une seconde exécution du plugin n'est jamais
 appliquée, le goal <code>check</code> déclenchant <code>pmd:pmd</code> en fork avec la configuration <strong>globale</strong> ; et
 <code>failOnViolation</code> est binaire là qu'il faut un cliquet.</p>
-<p><strong>Le cliquet est à 63</strong> : 32 <code>NcssCount</code>, 23 <code>UnusedPrivateMethod</code> dont 9 en production,
+<p><strong>Le cliquet est à 57</strong> : 32 <code>NcssCount</code>, 17 <code>UnusedPrivateMethod</code> dont 9 en production,
 5 <code>GodClass</code>, 2 <code>ExcessiveParameterList</code>, 1 <code>CyclomaticComplexity</code>.</p>
+<p>Il est descendu de 63 à 57 quand la famille <code>executer</code> a été retirée (#4639, chantier #4656) : six
+copies d'un helper SQL de deux lignes, dont cinq d'empreinte rigoureusement identique. Le compte a
+baissé d'exactement six, ce qui vérifie que chaque suppression a retiré une violation plutôt que de
+la déplacer.</p>
 <p>Il a été posé à 62 et relevé d'un cran le lendemain, ce qui mérite d'être dit plutôt que lissé.
 <code>SynchronisationParticipationTest</code> a franchi le seuil <code>NcssCount</code> en gagnant les cas qui ferment un
 défaut d'écriture concurrente (#4632), fusionné entre la mesure et la mise en place. Allonger une
