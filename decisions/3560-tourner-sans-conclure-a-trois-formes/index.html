@@ -10313,9 +10313,9 @@ rien n'exigeait de la réserver.</p>
 <li>le coût est de l'ordre de la seconde - <code>analyze-only</code> seul prend 4 s, démarrage de Maven compris ;</li>
 <li>une fois la sortie à zéro, il n'a <strong>aucun faux positif</strong> : le verdict est déterministe, là où PMD
    est lent et JaCoCo dépend d'un seuil de couverture ;</li>
-<li>surtout, le déplacer sous <code>-Pquality-gate</code> le <strong>désactiverait</strong> : le job <code>build</code> lance
-   <code>verify</code> <strong>sans</strong> ce profil, et <code>lint.yml</code> n'invoque que le but <code>pmd:check</code>. Il ne tournerait
-   nulle part - c'est-à-dire retour au point de départ.</li>
+<li>surtout, le déplacer sous <code>-Pquality-gate</code> le <strong>désactiverait</strong> : <strong>aucun atelier n'active ce
+   profil</strong>. Il ne tournerait nulle part - c'est-à-dire retour au point de départ. Voir la révision
+   du 2026-08-29 : cette raison était d'abord écrite autrement, et la mesure l'a renforcée.</li>
 </ol>
 <h3 id="un-seuil-se-choisit-contre-la-variance-mesuree-et-la-mesure-se-rejoue">Un seuil se choisit contre la variance mesurée, et la mesure se rejoue<a class="headerlink" href="#un-seuil-se-choisit-contre-la-variance-mesuree-et-la-mesure-se-rejoue" title="Permanent link">&para;</a></h3>
 <p>Un butoir sur « médiane + 30 % » aurait rougi deux fois sur trente sans qu'aucune PR soit fautive, et
@@ -10336,6 +10336,32 @@ de sa première fausse alerte. Il avertit avec la comparaison en clair.</p>
 <p><strong>Un test qui figerait le contenu du <code>pom.xml</code></strong> (« <code>failOnWarning</code> vaut bien <code>true</code> ») : il
 n'éprouverait que lui-même. Le vrai dispositif est le build de la CI, exercé à chaque PR, et il a été
 <strong>vu rouge</strong> en retirant une déclaration.</p>
+<h2 id="revision-du-2026-08-29-la-decision-tient-et-sa-raison-est-meilleure">Révision du 2026-08-29 : la décision tient, et sa raison est meilleure<a class="headerlink" href="#revision-du-2026-08-29-la-decision-tient-et-sa-raison-est-meilleure" title="Permanent link">&para;</a></h2>
+<p>Reprise à la demande, en remesurant la troisième raison de refuser <code>-Pquality-gate</code>. Une clause
+fausse, une conclusion renforcée, et une annonce à corriger.</p>
+<p><strong>La clause était périmée.</strong> Elle disait « <code>lint.yml</code> n'invoque que le but <code>pmd:check</code> ». Il ne
+l'invoque <strong>pas du tout</strong> : depuis le chantier de l'ADR 4617, il lance <code>test-compile pmd:pmd</code>, qui
+produit le rapport sans juger, et laisse le verdict aux cliquets. La seule mention de <code>pmd:check</code> qui
+subsiste dans l'atelier est un commentaire expliquant pourquoi il n'est <strong>pas</strong> employé.</p>
+<p><strong>La conclusion, elle, est plus solide qu'à l'écriture</strong>, et pour une raison plus simple que celle
+d'origine :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>$ grep -rn "Pquality-gate" .github/workflows/
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>lint.yml:575:  # ... ne PAS remplacer par `-Pquality-gate verify -DskipTests` ...
+</code></pre></div>
+<p>Aucun atelier n'active le profil. L'unique occurrence est une mise en garde contre son usage. Le
+raisonnement ne repose donc plus sur ce qu'un atelier invoque, mais sur le fait que <strong>rien nulle
+part</strong> n'active <code>-Pquality-gate</code>. La première moitié de la clause tient inchangée : <code>maven.yml</code>
+lance bien <code>verify</code> sans le profil.</p>
+<p><strong>Et la décision est toujours appliquée.</strong> <code>analyze-only</code> reste lié à la phase <code>verify</code> avec
+<code>failOnWarning=true</code>, et <code>mesure-duree-portail.sh</code>, que l'en-tête déclare, existe.</p>
+<p><strong>L'annonce qu'il fallait corriger.</strong> Ce défaut a été trouvé pendant le chantier #4713, et écarté de
+ses sept lots à chaque étape au motif qu'il « ne portait pas seulement la phrase fausse, mais fondait
+un raisonnement dessus, donc qu'il fallait rejuger la décision ». La remesure a démenti cette
+annonce : il n'y avait rien à rejuger. Une justification vieillie n'est pas une décision fragile, et
+les confondre coûte un chantier qu'on n'ouvre pas.</p>
+<p><strong>Ce que cette révision n'est pas.</strong> Pas un encart « Ce qui fait foi aujourd'hui » : celui-là
+n'annonce que des relations déclarées en en-tête, et cette ADR n'est amendée par aucune autre. Elle
+est corrigée sur un fait, et la correction se lit ici.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>pom.xml</code> : quatre dépendances de test déclarées, <code>archunit-junit5</code> remplacé par <code>archunit</code>, sortie
