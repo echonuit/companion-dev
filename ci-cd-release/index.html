@@ -1592,6 +1592,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4770-la-mutation-se-transpose-par-le-point-d-entree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4770 · Muter un garde de méthode passe par son point d'entrée
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4713-une-page-de-methode-ne-se-relit-pas/" class="md-nav__link">
         
   
@@ -11992,7 +12027,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie_temoins_non_decoratifs.py</code></td>
-<td>aucun témoin de <code>verifie_scripts.py</code> n'est décoratif : chaque garde perd sa détection, la suite doit rougir (article A2 rendu mécanique)</td>
+<td>aucun témoin de <code>verifie_scripts.py</code> n'est décoratif : chaque garde perd sa détection, la suite doit rougir (article A2 rendu mécanique). La mutation porte sur un <strong>arbre jetable</strong> depuis #4700 - <code>scripts/</code> copié, le reste lié - donc l'interrompre ne peut plus laisser un garde neutralisé dans le dépôt</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>

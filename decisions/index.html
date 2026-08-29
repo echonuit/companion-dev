@@ -1707,6 +1707,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4770-la-mutation-se-transpose-par-le-point-d-entree/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4770 · Muter un garde de méthode passe par son point d'entrée
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4713-une-page-de-methode-ne-se-relit-pas/" class="md-nav__link">
         
   
@@ -11696,7 +11731,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 030<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 031<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -11718,6 +11753,11 @@
 <td><a href="4640-pour-ne-rien-effacer-il-faut-se-souvenir-de-ce-qu-on-avait-vu/">4640</a></td>
 <td>Un conflit se constate à trois valeurs et le dépôt n'en avait que deux : la base manquait, c'est-à-dire ce que nous avions vu la dernière fois. Sans elle, « l'utilisateur a modifié la météo » et « la plateforme l'a modifiée » sont indiscernables, et la garde de #4552 s'était rabattue sur la seule question que deux valeurs permettent, celle d'une course de quelques millisecondes. Le dépôt persiste donc un relevé des champs synchronisables, alimenté par les lectures qui existent déjà, sans aucun appel réseau ajouté. Relever l'étiquette à l'ouverture de la fiche est écarté sur mesure : l'ouverture ne lit rien de distant, et une étiquette ne dit ni quel champ ni de quel côté. La règle diffère par champ, les dates ayant chez nous la meilleure source et la météo aucun arbitre. La borne est écrite : ce relevé ne dit pas ce qui est vrai, il dit ce que nous avions vu</td>
 <td>#4640, EPIC #4640</td>
+</tr>
+<tr>
+<td><a href="4770-la-mutation-se-transpose-par-le-point-d-entree/">4770</a></td>
+<td>L'ADR 4490 rend l'article A2 mécanique - un garde neutralisé, la suite doit rougir - mais pour <code>scripts/adr/</code> seulement. L'étendre aux gardes de méthode paraissait mécanique et ne l'était pas : la neutralisation AJOUTÉE en fin de fichier n'agit que si le fichier est <strong>importé</strong>, ce que fait le harnais des ADR ; un garde de méthode se lance, et son <code>raise SystemExit</code> part avant. Cinq gardes ont paru décoratifs, dont deux vus rougir sur un vrai défaut le même jour. Elle s'INSÈRE donc avant le point d'entrée, et la fonction d'auto-test en est <strong>épargnée</strong> - deux gardes nomment la leur sans souligné, et la neutraliser les faisait rougir parce que leur point d'entrée rendait une liste, non parce qu'ils avaient cessé de détecter. Six gardes sans point d'entrée sont <strong>nommés</strong> plutôt que sautés (#4788)</td>
+<td>#4770, suites de #4713</td>
 </tr>
 <tr>
 <td><a href="4713-une-page-de-methode-ne-se-relit-pas/">4713</a></td>
