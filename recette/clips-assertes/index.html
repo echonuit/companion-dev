@@ -10092,6 +10092,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scenarioselectionecoutetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioSelectionEcouteTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioSelectionEcouteTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3-12-a-s3-17-personnaliser_la_selection_d_ecoute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3-12 à S3-17 · personnaliser_la_selection_d_ecoute
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -11745,6 +11773,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scenarioselectionecoutetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioSelectionEcouteTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioSelectionEcouteTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3-12-a-s3-17-personnaliser_la_selection_d_ecoute" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3-12 à S3-17 · personnaliser_la_selection_d_ecoute
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -12100,6 +12156,33 @@ une liste peuplée reviendrait à demander des défauts à une nuit saine.</p>
 <p>L'alerte « hors nuit » paraît, et ce n'est pas un montage : mesuré, l'enregistrement de la carte
 nominale déborde de sa fenêtre nocturne des deux côtés. Le cas est donc jouable sans fabriquer une
 seconde carte.</p>
+</blockquote>
+<h2 id="scenarioselectionecoutetest">ScenarioSelectionEcouteTest<a class="headerlink" href="#scenarioselectionecoutetest" title="Permanent link">&para;</a></h2>
+<p>La modale qui décide de ce que l'observateur va écouter, et dont « Régénérer » <strong>efface sa
+progression</strong>. Le clip repart de l'import et rejoint la vérification par la carte du passage : c'est
+le chemin réel, et il commence donc lui aussi par un import freiné.</p>
+<h3 id="s3-12-a-s3-17-personnaliser_la_selection_d_ecoute">S3-12 à S3-17 · <code>personnaliser_la_selection_d_ecoute</code><a class="headerlink" href="#s3-12-a-s3-17-personnaliser_la_selection_d_ecoute" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioSelectionEcouteTest.personnaliser_la_selection_d_ecoute.mp4"></video>
+
+<blockquote>
+<p><strong>Le banc supplée le périphérique audio, qu'il n'a pas.</strong> Mesuré : le clic sur « Lecture » laisse
+<code>playing</code> à faux, le composant retombant deux fois faute de carte son. La propriété est donc posée à
+vrai ensuite, et c'est le câblage réel du produit qui prend le relais - <code>playingProperty</code> déclenche
+le marquage de la séquence, qui fait la progression. Ce que le clip démontre : une séquence écoutée
+change ce que « Régénérer » coûte. Ce qu'il ne démontre pas : que « Lecture » émette du son.</p>
+<p><strong>La progression se lit par le produit lui-même</strong>, et non par un compteur interne. <code>S3-12</code> établit
+que la confirmation ne paraît <strong>que</strong> s'il y a de quoi perdre ; les cas suivants s'en servent comme
+oracle - après « Annuler » le produit prévient encore, après « Régénérer » il ne prévient plus. Un
+avertissement systématique s'apprend à ignorer, et un relevé unique ne dirait pas s'il paraît à bon
+escient.</p>
+<p><strong>Ce clip a trouvé un défaut du produit, et le montre corrigé.</strong> « Personnaliser… » n'appliquait
+rien : la modale recevait de l'injecteur une sélection <strong>neuve</strong> au lieu de celle de l'écran, écrivait
+dedans, régénérait cet orphelin. Elle se rouvrait de surcroît sur les valeurs par défaut. Aucun test
+ne le voyait, celui de la modale lui injectant un modèle partagé.</p>
+<p>Le dialogue de confirmation et le compte rendu de régénération ne sont pas à l'image : tous deux
+passent par <code>Alert.showAndWait()</code>, qui fige TestFX. Leurs porteurs sont substitués et leurs messages
+capturés.</p>
 </blockquote>
 
 
