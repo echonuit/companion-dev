@@ -10769,6 +10769,30 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td>(Re)constitue la sélection d'écoute (échantillon à écouter). Remplace la sélection existante et <strong>efface</strong> ses verdicts. Parité CLI de « Personnaliser… » / « Régénérer »</td>
 </tr>
 <tr>
+<td><code>emporter-nuit</code></td>
+<td><code>--passage &lt;id&gt; --vers &lt;fichier&gt; [--oui]</code></td>
+<td>#4729</td>
+<td>Écrit le paquet d'une nuit pour la faire relire ailleurs. <strong>Annonce le volume et s'arrête</strong> sans <code>--oui</code> : on n'emporte pas des gigaoctets sur un script lancé de travers. Parité CLI de « Emporter cette nuit… »</td>
+</tr>
+<tr>
+<td><code>ouvrir-paquet-recu</code></td>
+<td><code>--fichier &lt;paquet&gt;</code></td>
+<td>#4729</td>
+<td>Le relecteur ouvre un paquet confié : la sélection de l'expéditeur devient la sienne, <strong>figée</strong>. L'identité s'appose à l'ouverture (#4626), et son absence est un refus</td>
+</tr>
+<tr>
+<td><code>renvoyer-avis</code></td>
+<td><code>--passage &lt;id&gt; --vers &lt;fichier&gt;</code></td>
+<td>#4729</td>
+<td>Le relecteur renvoie son jugement : un manifeste <strong>signé de lui</strong>, sans séquence, l'expéditeur les ayant déjà</td>
+</tr>
+<tr>
+<td><code>reprendre-avis</code></td>
+<td><code>--fichier &lt;paquet&gt; [--remplacer]</code></td>
+<td>#4729</td>
+<td>Range l'avis revenu <strong>à côté du nôtre</strong>, jamais dessus (ADR 4517). Un second avis exige <code>--remplacer</code> : en ligne de commande, aucune modale ne rattrape un écrasement</td>
+</tr>
+<tr>
 <td><code>exporter-lot</code></td>
 <td><code>--passage &lt;id&gt;</code></td>
 <td>P4</td>
