@@ -1672,6 +1672,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4783-le-zero-des-traces-d-outil-se-garde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4783 · Le zéro des traces d'outil se garde, parce qu'il se retourne d'un seul collage
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
         
   
@@ -11628,6 +11663,11 @@
 <td><a href="4711-la-fenetre-vaut-la-peremption-de-ce-qu-on-envoie/">4711</a></td>
 <td>Deux ecritures tiennent une concurrence optimiste cote client et se ressemblent au point qu'on les corrigerait ensemble. <code>PublicationPoint</code> compare deux lectures du meme appel, et c'est JUSTE : son corps vient de la lecture qui precede, <code>avant.avecEnPlus(point)</code>, donc rien ne s'y perime. <code>pousserVers</code> faisait pareil et c'etait FAUX : son corps vient du passage local, saisi plus tot. La largeur de fenetre necessaire depend donc d'ou vient le corps envoye, pas de la forme de la garde. Sans cette ADR, un lecteur alignerait la premiere sur la seconde par souci de coherence, et ajouterait une table la ou rien n'en demande</td>
 <td>#4711, lot 1 de l'EPIC #4640</td>
+</tr>
+<tr>
+<td><a href="4783-le-zero-des-traces-d-outil-se-garde/">4783</a></td>
+<td>La grille nomme six traces d'outil depuis #4776 ; cinq se comptent par une expression et rien ne les comptait. Le relevé rend zéro sur 372 370 lignes, et deux précédents s'opposaient : le zéro des connecteurs se garde, onze occurrences n'ont pas justifié de règle. Ce qui les sépare est la forme de l'arrivée : un zéro se perd d'un seul collage, et la trace est quasi probante. Trois exemptions nominatives, dont la grille elle-même, qui rendrait 22 marques sans elle</td>
+<td>#4783, chantier #4748</td>
 </tr>
 </tbody>
 </table>
