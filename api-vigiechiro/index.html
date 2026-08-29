@@ -1452,6 +1452,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4711-la-fenetre-vaut-la-peremption-de-ce-qu-on-envoie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4711 · La fenêtre vaut la péremption de ce qu'on envoie
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4712-un-lot-multi-pr-est-un-sous-chantier/" class="md-nav__link">
         
   
@@ -9961,6 +9996,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#la-concurrence-se-tient-cote-client-contre-ce-que-nous-avions-vu-4640" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La concurrence se tient côté client, contre ce que nous avions vu (#4640)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#toute-ecriture-declare-ce-quun-rejeu-lui-ferait-2677" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10401,6 +10447,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#la-concurrence-se-tient-cote-client-contre-ce-que-nous-avions-vu-4640" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La concurrence se tient côté client, contre ce que nous avions vu (#4640)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#toute-ecriture-declare-ce-quun-rejeu-lui-ferait-2677" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10747,6 +10804,27 @@ aussi dans Postman pour l'exploration interactive).</p>
 <h2 id="ce-que-nous-savons-de-lapi">Ce que nous savons de l'API<a class="headerlink" href="#ce-que-nous-savons-de-lapi" title="Permanent link">&para;</a></h2>
 <p>Base : <code>https://vigiechiro.herokuapp.com/api/v1</code>. Auth : <code>Authorization: Basic base64("&lt;token&gt;:")</code> (token en
 <em>username</em>, mot de passe vide).</p>
+<h3 id="la-concurrence-se-tient-cote-client-contre-ce-que-nous-avions-vu-4640">La concurrence se tient côté client, contre ce que nous avions vu (#4640)<a class="headerlink" href="#la-concurrence-se-tient-cote-client-contre-ce-que-nous-avions-vu-4640" title="Permanent link">&para;</a></h3>
+<p>La plateforme ne protège pas l'écriture d'une participation : elle ignore l'<code>If-Match</code> sur cette
+route, mesuré le 2026-08-26. Sans garde, un second poste qui modifie la même nuit voit son écriture
+écrasée en silence.</p>
+<p><strong>Constater un conflit demande trois valeurs</strong>, et le dépôt n'en avait que deux : la nôtre et la
+leur. Sans base, « l'utilisateur a modifié la météo » et « la plateforme l'a modifiée » sont
+indiscernables.</p>
+<p>La table <code>participation_relevee</code> (V43) porte cette base : ce que la plateforme portait à <strong>notre
+dernière lecture</strong>, horodaté. Le tirage l'alimente, et l'envoi seulement quand l'écriture a été
+<strong>acceptée</strong> : noter après un refus décrirait un état distant inexistant, et noter après un
+renoncement rendrait la base égale à leur valeur, si bien que la tentative suivante conclurait qu'ils
+n'ont rien changé.</p>
+<p><code>SynchronisationParticipation#pousserVers</code> renonce donc quand la plateforme a changé un champ que le
+<code>PATCH</code> écrit depuis notre dernière lecture. Faute de relevé, sur une nuit antérieure à la migration,
+il retombe sur une comparaison entre deux lectures du même appel : cela ne couvre qu'une course de
+quelques millisecondes, et c'est assumé.</p>
+<p><strong>Ce que cette base n'est pas.</strong> Elle ne dit pas ce qui est vrai, elle dit ce que nous avions vu. Elle
+ne se montre jamais à l'utilisateur comme une donnée, et la vérité reste côté serveur (<a href="https://companion-dev.echonuit.fr/decisions/4640-pour-ne-rien-effacer-il-faut-se-souvenir-de-ce-qu-on-avait-vu/">ADR 4640</a>).</p>
+<p><strong>Ce qu'elle ne couvre pas encore.</strong> Les dates et la météo du corps envoyé viennent du passage
+<strong>local</strong> et remplacent le distant sans condition. La non-destruction de l'<a href="https://companion-dev.echonuit.fr/decisions/0020-ecrire-sur-la-plateforme-ne-rien-inventer-ni-effacer/">ADR 0020</a> ne vaut
+aujourd'hui que pour le dictionnaire <code>configuration</code>. C'est le lot 2 du chantier, #4708.</p>
 <h3 id="toute-ecriture-declare-ce-quun-rejeu-lui-ferait-2677">Toute écriture déclare ce qu'un rejeu lui ferait (#2677)<a class="headerlink" href="#toute-ecriture-declare-ce-quun-rejeu-lui-ferait-2677" title="Permanent link">&para;</a></h3>
 <p>Le réessai gradué est posé au <strong>point de passage unique</strong> des émissions : toute lecture en bénéficie
 sans câblage. Les écritures y passent aussi, et c'est le piège - un <code>POST</code> de création rejoué crée une
@@ -10770,12 +10848,12 @@ c'est la <strong>réponse</strong> qui se perd.</p>
 <tr>
 <td><code>INTERDIT</code></td>
 <td>rejouer <strong>duplique</strong> ou <strong>trompe</strong></td>
-<td><code>POST</code> de création, message empilé par <code>$push</code>, <code>PATCH</code> protégé par <code>If-Match</code></td>
+<td><code>POST</code> de création, message empilé par <code>$push</code>, <code>PATCH</code> qui repose des valeurs absolues</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Une règle par verbe HTTP serait fausse.</strong> <code>PUT /donnees/…/messages</code> <strong>empile</strong> côté serveur : un
-<code>PUT</code> peut parfaitement ne pas être idempotent. Et le <code>PATCH</code> avec <code>If-Match</code> ne duplique pas, mais
+<code>PUT</code> peut parfaitement ne pas être idempotent. Et le <code>PATCH</code> avec <code>If-Match</code>, <strong>là où le serveur le lit</strong>, ne duplique pas, mais
 rejoué après un succès dont la réponse s'est perdue il revient en <code>412</code> - l'utilisateur lirait « échec »
 sur une modification qui a bien eu lieu. L'arbitrage est <strong>par appel</strong>, écrit à côté de lui.</p>
 <p><strong>En ajoutant une écriture</strong>, choisissez la valeur et dites pourquoi en commentaire : c'est ce
@@ -10865,8 +10943,8 @@ la sonde live <code>refus_serveur_est_un_refuse_explicite</code> verrouille que 
 </tr>
 <tr>
 <td>PATCH</td>
-<td><code>/participations/{id}</code> (<code>If-Match: _etag</code>)</td>
-<td>pousse météo/config depuis la modale du passage</td>
+<td><code>/participations/{id}</code></td>
+<td>pousse météo/config depuis la modale du passage ; <strong>aucun <code>If-Match</code></strong>, la concurrence est tenue côté client (#4707)</td>
 </tr>
 <tr>
 <td>POST</td>
@@ -11073,7 +11151,12 @@ qui n'existe pas dans le source, et se saute proprement si le miroir est absent.
   formulaire web lie</strong> : <code>detecteur_enregistreur_numero_serie</code>. L'app a longtemps poussé
   <code>..._numserie</code> : accepté par le serveur, <strong>invisible</strong> sur la fiche web. La lecture accepte
   encore les deux ; l'écriture retire l'ancienne.</li>
-<li><strong><code>_etag</code></strong> est requis en en-tête <code>If-Match</code> pour tout <code>PATCH</code>/<code>PUT</code>/<code>DELETE</code> (concurrence Eve).</li>
+<li><strong><code>_etag</code></strong> n'est <strong>pas</strong> requis en en-tête <code>If-Match</code>, contrairement à ce que la convention Eve
+  laisse croire. Mesuré sur le socle le 2026-08-29 : <strong>2 routes d'écriture sur 29</strong> posent un
+  <code>if_match</code> (les référentiels <code>taxons</code> et <code>protocoles</code>), et elles refusent alors en <code>412</code> sans
+  lui. Les 27 autres l'ignorent, le socle commentant lui-même qu'il réessaie en cas de course.
+  La route des participations est de ces 27 : elle rend <code>200</code> sans en-tête comme avec un
+  étiquetage faux (#4523).</li>
 <li><strong><code>traitement.etat</code></strong> : les <strong>cinq</strong> états de l'analyse serveur (<code>PLANIFIE</code>, <code>EN_COURS</code>, <code>FINI</code>,
   <code>ERREUR</code>, <code>RETRY</code>), accompagnés de <code>date_planification</code> / <code>date_debut</code> / <code>date_fin</code>, <code>message</code>
   (trace d'erreur) et <code>retry</code>. Le bloc est <strong>remplacé</strong> à chaque étape, jamais complété. Cf. § « Le
@@ -11587,7 +11670,7 @@ déposées avant #1844 existent bel et bien avec l'ancienne clé.</p>
 <tr>
 <td><code>/participations/{id}</code></td>
 <td><code>GET, PATCH, DELETE…</code></td>
-<td>PATCH <strong>fonctionne</strong> (sync modale) ; <strong>DELETE annoncé</strong> : une participation est supprimable par son propriétaire (non testé, destructif ; <code>If-Match</code> requis, convention Eve)</td>
+<td>PATCH <strong>fonctionne</strong> (sync modale) ; <strong>DELETE annoncé</strong> : une participation est supprimable par son propriétaire (non testé, destructif ; <code>If-Match</code> supposé requis par convention Eve, <strong>non vérifié</strong> sur cette route)</td>
 </tr>
 <tr>
 <td><code>/sites/{id}</code></td>

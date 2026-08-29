@@ -1452,6 +1452,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../decisions/4711-la-fenetre-vaut-la-peremption-de-ce-qu-on-envoie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4711 · La fenêtre vaut la péremption de ce qu'on envoie
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../decisions/4712-un-lot-multi-pr-est-un-sous-chantier/" class="md-nav__link">
         
   
@@ -10697,10 +10732,13 @@ peuvent pas dire si le premier import « paraît instantané » ni si « Annuler
 surtout <code>verifier-depot-vigiechiro</code>, sans équivalent IHM alors que c'est le seul moyen de confirmer qu'un
 dépôt ZIP est bien arrivé). Écart de nommage : la commande <code>deposer</code> ne dépose rien (elle prépare et
 marque déposé, sans réseau) : confusion avec <code>deposer-vigiechiro</code>.</p>
-<p>Un écart s'est ajouté avec ce chantier : les <strong>métadonnées d'un passage</strong> (récupérer, envoyer, saisir
-l'enregistreur) n'existent <strong>que</strong> dans la modale IHM - aucune commande ne les expose. C'est aussi ce qui
-prive d'un rattrapage en masse des nuits rapatriées avant #1814, réparables aujourd'hui <strong>une par une</strong>.
-Suivi par une issue dédiée.</p>
+<p>Un écart s'était ajouté avec ce chantier : les <strong>métadonnées d'un passage</strong> n'existaient que dans la
+modale IHM. <strong>Il est comblé depuis</strong> : <code>metadonnees-passage</code> expose <code>--recuperer</code>, <code>--envoyer</code>,
+<code>--enregistreur</code> et les heures, plus un rattrapage <code>--tout</code> qui n'écrit qu'avec <code>--confirmer</code>. Le
+rattrapage en masse des nuits rapatriées avant #1814 ne se fait donc plus une par une.</p>
+<p>Ce que la commande n'a <strong>pas</strong>, en revanche, c'est le moindre cas <code>bats</code> : ni celui de surface que
+portent ses voisines, ni la vérification de ses codes de sortie, dont le <code>1</code> qu'elle rend sur un
+renoncement de concurrence. Suivi en #4753.</p>
 <h2 id="prerequis-avant-de-lancer">Prérequis avant de lancer<a class="headerlink" href="#prerequis-avant-de-lancer" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Espace disque libéré (~22 Go pour le chemin ZIP) ; dépôt sur <code>main</code> ; <code>clean compile</code>.</li>
