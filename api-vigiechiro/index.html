@@ -10419,10 +10419,48 @@ dernière lecture</strong>, horodaté. Le tirage l'alimente, et l'envoi seulemen
 <strong>acceptée</strong> : noter après un refus décrirait un état distant inexistant, et noter après un
 renoncement rendrait la base égale à leur valeur, si bien que la tentative suivante conclurait qu'ils
 n'ont rien changé.</p>
-<p><code>SynchronisationParticipation#pousserVers</code> renonce donc quand la plateforme a changé un champ que le
-<code>PATCH</code> écrit depuis notre dernière lecture. Faute de relevé, sur une nuit antérieure à la migration,
-il retombe sur une comparaison entre deux lectures du même appel : cela ne couvre qu'une course de
-quelques millisecondes, et c'est assumé.</p>
+<p><code>SynchronisationParticipation#pousserVers</code> compare donc contre cette base. Faute de relevé, sur une
+nuit antérieure à la migration, la lecture du haut d'appel <strong>en tient lieu</strong> : une base d'une
+milliseconde, qui ne couvre qu'une course étroite. C'est peu, et c'est défini.</p>
+<p><strong>Qu'ils aient écrit ne suffit pas à faire un conflit</strong> (#4757). Le champ <strong>météo</strong> se tranche à part,
+sur les trois valeurs : si la nôtre égale la base, nous n'y avons pas touché, et nous <strong>taisons le
+champ</strong> plutôt que d'y répondre. Une clé absente du corps laisse la plateforme garder la sienne, le
+GSON de <code>RequetesVigieChiro</code> ne sérialisant pas les <code>null</code>, si bien que la saisie d'un collègue
+survit sans que personne n'ait eu à arbitrer.</p>
+<table>
+<thead>
+<tr>
+<th>base</th>
+<th>nous</th>
+<th>eux</th>
+<th>ce qui part</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>M0</td>
+<td>M0</td>
+<td>M1</td>
+<td>rien : leur saisie survit</td>
+</tr>
+<tr>
+<td>M0</td>
+<td>M1</td>
+<td>M0</td>
+<td>la nôtre</td>
+</tr>
+<tr>
+<td>M0</td>
+<td>M1</td>
+<td>M2</td>
+<td>rien du tout : c'est le seul vrai conflit, et l'envoi est refusé</td>
+</tr>
+</tbody>
+</table>
+<p>La <strong>configuration</strong>, elle, part entière et ne peut pas se taire : le <code>PATCH</code> remplace le dictionnaire,
+donc tout envoi porte forcément les clés des autres. Tout changement depuis la base y reste un conflit.</p>
+<p>Effacer une météo, en revanche, ne s'envoie pas : le corps ne sait pas porter un effacement, faute de
+<code>serializeNulls()</code>. Défaut antérieur, ouvert en #4777.</p>
 <p><strong>Ce qu'elle doit porter en entier.</strong> V43 n'y stockait du bloc météo que le vent et la couverture,
 alors que <code>MeteoDepot</code> en porte quatre composants : les températures partent vers la plateforme depuis</p>
 <h1 id="1844-la-base-relue-en-manquait-donc-toujours-deux-la-comparaison-les-voyait-divergentes-a-chaque">1844. La base relue en manquait donc toujours deux, la comparaison les voyait divergentes à chaque<a class="headerlink" href="#1844-la-base-relue-en-manquait-donc-toujours-deux-la-comparaison-les-voyait-divergentes-a-chaque" title="Permanent link">&para;</a></h1>
@@ -10553,7 +10591,7 @@ la sonde live <code>refus_serveur_est_un_refuse_explicite</code> verrouille que 
 <tr>
 <td>PATCH</td>
 <td><code>/participations/{id}</code></td>
-<td>pousse météo/config depuis la modale du passage ; <strong>aucun <code>If-Match</code></strong>, la concurrence est tenue côté client (#4707)</td>
+<td>pousse météo/config depuis la modale du passage ; <strong>aucun <code>If-Match</code></strong>, la concurrence est tenue côté client (#4707), et le champ non modifié est <strong>tu</strong> plutôt qu'arbitré (#4757)</td>
 </tr>
 <tr>
 <td>POST</td>
