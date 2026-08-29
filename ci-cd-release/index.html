@@ -11756,6 +11756,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td>à la main, à l'ouverture d'un lot de portage</td>
 </tr>
 <tr>
+<td><code>scripts/methode/tests-cites-existent.py</code></td>
+<td>que chaque <code>-Dtest=Classe#methode</code> cité par une page de méthode, une compétence ou un atelier nomme une classe et une méthode qui <strong>existent</strong> : sinon la commande rend <code>BUILD SUCCESS</code> sur zéro test. Les gabarits de prose sont écartés par une règle dérivée - une citation finit par <code>Test</code> - et non par une liste d'exceptions</td>
+<td><code>lint.yml</code> (autotest dédié)</td>
+</tr>
+<tr>
 <td><code>scripts/methode/etapes-sans-renvoi-aval.py</code></td>
 <td>qu'aucune <strong>étape numérotée</strong> des six compétences du cycle ne délègue vers une compétence située plus loin - la prose, elle, reste libre de nommer la suite. Il <strong>refuse</strong> quand il ne trouve pas de liste d'étapes, parce que les six ne la titrent pas pareil et qu'un motif calé sur un seul titre en sauterait deux (ADR A3)</td>
 <td><code>lint.yml</code> (autotest dédié)</td>
