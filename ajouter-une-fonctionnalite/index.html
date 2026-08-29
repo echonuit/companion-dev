@@ -10748,7 +10748,8 @@ dans <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/CONT
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Module de feature déclaré comme service <code>ModuleDeFeature</code> dans les <strong>deux</strong> listes <code>ServiceLoader</code> (auto-découverte, cf. <a href="../injection/#la-racine-de-composition">Injection</a>) - <strong>pas</strong> dans <code>RacineInjecteur</code> - et l'app démarre (<code>./mvnw javafx:run</code>).</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Navigation branchée par contrat <code>Ouvrir*</code> si ouverte depuis un autre écran.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Capture + manifeste si l'écran est documenté.</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tests verts et <strong><code>./mvnw -Pquality-gate verify</code></strong> vert (PMD + couverture).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tests verts, <strong><code>./mvnw -B test-compile pmd:pmd</code></strong> puis le cliquet 4617 vert, et la couverture
+      tenue par <code>./mvnw -B verify -Djacoco.haltOnFailure=true</code>.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Commits en <strong>Conventional Commits</strong> (cf.
       <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>).</li>
 </ul>

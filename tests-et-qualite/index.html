@@ -10275,15 +10275,19 @@ référence structurée ; le repo-root garde un mémo
 </tr>
 <tr>
 <td><code>./mvnw -Pquality-gate verify</code></td>
-<td><strong>Portail qualité</strong> : PMD <code>failOnViolation</code> + seuils JaCoCo <strong>bloquants</strong></td>
+<td>Rend PMD bloquant sur <strong>toute</strong> violation. <strong>Ne passe pas</strong> sur ce dépôt : le portail se tient par le cliquet de l'ADR 4617, pas par <code>failOnViolation</code>.</td>
 </tr>
 <tr>
 <td><code>env -u DISPLAY ./mvnw -Pmutation test-compile org.pitest:pitest-maven:mutationCoverage -DtargetClasses=… -DtargetTests=…</code></td>
 <td>Tests de <strong>mutation</strong> PIT (lent, ciblé, à la demande). <code>-Pmutation test</code> <strong>ne mute rien</strong> : le profil n'a aucune liaison de phase, donc le goal n'est jamais invoqué - la commande lance toute la suite et rend zéro rapport, sans le dire.</td>
 </tr>
 <tr>
-<td><code>./mvnw pmd:check</code></td>
-<td>Rapport PMD seul (rapide)</td>
+<td><code>./mvnw -B test-compile pmd:pmd</code></td>
+<td>Le rapport PMD. Il <strong>ne juge pas</strong> : le verdict est le cliquet de l'ADR 4617.</td>
+</tr>
+<tr>
+<td><code>python3 scripts/adr/4617-code-mort-et-zone-de-test.py</code></td>
+<td>Le verdict du portail, par zone. Refuse si le rapport manque.</td>
 </tr>
 <tr>
 <td><code>./mvnw spotless:check</code> / <code>spotless:apply</code></td>
@@ -11162,7 +11166,7 @@ introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindr
 </tr>
 <tr>
 <td>« Quality gate », portail PMD</td>
-<td><code>./mvnw -B -Pquality-gate compile pmd:check</code></td>
+<td><code>./mvnw -B test-compile pmd:pmd</code> puis les <strong>cliquets ADR</strong>, dont celui de l'ADR 4617</td>
 <td><strong>Oui</strong></td>
 </tr>
 </tbody>

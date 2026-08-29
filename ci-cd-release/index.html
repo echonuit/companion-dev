@@ -11075,7 +11075,7 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a></td>
 <td>push <code>main</code> + PR</td>
-<td>« Quality gate » (statique) : <code>spotless:check</code> + complétude des captures + <code>./mvnw -Pquality-gate compile pmd:check</code> (<strong>PMD bloquant</strong>)</td>
+<td>« Quality gate » (statique) : <code>spotless:check</code> + complétude des captures + <code>test-compile pmd:pmd</code> qui <strong>produit</strong> le rapport, puis les <strong>cliquets ADR</strong> qui le jugent</td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
@@ -11216,15 +11216,19 @@ voit à l'œuvre entre deux lundis.</p>
 <h2 id="le-portail-qualite-pquality-gate">Le portail qualité (<code>-Pquality-gate</code>)<a class="headerlink" href="#le-portail-qualite-pquality-gate" title="Permanent link">&para;</a></h2>
 <p>Le profil Maven <code>quality-gate</code> rend <strong>bloquants</strong> des contrôles tolérants par défaut :</p>
 <ul>
-<li><strong>PMD</strong> : <code>failOnViolation=true</code> (sinon simple rapport), exécuté par <code>lint.yml</code> (<code>compile pmd:check</code>) ;</li>
+<li><strong>PMD</strong> : <code>failOnViolation=true</code>, que <code>lint.yml</code> n'emploie <strong>pas</strong> - il lance <code>test-compile pmd:pmd</code>
+  et laisse le verdict au cliquet de l'ADR 4617, qui tolère une marge là où <code>failOnViolation</code> refuse
+  tout ;</li>
 <li><strong>JaCoCo</strong> : le seuil de couverture devient bloquant, exécuté par <code>maven.yml</code>
   (<code>verify -Djacoco.haltOnFailure=true</code>). Les valeurs vivent dans le <code>pom.xml</code>, seule source.</li>
 </ul>
 <p>Ces deux contrôles sont <strong>répartis sur deux workflows</strong> : <code>lint.yml</code> porte le <strong>statique</strong> (Spotless +
 captures + PMD), <code>maven.yml</code> porte les <strong>tests + couverture</strong>. Localement :</p>
 <ul>
-<li><code>./mvnw -Pquality-gate compile pmd:check</code> reproduit la gate PMD de <code>lint.yml</code> ;</li>
-<li><code>./mvnw -Pquality-gate verify</code> reproduit le build complet <strong>avec</strong> la couverture bloquante (comme <code>maven.yml</code>).</li>
+<li><code>./mvnw -B test-compile pmd:pmd</code> puis <code>python3 scripts/adr/4617-code-mort-et-zone-de-test.py</code>
+  reproduit le portail de <code>lint.yml</code> ;</li>
+<li><code>./mvnw -B verify -Djacoco.haltOnFailure=true</code> reproduit <code>maven.yml</code>, qui n'emploie <strong>pas</strong> le
+  profil : la couverture y est bloquante, PMD non.</li>
 </ul>
 <p><strong>Spotless</strong> (Palantir Java Format) formate via un <em>hook</em> pre-commit et est vérifié par <code>lint.yml</code> (<code>spotless:check</code>).</p>
 <h2 id="pourquoi-build-et-paquet-sont-deux-jobs">Pourquoi <code>build</code> et <code>paquet</code> sont deux jobs<a class="headerlink" href="#pourquoi-build-et-paquet-sont-deux-jobs" title="Permanent link">&para;</a></h2>
