@@ -1637,6 +1637,76 @@
   
   
     <li class="md-nav__item">
+      <a href="4755-un-champ-qu-on-n-a-pas-touche-se-tait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4755 · Un champ qu'on n'a pas touché se tait
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4768-une-reference-partielle-bloque-tout/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4768 · Une référence partielle ne dégrade pas la garde, elle la bloque
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4713-une-page-de-methode-ne-se-relit-pas/" class="md-nav__link">
         
   
@@ -11516,7 +11586,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->742<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 222<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->742<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 223<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -11626,7 +11696,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 029<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 030<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -11663,6 +11733,16 @@
 <td><a href="4711-la-fenetre-vaut-la-peremption-de-ce-qu-on-envoie/">4711</a></td>
 <td>Deux ecritures tiennent une concurrence optimiste cote client et se ressemblent au point qu'on les corrigerait ensemble. <code>PublicationPoint</code> compare deux lectures du meme appel, et c'est JUSTE : son corps vient de la lecture qui precede, <code>avant.avecEnPlus(point)</code>, donc rien ne s'y perime. <code>pousserVers</code> faisait pareil et c'etait FAUX : son corps vient du passage local, saisi plus tot. La largeur de fenetre necessaire depend donc d'ou vient le corps envoye, pas de la forme de la garde. Sans cette ADR, un lecteur alignerait la premiere sur la seconde par souci de coherence, et ajouterait une table la ou rien n'en demande</td>
 <td>#4711, lot 1 de l'EPIC #4640</td>
+</tr>
+<tr>
+<td><a href="4755-un-champ-qu-on-n-a-pas-touche-se-tait/">4755</a></td>
+<td>Le lot 1 renoncait des que la plateforme avait touche la meteo depuis notre derniere lecture. Or qu'ils aient ecrit ne dit rien d'un DESACCORD : un collegue qui saisit la meteo pendant que nous n'y touchons pas ne nous contredit en rien, et l'envoi entier etait refuse, configuration comprise. La sortie n'est pas de choisir laquelle des trois valeurs envoyer : c'est d'envoyer la notre ou de TAIRE le champ, une cle absente laissant la plateforme garder la sienne. Le partage devient possible sans que personne n'arbitre. La condition est que taire et laisser tel quel coincident cote serveur : vrai d'un scalaire, faux du dictionnaire <code>configuration</code> que le PATCH remplace. Corollaire : faute de base, la lecture du haut d'appel EN TIENT LIEU, un repli se degradant par la valeur et non en doublant le mecanisme</td>
+<td>#4755, lot 2 de l'EPIC #4640</td>
+</tr>
+<tr>
+<td><a href="4768-une-reference-partielle-bloque-tout/">4768</a></td>
+<td>V43 ne stockait du bloc meteo que le vent et la couverture, quand <code>MeteoDepot</code> en porte quatre : la base relue en manquait toujours deux, la comparaison les voyait divergentes a chaque fois, et AUCUN envoi ne partait plus sur une nuit portant une temperature. Une reference partielle ne rend pas la garde moins precise, elle la rend toujours vraie donc toujours bloquante - le contraire de l'intuition, et ce qui rend le defaut couteux. La table de reference et le type compare se modifient ENSEMBLE. Invisible parce que les bancs employaient le constructeur a deux arguments, ou l'oubli ne peut pas se voir ; et la premiere confirmation fut circulaire, un mock rejouant l'hypothese au lieu de la tester. Le seul rouge possible vit au DAO, sur l'aller-retour</td>
+<td>#4768, lot 2 de l'EPIC #4640</td>
 </tr>
 <tr>
 <td><a href="4783-le-zero-des-traces-d-outil-se-garde/">4783</a></td>
