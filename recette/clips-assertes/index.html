@@ -10014,6 +10014,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scenariopassagepivottest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioPassagePivotTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioPassagePivotTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-18-a-s2-26-lire_le_passage_pivot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-18 à S2-26 · lire_le_passage_pivot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-27-a-s2-32-modifier_le_passage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-27 à S2-32 · modifier_le_passage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-33-renommer_le_passage_sur_le_disque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-33 · renommer_le_passage_sur_le_disque
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -11589,6 +11639,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scenariopassagepivottest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioPassagePivotTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioPassagePivotTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-18-a-s2-26-lire_le_passage_pivot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-18 à S2-26 · lire_le_passage_pivot
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-27-a-s2-32-modifier_le_passage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-27 à S2-32 · modifier_le_passage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-33-renommer_le_passage_sur_le_disque" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-33 · renommer_le_passage_sur_le_disque
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -11882,6 +11982,48 @@ dure des millisecondes - mesuré sur six wav comme sur soixante -, et les cinq c
 qui se passe pendant l'opération n'auraient rien à montrer. Le banc ralentit donc son exécuteur
 d'environ une seconde par fichier. Ce que le clip démontre : ces cinq surfaces existent et
 s'enchaînent. Ce qu'il ne démontre pas : combien de temps un import prend.</p>
+</blockquote>
+<h2 id="scenariopassagepivottest">ScenarioPassagePivotTest<a class="headerlink" href="#scenariopassagepivottest" title="Permanent link">&para;</a></h2>
+<p>Le passage est le pivot de <code>S2</code> : l'import s'y termine, et l'analyse en repart. Ses trois gestes se
+jouent chacun sur une carte SD fraîche, et chacun <strong>rejoue l'import complet</strong> avant d'arriver à
+l'écran qu'il montre. Ce préambule occupe la première moitié de chaque clip : c'est le chemin réel
+de l'utilisateur, qui n'atteint le passage qu'en ayant importé.</p>
+<p>Le préambule est <strong>freiné</strong>, pour la raison dite plus haut : sur des fixtures générées l'import dure
+des millisecondes, et l'écran d'avancement traverserait le clip sans qu'aucune image n'en sorte.
+Aucun de ces clips ne dit donc quoi que ce soit de la vitesse du produit.</p>
+<h3 id="s2-18-a-s2-26-lire_le_passage_pivot">S2-18 à S2-26 · <code>lire_le_passage_pivot</code><a class="headerlink" href="#s2-18-a-s2-26-lire_le_passage_pivot" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioPassagePivotTest.lire_le_passage_pivot.mp4"></video>
+
+<blockquote>
+<p>Le passage s'ouvre par l'<strong>action du compte rendu</strong> de fin d'import, et non par le bouton de la zone
+d'avertissement de numéro : celui-là reste invisible après un import nominal. Ce que le clip montre
+est le chemin qu'un observateur emprunte réellement.</p>
+<p>Le stepper distingue trois états, et le cas lit les étapes <strong>acquises</strong> : un passage naît au statut
+<code>TRANSFORME</code>, donc « Importé » est franchie et « Transformé » est courante. Il vérifie aussi que les
+trois suivantes restent à venir - sans quoi un stepper qui marquerait tout passerait.</p>
+</blockquote>
+<h3 id="s2-27-a-s2-32-modifier_le_passage">S2-27 à S2-32 · <code>modifier_le_passage</code><a class="headerlink" href="#s2-27-a-s2-32-modifier_le_passage" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioPassagePivotTest.modifier_le_passage.mp4"></video>
+
+<blockquote>
+<p><code>S2-30</code> substitue le <strong>fournisseur de météo</strong> : l'appel réseau est ce que le banc ne peut pas faire.
+Ce que la case observe est le remplissage - les valeurs rendues atterrissent dans les champs, et
+remplacent ce qui était saisi à la main.</p>
+<p><code>S2-32</code> prend <strong>deux relevés</strong> du récapitulatif plutôt qu'un. Un instantané ne distingue pas un récap
+vivant d'un récap figé, et c'est ce récap qui annonce ce que « Appliquer » va faire.</p>
+</blockquote>
+<h3 id="s2-33-renommer_le_passage_sur_le_disque">S2-33 · <code>renommer_le_passage_sur_le_disque</code><a class="headerlink" href="#s2-33-renommer_le_passage_sur_le_disque" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioPassagePivotTest.renommer_le_passage_sur_le_disque.mp4"></video>
+
+<blockquote>
+<p><strong>Le dialogue de confirmation n'est pas à l'image, et c'est voulu</strong> : <code>Alert.showAndWait()</code> fige
+TestFX, et le geste deviendrait infilmable alors que le produit est en bon état. Le confirmateur est
+donc substitué, et sa question capturée. Ce que le clip démontre : « Appliquer » ne part pas sans
+demander, et la question nomme le numéro qui va changer. Ce qu'il ne montre pas : la fenêtre qui
+porte cette question.</p>
 </blockquote>
 
 
