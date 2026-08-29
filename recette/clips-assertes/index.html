@@ -10330,6 +10330,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scenarioraccourcisverificationtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioRaccourcisVerificationTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioRaccourcisVerificationTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3-39-a-s3-44-les_raccourcis_clavier_de_la_verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3-39 à S3-44 · les_raccourcis_clavier_de_la_verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -12011,6 +12039,34 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#scenarioraccourcisverificationtest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioRaccourcisVerificationTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioRaccourcisVerificationTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s3-39-a-s3-44-les_raccourcis_clavier_de_la_verification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S3-39 à S3-44 · les_raccourcis_clavier_de_la_verification
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -12393,6 +12449,29 @@ ne le voyait, celui de la modale lui injectant un modèle partagé.</p>
 <p>Le dialogue de confirmation et le compte rendu de régénération ne sont pas à l'image : tous deux
 passent par <code>Alert.showAndWait()</code>, qui fige TestFX. Leurs porteurs sont substitués et leurs messages
 capturés.</p>
+</blockquote>
+<h2 id="scenarioraccourcisverificationtest">ScenarioRaccourcisVerificationTest<a class="headerlink" href="#scenarioraccourcisverificationtest" title="Permanent link">&para;</a></h2>
+<p>Le clavier de l'écran de vérification. Trois de ses six cas gardent une <strong>absence</strong> - une touche qui
+ne doit pas agir - et chacun relève d'abord l'autre condition : la touche agit là où elle doit agir,
+puis se tait là où elle doit se taire. C'est le seul moyen qu'un non-effet prouve quelque chose.</p>
+<h3 id="s3-39-a-s3-44-les_raccourcis_clavier_de_la_verification">S3-39 à S3-44 · <code>les_raccourcis_clavier_de_la_verification</code><a class="headerlink" href="#s3-39-a-s3-44-les_raccourcis_clavier_de_la_verification" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioRaccourcisVerificationTest.les_raccourcis_clavier_de_la_verification.mp4"></video>
+
+<blockquote>
+<p><strong>Le clip montre des touches, donc peu de mouvement.</strong> Ce qui change à l'image est ce qu'elles
+produisent : la ligne suivante se sélectionne, le bouton du verdict se marque, la lettre s'inscrit
+dans le commentaire, le bandeau de succès paraît. Le geste lui-même est invisible par nature.</p>
+<p><code>S3-40</code> <strong>ne démontre pas que le son sorte</strong>, et c'est la même limite que <code>S3-12</code> : mesuré pendant</p>
+<h1 id="4734-la-lecture-ne-demarre-pas-faute-de-peripherique-audio-ce-que-le-cas-etablit-est-que-la-barre">4734, la lecture ne démarre pas faute de périphérique audio. Ce que le cas établit est que la barre<a class="headerlink" href="#4734-la-lecture-ne-demarre-pas-faute-de-peripherique-audio-ce-que-le-cas-etablit-est-que-la-barre" title="Permanent link">&para;</a></h1>
+<p>d'espace atteint le lecteur - ses tentatives en témoignent - et qu'elle <strong>ne déclenche pas</strong> le
+bouton qui a le focus, défaut que #1504 a eu à corriger.</p>
+<p><code>S3-44</code> est un <strong>contrôle croisé</strong> et non une lecture : la légende doit nommer les libellés que les
+boutons portent aujourd'hui. #1513 a eu à corriger une légende qui avait cessé de suivre l'écran.</p>
+<p><strong>Une limite déclarée.</strong> La moitié « <code>Entrée</code> ne fait rien sans verdict » constate un fait vrai sans
+qu'aucune mutation ait pu la faire rougir : trois couches le tiennent en série, et les retirer une à
+une - puis deux ensemble - laisse le cas vert. L'en-tête du banc le dit, pour qu'on ne lui prête pas
+une solidité qu'il n'a pas.</p>
 </blockquote>
 
 
