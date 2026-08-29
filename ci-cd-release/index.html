@@ -8522,6 +8522,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4685-un-mecanisme-plausible-corrige-n-est-pas-une-cause-etablie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4685 · Un mécanisme plausible corrigé n'est pas une cause établie
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4475-un-test-dimensionne-son-stage-il-n-herite-pas-du-fork/" class="md-nav__link">
         
   
@@ -11938,7 +11973,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>scripts/adr/4617-code-mort-et-zone-de-test.py</code></td>
-<td>ce que le portail trouve sur les <strong>deux</strong> zones, cliquet à 62. Il lit le rapport de PMD et non les sources, refuse quand ce rapport manque plutôt que de rendre zéro, et écarte les littéraux dupliqués de la seule zone de test - où les répéter est le geste juste, et où ils font 1 366 des 1 428 signalements (<a href="../decisions/4617-le-portail-voit-les-tests-et-le-code-mort/">ADR 4617</a>)</td>
+<td>ce que le portail trouve, <strong>un cliquet par zone</strong> et le pire des deux verdicts : la production est à <strong>zéro</strong>, ce qui se lit comme un refus (<a href="../decisions/4682-le-portail-compte-chaque-zone-a-part/">ADR 4682</a>), la zone de test à <strong>40</strong> (<a href="../decisions/4617-le-portail-voit-les-tests-et-le-code-mort/">ADR 4617</a>). Un compteur unique laisserait une régression d'un côté se payer par un gain de l'autre. Il lit le rapport de PMD et non les sources, refuse quand ce rapport manque plutôt que de rendre zéro, et écarte les littéraux dupliqués de la seule zone de test, où les répéter est le geste juste</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>

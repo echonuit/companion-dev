@@ -8524,6 +8524,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../4685-un-mecanisme-plausible-corrige-n-est-pas-une-cause-etablie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4685 · Un mécanisme plausible corrigé n'est pas une cause établie
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4475-un-test-dimensionne-son-stage-il-n-herite-pas-du-fork/" class="md-nav__link">
         
   
@@ -10200,9 +10235,10 @@ rend 1 366 des 1 428 signalements du dépôt, tous en zone de test, <strong>zér
 <p>PMD ne sait pas exprimer ce filtre. Quatre formes ont été essayées avant de le déplacer, et le
 détail de chacune vit dans l'en-tête du script : aucune ne distingue les deux zones sans couper trop
 ou n'être jamais appliquée.</p>
-<p><strong>Le cliquet est à 40</strong>, et <strong>plus aucune méthode morte n'y figure</strong> : les 23 qu'avait révélées
-cette ADR ont été retirées par le chantier #4656. Restent 32 <code>NcssCount</code>, 5 <code>GodClass</code>,
-2 <code>ExcessiveParameterList</code> et 1 <code>CyclomaticComplexity</code>.</p>
+<p><strong>Le cliquet est à 40, et il ne porte plus que la zone de test</strong> : celui de la production est
+détaché par l'<a href="../4682-le-portail-compte-chaque-zone-a-part/">ADR 4682</a>. <strong>Plus aucune méthode morte
+n'y figure</strong> : les 23 qu'avait révélées cette ADR ont été retirées par le chantier #4656. Restent
+32 <code>NcssCount</code>, 5 <code>GodClass</code>, 2 <code>ExcessiveParameterList</code> et 1 <code>CyclomaticComplexity</code>.</p>
 <p><strong>Une méthode retirée n'est pas une violation retirée.</strong> Trois surcharges sont parties pour deux
 violations : <code>MultisiteVueIntegrationTest</code> portait un escalier <code>ligne(...)</code> à 6, 7 puis 9 arguments,
 et PMD ne signalait que la première, la deuxième lui paraissant vivante puisqu'appelée par la morte.

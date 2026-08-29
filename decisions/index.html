@@ -8637,6 +8637,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4685-un-mecanisme-plausible-corrige-n-est-pas-une-cause-etablie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4685 · Un mécanisme plausible corrigé n'est pas une cause établie
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4475-un-test-dimensionne-son-stage-il-n-herite-pas-du-fork/" class="md-nav__link">
         
   
@@ -11403,6 +11438,11 @@
 <td><a href="4682-le-portail-compte-chaque-zone-a-part/">4682</a></td>
 <td>L'ADR 4617 posait un cliquet unique sur les deux zones ; l'ADR 4587, écrite le lendemain pour les renvois, refuse cette forme : « surtout pas un seul sur les deux ». Les deux se sont croisées sans se voir, et le défaut était actif : le chantier #4656 venait de ramener la production à zéro, si bien qu'une méthode morte y réapparaissant pouvait être payée par un <code>NcssCount</code> retiré d'un test, total inchangé et garde vert. Deux cliquets désormais, le pire des deux verdicts, et un seuil de production à zéro qui se lit comme un <strong>refus</strong> et non comme une marge à resserrer</td>
 <td>#4682, chantier #4685</td>
+</tr>
+<tr>
+<td><a href="4685-un-mecanisme-plausible-corrige-n-est-pas-une-cause-etablie/">4685</a></td>
+<td>Le garde des captures a accusé à tort (#4642) ; en le lisant, un mécanisme réel est apparu, <code>grep -q</code> refermant le tube sous <code>pipefail</code>, et il expliquait tout, sauf cet échec-là : 0 accusation sur 200 essais avec les 4 492 octets du manifeste, 40 sur 40 avec 888 893. Le correctif part quand même, mais il <strong>se déclare préventif dans le code</strong>, le témoin éprouve le motif et non le cas, et #4642 reste ouverte. Une correction dit ce qu'elle n'a pas pu expliquer</td>
+<td>#4685, passe 10</td>
 </tr>
 <tr>
 <td><a href="4475-un-test-dimensionne-son-stage-il-n-herite-pas-du-fork/">4475</a></td>
