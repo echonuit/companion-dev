@@ -11986,6 +11986,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td>à la main, quand un plancher dit « à relever »</td>
 </tr>
 <tr>
+<td><code>scripts/methode/releve-les-bancs-instables.py</code></td>
+<td>combien de fois chaque banc a rougi, sur combien de tirages. Il ne lit <strong>pas</strong> les verdicts courants : une relance <strong>écrase</strong> l'échec précédent, si bien que sur 21 jours aucun commit n'apparaissait vu vert et rouge alors que 52 runs avaient été relancés. Il lit les <strong>tentatives</strong>, un run à deux tentatives finissant vert ayant échoué puis réussi sur le même commit. <strong>Hors CI</strong> : il lit la forge et télécharge les journaux de tentative, cinq minutes sur trois semaines (#4806)</td>
+<td>à la main, quand un chantier a besoin d'un taux plutôt que d'observations (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>scripts/methode/couverture-relecture.py</code></td>
 <td>le compteur qui ÉCRIT le manifeste de relecture : il refuse un chemin hors des deux arbres Java, et nomme les entrées qui ne désignent plus aucun fichier</td>
 <td><code>lint.yml</code> (autotest dédié)</td>
