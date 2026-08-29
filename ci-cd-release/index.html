@@ -1452,6 +1452,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4712-un-lot-multi-pr-est-un-sous-chantier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4712 · Un lot qui portera plus de deux PR s'ouvre en sous-chantier
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/0021-double-clic-miroir-qui-rend-compte/" class="md-nav__link">
         
   
@@ -11700,6 +11735,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>loupe-4472-densite-de-commentaire.py</code></td>
 <td>la densité de commentaire par classe et par méthode ; signale, ne bloque pas</td>
 <td><code>adr-rapport.yml</code></td>
+</tr>
+<tr>
+<td><code>loupe-4712-lots-multi-pr.py</code></td>
+<td>les lots de chaque EPIC ouvert, mis sous les yeux pour que la question du sous-chantier se pose ; elle ne tranche pas, le nombre de PR qu'un lot portera étant un jugement. <strong>Hors CI</strong> : elle lit la forge, et sans <code>gh</code> elle sort en 2 plutôt que de rendre un rapport vide (ADR 4712)</td>
+<td>à la main, au découpage d'un chantier et à la passe 9 d'une clôture (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
 <td><code>4468-javadoc-non-relue.py</code></td>
