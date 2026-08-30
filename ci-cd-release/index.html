@@ -12111,6 +12111,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>rapport.py</code></td>
+<td>chaque garde tourne dans SON dépôt, et non dans le répertoire de l'appelant : sans <code>cwd</code>, cinq cliquets sur dix-huit rendaient une autre valeur depuis ailleurs, et <code>resserre_cliquets.py</code> ramenait quatre <code>ratchet:</code> à zéro dans les vraies ADR en annonçant un succès (issue #4781)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>verifie-epinglage.sh</code></td>
 <td>actions figées sur un SHA, aucune divergence de version</td>
 <td><code>lint.yml</code></td>
