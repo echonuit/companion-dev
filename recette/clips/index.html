@@ -10849,6 +10849,16 @@ existait. Rien n'était cassé : personne n'avait filmé depuis.</p>
 <p>Rien n'oblige à attendre la version suivante. La liste des classes est dérivée <strong>à l'exécution</strong>,
 depuis <code>CorrespondanceRecetteTest</code> : un tournage manuel sur <code>main</code> ramasse les bancs neufs sans
 qu'une ligne change.</p>
+<div class="admonition danger">
+<p class="admonition-title"><code>banc-filme</code> vert ne dit pas qu'un clip a été produit</p>
+<p>Ce job de l'intégration lance les <code>--auto-test</code> des deux bancs filmés, dont
+<code>.github/scripts/lance-test-filme.sh</code> pour celui de la recette. Ces cas éprouvent ce que le banc
+<strong>refuse</strong>, en six secondes : il répond « le banc refuse ce qu'il doit refuser », jamais « des
+images existent ». Le tournage, lui, met une vingtaine de minutes.</p>
+<p>Mesuré le 2026-08-30 : les neuf demandes de fusion du palier de #4447 sont toutes passées avec
+<code>banc-filme</code> vert, et sept clips déclarés sur les pages ouvraient un lecteur vide (#4820). Ce
+n'est pas un défaut du job : c'est la question qu'il pose qui n'est pas celle-là.</p>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Un tournage manuel efface celui du train</p>
 <p>La pré-version est roulante, et rien ne distingue les deux sources au moment d'écrire. Le
