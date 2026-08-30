@@ -11375,535 +11375,33 @@ suivantes), l'harmonisation peut <strong>casser un écran sans casser un test</s
 <strong>juste après</strong> elle), la revue visuelle peut faire émerger de nouveaux chantiers, les ADR s'écrivent
 quand toutes les décisions sont prises, et le bilan vient en dernier parce qu'il y renvoie.</p>
 <h3 id="0-relecture-des-adr-existantes">0. Relecture des ADR existantes<a class="headerlink" href="#0-relecture-des-adr-existantes" title="Permanent link">&para;</a></h3>
-<p>Un chantier de plusieurs semaines écrit du code sous des règles qu'il a cessé de voir. Cette passe les
-remet en tête <strong>avant</strong> que la clôture ne commence, et pose une seule question de vérification :</p>
-<blockquote>
-<p>Le chantier a-t-il <strong>contredit</strong> une décision existante, et si oui, l'a-t-il fait exprès ?</p>
-</blockquote>
-<p>Un chantier a parfaitement le droit de dépasser une ADR : #3442 a rendu faux ce que l'<a href="../decisions/3406-une-nuit-porte-le-fuseau-de-son-site/">ADR 3406</a>
-assumait sur l'outre-mer, et c'était le progrès attendu. Ce qui n'est pas permis, c'est que le
-dépassement soit <strong>silencieux</strong> : une ADR qu'on contredit sans le dire laisse deux règles opposées dans
-le dépôt, et le prochain lecteur appliquera celle qu'il trouvera en premier.</p>
-<p>La lecture se fait contre <strong><code>origin/main</code></strong>, pas contre la branche du chantier : d'autres chantiers ont
-pu écrire des ADR pendant celui-ci, et le rebase de la passe 1 arriverait trop tard pour les découvrir.</p>
-<div class="admonition tip">
-<p class="admonition-title">Signal concret</p>
-<p><code>git log --oneline &lt;sha-d-ouverture&gt;..origin/main -- dev-docs/decisions/</code> liste les décisions
-apparues <strong>pendant</strong> le chantier : ce sont les plus susceptibles d'avoir été ignorées, puisqu'elles
-n'existaient pas quand le plan a été écrit.</p>
-<p>Et la question se pose aussi <strong>à l'envers</strong> : parmi les ADR que le chantier respecte, certaines
-régissent-elles du code <strong>hors du delta</strong> qu'il faudrait aligner ? C'est ce qui a manqué à une
-clôture où un garde de surface CLI (<code>cli-surface.bats</code>) avait été tenu à jour, mais pas le garde de
-comportement (<code>cli.bats</code>) que la même décision régit.</p>
-</div>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/ecrire-une-adr/SKILL.md"><code>ecrire-une-adr</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="1-audit-dintegration">1. Audit d'intégration<a class="headerlink" href="#1-audit-dintegration" title="Permanent link">&para;</a></h3>
-<p><code>main</code> a <strong>évolué pendant</strong> le chantier (autres PR mergées, nouvelles features, nouvelles
-conventions). Cette passe vérifie que rien n'a été laissé de côté avant de finaliser :</p>
-<ul>
-<li><strong>rebaser</strong> la ou les branches restantes sur <code>main</code> et résoudre les divergences ;</li>
-<li>chercher les <strong>nouveaux points d'accroche</strong> apparus entre-temps qu'il faudrait câbler (une nouvelle
-  feature devrait-elle contribuer au mécanisme qu'on vient d'introduire ?) ;</li>
-<li>traquer les <strong>régressions</strong> et les <strong>conventions apparues</strong> depuis l'ouverture (ex. un nouveau
-  contrat socle, un nouveau seuil qualité).</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Signal concret</p>
-<p>Un <code>git log --oneline main</code> depuis le SHA d'ouverture du chantier (souvent tracé dans l'EPIC) met
-en évidence ce qui a bougé et mérite un regard.</p>
-</div>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/auditer-l-integration/SKILL.md"><code>auditer-l-integration</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="2-passe-de-coherence-cli-ui">2. Passe de cohérence CLI ↔ UI<a class="headerlink" href="#2-passe-de-coherence-cli-ui" title="Permanent link">&para;</a></h3>
-<p>L'application expose <strong>deux surfaces</strong> sur le même domaine : l'IHM JavaFX et la <strong>CLI</strong> picocli
-(scriptable, headless, cf. <a href="../cli/">CLI</a>). Quand un chantier ajoute ou modifie une <strong>capacité
-métier</strong> (une opération, une option, un format d'export, une règle de gestion), la CLI doit exposer
-l'<strong>équivalent</strong> pour que les deux surfaces restent au même niveau : un traitement disponible d'un
-seul côté crée une asymétrie et une dette invisibles.</p>
-<p>Cette passe :</p>
-<ul>
-<li>identifie les <strong>capacités métier</strong> introduites ou changées par le chantier (pas les détails de
-  présentation : une pastille de statut, une mise en page n'ont pas d'équivalent CLI) ;</li>
-<li>vérifie que la CLI offre l'opération correspondante (commande ou option de <code>fr.univ_amu.iut.cli</code>)
-  avec le <strong>même comportement</strong> : mêmes règles, mêmes formats, mêmes garde-fous ;</li>
-<li>en cas d'écart : <strong>aligner tout de suite</strong> si c'est petit (la commande ajoutée sera alors
-  documentée et testée par les passes suivantes), sinon <strong>créer l'issue sur-le-champ</strong> et la rattacher
-  à l'EPIC du chantier ou à celui des suites, pour ne pas perdre le contexte ;</li>
-<li>si le chantier est <strong>purement présentationnel</strong>, le noter explicitement « sans objet côté CLI ».</li>
-</ul>
-<div class="admonition tip">
-<p class="admonition-title">Signal concret</p>
-<p>Un <strong>service de domaine</strong> nouvellement appelé par un ViewModel mais par aucune commande de
-<code>fr.univ_amu.iut.cli.commande</code> signale une capacité présente d'un seul côté. La CLI et l'IHM
-partagent les mêmes services : la parité se joue au niveau des services exposés, pas du code d'IHM.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Confronter des inventaires, pas des exemples</p>
-<p>Vérifier qu'<em>un</em> geste a son équivalent CLI produit une <strong>parité de façade</strong> : vraie sur le cas
-qu'on a regardé, fausse dès qu'on resserre le filtre comme on le fait en vrai. Ce qui se compare,
-ce sont <strong>deux listes</strong> - tous les critères que l'écran offre face à toutes les options que la
-commande accepte.</p>
-<p>Vécu à la clôture de l'EPIC #2790 : la passe avait constaté que l'export ZIP existait des deux
-côtés et que le critère « Lieu » manquait en CLI. Elle s'était arrêtée là. Une question d'usage
-posée après coup - « et à plus de 90 % de confiance ? » - a montré que la puce « Proba » manquait
-aussi, et que la dette annoncée était donc à moitié décrite (#2971).</p>
-<p>Corollaire : quand l'option existe déjà sous un nom <strong>voisin</strong>, la lire avant de conclure. En CLI,
-<code>--certitude</code> désigne la certitude déclarée par l'observateur, pas la probabilité Tadarida ; deux
-notions qui se ressemblent à l'oral et n'ont rien à voir dans les données.</p>
-</div>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/confronter-les-deux-surfaces/SKILL.md"><code>confronter-les-deux-surfaces</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="3-passe-de-doc-developpeur">3. Passe de doc développeur<a class="headerlink" href="#3-passe-de-doc-developpeur" title="Permanent link">&para;</a></h3>
-<p>Mettre à jour le <strong>site dev</strong> (<code>dev-docs/</code>, publié sous <code>…/dev/</code>) pour que l'architecture décrite
-colle au code livré : <a href="../architecture/">Architecture</a>, <a href="../patterns/">Patterns et principes</a>,
-<a href="../injection/">Injection (Guice)</a>, <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a> si le
-chantier a introduit un <strong>nouveau pattern d'extension</strong> que les futures features devront suivre.</p>
-<p>Les <strong>ADR ne s'écrivent plus ici</strong> : elles se rédigent en <strong>passe 11</strong>, quand toutes les décisions du
-chantier sont prises. Cette passe-ci ne traite que les pages de description.</p>
-<h4 id="chercher-ce-qui-est-devenu-faux-pas-ce-quon-a-a-ajouter">Chercher ce qui est devenu FAUX, pas ce qu'on a à ajouter<a class="headerlink" href="#chercher-ce-qui-est-devenu-faux-pas-ce-quon-a-a-ajouter" title="Permanent link">&para;</a></h4>
-<p>« Mettre à jour pour que la doc colle au code » se lit spontanément comme « qu'ai-je à <strong>ajouter</strong> ? ».
-Le mode de panne est l'inverse : une page qui décrivait fidèlement un mécanisme <strong>remplacé</strong> ne signale
-rien, ne rougit nulle part, et se lit comme vraie.</p>
-<p>Mesuré : #3439 a remplacé les rectangles de masque des aperçus, écrits à la main, par des rectangles
-<strong>dérivés de la scène</strong>. <code>dev-docs/captures.md</code> a continué pendant une semaine à décrire « seize »
-fichiers énumérés dans un script, et à qualifier de « non élucidée » une instabilité que le même
-chantier venait d'élucider. Rien ne l'a signalé ; c'est un lecteur qui l'a trouvé.</p>
-<p>L'instrument est mécanique : <strong>partir des fichiers que le chantier a touchés, et chercher qui les
-cite</strong>, plutôt que de partir de sa mémoire.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>diff<span class="w"> </span>--name-only<span class="w"> </span>origin/main...<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>fichier<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nv">nom</span><span class="o">=</span><span class="k">$(</span>basename<span class="w"> </span><span class="s2">"</span><span class="nv">$fichier</span><span class="s2">"</span><span class="k">)</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="c1"># Un fichier SOURCE se cite par son identifiant, sans extension : les pages écrivent « FilAriane »,</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="c1"># jamais « FilAriane.java ». Tout autre fichier se cite par son nom entier - retirer l'extension de</span>
-<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="c1"># « base.css » chercherait « base », qui apparaît partout.</span>
-<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="s2">"</span><span class="nv">$nom</span><span class="s2">"</span><span class="w"> </span><span class="k">in</span>
-<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">    </span><span class="o">[</span>A-Z<span class="o">]</span>*.java<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="o">[</span>A-Z<span class="o">]</span>*.fxml<span class="o">)</span><span class="w"> </span><span class="nv">motif</span><span class="o">=</span><span class="s2">"</span><span class="si">${</span><span class="nv">nom</span><span class="p">%.*</span><span class="si">}</span><span class="s2">"</span><span class="w"> </span><span class="p">;;</span>
-<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">    </span>*<span class="o">)</span><span class="w"> </span><span class="nv">motif</span><span class="o">=</span><span class="s2">"</span><span class="nv">$nom</span><span class="s2">"</span><span class="w"> </span><span class="p">;;</span>
-<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="w">  </span><span class="k">esac</span>
-<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">  </span>grep<span class="w"> </span>-rl<span class="w"> </span>--<span class="w"> </span><span class="s2">"</span><span class="nv">$motif</span><span class="s2">"</span><span class="w"> </span>docs<span class="w"> </span>dev-docs<span class="w"> </span>brief<span class="w"> </span><span class="m">2</span>&gt;/dev/null<span class="w"> </span><span class="p">|</span><span class="w"> </span><span class="k">while</span><span class="w"> </span><span class="nb">read</span><span class="w"> </span>-r<span class="w"> </span>page<span class="p">;</span><span class="w"> </span><span class="k">do</span>
-<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="nb">printf</span><span class="w"> </span><span class="s1">'%s\t%s\n'</span><span class="w"> </span><span class="s2">"</span><span class="nv">$motif</span><span class="s2">"</span><span class="w"> </span><span class="s2">"</span><span class="nv">$page</span><span class="s2">"</span>
-<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">  </span><span class="k">done</span>
-<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">done</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>sort<span class="w"> </span>-u
-</code></pre></div>
-<p><strong>Lire la sortie par motif, du plus rare au plus fréquent.</strong> Un motif qui rend plus d'une douzaine de
-pages est trop générique pour dire quoi que ce soit : ce sont les motifs à <strong>faible rendement</strong> qui
-désignent les pages à ouvrir.</p>
-<div class="admonition warning">
-<p class="admonition-title">La recette a longtemps cherché <code>X.java</code> là où les pages citent <code>X</code> (#3648)</p>
-<p>Elle prenait le <code>basename</code> <strong>avec</strong> son extension. Mesuré sur le chantier #3798 : <code>FilAriane.java</code>
-rendait <strong>zéro</strong> page, <code>FilAriane</code> en rend <strong>deux</strong> - dont <code>dev-docs/navigation.md</code>, précisément la
-page que ce chantier avait rendue fausse et qu'il a fallu corriger. L'instrument de la passe 3
-manquait donc exactement ce que la passe 3 existe pour trouver.</p>
-<p><strong>Et le remède évident était pire que le mal.</strong> Retirer l'extension partout fait chercher
-« base » pour <code>base.css</code> : <strong>122</strong> pages au lieu de 7, et « navigation » pour <code>navigation.md</code> : 39
-au lieu de 5. Le correctif ne vaut que pour les fichiers dont le nom <strong>est un identifiant</strong>, d'où
-le <code>case</code> ci-dessus. Un instrument qui noie sa sortie ne ment pas moins qu'un qui rend zéro.</p>
-</div>
-<p>Le nom d'une classe, d'un script ou d'un fichier suffit à trouver ses mentions ; pour un <strong>concept</strong>
-qui n'a pas de nom stable, la même question se pose au
-<a href="#interroger-le-graphe-du-depot-pour-ce-que-grep-ne-relie-pas">graphe du dépôt</a>, qui relie code, doc et
-brief. Ce qui décrit un mécanisme disparu se corrige <strong>ou se supprime</strong> : une page à moitié vraie égare
-plus qu'une page absente.</p>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/recoller-la-doc-au-code/SKILL.md"><code>recoller-la-doc-au-code</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="4-passe-de-doc-utilisateur">4. Passe de doc utilisateur<a class="headerlink" href="#4-passe-de-doc-utilisateur" title="Permanent link">&para;</a></h3>
-<p>Documenter le chantier pour les <strong>utilisateurs</strong> dans le site produit (<code>docs/</code>), avec <strong>autant de
-captures que nécessaire</strong>. Les aperçus sont régénérés en CI : ajouter/mettre à jour les classes
-<code>Capture*</code> et le manifeste, cf. <a href="../captures/">Captures d'écran</a>. Une fonctionnalité visible sans
-capture est une fonctionnalité à moitié livrée.</p>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/documenter-pour-l-utilisateur/SKILL.md"><code>documenter-pour-l-utilisateur</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="5-passe-de-brief-projet">5. Passe de brief projet<a class="headerlink" href="#5-passe-de-brief-projet" title="Permanent link">&para;</a></h3>
-<p>Le <strong>brief projet</strong> est le document de <strong>conception</strong> vivant du produit : le besoin, les <strong>parcours
-utilisateurs</strong> (P0 à P17), les maquettes, le modèle conceptuel. Ce n'est <strong>pas</strong> un sujet pédagogique -
-son lecteur est un <strong>contributeur</strong> du produit, pas un étudiant. Quand un chantier change un de ces
-<strong>éléments de conception</strong> (un parcours, une maquette, le modèle de données, une contrainte produit),
-répercuter l'évolution dans le brief pour qu'il reste aligné avec le produit réellement livré. Un brief
-qui décrit une version périmée du produit égare son lecteur. C'est <strong>rarement</strong> « sans objet » pour un
-chantier qui touche au comportement ou à la conception du produit.</p>
-<p>Ses sources sont <strong>dans ce dépôt</strong>, sous <a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/brief"><code>brief/</code></a>,
-aux côtés de <code>docs/</code> et <code>dev-docs/</code>. Cette passe se fait donc <strong>dans la pull request du chantier</strong>,
-comme les deux passes de documentation qui précèdent : il n'y a plus de second dépôt ni de seconde
-pull request. Le dépôt <code>echonuit/brief</code> ne porte plus que le site construit, publié automatiquement
-sur <a href="https://brief.echonuit.fr/">brief.echonuit.fr</a> ; le modifier n'a aucun effet.</p>
-<p>Prévisualiser le rendu avant de livrer : <code>mkdocs serve -f mkdocs-brief.yml</code>.</p>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/aligner-le-brief-au-produit/SKILL.md"><code>aligner-le-brief-au-produit</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="6-passe-de-tests">6. Passe de tests<a class="headerlink" href="#6-passe-de-tests" title="Permanent link">&para;</a></h3>
-<p>Vérifier que <strong>chaque usage</strong> introduit est couvert :</p>
-<ul>
-<li><strong>tests d'intégration</strong> TestFX (headless) sur les vues et leurs bindings ;</li>
-<li><strong>tests E2E</strong> (<code>fr.univ_amu.iut.e2e.*</code>) sur les parcours complets IHM → ViewModel → service →
-  base.</li>
-</ul>
-<p>Pièges et conventions dans <a href="../tests-et-qualite/">Tests et qualité</a>. Les frontières d'architecture
-sont couvertes automatiquement par <code>ArchitectureTest</code>.</p>
-<p><strong>Chercher ce qui manque, pas relire ce qu'on a écrit.</strong> C'est le point qui a le plus souvent failli :
-on relit ses propres tests, on les trouve verts, et on conclut que c'est couvert - alors qu'un pan
-entier n'a jamais été regardé. L'inventaire se fait donc <strong>depuis le diff du chantier</strong>
-(<code>git diff origin/main...</code>, toutes les PR confondues), pas depuis sa mémoire. Pour <strong>chaque capacité</strong>
-ajoutée ou changée - un service, un geste d'IHM, une commande CLI, une migration, un port, un état
-persisté - on note <strong>quel test la couvre et à quel niveau</strong>. « Aucun » est une réponse valable, mais
-elle doit être <strong>dite</strong> : un trou assumé devient une issue <strong>immédiatement</strong>, un trou tacite
-devient une régression. Trois familles concentrent les angles morts :</p>
-<ul>
-<li><strong>les chemins non nominaux</strong> : le refus, l'erreur, l'annulation, l'état vide, la donnée absente, la
-  <strong>feature désactivée</strong> (<a href="../decisions/0003-feature-plugin-desactivable-ports-optionnels/">ADR 0003</a>).
-  Le cas nominal est presque toujours testé ; c'est l'autre branche qui manque ;</li>
-<li><strong>les surfaces jumelles</strong> : un geste couvert côté IHM mais pas côté <strong>CLI</strong> (ou l'inverse) n'est
-  couvert qu'à moitié - c'est le prolongement de la passe 2
-  (<a href="../decisions/0014-parite-cli-ihm/">ADR 0014</a>) ;</li>
-<li><strong>le cas réel</strong> : un test synthétique vert ne prouve pas que le vrai jeu de données passe. Quand
-  c'est possible, rejouer le geste sur une <strong>vraie nuit</strong> avant de conclure.</li>
-</ul>
-<p><strong>Un zéro se confirme à la main.</strong> L'inventaire se mène volontiers à coups de <code>grep</code> - bonne amorce,
-mais qui se trompe <strong>dans les deux sens</strong>. Un audit réel de la suite E2E en a produit <strong>quatre</strong> de
-suite : chercher le nom d'un écran remonte un <strong>homonyme</strong> (« recherche » → le protocole
-<code>PointFixeRecherche</code>) ; chercher par <strong>clé de vue</strong> rate les parcours qui pilotent les <strong>services</strong>
-(<code>importation</code>, <code>lot</code>, <code>qualification</code> ressortaient à zéro alors qu'ils sont couverts) ; chercher une
-commande CLI par son <strong>nom de classe</strong> la déclare non testée quand le test l'invoque en kebab-case - et
-l'inverse quand le test instancie la classe. Il a fallu <strong>croiser deux signaux</strong> pour obtenir la vraie
-réponse : sur 41 commandes, <strong>zéro</strong> sans test, là où les greps naïfs en annonçaient jusqu'à 20. Donc :
-un « aucun test » sorti d'un grep n'est qu'une <strong>hypothèse</strong>, à confirmer en ouvrant les fichiers
-<strong>avant</strong> d'en faire une issue. Une issue fausse coûte plus cher que le trou qu'elle prétend signaler.</p>
-<p>Le <strong>second signal</strong> le moins cher à obtenir est le <a href="#interroger-le-graphe-du-depot-pour-ce-que-grep-ne-relie-pas">graphe du dépôt</a> :
-ses arêtes <code>calls</code> entrantes disent qui exerce réellement une méthode, y compris depuis un test qui ne
-cite pas son nom. Il ne dispense pas d'ouvrir le fichier - sa sortie est elle aussi une hypothèse - mais
-deux hypothèses obtenues <strong>par des chemins différents</strong> valent mieux que la même deux fois.</p>
-<p><strong>Un garde-fou de non-régression se vérifie en le voyant rouge.</strong> Un test écrit pour empêcher un défaut
-de revenir ne prouve rien tant qu'on ne l'a pas vu <strong>échouer</strong> avec le défaut en place. Deux gestes,
-complémentaires : <strong>PIT ciblé</strong> sur les classes du chantier (<code>-Pmutation</code>, exhaustif là où il
-s'applique) et la <strong>mutation à la main</strong> pour ce que PIT ne mute pas - attribut d'annotation, câblage,
-FXML, sonde réseau. Le mode d'emploi et les quatre contre-exemples qui ont motivé la règle sont dans
-<a href="../tests-et-qualite/#un-garde-fou-de-non-regression-se-verifie-en-le-voyant-rouge">Tests et qualité</a>.</p>
-<p><strong>Un dispositif n'est pas toujours un test.</strong> La règle vaut à l'identique pour un <strong>job d'intégration
-continue</strong>, un <strong>script</strong> de vérification, un <strong>cliquet</strong> : tout ce dont le vert prétend dire quelque
-chose. C'est même là que le faux vert est le plus difficile à voir, parce que personne ne relit un job
-qui passe.</p>
-<p>Mesuré sur #3450 : le job <code>fuseau-alternatif</code>, écrit pour rejouer toute la suite sous <code>America/Cayenne</code>,
-passait le fuseau par <code>-Duser.timezone</code> sur la <strong>ligne Maven</strong>. Or surefire fabrique ses propres JVM
-(<code>forkCount=1C</code>), qui n'en héritent pas. Le job aurait été <strong>vert en rejouant la suite dans le fuseau du
-runner</strong>, c'est-à-dire en ne vérifiant rien de ce qu'il annonçait. Il a fallu passer par
-l'<strong>environnement</strong>, et lui adjoindre un test qui <strong>vérifie depuis l'intérieur de la suite</strong> que le
-fuseau annoncé est bien celui qui tourne.</p>
-<p>Le contrôle tient en une phrase, et il se pose avant de croire un vert : <strong>ce vert existerait-il si
-c'était cassé ?</strong> (<a href="../decisions/2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">ADR 2748</a>)</p>
-<div class="admonition note">
-<p class="admonition-title">PIT a normalement déjà tourné</p>
-<p>Depuis #3505, la mutation se lance <strong>quand un comportement est complet</strong>, pendant l'issue et non à
-la clôture (voir « Pendant l'issue » ci-dessus). Cette passe <strong>vérifie que ça a été fait</strong> et
-rattrape ce qui a été livré sans mesure. Trouver ici un trou que la mutation aurait signalé cinq
-pull requests plus tôt est le signal que la règle du cycle a été sautée.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Deux dispositifs qu'on saute quand on est pressé</p>
-<p>Ce sont <strong>toujours les deux mêmes</strong> qui manquent à l'appel, parce qu'ils demandent une commande de
-plus et qu'un écran vert donne déjà l'impression du travail fini. La passe 6 n'est pas close tant
-qu'ils n'ont pas tourné, ou que leur inapplicabilité n'est pas <strong>écrite</strong>.</p>
-<p><strong>PIT sur les classes du chantier</strong>, et sa lecture, pas son score :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>env<span class="w"> </span>-u<span class="w"> </span>DISPLAY<span class="w"> </span>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-DtargetClasses<span class="o">=</span><span class="s2">"fr.univ_amu.iut.&lt;feature&gt;.model.*"</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>-DtargetTests<span class="o">=</span><span class="s2">"fr.univ_amu.iut.&lt;feature&gt;.*"</span>
-</code></pre></div>
-<p>Le pourcentage ne dit rien : ce sont les <strong>survivants</strong> qui parlent, et il faut les ouvrir un par
-un. Trois familles s'y mêlent, à ne pas confondre : un <strong>vrai trou</strong> (un test manque, on l'écrit),
-un <strong>défensif inatteignable</strong> (on l'assume, sans test creux), et un <strong>artefact de ciblage</strong> (la
-classe est couverte par un test qu'on a exclu de <code>targetTests</code> : on élargit et on remesure).
-Cibler les classes <strong>pures</strong> ; une façade de délégation ne produit que des survivants sans valeur.</p>
-<p><strong>Les E2E <code>bats</code> de la CLI</strong> (<code>src/test/bats/</code>), dès qu'une commande est ajoutée ou changée. Ils
-lancent le <strong>vrai fat-jar dans un processus</strong> : ils voient le packaging, l'analyse des arguments
-par picocli et les <strong>codes de sortie réels</strong>, que les tests Java in-process ne voient pas.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>./mvnw<span class="w"> </span>-DskipTests<span class="w"> </span>package<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>bats<span class="w"> </span>src/test/bats
-</code></pre></div>
-<p>Deux niveaux, tous deux requis : <code>cli-surface.bats</code> (la commande <strong>existe</strong> et refuse une
-invocation vide) et <code>cli.bats</code> (elle <strong>fait ce qu'elle promet</strong> : fichier écrit, refus expliqué,
-code de sortie juste).</p>
-</div>
-<p><strong>Des E2E qui traversent, quitte à fusionner des scénarios.</strong> Un E2E ne vaut pas par le nombre
-d'assertions mais par ce qu'il <strong>traverse</strong>. Plusieurs parcours courts, qui bouchonnent chacun l'étape
-voisine, prouvent chacun une tranche et <strong>personne ne prouve la chaîne</strong> : les défauts se logent
-précisément dans les <strong>coutures</strong> entre deux étapes. Quand deux scénarios partagent leur amont, les
-<strong>fusionner</strong> en un seul qui va plus loin donne une couverture plus <strong>fidèle</strong>. Le critère de fusion
-est simple : deux étapes se fusionnent quand le défaut probable est <strong>entre</strong> elles. À l'inverse,
-fusionner sans couture à exercer ne produit qu'un test-fleuve illisible - la longueur n'est pas le but.</p>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/couvrir-les-usages-livres/SKILL.md"><code>couvrir-les-usages-livres</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="6b-passe-de-preparation-de-recette">6b. Passe de préparation de recette<a class="headerlink" href="#6b-passe-de-preparation-de-recette" title="Permanent link">&para;</a></h3>
-<p><strong>Pourquoi une lettre et pas un numéro.</strong> Cette étape a longtemps vécu comme une case <code>6b</code> de la liste
-de clôture, sans section qui la décrive ni ligne au tableau des passes : trois listes décrivaient le
-même cycle avec trois comptes différents, et un agent qui la cochait s'appuyait sur une phrase là où
-les autres passes offrent des dizaines de lignes (#4839).</p>
-<p>Elle garde sa lettre plutôt que de devenir la passe 7, et ce choix est mesuré : renuméroter aurait
-touché <strong>161 citations dans 73 fichiers</strong>, dont 39 ADR et 20 fichiers de production. Une passe
-suffixée dit d'ailleurs quelque chose de vrai, qu'un numéro plein effacerait : elle <strong>prolonge</strong> la
-passe 6 sans être une étape indépendante, on ne prépare pas la recette avant d'avoir écrit les tests.</p>
-<p>La règle générale reste : une passe porte un numéro. La lettre est l'exception, et elle se justifie
-ici par la continuité, pas par le coût.</p>
-<p><strong>Préparer la recette : toute capacité ajoutée sait comment on la vérifie</strong></p>
-<p>La <a href="../recette/">recette</a> n'est pas le déversoir de ce qui a résisté à l'automatisation. C'est
-l'endroit où vit <strong>le procédé de vérification</strong> d'une capacité : le geste à faire, ce qu'on doit voir,
-et de quoi le refaire.</p>
-<blockquote>
-<p><strong>Une capacité ajoutée par le chantier n'est pas finie tant qu'on ne sait pas comment la vérifier à
-la main, et que ce « comment » n'est pas écrit là où on le retrouvera.</strong></p>
-</blockquote>
-<p>Le critère qui dit qu'une case est terminée est la <strong>rejouabilité</strong> : quelqu'un qui n'a pas fait le
-chantier doit pouvoir la refaire, dans six mois, autant de fois que nécessaire, et obtenir la même
-chose. Il tient en trois pièces, et il en manque <strong>une seule</strong> pour que la case redevienne une
-intention :</p>
-<table>
-<thead>
-<tr>
-<th>Pièce</th>
-<th>Ce qu'elle répond</th>
-<th>Ce qui arrive si elle manque</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>le <strong>geste</strong></td>
-<td>qu'est-ce que je fais ?</td>
-<td>la case se rejoue différemment à chaque campagne</td>
-</tr>
-<tr>
-<td>l'<strong>observation attendue</strong></td>
-<td>qu'est-ce que je dois voir ?</td>
-<td>on coche « ça marche » sans référence</td>
-</tr>
-<tr>
-<td>la <strong>fixture</strong></td>
-<td>sur quelles données ?</td>
-<td>la donnée se bricole, donc le résultat ne se compare pas</td>
-</tr>
-</tbody>
-</table>
-<p>Quatre gestes, donc, dans cette passe.</p>
-<p><strong>1. Désigner la session propriétaire.</strong> Un écran est déroulé <strong>en entier</strong> dans <strong>une seule</strong> session ;
-ailleurs il n'est qu'écran de transit. Une case déposée dans la mauvaise session sera jouée deux fois ou
-jamais. La table des sessions vit dans l'<a href="../recette/">index de la recette</a>.</p>
-<p><strong>Toutes les sessions ne sont pas au même état</strong> : certaines sont partielles, d'autres écrites mais
-jamais jouées. Quand le chantier touche un de ces écrans, cela se <strong>dit</strong> - une issue, pas un silence :
-sinon la capacité est réputée vérifiable par un script qui ne la couvre pas.</p>
-<p>L'état de chaque session se lit dans l'<a href="../recette/">index de la recette</a>, <strong>et nulle part
-ailleurs</strong>. La première version de cette page recopiait la liste ici : les deux copies ont divergé en
-<strong>quelques heures</strong>, S7 ayant été écrite (#3517) le jour même où ce paragraphe affirmait qu'elle
-n'existait pas. Un inventaire ne se duplique pas, il se cite.</p>
-<p><strong>2. Écrire les cases à leur place</strong>, sous forme de points numérotés <code>Sxx-NN</code>, groupés par étape du
-parcours. <strong>Une case = un fait observable</strong>, jamais un contrôle groupé. Elles s'écrivent <strong>pour un
-lecteur qui n'était pas là</strong> : « le bandeau annonce la nuit du 22/04 et le nombre de fichiers retenus »
-se rejoue, « vérifier que l'import marche » non.</p>
-<p><strong>3. Fournir de quoi les jouer.</strong> Si aucune des fixtures existantes ne porte le cas - une nuit sans GPS,
-un journal qui contredit les WAV, un volume qui déborde -, <strong>étendre la spec du générateur</strong> fait partie
-de cette passe. Les cartes SD de recette sont <strong>générées</strong> depuis quelques kilo-octets de spec
-précisément pour revenir à l'identique (voir <a href="../recette/fixtures/">Fixtures</a>) ; une donnée fabriquée à
-la main pour l'occasion ne se retrouvera pas à la campagne suivante, et la case deviendra injouable
-sans que personne ne l'ait décidé.</p>
-<p><strong>4. Relire le statut de la session.</strong> L'index de la recette porte un inventaire - qui a été joué, ce
-qui est partiel, ce qui reste à écrire - et un inventaire vieillit tout seul. C'est le même geste que
-la relecture de la doc périmée en passe 3.</p>
-<div class="admonition warning">
-<p class="admonition-title">Ce que cette passe empêche, et qui se déguise bien</p>
-<p>L'ancienne formulation - <em>ce qui ne peut pas être automatisé va en recette</em> - laissait « pas
-automatisable » devenir silencieusement « <strong>pas vérifié</strong> ». La règle actuelle ferme aussi la
-variante suivante, plus difficile à voir : une case <strong>écrite mais injouable</strong>, faute de fixture ou
-faute de session où la déposer. Elle a l'apparence d'une vérification prévue, et elle se coche.</p>
-</div>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/preparer-la-recette/SKILL.md"><code>preparer-la-recette</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="7-passe-dharmonisation">7. Passe d'harmonisation<a class="headerlink" href="#7-passe-dharmonisation" title="Permanent link">&para;</a></h3>
-<p><strong>Prendre du recul sur l'application entière</strong>, pas seulement sur les fichiers que le chantier a
-touchés. Il s'agit de regarder comment ce qui vient d'être livré <strong>s'intègre dans le tout</strong>. La passe
-se fait en <strong>deux temps</strong>.</p>
-<p><strong>Premier temps : l'audit global.</strong> Avant de refactorer quoi que ce soit, cartographier l'intégration
-du résultat du chantier dans le reste de l'application. Deux questions, posées sur <strong>tout le code</strong> et
-pas sur le seul périmètre du chantier :</p>
-<ul>
-<li><strong>Qu'est-ce qui ressemble</strong> à ce qu'on vient d'écrire ? Un geste, un composant, un contrat, une
-  formulation d'IHM, un parcours.</li>
-<li><strong>Qu'est-ce qui bénéficierait</strong> du résultat du chantier ? Un écran qui gagnerait le nouveau
-  composant, un service qui pourrait s'appuyer sur la nouvelle abstraction, un appelant resté sur
-  l'ancienne façon de faire.</li>
-</ul>
-<p>Cet audit doit être <strong>exhaustif et scrupuleux</strong> : l'enjeu est de <strong>comprendre ce qui sous-tend la
-demande initiale</strong> (le concept réel, au-delà de la formulation du ticket) et d'en repérer <strong>tous les
-axes</strong> possibles. On ne s'arrête pas au premier doublon évident.</p>
-<p><strong>C'est ici que le <a href="#interroger-le-graphe-du-depot-pour-ce-que-grep-ne-relie-pas">graphe du dépôt</a> est
-le plus utile</strong>, parce que les deux questions de l'audit sont des questions de <strong>concept</strong> et qu'aucune
-ne se pose en termes d'identifiants. « Qu'est-ce qui ressemble à ce qu'on vient d'écrire ? » est
-exactement ce que rendent les arêtes <code>conceptually_related_to</code> ; « qu'est-ce qui en bénéficierait ? »
-se lit dans les appelants de l'ancienne façon de faire. La règle a été apprise ici même : c'est à cette
-passe que trois <code>grep</code> bien choisis annonçaient deux écritures d'une même règle de dérivation là où le
-graphe en montrait trois. La troisième n'avait aucun appelant, ce qu'aucun <code>grep</code> n'aurait dit.</p>
-<p><strong>Second temps : le refactoring de conceptualisation.</strong> Retravailler l'application pour que sa
-structure <strong>exprime mieux ce concept</strong> et la rende à la fois plus <strong>lisible</strong> et plus
-<strong>compréhensible</strong>. La <strong>réduction de la duplication</strong> (code répété entre features → <strong>contrat/pattern
-partagé</strong> dans <code>commun</code>) et l'<strong>abstraction</strong> (classe devenue trop grosse → <strong>Extract Class</strong>, le PMD
-<code>GodClass</code> du portail qualité est le garde-fou, cf. <a href="../tests-et-qualite/">Tests et qualité</a>) sont des
-<strong>outils</strong> au service de cette clarté, <strong>pas</strong> le but : un code plus court mais moins compréhensible
-n'est pas une harmonisation. C'est le moment de transformer trois copies d'un même geste en un
-mécanisme d'extension.</p>
-<p><strong>Discuter, ne pas trancher seul.</strong> Un refactoring de conceptualisation engage l'application entière.
-Dès qu'un choix, un doute ou une conséquence n'est pas évident, <strong>en discuter avec l'utilisateur</strong> :
-soumettre les options, expliciter les compromis, laisser trancher la direction. C'est un des rares
-moments où l'on <strong>remonte</strong> de l'implémentation vers la conception ; on ne s'y engage pas à l'aveugle.</p>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/harmoniser-l-application/SKILL.md"><code>harmoniser-l-application</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="8-passe-de-revue-visuelle">8. Passe de revue visuelle<a class="headerlink" href="#8-passe-de-revue-visuelle" title="Permanent link">&para;</a></h3>
-<p><strong>Inspecter visuellement toutes les conséquences visibles du chantier.</strong> Pas seulement les écrans
-nouveaux ou modifiés : <strong>chaque état</strong> qu'un écran touché peut prendre (donnée présente ou absente,
-GPS renseigné ou non, liste vide ou pleine, calcul disponible ou indisponible, thème clair ou
-sombre...). On <strong>régénère</strong> les captures concernées, on les <strong>ouvre une par une</strong>, on les <strong>regarde</strong>.</p>
-<p><strong>Les captures sont une documentation vivante de l'état réel de l'application.</strong> Il est donc <strong>crucial
-qu'elles reflètent toutes les fonctionnalités visuelles du chantier</strong>. Une conséquence visible qui n'a
-<strong>pas</strong> de capture n'est <strong>pas documentée</strong> : elle dérivera en silence, et le prochain qui lira la doc
-verra un produit qui n'existe plus. Cette passe <strong>ajoute donc autant de captures que nécessaire</strong> : un
-état neuf apparu avec le chantier, une variante qu'aucune capture ne montrait, un écran entier créé.
-Une capture ajoutée devient une <strong>validation visuelle rejouable</strong> (seed déterministe, entrée au
-manifeste des captures, insertion dans la doc) : elle est régénérée à chaque build et re-contrôlée à
-chaque chantier suivant.</p>
-<p>Cette passe existe parce qu'un constat s'est répété <strong>cinq fois</strong> sur les chantiers #1405 et #1431 :</p>
-<blockquote>
-<p><strong>Un geste testé n'est pas un écran regardé.</strong></p>
-</blockquote>
-<p>Cinq défauts d'IHM y ont été trouvés en <strong>ouvrant une capture</strong>, et <strong>aucun</strong> par un test - alors que les
-gestes concernés étaient couverts :</p>
-<ul>
-<li>un libellé tronqué (« Code du poi… ») ; puis <strong>le même</strong> sur un autre écran, préexistant ;</li>
-<li>une consigne rognée par le bouton voisin (« Copier le m… ») ;</li>
-<li>un emoji qui ne se rend pas (glyphe absent, cf. #700) ;</li>
-<li>et une <strong>capture de documentation qui avait dérivé du produit</strong> : elle affichait un protocole
-  « Point fixe » qui <strong>n'existe pas</strong>, et cachait une confirmation destructive entière.</li>
-</ul>
-<p>Aucun de ces défauts ne fait rougir quoi que ce soit. Un test vérifie qu'un bouton <strong>fait</strong> ce qu'il
-doit ; il ne vérifie pas qu'on peut <strong>lire</strong> ce qu'il dit.</p>
-<p><strong>Pourquoi ici, et pas plus tôt.</strong> La passe précédente (harmonisation) touche volontiers au CSS partagé
-ou aux composants du socle : c'est <strong>elle</strong> qui est la plus à même de casser un écran sans casser un
-test. On regarde donc <strong>après</strong> elle. Et comme les aperçus sont <strong>régénérés automatiquement sur <code>main</code></strong>,
-un défaut corrigé ici rafraîchit la documentation tout seul.</p>
-<p><strong>Ce qu'on cherche.</strong> D'abord la <strong>couverture</strong> : chaque conséquence visible du chantier a-t-elle une
-capture ? Un état montré nulle part est un angle mort ; on <strong>crée la capture manquante</strong> avant d'aller
-plus loin. Puis, sur chaque capture (par ordre de fréquence constatée) :</p>
-<ol>
-<li>du <strong>texte coupé</strong> - libellé, consigne, bouton (une ellipse <code>…</code> est un aveu) ;</li>
-<li>un <strong>glyphe absent</strong> (emoji, symbole) ;</li>
-<li>un <strong>écart entre la capture et le produit</strong> : si une capture est <em>reconstruite</em> quelque part au lieu
-   d'être <em>rendue</em>, elle <strong>mentira</strong> tôt ou tard (cf. #1468) ;</li>
-<li>une <strong>régression de style</strong> après une factorisation CSS ;</li>
-<li>un <strong>écran de la doc qui ne ressemble plus</strong> à ce que le chantier a livré.</li>
-</ol>
-<p>Ce qui se corrige tout de suite se corrige ; le reste part en issue à la passe suivante.</p>
-<p><strong>Regarder ne suffit pas : il faut regarder d'assez près pour que l'affirmation tienne.</strong> Un aperçu
-s'ouvre à sa taille naturelle, où un glyphe fait douze pixels. À cette échelle, un <strong>pictogramme
-monochrome fin est indistinguable du vide</strong> : on conclut « absent » sur ce qui est simplement discret.
-La clôture de #1933 en a fait les frais, en publiant trois « preuves » d'absence dont <strong>une seule</strong>
-était exacte - recadrées et agrandies ×3, deux des glyphes se rendaient, et un troisième se rendait
-en <strong>forme méconnaissable</strong>, ce que personne n'avait envisagé. Avant d'écrire qu'un élément manque,
-qu'un texte est coupé ou qu'une couleur a bougé, <strong>recadrer la zone et l'agrandir</strong>. Trente secondes,
-et l'affirmation devient un constat.</p>
-<p>Corollaire pour la rédaction : un pictogramme littéral n'a pas deux issues mais <strong>trois</strong> - rendu,
-absent, ou déformé. La troisième est la pire pour l'utilisateur, puisqu'elle se lit comme une faute de
-frappe dans le libellé.</p>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/revoir-les-ecrans/SKILL.md"><code>revoir-les-ecrans</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="9-passe-de-consolidation-des-suites">9. Passe de consolidation des suites<a class="headerlink" href="#9-passe-de-consolidation-des-suites" title="Permanent link">&para;</a></h3>
-<p>Un chantier en révèle d'autres : dette assumée, palier différé, idée née en chemin.</p>
-<p><strong>Cette passe ne les découvre plus, elle les consolide.</strong> Chacune a déjà son issue, ouverte au moment
-où elle a été trouvée et rattachée soit à l'EPIC du chantier, soit à l'EPIC des suites
-(<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/4562">#4562</a>) - c'est la règle posée dans
-« Une trouvaille se consigne en ISSUE » plus haut. Arriver ici avec une page blanche est le signe que
-cette règle n'a pas été tenue, pas que le chantier n'a rien trouvé.</p>
-<p>Le travail est donc de <strong>relire</strong> ce qui s'est accumulé :</p>
-<ol>
-<li><strong>Relire l'EPIC des suites</strong>, et pas seulement ce que ce chantier-ci y a déposé : une trouvaille
-   d'un autre chantier peut avoir la même cause, et c'est ici qu'on s'en aperçoit.</li>
-<li><strong>Regrouper</strong> ce qui va ensemble, et créer l'EPIC qui les porte quand elles forment un ensemble.
-   Le tri se fait par <strong>cause</strong>, pas par mot-clé, comme à l'étape 0 de l'ouverture.</li>
-<li><strong>Trancher les rattachements</strong> : une issue appartient au chantier qui traite sa <strong>cause</strong>, pas à
-   celui qui a remarqué son symptôme. Un rattachement trop large posé dans l'urgence de la trouvaille
-   se corrige ici, et c'est le moment prévu pour cela.</li>
-<li><strong>Recadrer</strong> titre et corps de ce qui bouge. Une issue écrite en trois lignes sur le coup a rempli
-   son office, qui était de ne rien perdre ; elle mérite maintenant sa forme complète.</li>
-<li><strong>Ajouter ce que la clôture elle-même a révélé.</strong> Les passes 0 à 8 trouvent, elles aussi, et ce
-   qu'elles trouvent suit la même règle : une issue tout de suite, pas une note pour plus tard.</li>
-</ol>
-<div class="admonition warning">
-<p class="admonition-title">L'EPIC des suites ne se ferme pas, il se vide</p>
-<p>Sa taille est un signal. S'il enfle sans que rien n'en sorte, ce ne sont pas les trouvailles qui
-sont trop nombreuses : ce sont les passes 9 qui ne le lisent pas.</p>
-</div>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/vider-le-sas/SKILL.md"><code>vider-le-sas</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="10-archivage-des-changements-openspec">10. Archivage des changements OpenSpec<a class="headerlink" href="#10-archivage-des-changements-openspec" title="Permanent link">&para;</a></h3>
-<p>Un changement de <code>openspec/changes/</code> décrit un travail qui est fait. L'y laisser fait mentir la liste
-des changements <strong>actifs</strong>, et la spécification principale reste muette sur ce qui vient de changer.</p>
-<p>L'archivage est un acte de clôture, pas une fin d'issue : il se fait ici, quand le chantier entier est
-livré, et non à chaque PR fusionnée.</p>
-<p><strong>L'ordre n'est pas négociable, et c'est tout le contenu de cette passe.</strong> Les delta specs fusionnent
-dans <code>openspec/specs/</code> <strong>avant</strong> que <code>changeRoot</code> ne bouge. Déplacer pendant qu'une fusion le lit
-encore laisse le changement archivé et la spécification jamais mise à jour, <strong>sans que rien ne le
-dise</strong> : les deux moitiés paraissent faites.</p>
-<ol>
-<li><strong>Vérifier</strong> les artefacts et les tâches. Un manque avertit et se confirme, il ne refuse pas.</li>
-<li><strong>Évaluer</strong> l'écart entre chaque delta spec et sa spec principale, et le <strong>montrer</strong> avant de
-   demander quoi que ce soit. Les delta specs se lisent dans
-   <code>artifactPaths.specs.existingOutputPaths</code>, et nulle part ailleurs.</li>
-<li><strong>Fusionner en ligne</strong>, jamais en tâche de fond. On fusionne, on ne recopie pas : les en-têtes
-   d'opération ne survivent pas, et ce que le delta ne mentionne pas se garde.</li>
-<li><strong>Re-comparer toutes</strong> les capacités portant une delta spec, et pas seulement celles que la fusion
-   dit avoir touchées. Une fusion réussie ne laisse rien à appliquer.</li>
-<li><strong>Déplacer</strong> <code>changeRoot</code> sous l'archive, une fois et une seule, préfixé de la date du jour et
-   jamais de deux dates empilées.</li>
-</ol>
-<div class="admonition warning">
-<p class="admonition-title">Une exigence écrite à la proposition a vieilli</p>
-<p>Une delta spec écrite avant la réalisation porte souvent <code>*Vérifié par* : aucun dispositif
-n'existe encore</code>. C'était vrai alors, c'est faux à la clôture, et le recopier tel quel rend la
-spec principale <strong>fausse le jour de sa création</strong>. Mesuré sur le premier archivage du dépôt
-(#4833) : quatre exigences sur cinq étaient dans ce cas. Une exigence qui ne dit pas comment elle
-est vérifiée se relit comme vérifiée.</p>
-<p>Et quand un dispositif manque encore, l'écrire aussi. Le scénario qu'aucun test ne tient décrit une
-garantie <strong>visée</strong>, non tenue, et la spec le dit à cet endroit plutôt que de laisser le lecteur le
-supposer.</p>
-</div>
-<div class="admonition tip">
-<p class="admonition-title">Signal concret</p>
-<p><code>openspec list --json</code> ne doit plus montrer aucun changement actif, <code>openspec validate --specs</code>
-doit être vert, et <code>openspec/changes/</code> ne doit plus porter le delta que <code>openspec/specs/</code> porte
-désormais. Un archivage qu'on croit fait laisse la spécification principale muette.</p>
-</div>
-<p>La compétence <code>openspec-archive-change</code> porte le flux, et <code>openspec-sync-specs</code> la fusion qu'elle
-appelle en ligne.</p>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/openspec-archive-change/SKILL.md"><code>openspec-archive-change</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="11-ecriture-des-adr-du-chantier">11. Écriture des ADR du chantier<a class="headerlink" href="#11-ecriture-des-adr-du-chantier" title="Permanent link">&para;</a></h3>
-<p>Toute <strong>décision structurante</strong> prise pendant le chantier - un choix d'architecture ou de domaine qu'un
-développeur futur pourrait raisonnablement remettre en cause faute d'en connaître les raisons - donne
-une <strong><a href="../decisions/">ADR</a></strong> : une par décision, immuable, expliquant le pourquoi. Le numéro de
-l'ADR <strong>est</strong> celui de l'issue.</p>
-<p>Chaque ADR <strong>déclare comment elle est vérifiée</strong> (<a href="../decisions/2465-une-adr-declare-comment-elle-est-verifiee/">ADR 2465</a>) : les champs <code>verification: certaine | probable | humaine</code> et <code>enforced_by:</code> de son en-tête OKF, au même titre que <code>status</code>, <code>article</code> et <code>chantier</code>. Une vérification <code>humaine</code> déclare une <code>loupe:</code> plutôt qu'un applicateur : nommer un script sous <code>enforced_by:</code> prétendrait qu'il refuse, quand il ne fait que relever. Un garde-fou fait rougir la CI si elle manque, ou si le test/script nommé n'existe pas. <code>certaine</code> nomme un test ou script déterministe ; <code>probable</code> nomme un script de suspects et son <strong>cliquet</strong> ; <code>humaine</code> donne le motif, et peut adjoindre une <strong>loupe</strong>. Voir la section « Comment une ADR est vérifiée » de l'<a href="../decisions/">index des décisions</a>.</p>
-<p><strong>Pourquoi ici et pas en passe 3.</strong> Parce que les passes 4 à 9 <strong>produisent</strong> des décisions, et qu'on ne
-peut pas écrire en début de clôture ce qu'on n'a pas encore décidé. Le constat est mesuré, pas
-supposé : les cinq ADR du chantier #3151 - 3406, 3439, 3450, 3451, 3483 - portent <strong>toutes</strong> la mention
-« suite de », c'est-à-dire qu'aucune n'est née à l'endroit où le cycle les demandait. L'ADR 3439 est
-sortie de la <strong>revue visuelle</strong> (passe 8), l'ADR 3483 d'une trouvaille faite en retirant ce que 3439
-masquait. Un cycle qui exige une chose impossible obtient qu'on l'ignore.</p>
-<p>Cette passe <strong>balaie donc les passes 0 à 10</strong> et pose, pour chacune, la même question : <em>une décision
-a-t-elle été prise ici, qu'un lecteur futur pourrait défaire faute d'en connaître la raison ?</em> Trois
-sources reviennent :</p>
-<ul>
-<li>la <strong>passe 0</strong>, quand le chantier a délibérément <strong>dépassé</strong> une ADR existante : le dépassement
-  s'écrit, sinon deux règles opposées cohabitent dans le dépôt ;</li>
-<li>la <strong>passe 7</strong>, où un refactoring de conceptualisation tranche presque toujours quelque chose ;</li>
-<li>la <strong>passe 8</strong>, où l'on découvre ce qu'aucun test ne dit.</li>
-</ul>
-<p>Une décision <strong>de ne pas faire</strong> est une décision. « On garde la dépendance aux tuiles
-OpenStreetMap », « on n'ajoute aucune protection de branche », « la Polynésie reste hors de la table de
-dérivation » : ce sont des ADR, et ce sont celles qu'on oublie, parce qu'elles ne laissent pas de code
-derrière elles.</p>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/ecrire-une-adr/SKILL.md"><code>ecrire-une-adr</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="12-phase-de-bilan">12. Phase de bilan<a class="headerlink" href="#12-phase-de-bilan" title="Permanent link">&para;</a></h3>
-<p>Une <strong>synthèse</strong> courte : ce qui a été livré, la <strong>dette restante</strong>, les <strong>décisions</strong> prises et leur
-pourquoi. Elle se dépose dans le corps de l'EPIC (au moment de le clore) et, si elle change une
-règle du dépôt, se répercute dans <code>AGENTS.md</code> / <code>CONTRIBUTING.md</code>. Le bilan <strong>renvoie</strong> aux
-<a href="../decisions/">ADR</a> écrites en passe 11 plutôt que de redérouler le raisonnement des décisions -
-c'est la raison pour laquelle il vient <strong>après</strong> elles et non l'inverse.</p>
-<p><strong>Et il se montre.</strong> Un chantier d'IHM se juge sur ce qu'il change à l'écran, or le bilan est un texte :
-il décrit des captures que son lecteur n'a pas sous les yeux. La passe 8 les a pourtant toutes ouvertes,
-recadrées et regardées : ce travail reste dans la tête de qui l'a fait.</p>
-<p>La passe 12 produit donc un <strong>artefact visuel</strong> : une page qui met les états <strong>avant / après</strong> côte à
-côte, une ligne par conséquence visible du chantier, avec la phrase qui dit ce qu'on doit y voir. Elle
-sert deux fois :</p>
-<ul>
-<li><strong>pour valider</strong> : c'est le seul support sur lequel un relecteur peut dire « non, ça ne va pas » sans
-  relire le code. Un bilan qui affirme « les huit boutons s'affichent en entier » demande qu'on le
-  croie ; une capture le montre ;</li>
-<li><strong>pour dater</strong> : elle fige à quoi ressemblait l'écran à la clôture, ce que le prochain chantier pourra
-  comparer.</li>
-</ul>
-<p>Elle est <strong>soumise avant de clore l'EPIC</strong>, pas après : son objet est d'obtenir un assentiment, pas de
-documenter une décision déjà prise.</p>
-<div class="admonition tip">
-<p class="admonition-title">Ce qu'elle contient, au minimum</p>
-<p>Une entrée par écran touché : la capture <strong>avant</strong>, la capture <strong>après</strong>, et une phrase qui nomme ce
-qui a changé. Les défauts trouvés en chemin y figurent aussi, <strong>recadrés et agrandis</strong> : un glyphe de
-douze pixels ne se juge pas à l'échelle 1 (cf. passe 8). Ce qui n'a <strong>pas</strong> été corrigé y a sa place :
-une troncature laissée en l'état, montrée et assumée, vaut mieux qu'une omission.</p>
-</div>
+<p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/rendre-le-bilan/SKILL.md"><code>rendre-le-bilan</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h2 id="les-suites-dune-cloture-se-closent-aussi">Les suites d'une clôture se closent aussi<a class="headerlink" href="#les-suites-dune-cloture-se-closent-aussi" title="Permanent link">&para;</a></h2>
 <p>La passe 9 consolide les issues ouvertes en chemin ; la passe 12 les nomme « dette restante » et clôt
 l'EPIC. Ces issues, une fois livrées, forment un <strong>nouveau delta</strong> - et rien ne les rattrape si l'on
@@ -11928,57 +11426,57 @@ cycle. Ce qui a tranché n'est pas un raisonnement plus fin, c'est d'être allé
 plateforme. Quand une suite est traitée, <strong>relire ce que le bilan en disait</strong> et le corriger s'il s'est
 trompé : une analyse fausse laissée en place oriente le chantier suivant.</p>
 <h2 id="modele-de-cloture-a-coller-dans-lepic">Modèle de clôture (à coller dans l'EPIC)<a class="headerlink" href="#modele-de-cloture-a-coller-dans-lepic" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gu">## Ouverture de chantier</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">- [ ]</span> 0. Triage : issues ouvertes balayées <span class="gs">**par concept**</span>, EPIC vivants et issues « différées de <span class="ni">#N</span> » cherchés, rattachements décidés, titres/corps recadrés
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">- [ ]</span> 1. Cartographie de l'existant (patterns réutilisables)
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">- [ ]</span> 2. Plan (découpage, contraintes, risques, ordre des paliers)
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="k">- [ ]</span> 2b. Spécification tranchée : <span class="gs">**ce chantier change-t-il ce que le produit FAIT ?**</span> Si oui, <span class="sb">`/instruire`</span> puis <span class="sb">`/proposer`</span>, et les tâches du changement <span class="gs">**sont**</span> les lots. Si non, la raison s'écrit en une phrase
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="k">- [ ]</span> 3. Issues créées et reliées à l'EPIC
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="gu">## Clôture de chantier</span>
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="k">- [ ]</span> 0. Relecture des ADR existantes (contre <span class="sb">`origin/main`</span>) : une décision a-t-elle été <span class="gs">**contredite**</span>, et si oui délibérément ?
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="k">- [ ]</span> 1. Audit d'intégration (rebase sur <span class="sb">`main`</span>, points d'accroche, régressions)
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="k">- [ ]</span> 2. Cohérence CLI ↔ UI (capacités métier exposées des deux côtés, ou « sans objet »)
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="k">- [ ]</span> 3. Doc développeur (dev-docs) : ce qui manque <span class="gs">**et ce qui est devenu FAUX**</span> (partir des fichiers touchés, chercher qui les cite)
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="k">- [ ]</span> 4. Doc utilisateur (docs/) + captures
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="k">- [ ]</span> 5. Brief projet (<span class="sb">`brief/`</span>, dans la PR du chantier) répercuté si un élément de conception change
-<a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, <span class="gs">**PIT ciblé**</span> (survivants lus un par un) et <span class="gs">**E2E `bats`**</span> si la CLI bouge
-<a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="k">- [ ]</span> 6b. Recette <span class="gs">**préparée**</span> : chaque capacité ajoutée a sa case <span class="sb">`Sxx-NN`</span> dans sa <span class="gs">**session propriétaire**</span> (geste + observation attendue), la <span class="gs">**fixture**</span> existe ou la spec du générateur est étendue, session manquante ou jamais jouée <span class="gs">**signalée en issue**</span>
-<a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l'utilisateur**</span>
-<a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
-<a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
-<a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="k">- [ ]</span> 10. Changement OpenSpec archivé : delta specs <span class="gs">**fusionnées d'abord**</span> dans <span class="sb">`openspec/specs/`</span>, toutes les capacités re-comparées, <span class="gs">**puis**</span> le dossier déplacé sous <span class="sb">`archive/`</span>
-<a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="k">- [ ]</span> 11. ADR du chantier écrites (balayer les passes 0 à 10 ; une décision <span class="gs">**de ne pas faire**</span> en est une)
-<a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="k">- [ ]</span> 12. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="gu">## Ouverture de chantier</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">- [ ]</span> 0. Triage : issues ouvertes balayées <span class="gs">**par concept**</span>, EPIC vivants et issues « différées de <span class="ni">#N</span> » cherchés, rattachements décidés, titres/corps recadrés
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">- [ ]</span> 1. Cartographie de l'existant (patterns réutilisables)
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">- [ ]</span> 2. Plan (découpage, contraintes, risques, ordre des paliers)
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">- [ ]</span> 2b. Spécification tranchée : <span class="gs">**ce chantier change-t-il ce que le produit FAIT ?**</span> Si oui, <span class="sb">`/instruire`</span> puis <span class="sb">`/proposer`</span>, et les tâches du changement <span class="gs">**sont**</span> les lots. Si non, la raison s'écrit en une phrase
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="k">- [ ]</span> 3. Issues créées et reliées à l'EPIC
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="gu">## Clôture de chantier</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="k">- [ ]</span> 0. Relecture des ADR existantes (contre <span class="sb">`origin/main`</span>) : une décision a-t-elle été <span class="gs">**contredite**</span>, et si oui délibérément ?
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="k">- [ ]</span> 1. Audit d'intégration (rebase sur <span class="sb">`main`</span>, points d'accroche, régressions)
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="k">- [ ]</span> 2. Cohérence CLI ↔ UI (capacités métier exposées des deux côtés, ou « sans objet »)
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="k">- [ ]</span> 3. Doc développeur (dev-docs) : ce qui manque <span class="gs">**et ce qui est devenu FAUX**</span> (partir des fichiers touchés, chercher qui les cite)
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">- [ ]</span> 4. Doc utilisateur (docs/) + captures
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">- [ ]</span> 5. Brief projet (<span class="sb">`brief/`</span>, dans la PR du chantier) répercuté si un élément de conception change
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, <span class="gs">**PIT ciblé**</span> (survivants lus un par un) et <span class="gs">**E2E `bats`**</span> si la CLI bouge
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">- [ ]</span> 6b. Recette <span class="gs">**préparée**</span> : chaque capacité ajoutée a sa case <span class="sb">`Sxx-NN`</span> dans sa <span class="gs">**session propriétaire**</span> (geste + observation attendue), la <span class="gs">**fixture**</span> existe ou la spec du générateur est étendue, session manquante ou jamais jouée <span class="gs">**signalée en issue**</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l'utilisateur**</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">- [ ]</span> 10. Changement OpenSpec archivé : delta specs <span class="gs">**fusionnées d'abord**</span> dans <span class="sb">`openspec/specs/`</span>, toutes les capacités re-comparées, <span class="gs">**puis**</span> le dossier déplacé sous <span class="sb">`archive/`</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="k">- [ ]</span> 11. ADR du chantier écrites (balayer les passes 0 à 10 ; une décision <span class="gs">**de ne pas faire**</span> en est une)
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">- [ ]</span> 12. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
 </code></pre></div>
 <h2 id="modele-de-cycle-dune-issue-rouge-vert-refactor">Modèle de cycle d'une issue (rouge, vert, refactor)<a class="headerlink" href="#modele-de-cycle-dune-issue-rouge-vert-refactor" title="Permanent link">&para;</a></h2>
 <p>Le bloc <strong>↻</strong> se répète à <strong>chaque petit pas</strong>, jusqu'à ce que le comportement soit complet : une issue
 en compte des dizaines. Ce qui l'encadre ne se fait qu'une fois.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>Avant la boucle
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">- [ ]</span> Le comportement est découpé en <span class="gs">**petits pas**</span> : le prochain fait observable, pas la fonctionnalité
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">- [ ]</span> Jumeaux cherchés (graphe du dépôt, pas seulement <span class="sb">`grep`</span>) : le défaut a-t-il d'autres sites ?
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>↻ À chaque pas, jusqu'à ce que le comportement soit complet
-<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="k">- [ ]</span> ROUGE : le test échoue, et <span class="gs">**pour la raison attendue**</span> (sur un défaut : il le <span class="gs">**reproduit**</span>)
-<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="k">- [ ]</span> VERT : le <span class="gs">**minimum**</span> qui fait passer
-<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="k">- [ ]</span> REFACTOR <span class="gs">**tenté**</span> : ce que ce pas vient de toucher, à comportement constant
-<a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="k">- [ ]</span> Le rouge a duré ? Le pas était trop gros : revenir au dernier vert et le couper en deux
-<a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>
-<a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>Quand la boucle s'arrête
-<a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="k">- [ ]</span> <span class="gs">**PIT ciblé**</span> sur les classes pures livrées, survivants lus un par un
-<a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="k">- [ ]</span> Corps de l'issue <span class="gs">**édité**</span> si une découverte a changé sa lecture (pas seulement commenté)
-<a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="k">- [ ]</span> Lecture à froid : corps de la PR et de l'issue compréhensibles dans six mois, sans le fil
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Avant la boucle
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">- [ ]</span> Le comportement est découpé en <span class="gs">**petits pas**</span> : le prochain fait observable, pas la fonctionnalité
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">- [ ]</span> Jumeaux cherchés (graphe du dépôt, pas seulement <span class="sb">`grep`</span>) : le défaut a-t-il d'autres sites ?
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>↻ À chaque pas, jusqu'à ce que le comportement soit complet
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="k">- [ ]</span> ROUGE : le test échoue, et <span class="gs">**pour la raison attendue**</span> (sur un défaut : il le <span class="gs">**reproduit**</span>)
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">- [ ]</span> VERT : le <span class="gs">**minimum**</span> qui fait passer
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">- [ ]</span> REFACTOR <span class="gs">**tenté**</span> : ce que ce pas vient de toucher, à comportement constant
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">- [ ]</span> Le rouge a duré ? Le pas était trop gros : revenir au dernier vert et le couper en deux
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>Quand la boucle s'arrête
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">- [ ]</span> <span class="gs">**PIT ciblé**</span> sur les classes pures livrées, survivants lus un par un
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">- [ ]</span> Corps de l'issue <span class="gs">**édité**</span> si une découverte a changé sa lecture (pas seulement commenté)
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">- [ ]</span> Lecture à froid : corps de la PR et de l'issue compréhensibles dans six mois, sans le fil
 </code></pre></div>
 <h2 id="modele-de-commencement-dissue-a-commenter-sur-lissue-avant-la-premiere-ligne-de-code">Modèle de commencement d'issue (à <strong>commenter sur l'issue</strong>, avant la première ligne de code)<a class="headerlink" href="#modele-de-commencement-dissue-a-commenter-sur-lissue-avant-la-premiere-ligne-de-code" title="Permanent link">&para;</a></h2>
 <p>À déposer en commentaire, <strong>et assigner l'issue</strong> dans la foulée.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="gs">**Pris par**</span> : chantier &lt;EPIC ou thème&gt; · branche <span class="sb">`&lt;nom-de-branche&gt;`</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="gs">**Ce qu'il y a à faire**</span> : &lt;une phrase, dans les termes du problème&gt;
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="gs">**Pourquoi maintenant**</span> : &lt;ce qui la rend traitable ou urgente&gt;
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="gs">**Dans quelle continuité**</span> : &lt;le chantier d'où elle vient, l'issue qu'elle suit, ce qu'elle permet ensuite&gt;
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="gs">**Remède envisagé**</span> : &lt;la piste retenue, pour qu'un désaccord se voie avant le code&gt;
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="gs">**Pris par**</span> : chantier &lt;EPIC ou thème&gt; · branche <span class="sb">`&lt;nom-de-branche&gt;`</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="gs">**Ce qu'il y a à faire**</span> : &lt;une phrase, dans les termes du problème&gt;
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="gs">**Pourquoi maintenant**</span> : &lt;ce qui la rend traitable ou urgente&gt;
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="gs">**Dans quelle continuité**</span> : &lt;le chantier d'où elle vient, l'issue qu'elle suit, ce qu'elle permet ensuite&gt;
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="gs">**Remède envisagé**</span> : &lt;la piste retenue, pour qu'un désaccord se voie avant le code&gt;
 </code></pre></div>
 <p>Et quand on s'arrête sans avoir fini, reporté, bloqué, abandonné :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="gs">**Reposée**</span> : &lt;ce qui a été fait, ce qui bloque, ce qu'il reste&gt;. Assignee retiré.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="gs">**Reposée**</span> : &lt;ce qui a été fait, ce qui bloque, ce qu'il reste&gt;. Assignee retiré.
 </code></pre></div>
 
 
