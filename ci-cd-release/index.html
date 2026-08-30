@@ -9285,6 +9285,76 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4781-un-garde-mesure-le-depot-dont-il-fait-partie/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4781 · Un garde mesure le dépôt dont il fait partie
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4788-l-absence-de-preuve-refuse-elle-ne-se-signale-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4788 · L'absence de preuve refuse, elle ne se signale pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12037,7 +12107,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>scripts/methode/temoins-de-methode-non-decoratifs.py</code></td>
-<td>qu'aucun <code>--auto-test</code> de garde de méthode ne reste vert quand le garde perd sa détection - l'article A2 rendu mécanique pour <code>scripts/methode/</code>, comme <code>verifie_temoins_non_decoratifs.py</code> le fait pour <code>scripts/adr/</code>. La neutralisation s'<strong>insère</strong> avant le point d'entrée et non en fin de fichier, et la fonction d'auto-test en est épargnée. <strong>Refuse</strong> de conclure sur les six gardes sans point d'entrée, qu'il nomme (#4788)</td>
+<td>qu'aucun <code>--auto-test</code> de garde de méthode ne reste vert quand le garde perd sa détection - l'article A2 rendu mécanique pour <code>scripts/methode/</code>, comme <code>verifie_temoins_non_decoratifs.py</code> le fait pour <code>scripts/adr/</code>. La neutralisation s'<strong>insère</strong> avant le point d'entrée et non en fin de fichier, et la fonction d'auto-test en est épargnée. <strong>Refuse</strong>, en sortant 1, quand un garde n'a pas de point d'entrée où insérer la neutralisation : il le nommait en sortant 0, et six gardes sur quinze sont restés sans preuve sous une CI verte jusqu'à #4788</td>
 <td><code>lint.yml</code> (autotest dédié)</td>
 </tr>
 <tr>
