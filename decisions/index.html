@@ -1742,6 +1742,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4841-un-motif-ne-se-declare-qu-apres-son-controle-inverse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4841 · Un motif ne se déclare qu'après son contrôle inverse
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4770-la-mutation-se-transpose-par-le-point-d-entree/" class="md-nav__link">
         
   
@@ -11928,6 +11963,11 @@
 <td><a href="4768-une-reference-partielle-bloque-tout/">4768</a></td>
 <td>V43 ne stockait du bloc meteo que le vent et la couverture, quand <code>MeteoDepot</code> en porte quatre : la base relue en manquait toujours deux, la comparaison les voyait divergentes a chaque fois, et AUCUN envoi ne partait plus sur une nuit portant une temperature. Une reference partielle ne rend pas la garde moins precise, elle la rend toujours vraie donc toujours bloquante - le contraire de l'intuition, et ce qui rend le defaut couteux. La table de reference et le type compare se modifient ENSEMBLE. Invisible parce que les bancs employaient le constructeur a deux arguments, ou l'oubli ne peut pas se voir ; et la premiere confirmation fut circulaire, un mock rejouant l'hypothese au lieu de la tester. Le seul rouge possible vit au DAO, sur l'aller-retour</td>
 <td>#4768, lot 2 de l'EPIC #4640</td>
+</tr>
+<tr>
+<td><a href="4841-un-motif-ne-se-declare-qu-apres-son-controle-inverse/">4841</a></td>
+<td>Quatre fois de suite un motif est apparu, net, avec des chiffres a l'appui : <code>Respiration</code> avant une assertion, les parcours de bout en bout, <code>waitForFxEvents</code> suivi d'une assertion, un <code>waitFor</code> muet. Les TROIS premiers etaient faux, et le premier avait deja son sous-chantier ecrit dans son cadrage. Un chiffre isole mesure la population CHOISIE, pas le motif : quand 76 % des classes JavaFX figurent au releve des instables, n'importe quel sous-ensemble en rend 76 %. Le denominateur se mesure sur le COMPLEMENT, et les deux taux partent ensemble ou le motif n'est pas declare. Un ecart qui se compte en unites n'est pas un motif ; un facteur quatre en est un. Et un motif qui tient reste un MARQUEUR : un banc qui a ecrit sa propre attente est un banc qui a RENCONTRE le probleme</td>
+<td>#4841, lot 1 de l'EPIC #4804</td>
 </tr>
 <tr>
 <td><a href="4783-le-zero-des-traces-d-outil-se-garde/">4783</a></td>

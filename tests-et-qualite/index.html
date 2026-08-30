@@ -1627,6 +1627,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4841-un-motif-ne-se-declare-qu-apres-son-controle-inverse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4841 · Un motif ne se déclare qu'après son contrôle inverse
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4770-la-mutation-se-transpose-par-le-point-d-entree/" class="md-nav__link">
         
   
@@ -10912,6 +10947,10 @@ comme un cas prouvé.</p>
 <td><code>Seance</code></td>
 <td>dit à un scénario s'il est filmé, pour qu'il ne prenne ses respirations que là</td>
 </tr>
+<tr>
+<td><code>Attente</code></td>
+<td>attend qu'une condition devienne vraie, et <strong>dit ce qu'elle attendait</strong> en expirant. <code>queSurLeFil</code> pour un prédicat qui touche la scène. À ne pas confondre avec <code>Respiration</code>, qui ne s'arrête que si l'on filme et ne tient donc rien en CI (#4694)</td>
+</tr>
 </tbody>
 </table>
 <p><strong>Deux bancs tournent ces clips, et ils ne se ressemblent pas.</strong></p>
@@ -11665,8 +11704,19 @@ pas sur la famille du test. <code>occupation.occuper(...)</code> y tourne donc s
 (ou un appel direct en <code>@Start</code>) qui déclenche ce chemin, <code>waitForFxEvents()</code> ne fait que vider la
 file du fil FX - il n'attend pas le thread d'arrière-plan qui la remplira. L'assertion tombe alors
 avant le callback de succès : un échec qui ne se reproduit que sur une machine lente, donc en CI
-(#3668, #3717). Remède : <code>WaitForAsyncUtils.waitFor(timeout, TimeUnit, () -&gt; &lt;prédicat
-observable&gt;)</code> sur l'état attendu, jamais une assertion immédiate après l'<code>interact</code>.</p>
+(#3668, #3717). Remède : <strong><code>Attente.que(prédicat, ceQuOnAttend)</code></strong> sur l'état attendu, jamais une
+assertion immédiate après l'<code>interact</code>.</p>
+<p>Cette classe existe parce que le remède avait été réinventé <strong>trois fois</strong> en privé, et jamais
+partagé : dans <code>AppTest</code> pour la mise en page (#4504), dans <code>ScenarioAccueilTest</code> pour l'ouverture
+d'un écran (#4408), et nulle part ailleurs, chaque banc écrivant son <code>waitFor</code>. Elle <strong>dit ce
+qu'elle attendait</strong> en expirant, sans quoi l'échec arrive plus tard sur l'assertion, qui accuse le
+code là où c'est la mise en place qui n'a pas eu lieu.</p>
+<p><strong><code>Attente.queSurLeFil</code> quand le prédicat touche la scène</strong> : <code>waitFor</code> rappelle le prédicat depuis
+le fil du <strong>test</strong>, et le graphe de scène n'est pas partageable.</p>
+<p>Quatre bancs de #4804 sont tombés faute de cette attente, entre 3 et 4 fois sur 1 150 passages,
+chacun sous une forme différente : une respiration de tournage qui ne s'arrête que si l'on filme
+(#4694), un commentaire qui <strong>conclut</strong> qu'il n'y a rien à attendre (#4813), rien du tout entre le
+clic et l'assertion (#4814), et <code>waitForFxEvents</code> pris pour une attente de travail de fond (#4815).</p>
 </div>
 
 
