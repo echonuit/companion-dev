@@ -11750,7 +11750,7 @@ fausse</strong> : les étapes de packaging ne s'exécutaient qu'après le succè
 </tr>
 </tbody>
 </table>
-<p>Les <!--inv:tests-bats-->126<!--/inv--> tests bats visaient le fat-jar par <code>java -cp</code> jusqu'à #4071,
+<p>Les <!--inv:tests-bats-->129<!--/inv--> tests bats visaient le fat-jar par <code>java -cp</code> jusqu'à #4071,
 c'est-à-dire un chemin qu'<strong>aucun utilisateur n'emprunte</strong>. Ils visent désormais <code>bin/vigiechiro</code> de
 l'app-image construite au-dessus, donc le runtime jlink réellement livré. Ils viennent pour cette
 raison <strong>après</strong> le garde-fou app-image, et non plus juste après le <code>package</code> - sans que rien ne change
