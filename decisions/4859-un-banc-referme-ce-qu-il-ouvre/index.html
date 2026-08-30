@@ -10915,8 +10915,8 @@ C'est un acquis sans gardien, et chaque banc écrit depuis a rappelé la même l
 <p><strong>Un banc referme ce qu'il ouvre.</strong> <code>@TempDir</code> de JUnit crée le répertoire et le supprime en fin de
 test, sans rien à écrire ; le dépôt l'emploie déjà 259 fois. Une aide partagée, qui n'est pas un test
 et à qui <code>@TempDir</code> ne s'injecte pas, supprime en fin de fork.</p>
-<p><strong>Et le compte se tient</strong>, par un cliquet qui ne peut que descendre. Il vaut <strong>138</strong>, après que
-les dix bancs de #4868 en ont retiré 64 des 202 mesurés à sa pose. C'est l'article A9 : la
+<p><strong>Et le compte se tient</strong>, par un cliquet qui ne peut que descendre. Il vaut <strong>70</strong> : 202 à sa pose, puis 138, 103 et 70 au
+fil des trois lots de conversion, #4868, #4876 et #4888. C'est l'article A9 : la
 dette se tient par un cliquet, pas par un nettoyage. Le nettoyage manuel du 30 août a retiré 5,8 Go
 et n'a rien empêché ; il se refera tant que rien ne compte.</p>
 <h2 id="le-compte-est-differentiel-et-cest-la-moitie-de-la-decision">Le compte est DIFFÉRENTIEL, et c'est la moitié de la décision<a class="headerlink" href="#le-compte-est-differentiel-et-cest-la-moitie-de-la-decision" title="Permanent link">&para;</a></h2>
@@ -10938,11 +10938,9 @@ en laisse 198, parce qu'un second plan de travail jouait ses tests en parallèle
 croit pas le chiffre. Distinguer les répertoires par leur créateur demanderait de les préfixer par le
 processus, ce que ni JUnit ni le dépôt ne font ; le dire coûte moins que de l'outiller.</p>
 <h2 id="ce-qui-prouve-que-le-garde-voit">Ce qui prouve que le garde voit<a class="headerlink" href="#ce-qui-prouve-que-le-garde-voit" title="Permanent link">&para;</a></h2>
-<p>Retirer le <code>@TempDir</code> de <code>GestionnaireVuesTest</code> et rendre son <code>createTempDirectory</code> fait passer le
-compte de <strong>0 à 14</strong>. Le remettre le ramène à 0.</p>
-<p>Cette épreuve a d'abord rendu <strong>0 dans les deux cas</strong>, et j'ai failli conclure : la mutation ne
-compilait pas, <code>Files</code> n'étant plus importé depuis la conversion, si bien que le banc tournait sur du
-code sain. Une mutation qui ne compile pas ne prouve rien, et elle se présente comme un succès.</p>
+<p>Retirer le <code>@TempDir</code> de <code>GestionnaireVuesTest</code> fait passer le compte de <strong>0 à 14</strong> ; le remettre le
+ramène à 0. L'épreuve a d'abord rendu 0 dans les deux cas, la mutation ne compilant pas : une mutation
+qui ne compile pas ne prouve rien, et elle se présente comme un succès.</p>
 <h2 id="ce-que-cette-decision-empeche">Ce que cette décision empêche<a class="headerlink" href="#ce-que-cette-decision-empeche" title="Permanent link">&para;</a></h2>
 <p>Elle interdit d'ajouter un <code>createTempDirectory</code> sans nettoyage : le compte monterait, et le cliquet
 refuserait. Elle interdit aussi de baisser le seuil sans avoir converti : le cliquet se lit dans cette
@@ -10950,8 +10948,8 @@ ADR, et le modifier est une décision qui se relit.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Le cliquet est celui que <strong>la CI mesure</strong>, jamais celui du poste où l'on écrit : à sa pose, mon poste
-  rendait 198 et la CI 202, le nombre de forks suivant la machine (<code>forkCount=1C</code>). Il est descendu à
-  <strong>138</strong> quand les dix bancs de #4868 ont cessé d'en laisser 64.</li>
+  rendait 198 et la CI 202, le nombre de forks suivant la machine (<code>forkCount=1C</code>). Il descend d'un lot à l'autre : <strong>202</strong> à sa pose,
+  <strong>138</strong>, puis <strong>70</strong> au fil des conversions.</li>
 <li>Les 58 bancs qui créent dans un <code>@Start</code> ou un <code>@BeforeEach</code> se convertissent par lots, et le
   cliquet descend d'autant.</li>
 <li>Les outils <code>Capture*</code> de production ne sont pas visés : leur reliquat meurt avec le runner.</li>
