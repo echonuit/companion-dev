@@ -11502,6 +11502,9 @@ d'une restauration sur une autre machine, l'usage principal de <code>--complet</
 déjà l'ancienne et la nouvelle adresse. Un <code>10</code> permanent s'apprend à s'ignorer, et emporterait avec
 lui celui qui compte. L'IHM, elle, garde son avertissement sur les trois cas : elle parle à quelqu'un
 qui lit le compte rendu (<a href="../decisions/3500-le-code-de-sortie-distingue-le-manque-du-deplacement/">ADR 3500</a>).</p>
+<p><code>deposer-vigiechiro</code> marque d'un <code>~</code> ce que la <strong>réconciliation</strong> n'a pas pu vérifier (#4631) : aucune
+unité n'a échoué, c'est l'étape d'avant qui n'a pas tourné, et des archives déjà en ligne vont
+repartir. Un script distingue donc <code>!</code> (une unité a échoué) de <code>~</code> (on n'a pas pu savoir).</p>
 <p><code>deposer-vigiechiro</code> étend la convention : <code>0</code> <strong>seulement si le dépôt est complet</strong> ; <code>1</code> si des
 fichiers restent à reprendre (relancer la même commande ne re-téléverse que les manquants). Le jeton
 vient de <code>--token</code>, sinon de la variable d'environnement <code>VIGIECHIRO_TOKEN</code>, sinon de la <strong>connexion
