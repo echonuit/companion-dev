@@ -12396,6 +12396,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>comparer-tournages.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
+<td><code>verifie-chantier-de-l-issue.sh</code></td>
+<td>l'issue que la demande de fusion <strong>ferme</strong> appartient à un chantier : son <code>parent</code> n'est ni absent, ni le sas des suites #4562, d'où rien ne se traite. Il ne juge que cette issue-là, jamais le dépôt entier</td>
+<td><code>corps-pr.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>verifie-inventaires-ci.sh</code></td>
 <td>les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité</td>
 <td><code>lint.yml</code></td>
