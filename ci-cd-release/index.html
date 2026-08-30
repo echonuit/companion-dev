@@ -1662,6 +1662,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4859-un-banc-referme-ce-qu-il-ouvre/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4859 · Un banc referme ce qu'il ouvre
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4770-la-mutation-se-transpose-par-le-point-d-entree/" class="md-nav__link">
         
   
@@ -12164,6 +12199,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>scripts/methode/releve-les-bancs-instables.py</code></td>
 <td>combien de fois chaque banc a rougi, sur combien de tirages. Il ne lit <strong>pas</strong> les verdicts courants : une relance <strong>écrase</strong> l'échec précédent, si bien que sur 21 jours aucun commit n'apparaissait vu vert et rouge alors que 52 runs avaient été relancés. Il lit les <strong>tentatives</strong>, un run à deux tentatives finissant vert ayant échoué puis réussi sur le même commit. Et il retient l'<strong>ordre</strong> des échecs : le premier tombé est un suspect, ceux qui suivent sont ce qu'une cascade a emporté. Sans cette séparation il nommait 739 tests, soit 76 % des classes JavaFX du dépôt, et y figurer n'apprenait rien ; avec elle, 21 (#4811). <strong>Hors CI</strong> : il lit la forge et télécharge les journaux de tentative, cinq minutes sur trois semaines (#4806)</td>
 <td>à la main, quand un chantier a besoin d'un taux plutôt que d'observations (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>scripts/methode/compte-les-reliquats.py</code></td>
+<td>ce que la suite laisse dans le dossier temporaire, en <strong>différentiel</strong> : un relevé avant, un après, et la différence. Compter le total ferait rougir le reliquat de la veille, et le garde serait désarmé en une semaine. Il <strong>refuse</strong> de conclure si le relevé d'avant manque. Ne peut pas être un test, la propriété ne s'observant qu'une fois tous les forks rendus (ADR 4859)</td>
+<td>deux pas encadrant la suite dans <code>maven.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
 <td><code>scripts/methode/couverture-relecture.py</code></td>
