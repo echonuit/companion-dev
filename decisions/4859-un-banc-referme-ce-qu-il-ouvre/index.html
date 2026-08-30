@@ -11127,13 +11127,14 @@ plausible.</p>
 <p>Il faut compter quand tous les forks ont rendu la main, et un test tourne <em>pendant</em>. Le garde vit donc
 dans le job, en deux pas qui encadrent la suite.</p>
 <h2 id="la-limite-mesuree-et-ecrite">La limite, mesurée et écrite<a class="headerlink" href="#la-limite-mesuree-et-ecrite" title="Permanent link">&para;</a></h2>
-<p>Le compte attribue à la suite <strong>tout ce qui apparaît pendant</strong>, y compris ce qu'une autre session
-crée au même moment : une classe seule a rendu <strong>237</strong> quand la suite entière en laissait 198, un
-second plan de travail jouant ses tests en parallèle. En CI le runner est dédié ; en local, on lance
-la suite seule ou l'on ne croit pas le chiffre.</p>
+<p>Le compte attribue à la suite <strong>tout ce qui apparaît pendant</strong> : une classe seule a rendu <strong>237</strong>
+quand la suite entière en laissait 198, un second plan de travail tournant en parallèle. En CI le
+runner est dédié ; en local, on lance la suite seule ou l'on ne croit pas le chiffre.</p>
 <h2 id="ce-qui-prouve-que-le-garde-voit">Ce qui prouve que le garde voit<a class="headerlink" href="#ce-qui-prouve-que-le-garde-voit" title="Permanent link">&para;</a></h2>
 <p>Retirer le <code>@TempDir</code> de <code>GestionnaireVuesTest</code> fait passer le compte de <strong>0 à 14</strong> ; le remettre le
 ramène à 0.</p>
+<p>Trois mutants. Compte total, compte inversé : tués. <strong>Refus désarmé</strong> : survivant, six témoins
+verts, le garde rendant le total. Un septième le tue.</p>
 <h2 id="les-quatre-qui-restent-et-pourquoi-ils-restent">Les quatre qui restent, et pourquoi ils restent<a class="headerlink" href="#les-quatre-qui-restent-et-pourquoi-ils-restent" title="Permanent link">&para;</a></h2>
 <p>Ce ne sont plus des bancs. Le cache de Gluon Maps est créé par <code>CachedOsmTileRetriever</code>, dont les
 chaînes ne portent <strong>aucun nom de propriété</strong> : la bibliothèque ne laisse pas choisir où il vit.</p>
