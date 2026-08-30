@@ -11055,8 +11055,8 @@ C'est un acquis sans gardien, et chaque banc écrit depuis a rappelé la même l
 <p><strong>Un banc referme ce qu'il ouvre.</strong> <code>@TempDir</code> de JUnit crée le répertoire et le supprime en fin de
 test, sans rien à écrire ; le dépôt l'emploie déjà 259 fois. Une aide partagée, qui n'est pas un test
 et à qui <code>@TempDir</code> ne s'injecte pas, supprime en fin de fork.</p>
-<p><strong>Et le compte se tient</strong>, par un cliquet qui ne peut que descendre. Il vaut <strong>36</strong> : 202 à sa pose, puis 138, 70, 50 et 36
-au fil des lots de conversion. C'est l'article A9 : la
+<p><strong>Et le compte se tient</strong>, par un cliquet qui ne peut que descendre. Il vaut <strong>4</strong> : 202 à sa pose, puis 138, 70, 50, 36 et 4
+au fil des lots de conversion. Ce qui reste ne vient plus d'un banc. C'est l'article A9 : la
 dette se tient par un cliquet, pas par un nettoyage. Le nettoyage manuel du 30 août a retiré 5,8 Go
 et n'a rien empêché ; il se refera tant que rien ne compte.</p>
 <h2 id="le-compte-est-differentiel-et-cest-la-moitie-de-la-decision">Le compte est DIFFÉRENTIEL, et c'est la moitié de la décision<a class="headerlink" href="#le-compte-est-differentiel-et-cest-la-moitie-de-la-decision" title="Permanent link">&para;</a></h2>
@@ -11089,7 +11089,8 @@ ADR, et le modifier est une décision qui se relit.</p>
 <ul>
 <li>Le cliquet est celui que <strong>la CI mesure</strong>, jamais celui du poste où l'on écrit : à sa pose, mon poste
   rendait 198 et la CI 202, le nombre de forks suivant la machine (<code>forkCount=1C</code>). Il descend d'un lot à l'autre : <strong>202</strong> à sa pose,
-  puis <strong>138</strong>, <strong>70</strong>, <strong>50</strong> et <strong>36</strong> au fil des conversions.</li>
+  puis <strong>138</strong>, <strong>70</strong>, <strong>50</strong>, <strong>36</strong> et <strong>4</strong> au fil des conversions. Les quatre derniers ne viennent
+  plus d'un banc : ce sont les <code>.gluonmaps</code> de la bibliothèque de cartes.</li>
 <li>Les 58 bancs qui créent dans un <code>@Start</code> ou un <code>@BeforeEach</code> se convertissent par lots, et le
   cliquet descend d'autant.</li>
 <li>Les outils <code>Capture*</code> de production ne sont pas visés : leur reliquat meurt avec le runner.</li>

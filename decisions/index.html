@@ -12191,7 +12191,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 106<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 119<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -12251,7 +12251,7 @@
 </tr>
 <tr>
 <td><a href="4859-un-banc-referme-ce-qu-il-ouvre/">4859</a></td>
-<td>La suite abandonnait ses repertoires temporaires jusqu'a 13 730, remplissant un tmpfs de 16 Go, apres quoi elle echouait sur un message de quota qui envoie chercher une regression de code. Rien ne les comptait : un banc qui n'enleve rien est VERT et le restera, son defaut ne se voyant qu'ailleurs et plus tard. Un banc referme donc ce qu'il ouvre, par <code>@TempDir</code>, et un cliquet tient le compte, 202 a sa pose puis 36 au fil des lots. Le compte est DIFFERENTIEL : compter le total ferait rougir le reliquat de la veille sur le poste de n'importe qui, et le garde serait desarme en une semaine. Il ne peut pas etre un test, la propriete ne s'observant qu'une fois tous les forks rendus : deux pas encadrent la suite dans le job. Limite ecrite : il attribue a la suite ce qu'une session voisine cree en meme temps, mesure a 237 contre 198</td>
+<td>La suite abandonnait ses repertoires temporaires jusqu'a 13 730, remplissant un tmpfs de 16 Go, apres quoi elle echouait sur un message de quota qui envoie chercher une regression de code. Rien ne les comptait : un banc qui n'enleve rien est VERT et le restera, son defaut ne se voyant qu'ailleurs et plus tard. Un banc referme donc ce qu'il ouvre, par <code>@TempDir</code>, et un cliquet tient le compte, 202 a sa pose puis 4 au fil des lots, ce qui reste ne venant plus d un banc. Le compte est DIFFERENTIEL : compter le total ferait rougir le reliquat de la veille sur le poste de n'importe qui, et le garde serait desarme en une semaine. Il ne peut pas etre un test, la propriete ne s'observant qu'une fois tous les forks rendus : deux pas encadrent la suite dans le job. Limite ecrite : il attribue a la suite ce qu'une session voisine cree en meme temps, mesure a 237 contre 198</td>
 <td>#4859, sous-chantier du lot 2 de l'EPIC #4804</td>
 </tr>
 <tr>
