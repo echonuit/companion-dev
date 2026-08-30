@@ -10671,7 +10671,7 @@
 <p>Un garde-fou (<code>DocumentationAJourTest</code>) exige que <strong>chaque</strong> ADR déclare son niveau, et que le test, le script ou la loupe nommé <strong>existe vraiment</strong> : une ADR ne peut pas annoncer une garde disparue.</p>
 <p>Le <strong>rapport hebdomadaire</strong> (<code>scripts/adr/rapport.py</code>, workflow <code>rapport-adr</code>) agrège les cliquets et les loupes pour mesurer l'écart d'une semaine sur l'autre, et <strong>resserre</strong> automatiquement, par une PR, les cliquets dont la réalité est passée sous la marge. Resserrer est mécanique ; desserrer reste un geste humain.</p>
 <h2 id="quand-en-ecrire-une">Quand en écrire une<a class="headerlink" href="#quand-en-ecrire-une" title="Permanent link">&para;</a></h2>
-<p>À la <strong>passe 10</strong> de la <a href="../cycle-de-chantier/">clôture</a> d'un chantier : chaque décision structurante prise pendant le chantier donne une ADR, et la <strong>passe 11 (bilan)</strong> s'y réfère plutôt que de dupliquer le raisonnement.</p>
+<p>À la <strong>passe 11</strong> de la <a href="../cycle-de-chantier/">clôture</a> d'un chantier : chaque décision structurante prise pendant le chantier donne une ADR, et la <strong>passe 12 (bilan)</strong> s'y réfère plutôt que de dupliquer le raisonnement.</p>
 <p><strong>Pas en passe 3, et c'est un changement</strong> (#3505). Les passes 4 à 9 <strong>produisent</strong> des décisions : la revue visuelle en particulier découvre ce qu'aucun test ne dit. Écrire les ADR en début de clôture demandait donc l'impossible, et la mesure le confirme - les cinq ADR du chantier #3151 (3406, 3439, 3450, 3451, 3483) portent <strong>toutes</strong> la mention « suite de », c'est-à-dire qu'aucune n'est née là où le cycle la demandait. Les ADR antérieures qui déclarent « Rédigée à la clôture (passe 3) » sont <strong>datées</strong> : elles disent vrai du cycle en vigueur ce jour-là.</p>
 <p>Symétriquement, la <strong>passe 0</strong> relit les ADR <strong>existantes</strong> avant que la clôture ne commence : un chantier a le droit de dépasser une décision, pas de le faire en silence.</p>
 <h2 id="le-numero-dune-adr-est-celui-de-son-chantier">Le numéro d'une ADR est celui de son chantier<a class="headerlink" href="#le-numero-dune-adr-est-celui-de-son-chantier" title="Permanent link">&para;</a></h2>
@@ -11812,11 +11812,11 @@
 <tr>
 <td><a href="4656-une-copie-morte-se-supprime-la-ou-le-geste-vit/">4656</a></td>
 <td>Le chantier de code mort a rencontré sept familles de copies, et sept fois la même réponse : aucune n'attendait d'être factorisée, toutes étaient le résidu d'un geste <strong>remplacé par une meilleure forme</strong>. Devant une méthode morte, la question n'est donc pas « qui l'appelait ? » mais « où vit le même geste aujourd'hui ? ». Les deux ne mènent pas au même endroit : la première invite à rebrancher ou extraire, la seconde fait voir que le travail est déjà fait ailleurs. Factoriser les six <code>executer</code> aurait redonné un nom propre à une requête concaténée sur un <code>Statement</code> brut, quand le dépôt est passé aux <code>PreparedStatement</code></td>
-<td>#4656, passe 10 de la clôture</td>
+<td>#4656, passe 11 de la clôture</td>
 </tr>
 <tr>
 <td><a href="4659-une-cloture-sans-trace-ne-se-distingue-pas-d-une-cloture-absente/">4659</a></td>
-<td>Le dépôt écrit à TROIS endroits que tout chantier se clôt par douze passes, et rien ne le vérifiait : 43 EPIC clos sur 64 n'en portaient aucune trace. La cause n'était pas l'inattention - #4671 a été clos le jour même PAR les douze passes, bilan et artefact compris, et figurait parmi les 43. La compétence <code>clore-un-chantier</code> ne mentionnait nulle part le modèle à coller : qui la suivait à la lettre ne laissait aucune trace sans jamais rien oublier. La passe 11 colle donc la case, et un CLIQUET tient l'absence - il ne peut que descendre, et les 42 restantes sont assumées plutôt que rattrapées à coups de douze passes sur des chantiers clos depuis un an</td>
+<td>Le dépôt écrit à TROIS endroits que tout chantier se clôt par douze passes, et rien ne le vérifiait : 43 EPIC clos sur 64 n'en portaient aucune trace. La cause n'était pas l'inattention - #4671 a été clos le jour même PAR les douze passes, bilan et artefact compris, et figurait parmi les 43. La compétence <code>clore-un-chantier</code> ne mentionnait nulle part le modèle à coller : qui la suivait à la lettre ne laissait aucune trace sans jamais rien oublier. La passe 12 colle donc la case, et un CLIQUET tient l'absence - il ne peut que descendre, et les 42 restantes sont assumées plutôt que rattrapées à coups de douze passes sur des chantiers clos depuis un an</td>
 <td>#4659, EPIC #4650</td>
 </tr>
 <tr>
@@ -11832,7 +11832,7 @@
 <tr>
 <td><a href="4685-un-mecanisme-plausible-corrige-n-est-pas-une-cause-etablie/">4685</a></td>
 <td>Le garde des captures a accusé à tort (#4642) ; en le lisant, un mécanisme réel est apparu, <code>grep -q</code> refermant le tube sous <code>pipefail</code>, et il expliquait tout, sauf cet échec-là : 0 accusation sur 200 essais avec les 4 492 octets du manifeste, 40 sur 40 avec 888 893. Le correctif part quand même, mais il <strong>se déclare préventif dans le code</strong>, le témoin éprouve le motif et non le cas, et #4642 reste ouverte. Une correction dit ce qu'elle n'a pas pu expliquer</td>
-<td>#4685, passe 10</td>
+<td>#4685, passe 11</td>
 </tr>
 <tr>
 <td><a href="4475-un-test-dimensionne-son-stage-il-n-herite-pas-du-fork/">4475</a></td>
@@ -11862,7 +11862,7 @@
 <tr>
 <td><a href="4546-un-corps-de-pr-ne-promet-pas-ce-que-la-forge-ne-fera-pas/">4546</a></td>
 <td>Les trois refus du garde du corps de PR sont typographiques ; « Ferme #N » n'est pas de cette famille. La forge ne reconnaît que <code>close</code>, <code>fix</code> et <code>resolve</code> : la demande fusionne verte, l'issue reste ouverte, et rien ne le signale. Ce n'est pas une forme malheureuse, c'est une promesse non tenue. #4350 avait écarté un garde parce qu'il aurait cherché ce qui MANQUE et rougi sur tout lot d'un EPIC ; celui-ci cherche ce qui est PRÉSENT, forme jamais légitime, et « Refs #N » reste vert. <code>close</code> est absent de la liste des verbes, « Close #N » étant un mot-clé anglais valide : le refuser ferait réécrire en français ce qui marchait</td>
-<td>#4546, passe 10 de la clôture de #4502</td>
+<td>#4546, passe 11 de la clôture de #4502</td>
 </tr>
 <tr>
 <td><a href="4571-une-fusion-sans-verdict-se-refuse/">4571</a></td>

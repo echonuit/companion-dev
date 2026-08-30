@@ -10602,7 +10602,7 @@ où <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a> dé
 le <strong>flux de contribution</strong>, cette page décrit le niveau au-dessus : comment on <strong>ouvre</strong> et on
 <strong>clôt</strong> un chantier entier.</p>
 <p>Le principe : un chantier ne se termine pas au dernier <code>feat:</code> mergé. Une fois le cœur livré, une
-<strong>clôture en 12 passes</strong> (numérotées <strong>0 à 11</strong>) garantit que l'évolution est intégrée, cohérente
+<strong>clôture en 13 passes</strong> (numérotées <strong>0 à 12</strong>) garantit que l'évolution est intégrée, cohérente
 entre les deux surfaces (IHM et CLI), documentée, testée, harmonisée, <strong>regardée</strong>, et que la suite
 est cadrée.</p>
 <div class="admonition info">
@@ -11010,7 +11010,7 @@ hésitations qui y ont mené.</p>
 <p>Ce n'est pas de la cosmétique. Le <strong>titre de la pull request devient le sujet du commit de squash</strong>, et
 son corps est ce qu'atteint quiconque remonte depuis <code>git log</code>. C'est la seule trace qui survive à la
 fermeture de l'onglet.</p>
-<h2 id="a-la-cloture-les-12-passes">À la clôture : les 12 passes<a class="headerlink" href="#a-la-cloture-les-12-passes" title="Permanent link">&para;</a></h2>
+<h2 id="a-la-cloture-les-13-passes">À la clôture : les 13 passes<a class="headerlink" href="#a-la-cloture-les-13-passes" title="Permanent link">&para;</a></h2>
 <p>Elles s'exécutent <strong>dans l'ordre</strong> : la relecture des ADR remet l'existant en tête avant qu'on touche
 à quoi que ce soit, l'audit d'intégration peut révéler du travail à faire avant de documenter, la
 cohérence CLI peut révéler une commande à ajouter (qui sera alors documentée et testée par les passes
@@ -11096,7 +11096,7 @@ notions qui se ressemblent à l'oral et n'ont rien à voir dans les données.</p
 colle au code livré : <a href="../architecture/">Architecture</a>, <a href="../patterns/">Patterns et principes</a>,
 <a href="../injection/">Injection (Guice)</a>, <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a> si le
 chantier a introduit un <strong>nouveau pattern d'extension</strong> que les futures features devront suivre.</p>
-<p>Les <strong>ADR ne s'écrivent plus ici</strong> : elles se rédigent en <strong>passe 10</strong>, quand toutes les décisions du
+<p>Les <strong>ADR ne s'écrivent plus ici</strong> : elles se rédigent en <strong>passe 11</strong>, quand toutes les décisions du
 chantier sont prises. Cette passe-ci ne traite que les pages de description.</p>
 <h4 id="chercher-ce-qui-est-devenu-faux-pas-ce-quon-a-a-ajouter">Chercher ce qui est devenu FAUX, pas ce qu'on a à ajouter<a class="headerlink" href="#chercher-ce-qui-est-devenu-faux-pas-ce-quon-a-a-ajouter" title="Permanent link">&para;</a></h4>
 <p>« Mettre à jour pour que la doc colle au code » se lit spontanément comme « qu'ai-je à <strong>ajouter</strong> ? ».
@@ -11443,7 +11443,47 @@ cette règle n'a pas été tenue, pas que le chantier n'a rien trouvé.</p>
 <p>Sa taille est un signal. S'il enfle sans que rien n'en sorte, ce ne sont pas les trouvailles qui
 sont trop nombreuses : ce sont les passes 9 qui ne le lisent pas.</p>
 </div>
-<h3 id="10-ecriture-des-adr-du-chantier">10. Écriture des ADR du chantier<a class="headerlink" href="#10-ecriture-des-adr-du-chantier" title="Permanent link">&para;</a></h3>
+<h3 id="10-archivage-des-changements-openspec">10. Archivage des changements OpenSpec<a class="headerlink" href="#10-archivage-des-changements-openspec" title="Permanent link">&para;</a></h3>
+<p>Un changement de <code>openspec/changes/</code> décrit un travail qui est fait. L'y laisser fait mentir la liste
+des changements <strong>actifs</strong>, et la spécification principale reste muette sur ce qui vient de changer.</p>
+<p>L'archivage est un acte de clôture, pas une fin d'issue : il se fait ici, quand le chantier entier est
+livré, et non à chaque PR fusionnée.</p>
+<p><strong>L'ordre n'est pas négociable, et c'est tout le contenu de cette passe.</strong> Les delta specs fusionnent
+dans <code>openspec/specs/</code> <strong>avant</strong> que <code>changeRoot</code> ne bouge. Déplacer pendant qu'une fusion le lit
+encore laisse le changement archivé et la spécification jamais mise à jour, <strong>sans que rien ne le
+dise</strong> : les deux moitiés paraissent faites.</p>
+<ol>
+<li><strong>Vérifier</strong> les artefacts et les tâches. Un manque avertit et se confirme, il ne refuse pas.</li>
+<li><strong>Évaluer</strong> l'écart entre chaque delta spec et sa spec principale, et le <strong>montrer</strong> avant de
+   demander quoi que ce soit. Les delta specs se lisent dans
+   <code>artifactPaths.specs.existingOutputPaths</code>, et nulle part ailleurs.</li>
+<li><strong>Fusionner en ligne</strong>, jamais en tâche de fond. On fusionne, on ne recopie pas : les en-têtes
+   d'opération ne survivent pas, et ce que le delta ne mentionne pas se garde.</li>
+<li><strong>Re-comparer toutes</strong> les capacités portant une delta spec, et pas seulement celles que la fusion
+   dit avoir touchées. Une fusion réussie ne laisse rien à appliquer.</li>
+<li><strong>Déplacer</strong> <code>changeRoot</code> sous l'archive, une fois et une seule, préfixé de la date du jour et
+   jamais de deux dates empilées.</li>
+</ol>
+<div class="admonition warning">
+<p class="admonition-title">Une exigence écrite à la proposition a vieilli</p>
+<p>Une delta spec écrite avant la réalisation porte souvent <code>*Vérifié par* : aucun dispositif
+n'existe encore</code>. C'était vrai alors, c'est faux à la clôture, et le recopier tel quel rend la
+spec principale <strong>fausse le jour de sa création</strong>. Mesuré sur le premier archivage du dépôt
+(#4833) : quatre exigences sur cinq étaient dans ce cas. Une exigence qui ne dit pas comment elle
+est vérifiée se relit comme vérifiée.</p>
+<p>Et quand un dispositif manque encore, l'écrire aussi. Le scénario qu'aucun test ne tient décrit une
+garantie <strong>visée</strong>, non tenue, et la spec le dit à cet endroit plutôt que de laisser le lecteur le
+supposer.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Signal concret</p>
+<p><code>openspec list --json</code> ne doit plus montrer aucun changement actif, <code>openspec validate --specs</code>
+doit être vert, et <code>openspec/changes/</code> ne doit plus porter le delta que <code>openspec/specs/</code> porte
+désormais. Un archivage qu'on croit fait laisse la spécification principale muette.</p>
+</div>
+<p>La compétence <code>openspec-archive-change</code> porte le flux, et <code>openspec-sync-specs</code> la fusion qu'elle
+appelle en ligne.</p>
+<h3 id="11-ecriture-des-adr-du-chantier">11. Écriture des ADR du chantier<a class="headerlink" href="#11-ecriture-des-adr-du-chantier" title="Permanent link">&para;</a></h3>
 <p>Toute <strong>décision structurante</strong> prise pendant le chantier - un choix d'architecture ou de domaine qu'un
 développeur futur pourrait raisonnablement remettre en cause faute d'en connaître les raisons - donne
 une <strong><a href="../decisions/">ADR</a></strong> : une par décision, immuable, expliquant le pourquoi. Le numéro de
@@ -11455,7 +11495,7 @@ supposé : les cinq ADR du chantier #3151 - 3406, 3439, 3450, 3451, 3483 - porte
 « suite de », c'est-à-dire qu'aucune n'est née à l'endroit où le cycle les demandait. L'ADR 3439 est
 sortie de la <strong>revue visuelle</strong> (passe 8), l'ADR 3483 d'une trouvaille faite en retirant ce que 3439
 masquait. Un cycle qui exige une chose impossible obtient qu'on l'ignore.</p>
-<p>Cette passe <strong>balaie donc les passes 0 à 9</strong> et pose, pour chacune, la même question : <em>une décision
+<p>Cette passe <strong>balaie donc les passes 0 à 10</strong> et pose, pour chacune, la même question : <em>une décision
 a-t-elle été prise ici, qu'un lecteur futur pourrait défaire faute d'en connaître la raison ?</em> Trois
 sources reviennent :</p>
 <ul>
@@ -11468,16 +11508,16 @@ sources reviennent :</p>
 OpenStreetMap », « on n'ajoute aucune protection de branche », « la Polynésie reste hors de la table de
 dérivation » : ce sont des ADR, et ce sont celles qu'on oublie, parce qu'elles ne laissent pas de code
 derrière elles.</p>
-<h3 id="11-phase-de-bilan">11. Phase de bilan<a class="headerlink" href="#11-phase-de-bilan" title="Permanent link">&para;</a></h3>
+<h3 id="12-phase-de-bilan">12. Phase de bilan<a class="headerlink" href="#12-phase-de-bilan" title="Permanent link">&para;</a></h3>
 <p>Une <strong>synthèse</strong> courte : ce qui a été livré, la <strong>dette restante</strong>, les <strong>décisions</strong> prises et leur
 pourquoi. Elle se dépose dans le corps de l'EPIC (au moment de le clore) et, si elle change une
 règle du dépôt, se répercute dans <code>AGENTS.md</code> / <code>CONTRIBUTING.md</code>. Le bilan <strong>renvoie</strong> aux
-<a href="../decisions/">ADR</a> écrites en passe 10 plutôt que de redérouler le raisonnement des décisions -
+<a href="../decisions/">ADR</a> écrites en passe 11 plutôt que de redérouler le raisonnement des décisions -
 c'est la raison pour laquelle il vient <strong>après</strong> elles et non l'inverse.</p>
 <p><strong>Et il se montre.</strong> Un chantier d'IHM se juge sur ce qu'il change à l'écran, or le bilan est un texte :
 il décrit des captures que son lecteur n'a pas sous les yeux. La passe 8 les a pourtant toutes ouvertes,
 recadrées et regardées : ce travail reste dans la tête de qui l'a fait.</p>
-<p>La passe 11 produit donc un <strong>artefact visuel</strong> : une page qui met les états <strong>avant / après</strong> côte à
+<p>La passe 12 produit donc un <strong>artefact visuel</strong> : une page qui met les états <strong>avant / après</strong> côte à
 côte, une ligne par conséquence visible du chantier, avec la phrase qui dit ce qu'on doit y voir. Elle
 sert deux fois :</p>
 <ul>
@@ -11497,13 +11537,13 @@ douze pixels ne se juge pas à l'échelle 1 (cf. passe 8). Ce qui n'a <strong>pa
 une troncature laissée en l'état, montrée et assumée, vaut mieux qu'une omission.</p>
 </div>
 <h2 id="les-suites-dune-cloture-se-closent-aussi">Les suites d'une clôture se closent aussi<a class="headerlink" href="#les-suites-dune-cloture-se-closent-aussi" title="Permanent link">&para;</a></h2>
-<p>La passe 9 consolide les issues ouvertes en chemin ; la passe 11 les nomme « dette restante » et clôt
+<p>La passe 9 consolide les issues ouvertes en chemin ; la passe 12 les nomme « dette restante » et clôt
 l'EPIC. Ces issues, une fois livrées, forment un <strong>nouveau delta</strong> - et rien ne les rattrape si l'on
 considère que le chantier est fini.</p>
 <p>Le dépôt l'a vécu <strong>trois fois</strong> : les suites de l'EPIC #1662 ont formé l'EPIC #1863, dont les suites
 ont formé le delta clos par #1920 ; les suites de #1838 ont eu leur propre clôture (#1921). Le patron
 est donc régulier, pas accidentel.</p>
-<p><strong>Les suites d'un chantier se closent par les mêmes 12 passes</strong>, appliquées à leur seul delta
+<p><strong>Les suites d'un chantier se closent par les mêmes 13 passes</strong>, appliquées à leur seul delta
 (<code>git log &lt;sha-de-la-clôture-précédente&gt;..origin/main</code>, <strong>entier et non filtré</strong> : le code des suites
 doit se juger à côté de ce qui a été fusionné pendant qu'elles couraient). C'est peu coûteux - le
 périmètre est étroit - et c'est là qu'on trouve ce que le travail de suite a laissé derrière lui : une
@@ -11538,8 +11578,9 @@ trompé : une analyse fausse laissée en place oriente le chantier suivant.</p>
 <a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l'utilisateur**</span>
 <a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
 <a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
-<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">- [ ]</span> 10. ADR du chantier écrites (balayer les passes 0 à 9 ; une décision <span class="gs">**de ne pas faire**</span> en est une)
-<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="k">- [ ]</span> 11. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
+<a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="k">- [ ]</span> 10. Changement OpenSpec archivé : delta specs <span class="gs">**fusionnées d'abord**</span> dans <span class="sb">`openspec/specs/`</span>, toutes les capacités re-comparées, <span class="gs">**puis**</span> le dossier déplacé sous <span class="sb">`archive/`</span>
+<a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="k">- [ ]</span> 11. ADR du chantier écrites (balayer les passes 0 à 10 ; une décision <span class="gs">**de ne pas faire**</span> en est une)
+<a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a><span class="k">- [ ]</span> 12. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
 </code></pre></div>
 <h2 id="modele-de-cycle-dune-issue-rouge-vert-refactor">Modèle de cycle d'une issue (rouge, vert, refactor)<a class="headerlink" href="#modele-de-cycle-dune-issue-rouge-vert-refactor" title="Permanent link">&para;</a></h2>
 <p>Le bloc <strong>↻</strong> se répète à <strong>chaque petit pas</strong>, jusqu'à ce que le comportement soit complet : une issue
