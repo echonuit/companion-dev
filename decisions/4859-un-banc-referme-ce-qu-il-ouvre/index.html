@@ -1815,6 +1815,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-quatre-qui-restent-et-pourquoi-ils-restent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les quatre qui restent, et pourquoi ils restent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-cette-decision-empeche" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11019,6 +11030,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-quatre-qui-restent-et-pourquoi-ils-restent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les quatre qui restent, et pourquoi ils restent
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-cette-decision-empeche" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11102,20 +11124,24 @@ dispositif de plus qui ne juge rien (<a href="https://companion-dev.echonuit.fr/
 différence. Le garde <strong>refuse</strong> de conclure si le relevé d'avant manque, plutôt que de rendre un total
 plausible.</p>
 <h2 id="pourquoi-ce-garde-nest-pas-un-test">Pourquoi ce garde n'est pas un test<a class="headerlink" href="#pourquoi-ce-garde-nest-pas-un-test" title="Permanent link">&para;</a></h2>
-<p>Il faut compter quand tous les forks ont rendu la main. Un test tourne <em>pendant</em> : il ne voit ni les
-forks voisins ni ce qui suit. Le garde vit donc dans le job, en deux pas qui encadrent la suite, et
-c'est la seule place d'où la propriété soit observable.</p>
+<p>Il faut compter quand tous les forks ont rendu la main, et un test tourne <em>pendant</em>. Le garde vit donc
+dans le job, en deux pas qui encadrent la suite.</p>
 <h2 id="la-limite-mesuree-et-ecrite">La limite, mesurée et écrite<a class="headerlink" href="#la-limite-mesuree-et-ecrite" title="Permanent link">&para;</a></h2>
 <p>Le compte attribue à la suite <strong>tout ce qui apparaît pendant</strong>, y compris ce qu'une autre session
-crée au même moment. Mesuré le 30 août : une classe seule a rendu <strong>237</strong> alors que la suite complète
-en laisse 198, parce qu'un second plan de travail jouait ses tests en parallèle sur la même machine.</p>
-<p>En CI le runner est dédié, et la question ne se pose pas. En local, on lance la suite seule ou l'on ne
-croit pas le chiffre. Distinguer les répertoires par leur créateur demanderait de les préfixer par le
-processus, ce que ni JUnit ni le dépôt ne font ; le dire coûte moins que de l'outiller.</p>
+crée au même moment : une classe seule a rendu <strong>237</strong> quand la suite entière en laissait 198, un
+second plan de travail jouant ses tests en parallèle. En CI le runner est dédié ; en local, on lance
+la suite seule ou l'on ne croit pas le chiffre.</p>
 <h2 id="ce-qui-prouve-que-le-garde-voit">Ce qui prouve que le garde voit<a class="headerlink" href="#ce-qui-prouve-que-le-garde-voit" title="Permanent link">&para;</a></h2>
 <p>Retirer le <code>@TempDir</code> de <code>GestionnaireVuesTest</code> fait passer le compte de <strong>0 à 14</strong> ; le remettre le
-ramène à 0. L'épreuve a d'abord rendu 0 dans les deux cas, la mutation ne compilant pas : une mutation
-qui ne compile pas ne prouve rien, et elle se présente comme un succès.</p>
+ramène à 0.</p>
+<h2 id="les-quatre-qui-restent-et-pourquoi-ils-restent">Les quatre qui restent, et pourquoi ils restent<a class="headerlink" href="#les-quatre-qui-restent-et-pourquoi-ils-restent" title="Permanent link">&para;</a></h2>
+<p>Ce ne sont plus des bancs. Le cache de Gluon Maps est créé par <code>CachedOsmTileRetriever</code>, dont les
+chaînes ne portent <strong>aucun nom de propriété</strong> : la bibliothèque ne laisse pas choisir où il vit.</p>
+<p>Le seul levier, <code>-Djava.io.tmpdir</code> par fork, déplacerait <strong>tous</strong> les temporaires et casserait ce
+garde, qui lit <code>/tmp</code> : le remède coûterait le dispositif qui mesure.</p>
+<p>Les vingt et un outils <code>Capture*</code> n'entrent pas dans le compte : ils tournent dans d'autres jobs que
+celui que les deux pas encadrent.</p>
+<p>Le cliquet reste donc à 4, et ces quatre sont nommés ici pour qu'on n'y cherche pas un banc (#4942).</p>
 <h2 id="ce-que-cette-decision-empeche">Ce que cette décision empêche<a class="headerlink" href="#ce-que-cette-decision-empeche" title="Permanent link">&para;</a></h2>
 <p>Elle interdit d'ajouter un <code>createTempDirectory</code> sans nettoyage : le compte monterait, et le cliquet
 refuserait. Elle interdit aussi de baisser le seuil sans avoir converti : le cliquet se lit dans cette
