@@ -9549,6 +9549,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Produire un tournage complet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-train-le-fait-aussi-et-le-decalage-est-dans-lintervalle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le train le fait aussi, et le décalage est dans l'intervalle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -10532,6 +10549,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Produire un tournage complet">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-train-le-fait-aussi-et-le-decalage-est-dans-lintervalle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le train le fait aussi, et le décalage est dans l'intervalle
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -10698,6 +10732,27 @@ des classes qui citent un cas, les filme d'une traite, découpe un clip par test
 et les verse sur la pré-version.</p>
 <p>Sans cette case, le flux garde son autre rôle : filmer <strong>une</strong> classe pour éprouver qu'un runner
 pilote réellement, ce qui est l'objet de <code>sans_gestionnaire_de_fenetres</code>.</p>
+<h3 id="le-train-le-fait-aussi-et-le-decalage-est-dans-lintervalle">Le train le fait aussi, et le décalage est dans l'intervalle<a class="headerlink" href="#le-train-le-fait-aussi-et-le-decalage-est-dans-lintervalle" title="Permanent link">&para;</a></h3>
+<p><code>release.yml</code> appelle ce flux après <code>publish</code>, sur la version qu'il vient de publier. Le tournage
+n'est donc pas un geste que quelqu'un doit penser à faire.</p>
+<p>Ce que le train ne couvre pas, c'est <strong>l'intervalle entre deux versions</strong>. Un banc écrit après la
+dernière version n'a pas de clip, et n'en aura pas avant la prochaine.</p>
+<p>Mesuré le 2026-08-30 (#4820) : sept clips déclarés sur les deux pages ouvraient un lecteur vide. Le
+dernier tournage datait du 28 août à 14:52 UTC, sur un commit où aucun des cinq bancs neufs
+n'existait encore - les trois clips du banc d'import étaient là précisément parce que ce banc-là
+existait. Rien n'était cassé : personne n'avait filmé depuis.</p>
+<p>Rien n'oblige à attendre la version suivante. La liste des classes est dérivée <strong>à l'exécution</strong>,
+depuis <code>CorrespondanceRecetteTest</code> : un tournage manuel sur <code>main</code> ramasse les bancs neufs sans
+qu'une ligne change.</p>
+<div class="admonition warning">
+<p class="admonition-title">Un tournage manuel efface celui du train</p>
+<p>La pré-version est roulante, et rien ne distingue les deux sources au moment d'écrire. Le
+tournage manuel du 28 août a remplacé les clips de <code>v2.189.0</code> par un jeu dont les notes disent
+« ces clips ne correspondent à aucune version publiée ».</p>
+<p>Ce qui se perd est la correspondance, pas les clips : ceux de la version restent sur son <strong>tag</strong>.
+C'est <code>clips-recette</code> qui cesse alors de montrer une version publiée, et ses
+notes sont le seul endroit qui le dit.</p>
+</div>
 <h2 id="tourner-une-seule-session-ou-sur-une-autre-plateforme">Tourner une seule session, ou sur une autre plateforme<a class="headerlink" href="#tourner-une-seule-session-ou-sur-une-autre-plateforme" title="Permanent link">&para;</a></h2>
 <p>Le flux <strong>tournage de recette</strong> (<code>tournage-recette.yml</code>, <code>workflow_dispatch</code>) prend deux entrées : la
 <strong>session</strong> (<code>toutes</code>, ou <code>S1</code> à <code>S11</code>) et la <strong>plateforme</strong> (<code>ubuntu</code>, <code>windows</code>, <code>macos</code>). Il tourne
@@ -10712,19 +10767,19 @@ perdu la moitié, et un compte de fichiers ne le dirait pas.</p>
 <tr>
 <th></th>
 <th>Ce qu'un clip y sert</th>
-<th>Combien</th>
+<th>Combien de clips</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><a href="../clips-perceptifs/">Cas perceptifs</a></td>
 <td><strong>le regarder</strong> : c'est le seul verdict qui existe pour ces cas</td>
-<td>9</td>
+<td>10</td>
 </tr>
 <tr>
 <td><a href="../clips-assertes/">Cas assertés</a></td>
 <td>comprendre <strong>pourquoi un test rougit</strong>, ou vérifier qu'il joue ce que son nom annonce</td>
-<td>46</td>
+<td>58</td>
 </tr>
 </tbody>
 </table>
