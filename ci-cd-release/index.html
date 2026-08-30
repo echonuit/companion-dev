@@ -9635,6 +9635,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4922-l-adoption-d-une-specification-se-tient-par-un-cliquet/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4922 · L'adoption d'une spécification se tient par un cliquet
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12426,6 +12461,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (autotest dédié)</td>
 </tr>
 <tr>
+<td><code>scripts/methode/couverture-openspec.py</code></td>
+<td>ce que la spécification vivante couvre du produit : les capacités spécifiées, leurs exigences, et les paquets qui n'en portent aucune. Ses grandeurs sont des <strong>repères</strong> et jamais un total, faute d'un dénominateur que le dépôt ne tranche pas. Elle ne juge pas ; ce qui refuse est le cliquet d'ADR 4922</td>
+<td><code>lint.yml</code> (auto-test seul)</td>
+</tr>
+<tr>
 <td><code>4475-stage-non-dimensionne.py</code></td>
 <td>un test TestFX qui pose une scène dimensionnée sans faire suivre son stage, alors que le stage primaire est partagé dans un fork</td>
 <td><code>lint.yml</code> (cliquets ADR)</td>
@@ -12629,6 +12669,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>verifie-cloture-consignee.sh</code></td>
 <td>un EPIC clos <strong>sans trace de clôture</strong>. Le dépôt écrit à trois endroits que tout chantier se clôt par quatorze passes, et rien ne le vérifiait : 43 sur 64 n'en portaient aucune. La cause n'était pas l'inattention - la compétence <code>clore-un-chantier</code> ne mentionnait nulle part le modèle à coller, et qui la suivait à la lettre ne laissait donc aucune trace (<a href="../decisions/4659-une-cloture-sans-trace-ne-se-distingue-pas-d-une-cloture-absente/">ADR 4659</a>). <strong>Cliquet</strong> à 42, qui ne peut que descendre : les anciennes sont assumées, une de plus rougit. Il <strong>refuse</strong> si la forge ne répond pas</td>
 <td><code>lint.yml</code> - bloquant (autotest : <code>lint.yml</code>, hors ligne)</td>
+</tr>
+<tr>
+<td><code>verifie-specification-consignee.sh</code></td>
+<td>une clôture qui n'a pas répondu à la <strong>passe 10</strong>, celle de l'archivage OpenSpec. Cliquet de <strong>déficit</strong> et non fraction de couverture : la question « combien de capacités sur combien » n'a pas de dénominateur, le dépôt en offrant cinq incompatibles. Il reconnaît la ligne à son <strong>contenu</strong> et non à son numéro, #4840 ayant renuméroté le cycle. Un EPIC clos sans AUCUNE trace ne lui appartient pas : c'est le cliquet voisin de #4659 qui monte alors</td>
+<td><code>lint.yml</code></td>
 </tr>
 <tr>
 <td><code>lance-test-filme.sh</code></td>
