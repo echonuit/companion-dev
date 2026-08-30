@@ -10742,7 +10742,7 @@ où <a href="../ajouter-une-fonctionnalite/">Ajouter une fonctionnalité</a> dé
 le <strong>flux de contribution</strong>, cette page décrit le niveau au-dessus : comment on <strong>ouvre</strong> et on
 <strong>clôt</strong> un chantier entier.</p>
 <p>Le principe : un chantier ne se termine pas au dernier <code>feat:</code> mergé. Une fois le cœur livré, une
-<strong>clôture en 13 passes</strong> (numérotées <strong>0 à 12</strong>) garantit que l'évolution est intégrée, cohérente
+<strong>clôture en 14 passes</strong> (numérotées <strong>0 à 12</strong>, plus la <strong>6b</strong> qui prolonge la 6) garantit que l'évolution est intégrée, cohérente
 entre les deux surfaces (IHM et CLI), documentée, testée, harmonisée, <strong>regardée</strong>, et que la suite
 est cadrée.</p>
 <div class="admonition info">
@@ -11157,7 +11157,7 @@ hésitations qui y ont mené.</p>
 <p>Ce n'est pas de la cosmétique. Le <strong>titre de la pull request devient le sujet du commit de squash</strong>, et
 son corps est ce qu'atteint quiconque remonte depuis <code>git log</code>. C'est la seule trace qui survive à la
 fermeture de l'onglet.</p>
-<h2 id="a-la-cloture-les-13-passes">À la clôture : les 13 passes<a class="headerlink" href="#a-la-cloture-les-13-passes" title="Permanent link">&para;</a></h2>
+<h2 id="a-la-cloture-les-14-passes">À la clôture : les 14 passes<a class="headerlink" href="#a-la-cloture-les-14-passes" title="Permanent link">&para;</a></h2>
 <p>Elles s'exécutent <strong>dans l'ordre</strong> : la relecture des ADR remet l'existant en tête avant qu'on touche
 à quoi que ce soit, l'audit d'intégration peut révéler du travail à faire avant de documenter, la
 cohérence CLI peut révéler une commande à ajouter (qui sera alors documentée et testée par les passes
@@ -11404,7 +11404,18 @@ précisément dans les <strong>coutures</strong> entre deux étapes. Quand deux 
 <strong>fusionner</strong> en un seul qui va plus loin donne une couverture plus <strong>fidèle</strong>. Le critère de fusion
 est simple : deux étapes se fusionnent quand le défaut probable est <strong>entre</strong> elles. À l'inverse,
 fusionner sans couture à exercer ne produit qu'un test-fleuve illisible - la longueur n'est pas le but.</p>
-<h4 id="preparer-la-recette-toute-capacite-ajoutee-sait-comment-on-la-verifie">Préparer la recette : toute capacité ajoutée sait comment on la vérifie<a class="headerlink" href="#preparer-la-recette-toute-capacite-ajoutee-sait-comment-on-la-verifie" title="Permanent link">&para;</a></h4>
+<h3 id="6b-passe-de-preparation-de-recette">6b. Passe de préparation de recette<a class="headerlink" href="#6b-passe-de-preparation-de-recette" title="Permanent link">&para;</a></h3>
+<p><strong>Pourquoi une lettre et pas un numéro.</strong> Cette étape a longtemps vécu comme une case <code>6b</code> de la liste
+de clôture, sans section qui la décrive ni ligne au tableau des passes : trois listes décrivaient le
+même cycle avec trois comptes différents, et un agent qui la cochait s'appuyait sur une phrase là où
+les autres passes offrent des dizaines de lignes (#4839).</p>
+<p>Elle garde sa lettre plutôt que de devenir la passe 7, et ce choix est mesuré : renuméroter aurait
+touché <strong>161 citations dans 73 fichiers</strong>, dont 39 ADR et 20 fichiers de production. Une passe
+suffixée dit d'ailleurs quelque chose de vrai, qu'un numéro plein effacerait : elle <strong>prolonge</strong> la
+passe 6 sans être une étape indépendante, on ne prépare pas la recette avant d'avoir écrit les tests.</p>
+<p>La règle générale reste : une passe porte un numéro. La lettre est l'exception, et elle se justifie
+ici par la continuité, pas par le coût.</p>
+<p><strong>Préparer la recette : toute capacité ajoutée sait comment on la vérifie</strong></p>
 <p>La <a href="../recette/">recette</a> n'est pas le déversoir de ce qui a résisté à l'automatisation. C'est
 l'endroit où vit <strong>le procédé de vérification</strong> d'une capacité : le geste à faire, ce qu'on doit voir,
 et de quoi le refaire.</p>
@@ -11690,7 +11701,7 @@ considère que le chantier est fini.</p>
 <p>Le dépôt l'a vécu <strong>trois fois</strong> : les suites de l'EPIC #1662 ont formé l'EPIC #1863, dont les suites
 ont formé le delta clos par #1920 ; les suites de #1838 ont eu leur propre clôture (#1921). Le patron
 est donc régulier, pas accidentel.</p>
-<p><strong>Les suites d'un chantier se closent par les mêmes 13 passes</strong>, appliquées à leur seul delta
+<p><strong>Les suites d'un chantier se closent par les mêmes 14 passes</strong>, appliquées à leur seul delta
 (<code>git log &lt;sha-de-la-clôture-précédente&gt;..origin/main</code>, <strong>entier et non filtré</strong> : le code des suites
 doit se juger à côté de ce qui a été fusionné pendant qu'elles couraient). C'est peu coûteux - le
 périmètre est étroit - et c'est là qu'on trouve ce que le travail de suite a laissé derrière lui : une
