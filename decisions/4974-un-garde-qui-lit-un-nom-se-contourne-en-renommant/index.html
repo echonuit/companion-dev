@@ -1771,10 +1771,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-deux-survivants-et-pourquoi-le-cliquet-vaut-2-et-non-0" class="md-nav__link">
+  <a href="#la-population-elargie-par-4845-et-pourquoi-le-cliquet-vaut-4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les deux survivants, et pourquoi le cliquet vaut 2 et non 0
+        La population élargie par #4845, et pourquoi le cliquet vaut 4
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-deux-boucles-de-reprise-et-pourquoi-elles-ne-se-convertissent-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les deux boucles de reprise, et pourquoi elles ne se convertissent pas
       
     </span>
   </a>
@@ -11163,10 +11174,21 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-deux-survivants-et-pourquoi-le-cliquet-vaut-2-et-non-0" class="md-nav__link">
+  <a href="#la-population-elargie-par-4845-et-pourquoi-le-cliquet-vaut-4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les deux survivants, et pourquoi le cliquet vaut 2 et non 0
+        La population élargie par #4845, et pourquoi le cliquet vaut 4
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#les-deux-boucles-de-reprise-et-pourquoi-elles-ne-se-convertissent-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les deux boucles de reprise, et pourquoi elles ne se convertissent pas
       
     </span>
   </a>
@@ -11263,7 +11285,37 @@ cliquet à chaque fois qu'on l'enrichit.</p>
 <p><strong>Une aide qui attend n'est pas fautive ; ce qui l'est, c'est d'attendre sans dire quoi.</strong> Le cliquet
 borne donc le nombre de sites qui sondent en propre, et chaque survivant porte sa raison dans sa
 javadoc.</p>
-<h2 id="les-deux-survivants-et-pourquoi-le-cliquet-vaut-2-et-non-0">Les deux survivants, et pourquoi le cliquet vaut 2 et non 0<a class="headerlink" href="#les-deux-survivants-et-pourquoi-le-cliquet-vaut-2-et-non-0" title="Permanent link">&para;</a></h2>
+<h2 id="la-population-elargie-par-4845-et-pourquoi-le-cliquet-vaut-4">La population élargie par #4845, et pourquoi le cliquet vaut 4<a class="headerlink" href="#la-population-elargie-par-4845-et-pourquoi-le-cliquet-vaut-4" title="Permanent link">&para;</a></h2>
+<p>Le cliquet a d'abord compté les méthodes <strong>privées</strong>. #4845 a montré que cette restriction ne tenait
+qu'à la façon dont le défaut avait été trouvé : une attente écrite en clair dans un cas de test tait
+exactement la même chose. Il compte désormais <strong>tout appel à <code>waitFor</code> hors d'<code>Attente</code></strong>, et 41
+sites y sont passés.</p>
+<p>Une <strong>citation en commentaire</strong> n'est pas un appel : la javadoc d'<code>AttenteAvantClic</code>, qui explique
+pourquoi elle rattrape, comptait pour une réinvention et faisait valoir un de trop au cliquet.</p>
+<p>Les quatre survivants <strong>rattrapent tous</strong> et disent ce qu'ils attendaient :</p>
+<table>
+<thead>
+<tr>
+<th>Site</th>
+<th>Ce qu'il fait de l'expiration</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GesteVisible#amenerDansLeCadre</code></td>
+<td>lève un <code>IllegalStateException</code> nommant le sélecteur jamais venu</td>
+</tr>
+<tr>
+<td><code>AttenteAvantClic#attendreCliquable</code></td>
+<td>joint l'état observé de la cible</td>
+</tr>
+<tr>
+<td>les deux <code>doubleClicVersPassage</code></td>
+<td>retentent trois fois, puis lèvent avec les bornes observées</td>
+</tr>
+</tbody>
+</table>
+<h2 id="les-deux-boucles-de-reprise-et-pourquoi-elles-ne-se-convertissent-pas">Les deux boucles de reprise, et pourquoi elles ne se convertissent pas<a class="headerlink" href="#les-deux-boucles-de-reprise-et-pourquoi-elles-ne-se-convertissent-pas" title="Permanent link">&para;</a></h2>
 <p>Les deux <code>doubleClicVersPassage</code> sont des boucles de <strong>reprise</strong>. Leur expiration est rattrapée pour
 retenter trois fois, et c'est leur <code>throw</code> final qui parle, en joignant les bornes observées de la
 cellule, exactement ce que l'ADR 2213 demande. Ce ne sont pas des attentes muettes.</p>
