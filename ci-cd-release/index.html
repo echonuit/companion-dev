@@ -1697,6 +1697,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4187-un-rouge-se-classe-avant-de-se-rejouer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4187 · Un rouge se classe avant de se rejouer
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4770-la-mutation-se-transpose-par-le-point-d-entree/" class="md-nav__link">
         
   
@@ -11086,6 +11121,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#un-rouge-se-classe-avant-de-se-rejouer-4187" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un rouge se classe avant de se rejouer (#4187)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#epinglage-des-actions-et-conteneurs-2737" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11598,6 +11644,17 @@
         
       </ul>
     </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#un-rouge-se-classe-avant-de-se-rejouer-4187" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un rouge se classe avant de se rejouer (#4187)
+      
+    </span>
+  </a>
   
 </li>
       
@@ -12940,11 +12997,71 @@ surchargeable par variable d'environnement, et en montant un bac jetable.</p>
   <strong>lui seul</strong>. Vécu pendant #3293 : une première tentative de neutralisation n'avait rien modifié, et
   le vert obtenu ne prouvait rien.</li>
 </ul>
+<h2 id="un-rouge-se-classe-avant-de-se-rejouer-4187">Un rouge se classe avant de se rejouer (#4187)<a class="headerlink" href="#un-rouge-se-classe-avant-de-se-rejouer-4187" title="Permanent link">&para;</a></h2>
+<p>Un rouge de CI se rejouait à l'aveugle, et le geste passait pour raisonnable : on avait tous vu la
+suite repartir verte sans qu'une ligne ait changé. Sur 21 jours, <strong>55 passages sur 1 233 ont été
+rejoués à la main</strong>, soit 4,5 %, et personne ne savait ce que ce chiffre recouvrait.</p>
+<p>Le relevé le dit maintenant :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python3<span class="w"> </span>scripts/methode/releve-les-bancs-instables.py<span class="w"> </span>--classe<span class="w"> </span>--jours<span class="w"> </span><span class="m">21</span>
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>À qui le rouge appartient</th>
+<th style="text-align: right;">Part</th>
+<th>La conduite</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>DÉPÔT</strong>, un ou deux bancs qui vacillent</td>
+<td style="text-align: right;">56 %</td>
+<td>Ne pas rejouer. Ouvrir ou nourrir l'issue du banc</td>
+</tr>
+<tr>
+<td><strong>CASCADE</strong>, annulé parce qu'une autre étape avait déjà rougi</td>
+<td style="text-align: right;">19 %</td>
+<td>Ne pas rejouer. Lire l'étape qui a rougi la première</td>
+</tr>
+<tr>
+<td><strong>FORGE</strong>, artefact ou action indisponible</td>
+<td style="text-align: right;">11 %</td>
+<td>Rejouer, une fois</td>
+</tr>
+<tr>
+<td><strong>RUNNER</strong>, JVM effondrée ou couche graphique absente</td>
+<td style="text-align: right;">9 %</td>
+<td>Rejouer, une fois, et le consigner</td>
+</tr>
+<tr>
+<td><strong>INDÉTERMINÉ</strong>, aucune cause reconnue</td>
+<td style="text-align: right;">5 %</td>
+<td>Lire le journal. Ne pas rejouer sans l'avoir lu</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Un rouge sur cinq seulement vaut un rejeu.</strong> Les quatre autres reviennent au tirage suivant, chez
+quelqu'un d'autre, sur une demande qui n'a rien à voir. C'est le coût réel du geste réflexe : il ne
+supprime pas le rouge, il le déplace et en efface la trace, puisque la tentative rejouée écrase le
+verdict de la précédente dans ce que la forge montre.</p>
+<p><strong>La cascade existe à deux niveaux, et un seul était modélisé.</strong> Le relevé distinguait déjà, entre
+tests, celui qui tombe en tête de ceux qu'il emporte. Le même phénomène joue entre <strong>jobs</strong> : 11 des
+57 tentatives rouges ne portent aucun test tombé, seulement un « The operation was canceled » qui dit
+qu'une étape voisine avait déjà échoué. Chercher la cause dans le job annulé ne mène nulle part.</p>
+<p><strong>Ce qui compte est la fin du journal, pas le journal.</strong> Un premier classement lisait le texte entier
+et rangeait 20 tentatives sur 20 sous « un garde a refusé », parce qu'un garde <strong>vert</strong> imprime aussi
+le mot « REFUSE » en expliquant ce qu'il aurait refusé. De même, <code>java.net.ConnectException</code> apparaît
+348 fois dans des journaux parfaitement sains : c'est une coupure réseau qu'un test <strong>provoque
+exprès</strong>. Ce qui a fait échouer se lit autour de la dernière ligne d'erreur, et nulle part ailleurs.</p>
+<p><strong>Quand un rouge de runner cesse d'en être un.</strong> Deux fois de suite sur la même semaine, avec la même
+signature, ce n'est plus le runner : c'est une dépendance du dépôt à quelque chose que l'image ne
+garantit pas. Les deux tentatives à couche graphique absente relevées sur 21 jours sont sous ce
+seuil, et restent donc classées runner.</p>
 <h2 id="epinglage-des-actions-et-conteneurs-2737">Épinglage des actions et conteneurs (#2737)<a class="headerlink" href="#epinglage-des-actions-et-conteneurs-2737" title="Permanent link">&para;</a></h2>
 <p>Chaque <code>uses:</code> désigne un <strong>contenu</strong>, jamais un nom : une action est figée sur un <strong>SHA de commit</strong>,
 un conteneur sur un <strong>digest</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
 </code></pre></div>
 <p><strong>Pourquoi, alors qu'un tag semble suffire.</strong> Un tag est déplaçable. <code>actions/checkout@v7</code> peut être
 repointé sur un autre commit sans que rien ne bouge chez nous : ce qui s'exécute dans nos workflows
@@ -12960,9 +13077,9 @@ mise à jour invisible contre une mise à jour qui passe par une PR.</p>
 dans le job <code>lint</code>. Elle refuse toute référence non figée <strong>et</strong> tout SHA sans commentaire de version.
 Sans elle, la prochaine action ajoutée le serait par tag et l'épinglage se déferait en silence - la
 forme même du défaut corrigé. Pour résoudre un tag :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="c1"># si l'objet est de type « tag » (tag annoté), déréférencer :</span>
-<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># si l'objet est de type « tag » (tag annoté), déréférencer :</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
 <h2 id="la-publication-part-a-heure-fixe-2744">La publication part à heure fixe (#2744)<a class="headerlink" href="#la-publication-part-a-heure-fixe-2744" title="Permanent link">&para;</a></h2>
 <p><code>release.yml</code> ne se déclenche plus au push sur <code>main</code> mais <strong>le mercredi à 6 h UTC</strong>, plus
@@ -13041,7 +13158,7 @@ celui publié</em>, elle ne dit rien de <strong>qui</strong> l'a produit - et el
 fichier, donc sa confiance vaut celle qu'on accorde à la page du projet. L'attestation lie le binaire
 à un <strong>commit</strong> et à une <strong>exécution</strong> de ce workflow, et se vérifie contre <strong>Sigstore</strong>, hors de notre
 portée.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
 </code></pre></div>
 <p><strong>Elle est produite sur la sortie de build, avant tout téléversement</strong>, pour la même raison que
 l'empreinte : une corruption survenue au téléversement se retrouverait sinon <em>attestée</em>. Les <code>.sha256</code>
@@ -13467,8 +13584,8 @@ avis de portée <code>development</code>, ce qu'est tout cet arbre : au 2026-08-
 <h3 id="le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose">Le train ne commente pas les issues, et c'est le train qui l'impose<a class="headerlink" href="#le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose" title="Permanent link">&para;</a></h3>
 <p><code>@semantic-release/github</code> commente par défaut chaque issue et PR incluse dans une version. Le premier
 départ du train, déclenché à la main le 2026-08-06 sur <strong>104 commits</strong>, est tombé exactement là :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>TypeError: Cannot destructure property 'repository' of '(intermediate value)' as it is undefined.
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>    at @semantic-release/github/lib/success.js:81
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>TypeError: Cannot destructure property 'repository' of '(intermediate value)' as it is undefined.
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    at @semantic-release/github/lib/success.js:81
 </code></pre></div>
 <p>La cause n'est pas un bogue de circonstance, c'est une <strong>conséquence structurelle de l'ADR 2744</strong>. Le
 greffon découpe les commits en lots de <strong>100</strong> et construit, pour chaque lot, une requête GraphQL avec
@@ -13521,9 +13638,9 @@ ne part dans git.</p>
 <p>Un film d'un bloc ne sert à personne pour trancher un cas : personne ne regardera trente minutes.
 La séance dépose donc, à côté de la vidéo, un <strong>journal de repères</strong>
 (<code>target/recette-filmee/reperes.tsv</code>) qui dit <strong>quand</strong> chaque cas s'est joué.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a># repères de séance (#3774) : epoch_ms  borne   test    cas
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>1786725329321   debut   ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>1786725329581   fin ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a># repères de séance (#3774) : epoch_ms  borne   test    cas
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>1786725329321   debut   ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>1786725329581   fin ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
 </code></pre></div>
 <p>Les instants sont des <strong>millisecondes depuis l'époque</strong>, la même grandeur que <code>date +%s%3N</code> : c'est
 ce qui permet au montage de les ramener à des positions dans la vidéo.</p>
@@ -13584,7 +13701,7 @@ les cinq sixièmes de ce qu'il voyait, et annonçait 16 %. C'était le même tra
 <p>Un montage refusé <strong>ne laisse aucun clip</strong> et fait échouer le lancement, même quand les tests sont
 verts - c'est justement le cas où personne n'irait vérifier.</p>
 <h3 id="la-tournage-complet-tout-ce-qui-cite-un-cas-en-une-seance-3835">La tournage complet : tout ce qui cite un cas, en une séance (#3835)<a class="headerlink" href="#la-tournage-complet-tout-ce-qui-cite-un-cas-en-une-seance-3835" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>--planche
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>--planche
 </code></pre></div>
 <p>Le montage taille déjà un clip par <strong>test</strong> et indexe par <strong>cas</strong>. Passer les seize classes citantes
 à un même <code>-Dtest=A,B,C</code> rend donc, d'un coup, un index qui les couvre toutes : il n'y a rien à
@@ -13629,8 +13746,8 @@ proposé la même case à tout le monde.</p>
 </table>
 <p>La frontière est « <strong>aucune</strong> image utile », et non un seuil réglé à la main : soit quelque chose a
 paru, soit rien. Un nombre choisi aurait rangé un cas du mauvais côté sans qu'on le sache.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w">                                  </span><span class="c1"># le passage normal</span>
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">sans_gestionnaire_de_fenetres</span><span class="o">=</span><span class="nb">true</span><span class="w">   </span><span class="c1"># le témoin</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w">                                  </span><span class="c1"># le passage normal</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">sans_gestionnaire_de_fenetres</span><span class="o">=</span><span class="nb">true</span><span class="w">   </span><span class="c1"># le témoin</span>
 </code></pre></div>
 <h2 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">&para;</a></h2>
 <p>Les mises à jour sont proposées par <strong>Dependabot</strong>

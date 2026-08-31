@@ -1812,6 +1812,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4187-un-rouge-se-classe-avant-de-se-rejouer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4187 · Un rouge se classe avant de se rejouer
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4770-la-mutation-se-transpose-par-le-point-d-entree/" class="md-nav__link">
         
   
@@ -12428,6 +12463,11 @@
 <td><a href="4859-un-banc-referme-ce-qu-il-ouvre/">4859</a></td>
 <td>La suite abandonnait ses repertoires temporaires jusqu'a 13 730, remplissant un tmpfs de 16 Go, apres quoi elle echouait sur un message de quota qui envoie chercher une regression de code. Rien ne les comptait : un banc qui n'enleve rien est VERT et le restera, son defaut ne se voyant qu'ailleurs et plus tard. Un banc referme donc ce qu'il ouvre, par <code>@TempDir</code>, et un cliquet tient le compte, 202 a sa pose puis 4 au fil des lots, ce qui reste ne venant plus d un banc. Le compte est DIFFERENTIEL : compter le total ferait rougir le reliquat de la veille sur le poste de n'importe qui, et le garde serait desarme en une semaine. Il ne peut pas etre un test, la propriete ne s'observant qu'une fois tous les forks rendus : deux pas encadrent la suite dans le job. Limite ecrite : il attribue a la suite ce qu'une session voisine cree en meme temps, mesure a 237 contre 198</td>
 <td>#4859, sous-chantier du lot 2 de l'EPIC #4804</td>
+</tr>
+<tr>
+<td><a href="4187-un-rouge-se-classe-avant-de-se-rejouer/">4187</a></td>
+<td>Un rouge de CI se rejouait a l'aveugle, et l'issue en tirait que la suite rougissait sur des pannes du runner. Sur 21 jours, 1 233 tirages et 55 relances, la mesure refuse ce remede : le runner pese 9 %, et 56 % des rouges rejoues sont nos propres bancs, qu'aucune conduite ne repare. Un rouge se classe donc avant de se rejouer, et un sur cinq seulement vaut un rejeu ; les autres reviennent au tirage suivant, chez quelqu'un d'autre. La cascade existe a deux niveaux et un seul etait modelise : 11 tentatives ne portent aucun test tombe, seulement une annulation disant qu'une etape voisine avait deja rougi. Ce qui se lit est la FIN du journal : lire le texte entier rangeait 20 tentatives sur 20 sous une cause fausse, un garde VERT imprimant aussi le mot REFUSE. Une cause non reconnue se nomme INDETERMINE plutot que de s'inventer</td>
+<td>#4187, lot 3 de l'EPIC #4804</td>
 </tr>
 <tr>
 <td><a href="4783-le-zero-des-traces-d-outil-se-garde/">4783</a></td>
