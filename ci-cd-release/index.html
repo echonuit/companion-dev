@@ -9915,6 +9915,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4992-le-critere-de-fin-se-rappelle-et-se-mesure-il-ne-se-refuse-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4992 · Le critère de fin se rappelle et se mesure
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12679,9 +12714,14 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>adr-rapport.yml</code></td>
 </tr>
 <tr>
+<td><code>loupe-4992-lots-sans-critere.py</code></td>
+<td>les lots ouverts qui ne disent pas dans leur corps comment on saura qu'ils sont finis, sur les chantiers ouverts depuis le 2026-08-29. Elle signale, ne bloque pas, et ne juge pas la <strong>qualité</strong> d'un critère. Elle prend l'<strong>union</strong> des deux définitions d'un EPIC, le label et le titre, rater un chantier revenant à ne pas poser la question. Elle lit la forge, et sans <code>gh</code> authentifié elle sort en 2 plutôt que de rendre un rapport vide (ADR 4992)</td>
+<td><code>adr-rapport.yml</code>, et à la main (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>loupe-4712-lots-multi-pr.py</code></td>
-<td>les lots de chaque EPIC ouvert, mis sous les yeux pour que la question du sous-chantier se pose ; elle ne tranche pas, le nombre de PR qu'un lot portera étant un jugement. <strong>Hors CI</strong> : elle lit la forge, et sans <code>gh</code> elle sort en 2 plutôt que de rendre un rapport vide (ADR 4712)</td>
-<td>à la main, au découpage d'un chantier et à la passe 9 d'une clôture (autotest : <code>lint.yml</code>)</td>
+<td>les lots de chaque EPIC ouvert, mis sous les yeux pour que la question du sous-chantier se pose ; elle ne tranche pas, le nombre de PR qu'un lot portera étant un jugement. Elle lit la forge, et sans <code>gh</code> authentifié elle sort en 2 plutôt que de rendre un rapport vide (ADR 4712). <strong>Muette au rapport hebdomadaire jusqu'à #4992</strong>, faute d'un jeton sur l'étape qui le publie</td>
+<td><code>adr-rapport.yml</code>, à la main au découpage d'un chantier et à la passe 9 d'une clôture (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
 <td><code>4974-attente-reinventee.py</code></td>
