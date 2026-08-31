@@ -12944,6 +12944,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
+<td><code>cas-manquants-du-tournage.sh</code></td>
+<td><strong>lesquels</strong> des cas attendus le tournage n'a pas rendus, et non pas combien. L'oracle comparait deux nombres, « 111 cas sur 116 », sans dire quoi corriger ; et son attendu incluait les cas des scénarios <code>recette-connectee</code>, exclus du build sans jeton, si bien qu'un tournage non connecté ne pouvait pas l'atteindre et que le train a cessé de verser ses clips Java pendant cinq jours (#5012). Un index illisible le fait <strong>refuser</strong>, jamais conclure</td>
+<td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>verdict-du-tournage.sh</code></td>
 <td>ce qu'un tournage a vraiment donné : combien de cas ont <strong>rougi</strong>, lu dans les rapports <strong>XML</strong> de surefire et jamais dans les <code>.txt</code>, qui mentent sur les <code>@Nested</code>. Le tournage tourne sous <code>failure.ignore</code> - on veut les clips d'un cas qui rougit -, si bien qu'un scénario rouge laissait le job vert et son clip se versait sans marque (#4351). Il <strong>rapporte</strong>, il ne juge pas</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
