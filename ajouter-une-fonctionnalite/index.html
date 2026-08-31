@@ -9984,6 +9984,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4846-une-passe-se-range-ou-son-effet-est-juste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4846 · Une passe se range où son effet est juste
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -11244,6 +11279,20 @@ comportement. Jusqu'à #3505 cette page numérotait « Tester » en <strong>8 su
 une consigne d'écrire les tests en dernier - et c'en était une. La section 8 rassemble donc les
 <strong>outils et niveaux</strong> de test, pas le moment où l'on s'en sert.</p>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Avant le premier test : ce que le produit doit FAIRE</p>
+<p>Une fonctionnalité neuve change ce que le produit fait, donc l'étape <strong>2b</strong> de l'ouverture de
+chantier s'applique : la capacité se décrit dans la
+<a href="../cycle-de-chantier/">spécification vivante</a> avant d'être écrite, par <code>/instruire</code> puis
+<code>/proposer</code>. Les tâches du changement deviennent alors les lots du chantier, et se cochent dans
+les commits qui les réalisent.</p>
+<p>Une <strong>capacité</strong> est ici la capacité métier au sens de
+<a href="../decisions/0014-parite-cli-ihm/">l'ADR 0014</a>, nommée <code>&lt;paquet&gt;/&lt;geste&gt;</code> :
+<code>passage/emport-d-une-nuit</code>. Son grain est le geste, pas l'écran - une capacité traverse
+volontiers l'écran et la ligne de commande.</p>
+<p>Cette page décrit ensuite <strong>comment</strong> on l'écrit. La spécification dit <strong>quoi</strong>, et elle survit à
+la fermeture de l'issue.</p>
+</div>
 <h2 id="1-creer-le-paquet-et-ses-4-couches">1. Créer le paquet et ses 4 couches<a class="headerlink" href="#1-creer-le-paquet-et-ses-4-couches" title="Permanent link">&para;</a></h2>
 <p>Sous <code>src/main/java/fr/univ_amu/iut/</code>, créez <code>mafeature/</code> avec les 4 sous-paquets. Chacun a une
 <strong>règle stricte</strong> (vérifiée par ArchUnit, cf. <a href="../architecture/">Architecture</a>) :</p>
@@ -11555,6 +11604,8 @@ dans <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/CONT
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Capture + manifeste si l'écran est documenté.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Tests verts, <strong><code>./mvnw -B test-compile pmd:pmd</code></strong> puis le cliquet 4617 vert, et la couverture
       tenue par <code>./mvnw -B verify -Djacoco.haltOnFailure=true</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Si le chantier porte un changement OpenSpec, <strong>la tâche réalisée est cochée</strong> dans les commits
+      du travail, et le corps de la demande la nomme.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Commits en <strong>Conventional Commits</strong> (cf.
       <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/CONTRIBUTING.md">CONTRIBUTING.md</a>).</li>
 </ul>
