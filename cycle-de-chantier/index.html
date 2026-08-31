@@ -10036,6 +10036,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4961 · Le critère de fin vit dans le corps de sa sous-issue
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -11327,6 +11362,10 @@ sans continuité écrite devient un correctif isolé dont personne ne sait s'il 
 <p><strong>Et une quatrième, qui ne va pas au même endroit : le critère de fin.</strong> Les trois phrases ci-dessus
 se déposent en commentaire ; le critère, lui, s'écrit dans le <strong>corps</strong> de l'issue, qui est un lot de
 son chantier. La compétence <code>ouvrir-une-issue</code> porte le geste et dit pourquoi le corps et non le fil.</p>
+<p>Deux dispositifs le tiennent, et <strong>aucun ne bloque</strong> (<a href="../decisions/4992-le-critere-de-fin-se-rappelle-et-se-mesure-il-ne-se-refuse-pas/">ADR 4992</a>) :
+un lot ouvert sans critère reçoit un <strong>commentaire</strong> de rappel, une seule fois ; et la loupe
+<code>scripts/adr/loupe-4992-lots-sans-critere.py</code> compte les lots muets au rapport du lundi. Aucune
+demande de fusion ne peut rougir pour cette raison.</p>
 <h3 id="et-se-signaler-dire-quon-la-prend-et-ce-quon-va-faire">Et se signaler : dire qu'on la prend, et ce qu'on va faire<a class="headerlink" href="#et-se-signaler-dire-quon-la-prend-et-ce-quon-va-faire" title="Permanent link">&para;</a></h3>
 <p>Ces trois phrases ne servent pas qu'à soi. <strong>Elles se déposent en commentaire sur l'issue</strong>, et l'issue
 est <strong>assignée</strong> à qui la prend.</p>
