@@ -12641,6 +12641,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (auto-test seul)</td>
 </tr>
 <tr>
+<td><code>scripts/methode/verifie-specs-valides.py</code></td>
+<td>que les <strong>specs principales</strong> d'OpenSpec valident, par l'outil épinglé. Il <strong>refuse</strong> sur un corpus vide plutôt que de conclure : l'outil sort en 0 en écrivant « No items found to validate », et un garde qui l'appellerait nu serait muet en ayant l'air sain. Il ne valide pas les changements <strong>actifs</strong>, légitimement incomplets pendant leur écriture</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>4475-stage-non-dimensionne.py</code></td>
 <td>un test TestFX qui pose une scène dimensionnée sans faire suivre son stage, alors que le stage primaire est partagé dans un fork</td>
 <td><code>lint.yml</code> (cliquets ADR)</td>
