@@ -11348,8 +11348,17 @@ pourquoi elle rattrape, comptait pour une réinvention et faisait valoir un de t
 <td>les deux <code>doubleClicVersPassage</code></td>
 <td>retentent trois fois, puis lèvent avec les bornes observées</td>
 </tr>
+<tr>
+<td><code>ChargementFxmlTest</code></td>
+<td>son <code>catch (Throwable)</code> nomme la ressource FXML fautive, ce qu'<code>Attente</code> ne saurait pas faire</td>
+</tr>
 </tbody>
 </table>
+<p><strong>Et le nom a été contourné une seconde fois, par la bibliothèque.</strong> Le cliquet ne comptait que
+<code>waitFor</code> ; <code>waitForAsyncFx</code> levait la même <code>TimeoutException</code> nue sous un autre nom, et sept sites
+lui échappaient. C'est exactement le contournement que cette décision annonce, arrivé à son propre
+garde. Il compte les deux depuis #4997, et <code>Attente.surLeFil</code> porte le geste manquant : exécuter
+<strong>sur</strong> le fil, là où <code>queSurLeFil</code> <strong>lit</strong> sur le fil.</p>
 <h2 id="les-deux-boucles-de-reprise-et-pourquoi-elles-ne-se-convertissent-pas">Les deux boucles de reprise, et pourquoi elles ne se convertissent pas<a class="headerlink" href="#les-deux-boucles-de-reprise-et-pourquoi-elles-ne-se-convertissent-pas" title="Permanent link">&para;</a></h2>
 <p>Les deux <code>doubleClicVersPassage</code> sont des boucles de <strong>reprise</strong>. Leur expiration est rattrapée pour
 retenter trois fois, et c'est leur <code>throw</code> final qui parle, en joignant les bornes observées de la
