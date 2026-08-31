@@ -11158,8 +11158,9 @@ chaque passe.</p>
    patron DAO, <code>Capture*</code>…). Voir <a href="../patterns/">Patterns et principes</a>.</li>
 <li><strong>Rédiger un plan</strong> : découpage, contraintes d'architecture (<a href="../architecture/">Architecture</a> et les
    règles ArchUnit de <a href="../tests-et-qualite/">Tests et qualité</a>), risques, ordre des paliers.</li>
-<li><strong>Découper en issues</strong> reliées à un <strong>EPIC</strong> (une issue « parapluie » avec la task-list des
-   sous-issues). Chaque sous-issue porte son palier et ses dépendances.</li>
+<li><strong>Découper en issues</strong> reliées à un <strong>EPIC</strong>, une issue « parapluie » dont les lots sont ses
+   <strong>sous-issues</strong> depuis #4829. Chaque sous-issue porte son palier, ses dépendances, et <strong>son
+   critère de fin</strong>, dans son corps.</li>
 </ol>
 <h3 id="etape-0-le-triage-avant-tout-le-reste">Étape 0 : le triage, avant tout le reste<a class="headerlink" href="#etape-0-le-triage-avant-tout-le-reste" title="Permanent link">&para;</a></h3>
 <p><strong>Rien ne garantit qu'une issue soit rattachée au bon chantier.</strong> Elles naissent une par une, souvent
@@ -11253,6 +11254,9 @@ sans savoir ce qu'ils construisent.</p>
 </ul>
 <p>Le troisième point est celui qu'on saute, et c'est le seul qui ne se retrouve pas après coup. Une issue
 sans continuité écrite devient un correctif isolé dont personne ne sait s'il a été fini.</p>
+<p><strong>Et une quatrième, qui ne va pas au même endroit : le critère de fin.</strong> Les trois phrases ci-dessus
+se déposent en commentaire ; le critère, lui, s'écrit dans le <strong>corps</strong> de l'issue, qui est un lot de
+son chantier. La compétence <code>ouvrir-une-issue</code> porte le geste et dit pourquoi le corps et non le fil.</p>
 <h3 id="et-se-signaler-dire-quon-la-prend-et-ce-quon-va-faire">Et se signaler : dire qu'on la prend, et ce qu'on va faire<a class="headerlink" href="#et-se-signaler-dire-quon-la-prend-et-ce-quon-va-faire" title="Permanent link">&para;</a></h3>
 <p>Ces trois phrases ne servent pas qu'à soi. <strong>Elles se déposent en commentaire sur l'issue</strong>, et l'issue
 est <strong>assignée</strong> à qui la prend.</p>
