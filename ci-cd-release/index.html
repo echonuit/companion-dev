@@ -11920,7 +11920,7 @@
 
 
 <h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
-<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->19<!--/inv--> workflows et le processus de
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->20<!--/inv--> workflows et le processus de
 publication.</p>
 <h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
 <table>
@@ -11992,6 +11992,12 @@ publication.</p>
 <td>PR (dont <code>edited</code>)</td>
 <td>Le <strong>corps de la PR</strong> passe la part mécanisable de la grille de prose : cadratin, apostrophe courbe, élision sans apostrophe. Ce corps n'est jamais commis, et c'est pourquoi aucun garde de fichiers ne l'atteignait ; il est pourtant publié dès qu'il part (<a href="../decisions/4453-la-prose-publiee-sur-la-forge-releve-de-la-meme-grille/">ADR 4453</a>)</td>
 <td>Non - <strong>informatif</strong>, comme le titre</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/critere-de-fin.yml">critere-de-fin.yml</a></td>
+<td>issue (<code>opened</code>, <code>edited</code>, <code>reopened</code>)</td>
+<td>Un <strong>lot</strong> ouvert sans dire comment on saura qu'il est fini reçoit un <strong>rappel en commentaire</strong>, une seule fois. Il rappelle et ne refuse pas : l'arbitrage de #4961 a écarté le rouge qui tombe sur qui n'a pas la main. La forge n'émet aucun évènement au rattachement d'une sous-issue, donc un lot rattaché après coup et jamais réédité lui échappe</td>
+<td>Non - <strong>il rappelle</strong>, et ne peut faire rougir aucune demande</td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/capture-vues.yml">capture-vues.yml</a></td>
@@ -12932,6 +12938,7 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>compare-apercus.sh</code> | montre, sur une PR, les écrans qu'elle change : avant/après accolés, part de pixels, et le <strong>dit</strong> quand aucun ne change | <code>capture-vues.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>compare-tournages.sh</code> | montre ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Le chiffre <strong>trie</strong>, la carte <strong>localise</strong> ; une mesure impossible se compte au lieu de passer pour « rien n'a changé » | <code>comparer-tournages.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>verifie-chantier-de-l-issue.sh</code> | l'issue que la demande de fusion <strong>ferme</strong> appartient à un chantier : son <code>parent</code> n'est ni absent, ni le sas des suites #4562, d'où rien ne se traite. Il ne juge que cette issue-là, jamais le dépôt entier | <code>corps-pr.yml</code> (autotest : <code>lint.yml</code>) |
+| <code>rappelle-le-critere-de-fin.sh</code> | un <strong>lot</strong> dit dans son corps comment on saura qu'il est fini. Une LOUPE : elle rend un texte à poster, ne refuse rien, et ne juge pas la <strong>qualité</strong> du critère. Elle reconnaît un lot par son <code>parent</code> ou par la marque « Fait partie de #N », le sas #4562 exclu | <code>critere-de-fin.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>concordances-du-cycle.py</code> | les quatre concordances qui relient commandes, tableau des passes et compétences : une commande ouvre une compétence qui existe, le tableau en nomme une qui existe, la <code>description</code> annonce la passe que le tableau attribue, aucune compétence n'est orpheline. Il ne vérifie pas qu'une compétence <strong>dise vrai</strong> | <code>lint.yml</code> |
 | <code>verifie-inventaires-ci.sh</code> | les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité | <code>lint.yml</code> |
 | <code>verifie-noms-d-etapes.sh</code> | aucun nom d'étape ou de job ne perd de texte à l'analyse YAML (un <code>#</code> non cité ouvre un commentaire) | <code>lint.yml</code> |
