@@ -1777,6 +1777,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4974-un-garde-qui-lit-un-nom-se-contourne-en-renommant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4974 · Un garde qui lit un nom se contourne en renommant
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4859-un-banc-referme-ce-qu-il-ouvre/" class="md-nav__link">
         
   
@@ -12401,7 +12436,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 122<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 124<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -12458,6 +12493,11 @@
 <td><a href="4841-un-motif-ne-se-declare-qu-apres-son-controle-inverse/">4841</a></td>
 <td>Quatre fois de suite un motif est apparu, net, avec des chiffres a l'appui : <code>Respiration</code> avant une assertion, les parcours de bout en bout, <code>waitForFxEvents</code> suivi d'une assertion, un <code>waitFor</code> muet. Les TROIS premiers etaient faux, et le premier avait deja son sous-chantier ecrit dans son cadrage. Un chiffre isole mesure la population CHOISIE, pas le motif : quand 76 % des classes JavaFX figurent au releve des instables, n'importe quel sous-ensemble en rend 76 %. Le denominateur se mesure sur le COMPLEMENT, et les deux taux partent ensemble ou le motif n'est pas declare. Un ecart qui se compte en unites n'est pas un motif ; un facteur quatre en est un. Et un motif qui tient reste un MARQUEUR : un banc qui a ecrit sa propre attente est un banc qui a RENCONTRE le probleme</td>
 <td>#4841, lot 1 de l'EPIC #4804</td>
+</tr>
+<tr>
+<td><a href="4974-un-garde-qui-lit-un-nom-se-contourne-en-renommant/">4974</a></td>
+<td>#4847 voulait clore par un cliquet sur <code>private void attendre</code> employant <code>waitFor</code>. La mesure l'a refuse deux fois : les cinq methodes <code>attendre</code> restantes sont toutes legitimes, et neuf reinventions vivaient sous d'autres noms, dont celle du banc le plus instable du depot. Le compte valait donc 22 et non 15. Le cliquet lit les CORPS, jamais les noms : une methode privee, quel que soit son nom, dont le corps appelle <code>waitFor</code>. Il vaut 2 et non 0 parce que les deux <code>doubleClicVersPassage</code> sont des boucles de REPRISE qui disent deja ce qu'elles attendaient ; convertir l'une ferait sortir un AssertionError au premier essai, la ou son catch n'attend qu'une TimeoutException, et la boucle n'aurait plus que l'apparence d'une reprise</td>
+<td>#4974, lot 1 de l'EPIC #4804</td>
 </tr>
 <tr>
 <td><a href="4859-un-banc-referme-ce-qu-il-ouvre/">4859</a></td>

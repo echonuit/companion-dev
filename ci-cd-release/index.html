@@ -1662,6 +1662,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4974-un-garde-qui-lit-un-nom-se-contourne-en-renommant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4974 · Un garde qui lit un nom se contourne en renommant
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4859-un-banc-referme-ce-qu-il-ouvre/" class="md-nav__link">
         
   
@@ -12647,6 +12682,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>loupe-4712-lots-multi-pr.py</code></td>
 <td>les lots de chaque EPIC ouvert, mis sous les yeux pour que la question du sous-chantier se pose ; elle ne tranche pas, le nombre de PR qu'un lot portera étant un jugement. <strong>Hors CI</strong> : elle lit la forge, et sans <code>gh</code> elle sort en 2 plutôt que de rendre un rapport vide (ADR 4712)</td>
 <td>à la main, au découpage d'un chantier et à la passe 9 d'une clôture (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
+<td><code>4974-attente-reinventee.py</code></td>
+<td>les méthodes <strong>privées</strong> dont le corps appelle <code>WaitForAsyncUtils.waitFor</code> : une attente réinventée là où <code>Attente</code> dit ce qu'elle attendait. Il lit les <strong>corps</strong>, jamais les noms, parce qu'un garde qui lit un nom se contourne en renommant : #4847 en avait compté 13 sous le nom <code>attendre</code>, la mesure sans les noms en trouvait 22. Il vaut <strong>2</strong> et non 0, les deux boucles de reprise <code>doubleClicVersPassage</code> disant déjà ce qu'elles attendaient (ADR 4974)</td>
+<td><code>lint.yml</code> (cliquets ADR, autotest dédié)</td>
 </tr>
 <tr>
 <td><code>4468-javadoc-non-relue.py</code></td>
