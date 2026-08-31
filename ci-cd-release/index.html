@@ -12855,143 +12855,48 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td>une clôture qui n'a pas répondu à la <strong>passe 10</strong>, celle de l'archivage OpenSpec. Cliquet de <strong>déficit</strong> et non fraction de couverture : la question « combien de capacités sur combien » n'a pas de dénominateur, le dépôt en offrant cinq incompatibles. Il reconnaît la ligne à son <strong>contenu</strong> et non à son numéro, #4840 ayant renuméroté le cycle. Un EPIC clos sans AUCUNE trace ne lui appartient pas : c'est le cliquet voisin de #4659 qui monte alors</td>
 <td><code>lint.yml</code></td>
 </tr>
-<tr>
-<td><code>lance-test-filme.sh</code></td>
-<td>un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres</td>
-<td><code>recette-filmee.yml</code> - workflow <strong>manuel</strong></td>
-</tr>
-<tr>
-<td><code>filtrer-bruit-cartes.sh</code></td>
-<td>rend leur version committée aux aperçus de carte dont <strong>seul le fond</strong> a changé</td>
-<td><code>capture-vues.yml</code></td>
-</tr>
-<tr>
-<td><code>compare-apercus.sh</code></td>
-<td>montre, sur une PR, les écrans qu'elle change : avant/après accolés, part de pixels, et le <strong>dit</strong> quand aucun ne change</td>
-<td><code>capture-vues.yml</code> (autotest : <code>lint.yml</code>)</td>
-</tr>
-<tr>
-<td><code>compare-tournages.sh</code></td>
-<td>montre ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Le chiffre <strong>trie</strong>, la carte <strong>localise</strong> ; une mesure impossible se compte au lieu de passer pour « rien n'a changé »</td>
-<td><code>comparer-tournages.yml</code> (autotest : <code>lint.yml</code>)</td>
-</tr>
-<tr>
-<td><code>verifie-chantier-de-l-issue.sh</code></td>
-<td>l'issue que la demande de fusion <strong>ferme</strong> appartient à un chantier : son <code>parent</code> n'est ni absent, ni le sas des suites #4562, d'où rien ne se traite. Il ne juge que cette issue-là, jamais le dépôt entier</td>
-<td><code>corps-pr.yml</code> (autotest : <code>lint.yml</code>)</td>
-</tr>
-<tr>
-<td><code>concordances-du-cycle.py</code></td>
-<td>les quatre concordances qui relient commandes, tableau des passes et compétences : une commande ouvre une compétence qui existe, le tableau en nomme une qui existe, la <code>description</code> annonce la passe que le tableau attribue, aucune compétence n'est orpheline. Il ne vérifie pas qu'une compétence <strong>dise vrai</strong></td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>verifie-inventaires-ci.sh</code></td>
-<td>les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>verifie-noms-d-etapes.sh</code></td>
-<td>aucun nom d'étape ou de job ne perd de texte à l'analyse YAML (un <code>#</code> non cité ouvre un commentaire)</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>verifie-verdict-avant-fusion.sh</code></td>
-<td>une pull request ne se fusionne pas tant que son commit de tête n'a pas un verdict <strong>complet</strong> : ni zéro run, ni un run rapide conclu pendant que les gardes bloquants courent encore. #4560 a été fusionnée à 17:13:02Z avec zéro run sur <code>909aeafa8</code> : les sept qu'elle a fini par avoir sont nés à 17:15, deux minutes trop tard, et <code>main</code> en est resté rouge sur un garde bloquant. Il ne juge <strong>pas la couleur</strong> - passer outre un rouge visible reste le choix assumé par l'<a href="../decisions/0041-un-check-requis-gouverne-la-branche/">ADR 0041</a> -, seulement l'absence de couleur, qu'elle n'avait pas prévue (#4571)</td>
-<td><strong>à la main</strong> avant de fusionner (autotest : <code>lint.yml</code>)</td>
-</tr>
-<tr>
-<td><code>scripts/adr/verifie_scripts.py</code></td>
-<td>chaque détecteur ADR voit sa violation témoin et ignore la même en commentaire, et <strong>aucun détecteur n'est sans cas</strong></td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/adr/4359-javadoc-narratif.py</code></td>
-<td>la prose de javadoc ne remonte pas au-delà de son cliquet : un bloc de plus de huit lignes raconte là où le contrat suffirait, et les étiquettes de contrat ne comptent pas comme de la prose (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>)</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/adr/4359-blocs-relus.py</code></td>
-<td>le registre des blocs de javadoc <strong>relus et gardés volontairement</strong> ne porte aucune entrée périmée. L'empreinte porte sur le TEXTE du bloc : une édition l'invalide, ce qui force une nouvelle lecture au lieu de la présumer. Il <strong>ne fait pas baisser le cliquet</strong> - il mémorise une revue, il ne desserre pas une dette (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>)</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/adr/4617-code-mort-et-zone-de-test.py</code></td>
-<td>ce que le portail trouve, <strong>un cliquet par zone</strong> et le pire des deux verdicts : la production est à <strong>zéro</strong>, ce qui se lit comme un refus (<a href="../decisions/4682-le-portail-compte-chaque-zone-a-part/">ADR 4682</a>), la zone de test à <strong>40</strong> (<a href="../decisions/4617-le-portail-voit-les-tests-et-le-code-mort/">ADR 4617</a>). Un compteur unique laisserait une régression d'un côté se payer par un gain de l'autre. Il lit le rapport de PMD et non les sources, refuse quand ce rapport manque plutôt que de rendre zéro, et écarte les littéraux dupliqués de la seule zone de test, où les répéter est le geste juste</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/adr/4395-renvois-en-javadoc.py</code></td>
-<td>le nombre de renvois <code>#N</code> portés par la javadoc de production <strong>ne descend pas</strong>. C'est un PLANCHER et non un cliquet : sa polarité est inversée, descendre est la perte. Il existe parce que la résorption de la javadoc coupe la prose où vivent ces citations, et qu'un renvoi perdu ne casse rien - il cesse d'ouvrir. Plancher à 3 111, article A30</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/graphify/pont_ressources.py</code></td>
-<td>l'index de classe Java préfère la <strong>classe</strong> à la page <code>X.java</code>, et le compte des commandes CLI couvertes reste borné par le nombre de commandes</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/graphify/rebuild.py</code></td>
-<td><code>GRAPH_REPORT.md</code> annonce le corpus réel, et non un corpus vide suivi d'un verdict qui le contredit</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/adr/verifie_okf.py</code></td>
-<td>chaque ADR porte un en-tête typé, se rattache à un article de la constitution, et gage le niveau de vérification qu'elle déclare : une « humaine » qui nomme un applicateur n'en est pas une, et le corpus ne descend pas sous son plancher</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/matrice-constitution.py</code></td>
-<td>la matrice de <a href="../constitution/">la constitution</a> concorde avec les en-têtes des ADR, et <strong>nomme les articles que rien ne tient</strong> : c'est la liste des gardes qui restent à écrire</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/matrice-ergonomie.py</code></td>
-<td>la matrice de <a href="../ergonomie/heuristiques/">l'annexe des heuristiques</a> concorde avec les en-têtes, et <strong>nomme les heuristiques que rien ne sert</strong></td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/mesure-registre.py</code></td>
-<td>aucun connecteur lourd n'ouvre une phrase : c'est le <strong>motif d'écartement</strong> que <a href="../registre-editorial/">le registre éditorial</a> invoque pour ne pas en faire une règle, et il se retournerait en silence</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/mkdocs/bandeau_adr.py</code></td>
-<td>le bandeau d'une page d'ADR porte statut, article, chantier et vérification, se pose <strong>sous</strong> le titre, et <strong>arrête la construction</strong> sur un article que la constitution ne déclare pas</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/synchronise-adaptateurs.py</code></td>
-<td><code>.claude/skills/</code> est une copie à jour de <code>.agents/skills/</code> : une compétence corrigée à la source ne laisse pas un agent lire l'ancienne version. Il regarde dans les <strong>deux sens</strong> : ce qui manque à la copie, et ce qu'elle porte <strong>en trop</strong>. Un dossier sans source est un orphelin, que tout renommage laissait derrière lui pendant que le garde annonçait « adaptateurs à jour » ; mesuré sur les cinq renommages de #4565. En écriture il est supprimé et <strong>nommé</strong>, en <code>--verifie</code> il fait rougir (#4593)</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/verifie-version-openspec.py</code></td>
-<td>la version d'OpenSpec <strong>résolue par le lockfile</strong> vaut le <code>generatedBy</code> que les douze fichiers de l'outil déclarent, et le manifeste l'épingle <strong>exactement</strong> : un intervalle laisserait le prochain <code>npm install</code> déplacer la version sans qu'aucun diff du manifeste ne le montre. Il lit le lockfile plutôt que d'appeler <code>openspec --version</code>, parce que c'est la version du dépôt qui fait foi et non celle du poste (#4512). Il refuse <strong>par entrée de corpus</strong> et non sur le total : un chemin disparu laisse les autres rendre des fichiers, et un refus sur le total resterait vert en n'ayant lu qu'une partie de ce qu'il annonce (#4566)</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/verifie-adoption-openspec.py</code></td>
-<td>les six compétences OpenSpec <strong>adoptées</strong> par #4515 portent toujours les deux marqueurs que l'amont ne peut pas produire, <code>langue: fr</code> et <code>origine:</code>, dans les deux arbres. <code>openspec update --force</code> les rend à l'anglais amont : mesuré au foyer isolé, le marqueur retombe de 12/12 à 0/12 et le garde rougit, alors que la même commande <strong>sans</strong> <code>--force</code> ne réécrit rien et le laisse vert. Il refuse <strong>par entrée de corpus</strong> et non sur le total, pour qu'un arbre disparu ne le laisse pas vert sur la moitié de sa portée (#4516)</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/verifie-renvois-competences.py</code></td>
-<td>tout renvoi barre-oblique cité par une compétence, <code>/realiser</code> comme <code>/opsx:continue</code>, désigne une commande qui <strong>existe</strong> sous <code>.claude/commands/</code>, <strong>ou</strong> la compétence déclare le flux optionnel et donne le repli. C'est une autre famille que le garde des sous-commandes : celui-ci lit les commandes du <strong>client</strong>, l'autre les invocations de la <strong>ligne de commande</strong>, et rien ne reliait un <code>/nom</code> cité à l'existence de son fichier. Son motif a été éprouvé avant d'être cru, deux lectures fausses corrigées : les quatre <code>/realiser &lt;autre&gt;</code> que l'apostrophe fermante manquait, et <code>/tmp</code> qui se présentait comme une commande absente et reste exempté <strong>nominativement</strong> (#4564)</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/verifie-controle-du-titre.py</code></td>
-<td><code>CONTRIBUTING.md</code> et les deux copies de la compétence <code>clore-une-issue</code> nomment <code>verifie-titre-pr.sh</code>, et ce script <strong>refuse encore</strong> l'espace avant les deux-points. Le dépôt pratique deux conventions à un caractère d'écart, et c'est la plus écrite qui est fausse en PR : 62 des 100 derniers titres d'issue portent l'espace, les 100 dernières PR fusionnées sont à zéro. Le défaut n'entre pas au commit, les quatre PR rouges du 2026-08-26 partant toutes d'une branche aux sujets conformes, mais à la frappe du titre. Le garde relance le script cité sur un titre fautif <strong>et</strong> sur un titre conforme : une méthode qui nommerait une commande devenue permissive vaut moins que rien (#4598)</td>
-<td><code>lint.yml</code></td>
-</tr>
-<tr>
-<td><code>scripts/methode/verifie-sous-commandes-openspec.py</code></td>
-<td>les <strong>invocations</strong> citées dans les douze fichiers d'OpenSpec existent dans l'outil épinglé, à <strong>deux niveaux</strong> : un garde qui ne lirait que le premier mot déclarerait <code>openspec new</code> valide et laisserait passer <code>openspec new frobnicate</code>. Il compare à l'outil épinglé et jamais à celui du <code>PATH</code>, qui peut être d'une autre version. Il est <strong>vert sur le corpus d'aujourd'hui</strong>, donc tout son poids porte sur son auto-test, dont le premier cas est un témoin vert et le dernier rejoue le faux positif de l'en-tête YAML (#4514). Il refuse <strong>par entrée de corpus</strong> et non sur le total : un chemin disparu laisse les autres rendre des fichiers, et un refus sur le total resterait vert en n'ayant lu qu'une partie de ce qu'il annonce (#4566)</td>
-<td><code>lint.yml</code>, job <code>outillage-release</code></td>
-</tr>
 </tbody>
 </table>
+<div class="admonition warning">
+<p class="admonition-title">Un troisième cliquet de forge se décide avant d'être fini (#4954)</p>
+<p>Les deux ci-dessus partagent <strong>59 lignes</strong> : lire un cliquet dans un en-tête d'ADR, interroger la
+forge en refusant si <code>gh</code> manque, descendre le seuil quand le dépôt en porte moins, et le banc
+<code>joue</code> avec son injection hors ligne.</p>
+<p>L'extraction a été <strong>écartée en connaissance de cause</strong> : une bibliothèque partagée entre deux
+gardes de CI crée un mode de défaillance commun, et muter une fonction partagée éprouve la
+bibliothèque plutôt que le garde. Leurs prémisses ont d'ailleurs divergé depuis (#4948), et la
+part commune est tombée de 65 % et 54 % à <strong>55 % et 48 %</strong>.</p>
+<p><strong>Mais deux instances ne font pas un patron, et trois si.</strong> Si vous écrivez un troisième cliquet
+qui interroge la forge, la copie devient une dette qui se paie trois fois : rouvrez #4954 et
+tranchez <strong>avant</strong> de le finir, pas après.</p>
+</div>
+<p>| <code>lance-test-filme.sh</code> | un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres | <code>recette-filmee.yml</code> - workflow <strong>manuel</strong> |
+| <code>filtrer-bruit-cartes.sh</code> | rend leur version committée aux aperçus de carte dont <strong>seul le fond</strong> a changé | <code>capture-vues.yml</code> |
+| <code>compare-apercus.sh</code> | montre, sur une PR, les écrans qu'elle change : avant/après accolés, part de pixels, et le <strong>dit</strong> quand aucun ne change | <code>capture-vues.yml</code> (autotest : <code>lint.yml</code>) |
+| <code>compare-tournages.sh</code> | montre ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Le chiffre <strong>trie</strong>, la carte <strong>localise</strong> ; une mesure impossible se compte au lieu de passer pour « rien n'a changé » | <code>comparer-tournages.yml</code> (autotest : <code>lint.yml</code>) |
+| <code>verifie-chantier-de-l-issue.sh</code> | l'issue que la demande de fusion <strong>ferme</strong> appartient à un chantier : son <code>parent</code> n'est ni absent, ni le sas des suites #4562, d'où rien ne se traite. Il ne juge que cette issue-là, jamais le dépôt entier | <code>corps-pr.yml</code> (autotest : <code>lint.yml</code>) |
+| <code>concordances-du-cycle.py</code> | les quatre concordances qui relient commandes, tableau des passes et compétences : une commande ouvre une compétence qui existe, le tableau en nomme une qui existe, la <code>description</code> annonce la passe que le tableau attribue, aucune compétence n'est orpheline. Il ne vérifie pas qu'une compétence <strong>dise vrai</strong> | <code>lint.yml</code> |
+| <code>verifie-inventaires-ci.sh</code> | les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité | <code>lint.yml</code> |
+| <code>verifie-noms-d-etapes.sh</code> | aucun nom d'étape ou de job ne perd de texte à l'analyse YAML (un <code>#</code> non cité ouvre un commentaire) | <code>lint.yml</code> |
+| <code>verifie-verdict-avant-fusion.sh</code> | une pull request ne se fusionne pas tant que son commit de tête n'a pas un verdict <strong>complet</strong> : ni zéro run, ni un run rapide conclu pendant que les gardes bloquants courent encore. #4560 a été fusionnée à 17:13:02Z avec zéro run sur <code>909aeafa8</code> : les sept qu'elle a fini par avoir sont nés à 17:15, deux minutes trop tard, et <code>main</code> en est resté rouge sur un garde bloquant. Il ne juge <strong>pas la couleur</strong> - passer outre un rouge visible reste le choix assumé par l'<a href="../decisions/0041-un-check-requis-gouverne-la-branche/">ADR 0041</a> -, seulement l'absence de couleur, qu'elle n'avait pas prévue (#4571) | <strong>à la main</strong> avant de fusionner (autotest : <code>lint.yml</code>) |
+| <code>scripts/adr/verifie_scripts.py</code> | chaque détecteur ADR voit sa violation témoin et ignore la même en commentaire, et <strong>aucun détecteur n'est sans cas</strong> | <code>lint.yml</code> |
+| <code>scripts/adr/4359-javadoc-narratif.py</code> | la prose de javadoc ne remonte pas au-delà de son cliquet : un bloc de plus de huit lignes raconte là où le contrat suffirait, et les étiquettes de contrat ne comptent pas comme de la prose (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>) | <code>lint.yml</code> |
+| <code>scripts/adr/4359-blocs-relus.py</code> | le registre des blocs de javadoc <strong>relus et gardés volontairement</strong> ne porte aucune entrée périmée. L'empreinte porte sur le TEXTE du bloc : une édition l'invalide, ce qui force une nouvelle lecture au lieu de la présumer. Il <strong>ne fait pas baisser le cliquet</strong> - il mémorise une revue, il ne desserre pas une dette (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>) | <code>lint.yml</code> |
+| <code>scripts/adr/4617-code-mort-et-zone-de-test.py</code> | ce que le portail trouve, <strong>un cliquet par zone</strong> et le pire des deux verdicts : la production est à <strong>zéro</strong>, ce qui se lit comme un refus (<a href="../decisions/4682-le-portail-compte-chaque-zone-a-part/">ADR 4682</a>), la zone de test à <strong>40</strong> (<a href="../decisions/4617-le-portail-voit-les-tests-et-le-code-mort/">ADR 4617</a>). Un compteur unique laisserait une régression d'un côté se payer par un gain de l'autre. Il lit le rapport de PMD et non les sources, refuse quand ce rapport manque plutôt que de rendre zéro, et écarte les littéraux dupliqués de la seule zone de test, où les répéter est le geste juste | <code>lint.yml</code> |
+| <code>scripts/adr/4395-renvois-en-javadoc.py</code> | le nombre de renvois <code>#N</code> portés par la javadoc de production <strong>ne descend pas</strong>. C'est un PLANCHER et non un cliquet : sa polarité est inversée, descendre est la perte. Il existe parce que la résorption de la javadoc coupe la prose où vivent ces citations, et qu'un renvoi perdu ne casse rien - il cesse d'ouvrir. Plancher à 3 111, article A30 | <code>lint.yml</code> |
+| <code>scripts/graphify/pont_ressources.py</code> | l'index de classe Java préfère la <strong>classe</strong> à la page <code>X.java</code>, et le compte des commandes CLI couvertes reste borné par le nombre de commandes | <code>lint.yml</code> |
+| <code>scripts/graphify/rebuild.py</code> | <code>GRAPH_REPORT.md</code> annonce le corpus réel, et non un corpus vide suivi d'un verdict qui le contredit | <code>lint.yml</code> |
+| <code>scripts/adr/verifie_okf.py</code> | chaque ADR porte un en-tête typé, se rattache à un article de la constitution, et gage le niveau de vérification qu'elle déclare : une « humaine » qui nomme un applicateur n'en est pas une, et le corpus ne descend pas sous son plancher | <code>lint.yml</code> |
+| <code>scripts/methode/matrice-constitution.py</code> | la matrice de <a href="../constitution/">la constitution</a> concorde avec les en-têtes des ADR, et <strong>nomme les articles que rien ne tient</strong> : c'est la liste des gardes qui restent à écrire | <code>lint.yml</code> |
+| <code>scripts/methode/matrice-ergonomie.py</code> | la matrice de <a href="../ergonomie/heuristiques/">l'annexe des heuristiques</a> concorde avec les en-têtes, et <strong>nomme les heuristiques que rien ne sert</strong> | <code>lint.yml</code> |
+| <code>scripts/methode/mesure-registre.py</code> | aucun connecteur lourd n'ouvre une phrase : c'est le <strong>motif d'écartement</strong> que <a href="../registre-editorial/">le registre éditorial</a> invoque pour ne pas en faire une règle, et il se retournerait en silence | <code>lint.yml</code> |
+| <code>scripts/mkdocs/bandeau_adr.py</code> | le bandeau d'une page d'ADR porte statut, article, chantier et vérification, se pose <strong>sous</strong> le titre, et <strong>arrête la construction</strong> sur un article que la constitution ne déclare pas | <code>lint.yml</code> |
+| <code>scripts/methode/synchronise-adaptateurs.py</code> | <code>.claude/skills/</code> est une copie à jour de <code>.agents/skills/</code> : une compétence corrigée à la source ne laisse pas un agent lire l'ancienne version. Il regarde dans les <strong>deux sens</strong> : ce qui manque à la copie, et ce qu'elle porte <strong>en trop</strong>. Un dossier sans source est un orphelin, que tout renommage laissait derrière lui pendant que le garde annonçait « adaptateurs à jour » ; mesuré sur les cinq renommages de #4565. En écriture il est supprimé et <strong>nommé</strong>, en <code>--verifie</code> il fait rougir (#4593) | <code>lint.yml</code> |
+| <code>scripts/methode/verifie-version-openspec.py</code> | la version d'OpenSpec <strong>résolue par le lockfile</strong> vaut le <code>generatedBy</code> que les douze fichiers de l'outil déclarent, et le manifeste l'épingle <strong>exactement</strong> : un intervalle laisserait le prochain <code>npm install</code> déplacer la version sans qu'aucun diff du manifeste ne le montre. Il lit le lockfile plutôt que d'appeler <code>openspec --version</code>, parce que c'est la version du dépôt qui fait foi et non celle du poste (#4512). Il refuse <strong>par entrée de corpus</strong> et non sur le total : un chemin disparu laisse les autres rendre des fichiers, et un refus sur le total resterait vert en n'ayant lu qu'une partie de ce qu'il annonce (#4566) | <code>lint.yml</code> |
+| <code>scripts/methode/verifie-adoption-openspec.py</code> | les six compétences OpenSpec <strong>adoptées</strong> par #4515 portent toujours les deux marqueurs que l'amont ne peut pas produire, <code>langue: fr</code> et <code>origine:</code>, dans les deux arbres. <code>openspec update --force</code> les rend à l'anglais amont : mesuré au foyer isolé, le marqueur retombe de 12/12 à 0/12 et le garde rougit, alors que la même commande <strong>sans</strong> <code>--force</code> ne réécrit rien et le laisse vert. Il refuse <strong>par entrée de corpus</strong> et non sur le total, pour qu'un arbre disparu ne le laisse pas vert sur la moitié de sa portée (#4516) | <code>lint.yml</code> |
+| <code>scripts/methode/verifie-renvois-competences.py</code> | tout renvoi barre-oblique cité par une compétence, <code>/realiser</code> comme <code>/opsx:continue</code>, désigne une commande qui <strong>existe</strong> sous <code>.claude/commands/</code>, <strong>ou</strong> la compétence déclare le flux optionnel et donne le repli. C'est une autre famille que le garde des sous-commandes : celui-ci lit les commandes du <strong>client</strong>, l'autre les invocations de la <strong>ligne de commande</strong>, et rien ne reliait un <code>/nom</code> cité à l'existence de son fichier. Son motif a été éprouvé avant d'être cru, deux lectures fausses corrigées : les quatre <code>/realiser &lt;autre&gt;</code> que l'apostrophe fermante manquait, et <code>/tmp</code> qui se présentait comme une commande absente et reste exempté <strong>nominativement</strong> (#4564) | <code>lint.yml</code> |
+| <code>scripts/methode/verifie-controle-du-titre.py</code> | <code>CONTRIBUTING.md</code> et les deux copies de la compétence <code>clore-une-issue</code> nomment <code>verifie-titre-pr.sh</code>, et ce script <strong>refuse encore</strong> l'espace avant les deux-points. Le dépôt pratique deux conventions à un caractère d'écart, et c'est la plus écrite qui est fausse en PR : 62 des 100 derniers titres d'issue portent l'espace, les 100 dernières PR fusionnées sont à zéro. Le défaut n'entre pas au commit, les quatre PR rouges du 2026-08-26 partant toutes d'une branche aux sujets conformes, mais à la frappe du titre. Le garde relance le script cité sur un titre fautif <strong>et</strong> sur un titre conforme : une méthode qui nommerait une commande devenue permissive vaut moins que rien (#4598) | <code>lint.yml</code> |
+| <code>scripts/methode/verifie-sous-commandes-openspec.py</code> | les <strong>invocations</strong> citées dans les douze fichiers d'OpenSpec existent dans l'outil épinglé, à <strong>deux niveaux</strong> : un garde qui ne lirait que le premier mot déclarerait <code>openspec new</code> valide et laisserait passer <code>openspec new frobnicate</code>. Il compare à l'outil épinglé et jamais à celui du <code>PATH</code>, qui peut être d'une autre version. Il est <strong>vert sur le corpus d'aujourd'hui</strong>, donc tout son poids porte sur son auto-test, dont le premier cas est un témoin vert et le dernier rejoue le faux positif de l'en-tête YAML (#4514). Il refuse <strong>par entrée de corpus</strong> et non sur le total : un chemin disparu laisse les autres rendre des fichiers, et un refus sur le total resterait vert en n'ayant lu qu'une partie de ce qu'il annonce (#4566) | <code>lint.yml</code>, job <code>outillage-release</code> |</p>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
 <p>Ces gardes sont elles-mêmes du shell, et le dépôt en compte <strong>42 scripts</strong> hors <code>node_modules</code>. Le
 job <code>lint</code> les passe tous à <code>shellcheck</code>.</p>
