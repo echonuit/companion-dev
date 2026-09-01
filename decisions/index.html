@@ -1812,6 +1812,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4804-une-mesure-plausible-se-controle-avant-d-etre-crue/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4804 · Une mesure plausible se contrôle avant d'être crue
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4859-un-banc-referme-ce-qu-il-ouvre/" class="md-nav__link">
         
   
@@ -12568,6 +12603,11 @@
 <td><a href="4974-un-garde-qui-lit-un-nom-se-contourne-en-renommant/">4974</a></td>
 <td>#4847 voulait clore par un cliquet sur <code>private void attendre</code> employant <code>waitFor</code>. La mesure l'a refuse deux fois : les cinq methodes <code>attendre</code> restantes sont toutes legitimes, et neuf reinventions vivaient sous d'autres noms, dont celle du banc le plus instable du depot. Le compte valait donc 22 et non 15. Le cliquet lit les CORPS, jamais les noms : une methode privee, quel que soit son nom, dont le corps appelle <code>waitFor</code>. Il vaut 2 et non 0 parce que les deux <code>doubleClicVersPassage</code> sont des boucles de REPRISE qui disent deja ce qu'elles attendaient ; convertir l'une ferait sortir un AssertionError au premier essai, la ou son catch n'attend qu'une TimeoutException, et la boucle n'aurait plus que l'apparence d'une reprise</td>
 <td>#4974, lot 1 de l'EPIC #4804</td>
+</tr>
+<tr>
+<td><a href="4804-une-mesure-plausible-se-controle-avant-d-etre-crue/">4804</a></td>
+<td>Le chantier #4804 reposait sur des mesures, et SEPT d'entre elles etaient fausses sans se signaler : une coupure reseau qu'un test provoque expres prise pour une panne, un garde VERT dont le mot REFUSE faisait ranger 20 tentatives sur 20 sous une cause fausse, une mutation jamais appliquee comptee comme tuee, un grep lisant le fichier au lieu de la methode, deux aides qui rattrapaient rangees parmi les muettes, trois heuristiques rendant trois comptes, et un banc repute instable qui detectait un vrai defaut du produit. Une mesure se controle donc avant d'etre crue, par le controle inverse, l'echantillon lu, le cas negatif ou le succes instrumente. Aucun garde ne peut la tenir : il faudrait qu'il connaisse l'intention de la mesure</td>
+<td>#4804, cloture, passe 11</td>
 </tr>
 <tr>
 <td><a href="4859-un-banc-referme-ce-qu-il-ouvre/">4859</a></td>
