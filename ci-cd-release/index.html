@@ -1732,6 +1732,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5068-une-dette-assumee-se-compte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5068 · Une dette assumée se compte
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4859-un-banc-referme-ce-qu-il-ouvre/" class="md-nav__link">
         
   
@@ -12831,6 +12866,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>4974-attente-reinventee.py</code></td>
 <td>les méthodes <strong>privées</strong> dont le corps appelle <code>WaitForAsyncUtils.waitFor</code> : une attente réinventée là où <code>Attente</code> dit ce qu'elle attendait. Il lit les <strong>corps</strong>, jamais les noms, parce qu'un garde qui lit un nom se contourne en renommant : #4847 en avait compté 13 sous le nom <code>attendre</code>, la mesure sans les noms en trouvait 22. Il vaut <strong>2</strong> et non 0, les deux boucles de reprise <code>doubleClicVersPassage</code> disant déjà ce qu'elles attendaient (ADR 4974)</td>
+<td><code>lint.yml</code> (cliquets ADR, autotest dédié)</td>
+</tr>
+<tr>
+<td><code>5068-clic-sur-reference-tenue.py</code></td>
+<td>les <code>clickOn</code> dont le <strong>premier</strong> argument est un nœud déjà résolu : la scène peut être nulle au moment du clic. Il borne les sites <strong>exposés</strong>, pas les défauts, et c'est un cliquet de dette assumée (#4696 fermée sur une mesure de 1/1234). Trois formes écartées, chacune ayant fait surcompter : sélecteur littéral, constante <code>String</code>, citation en commentaire (ADR 5068)</td>
 <td><code>lint.yml</code> (cliquets ADR, autotest dédié)</td>
 </tr>
 <tr>
