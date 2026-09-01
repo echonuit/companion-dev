@@ -1887,6 +1887,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-volume-ne-suffit-pas-la-couche-decide-5036" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le volume ne suffit pas : la COUCHE décide (#5036)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-qui-se-lit-est-la-fin-du-journal-jamais-le-journal" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11290,6 +11301,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-volume-ne-suffit-pas-la-couche-decide-5036" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le volume ne suffit pas : la COUCHE décide (#5036)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-qui-se-lit-est-la-fin-du-journal-jamais-le-journal" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11406,7 +11428,7 @@ conduite.</p>
 <td>rejouer, une fois</td>
 </tr>
 <tr>
-<td>RUNNER, JVM effondrée ou couche native absente</td>
+<td>RUNNER, JVM effondrée, couche native absente, ou <strong>cause traversant la couche graphique</strong></td>
 <td style="text-align: right;">9 %</td>
 <td>rejouer une fois, et le consigner</td>
 </tr>
@@ -11417,28 +11439,30 @@ conduite.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Un rouge sur cinq seulement vaut un rejeu.</strong> Les quatre autres reviennent au tirage suivant, chez
-quelqu'un d'autre, sur une demande sans rapport. Le rejeu ne supprime pas le rouge : il le déplace,
-et il en efface la trace, la tentative rejouée écrasant le verdict de la précédente.</p>
-<p><strong>La mesure a refusé le remède que l'issue demandait.</strong> #4187 attendait une conduite pour le runner.
-Le runner pèse 9 %. Ce qui pèse 56 %, ce sont nos propres bancs, et aucune conduite ne les répare :
-il faut les corriger, ce que #4845, #4847 et #4696 portent. C'est l'ADR 4853 appliquée à un chantier
-de CI plutôt qu'à un service.</p>
+<p><strong>Un rouge sur cinq seulement vaut un rejeu.</strong> Les autres reviennent au tirage suivant, chez
+quelqu'un d'autre. Le rejeu ne supprime pas le rouge : il le déplace, et la tentative rejouée efface
+le verdict de la précédente.</p>
+<p><strong>La mesure a refusé le remède demandé.</strong> L'issue attendait une conduite pour le runner, qui pèse
+9 % ; ce qui pèse 56 %, ce sont nos bancs, qu'aucune conduite ne répare. ADR 4853, sur un chantier
+de CI.</p>
 <p><strong>Une cause non reconnue se nomme telle quelle.</strong> <code>INDÉTERMINÉ</code> existe parce que trois tentatives ne
-portent aucune erreur dans les journaux lus. Les ranger de force aurait inventé une cause, et l'ADR
-2213 refuse cela.</p>
+portent aucune erreur : les ranger de force aurait inventé une cause (ADR 2213).</p>
 <h2 id="la-cascade-existe-a-deux-niveaux-et-un-seul-etait-modelise">La cascade existe à deux niveaux, et un seul était modélisé<a class="headerlink" href="#la-cascade-existe-a-deux-niveaux-et-un-seul-etait-modelise" title="Permanent link">&para;</a></h2>
 <p>Le relevé distinguait déjà, <strong>entre tests</strong>, celui qui tombe en tête de ceux qu'il emporte. Le même
 phénomène joue <strong>entre jobs</strong> : 11 tentatives ne portent aucun test tombé, seulement un
 <code>The operation was canceled</code> qui dit qu'une étape voisine avait déjà échoué. Chercher la cause dans
 le job annulé ne mène nulle part, et c'est pourtant le journal qu'on ouvre en premier.</p>
+<h2 id="le-volume-ne-suffit-pas-la-couche-decide-5036">Le volume ne suffit pas : la COUCHE décide (#5036)<a class="headerlink" href="#le-volume-ne-suffit-pas-la-couche-decide-5036" title="Permanent link">&para;</a></h2>
+<p>Le classement décidait « runner » sur deux signes : couche native absente, ou plus de cinquante tests
+tombés. Un défaut de rendu qui n'emporte <strong>qu'un</strong> test lui échappait.</p>
+<p>Il lit désormais la <strong>cause profonde</strong>, celle que <code>Caused by:</code> porte dans le bloc surefire, et cherche
+si elle traverse la couche graphique. <strong>Cinq formulations plus séduisantes ont été réfutées sur des
+journaux réels</strong>, que #5036 porte : la plus instructive est que 61 % des piles d'une suite <strong>verte</strong>
+sont entièrement étrangères. La sixième classe correctement les <strong>huit</strong> journaux disponibles, et
+généralise ce que <code>OSPango</code> faisait pour un seul symptôme : nommer la couche plutôt que compter.</p>
 <h2 id="ce-qui-se-lit-est-la-fin-du-journal-jamais-le-journal">Ce qui se lit est la fin du journal, jamais le journal<a class="headerlink" href="#ce-qui-se-lit-est-la-fin-du-journal-jamais-le-journal" title="Permanent link">&para;</a></h2>
-<p>Deux mesures plausibles et fausses ont précédé la bonne.</p>
-<p>Compter les exceptions du journal entier faisait remonter <code>java.net.ConnectException</code> à 348 fois,
-avec des comptes <strong>identiques à l'unité</strong> sur sept runs : une coupure réseau qu'un test provoque
-exprès. Chercher les motifs dans le texte entier rangeait ensuite <strong>20 tentatives sur 20</strong> sous « un
-garde a refusé », parce qu'un garde <strong>vert</strong> imprime aussi le mot <code>REFUSE</code>.</p>
-<p>Le classement ne lit donc que les douze lignes précédant la <strong>dernière</strong> ligne d'erreur.</p>
+<p>Deux mesures fausses l'ont établi, et l'ADR 4804 en porte la règle générale. Le classement ne lit que
+les douze lignes précédant la dernière ligne d'erreur.</p>
 <h2 id="ce-qui-prouve-que-le-classement-voit">Ce qui prouve que le classement voit<a class="headerlink" href="#ce-qui-prouve-que-le-classement-voit" title="Permanent link">&para;</a></h2>
 <p>Vingt-quatre témoins, sur des extraits réels. Quatre mutations, chacune vérifiée comme appliquée
 avant d'être jouée. Trois meurent. <strong>Relire le journal entier au lieu de sa fin a survécu</strong>, faute
@@ -11446,12 +11470,10 @@ d'un témoin où le motif traîne loin au-dessus d'une erreur d'un autre type : 
 avait produit le 20 sur 20. Ce témoin existe désormais.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Le seuil d'effondrement vaut <strong>50</strong> tests tombés. Le plus gros rouge normal du dépôt en 21 jours en
-  a fait tomber 2 ; un effondrement en emporte plus de 1 300. Aucune valeur intermédiaire n'a été
-  observée, et ce vide est ce qui rend le seuil sûr plutôt qu'arbitraire.</li>
-<li>Un rouge de runner qui revient <strong>deux fois dans la même semaine avec la même signature</strong> cesse d'en
-  être un : c'est une dépendance à ce que l'image ne garantit pas. Les deux tentatives à couche
-  native absente relevées sont sous ce seuil.</li>
+<li>Le seuil d'effondrement vaut <strong>50</strong>. Le plus gros rouge normal du dépôt en 21 jours en a fait
+  tomber 2, un effondrement plus de 1 300 : ce <strong>vide</strong> rend le seuil sûr plutôt qu'arbitraire.</li>
+<li>Un rouge de runner qui revient <strong>deux fois la même semaine avec la même signature</strong> cesse d'en être
+  un : c'est une dépendance à ce que l'image ne garantit pas.</li>
 <li>La conduite vit dans <code>dev-docs/ci-cd-release.md</code>, où l'on va quand la CI rougit.</li>
 </ul>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
