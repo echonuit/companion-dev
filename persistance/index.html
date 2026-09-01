@@ -11539,7 +11539,7 @@ base existante, les versions déjà présentes sont ignorées (« base présente
 <code>V02__seed_taxons.sql</code> (données de référence), <code>V03__perf_indexes.sql</code> (index). Les suivantes le font
 <strong>évoluer</strong>, migration après migration. Le dossier
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/tree/main/src/main/resources/db/migration"><code>db/migration/</code></a>
-en fait foi : il en contient aujourd'hui bien plus que trois (<!--inv:migrations-->44<!--/inv--> à ce jour).</p>
+en fait foi : il en contient aujourd'hui bien plus que trois (<!--inv:migrations-->45<!--/inv--> à ce jour).</p>
 <div class="admonition tip">
 <p class="admonition-title">Ajouter une migration</p>
 <ol>
@@ -11551,6 +11551,14 @@ en fait foi : il en contient aujourd'hui bien plus que trois (<!--inv:migrations
    dans une transaction (voir ci-dessous), et ces trois-là n'y survivent pas. Un <code>PRAGMA</code> y est
    silencieusement sans effet, ce qui est le pire des trois. Une migration qui en aurait
    réellement besoin doit d'abord changer <code>MigrationSchema.appliquer</code>.</li>
+<li><strong>Défaites-la dans <code>FiletAvantMigrationTest.redescendreEnVersion37</code>.</strong> Ce banc simule une base
+   restée à une version antérieure en retirant du registre les versions à rejouer <strong>et en défaisant
+   ce qu'elles avaient fait</strong>. Une migration neuve qu'on oublie d'y défaire fait échouer ses trois
+   cas sur un <code>duplicate column name</code> : la colonne existe encore quand la migration se rejoue. Le
+   message est clair une fois lu, et il ne dit pas d'où vient l'oubli.</li>
+<li><strong>Le nombre de migrations est un chiffre balisé.</strong> <code>&lt;!--inv:migrations--&gt;</code> vit dans <strong>deux</strong>
+   documents, <code>persistance.md</code> (ici) et <code>modele-de-donnees.md</code>, et <code>DocumentationAJourTest</code> les
+   vérifie tous les deux. En corriger un seul laisse l'autre rouge.</li>
 <li><strong>Une fois poussée, elle ne se modifie plus.</strong> Elle est appliquée chez d'autres, et ne se
    rejouera pas chez eux. Ce qu'il faut corriger se corrige dans une migration <strong>suivante</strong> ; une
    retouche du script déjà publié fait refuser le démarrage (voir ci-dessous).</li>
