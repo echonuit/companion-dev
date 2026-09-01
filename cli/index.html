@@ -9992,6 +9992,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4984-le-protocole-est-un-plancher-et-ce-qu-on-ignore-ne-se-decide-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4984 · Le protocole est un plancher
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -11523,7 +11558,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>diagnostiquer</code></td>
 <td><code>--passage &lt;id&gt; [--json] [--csv &lt;serie\|anomalies&gt;]</code></td>
 <td>P6, #1672</td>
-<td><code>ServiceDiagnostic.diagnostiquer</code> (lecture seule) : bilan matériel d'une nuit (climat R20, T° début nuit, cohérence horaire #548, GPS du point, anomalies/évènements R19). Parité CLI de M-Diagnostic. <code>--csv</code> exporte série ou anomalies via <code>ExportDiagnostic</code> (P6-CA6)</td>
+<td><code>ServiceDiagnostic.diagnostiquer</code> (lecture seule) : bilan matériel d'une nuit (climat R20, T° début nuit, cohérence horaire #548, GPS du point, anomalies/évènements R19). Parité CLI de M-Diagnostic. <code>--csv</code> exporte série ou anomalies via <code>ExportDiagnostic</code> (P6-CA6). <strong>La cohérence horaire dit le protocole</strong> (#4984) : la fenêtre exigée va de 30 minutes avant le coucher à 30 minutes après le lever, c'est un <strong>plancher</strong>, et la dépasser n'est pas un défaut. Le texte cite les deux plages - <code>protocole 21:28 à 06:23, enregistré 22:00 à 05:00</code> - et le JSON porte <code>debutExige</code>, <code>finExigee</code>, <code>debutEnregistre</code>, <code>finEnregistree</code> plus <code>couvertureDuProtocole</code>. Cette dernière vaut <code>COUVERTE</code>, <code>INCOMPLETE</code> ou <code>INDISPONIBLE</code> : elle nomme <strong>l'état du domaine</strong>, pas la gravité de son annonce, laquelle est une décision de surface (ADR 0038). Un script qui voudrait alerter teste <code>INCOMPLETE</code>, et jamais l'absence de <code>COUVERTE</code>, <code>INDISPONIBLE</code> ne signifiant pas « mauvais » mais « on n'a pas pu savoir »</td>
 </tr>
 <tr>
 <td><code>importer</code></td>
