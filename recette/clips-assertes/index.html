@@ -13327,6 +13327,19 @@ et le pseudo qui les signe. C'est ce que le manifeste relu après coup établit.
 arrive par la fixture, composé par le service : aucune des deux familles ne filme le transport, et
 c'est une limite du dispositif plutôt qu'un manque du tournage.</p>
 </blockquote>
+<h2 id="scenarioperceptifrefusdepottest">ScenarioPerceptifRefusDepotTest<a class="headerlink" href="#scenarioperceptifrefusdepottest" title="Permanent link">&para;</a></h2>
+<h3 id="s4-18-ouvrir_le_dossier_de_depot_demande_un_dossier">S4-18 · <code>ouvrir_le_dossier_de_depot_demande_un_dossier</code><a class="headerlink" href="#s4-18-ouvrir_le_dossier_de_depot_demande_un_dossier" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioPerceptifRefusDepotTest.ouvrir_le_dossier_de_depot_demande_un_dossier.mp4"></video>
+
+<blockquote>
+<p>Aucun gestionnaire de fichiers ne s'ouvre sur le banc : ce clip montre le clic, pas la fenêtre qu'il ouvre. Ce qui se vérifie est le GESTE demandé au système - ouvrir un dossier, et non ouvrir un lien - et cela se lit dans l'assertion.</p>
+</blockquote>
+<p><strong>Pourquoi ce cas a une section à lui.</strong> Il existait depuis toujours dans <code>s4-deposer-suivre.md</code> et
+<strong>aucun test ne le citait</strong>. Le document disait juste : « ouvre le dossier <code>depot/</code> ». Le code, lui,
+passait une URI <code>file://</code> au navigateur, qui rendait un listing de répertoire. Un observateur y a
+cherché comment déposer ses archives, n'a rien trouvé, et est reparti chercher les ZIP à la main
+(#4982). Un cas de recette qu'aucun banc ne cite ne garde rien.</p>
 
 
 
