@@ -10205,6 +10205,111 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5053-le-compte-lu-vient-de-l-arbre-vise-pas-de-la-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5053 · Le compte lu vient de l'arbre visé
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5015-un-garde-sans-unite-a-compter-le-declare-chez-lui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5015 · Un garde sans unité à compter le déclare chez lui
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5054-un-temoin-qui-n-affirme-que-des-vides-ne-prouve-rien/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5054 · Un témoin qui n'affirme que des vides ne prouve rien
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12788,6 +12893,21 @@
 <td><a href="4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/">4961</a></td>
 <td>La règle exigeait un critère de fin sans dire où l'écrire, et le dépôt en pratiquait trois : une ligne du corps de l'EPIC, le corps de l'issue du lot, la ligne « Ce que je vérifierai » du bloc de prise. Le critère vit dans le CORPS DE LA SOUS-ISSUE. Un lot n'est plus une ligne depuis #4829 mais une sous-issue native, si bien qu'une règle qui le range dans l'EPIC décrit un support quitté ; et l'énumération devient une donnée, ce dont la loupe de l'ADR 4992 dépend. Pas le bloc de prise non plus : il part en commentaire, et le corps est ce qui survit à l'onglet fermé. Le comptage qui a servi un jour à justifier de ne pas relire les critères mêlait 118 chantiers antérieurs à la règle et ne cherchait qu'une formulation : un comptage qui sert à renoncer se vérifie avant de renoncer</td>
 <td>#4961, clôture passe 11</td>
+</tr>
+<tr>
+<td><a href="5053-le-compte-lu-vient-de-l-arbre-vise-pas-de-la-source/">5053</a></td>
+<td>Un garde qui lit une source DÉRIVÉE n'a pas la population de sa source. Mesuré sur le rapport PMD : 425 fichiers et 1 493 violations, toutes en zone de test, la production n'y ayant aucune entrée parce qu'elle est PROPRE et non parce qu'elle n'a pas été lue. Compter les entrées aurait donné <code>lus=0</code> en production et fait refuser une zone irréprochable. <code>lus</code> compte donc les unités vers lesquelles le garde a été POINTÉ : 1 226 fichiers de production, 854 de test. Le verdict distingue enfin « zéro violation » de « PMD n'a pas tourné sur cette zone »</td>
+<td>#5053, sous-chantier du compte lu (#5015)</td>
+</tr>
+<tr>
+<td><a href="5015-un-garde-sans-unite-a-compter-le-declare-chez-lui/">5015</a></td>
+<td>Le compte des appels de verdict qui ne déclarent pas ce qu'ils lisent s'est arrêté à QUATRE, et ce plancher n'est pas de la dette. Trois sont des témoins du harnais, dont deux éprouvent précisément la sémantique du compte non déclaré : leur mettre <code>lus=</code> détruirait ce qu'ils gardent, en rendant les tests verts. Le quatrième signale des reliquats et sa population vide est sa RÉUSSITE, or <code>lus=0</code> refuse. Un tel garde ne déclare rien et écrit pourquoi dans son propre fichier, avec ce que l'exception coûte : ici, un motif qui cesserait d'apparier rendrait « aucun reliquat » en silence</td>
+<td>#5015, sous-chantier du compte lu (#5006)</td>
+</tr>
+<tr>
+<td><a href="5054-un-temoin-qui-n-affirme-que-des-vides-ne-prouve-rien/">5054</a></td>
+<td>Les premiers cas éprouvant le refus sur population vide affirmaient une seule chose : « quand on vide sa population, le garde rend zéro ». Ils passaient, et ils étaient DÉCORATIFS : la neutralisation de l'ADR 4490 remplace chaque fonction par <code>lambda: []</code>, si bien que l'assertion restait vraie sur un garde mort. Le faux vert du chantier, reproduit dans le cas écrit pour l'éliminer, et trouvé par le garde des témoins. Un cas affirme donc d'abord que la population DISCRIMINE, puis qu'elle se vide ; c'est la première assertion qui rougit sous mutation. Le corpus de l'ADR 4490 passe de 27 à 29 gardes</td>
+<td>#5054, sous-chantier du compte lu (#5015)</td>
 </tr>
 </tbody>
 </table>

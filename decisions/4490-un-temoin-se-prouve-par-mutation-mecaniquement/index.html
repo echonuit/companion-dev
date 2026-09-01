@@ -10201,6 +10201,111 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5053-le-compte-lu-vient-de-l-arbre-vise-pas-de-la-source/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5053 · Le compte lu vient de l'arbre visé
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5015-un-garde-sans-unite-a-compter-le-declare-chez-lui/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5015 · Un garde sans unité à compter le déclare chez lui
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5054-un-temoin-qui-n-affirme-que-des-vides-ne-prouve-rien/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5054 · Un témoin qui n'affirme que des vides ne prouve rien
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -11383,7 +11488,7 @@
 <p><strong>Le sens de la panne est le bon.</strong> Si la neutralisation cessait de fonctionner, le garde continuerait de détecter, la suite resterait verte, et le script crierait « témoin décoratif » à tort. Un faux positif est bruyant ; c'est le silence qu'il fallait éviter.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Le coût est mesuré : <code>verifie_scripts.py</code> s'exécute en 0,05 s, et 23 gardes se mutent en 1,2 s. Rien ne justifie de refaire ce balayage à la main.</li>
+<li>Le coût est mesuré, et il a grossi : au 2026-09-01, <code>verifie_scripts.py</code> s'exécute en <strong>132 s</strong> et <strong>29 gardes</strong> se mutent en <strong>105 s</strong>, contre 0,05 s et 23 gardes en 1,2 s à la décision. Le harnais a pris son temps le jour où un cas de couture s'est mis à appeler <code>rapport.collecter()</code>, qui lance tous les gardes ; le corpus, lui, grandit à chaque garde que la suite charge. Rien ne justifie pour autant de refaire ce balayage à la main : c'est trois minutes de machine contre une relecture que personne ne tiendra.</li>
 <li>Un témoin nouveau est éprouvé dès sa PR, et non à la clôture suivante.</li>
 <li>L'auto-test du garde prouve le mécanisme dans les <strong>deux</strong> sens : qu'un témoin solide fait bien rougir la suite sous mutation, et que sans mutation la suite est verte. Sans le second, un script qui répondrait toujours « tout va bien » passerait le premier.</li>
 </ul>
