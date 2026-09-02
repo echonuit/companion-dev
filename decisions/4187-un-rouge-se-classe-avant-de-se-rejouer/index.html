@@ -11604,9 +11604,8 @@
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Un rouge de CI se rejouait à l'aveugle, et le geste passait pour raisonnable : la suite repartait
 souvent verte sans qu'une ligne ait changé. L'issue #4187 en tirait « la suite rougit sur des pannes
-JavaFX du runner », et citait trois signatures internes à JavaFX.</p>
-<p>Rien ne mesurait la part de vrai. Le relevé du lot 0 rangeait sous un seul mot, « échouées pour autre
-chose », toutes les tentatives où aucun test n'était nommé.</p>
+JavaFX du runner », sans que rien ne mesure la part de vrai : le relevé rangeait sous un seul mot,
+« échouées pour autre chose », toutes les tentatives où aucun test n'était nommé.</p>
 <h2 id="le-defaut">Le défaut<a class="headerlink" href="#le-defaut" title="Permanent link">&para;</a></h2>
 <p><strong>Un seau sans nom est un seau qu'on ne conteste pas.</strong> Sur 21 jours, 1 233 tirages et 55 relances,
 ce seau valait <strong>20 tentatives sur 57</strong>, et il portait quatre causes qui n'appellent pas la même
@@ -11652,9 +11651,8 @@ conduite.</p>
 <p><strong>Un rouge sur cinq seulement vaut un rejeu.</strong> Les autres reviennent au tirage suivant, chez
 quelqu'un d'autre. Le rejeu ne supprime pas le rouge : il le déplace, et la tentative rejouée efface
 le verdict de la précédente.</p>
-<p><strong>La mesure a refusé le remède demandé.</strong> L'issue attendait une conduite pour le runner, qui pèse
-9 % ; ce qui pèse 56 %, ce sont nos bancs, qu'aucune conduite ne répare. ADR 4853, sur un chantier
-de CI.</p>
+<p><strong>La mesure a refusé le remède demandé</strong> : l'issue attendait une conduite pour le runner (9 %), quand
+56 % sont nos bancs, qu'aucune conduite ne répare (ADR 4853).</p>
 <p><strong>Une cause non reconnue se nomme telle quelle.</strong> <code>INDÉTERMINÉ</code> existe parce que trois tentatives ne
 portent aucune erreur : les ranger de force aurait inventé une cause (ADR 2213).</p>
 <h2 id="la-cascade-existe-a-deux-niveaux-et-un-seul-etait-modelise">La cascade existe à deux niveaux, et un seul était modélisé<a class="headerlink" href="#la-cascade-existe-a-deux-niveaux-et-un-seul-etait-modelise" title="Permanent link">&para;</a></h2>
@@ -11668,16 +11666,17 @@ tombés. Un défaut de rendu qui n'emporte <strong>qu'un</strong> test lui écha
 <p>Il lit désormais la <strong>cause profonde</strong>, celle que <code>Caused by:</code> porte dans le bloc surefire, et cherche
 si elle traverse la couche graphique. <strong>Cinq formulations plus séduisantes ont été réfutées sur des
 journaux réels</strong>, que #5036 porte : la plus instructive est que 61 % des piles d'une suite <strong>verte</strong>
-sont entièrement étrangères. La sixième classe correctement les <strong>huit</strong> journaux disponibles, et
+sont entièrement étrangères. La sixième classe correctement les <strong>neuf</strong> journaux disponibles, et
 généralise ce que <code>OSPango</code> faisait pour un seul symptôme : nommer la couche plutôt que compter.</p>
+<p><strong>Le moteur de texte en est, et manquait (#4823).</strong> Une NPE de <code>PrismTextLayout</code> partait au dépôt.
+<code>com.sun.javafx.text</code> rejoint le motif, sans déplacer aucun rouge mesuré.</p>
 <h2 id="ce-qui-se-lit-est-la-fin-du-journal-jamais-le-journal">Ce qui se lit est la fin du journal, jamais le journal<a class="headerlink" href="#ce-qui-se-lit-est-la-fin-du-journal-jamais-le-journal" title="Permanent link">&para;</a></h2>
-<p>Deux mesures fausses l'ont établi, et l'ADR 4804 en porte la règle générale. Le classement ne lit que
-les douze lignes précédant la dernière ligne d'erreur.</p>
+<p>Deux mesures fausses l'ont établi ; l'ADR 4804 porte la règle générale. Le classement ne lit que les
+douze lignes précédant la dernière erreur.</p>
 <h2 id="ce-qui-prouve-que-le-classement-voit">Ce qui prouve que le classement voit<a class="headerlink" href="#ce-qui-prouve-que-le-classement-voit" title="Permanent link">&para;</a></h2>
-<p>Vingt-quatre témoins, sur des extraits réels. Quatre mutations, chacune vérifiée comme appliquée
-avant d'être jouée. Trois meurent. <strong>Relire le journal entier au lieu de sa fin a survécu</strong>, faute
-d'un témoin où le motif traîne loin au-dessus d'une erreur d'un autre type : le faux positif même qui
-avait produit le 20 sur 20. Ce témoin existe désormais.</p>
+<p>Des témoins sur extraits réels, et des mutations vérifiées comme appliquées avant d'être jouées.
+<strong>Relire le journal entier au lieu de sa fin a survécu</strong> faute d'un témoin où le motif traîne au-dessus
+d'une erreur d'un autre type : le faux positif qui avait produit le 20 sur 20. Il existe désormais.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Le seuil d'effondrement vaut <strong>50</strong>. Le plus gros rouge normal du dépôt en 21 jours en a fait

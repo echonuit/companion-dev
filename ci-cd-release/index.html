@@ -13426,7 +13426,7 @@ rejoués à la main</strong>, soit 4,5 %, et personne ne savait ce que ce chiffr
 <td>Rejouer, une fois</td>
 </tr>
 <tr>
-<td><strong>RUNNER</strong>, JVM effondrée ou couche graphique absente</td>
+<td><strong>RUNNER</strong>, JVM effondrée, couche graphique absente, ou <strong>cause qui la traverse</strong></td>
 <td style="text-align: right;">9 %</td>
 <td>Rejouer, une fois, et le consigner</td>
 </tr>
@@ -13450,6 +13450,14 @@ et rangeait 20 tentatives sur 20 sous « un garde a refusé », parce qu'un gard
 le mot « REFUSE » en expliquant ce qu'il aurait refusé. De même, <code>java.net.ConnectException</code> apparaît
 348 fois dans des journaux parfaitement sains : c'est une coupure réseau qu'un test <strong>provoque
 exprès</strong>. Ce qui a fait échouer se lit autour de la dernière ligne d'erreur, et nulle part ailleurs.</p>
+<p><strong>Ce n'est pas le volume qui décide, c'est la COUCHE (#5036).</strong> Le classement tenait « runner » sur
+deux signes : couche native absente, ou plus de cinquante tests tombés. Un défaut de rendu qui
+n'emporte <strong>qu'un</strong> test lui échappait donc. Il lit désormais la <strong>cause profonde</strong> - celle que
+<code>Caused by:</code> porte dans le bloc surefire - et regarde si elle traverse la couche graphique :
+<code>com.sun.glass</code>, <code>com.sun.prism</code>, <code>com.sun.javafx.tk</code>, et le moteur de texte <code>com.sun.javafx.text</code>
+que #4823 a fait ajouter. Cinq formulations plus séduisantes ont été réfutées sur des journaux réels ;
+la plus instructive est que <strong>61 % des piles d'une suite verte</strong> sont entièrement étrangères, si bien
+qu'« une pile étrangère » ne distingue rien.</p>
 <p><strong>Quand un rouge de runner cesse d'en être un.</strong> Deux fois de suite sur la même semaine, avec la même
 signature, ce n'est plus le runner : c'est une dépendance du dépôt à quelque chose que l'image ne
 garantit pas. Les deux tentatives à couche graphique absente relevées sur 21 jours sont sous ce

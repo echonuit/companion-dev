@@ -1817,6 +1817,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#reproduire-un-intermittent-la-contention-se-pilote-et-le-disque-nest-pas-le-processeur-4823" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproduire un intermittent : la contention se PILOTE, et le disque n'est pas le processeur (#4823)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11478,6 +11489,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#reproduire-un-intermittent-la-contention-se-pilote-et-le-disque-nest-pas-le-processeur-4823" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reproduire un intermittent : la contention se PILOTE, et le disque n'est pas le processeur (#4823)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -11606,6 +11628,16 @@ même : quatre des sept ci-dessus étaient parfaitement plausibles.</p>
 l'intention. C'est ce qui classe cette décision <code>humaine</code> plutôt que <code>certaine</code>, et c'est aussi
 pourquoi ses sept cas sont écrits en toutes lettres. Ils ne servent pas d'illustration : ils servent
 à <strong>reconnaître la forme</strong> quand elle se représente.</p>
+<h2 id="reproduire-un-intermittent-la-contention-se-pilote-et-le-disque-nest-pas-le-processeur-4823">Reproduire un intermittent : la contention se PILOTE, et le disque n'est pas le processeur (#4823)<a class="headerlink" href="#reproduire-un-intermittent-la-contention-se-pilote-et-le-disque-nest-pas-le-processeur-4823" title="Permanent link">&para;</a></h2>
+<p>Un huitième cas, du même moule. Le banc du préambule d'import était annoncé à <strong>1 échec sur 3</strong>, sur
+un seul tirage rouge parmi trois passages. Mesuré sur 110 passages, il vaut <strong>2,2 %</strong>.</p>
+<p>Et la première campagne aurait conclu « ne se reproduit pas » : ses encodeurs de charge écrivaient
+vers <code>-f null -</code>, donc nulle part. <strong>0 rouge sur 20</strong> sans écriture disque, <strong>1 sur 45</strong> avec. La
+contention processeur et la contention d'entrées-sorties ne déclenchent pas les mêmes courses, et
+<code>/tmp</code> en tmpfs n'en produit aucune.</p>
+<p>Deux règles en sortent. La charge d'une mesure se <strong>pilote</strong> : une charge subie n'est pas
+reproductible et casse la comparabilité d'un avant/après. Et un « ne se reproduit pas » se lit comme
+un résultat <strong>de son dispositif</strong>, jamais du défaut.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Le contrôle coûte moins que le remède qu'il évite.</strong> Ouvrir trois fichiers a démasqué deux
