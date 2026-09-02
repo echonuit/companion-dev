@@ -11290,6 +11290,62 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#scenarioreveilparboutontest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioReveilParBoutonTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioReveilParBoutonTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-76-un_reveil_par_bouton_n_est_pas_une_anomalie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-76 · un_reveil_par_bouton_n_est_pas_une_anomalie
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenarionuitinterrompuetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioNuitInterrompueTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioNuitInterrompueTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-74-une_nuit_interrompue_le_dit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-74 · une_nuit_interrompue_le_dit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#scenariodiagnosticpassagetest" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12999,6 +13055,62 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#scenarioreveilparboutontest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioReveilParBoutonTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioReveilParBoutonTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-76-un_reveil_par_bouton_n_est_pas_une_anomalie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-76 · un_reveil_par_bouton_n_est_pas_une_anomalie
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scenarionuitinterrompuetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioNuitInterrompueTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioNuitInterrompueTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-74-une_nuit_interrompue_le_dit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-74 · une_nuit_interrompue_le_dit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#scenariodiagnosticpassagetest" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13417,6 +13529,35 @@ TestFX, et le geste deviendrait infilmable alors que le produit est en bon état
 donc substitué, et sa question capturée. Ce que le clip démontre : « Appliquer » ne part pas sans
 demander, et la question nomme le numéro qui va changer. Ce qu'il ne montre pas : la fenêtre qui
 porte cette question.</p>
+</blockquote>
+<h2 id="scenarioreveilparboutontest">ScenarioReveilParBoutonTest<a class="headerlink" href="#scenarioreveilparboutontest" title="Permanent link">&para;</a></h2>
+<p>Samuel est venu regarder l'écran de son enregistreur pendant la nuit. Le firmware sort alors de la
+veille pour le laisser agir, et écrit <code>Wakeup by PINPUSH</code>. Au retour, le diagnostic lui reprochait un
+« réveil non programmé » : son propre geste, porté à son débit.</p>
+<h3 id="s2-76-un_reveil_par_bouton_n_est_pas_une_anomalie">S2-76 · <code>un_reveil_par_bouton_n_est_pas_une_anomalie</code><a class="headerlink" href="#s2-76-un_reveil_par_bouton_n_est_pas_une_anomalie" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioReveilParBoutonTest.un_reveil_par_bouton_n_est_pas_une_anomalie.mp4"></video>
+
+<blockquote>
+<p>Le remède <strong>retire</strong> une ligne, et une absence ne se filme pas. Le clip montre donc la <strong>paire</strong> :
+le réveil paraît au journal des évènements, qui relate, et ne paraît pas aux anomalies, qui
+accusent. Une liste d'anomalies vide, seule, prouverait aussi bien que le journal n'a pas été lu.</p>
+<p>La carte est <code>sd-reveil-bouton</code> (#5126), dont le journal porte l'appui au milieu de la nuit.</p>
+</blockquote>
+<h2 id="scenarionuitinterrompuetest">ScenarioNuitInterrompueTest<a class="headerlink" href="#scenarionuitinterrompuetest" title="Permanent link">&para;</a></h2>
+<p>Une nuit peut s'arrêter avant son terme - carte pleine, batterie vide, arrêt subi - et rien ne le
+disait. Le diagnostic porte désormais un second encart sous la cohérence horaire.</p>
+<h3 id="s2-74-une_nuit_interrompue_le_dit">S2-74 · <code>une_nuit_interrompue_le_dit</code><a class="headerlink" href="#s2-74-une_nuit_interrompue_le_dit" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioNuitInterrompueTest.une_nuit_interrompue_le_dit.mp4"></video>
+
+<blockquote>
+<p>Deux axes <strong>distincts</strong> sous la cohérence horaire : le premier dit si l'enregistrement couvre la
+fenêtre exigée par le protocole, celui-ci s'il s'est interrompu. Une nuit peut porter les deux, et
+les confondre reviendrait à taire l'un des deux faits.</p>
+<p>Ce clip n'existait pas parce que le produit ne savait pas atteindre l'état : l'import jetait la
+complétude une ligne avant la base (#5135). Il est donc, autant qu'une démonstration, la preuve que
+le trajet est réparé.</p>
 </blockquote>
 <h2 id="scenariodiagnosticpassagetest">ScenarioDiagnosticPassageTest<a class="headerlink" href="#scenariodiagnosticpassagetest" title="Permanent link">&para;</a></h2>
 <p>Le diagnostic est l'écran où l'on va voir <strong>pourquoi</strong> une nuit est ce qu'elle est. Le clip repart de
