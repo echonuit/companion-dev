@@ -10195,6 +10195,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5089-un-chemin-suivi-ne-porte-que-de-l-ascii/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5089 · Un chemin suivi ne porte que de l'ASCII
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -13131,6 +13166,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>verifie-permissions.sh</code></td>
 <td>aucun plancher en écriture dans un workflow multi-jobs</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>verifie-chemins-ascii.sh</code></td>
+<td>aucun chemin <strong>suivi</strong> ne porte de caractère non-ASCII. <code>git ls-files</code> et <code>git diff --name-only</code> les échappent par défaut, ce qui les rend invisibles à tout outillage qui teste ensuite l'existence du fichier, <strong>en silence</strong> : une passe du graphe a ainsi écarté 50 fichiers de <code>brief/</code> et pris 6 renommages pour 56 suppressions (<a href="../decisions/5089-un-chemin-suivi-ne-porte-que-de-l-ascii/">ADR 5089</a>). Tolérance zéro, les 101 chemins fautifs ayant été renommés dans le même lot. Il ne dit rien de la casse ni des espaces, que <code>core.quotePath</code> n'échappe pas</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
