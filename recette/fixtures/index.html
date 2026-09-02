@@ -10392,10 +10392,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-10-cartes-de-recette" class="md-nav__link">
+  <a href="#les-12-cartes-de-recette" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les 10 cartes de recette
+        Les 12 cartes de recette
       
     </span>
   </a>
@@ -11438,10 +11438,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-10-cartes-de-recette" class="md-nav__link">
+  <a href="#les-12-cartes-de-recette" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les 10 cartes de recette
+        Les 12 cartes de recette
       
     </span>
   </a>
@@ -11548,36 +11548,39 @@ reste concise. Exemple commenté (le cas propre) :</p>
 <a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w">  </span><span class="nt">nuit</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-04-22"</span><span class="w">            </span><span class="c1"># date de la 1re ligne (fixe dateDebut pour l'analyseur)</span>
 <a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w">  </span><span class="nt">sondePresente</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">           </span><span class="c1"># ajoute la ligne « Sonde ... présente »</span>
 <a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w">  </span><span class="nt">corrompu</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">               </span><span class="c1"># true -&gt; journal illisible (aucune série extractible)</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">sessions</span><span class="p">:</span><span class="w">                     </span><span class="c1"># REDÉMARRAGES supplémentaires du capteur (#3898), facultatif</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nuit</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-04-25"</span><span class="w">        </span><span class="c1">#   chacun repose ses paramètres après `nuit` ci-dessus</span>
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">      </span><span class="nt">frequenceKhz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256</span><span class="w">         </span><span class="c1">#   et peut annoncer une autre fréquence d'acquisition</span>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="nt">thlog</span><span class="p">:</span><span class="w">                          </span><span class="c1"># relevé climatique PaRecPR&lt;serie&gt;_THLog.csv</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w">  </span><span class="nt">present</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">  </span><span class="nt">mesures</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">                    </span><span class="c1"># nombre de lignes de mesures déterministes</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="nt">wav</span><span class="p">:</span><span class="w">                            </span><span class="c1"># paramètres communs des WAV (RIFF mono 16 bits valide)</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="w">  </span><span class="nt">frequenceHz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">384000</span><span class="w">           </span><span class="c1"># inscrite dans l'en-tête ; divisible par 10 (règle R10)</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="w">  </span><span class="nt">dureeSecondes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.5</span><span class="w">            </span><span class="c1"># courte, pour des fixtures légères</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="nt">zip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                       </span><span class="c1"># produit aussi sd-nominale.zip (chemin de décompression)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w">  </span><span class="nt">appuiSurTouche</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">         </span><span class="c1"># true -&gt; « Wakeup by PINPUSH... Cpt 2 » au milieu de la nuit (#4981)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">  </span><span class="nt">nuitInterrompue</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">        </span><span class="c1"># true -&gt; le journal s'arrête après le réveil, cycle jamais refermé (#5093)</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w">  </span><span class="nt">sessions</span><span class="p">:</span><span class="w">                     </span><span class="c1"># REDÉMARRAGES supplémentaires du capteur (#3898), facultatif</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">nuit</span><span class="p">:</span><span class="w"> </span><span class="s">"2026-04-25"</span><span class="w">        </span><span class="c1">#   chacun repose ses paramètres après `nuit` ci-dessus</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w">      </span><span class="nt">frequenceKhz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">256</span><span class="w">         </span><span class="c1">#   et peut annoncer une autre fréquence d'acquisition</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="nt">thlog</span><span class="p">:</span><span class="w">                          </span><span class="c1"># relevé climatique PaRecPR&lt;serie&gt;_THLog.csv</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w">  </span><span class="nt">present</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="w">  </span><span class="nt">mesures</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">6</span><span class="w">                    </span><span class="c1"># nombre de lignes de mesures déterministes</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="nt">wav</span><span class="p">:</span><span class="w">                            </span><span class="c1"># paramètres communs des WAV (RIFF mono 16 bits valide)</span>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">  </span><span class="nt">frequenceHz</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">384000</span><span class="w">           </span><span class="c1"># inscrite dans l'en-tête ; divisible par 10 (règle R10)</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">  </span><span class="nt">dureeSecondes</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.5</span><span class="w">            </span><span class="c1"># courte, pour des fixtures légères</span>
 <a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
-<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nt">enregistreurs</span><span class="p">:</span><span class="w">                  </span><span class="c1"># un ou plusieurs enregistreurs présents dans bruts/</span>
-<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serie</span><span class="p">:</span><span class="w"> </span><span class="s">"1925492"</span>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="w">    </span><span class="nt">horodatages</span><span class="p">:</span><span class="w">                </span><span class="c1"># PaRecPR&lt;serie&gt;_&lt;yyyyMMdd&gt;_&lt;HHmmss&gt;.wav</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_203922"</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_210515"</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">    </span><span class="c1"># fauxWav: ["20260422_211500"]   # octets non-WAV : rejetés à l'import</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="nt">attendu</span><span class="p">:</span><span class="w">                        </span><span class="c1"># contrat de recette (voir « Le garde-fou »)</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">  </span><span class="nt">aJournal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">  </span><span class="nt">aReleve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="nt">journalLisible</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">          </span><span class="c1"># false -&gt; l'inspection doit échouer</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="nt">plusieursEnregistreurs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># bandeau « mélange »</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="nt">incoherent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">             </span><span class="c1"># bandeau « incohérence »</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">nuits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                      </span><span class="c1"># nombre de nuits détectées</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="nt">etatNommage</span><span class="p">:</span><span class="w"> </span><span class="s">"BRUT"</span><span class="w">           </span><span class="c1"># BRUT, PREFIXE ou VIDE</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="nt">rejets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">                     </span><span class="c1"># &gt; 0 déclenche la vérification d'import réel</span>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nt">zip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                       </span><span class="c1"># produit aussi sd-nominale.zip (chemin de décompression)</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="nt">enregistreurs</span><span class="p">:</span><span class="w">                  </span><span class="c1"># un ou plusieurs enregistreurs présents dans bruts/</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serie</span><span class="p">:</span><span class="w"> </span><span class="s">"1925492"</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">horodatages</span><span class="p">:</span><span class="w">                </span><span class="c1"># PaRecPR&lt;serie&gt;_&lt;yyyyMMdd&gt;_&lt;HHmmss&gt;.wav</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_203922"</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_210515"</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="c1"># fauxWav: ["20260422_211500"]   # octets non-WAV : rejetés à l'import</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="nt">attendu</span><span class="p">:</span><span class="w">                        </span><span class="c1"># contrat de recette (voir « Le garde-fou »)</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="nt">aJournal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="nt">aReleve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="nt">journalLisible</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">          </span><span class="c1"># false -&gt; l'inspection doit échouer</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">plusieursEnregistreurs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># bandeau « mélange »</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="nt">incoherent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">             </span><span class="c1"># bandeau « incohérence »</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="nt">nuits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                      </span><span class="c1"># nombre de nuits détectées</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">  </span><span class="nt">etatNommage</span><span class="p">:</span><span class="w"> </span><span class="s">"BRUT"</span><span class="w">           </span><span class="c1"># BRUT, PREFIXE ou VIDE</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">  </span><span class="nt">rejets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">                     </span><span class="c1"># &gt; 0 déclenche la vérification d'import réel</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">  </span><span class="nt">completudes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">               </span><span class="c1"># une par nuit, dans l'ordre : COMPLETE, TRONQUEE ou INCONNUE</span>
 </code></pre></div>
 <p>Deux variantes utiles :</p>
 <ul>
@@ -11603,7 +11606,7 @@ reste concise. Exemple commenté (le cas propre) :</p>
 </code></pre></div>
 </li>
 </ul>
-<h2 id="les-10-cartes-de-recette">Les 10 cartes de recette<a class="headerlink" href="#les-10-cartes-de-recette" title="Permanent link">&para;</a></h2>
+<h2 id="les-12-cartes-de-recette">Les 12 cartes de recette<a class="headerlink" href="#les-12-cartes-de-recette" title="Permanent link">&para;</a></h2>
 <p>Chaque carte exerce <strong>une</strong> pathologie de l'assistant d'import (voir l'étape 5 de
 <a href="../sessions/s2-importer/">S2 · Importer une nuit</a>).</p>
 <table>
@@ -11664,6 +11667,16 @@ reste concise. Exemple commenté (le cas propre) :</p>
 <td><code>sd-grosse</code></td>
 <td>soixante wav -&gt; test de charge (progression, parallélisme, disque)</td>
 <td>60</td>
+</tr>
+<tr>
+<td><code>sd-reveil-bouton</code></td>
+<td>un appui sur une touche au milieu de la nuit -&gt; <strong>une</strong> nuit, complète, et non deux (#4981)</td>
+<td>5</td>
+</tr>
+<tr>
+<td><code>sd-nuit-interrompue</code></td>
+<td>le journal ne se referme jamais -&gt; nuit <strong>tronquée</strong> (#5093)</td>
+<td>3</td>
 </tr>
 </tbody>
 </table>
