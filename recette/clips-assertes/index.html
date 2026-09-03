@@ -11325,6 +11325,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#scenariocartemultinuitstest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioCarteMultiNuitsTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioCarteMultiNuitsTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-42-et-s2-70-la_table_des_nuits_et_ses_badges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-42 et S2-70 · la_table_des_nuits_et_ses_badges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-43-deux_nuits_deux_configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-43 · deux_nuits_deux_configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#scenariobandeaulectureseuletest" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13179,6 +13218,45 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#scenariocartemultinuitstest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioCarteMultiNuitsTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioCarteMultiNuitsTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-42-et-s2-70-la_table_des_nuits_et_ses_badges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-42 et S2-70 · la_table_des_nuits_et_ses_badges
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-43-deux_nuits_deux_configurations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-43 · deux_nuits_deux_configurations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#scenariobandeaulectureseuletest" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13742,6 +13820,33 @@ TestFX, et le geste deviendrait infilmable alors que le produit est en bon état
 donc substitué, et sa question capturée. Ce que le clip démontre : « Appliquer » ne part pas sans
 demander, et la question nomme le numéro qui va changer. Ce qu'il ne montre pas : la fenêtre qui
 porte cette question.</p>
+</blockquote>
+<h2 id="scenariocartemultinuitstest">ScenarioCarteMultiNuitsTest<a class="headerlink" href="#scenariocartemultinuitstest" title="Permanent link">&para;</a></h2>
+<p>On pose l'enregistreur et on le laisse. Le journal, lui, est <strong>circulaire</strong> : il perd les nuits les
+plus anciennes (R19). La carte porte donc trois nuits sous un journal qui n'en couvre qu'une, et c'est
+la situation la plus fréquente du terrain, pas un cas limite.</p>
+<h3 id="s2-42-et-s2-70-la_table_des_nuits_et_ses_badges">S2-42 et S2-70 · <code>la_table_des_nuits_et_ses_badges</code><a class="headerlink" href="#s2-42-et-s2-70-la_table_des_nuits_et_ses_badges" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioCarteMultiNuitsTest.la_table_des_nuits_et_ses_badges.mp4"></video>
+
+<blockquote>
+<p>Ce qui se juge est la <strong>distinction</strong> : « complète » sur la première nuit, « complétude inconnue »
+sur les deux autres. Trois badges identiques ne diraient rien, et c'était l'état d'avant #5071.</p>
+<p>Trois lots ont construit ce badge sans le montrer en mouvement : #5071 pour la règle - une nuit sans
+preuve est <strong>inconnue</strong>, jamais complète - #5030 pour sa colonne, #5135 pour le trajet qui l'amène à
+la base. <code>apercu-import-multi-nuits.png</code> en donne une image fixe (#5101), mais elle ne dit pas d'où
+vient ce badge.</p>
+<p>Le banc lit les <strong>cellules</strong>, non les objets du modèle : un banc qui lirait <code>NuitVM#badge()</code>
+rejouerait le calcul au lieu d'éprouver ce que l'observateur voit. Il cherche « complétude inco »
+et non le libellé entier, la colonne de 130 px le tronquant (#5111).</p>
+</blockquote>
+<h3 id="s2-43-deux_nuits_deux_configurations">S2-43 · <code>deux_nuits_deux_configurations</code><a class="headerlink" href="#s2-43-deux_nuits_deux_configurations" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioCarteMultiNuitsTest.deux_nuits_deux_configurations.mp4"></video>
+
+<blockquote>
+<p>Le capteur a été repris et reconfiguré entre les deux nuits. #3460 a corrigé le fait qu'une nuit
+repartait avec les réglages d'une <strong>autre</strong> ; ce cas garde la correction.</p>
 </blockquote>
 <h2 id="scenariobandeaulectureseuletest">ScenarioBandeauLectureSeuleTest<a class="headerlink" href="#scenariobandeaulectureseuletest" title="Permanent link">&para;</a></h2>
 <p>Le quatrième bandeau de l'inspection : le support est monté en <strong>lecture seule</strong>. Ces cas dormaient
