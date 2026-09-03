@@ -10300,6 +10300,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5169-un-inventaire-s-adosse-au-code-ou-au-document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5169 · Un inventaire s'adosse au code, ou au document qui fait autorité
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12066,7 +12101,7 @@ pas ici, pour ne pas diverger), et elle ne peut que <strong>rétrécir</strong> 
 </tr>
 <tr>
 <td>Les <strong>chiffres balisés</strong> <code>&lt;!--inv:clé--&gt;N&lt;!--/inv--&gt;</code> (#2385)</td>
-<td>L'<strong>inventaire réel du code</strong> (contrats <code>Ouvrir*</code>, états de <code>StatutWorkflow</code>, features, sous-commandes, <strong>catalogues de critères de filtre</strong>)</td>
+<td>L'<strong>inventaire réel</strong> : le code le plus souvent (contrats <code>Ouvrir*</code>, états de <code>StatutWorkflow</code>, features, sous-commandes, <strong>catalogues de critères de filtre</strong>), ou le document qui fait autorité sur sa population quand le code ne sait rien (ADR 5169)</td>
 <td>Un décompte <strong>figé dans la prose</strong> qui dérive après un ajout : « 43 sous-commandes » quand le code en câble 44</td>
 </tr>
 </tbody>
@@ -12122,12 +12157,18 @@ seul.</p>
 journée de plus, dans un encadré du même fichier. <strong>Un chiffre faux a des jumeaux</strong>, et le
 balayage qui corrige n'est pas celui qui compte - c'est l'audit d'harmonisation de la clôture qui
 a rendu le troisième.</p>
-<p>Trois cas, trois gestes :</p>
+<p>Quatre cas, quatre gestes :</p>
 <ul>
 <li><strong>le code sait compter</strong> → balise <code>&lt;!--inv:clé--&gt;N&lt;!--/inv--&gt;</code>, plus une entrée dans
   <code>DocumentationAJourTest</code> ;</li>
-<li><strong>le code ne sait pas</strong> (un commentaire de workflow, une note de PR) → <strong>écrire la phrase sans
-  le nombre</strong>. « les tests bats, qui lancent chacun un JVM » dit ce qu'il faut sans rien promettre ;</li>
+<li><strong>le code ne sait pas, mais un document du dépôt fait autorité sur cette population</strong> → même
+  balise, adossée à ce document, et le document dit alors ce que le chiffre compte. C'est le cas
+  de <code>REMERCIEMENTS.md</code>, dont la liste nominative est la seule source qui existe sur le nombre de
+  contributeurs et d'équipes (ADR 5169). Le garde tient une cohérence interne : il attrape la
+  dérive de l'annonce, jamais l'oubli dans la liste ;</li>
+<li><strong>le code ne sait pas, et rien d'autre ne fait autorité</strong> (un commentaire de workflow, une note
+  de PR) → <strong>écrire la phrase sans le nombre</strong>. « les tests bats, qui lancent chacun un JVM » dit
+  ce qu'il faut sans rien promettre ;</li>
 <li><strong>le chiffre est une mesure datée</strong> (« 66 aperçus sur 138 différaient le 6 août ») → il reste en
   dur, et c'est <strong>juste</strong> : ce n'est pas un inventaire, c'est un constat, et un constat a une date.</li>
 </ul>
