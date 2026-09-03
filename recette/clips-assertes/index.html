@@ -11325,6 +11325,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#scenariorejetsetarchivetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioRejetsEtArchiveTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioRejetsEtArchiveTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-47-l_import_aboutit_malgre_les_rejets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-47 · l_import_aboutit_malgre_les_rejets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-48-la_decompression_se_voit_avant_l_inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-48 · la_decompression_se_voit_avant_l_inspection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-49-et-s2-50-reimporter_une_nuit_deja_connue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-49 et S2-50 · reimporter_une_nuit_deja_connue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#scenariojournalabsenttest" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13296,6 +13346,56 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#scenariorejetsetarchivetest" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ScenarioRejetsEtArchiveTest
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScenarioRejetsEtArchiveTest">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#s2-47-l_import_aboutit_malgre_les_rejets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-47 · l_import_aboutit_malgre_les_rejets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-48-la_decompression_se_voit_avant_l_inspection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-48 · la_decompression_se_voit_avant_l_inspection
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#s2-49-et-s2-50-reimporter_une_nuit_deja_connue" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-49 et S2-50 · reimporter_une_nuit_deja_connue
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#scenariojournalabsenttest" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13976,6 +14076,40 @@ TestFX, et le geste deviendrait infilmable alors que le produit est en bon état
 donc substitué, et sa question capturée. Ce que le clip démontre : « Appliquer » ne part pas sans
 demander, et la question nomme le numéro qui va changer. Ce qu'il ne montre pas : la fenêtre qui
 porte cette question.</p>
+</blockquote>
+<h2 id="scenariorejetsetarchivetest">ScenarioRejetsEtArchiveTest<a class="headerlink" href="#scenariorejetsetarchivetest" title="Permanent link">&para;</a></h2>
+<p>Trois façons d'aborder l'import qui ne partent pas d'un dossier propre. Aucune n'est un cas limite :
+un WAV illisible parmi cent arrive, une nuit rapportée en <code>.zip</code> arrive, et rebrancher la même carte
+arrive tout le temps.</p>
+<h3 id="s2-47-l_import_aboutit_malgre_les_rejets">S2-47 · <code>l_import_aboutit_malgre_les_rejets</code><a class="headerlink" href="#s2-47-l_import_aboutit_malgre_les_rejets" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioRejetsEtArchiveTest.l_import_aboutit_malgre_les_rejets.mp4"></video>
+
+<blockquote>
+<p>L'import <strong>aboutit</strong> : un fichier illisible ne fait pas perdre les autres, qui sont ce que
+l'observateur est venu chercher. Et les rejets <strong>nomment</strong> le fichier et la raison - un « 1 rejet »
+ne dirait pas lequel, et il ne pourrait pas le retrouver sur sa carte.</p>
+</blockquote>
+<h3 id="s2-48-la_decompression_se_voit_avant_l_inspection">S2-48 · <code>la_decompression_se_voit_avant_l_inspection</code><a class="headerlink" href="#s2-48-la_decompression_se_voit_avant_l_inspection" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioRejetsEtArchiveTest.la_decompression_se_voit_avant_l_inspection.mp4"></video>
+
+<blockquote>
+<p>Ce qui se juge est l'<strong>ordre</strong> : la barre doit se voir <strong>avant</strong> que l'inspection ait compté les six
+originaux. Sinon le clip montrerait la progression de l'import, et le cas ne prouverait rien.</p>
+<p><code>ImportationController#chargerSource</code> pose l'état <code>EXTRACTION</code> sur le fil JavaFX <strong>avant</strong> de
+démarrer, précisément pour qu'une grosse archive ne laisse pas l'observateur devant un écran figé
+(#146). Rien ne s'appelle « décompression » côté écran : la barre est celle de <code>#zoneProgression</code>.</p>
+</blockquote>
+<h3 id="s2-49-et-s2-50-reimporter_une_nuit_deja_connue">S2-49 et S2-50 · <code>reimporter_une_nuit_deja_connue</code><a class="headerlink" href="#s2-49-et-s2-50-reimporter_une_nuit_deja_connue" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioRejetsEtArchiveTest.reimporter_une_nuit_deja_connue.mp4"></video>
+
+<blockquote>
+<p>Le clip montre les <strong>deux temps</strong> : la nuit est importée pour de bon, puis la même carte est
+redésignée. Sans le premier temps, le bandeau « déjà importée » paraîtrait sorti de nulle part.</p>
+<p>Il <strong>informe</strong>, il ne bloque pas : l'observateur peut vouloir réimporter, et c'est à lui d'en
+décider.</p>
 </blockquote>
 <h2 id="scenariojournalabsenttest">ScenarioJournalAbsentTest<a class="headerlink" href="#scenariojournalabsenttest" title="Permanent link">&para;</a></h2>
 <p>Sans journal, Companion ne sait rien de la fin de la nuit. Avant #4990, cette nuit recevait le badge
