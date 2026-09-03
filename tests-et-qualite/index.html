@@ -10265,6 +10265,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5157-le-dispositif-se-lit-sans-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5157 · Le dispositif déclare ce que l'outil fait sans mode
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12437,9 +12472,13 @@ sa cible - et un <code>-Pmutation</code> ciblé l'aurait signalé sans qu'on ait
 <p><strong>En pratique</strong> : à la passe 6 d'une clôture, lancer PIT ciblé sur les classes que le chantier a
 introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindre.</p>
 <h3 id="demander-a-un-garde-ce-quil-est-contrat">Demander à un garde ce qu'il est : <code>--contrat</code><a class="headerlink" href="#demander-a-un-garde-ce-quil-est-contrat" title="Permanent link">&para;</a></h3>
-<p>Les <strong>41 points d'entrée</strong> de <code>scripts/adr</code> répondent à <code>--contrat</code> et déclarent six champs. La
-réponse s'obtient sans rien lire du dépôt : la branche s'imprime <strong>avant tout le reste</strong>, pour qu'un
-garde dont une dépendance manque rende quand même sa déclaration.</p>
+<p><strong>Soixante-sept points d'entrée</strong> répondent à <code>--contrat</code> et déclarent six champs : les 42 de
+<code>scripts/adr</code>, les 24 de <code>scripts/methode</code>, et le dernier garde shell. La réponse s'obtient sans rien
+lire du dépôt : la branche s'imprime <strong>avant tout le reste</strong>, pour qu'un garde dont une dépendance
+manque rende quand même sa déclaration.</p>
+<p><code>verifie_contrat_obligatoire.py</code> <strong>refuse</strong> un point d'entrée de ces deux dossiers qui n'en
+déclarerait pas. Ce n'est pas un cliquet : il n'y a pas de marge à relever, et l'échappatoire est une
+liste d'exceptions <strong>nommées</strong>, vide aujourd'hui.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python3<span class="w"> </span>scripts/adr/0008-echec-silencieux.py<span class="w"> </span>--contrat
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>CONTRAT | garde=scripts/adr/0008-echec-silencieux.py
@@ -12468,7 +12507,7 @@ garde dont une dépendance manque rende quand même sa déclaration.</p>
 </tr>
 <tr>
 <td><code>dispositif</code></td>
-<td>ce qu'il est. Sept valeurs, dont le compte sur les 41 : <code>cliquet</code> (26), <code>loupe</code> (6), <code>invariant</code> (5), <code>plancher</code>, <code>rapport</code>, <code>generateur</code> et <code>harnais</code> (1 chacun)</td>
+<td>ce qu'il est, et le vocabulaire est <strong>clos</strong> (ADR 5125). Quatre disent comment il juge : <code>cliquet</code> (27), <code>invariant</code> (25), <code>loupe</code> (7), <code>plancher</code> (1). Trois disent qu'il ne juge <strong>pas</strong>, et ce qu'il fait à la place : <code>rapport</code> (4), <code>generateur</code> (2), <code>harnais</code> (1)</td>
 </tr>
 <tr>
 <td><code>seuil</code></td>

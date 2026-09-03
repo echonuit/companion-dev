@@ -10380,6 +10380,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5157-le-dispositif-se-lit-sans-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5157 · Le dispositif déclare ce que l'outil fait sans mode
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -13016,6 +13051,11 @@
 <td><a href="5125-un-point-d-entree-qui-ne-juge-pas-dit-ce-qu-il-est/">5125</a></td>
 <td>Le format <code>--contrat</code> de #5009 portait quatre dispositifs, qui disent COMMENT un garde juge : cliquet, plancher, loupe, invariant. Le sous-chantier #5117 a porté <code>scripts/adr</code> à 41 contrats sur 41 points d'entrée, et trois d'entre eux ne rendent aucun verdict : <code>rapport.py</code> agrège, <code>resserre_cliquets.py</code> écrit, <code>verifie_scripts.py</code> éprouve les gardes eux-mêmes. « (sans objet) » aurait passé le garde en rendant ces trois natures indiscernables. Un point d'entrée qui ne juge pas déclare donc ce qu'il EST, le vocabulaire passe à sept valeurs closes, déclarées dans la seule constante <code>DISPOSITIFS</code>, et un mot hors de l'ensemble fait rougir. Élargir reste possible et coûte une ligne ; élargir en silence ne l'est plus</td>
 <td>#5125, sous-chantier #5117</td>
+</tr>
+<tr>
+<td><a href="5157-le-dispositif-se-lit-sans-mode/">5157</a></td>
+<td>L'ADR 5125 a clos le vocabulaire des dispositifs sans dire lequel choisir quand un outil en fait plusieurs. Le sous-chantier C a d'abord écrit « ce que la CI appelle », règle muette pour trois outils sur vingt-quatre : l'un refuse mais n'est lancé qu'en auto-test, deux ne figurent dans aucun atelier. La règle retenue est <strong>ce que l'outil fait quand on l'appelle sans mode</strong>, parce qu'un contrat déclare ce qu'un point d'entrée EST et non ce qu'un atelier en fait. Un mot dont la raison ne se lit pas dans une aide s'écrit à côté du contrat</td>
+<td>#5157, sous-chantier #5154</td>
 </tr>
 </tbody>
 </table>
