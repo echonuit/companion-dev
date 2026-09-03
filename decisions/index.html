@@ -10345,6 +10345,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5125-un-point-d-entree-qui-ne-juge-pas-dit-ce-qu-il-est/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5125 · Un point d'entrée qui ne juge pas dit ce qu'il est
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12948,6 +12983,11 @@
 <td><a href="5089-un-chemin-suivi-ne-porte-que-de-l-ascii/">5089</a></td>
 <td><code>git ls-files</code> et <code>git diff --name-only</code> ÉCHAPPENT les chemins non-ASCII par défaut, ce qui les rend invisibles à tout outillage qui teste ensuite l'existence du fichier, EN SILENCE. Mesuré le 1er septembre : une passe du graphe a écarté 50 fichiers de <code>brief/</code> et pris 6 renommages pour 56 suppressions, sans qu'aucun garde rougisse. 101 chemins sur 3 203 étaient fautifs, tous sous <code>brief/</code>, et tous déjà en NFC : le défaut est le jeu de caractères, pas la normalisation Unicode. Un chemin suivi ne porte donc que de l'ASCII, à tolérance zéro. La règle ne dit rien de la casse ni des espaces, que <code>core.quotePath</code> n'échappe pas ; et la prose, les titres et le texte des liens gardent leurs accents, la tension avec l'article A24 étant assumée</td>
 <td>#5089, chantier #5088</td>
+</tr>
+<tr>
+<td><a href="5125-un-point-d-entree-qui-ne-juge-pas-dit-ce-qu-il-est/">5125</a></td>
+<td>Le format <code>--contrat</code> de #5009 portait quatre dispositifs, qui disent COMMENT un garde juge : cliquet, plancher, loupe, invariant. Le sous-chantier #5117 a porté <code>scripts/adr</code> à 41 contrats sur 41 points d'entrée, et trois d'entre eux ne rendent aucun verdict : <code>rapport.py</code> agrège, <code>resserre_cliquets.py</code> écrit, <code>verifie_scripts.py</code> éprouve les gardes eux-mêmes. « (sans objet) » aurait passé le garde en rendant ces trois natures indiscernables. Un point d'entrée qui ne juge pas déclare donc ce qu'il EST, le vocabulaire passe à sept valeurs closes, déclarées dans la seule constante <code>DISPOSITIFS</code>, et un mot hors de l'ensemble fait rougir. Élargir reste possible et coûte une ligne ; élargir en silence ne l'est plus</td>
+<td>#5125, sous-chantier #5117</td>
 </tr>
 </tbody>
 </table>

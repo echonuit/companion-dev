@@ -10230,6 +10230,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5125-un-point-d-entree-qui-ne-juge-pas-dit-ce-qu-il-est/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5125 · Un point d'entrée qui ne juge pas dit ce qu'il est
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -12373,6 +12408,70 @@ contre-exemples ci-dessus sont hors de portée de PIT ; le quatrième, en revanc
 sa cible - et un <code>-Pmutation</code> ciblé l'aurait signalé sans qu'on ait à deviner lequel mutant écrire.</p>
 <p><strong>En pratique</strong> : à la passe 6 d'une clôture, lancer PIT ciblé sur les classes que le chantier a
 introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindre.</p>
+<h3 id="demander-a-un-garde-ce-quil-est-contrat">Demander à un garde ce qu'il est : <code>--contrat</code><a class="headerlink" href="#demander-a-un-garde-ce-quil-est-contrat" title="Permanent link">&para;</a></h3>
+<p>Les <strong>41 points d'entrée</strong> de <code>scripts/adr</code> répondent à <code>--contrat</code> et déclarent six champs. La
+réponse s'obtient sans rien lire du dépôt : la branche s'imprime <strong>avant tout le reste</strong>, pour qu'un
+garde dont une dépendance manque rende quand même sa déclaration.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python3<span class="w"> </span>scripts/adr/0008-echec-silencieux.py<span class="w"> </span>--contrat
+</code></pre></div>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>CONTRAT | garde=scripts/adr/0008-echec-silencieux.py
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>geste: échec silencieux : catch au corps vide
+<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>population: PRODUCTION + TESTS
+<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>dispositif: cliquet
+<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>seuil: 0, polarite=descend
+<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>temoin: scripts/adr/verifie_scripts.py#test_0008_echec_silencieux
+<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>decision: ADR 0008
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Champ</th>
+<th>Ce qu'il dit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>geste</code></td>
+<td>ce que le garde cherche, en une phrase</td>
+</tr>
+<tr>
+<td><code>population</code></td>
+<td>ce qu'il balaie. Les arbres Java se nomment <code>PRODUCTION</code> et <code>TESTS</code> ; le reste s'écrit en clair</td>
+</tr>
+<tr>
+<td><code>dispositif</code></td>
+<td>ce qu'il est. Sept valeurs, dont le compte sur les 41 : <code>cliquet</code> (26), <code>loupe</code> (6), <code>invariant</code> (5), <code>plancher</code>, <code>rapport</code>, <code>generateur</code> et <code>harnais</code> (1 chacun)</td>
+</tr>
+<tr>
+<td><code>seuil</code></td>
+<td>la marge et sa polarité, ou <code>(sans objet)</code></td>
+</tr>
+<tr>
+<td><code>temoin</code></td>
+<td>ce qui l'éprouve : <code>&lt;fichier&gt; --auto-test</code>, ou <code>verifie_scripts.py#&lt;fonction&gt;</code></td>
+</tr>
+<tr>
+<td><code>decision</code></td>
+<td>l'ADR qui le fonde, ou « hygiène, sans décision »</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Un champ sans objet s'écrit, il ne s'omet pas.</strong> <code>imprime_contrat</code> refuse un contrat incomplet :
+une ligne absente ne se distingue pas d'un oubli, alors que <code>seuil: (sans objet)</code> pour un invariant
+dit quelque chose.</p>
+<p><strong>Ce que la déclaration remplace.</strong> <code>contrats-des-gardes.py</code> sait deviner la population, le seuil et
+l'ADR en lisant le source. L'inférence marche souvent et se trompe sans le dire : elle lisait une
+chaîne de fixture comme du code (#5103), et rendait « (non declaree) » dès qu'un import se repliait
+au-delà de 100 caractères (#5128). Un contrat déclaré porte en plus ce qu'aucun motif ne dérive - la
+population d'un garde qui interroge la forge, par exemple.</p>
+<p><strong>Et il est confronté.</strong> <code>verifie_contrats_tiennent.py</code> compare ce que le contrat déclare à ce que le
+garde fait, et refuse la contradiction. La règle n'est pas l'égalité : <code>RACINES</code> et
+<code>PRODUCTION + TESTS</code> nomment le même corpus, et un <strong>silence</strong> de l'inférence ne contredit rien.
+Sans cette confrontation, un contrat serait un commentaire, et il dériverait dès le jour où on
+l'écrit.</p>
+<p><strong>Ce qu'il ne dit pas</strong> : ce que le garde <strong>refuse</strong> vraiment. Un contrat déclare ce qu'un garde
+<strong>est</strong>, jamais son prédicat. Et le champ <code>temoin</code> est vérifié <strong>existant</strong>, pas éprouvé : neuf des
+quarante-et-un ne sont tenus que par cette vérification-là (#5134).</p>
 <h2 id="ce-qui-bloque-la-ci">Ce qui bloque la CI<a class="headerlink" href="#ce-qui-bloque-la-ci" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
