@@ -10307,6 +10307,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5188-bash-disparait-une-tolerance-est-un-delai/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5188 · Bash disparaît, une tolérance est un délai daté
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5169-un-inventaire-s-adosse-au-code-ou-au-document/" class="md-nav__link">
         
   
@@ -13408,6 +13443,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>verifie_contrat_obligatoire.py</code></td>
 <td>qu'un point d'entrée de <code>scripts/adr</code> DÉCLARE ce qu'il est (ADR 4636). Les 41 en portent un depuis #5117 ; rien n'empêchait le 42e d'arriver sans le sien, et un corpus complet se reperd sans bruit - un garde neuf copié sur un voisin emporte le bloc de verdict et pas la déclaration. C'est un <strong>invariant</strong>, pas un cliquet : il n'y a pas de marge à relever, et l'échappatoire est une liste d'exceptions <strong>nommées</strong>, vide à la livraison. Il ne juge pas le CONTENU du contrat, que <code>verifie_contrats_tiennent.py</code> confronte déjà</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>5188-corpus-shell.py</code></td>
+<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->50<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
