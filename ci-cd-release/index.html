@@ -11598,6 +11598,78 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#ce-qui-reste-en-shell-et-ou-chacun-descend-5187" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui reste en shell, et où chacun descend (#5187)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ce qui reste en shell, et où chacun descend (#5187)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-population" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La population
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-chacun-repond" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que chacun répond
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-la-ci-atteint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la CI atteint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ou-chacun-descend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Où chacun descend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-limites-de-ce-releve-declarees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deux limites de ce relevé, déclarées
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -12122,6 +12194,78 @@
       
     </span>
   </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-qui-reste-en-shell-et-ou-chacun-descend-5187" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui reste en shell, et où chacun descend (#5187)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ce qui reste en shell, et où chacun descend (#5187)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#la-population" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La population
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-chacun-repond" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que chacun répond
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ce-que-la-ci-atteint" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que la CI atteint
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ou-chacun-descend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Où chacun descend
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deux-limites-de-ce-releve-declarees" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deux limites de ce relevé, déclarées
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
         
@@ -13492,8 +13636,11 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>scripts/methode/verifie-controle-du-titre.py</code> | <code>CONTRIBUTING.md</code> et les deux copies de la compétence <code>clore-une-issue</code> nomment <code>verifie-titre-pr.sh</code>, et ce script <strong>refuse encore</strong> l'espace avant les deux-points. Le dépôt pratique deux conventions à un caractère d'écart, et c'est la plus écrite qui est fausse en PR : 62 des 100 derniers titres d'issue portent l'espace, les 100 dernières PR fusionnées sont à zéro. Le défaut n'entre pas au commit, les quatre PR rouges du 2026-08-26 partant toutes d'une branche aux sujets conformes, mais à la frappe du titre. Le garde relance le script cité sur un titre fautif <strong>et</strong> sur un titre conforme : une méthode qui nommerait une commande devenue permissive vaut moins que rien (#4598) | <code>lint.yml</code> |
 | <code>scripts/methode/verifie-sous-commandes-openspec.py</code> | les <strong>invocations</strong> citées dans les douze fichiers d'OpenSpec existent dans l'outil épinglé, à <strong>deux niveaux</strong> : un garde qui ne lirait que le premier mot déclarerait <code>openspec new</code> valide et laisserait passer <code>openspec new frobnicate</code>. Il compare à l'outil épinglé et jamais à celui du <code>PATH</code>, qui peut être d'une autre version. Il est <strong>vert sur le corpus d'aujourd'hui</strong>, donc tout son poids porte sur son auto-test, dont le premier cas est un témoin vert et le dernier rejoue le faux positif de l'en-tête YAML (#4514). Il refuse <strong>par entrée de corpus</strong> et non sur le total : un chemin disparu laisse les autres rendre des fichiers, et un refus sur le total resterait vert en n'ayant lu qu'une partie de ce qu'il annonce (#4566) | <code>lint.yml</code>, job <code>outillage-release</code> |</p>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
-<p>Ces gardes sont elles-mêmes du shell, et le dépôt en compte <strong>42 scripts</strong> hors <code>node_modules</code>. Le
+<p>Ces gardes sont elles-mêmes du shell, et le dépôt en compte <strong>50 scripts</strong> hors <code>node_modules</code>. Le
 job <code>lint</code> les passe tous à <code>shellcheck</code>.</p>
+<p>Ce chiffre a été <strong>42</strong> et l'est resté dans cette page pendant huit jours : il était juste le
+2026-08-25, quand #4393 l'a écrit, et le corpus a grossi sans que la phrase suive. Le relevé
+ci-dessous existe pour que la prochaine dérive se voie.</p>
 <p>Les <strong>réglages</strong> vivent dans <code>.shellcheckrc</code>, à la racine, et non dans le YAML : un contributeur qui
 lance <code>shellcheck son-script.sh</code> doit voir ce que voit la CI. Un réglage caché dans un workflow
 ferait diverger les deux, et c'est le local qui mentirait, puisque c'est lui qu'on consulte avant de
@@ -13534,6 +13681,136 @@ surchargeable par variable d'environnement, et en montant un bac jetable.</p>
   <strong>lui seul</strong>. Vécu pendant #3293 : une première tentative de neutralisation n'avait rien modifié, et
   le vert obtenu ne prouvait rien.</li>
 </ul>
+<h3 id="ce-qui-reste-en-shell-et-ou-chacun-descend-5187">Ce qui reste en shell, et où chacun descend (#5187)<a class="headerlink" href="#ce-qui-reste-en-shell-et-ou-chacun-descend-5187" title="Permanent link">&para;</a></h3>
+<p>Le dépôt vise <strong>deux langages</strong> : Java pour la production et son outillage, Python pour l'outillage
+du projet. Les scripts shell se convertissent donc, et <strong>ils ne reçoivent pas de contrat</strong> : le
+format <code>--contrat</code> est éprouvé en shell depuis #5009, mais y étendre le corpus serait investir dans
+ce qui doit disparaître. Ce relevé mesure et borne ; il ne convertit rien.</p>
+<p><strong>Chaque chiffre est obtenu en lançant quelque chose.</strong> Aucun ne vient d'un motif sur le source, et
+c'est la seule façon de répondre à la question posée : ce qu'un script <strong>répond</strong>, pas ce à quoi il
+ressemble.</p>
+<h4 id="la-population">La population<a class="headerlink" href="#la-population" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>fichiers <code>.sh</code> versionnés</td>
+<td style="text-align: right;"><strong>50</strong></td>
+</tr>
+<tr>
+<td>vus par le <code>find</code> du job <code>lint</code></td>
+<td style="text-align: right;"><strong>50</strong></td>
+</tr>
+<tr>
+<td>écart entre les deux, dans les deux sens</td>
+<td style="text-align: right;"><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Les deux ensembles sont identiques, comparés par <code>comm</code> dans les deux directions. Il n'y a donc
+qu'une population, pas deux qui se confondraient.</p>
+<h4 id="ce-que-chacun-repond">Ce que chacun répond<a class="headerlink" href="#ce-que-chacun-repond" title="Permanent link">&para;</a></h4>
+<p>Un script est un <strong>garde</strong> s'il distingue <code>--auto-test</code> d'un drapeau quelconque. La question ne se
+lit pas dans le source sans retomber sur la ressemblance ; elle se mesure <strong>par contraste</strong>, en
+comparant sa sortie sous <code>--auto-test</code> à sa sortie sous <code>--zzz-drapeau-inexistant</code>.</p>
+<table>
+<thead>
+<tr>
+<th>catégorie</th>
+<th style="text-align: right;">n</th>
+<th>ce qui la définit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>gardes</strong></td>
+<td style="text-align: right;"><strong>45</strong></td>
+<td>distinguent le drapeau, et leur auto-test sort en <strong>0</strong>, tous les 45</td>
+</tr>
+<tr>
+<td><strong>outils</strong></td>
+<td style="text-align: right;"><strong>5</strong></td>
+<td>rendent la même chose avec les deux drapeaux : ils ne le voient pas</td>
+</tr>
+</tbody>
+</table>
+<p>Les cinq outils sont <code>capture-screenshots.sh</code>, <code>construit-appimage.sh</code>, <code>mesure-pixels.sh</code>,
+<code>porte-sur-le-contrat-de-fichiers.sh</code> et <code>icone/genere-icones.sh</code>.</p>
+<p><strong>Le contrôle négatif est <code>construit-appimage.sh</code></strong> : un workflow le lance, il sort en <code>1</code>, et il
+n'est pas compté comme garde parce qu'il rend exactement la même chose sous les deux drapeaux. Être
+lancé par la CI et échouer ne fait pas un garde ; distinguer le drapeau, si.</p>
+<p><strong>Une mesure a dû être écartée, et c'est instructif.</strong> <code>capture-screenshots.sh</code> paraissait distinguer
+le drapeau. Le contrôle de non-déterminisme le dément : <strong>deux appels sous le MÊME drapeau diffèrent
+déjà</strong>, parce que la question déclenche une compilation Maven puis un rendu JavaFX que le délai
+d'attente coupe à un endroit variable. Un contraste ne conclut que sur un script déterministe, et
+celui-ci ne l'est pas. Il est rangé parmi les outils.</p>
+<h4 id="ce-que-la-ci-atteint">Ce que la CI atteint<a class="headerlink" href="#ce-que-la-ci-atteint" title="Permanent link">&para;</a></h4>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align: right;"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>atteints depuis un workflow, <strong>transitivement</strong></td>
+<td style="text-align: right;"><strong>49</strong></td>
+</tr>
+<tr>
+<td>orphelins</td>
+<td style="text-align: right;"><strong>1</strong></td>
+</tr>
+</tbody>
+</table>
+<p>L'unique orphelin est <code>icone/genere-icones.sh</code>, lancé à la main quand l'icône change.</p>
+<p>La transitivité n'est pas un raffinement : mesurée sur les seuls workflows, la réponse était « 5 non
+lancés ». Quatre d'entre eux sont en réalité appelés par un autre script ou par l'outillage Python,
+et un script lancé par un garde est exécuté par la CI aussi sûrement qu'un script cité dans un <code>run:</code>.</p>
+<h4 id="ou-chacun-descend">Où chacun descend<a class="headerlink" href="#ou-chacun-descend" title="Permanent link">&para;</a></h4>
+<p><strong>Les cinquante disparaissent.</strong> Bash n'a pas d'état stable dans ce dépôt, et une tolérance est un
+<strong>délai daté, jamais une exemption</strong> (ADR 5188).</p>
+<table>
+<thead>
+<tr>
+<th>destination</th>
+<th style="text-align: right;">n</th>
+<th>ce qui la décide</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>conversion, sans condition</td>
+<td style="text-align: right;"><strong>49</strong></td>
+<td>la cible des deux langages</td>
+</tr>
+<tr>
+<td>conversion <strong>après une condition écrite</strong></td>
+<td style="text-align: right;"><strong>1</strong></td>
+<td><code>lance-test-filme.sh</code>, 1 295 lignes d'orchestration, tolérées <strong>tant que le banc Java n'est pas définitivement validé</strong>. La condition est écrite pour qu'on sache la lever, et sa levée déclenche la conversion</td>
+</tr>
+</tbody>
+</table>
+<p>Le <strong>langage d'arrivée</strong> de chacun se choisit au moment de sa conversion, entre Java et Python selon
+ce qu'il outille. Ce n'est pas un arbitrage laissé ouvert sur le fond : rien ne reste en shell. Les
+cinq outils qui ne sont pas des gardes ne font pas exception ; ils n'ont simplement pas la même
+urgence, n'étant tenus par aucun auto-test.</p>
+<h4 id="deux-limites-de-ce-releve-declarees">Deux limites de ce relevé, déclarées<a class="headerlink" href="#deux-limites-de-ce-releve-declarees" title="Permanent link">&para;</a></h4>
+<p><strong>L'inventaire de la CI compte les gardes shell par une recherche textuelle.</strong>
+<code>verifie-inventaires-ci.sh</code> retire les lignes de commentaire puis cherche la chaîne <code>--auto-test</code>,
+là où sa moitié Python fait un vrai contrôle par <code>ast</code> en excluant les docstrings depuis #5032.
+Confronté à la mesure par contraste, <strong>il tombe juste : 45 des deux côtés, les mêmes 45.</strong> La règle
+est fragile par construction et exacte sur le corpus d'aujourd'hui ; c'est un risque, pas un défaut,
+et il est écrit ici plutôt que corrigé au passage.</p>
+<p><strong>Ses motifs ne balaient pas <code>icone/</code>.</strong> Le dossier n'y figure pas, donc un auto-test qui y
+apparaîtrait serait invisible de l'inventaire. Sans conséquence aujourd'hui, <code>genere-icones.sh</code> ne
+mentionnant <code>--auto-test</code> nulle part. C'est la cécité à un dossier que ce même garde décrit à propos
+de #4013, et elle a survécu à sa propre description.</p>
 <h2 id="un-rouge-se-classe-avant-de-se-rejouer-4187">Un rouge se classe avant de se rejouer (#4187)<a class="headerlink" href="#un-rouge-se-classe-avant-de-se-rejouer-4187" title="Permanent link">&para;</a></h2>
 <p>Un rouge de CI se rejouait à l'aveugle, et le geste passait pour raisonnable : on avait tous vu la
 suite repartir verte sans qu'une ligne ait changé. Sur 21 jours, <strong>55 passages sur 1 233 ont été
