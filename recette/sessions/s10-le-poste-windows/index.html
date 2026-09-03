@@ -11083,6 +11083,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#c-le-geste-de-la-racine-3461-5001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Le geste de la racine (#3461, #5001)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -11643,6 +11654,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#c-le-geste-de-la-racine-3461-5001" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Le geste de la racine (#3461, #5001)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -11701,13 +11723,15 @@
 Retour à la <a href="../../">méthode</a>.</p>
 </blockquote>
 <h2 id="objectif">Objectif<a class="headerlink" href="#objectif" title="Permanent link">&para;</a></h2>
-<p>Le lot 3 a fait tourner la suite entière sous Windows et macOS, chaque mardi. Restent deux choses
-qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant motivé deux correctifs :</p>
+<p>Le lot 3 a fait tourner la suite entière sous Windows et macOS, chaque mardi. Restent trois choses
+qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant motivé des correctifs :</p>
 <ol>
 <li><strong>Ce qu'un humain lit</strong> quand le dossier de travail est déjà tenu par une autre instance ;</li>
-<li><strong>Ce qu'une vraie console Windows rend</strong> de la couleur de la CLI.</li>
+<li><strong>Ce qu'une vraie console Windows rend</strong> de la couleur de la CLI ;</li>
+<li><strong>Ce que produit le geste de la racine</strong>, quand on désigne une carte SD par <code>L:\</code> et non par un
+   sous-dossier.</li>
 </ol>
-<p>Ces deux comportements n'ont <strong>jamais été observés sur une machine Windows réelle</strong>. Ils sont
+<p>Ces comportements n'ont <strong>jamais été observés sur une machine Windows réelle</strong>. Ils sont
 éprouvés par des tests - c'est la raison d'être du lot - mais un test lit une chaîne, il ne lit pas un
 écran.</p>
 <h2 id="ce-que-la-ci-couvre-deja-et-quil-ne-faut-pas-rejouer">Ce que la CI couvre déjà, et qu'il ne faut pas rejouer<a class="headerlink" href="#ce-que-la-ci-couvre-deja-et-quil-ne-faut-pas-rejouer" title="Permanent link">&para;</a></h2>
@@ -11735,6 +11759,10 @@ qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant mo
 <td>toute la suite passe sous Windows et macOS</td>
 <td>passage programmé du mardi (#3526)</td>
 </tr>
+<tr>
+<td>une racine de volume n'est ni une archive, ni un nom nul, sur les <strong>trois</strong> sites</td>
+<td><code>ExtracteurZipTest</code>, <code>ActionsSauvegardeTest</code>, <code>ReactivationModaleQuestionTest</code>, matrice <code>contrat-fichiers</code> sur 3 OS (#5001)</td>
+</tr>
 </tbody>
 </table>
 <p>Ce que la machine réelle ajoute : <strong>un humain devant l'écran</strong>, et une console Windows véritable -
@@ -11745,6 +11773,10 @@ qu'une suite de tests <strong>ne peut pas</strong> juger, et qui ont pourtant mo
 <li>L'application installée (S9 la pose), et le <strong>fat-jar</strong> disponible pour la partie CLI.</li>
 <li>Un dossier de travail contenant au moins une nuit, pour que la seconde instance ait quelque chose à
   refuser.</li>
+<li>Pour la section C, une <strong>carte SD</strong> montée sous sa propre lettre de lecteur, portant <strong>à sa
+  racine</strong> les WAV, le <code>LogPR</code> et le journal TH d'une nuit. À la racine, et non dans un sous-dossier :
+  c'est la racine qui est le sujet, et un sous-dossier ne joue aucun des trois cas.</li>
+<li>Pour S10-10, une <strong>sauvegarde complète</strong> déjà écrite sur un support dédié, désignable par sa racine.</li>
 </ul>
 <h2 id="le-script-une-case-un-fait-observable">Le script (une case = un fait observable)<a class="headerlink" href="#le-script-une-case-un-fait-observable" title="Permanent link">&para;</a></h2>
 <h3 id="a-le-dossier-de-travail-deja-tenu-3693-3714">A. Le dossier de travail déjà tenu (#3693, #3714)<a class="headerlink" href="#a-le-dossier-de-travail-deja-tenu-3693-3714" title="Permanent link">&para;</a></h3>
@@ -11796,6 +11828,35 @@ seule des trois.</p>
 <li class="task-list-item">
 <p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-08</strong> · <em>hors-portée: une variable d'environnement posée dans une console Windows réelle, hors du banc</em> · Poser <code>NO_COLOR=1</code> puis relancer S10-05.
   <strong>Attendu</strong> : aucune couleur, et l'aide reste lisible.</p>
+</li>
+</ul>
+<h3 id="c-le-geste-de-la-racine-3461-5001">C. Le geste de la racine (#3461, #5001)<a class="headerlink" href="#c-le-geste-de-la-racine-3461-5001" title="Permanent link">&para;</a></h3>
+<p>Une carte SD se désigne volontiers par sa <strong>racine</strong>, <code>L:\</code>, et non par un sous-dossier. Une racine de
+volume n'a pas de dernier segment : <code>getFileName()</code> y rend <code>null</code>, et trois écrans le lisaient quand
+même. #5001 les a corrigés, et la matrice <code>contrat-fichiers</code> le tient <strong>à la fonction</strong>.</p>
+<p>Ce qu'aucun banc ne joue est le geste de l'observateur : insérer la carte, la désigner par sa racine,
+et lire ce que l'écran répond. Les trois cas veulent la <strong>même</strong> carte et la <strong>même</strong> racine, joués à
+la suite. La lettre de lecteur est donnée ici comme <code>L:\</code> ; noter celle qu'on a réellement.</p>
+<ul class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-09</strong> · <em>geste: import-depuis-la-racine-d-une-carte</em> · <em>carton: insérer la carte SD et désigner sa racine dans le sélecteur natif de dossier</em> · <strong>Préparer</strong> : la carte de la section Environnement, WAV, <code>LogPR</code> et journal TH <strong>à sa racine</strong>. <strong>Le geste</strong> : ouvrir l'import, désigner la carte par sa racine (<code>L:\</code>, pas <code>L:\une-nuit</code>), et mener l'import jusqu'au bout.
+  <strong>Attendu</strong> : l'import aboutit et <strong>le passage est créé</strong>, visible dans la liste des nuits. Aucune
+  erreur à l'écran, à aucun moment. Le défaut d'origine prenait la racine pour une archive et
+  remontait une exception à l'écran : ce cas est vert seulement si l'on va <strong>jusqu'au passage</strong>, pas
+  seulement jusqu'à l'écran d'inspection.</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-10</strong> · <em>geste: restauration-designee-par-sa-racine</em> · <em>carton: insérer le support de sauvegarde et désigner sa racine dans le sélecteur natif de dossier</em> · <strong>Préparer</strong> : une sauvegarde complète écrite sur un support dédié, désignable par sa racine. <strong>Le geste</strong> : lancer la restauration, désigner le support par sa racine, et <strong>s'arrêter sur la confirmation</strong> pour la lire avant de valider.
+  <strong>Attendu</strong> : la confirmation nomme le support par son <strong>chemin entier</strong>, <code>L:\</code>, faute de dernier
+  segment. Ni « null », ni une erreur, ni un nom vide entre les guillemets. C'est une confirmation
+  <strong>destructive</strong> : si elle ne nomme pas ce qu'elle va écraser, on valide à l'aveugle, et c'est le
+  cas où l'on ne peut pas revenir.</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S10-11</strong> · <em>geste: reactivation-d-une-carte-entiere</em> · <em>carton: insérer la carte SD et désigner sa racine dans le sélecteur natif de dossier</em> · <strong>Préparer</strong> : une carte portant des fichiers <strong>déjà transformés</strong>. <strong>Le geste</strong> : lancer la réactivation et désigner la <strong>carte entière</strong>, par sa racine.
+  <strong>Attendu</strong> : la question de la modale se lit « Des fichiers déjà transformés ont été trouvés dans
+  « <code>L:\</code> ». » Le mot <strong>null</strong> n'apparaît nulle part dans la phrase. Désigner une carte entière est
+  prévu par la conception, pas un détournement : c'est le geste qu'un observateur fait en premier.</p>
 </li>
 </ul>
 <h2 id="ce-que-la-session-ne-couvre-pas-et-pourquoi">Ce que la session ne couvre pas, et pourquoi<a class="headerlink" href="#ce-que-la-session-ne-couvre-pas-et-pourquoi" title="Permanent link">&para;</a></h2>
