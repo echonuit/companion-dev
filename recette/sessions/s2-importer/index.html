@@ -11891,14 +11891,17 @@ combien de temps un import prend. Sur une vraie carte SD, la durée se juge en s
 <p><strong>Étape 4 · Diagnostic (depuis le passage)</strong></p>
 <p><em>Écran refondu depuis la passe du 14/07 (#1673 ; #1497 GPS et #1498 soin de l'écran corrigés) : items
 alignés sur l'écran actuel, à confirmer au re-jeu.</em></p>
-<ul>
+<ul class="task-list">
 <li><strong>S2-34</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · La courbe climatique T°/hygrométrie s'affiche, l'axe <strong>gradué en heures</strong>.</li>
 <li><strong>S2-35</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · Les anomalies détectées s'affichent (ou leur placeholder).</li>
 <li><strong>S2-36</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · Les évènements du journal s'affichent (ou leur placeholder).</li>
 <li><strong>S2-37</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · La cohérence horaire indique la fenêtre nocturne (coucher/lever du soleil), et <strong>sous elle
   les deux plages</strong> : « Protocole … » (coucher moins 30 minutes → lever plus 30) et « Enregistré … ».</li>
 <li><strong>S2-66</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · Sur cette nuit, qui <strong>ne couvre pas</strong> la fenêtre exigée, un <strong>avertissement</strong> paraît et <strong>dit ce
-  qui manque</strong>. Il ne se contente pas de signaler.</li>
+  qui manque</strong>. Il ne se contente pas de signaler.
+  <strong>Ce que cette case demandait n'était pas tenu jusqu'à #5200</strong> : le message énonçait la règle du
+  protocole, « de 30 minutes avant le coucher à 30 minutes après le lever », sans jamais dire de quel
+  côté ça manquait. La case le réclamait, le produit signalait. Il nomme désormais le bord.</li>
 <li><strong>S2-67</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · <em>(carte <code>nuit-longue</code>)</em> Sur une nuit qui <strong>couvre</strong> la fenêtre exigée et la dépasse, l'écran rend
   une <strong>information</strong>, jamais un avertissement : le protocole est un <strong>plancher</strong>, et le dépasser
   n'est pas un défaut. C'est le cas qui ferait rougir la règle inversée, et c'est celui qu'aucune
@@ -11906,6 +11909,8 @@ alignés sur l'écran actuel, à confirmer au re-jeu.</em></p>
   nuit" si l'enregistrement déborde », c'est-à-dire de confirmer le défaut (#4984). <strong>À jouer à la
   main</strong> : le comportement est éprouvé par un banc, mais aucun clip ne le montre, la carte de recette
   n'ayant pas de nuit qui couvre la fenêtre (#5061).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S2-77</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · <em>(carte <code>sd-fin-precoce</code>)</em> <strong>Préparer</strong> : importer cette carte, dont le journal annonce <code>Acquisi. 19:55-06:30</code>. <strong>Le geste</strong> : ouvrir le diagnostic du passage. <strong>Attendu</strong> : l'avertissement dit que les enregistrements <strong>s'arrêtent</strong> trop tôt, et que <strong>le début est bien couvert</strong>. Il ne doit pas accuser le début.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S2-78</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · <em>(carte <code>sd-hors-fenetre</code>)</em> <strong>Préparer</strong> : importer cette carte, <code>Acquisi. 20:25-06:30</code>. <strong>Le geste</strong> : ouvrir le diagnostic. <strong>Attendu</strong> : l'avertissement nomme les <strong>deux</strong> bords, et ne dit « bien » d'aucun des deux. C'est le cas où la phrase ne doit rien concéder.</li>
 <li><strong>S2-74</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · Sous la cohérence horaire, un <strong>second encart</strong> dit ce que le journal établit de la <strong>fin</strong>
   de la nuit. Deux axes distincts : le premier dit si l'enregistrement couvre la fenêtre exigée,
   celui-ci s'il s'est interrompu. Une nuit peut porter les deux (#5093).</li>
