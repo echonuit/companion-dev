@@ -13073,12 +13073,12 @@ exécutable</strong>, qu'on rend exécutable et qu'on lance, sans rien décompre
 l'archive portable pour qui préfère un fichier à un dossier, et le seul des deux formats à
 <strong>s'intégrer au menu des applications</strong>, grâce à son <code>.desktop</code>.</p>
 <p>Elle est construite par
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/construit-appimage.sh"><code>.github/scripts/construit-appimage.sh</code></a>,
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/construit_appimage.py"><code>.github/scripts/construit_appimage.py</code></a>,
 à partir de trois éléments versionnés dans <code>.github/appimage/</code> (le point d'entrée <code>AppRun</code>, le
 <code>.desktop</code>, et l'icône reprise de celle que jpackage dépose dans <code>lib/</code>). Le script est <strong>lançable à
 la main</strong>, ce qui permet de le vérifier sans passer par une release :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>./mvnw<span class="w"> </span>-Pinstaller<span class="w"> </span>-Djpackage.type<span class="o">=</span>app-image<span class="w"> </span>-DskipTests<span class="w"> </span>verify
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>./.github/scripts/construit-appimage.sh<span class="w"> </span><span class="m">2</span>.20.0<span class="w"> </span>x86_64<span class="w">      </span><span class="c1"># -&gt; target/dist/*.AppImage</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python3<span class="w"> </span>.github/scripts/construit_appimage.py<span class="w"> </span><span class="m">2</span>.20.0<span class="w"> </span>x86_64<span class="w">      </span><span class="c1"># -&gt; target/dist/*.AppImage</span>
 </code></pre></div>
 <p>L'étape est placée <strong>avant</strong> l'empaquetage de l'archive portable, qui supprime
 <code>target/dist/VigieChiro</code> : les deux formats partent de la même app-image.</p>
@@ -13602,7 +13602,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>5188-corpus-shell.py</code></td>
-<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->11<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
+<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->7<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
@@ -13939,12 +13939,12 @@ comparant sa sortie sous <code>--auto-test</code> à sa sortie sous <code>--zzz-
 </tr>
 </tbody>
 </table>
-<p>Les cinq outils sont <code>capture-screenshots.sh</code>, <code>construit-appimage.sh</code>, <code>mesure-pixels.sh</code>,
-<code>porte-sur-le-contrat-de-fichiers.sh</code> et <code>icone/genere-icones.sh</code>.</p>
-<p><strong>Le contrôle négatif est <code>construit-appimage.sh</code></strong> : un workflow le lance, il sort en <code>1</code>, et il
+<p>Les cinq outils sont <code>capture_screenshots.py</code>, <code>construit_appimage.py</code>, <code>mesure-pixels.sh</code>,
+<code>porte_sur_le_contrat_de_fichiers.py</code> et <code>icone/genere_icones.py</code>.</p>
+<p><strong>Le contrôle négatif est <code>construit_appimage.py</code></strong> : un workflow le lance, il sort en <code>1</code>, et il
 n'est pas compté comme garde parce qu'il rend exactement la même chose sous les deux drapeaux. Être
 lancé par la CI et échouer ne fait pas un garde ; distinguer le drapeau, si.</p>
-<p><strong>Une mesure a dû être écartée, et c'est instructif.</strong> <code>capture-screenshots.sh</code> paraissait distinguer
+<p><strong>Une mesure a dû être écartée, et c'est instructif.</strong> <code>capture_screenshots.py</code> paraissait distinguer
 le drapeau. Le contrôle de non-déterminisme le dément : <strong>deux appels sous le MÊME drapeau diffèrent
 déjà</strong>, parce que la question déclenche une compilation Maven puis un rendu JavaFX que le délai
 d'attente coupe à un endroit variable. Un contraste ne conclut que sur un script déterministe, et
@@ -13965,7 +13965,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 </thead>
 <tbody>
 <tr>
-<td><code>.github/assets/capture-screenshots.sh</code></td>
+<td><code>.github/assets/capture_screenshots.py</code></td>
 <td>outil</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14031,7 +14031,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/construit-appimage.sh</code></td>
+<td><code>.github/scripts/construit_appimage.py</code></td>
 <td>outil</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14061,7 +14061,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/porte-sur-le-contrat-de-fichiers.sh</code></td>
+<td><code>.github/scripts/porte_sur_le_contrat_de_fichiers.py</code></td>
 <td>outil</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14247,7 +14247,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>icone/genere-icones.sh</code></td>
+<td><code>icone/genere_icones.py</code></td>
 <td>outil</td>
 <td style="text-align: center;"><strong>non</strong></td>
 <td>conversion</td>
@@ -14283,7 +14283,7 @@ qu'un script cité dans un <code>run:</code>.</p>
 </tr>
 </tbody>
 </table>
-<p>L'unique orphelin est <code>icone/genere-icones.sh</code>, lancé à la main quand l'icône change.</p>
+<p>L'unique orphelin est <code>icone/genere_icones.py</code>, lancé à la main quand l'icône change.</p>
 <p>La transitivité n'est pas un raffinement : mesurée sur les seuls workflows, la réponse était « 5 non
 lancés ». Quatre d'entre eux sont en réalité appelés par un autre script ou par l'outillage Python,
 et un script lancé par un garde est exécuté par la CI aussi sûrement qu'un script cité dans un <code>run:</code>.</p>
@@ -14320,13 +14320,14 @@ urgence, n'étant tenus par aucun auto-test.</p>
 <code>verifie_inventaires_ci.py</code> retire les lignes de commentaire puis cherche la chaîne <code>--auto-test</code>,
 là où sa moitié Python fait un vrai contrôle par <code>ast</code> en excluant les docstrings depuis #5032.
 Confronté à la mesure par contraste, <strong>il tombait juste : 45 des deux côtés, les mêmes 45</strong> - une
-mesure prise avant les conversions de #5210, #5219, #5221, #5229, #5231 et #5233, qui ont ramené la
-moitié shell à <strong>6</strong>, contre <strong>91</strong> du côté Python.
+mesure prise avant les conversions de #5210, #5219, #5221, #5229, #5231, #5233 et #5236, qui ont
+ramené la moitié shell à <strong>6</strong>, contre <strong>91</strong> du côté Python. Le lot des outils, lui, n'y change rien :
+aucun des quatre ne dispatchait <code>--auto-test</code>, donc aucun n'était compté.
 La confrontation n'a pas été refaite depuis, et ce qui est déclaré ici est la <strong>fragilité de la
 règle</strong>, pas la fraîcheur du chiffre : elle est fragile par construction, et c'est un risque écrit
 plutôt que corrigé au passage.</p>
 <p><strong>Ses motifs ne balaient pas <code>icone/</code>.</strong> Le dossier n'y figure pas, donc un auto-test qui y
-apparaîtrait serait invisible de l'inventaire. Sans conséquence aujourd'hui, <code>genere-icones.sh</code> ne
+apparaîtrait serait invisible de l'inventaire. Sans conséquence aujourd'hui, <code>genere_icones.py</code> ne
 mentionnant <code>--auto-test</code> nulle part. C'est la cécité à un dossier que ce même garde décrit à propos
 de #4013, et elle a survécu à sa propre description.</p>
 <h2 id="un-rouge-se-classe-avant-de-se-rejouer-4187">Un rouge se classe avant de se rejouer (#4187)<a class="headerlink" href="#un-rouge-se-classe-avant-de-se-rejouer-4187" title="Permanent link">&para;</a></h2>

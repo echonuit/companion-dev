@@ -12093,7 +12093,7 @@ autrement, la bonne réponse est souvent une <strong>couture</strong> côté pro
 cachée un collaborateur - et non un bouchon côté outil.</p>
 </div>
 <h2 id="la-regeneration-en-ci">La régénération en CI<a class="headerlink" href="#la-regeneration-en-ci" title="Permanent link">&para;</a></h2>
-<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/capture-screenshots.sh"><code>capture-screenshots.sh</code></a>
+<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/capture_screenshots.py"><code>capture_screenshots.py</code></a>
 compile puis lance <strong>chaque <code>Capture*</code> dans son propre JVM</strong>, avec les drapeaux headless
 (<code>-Dglass.platform=Headless -Dprism.order=sw -Djava.awt.headless=true</code>). Le workflow
 <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/capture-vues.yml"><code>capture-vues.yml</code></a>
@@ -12107,7 +12107,7 @@ que les images en ligne suivent le code.</p>
     participant Docs as docs.yml
     Dev-&gt;&gt;Main: push (code d'un écran modifié)
     Main-&gt;&gt;CV: déclenche
-    CV-&gt;&gt;CV: capture-screenshots.sh (Capture* en headless)
+    CV-&gt;&gt;CV: capture_screenshots.py (Capture* en headless)
     CV-&gt;&gt;CV: filtrer-bruit-cartes.sh (rend les cartes inchangées)
     CV-&gt;&gt;Main: commit des apercu-*.png [skip ci]
     CV--&gt;&gt;Docs: workflow_run (terminé)
@@ -12285,7 +12285,7 @@ l'ouvrir reste le seul contrôle, ce que fait la passe de revue visuelle.</p>
 <h2 id="ajouter-une-capture">Ajouter une capture<a class="headerlink" href="#ajouter-une-capture" title="Permanent link">&para;</a></h2>
 <p>La marche à suivre (nouvel écran) est dans
 <strong><a href="../ajouter-une-fonctionnalite/#7-ajouter-un-apercu-capture-decran">Ajouter une fonctionnalité §7</a></strong> :
-écrire <code>CaptureMaFeature</code> sur le patron existant, l'ajouter à <code>capture-screenshots.sh</code>, et déclarer
+écrire <code>CaptureMaFeature</code> sur le patron existant, l'ajouter à <code>capture_screenshots.py</code>, et déclarer
 l'aperçu au <code>captures.manifest</code>.</p>
 <p><strong>La capture principale montre le cas nominal ; chaque état particulier a la sienne.</strong> Une vue en a
 souvent plusieurs (donnée absente, GPS non renseigné, alerte levée…). Le seed de la capture principale
