@@ -13386,7 +13386,7 @@ une installation de MSI :</p>
   s'authentifie quand on le teste à la main, et l'en-tête <code>Authorization</code> qu'il forme dans la CI
   est invalide. D'où <code>printf '%s'</code> et non <code>echo</code> pour le poser.</li>
 </ul>
-<p><code>verifie-secret-winget.sh --verifie-l-acces</code> rend maintenant ce diagnostic <strong>au début du
+<p><code>verifie_secret_winget.py --verifie-l-acces</code> rend maintenant ce diagnostic <strong>au début du
 workflow</strong>, en nommant la cause.</p>
 </div>
 <div class="admonition danger">
@@ -13602,7 +13602,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>5188-corpus-shell.py</code></td>
-<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->20<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
+<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->11<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
@@ -13671,17 +13671,17 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>revoque-jeton.sh</code></td>
+<td><code>revoque_jeton.py</code></td>
 <td>le jeton d un tournage connecté est rendu inutilisable en fin de run (<code>POST /logout</code>), et la règle qui compte est que <strong><code>404</code> et <code>401</code> valent succès</strong> : le but n est pas « le serveur a répondu 200 » mais « ce jeton ne sert plus à personne ». Il ne fait jamais rougir le run, l incertitude sort en avertissement (#4305)</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-jeton-vivant.sh</code></td>
-<td>le jeton du tournage connecté est-il encore <strong>valide</strong>, et non seulement présent. Le tournage révoque le sien en fin de run sans retirer le secret : après un tournage il a l air parfaitement valide et ne vaut plus rien, et le scénario rougissait à trois pas de sa cause, sur un run qui finissait vert (#4328). Il rend <strong>trois</strong> verdicts et non deux, parce que « la plateforme ne répond pas » n appelle pas le même geste que « le jeton est mort ». C est la table de <code>revoque-jeton.sh</code> lue à l ENVERS : ici <code>401</code> est un refus</td>
+<td><code>verifie_jeton_vivant.py</code></td>
+<td>le jeton du tournage connecté est-il encore <strong>valide</strong>, et non seulement présent. Le tournage révoque le sien en fin de run sans retirer le secret : après un tournage il a l air parfaitement valide et ne vaut plus rien, et le scénario rougissait à trois pas de sa cause, sur un run qui finissait vert (#4328). Il rend <strong>trois</strong> verdicts et non deux, parce que « la plateforme ne répond pas » n appelle pas le même geste que « le jeton est mort ». C est la table de <code>revoque_jeton.py</code> lue à l ENVERS : ici <code>401</code> est un refus</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>interroge-le-jeton.sh</code></td>
+<td><code>interroge_le_jeton.py</code></td>
 <td>un appel a la plateforme et son code HTTP, rien d autre. Les TROIS appelants le partagent - le controle du jeton, sa revocation, et le pas « Jeton valide ? » d <code>api-live.yml</code> - parce que la ligne recopiee est ce qui a mis le defaut du « HTTP 000000 » aux trois endroits (#4328). <strong>Il ne juge pas</strong>, et un cas le garde : les trois lectures d un <code>401</code> different, dont deux s opposent, et le <code>run:</code> d <code>api-live</code> tourne sous <code>bash -e</code> (#4385)</td>
 <td><code>api-live.yml</code>, <code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13741,7 +13741,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>verifie-secret-winget.sh</code></td>
+<td><code>verifie_secret_winget.py</code></td>
 <td><code>WINGET_TOKEN</code> est posé, propre, et <strong>utilisable</strong> avant qu'une soumission ne parte</td>
 <td><code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13776,17 +13776,17 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>flatpak.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>mesure-duree-portail.sh</code></td>
+<td><code>mesure_duree_portail.py</code></td>
 <td>l'<strong>allongement</strong> du portail qualité, médiane contre médiane</td>
 <td><code>maven.yml</code> - il <strong>avertit</strong>, il ne bloque pas (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-cloture-consignee.sh</code></td>
+<td><code>verifie_cloture_consignee.py</code></td>
 <td>un EPIC clos <strong>sans trace de clôture</strong>. Le dépôt écrit à trois endroits que tout chantier se clôt par quatorze passes, et rien ne le vérifiait : 43 sur 64 n'en portaient aucune. La cause n'était pas l'inattention - la compétence <code>clore-un-chantier</code> ne mentionnait nulle part le modèle à coller, et qui la suivait à la lettre ne laissait donc aucune trace (<a href="../decisions/4659-une-cloture-sans-trace-ne-se-distingue-pas-d-une-cloture-absente/">ADR 4659</a>). <strong>Cliquet</strong> à 42, qui ne peut que descendre : les anciennes sont assumées, une de plus rougit. Il <strong>refuse</strong> si la forge ne répond pas</td>
 <td><code>lint.yml</code> - bloquant (autotest : <code>lint.yml</code>, hors ligne)</td>
 </tr>
 <tr>
-<td><code>verifie-specification-consignee.sh</code></td>
+<td><code>verifie_specification_consignee.py</code></td>
 <td>une clôture qui n'a pas répondu à la <strong>passe 10</strong>, celle de l'archivage OpenSpec. Cliquet de <strong>déficit</strong> et non fraction de couverture : la question « combien de capacités sur combien » n'a pas de dénominateur, le dépôt en offrant cinq incompatibles. Il reconnaît la ligne à son <strong>contenu</strong> et non à son numéro, #4840 ayant renuméroté le cycle. Un EPIC clos sans AUCUNE trace ne lui appartient pas : c'est le cliquet voisin de #4659 qui monte alors</td>
 <td><code>lint.yml</code></td>
 </tr>
@@ -13810,13 +13810,13 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>compare-apercus.sh</code> | montre, sur une PR, les écrans qu'elle change : avant/après accolés, part de pixels, et le <strong>dit</strong> quand aucun ne change | <code>capture-vues.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>compare-tournages.sh</code> | montre ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Le chiffre <strong>trie</strong>, la carte <strong>localise</strong> ; une mesure impossible se compte au lieu de passer pour « rien n'a changé » | <code>comparer-tournages.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>verifie_chantier_de_l_issue.py</code> | l'issue que la demande de fusion <strong>ferme</strong> appartient à un chantier, <strong>et son corps dit le même que la forge</strong> : rattacher demande deux gestes, et le garde ne lisait que le second jusqu'à #5210. La marque se reconnaît sur une <strong>ligne à elle seule</strong>, forme mesurée sur 35 issues sur 35 quand « en tête de corps » n'en rendait que 15 : une prose qui cite la forme n'en porte pas une. Porté du bash au Python par #5210, le cliquet du corpus shell passant de 50 à 49 - sa première descente. Son <code>parent</code> n'est ni absent, ni le sas des suites #4562, d'où rien ne se traite. Il ne juge que cette issue-là, jamais le dépôt entier | <code>corps-pr.yml</code> (autotest : <code>lint.yml</code>) |
-| <code>rappelle-le-critere-de-fin.sh</code> | un <strong>lot</strong> dit dans son corps comment on saura qu'il est fini. Une LOUPE : elle rend un texte à poster, ne refuse rien, et ne juge pas la <strong>qualité</strong> du critère. Elle reconnaît un lot par son <code>parent</code> ou par la marque « Fait partie de #N », le sas #4562 exclu | <code>critere-de-fin.yml</code> (autotest : <code>lint.yml</code>) |
+| <code>rappelle_le_critere_de_fin.py</code> | un <strong>lot</strong> dit dans son corps comment on saura qu'il est fini. Une LOUPE : elle rend un texte à poster, ne refuse rien, et ne juge pas la <strong>qualité</strong> du critère. Elle reconnaît un lot par son <code>parent</code> ou par la marque « Fait partie de #N », le sas #4562 exclu | <code>critere-de-fin.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>concordances-du-cycle.py</code> | les quatre concordances qui relient commandes, tableau des passes et compétences : une commande ouvre une compétence qui existe, le tableau en nomme une qui existe, la <code>description</code> annonce la passe que le tableau attribue, aucune compétence n'est orpheline. Il ne vérifie pas qu'une compétence <strong>dise vrai</strong> | <code>lint.yml</code> |
 | <code>releve-des-secrets.py</code> | ce que les ateliers <strong>exigent</strong> du dépôt en secrets et en variables, et l'écart avec ce qu'il porte (<code>--compare</code>). Il RELÈVE, il ne refuse pas : son auto-test pose son propre corpus d'ateliers plutôt que de lire <code>.github/workflows/</code>, sinon sa réponse suivrait le dépôt au lieu de le prouver. <strong>Aucun atelier ne le lance</strong> : il se joue à la main quand on ajoute un secret | aucun (autotest : <code>lint.yml</code>) |
 | <code>convertit-adr-okf.py</code> | la conversion d'une ADR du format à puces vers l'en-tête OKF. Un <strong>générateur</strong> : sans <code>--ecrit</code> il rend un aperçu. Son auto-test garde le défaut que sa propre javadoc nomme, une version qui n'avait retenu que la dernière tranche du corps et amputait 172 ADR sans que l'aperçu tronqué ne le montre. <strong>Aucun atelier ne le lance</strong> : la conversion est faite | aucun (autotest : <code>lint.yml</code>) |
 | <code>verifie_inventaires_ci.py</code> | les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité | <code>lint.yml</code> |
 | <code>verifie_noms_d_etapes.py</code> | aucun nom d'étape ou de job ne perd de texte à l'analyse YAML (un <code>#</code> non cité ouvre un commentaire) | <code>lint.yml</code> |
-| <code>verifie-verdict-avant-fusion.sh</code> | une pull request ne se fusionne pas tant que son commit de tête n'a pas un verdict <strong>complet</strong> : ni zéro run, ni un run rapide conclu pendant que les gardes bloquants courent encore. #4560 a été fusionnée à 17:13:02Z avec zéro run sur <code>909aeafa8</code> : les sept qu'elle a fini par avoir sont nés à 17:15, deux minutes trop tard, et <code>main</code> en est resté rouge sur un garde bloquant. Il ne juge <strong>pas la couleur</strong> - passer outre un rouge visible reste le choix assumé par l'<a href="../decisions/0041-un-check-requis-gouverne-la-branche/">ADR 0041</a> -, seulement l'absence de couleur, qu'elle n'avait pas prévue (#4571) | <strong>à la main</strong> avant de fusionner (autotest : <code>lint.yml</code>) |
+| <code>verifie_verdict_avant_fusion.py</code> | une pull request ne se fusionne pas tant que son commit de tête n'a pas un verdict <strong>complet</strong> : ni zéro run, ni un run rapide conclu pendant que les gardes bloquants courent encore. #4560 a été fusionnée à 17:13:02Z avec zéro run sur <code>909aeafa8</code> : les sept qu'elle a fini par avoir sont nés à 17:15, deux minutes trop tard, et <code>main</code> en est resté rouge sur un garde bloquant. Il ne juge <strong>pas la couleur</strong> - passer outre un rouge visible reste le choix assumé par l'<a href="../decisions/0041-un-check-requis-gouverne-la-branche/">ADR 0041</a> -, seulement l'absence de couleur, qu'elle n'avait pas prévue (#4571) | <strong>à la main</strong> avant de fusionner (autotest : <code>lint.yml</code>) |
 | <code>scripts/adr/verifie_scripts.py</code> | chaque détecteur ADR voit sa violation témoin et ignore la même en commentaire, et <strong>aucun détecteur n'est sans cas</strong> | <code>lint.yml</code> |
 | <code>scripts/adr/4359-javadoc-narratif.py</code> | la prose de javadoc ne remonte pas au-delà de son cliquet : un bloc de plus de huit lignes raconte là où le contrat suffirait, et les étiquettes de contrat ne comptent pas comme de la prose (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>) | <code>lint.yml</code> |
 | <code>scripts/adr/4359-blocs-relus.py</code> | le registre des blocs de javadoc <strong>relus et gardés volontairement</strong> ne porte aucune entrée périmée. L'empreinte porte sur le TEXTE du bloc : une édition l'invalide, ce qui force une nouvelle lecture au lieu de la présumer. Il <strong>ne fait pas baisser le cliquet</strong> - il mémorise une revue, il ne desserre pas une dette (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>) | <code>lint.yml</code> |
@@ -14043,7 +14043,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/interroge-le-jeton.sh</code></td>
+<td><code>.github/scripts/interroge_le_jeton.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14055,7 +14055,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td><strong>après condition</strong> : banc Java validé</td>
 </tr>
 <tr>
-<td><code>.github/scripts/mesure-duree-portail.sh</code></td>
+<td><code>.github/scripts/mesure_duree_portail.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14067,13 +14067,13 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/rappelle-le-critere-de-fin.sh</code></td>
+<td><code>.github/scripts/rappelle_le_critere_de_fin.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/revoque-jeton.sh</code></td>
+<td><code>.github/scripts/revoque_jeton.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14127,7 +14127,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-cloture-consignee.sh</code></td>
+<td><code>.github/scripts/verifie_cloture_consignee.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14187,7 +14187,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-jeton-vivant.sh</code></td>
+<td><code>.github/scripts/verifie_jeton_vivant.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14223,13 +14223,13 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-secret-winget.sh</code></td>
+<td><code>.github/scripts/verifie_secret_winget.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-specification-consignee.sh</code></td>
+<td><code>.github/scripts/verifie_specification_consignee.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14241,7 +14241,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-verdict-avant-fusion.sh</code></td>
+<td><code>.github/scripts/verifie_verdict_avant_fusion.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14320,8 +14320,8 @@ urgence, n'étant tenus par aucun auto-test.</p>
 <code>verifie_inventaires_ci.py</code> retire les lignes de commentaire puis cherche la chaîne <code>--auto-test</code>,
 là où sa moitié Python fait un vrai contrôle par <code>ast</code> en excluant les docstrings depuis #5032.
 Confronté à la mesure par contraste, <strong>il tombait juste : 45 des deux côtés, les mêmes 45</strong> - une
-mesure prise avant les conversions de #5210, #5219, #5221, #5229 et #5231, qui ont ramené la moitié
-shell à <strong>15</strong>, contre <strong>82</strong> du côté Python.
+mesure prise avant les conversions de #5210, #5219, #5221, #5229, #5231 et #5233, qui ont ramené la
+moitié shell à <strong>6</strong>, contre <strong>91</strong> du côté Python.
 La confrontation n'a pas été refaite depuis, et ce qui est déclaré ici est la <strong>fragilité de la
 règle</strong>, pas la fraîcheur du chiffre : elle est fragile par construction, et c'est un risque écrit
 plutôt que corrigé au passage.</p>

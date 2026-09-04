@@ -12026,7 +12026,7 @@ masque et qui sera publiée. Le masquage de GitHub ne couvre que les <strong>jou
 <p>Cette révocation a une conséquence qu'il faut connaître : <strong>après un tournage, le secret est posé
 et ne vaut plus rien</strong>. Le tournage l'<strong>éprouve</strong> donc par un <code>GET /moi</code> avant de filmer plutôt que
 de constater sa présence, et refuse en nommant la cause - « la plateforme refuse ce jeton » plutôt
-qu'un scénario qui rougit trois pas plus loin (#4328, <code>verifie-jeton-vivant.sh</code>). Il sépare
+qu'un scénario qui rougit trois pas plus loin (#4328, <code>verifie_jeton_vivant.py</code>). Il sépare
 « jeton mort » de « plateforme muette », qui n'appellent pas le même geste : poser un jeton frais
 pendant une panne d'Heroku ne servirait à rien.</p>
 </li>
@@ -12049,7 +12049,7 @@ pendant une panne d'Heroku ne servirait à rien.</p>
 <p><strong>Un seul appel, trois lectures</strong> (#4385). Le contrôle du jeton, sa révocation et le pas
   « Jeton valide ? » d'<code>api-live.yml</code> posaient la même question par trois <code>curl</code> recopiés :
   c'est ainsi que le défaut du « HTTP 000000 » s'est retrouvé aux trois. La mesure vit
-  désormais dans <code>interroge-le-jeton.sh</code>, qui <strong>ne juge pas</strong> - un <code>401</code> refuse le départ d'un
+  désormais dans <code>interroge_le_jeton.py</code>, qui <strong>ne juge pas</strong> - un <code>401</code> refuse le départ d'un
   tournage, avertit chez <code>api-live</code>, et vaut succès pour la révocation. Les faire converger
   casserait l'une des trois en silence.</p>
 </li>
