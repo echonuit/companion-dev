@@ -13602,7 +13602,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>5188-corpus-shell.py</code></td>
-<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->40<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
+<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->34<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
@@ -13631,22 +13631,22 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>check-captures.sh</code></td>
+<td><code>check_captures.py</code></td>
 <td>chaque vue a une capture, chaque capture existe et est présentée</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>check-capture-mains.sh</code></td>
+<td><code>check_capture_mains.py</code></td>
 <td>chaque outil de capture est enregistré dans <code>MAINS</code></td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>check-doc-images.sh</code></td>
+<td><code>check_doc_images.py</code></td>
 <td>chaque capture citée par la doc existe et est déclarée</td>
 <td><code>docs.yml</code></td>
 </tr>
 <tr>
-<td><code>check-doc-videos.sh</code></td>
+<td><code>check_doc_videos.py</code></td>
 <td>chaque parcours filmé cité par la doc existe, a son scénario au banc, et son chemin <strong>résout dans le site construit</strong></td>
 <td><code>docs.yml</code></td>
 </tr>
@@ -13696,7 +13696,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>cas-manquants-du-tournage.sh</code></td>
+<td><code>cas_manquants_du_tournage.py</code></td>
 <td><strong>lesquels</strong> des cas attendus le tournage n'a pas rendus, et non pas combien. L'oracle comparait deux nombres, « 111 cas sur 116 », sans dire quoi corriger ; et son attendu incluait les cas des scénarios <code>recette-connectee</code>, exclus du build sans jeton, si bien qu'un tournage non connecté ne pouvait pas l'atteindre et que le train a cessé de verser ses clips Java pendant cinq jours (#5012). Un index illisible le fait <strong>refuser</strong>, jamais conclure</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13731,7 +13731,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>clips-orphelins.sh</code></td>
+<td><code>clips_orphelins.py</code></td>
 <td>désigne les clips de la pré-version roulante que le <strong>dernier tournage n'a pas produits</strong>, et <strong>refuse un dossier de tournage vide</strong> : <code>--clobber</code> ne retire rien, donc un cas renommé laissait son clip en ligne, montrant un comportement disparu</td>
 <td><code>recette-filmee.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13971,25 +13971,25 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/assets/check-capture-mains.sh</code></td>
+<td><code>.github/assets/check_capture_mains.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/assets/check-captures.sh</code></td>
+<td><code>.github/assets/check_captures.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/assets/check-doc-images.sh</code></td>
+<td><code>.github/assets/check_doc_images.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/assets/check-doc-videos.sh</code></td>
+<td><code>.github/assets/check_doc_videos.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14019,13 +14019,13 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/cas-manquants-du-tournage.sh</code></td>
+<td><code>.github/scripts/cas_manquants_du_tournage.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/clips-orphelins.sh</code></td>
+<td><code>.github/scripts/clips_orphelins.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14320,7 +14320,8 @@ urgence, n'étant tenus par aucun auto-test.</p>
 <code>verifie_inventaires_ci.py</code> retire les lignes de commentaire puis cherche la chaîne <code>--auto-test</code>,
 là où sa moitié Python fait un vrai contrôle par <code>ast</code> en excluant les docstrings depuis #5032.
 Confronté à la mesure par contraste, <strong>il tombait juste : 45 des deux côtés, les mêmes 45</strong> - une
-mesure prise avant les conversions de #5210, #5219 et #5221, qui ont ramené la moitié shell à <strong>35</strong>.
+mesure prise avant les conversions de #5210, #5219, #5221 et #5229, qui ont ramené la moitié shell à
+<strong>29</strong>, contre <strong>68</strong> du côté Python.
 La confrontation n'a pas été refaite depuis, et ce qui est déclaré ici est la <strong>fragilité de la
 règle</strong>, pas la fraîcheur du chiffre : elle est fragile par construction, et c'est un risque écrit
 plutôt que corrigé au passage.</p>
