@@ -13602,7 +13602,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>5188-corpus-shell.py</code></td>
-<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->49<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
+<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->43<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
@@ -13656,7 +13656,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (job <code>banc-filme</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-permissions.sh</code></td>
+<td><code>verifie_permissions.py</code></td>
 <td>aucun plancher en écriture dans un workflow multi-jobs</td>
 <td><code>lint.yml</code></td>
 </tr>
@@ -13706,7 +13706,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-butoirs.sh</code></td>
+<td><code>verifie_butoirs.py</code></td>
 <td>tout job porte un <code>timeout-minutes</code> : sans butoir, GitHub laisse courir six heures (<a href="../decisions/4028-tout-job-de-ci-porte-un-butoir/">ADR 4028</a>)</td>
 <td><code>lint.yml</code></td>
 </tr>
@@ -13721,12 +13721,12 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>verifie-conditions-booleennes.sh</code></td>
+<td><code>verifie_conditions_booleennes.py</code></td>
 <td>une entrée <code>type: boolean</code> n'est jamais comparée à une <strong>chaîne</strong> dans un <code>if:</code> : <code>== 'true'</code> vaut toujours faux, <code>!= 'true'</code> toujours vrai, et le témoin « sans gestionnaire de fenêtres » installait donc quand même openbox</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>verifie-conditions-de-job.sh</code></td>
+<td><code>verifie_conditions_de_job.py</code></td>
 <td>la condition d'un job appuyé sur un <code>needs</code> porte une <strong>fonction d'état</strong> : sans elle, GitHub l'enveloppe en <code>success() &amp;&amp; (...)</code> sur tout le graphe amont, et le saut d'un ancêtre la rend inévaluable. La 2.186.0 a eu son tag et sa Release, puis aucun installeur, sur un run vert (<a href="../decisions/4079-une-condition-de-job-nomme-l-etat-qu-elle-attend/">ADR 4079</a>)</td>
 <td><code>lint.yml</code></td>
 </tr>
@@ -13736,7 +13736,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>recette-filmee.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-renvois-workflows.sh</code></td>
+<td><code>verifie_renvois_workflows.py</code></td>
 <td>chaque <code>workflow_run</code> vise le <code>name:</code> d'un workflow existant</td>
 <td><code>lint.yml</code></td>
 </tr>
@@ -13815,7 +13815,7 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>releve-des-secrets.py</code> | ce que les ateliers <strong>exigent</strong> du dépôt en secrets et en variables, et l'écart avec ce qu'il porte (<code>--compare</code>). Il RELÈVE, il ne refuse pas : son auto-test pose son propre corpus d'ateliers plutôt que de lire <code>.github/workflows/</code>, sinon sa réponse suivrait le dépôt au lieu de le prouver. <strong>Aucun atelier ne le lance</strong> : il se joue à la main quand on ajoute un secret | aucun (autotest : <code>lint.yml</code>) |
 | <code>convertit-adr-okf.py</code> | la conversion d'une ADR du format à puces vers l'en-tête OKF. Un <strong>générateur</strong> : sans <code>--ecrit</code> il rend un aperçu. Son auto-test garde le défaut que sa propre javadoc nomme, une version qui n'avait retenu que la dernière tranche du corps et amputait 172 ADR sans que l'aperçu tronqué ne le montre. <strong>Aucun atelier ne le lance</strong> : la conversion est faite | aucun (autotest : <code>lint.yml</code>) |
 | <code>verifie-inventaires-ci.sh</code> | les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité | <code>lint.yml</code> |
-| <code>verifie-noms-d-etapes.sh</code> | aucun nom d'étape ou de job ne perd de texte à l'analyse YAML (un <code>#</code> non cité ouvre un commentaire) | <code>lint.yml</code> |
+| <code>verifie_noms_d_etapes.py</code> | aucun nom d'étape ou de job ne perd de texte à l'analyse YAML (un <code>#</code> non cité ouvre un commentaire) | <code>lint.yml</code> |
 | <code>verifie-verdict-avant-fusion.sh</code> | une pull request ne se fusionne pas tant que son commit de tête n'a pas un verdict <strong>complet</strong> : ni zéro run, ni un run rapide conclu pendant que les gardes bloquants courent encore. #4560 a été fusionnée à 17:13:02Z avec zéro run sur <code>909aeafa8</code> : les sept qu'elle a fini par avoir sont nés à 17:15, deux minutes trop tard, et <code>main</code> en est resté rouge sur un garde bloquant. Il ne juge <strong>pas la couleur</strong> - passer outre un rouge visible reste le choix assumé par l'<a href="../decisions/0041-un-check-requis-gouverne-la-branche/">ADR 0041</a> -, seulement l'absence de couleur, qu'elle n'avait pas prévue (#4571) | <strong>à la main</strong> avant de fusionner (autotest : <code>lint.yml</code>) |
 | <code>scripts/adr/verifie_scripts.py</code> | chaque détecteur ADR voit sa violation témoin et ignore la même en commentaire, et <strong>aucun détecteur n'est sans cas</strong> | <code>lint.yml</code> |
 | <code>scripts/adr/4359-javadoc-narratif.py</code> | la prose de javadoc ne remonte pas au-delà de son cliquet : un bloc de plus de huit lignes raconte là où le contrat suffirait, et les étiquettes de contrat ne comptent pas comme de la prose (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>) | <code>lint.yml</code> |
@@ -14115,7 +14115,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-butoirs.sh</code></td>
+<td><code>.github/scripts/verifie_butoirs.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14133,13 +14133,13 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-conditions-booleennes.sh</code></td>
+<td><code>.github/scripts/verifie_conditions_booleennes.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-conditions-de-job.sh</code></td>
+<td><code>.github/scripts/verifie_conditions_de_job.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14199,13 +14199,13 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-noms-d-etapes.sh</code></td>
+<td><code>.github/scripts/verifie_noms_d_etapes.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-permissions.sh</code></td>
+<td><code>.github/scripts/verifie_permissions.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14217,7 +14217,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-renvois-workflows.sh</code></td>
+<td><code>.github/scripts/verifie_renvois_workflows.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14821,7 +14821,7 @@ empaquette - pouvait donc écrire des issues et des pull requests, ce dont elle 
 <p>Les trois autres workflows à droits d'écriture (<code>adr-rapport</code>, <code>capture-vues</code>, <code>flatpak</code>) sont
 <strong>mono-job</strong> et utilisent réellement chacun des leurs : leur bloc au niveau workflow est déjà, de
 fait, un bloc par job.</p>
-<p><strong>Et rien ne le laisse se défaire</strong> : <code>verifie-permissions.sh</code> (#3294) refuse un plancher en écriture
+<p><strong>Et rien ne le laisse se défaire</strong> : <code>verifie_permissions.py</code> (#3294) refuse un plancher en écriture
 dans un workflow à <strong>plusieurs jobs</strong>, où les droits seraient accordés à tous. Elle ne fige pas la
 liste attendue par job - #2742 a dû ajouter <code>id-token</code> et <code>attestations</code> pour les attestations, et une
 liste figée aurait rougi sur un ajout voulu, puis se serait fait élargir machinalement. Un workflow
