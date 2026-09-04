@@ -10342,6 +10342,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5239-la-mesure-de-pixels-reste-un-sous-processus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5239 · La mesure de pixels reste un sous-processus
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5201-un-chiffre-de-prose-porte-ou-il-s-en-va/" class="md-nav__link">
         
   
@@ -12108,7 +12143,7 @@ que les images en ligne suivent le code.</p>
     Dev-&gt;&gt;Main: push (code d'un écran modifié)
     Main-&gt;&gt;CV: déclenche
     CV-&gt;&gt;CV: capture_screenshots.py (Capture* en headless)
-    CV-&gt;&gt;CV: filtrer-bruit-cartes.sh (rend les cartes inchangées)
+    CV-&gt;&gt;CV: filtrer_bruit_cartes.py (rend les cartes inchangées)
     CV-&gt;&gt;Main: commit des apercu-*.png [skip ci]
     CV--&gt;&gt;Docs: workflow_run (terminé)
     Docs-&gt;&gt;Docs: rebuild + republie le site</code></pre>
@@ -12121,7 +12156,7 @@ sub-perceptible : deux versions consécutives ouvertes côte à côte sont indis
 ne disent rien ; les PR d'aperçus <strong>conflictent entre elles</strong> en permanence (les PNG sont binaires,
 git ne sait pas les fusionner) ; et le jour où une <strong>vraie</strong> régression touche une de ces images, elle
 devient indiscernable du bruit.</p>
-<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/filtrer-bruit-cartes.sh"><code>filtrer-bruit-cartes.sh</code></a>
+<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/assets/filtrer_bruit_cartes.py"><code>filtrer_bruit_cartes.py</code></a>
 rend leur version committée aux aperçus de carte dont <strong>seul le fond cartographique</strong> a changé. Il ne
 cherche pas à rendre les tuiles déterministes - elles sont une entrée <strong>extérieure</strong> au dépôt, et
 l'ADR 3068 a tranché qu'on ne les figerait pas. Il cesse seulement de committer l'insignifiant.</p>

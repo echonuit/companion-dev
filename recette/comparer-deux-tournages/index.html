@@ -10342,6 +10342,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../../decisions/5239-la-mesure-de-pixels-reste-un-sous-processus/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5239 · La mesure de pixels reste un sous-processus
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../decisions/5201-un-chiffre-de-prose-porte-ou-il-s-en-va/" class="md-nav__link">
         
   
@@ -12118,7 +12153,7 @@ l'image aggrave l'écart au lieu de le réduire.</p>
 ci-dessus le montre.</p>
 <div class="admonition warning">
 <p class="admonition-title">La tolérance se mesure, elle ne se fige pas</p>
-<p><code>compare-tournages.sh --plancher &lt;A&gt; &lt;B&gt;</code> remesure le plancher sur place, en comparant deux
+<p><code>compare_tournages.py --plancher &lt;A&gt; &lt;B&gt;</code> remesure le plancher sur place, en comparant deux
 tournages qu'on sait identiques.</p>
 </div>
 <h2 id="le-plancher-du-runner-mesure">Le plancher du runner, mesuré<a class="headerlink" href="#le-plancher-du-runner-mesure" title="Permanent link">&para;</a></h2>
@@ -12205,7 +12240,7 @@ Rapportés à leur propre plancher, ils se séparent :</p>
 son propre bruit</strong> plutôt que par son écart absolu. Le résumé compte les cas « au-dessus de leur
 propre plancher », qui est le nombre à regarder.</p>
 <h3 id="lenrichir">L'enrichir<a class="headerlink" href="#lenrichir" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>compare-tournages.sh --plancher &lt;tournage A&gt; &lt;tournage B&gt; .github/assets/planchers-tournages.tsv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>compare_tournages.py --plancher &lt;tournage A&gt; &lt;tournage B&gt; .github/assets/planchers-tournages.tsv
 </code></pre></div>
 <p>Relancer sur une <strong>autre</strong> paire garde le <strong>pire</strong> plancher observé et compte une paire de plus.</p>
 <div class="admonition warning">
