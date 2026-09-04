@@ -10342,6 +10342,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5102-une-capacite-se-demande-jamais-se-reconnait/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5102 · Une capacité se demande, elle ne se reconnaît pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5169-un-inventaire-s-adosse-au-code-ou-au-document/" class="md-nav__link">
         
   
@@ -11668,6 +11703,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#les-cinquante-un-par-un" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les cinquante, un par un
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#ce-que-la-ci-atteint" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12260,6 +12306,17 @@
     <span class="md-ellipsis">
       
         Ce que chacun répond
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#les-cinquante-un-par-un" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les cinquante, un par un
       
     </span>
   </a>
@@ -13437,12 +13494,12 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie_contrats_tiennent.py</code></td>
-<td>qu'un contrat DÉCLARÉ ne contredise pas ce que le garde FAIT : <code>imprime_contrat</code> refusait un contrat incomplet, rien ne le confrontait au réel (ADR 4636). La règle n'est pas l'égalité mais l'absence de contradiction, parce que le vocabulaire diffère (<code>RACINES</code> vaut <code>PRODUCTION + TESTS</code>) et que le contrat sait souvent PLUS que l'inférence. Les porteurs se trouvent par un grep puis par un LANCEMENT, les trois témoins employant trois idiomes de dispatch</td>
+<td>qu'un contrat DÉCLARÉ ne contredise pas ce que le garde FAIT : <code>imprime_contrat</code> refusait un contrat incomplet, rien ne le confrontait au réel (ADR 4636). La règle n'est pas l'égalité mais l'absence de contradiction, parce que le vocabulaire diffère (<code>RACINES</code> vaut <code>PRODUCTION + TESTS</code>) et que le contrat sait souvent PLUS que l'inférence. Sa population se dérive de la <strong>déclaration</strong> et non d'une mention, par <code>ast</code> depuis #5144 : un grep sur <code>--contrat</code> comptait les fichiers qui en PARLENT. Elle compte <strong>68</strong> porteurs, dont le dernier garde shell, nommé à part parce qu'aucun AST Python ne le lit. Chaque contrat est obtenu en <strong>lançant</strong> le garde, jamais en lisant son source</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
 <td><code>verifie_contrat_obligatoire.py</code></td>
-<td>qu'un point d'entrée de <code>scripts/adr</code> DÉCLARE ce qu'il est (ADR 4636). Les 41 en portent un depuis #5117 ; rien n'empêchait le 42e d'arriver sans le sien, et un corpus complet se reperd sans bruit - un garde neuf copié sur un voisin emporte le bloc de verdict et pas la déclaration. C'est un <strong>invariant</strong>, pas un cliquet : il n'y a pas de marge à relever, et l'échappatoire est une liste d'exceptions <strong>nommées</strong>, vide à la livraison. Il ne juge pas le CONTENU du contrat, que <code>verifie_contrats_tiennent.py</code> confronte déjà</td>
+<td>qu'un point d'entrée de <code>scripts/adr</code> <strong>ou de <code>scripts/methode</code></strong> DÉCLARE ce qu'il est (ADR 4636). Ils sont <strong>67</strong>, et la population s'est élargie en #5157 ; rien n'empêchait le suivant d'arriver sans le sien, et un corpus complet se reperd sans bruit - un garde neuf copié sur un voisin emporte le bloc de verdict et pas la déclaration. C'est un <strong>invariant</strong>, pas un cliquet : il n'y a pas de marge à relever, et l'échappatoire est une liste d'exceptions <strong>nommées</strong>, vide à la livraison. Il ne juge pas le CONTENU du contrat, que <code>verifie_contrats_tiennent.py</code> confronte déjà</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
@@ -13789,6 +13846,327 @@ le drapeau. Le contrôle de non-déterminisme le dément : <strong>deux appels s
 déjà</strong>, parce que la question déclenche une compilation Maven puis un rendu JavaFX que le délai
 d'attente coupe à un endroit variable. Un contraste ne conclut que sur un script déterministe, et
 celui-ci ne l'est pas. Il est rangé parmi les outils.</p>
+<h4 id="les-cinquante-un-par-un">Les cinquante, un par un<a class="headerlink" href="#les-cinquante-un-par-un" title="Permanent link">&para;</a></h4>
+<p>Un compte dit combien il reste ; il ne dit pas <strong>quoi convertir</strong>. Le dépôt nomme ses exceptions
+plutôt que de les compter, et une population qui doit disparaître se nomme pour la même raison : la
+liste est le plan de travail des chantiers de conversion.</p>
+<div class="enrouleur">
+<table>
+<thead>
+<tr>
+<th>script</th>
+<th>ce qu'il est</th>
+<th style="text-align: center;">la CI l'atteint</th>
+<th>destination</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>.github/assets/capture-screenshots.sh</code></td>
+<td>outil</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/assets/check-capture-mains.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/assets/check-captures.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/assets/check-doc-images.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/assets/check-doc-videos.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/assets/compare-apercus.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/assets/compare-tournages.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/assets/filtrer-bruit-cartes.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/assets/mesure-pixels.sh</code></td>
+<td>outil</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/cas-manquants-du-tournage.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/clips-orphelins.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/construit-appimage.sh</code></td>
+<td>outil</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/installer-paquets.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/interroge-le-jeton.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/lance-test-filme.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td><strong>après condition</strong> : banc Java validé</td>
+</tr>
+<tr>
+<td><code>.github/scripts/mesure-duree-portail.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/porte-sur-le-contrat-de-fichiers.sh</code></td>
+<td>outil</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/rappelle-le-critere-de-fin.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/revoque-jeton.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/trie-les-echecs-de-plateforme.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/veille-contrat-api.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/veille-plateformes.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verdict-du-tournage.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-affichage-flatpak.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-apt.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-butoirs.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-chantier-de-l-issue.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-chemins-ascii.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-cloture-consignee.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-conditions-booleennes.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-conditions-de-job.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-corps-pr.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-decisions-du-tournage-connecte.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-demarrage-emballage.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-epinglage.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-forme-du-jeton.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-fraicheur-actions.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-inventaires-ci.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-jeton-vivant.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-jeton.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-noms-d-etapes.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-permissions.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-portee-des-secrets.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-renvois-workflows.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-secret-winget.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-specification-consignee.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-titre-pr.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>.github/scripts/verifie-verdict-avant-fusion.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>icone/genere-icones.sh</code></td>
+<td>outil</td>
+<td style="text-align: center;"><strong>non</strong></td>
+<td>conversion</td>
+</tr>
+<tr>
+<td><code>scripts/doc-video/filme-un-parcours.sh</code></td>
+<td>garde</td>
+<td style="text-align: center;">oui</td>
+<td>conversion</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>La colonne <strong>ce qu'il est</strong> vient du contraste mesuré, pas d'une lecture du source. La colonne <strong>la
+CI l'atteint</strong> est transitive : un script lancé par un garde est exécuté par la CI aussi sûrement
+qu'un script cité dans un <code>run:</code>.</p>
 <h4 id="ce-que-la-ci-atteint">Ce que la CI atteint<a class="headerlink" href="#ce-que-la-ci-atteint" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
