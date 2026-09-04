@@ -11895,8 +11895,9 @@ alignés sur l'écran actuel, à confirmer au re-jeu.</em></p>
 <li><strong>S2-34</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · La courbe climatique T°/hygrométrie s'affiche, l'axe <strong>gradué en heures</strong>.</li>
 <li><strong>S2-35</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · Les anomalies détectées s'affichent (ou leur placeholder).</li>
 <li><strong>S2-36</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · Les évènements du journal s'affichent (ou leur placeholder).</li>
-<li><strong>S2-37</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · La cohérence horaire indique la fenêtre nocturne (coucher/lever du soleil), et <strong>sous elle
-  les deux plages</strong> : « Protocole … » (coucher moins 30 minutes → lever plus 30) et « Enregistré … ».</li>
+<li><strong>S2-37</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · La cohérence horaire tient sur <strong>une ligne</strong>, trois faits de même forme séparés par des points médians : « Nuit : … à … », « Protocole : … à … » (coucher moins 30 minutes, lever plus 30) et « Enregistré : … à … ».
+  <em>(La rédaction d'avant disait « et SOUS elle les deux plages » : c'était vrai jusqu'à #5204, qui a
+  fusionné les deux rangées.)</em></li>
 <li><strong>S2-66</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · Sur cette nuit, qui <strong>ne couvre pas</strong> la fenêtre exigée, un <strong>avertissement</strong> paraît et <strong>dit ce
   qui manque</strong>. Il ne se contente pas de signaler.
   <strong>Ce que cette case demandait n'était pas tenu jusqu'à #5200</strong> : le message énonçait la règle du
@@ -11909,6 +11910,13 @@ alignés sur l'écran actuel, à confirmer au re-jeu.</em></p>
   nuit" si l'enregistrement déborde », c'est-à-dire de confirmer le défaut (#4984). <strong>À jouer à la
   main</strong> : le comportement est éprouvé par un banc, mais aucun clip ne le montre, la carte de recette
   n'ayant pas de nuit qui couvre la fenêtre (#5061).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S2-79</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · <strong>Préparer</strong> : ouvrir le diagnostic d'un passage dont le relevé climatique est présent, donc dont la courbe s'affiche. <strong>Le geste</strong> : promener la souris sur un point de la courbe, sans viser. <strong>Attendu</strong> : une infobulle paraît et donne l'heure, la série et la valeur, par exemple « 22:00 · T° : 18,5 °C ».
+  <strong>Ce cas existe parce qu'un banc ne peut pas le juger.</strong> Le banc POSTE l'entrée de souris : il prouve
+  que l'infobulle fonctionne, pas qu'un vrai pointeur atteint une cible de dix pixels. La question
+  posée ici est donc : y arrive-t-on <strong>sans viser</strong> ? Si viser est nécessaire, c'est un défaut, et il
+  a son lot à lui.
+  Depuis #5205 la légende du graphe a été retirée : cette infobulle est le <strong>seul</strong> endroit qui dit
+  quelle courbe est laquelle. Un survol inatteignable rendrait le graphe muet.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S2-77</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · <em>(carte <code>sd-fin-precoce</code>)</em> <strong>Préparer</strong> : importer cette carte, dont le journal annonce <code>Acquisi. 19:55-06:30</code>. <strong>Le geste</strong> : ouvrir le diagnostic du passage. <strong>Attendu</strong> : l'avertissement dit que les enregistrements <strong>s'arrêtent</strong> trop tôt, et que <strong>le début est bien couvert</strong>. Il ne doit pas accuser le début.</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <strong>S2-78</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · <em>(carte <code>sd-hors-fenetre</code>)</em> <strong>Préparer</strong> : importer cette carte, <code>Acquisi. 20:25-06:30</code>. <strong>Le geste</strong> : ouvrir le diagnostic. <strong>Attendu</strong> : l'avertissement nomme les <strong>deux</strong> bords, et ne dit « bien » d'aucun des deux. C'est le cas où la phrase ne doit rien concéder.</li>
 <li><strong>S2-74</strong> · <em>geste: lire-le-diagnostic-d-un-passage</em> · Sous la cohérence horaire, un <strong>second encart</strong> dit ce que le journal établit de la <strong>fin</strong>
