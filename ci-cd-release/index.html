@@ -13424,7 +13424,7 @@ demandé, ce qui n'est pas une faute mais mérite une question.</p>
 <p>Une liste de secrets recopiée dans une page vieillit au premier atelier ajouté, et son
 vieillissement est silencieux. Celle-ci est lue dans les ateliers à chaque exécution.</p>
 <p><strong>Ce n'est pas un garde, et il n'a donc pas d'<code>--auto-test</code>.</strong> Il relève et confronte ; il ne refuse
-rien, et <code>verifie-inventaires-ci.sh</code> ne l'attend pas au tableau des gardes. En faire un garde
+rien, et <code>verifie_inventaires_ci.py</code> ne l'attend pas au tableau des gardes. En faire un garde
 bloquant est une question ouverte : au 2026-08-24 le relevé et le dépôt concordent, 6 secrets et
 3 variables, donc rien à refuser aujourd'hui.</p>
 <h2 id="toute-garde-de-ci-porte-sa-propre-preuve-2947-3293">Toute garde de CI porte sa propre preuve (#2947, #3293)<a class="headerlink" href="#toute-garde-de-ci-porte-sa-propre-preuve-2947-3293" title="Permanent link">&para;</a></h2>
@@ -13602,7 +13602,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>5188-corpus-shell.py</code></td>
-<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->43<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
+<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->40<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
@@ -13691,7 +13691,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-decisions-du-tournage-connecte.sh</code></td>
+<td><code>verifie_decisions_du_tournage_connecte.py</code></td>
 <td>trois décisions du tournage connecté qui vivaient dans du YAML que rien ne gardait (#4331) : <code>comparer-tournages.yml</code> REFUSE la source <code>clips-connectes</code>, <code>publier-connecte</code> dépend de <code>filmer</code> et porte une fonction d état, et le contrôle du jeton vient AVANT le pas qui filme. Le refus n est pas relu mais LANCÉ - il vit dans un <code>run:</code>, donc du shell - et le verdict se prend sur le MESSAGE, pas sur le code de sortie. Son auto-test fabrique trois copies cassées, une par décision</td>
 <td><code>lint.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13766,7 +13766,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>api-live.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-fraicheur-actions.sh</code></td>
+<td><code>verifie_fraicheur_actions.py</code></td>
 <td>un épinglage <strong>cohérent</strong> peut être <strong>périmé</strong> : il date les SHA épinglés</td>
 <td><code>securite-dependances.yml</code> et <code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13814,7 +13814,7 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>concordances-du-cycle.py</code> | les quatre concordances qui relient commandes, tableau des passes et compétences : une commande ouvre une compétence qui existe, le tableau en nomme une qui existe, la <code>description</code> annonce la passe que le tableau attribue, aucune compétence n'est orpheline. Il ne vérifie pas qu'une compétence <strong>dise vrai</strong> | <code>lint.yml</code> |
 | <code>releve-des-secrets.py</code> | ce que les ateliers <strong>exigent</strong> du dépôt en secrets et en variables, et l'écart avec ce qu'il porte (<code>--compare</code>). Il RELÈVE, il ne refuse pas : son auto-test pose son propre corpus d'ateliers plutôt que de lire <code>.github/workflows/</code>, sinon sa réponse suivrait le dépôt au lieu de le prouver. <strong>Aucun atelier ne le lance</strong> : il se joue à la main quand on ajoute un secret | aucun (autotest : <code>lint.yml</code>) |
 | <code>convertit-adr-okf.py</code> | la conversion d'une ADR du format à puces vers l'en-tête OKF. Un <strong>générateur</strong> : sans <code>--ecrit</code> il rend un aperçu. Son auto-test garde le défaut que sa propre javadoc nomme, une version qui n'avait retenu que la dernière tranche du corps et amputait 172 ADR sans que l'aperçu tronqué ne le montre. <strong>Aucun atelier ne le lance</strong> : la conversion est faite | aucun (autotest : <code>lint.yml</code>) |
-| <code>verifie-inventaires-ci.sh</code> | les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité | <code>lint.yml</code> |
+| <code>verifie_inventaires_ci.py</code> | les trois inventaires que la CI tient <strong>sur elle-même</strong> concordent avec la réalité | <code>lint.yml</code> |
 | <code>verifie_noms_d_etapes.py</code> | aucun nom d'étape ou de job ne perd de texte à l'analyse YAML (un <code>#</code> non cité ouvre un commentaire) | <code>lint.yml</code> |
 | <code>verifie-verdict-avant-fusion.sh</code> | une pull request ne se fusionne pas tant que son commit de tête n'a pas un verdict <strong>complet</strong> : ni zéro run, ni un run rapide conclu pendant que les gardes bloquants courent encore. #4560 a été fusionnée à 17:13:02Z avec zéro run sur <code>909aeafa8</code> : les sept qu'elle a fini par avoir sont nés à 17:15, deux minutes trop tard, et <code>main</code> en est resté rouge sur un garde bloquant. Il ne juge <strong>pas la couleur</strong> - passer outre un rouge visible reste le choix assumé par l'<a href="../decisions/0041-un-check-requis-gouverne-la-branche/">ADR 0041</a> -, seulement l'absence de couleur, qu'elle n'avait pas prévue (#4571) | <strong>à la main</strong> avant de fusionner (autotest : <code>lint.yml</code>) |
 | <code>scripts/adr/verifie_scripts.py</code> | chaque détecteur ADR voit sa violation témoin et ignore la même en commentaire, et <strong>aucun détecteur n'est sans cas</strong> | <code>lint.yml</code> |
@@ -14151,7 +14151,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-decisions-du-tournage-connecte.sh</code></td>
+<td><code>.github/scripts/verifie_decisions_du_tournage_connecte.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14175,13 +14175,13 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-fraicheur-actions.sh</code></td>
+<td><code>.github/scripts/verifie_fraicheur_actions.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-inventaires-ci.sh</code></td>
+<td><code>.github/scripts/verifie_inventaires_ci.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14317,11 +14317,13 @@ cinq outils qui ne sont pas des gardes ne font pas exception ; ils n'ont simplem
 urgence, n'étant tenus par aucun auto-test.</p>
 <h4 id="deux-limites-de-ce-releve-declarees">Deux limites de ce relevé, déclarées<a class="headerlink" href="#deux-limites-de-ce-releve-declarees" title="Permanent link">&para;</a></h4>
 <p><strong>L'inventaire de la CI compte les gardes shell par une recherche textuelle.</strong>
-<code>verifie-inventaires-ci.sh</code> retire les lignes de commentaire puis cherche la chaîne <code>--auto-test</code>,
+<code>verifie_inventaires_ci.py</code> retire les lignes de commentaire puis cherche la chaîne <code>--auto-test</code>,
 là où sa moitié Python fait un vrai contrôle par <code>ast</code> en excluant les docstrings depuis #5032.
-Confronté à la mesure par contraste, <strong>il tombe juste : 45 des deux côtés, les mêmes 45.</strong> La règle
-est fragile par construction et exacte sur le corpus d'aujourd'hui ; c'est un risque, pas un défaut,
-et il est écrit ici plutôt que corrigé au passage.</p>
+Confronté à la mesure par contraste, <strong>il tombait juste : 45 des deux côtés, les mêmes 45</strong> - une
+mesure prise avant les conversions de #5210, #5219 et #5221, qui ont ramené la moitié shell à <strong>35</strong>.
+La confrontation n'a pas été refaite depuis, et ce qui est déclaré ici est la <strong>fragilité de la
+règle</strong>, pas la fraîcheur du chiffre : elle est fragile par construction, et c'est un risque écrit
+plutôt que corrigé au passage.</p>
 <p><strong>Ses motifs ne balaient pas <code>icone/</code>.</strong> Le dossier n'y figure pas, donc un auto-test qui y
 apparaîtrait serait invisible de l'inventaire. Sans conséquence aujourd'hui, <code>genere-icones.sh</code> ne
 mentionnant <code>--auto-test</code> nulle part. C'est la cécité à un dossier que ce même garde décrit à propos
