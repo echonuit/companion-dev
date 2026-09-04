@@ -13612,7 +13612,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie_corpus_declare.py</code></td>
-<td>le corpus d'un garde s'importe de <code>_commun.py</code> et ne se recopie pas : c'est ce refus qui permet à la liste des gardes à deux arbres de se dériver au lieu de s'énumérer (ADR 4586)</td>
+<td>le corpus d'un garde s'importe du fonds commun <code>scripts/_commun/</code> et ne se recopie pas ; le fonds s'exclut par son <strong>dossier</strong> depuis #5216, non par un nom de fichier : c'est ce refus qui permet à la liste des gardes à deux arbres de se dériver au lieu de s'énumérer (ADR 4586)</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>

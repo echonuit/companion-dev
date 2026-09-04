@@ -12681,6 +12681,12 @@ sa cible - et un <code>-Pmutation</code> ciblé l'aurait signalé sans qu'on ait
 <p><strong>En pratique</strong> : à la passe 6 d'une clôture, lancer PIT ciblé sur les classes que le chantier a
 introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindre.</p>
 <h3 id="demander-a-un-garde-ce-quil-est-contrat">Demander à un garde ce qu'il est : <code>--contrat</code><a class="headerlink" href="#demander-a-un-garde-ce-quil-est-contrat" title="Permanent link">&para;</a></h3>
+<h3 id="ou-vit-le-fonds-commun-des-gardes">Où vit le fonds commun des gardes<a class="headerlink" href="#ou-vit-le-fonds-commun-des-gardes" title="Permanent link">&para;</a></h3>
+<p><code>scripts/_commun/</code> porte le vocabulaire des corpus, les verdicts et l'aide <code>--contrat</code>. Il s'atteint par une seule forme, depuis n'importe quel garde :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RACINE</span> <span class="o">/</span> <span class="s2">"scripts"</span><span class="p">))</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">_commun</span><span class="w"> </span><span class="kn">import</span> <span class="n">DECISIONS</span><span class="p">,</span> <span class="n">rapporte</span>
+</code></pre></div>
+<p><strong>Il a vécu dans <code>scripts/adr/</code> jusqu'à #5216</strong>, c'est-à-dire chez l'un de ses usagers, et quatre formes de chemin coexistaient pour l'atteindre. La quatrième n'a été trouvée ni par le motif de réécriture ni par la relecture du diff, mais par un relevé des 54 auto-tests avant et après : un refactoring à comportement constant se prouve en comparant deux mesures.</p>
 <p><strong>Soixante-huit points d'entrée</strong> répondent à <code>--contrat</code> et déclarent six champs : les 43 de
 <code>scripts/adr</code>, les 24 de <code>scripts/methode</code>, et le dernier garde shell. La réponse s'obtient sans rien
 lire du dépôt : la branche s'imprime <strong>avant tout le reste</strong>, pour qu'un garde dont une dépendance
@@ -12688,15 +12694,15 @@ manque rende quand même sa déclaration.</p>
 <p><code>verifie_contrat_obligatoire.py</code> <strong>refuse</strong> un point d'entrée de ces deux dossiers qui n'en
 déclarerait pas. Ce n'est pas un cliquet : il n'y a pas de marge à relever, et l'échappatoire est une
 liste d'exceptions <strong>nommées</strong>, vide aujourd'hui.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python3<span class="w"> </span>scripts/adr/0008-echec-silencieux.py<span class="w"> </span>--contrat
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python3<span class="w"> </span>scripts/adr/0008-echec-silencieux.py<span class="w"> </span>--contrat
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>CONTRAT | garde=scripts/adr/0008-echec-silencieux.py
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>geste: échec silencieux : catch au corps vide
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>population: PRODUCTION + TESTS
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>dispositif: cliquet
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>seuil: 0, polarite=descend
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>temoin: scripts/adr/verifie_scripts.py#test_0008_echec_silencieux
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>decision: ADR 0008
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>CONTRAT | garde=scripts/adr/0008-echec-silencieux.py
+<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>geste: échec silencieux : catch au corps vide
+<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>population: PRODUCTION + TESTS
+<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>dispositif: cliquet
+<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>seuil: 0, polarite=descend
+<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>temoin: scripts/adr/verifie_scripts.py#test_0008_echec_silencieux
+<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>decision: ADR 0008
 </code></pre></div>
 <table>
 <thead>
