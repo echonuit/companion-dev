@@ -12149,7 +12149,7 @@ pas ce qui l'a connectée, et qu'un clip incompréhensible ne remplit pas son of
 clip soit regardé. Et ce n'est pas une hypothèse laissée en l'air - le versement n'a lieu que si la
 plateforme a <strong>confirmé</strong> le retrait (#4324). Sans confirmation, le clip n'est pas publié.</p>
 <p><strong>Il ne dépasse pas son pas.</strong> Posé dans l'<code>env:</code> d'un job, un jeton serait offert à toute la suite de
-tests, que <code>ConnexionModule</code> pointe alors sur la production. <code>verifie-portee-des-secrets.sh</code> le refuse
+tests, que <code>ConnexionModule</code> pointe alors sur la production. <code>verifie_portee_des_secrets.py</code> le refuse
 ailleurs qu'au pas qui filme. Et le banc lui-même <strong>lie sa propre source de jeton</strong> : un scénario qui a
 demandé une connexion factice reste factice, même dans un tournage connecté (ADR 4134).</p>
 <p><strong>Il meurt avec le run.</strong> <code>POST /logout</code> en fin de tournage retire ce jeton et lui seul de la carte du

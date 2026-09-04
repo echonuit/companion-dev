@@ -12912,7 +12912,7 @@ Un rouge permanent ne signalerait plus rien.</p>
 <strong>sauté</strong> ». Deux passages verts d'affilée n'avaient rien vérifié, la dernière exécution réelle
 remontant à 16 jours. Personne ne l'avait vu, et c'est le point : il n'y avait rien à voir.</p>
 <p>Chaque passage se termine désormais par une <strong>veille de fraîcheur</strong>
-(<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille-contrat-api.sh"><code>veille-contrat-api.sh</code></a>),
+(<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille_contrat_api.py"><code>veille_contrat_api.py</code></a>),
 dont le verdict s'affiche dans le <strong>résumé du run</strong>, vert compris :</p>
 <ul>
 <li>sous <strong>21 jours</strong> (trois passages hebdomadaires manqués) : vert, avec la date de la dernière
@@ -13114,7 +13114,7 @@ n'ouvrait les <strong>enveloppes</strong>. Or chacune a été choisie <em>pour c
 autre façon de dire que chacune a une façon connue de casser : <code>tar.gz</code> pour le <strong>bit exécutable</strong>,
 <code>ditto</code> pour les liens d'un bundle <code>.app</code>, <code>appimagetool</code> qui a déjà fait échouer la v2.21.0.</p>
 <p>Chaque emballage est donc <strong>ré-ouvert et lancé</strong> là où il est produit, par
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/verifie-demarrage-emballage.sh"><code>verifie-demarrage-emballage.sh</code></a> :</p>
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/verifie_demarrage_emballage.py"><code>verifie_demarrage_emballage.py</code></a> :</p>
 <table>
 <thead>
 <tr>
@@ -13441,12 +13441,12 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </thead>
 <tbody>
 <tr>
-<td><code>verifie-titre-pr.sh</code></td>
+<td><code>verifie_titre_pr.py</code></td>
 <td>Conventional Commits, cadratin, élision sans apostrophe</td>
 <td><code>titre-pr.yml</code></td>
 </tr>
 <tr>
-<td><code>verifie-corps-pr.sh</code></td>
+<td><code>verifie_corps_pr.py</code></td>
 <td>cadratin, apostrophe courbe, élision sans apostrophe, et fermeture écrite en français (« Ferme #N ») dans le corps d'une PR</td>
 <td><code>corps-pr.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13602,7 +13602,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>5188-corpus-shell.py</code></td>
-<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->34<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
+<td>ce qui reste en shell, et que la cible des deux langages condamne (ADR 5188). Un <strong>cliquet à <!--inv:cliquet-corpus-shell-->20<!--/inv--></strong>, polarité descendante : il n'empêche pas qu'un script grossisse, il empêche la seule chose qui rendrait la cible inatteignable, <strong>qu'on en ajoute</strong>. Le script toléré, <code>lance-test-filme.sh</code>, est <strong>compté</strong> et non retiré : une tolérance est un délai, et le retirer ferait croire à une dispense. Sa population est ce que <code>git ls-files</code> suit, le même angle mort que les autres cliquets plutôt qu'un angle mort différent ici</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
@@ -13621,12 +13621,12 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>verifie-epinglage.sh</code></td>
+<td><code>verifie_epinglage.py</code></td>
 <td>actions figées sur un SHA, aucune divergence de version</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>verifie-jeton.sh</code></td>
+<td><code>verifie_jeton.py</code></td>
 <td>aucun jeton VigieChiro en clair</td>
 <td><code>lint.yml</code></td>
 </tr>
@@ -13661,12 +13661,12 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>verifie-chemins-ascii.sh</code></td>
+<td><code>verifie_chemins_ascii.py</code></td>
 <td>aucun chemin <strong>suivi</strong> ne porte de caractère non-ASCII. <code>git ls-files</code> et <code>git diff --name-only</code> les échappent par défaut, ce qui les rend invisibles à tout outillage qui teste ensuite l'existence du fichier, <strong>en silence</strong> : une passe du graphe a ainsi écarté 50 fichiers de <code>brief/</code> et pris 6 renommages pour 56 suppressions (<a href="../decisions/5089-un-chemin-suivi-ne-porte-que-de-l-ascii/">ADR 5089</a>). Tolérance zéro, les 101 chemins fautifs ayant été renommés dans le même lot. Il ne dit rien de la casse ni des espaces, que <code>core.quotePath</code> n'échappe pas</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
-<td><code>verifie-portee-des-secrets.sh</code></td>
+<td><code>verifie_portee_des_secrets.py</code></td>
 <td>aucun secret <code>VIGIECHIRO_*</code> dans l'<code>env:</code> d'un <strong>job</strong> ni d'un workflow : la forme juste est l'<code>env:</code> d'un <strong>pas</strong>. Posé plus haut, il est offert à toute la suite de tests, que <code>ConnexionModule</code> pointe alors sur la production. Aucun rôle de la plateforme ne peut le rattraper - <code>Lecteur</code> est déclaré et aucune route ne l'accepte (#4303). <strong>Second contrôle</strong> : aucun appel de workflow ne transmet le trousseau entier par héritage. Une déclaration nominale côté appelé n achète rien tant que l appelant hérite, et <code>release.yml</code> le faisait pour trois appels dont un qui exécute les tests du produit (#4349)</td>
 <td><code>lint.yml</code></td>
 </tr>
@@ -13686,7 +13686,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>api-live.yml</code>, <code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-forme-du-jeton.sh</code></td>
+<td><code>verifie_forme_du_jeton.py</code></td>
 <td>les TEXTES d un tournage - <code>tournage.log</code>, l index - avant qu ils ne partent en artefact. Un jeton Vigie-Chiro fait exactement 32 caractères de <code>[A-Z0-9]</code> (mesuré dans <code>auth.py</code>), et on exige au moins une lettre hors de <code>A-F</code> pour ne pas confondre avec une empreinte hexadécimale. Il tourne AVANT l envoi, parce qu un artefact de dépôt public se télécharge sans authentification, et l envoi en dépend. Il NE COUVRE PAS l image, et il le DIT dans son compte rendu : un garde muet sur sa portée est un faux vert avec des étapes en plus (#4327)</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13701,7 +13701,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verdict-du-tournage.sh</code></td>
+<td><code>verdict_du_tournage.py</code></td>
 <td>ce qu'un tournage a vraiment donné : combien de cas ont <strong>rougi</strong>, lu dans les rapports <strong>XML</strong> de surefire et jamais dans les <code>.txt</code>, qui mentent sur les <code>@Nested</code>. Le tournage tourne sous <code>failure.ignore</code> - on veut les clips d'un cas qui rougit -, si bien qu'un scénario rouge laissait le job vert et son clip se versait sans marque (#4351). Il <strong>rapporte</strong>, il ne juge pas</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13716,7 +13716,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (ses cas) et les cinq workflows qui installent</td>
 </tr>
 <tr>
-<td><code>verifie-apt.sh</code></td>
+<td><code>verifie_apt.py</code></td>
 <td>aucun workflow n'appelle <code>apt-get</code> en direct, <strong>le cache est branché</strong> (un par job, la variable sur chaque installation), et les paquets à <strong>post-installation</strong> - <code>fonts-*</code>, <code>flatpak*</code>, <code>ffmpeg</code> - ne passent PAS par le cache de fichiers (<a href="../decisions/4034-les-paquets-passent-par-une-porte/">ADR 4034</a>)</td>
 <td><code>lint.yml</code></td>
 </tr>
@@ -13746,22 +13746,22 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-demarrage-emballage.sh</code></td>
+<td><code>verifie_demarrage_emballage.py</code></td>
 <td>un emballage de distribution, une fois <strong>ouvert</strong>, démarre et ne lève aucune erreur de chargement</td>
 <td><code>maven.yml</code> et <code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>veille-plateformes.sh</code></td>
+<td><code>veille_plateformes.py</code></td>
 <td>la suite a été éprouvée sous Windows et macOS il y a moins de 10 jours, par un passage <strong>programmé</strong></td>
 <td><code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>trie-les-echecs-de-plateforme.sh</code></td>
+<td><code>trie_les_echecs_de_plateforme.py</code></td>
 <td>ce que la suite donne sur une plateforme, TestFX à part, et si le passage est bien <strong>allé au bout</strong> : un job coupé par <code>timeout-minutes</code> rendait le même tableau sous le titre « toutes les classes de test », 618 sur 758, sans un échec et avec un code 0 (#4544)</td>
 <td><code>suite-sous-windows-et-macos.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>veille-contrat-api.sh</code></td>
+<td><code>veille_contrat_api.py</code></td>
 <td>le contrat d'API a <strong>réellement</strong> tourné il y a moins de trois semaines</td>
 <td><code>api-live.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13771,7 +13771,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>securite-dependances.yml</code> et <code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
-<td><code>verifie-affichage-flatpak.sh</code></td>
+<td><code>verifie_affichage_flatpak.py</code></td>
 <td>le Flatpak déclare ce qu'il faut pour démarrer <strong>sur un bureau Wayland</strong></td>
 <td><code>flatpak.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
@@ -13833,7 +13833,7 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>scripts/methode/verifie-version-openspec.py</code> | la version d'OpenSpec <strong>résolue par le lockfile</strong> vaut le <code>generatedBy</code> que les douze fichiers de l'outil déclarent, et le manifeste l'épingle <strong>exactement</strong> : un intervalle laisserait le prochain <code>npm install</code> déplacer la version sans qu'aucun diff du manifeste ne le montre. Il lit le lockfile plutôt que d'appeler <code>openspec --version</code>, parce que c'est la version du dépôt qui fait foi et non celle du poste (#4512). Il refuse <strong>par entrée de corpus</strong> et non sur le total : un chemin disparu laisse les autres rendre des fichiers, et un refus sur le total resterait vert en n'ayant lu qu'une partie de ce qu'il annonce (#4566) | <code>lint.yml</code> |
 | <code>scripts/methode/verifie-adoption-openspec.py</code> | les six compétences OpenSpec <strong>adoptées</strong> par #4515 portent toujours les deux marqueurs que l'amont ne peut pas produire, <code>langue: fr</code> et <code>origine:</code>, dans les deux arbres. <code>openspec update --force</code> les rend à l'anglais amont : mesuré au foyer isolé, le marqueur retombe de 12/12 à 0/12 et le garde rougit, alors que la même commande <strong>sans</strong> <code>--force</code> ne réécrit rien et le laisse vert. Il refuse <strong>par entrée de corpus</strong> et non sur le total, pour qu'un arbre disparu ne le laisse pas vert sur la moitié de sa portée (#4516) | <code>lint.yml</code> |
 | <code>scripts/methode/verifie-renvois-competences.py</code> | tout renvoi barre-oblique cité par une compétence, <code>/realiser</code> comme <code>/opsx:continue</code>, désigne une commande qui <strong>existe</strong> sous <code>.claude/commands/</code>, <strong>ou</strong> la compétence déclare le flux optionnel et donne le repli. C'est une autre famille que le garde des sous-commandes : celui-ci lit les commandes du <strong>client</strong>, l'autre les invocations de la <strong>ligne de commande</strong>, et rien ne reliait un <code>/nom</code> cité à l'existence de son fichier. Son motif a été éprouvé avant d'être cru, deux lectures fausses corrigées : les quatre <code>/realiser &lt;autre&gt;</code> que l'apostrophe fermante manquait, et <code>/tmp</code> qui se présentait comme une commande absente et reste exempté <strong>nominativement</strong> (#4564) | <code>lint.yml</code> |
-| <code>scripts/methode/verifie-controle-du-titre.py</code> | <code>CONTRIBUTING.md</code> et les deux copies de la compétence <code>clore-une-issue</code> nomment <code>verifie-titre-pr.sh</code>, et ce script <strong>refuse encore</strong> l'espace avant les deux-points. Le dépôt pratique deux conventions à un caractère d'écart, et c'est la plus écrite qui est fausse en PR : 62 des 100 derniers titres d'issue portent l'espace, les 100 dernières PR fusionnées sont à zéro. Le défaut n'entre pas au commit, les quatre PR rouges du 2026-08-26 partant toutes d'une branche aux sujets conformes, mais à la frappe du titre. Le garde relance le script cité sur un titre fautif <strong>et</strong> sur un titre conforme : une méthode qui nommerait une commande devenue permissive vaut moins que rien (#4598) | <code>lint.yml</code> |
+| <code>scripts/methode/verifie-controle-du-titre.py</code> | <code>CONTRIBUTING.md</code> et les deux copies de la compétence <code>clore-une-issue</code> nomment <code>verifie_titre_pr.py</code>, et ce script <strong>refuse encore</strong> l'espace avant les deux-points. Le dépôt pratique deux conventions à un caractère d'écart, et c'est la plus écrite qui est fausse en PR : 62 des 100 derniers titres d'issue portent l'espace, les 100 dernières PR fusionnées sont à zéro. Le défaut n'entre pas au commit, les quatre PR rouges du 2026-08-26 partant toutes d'une branche aux sujets conformes, mais à la frappe du titre. Le garde relance le script cité sur un titre fautif <strong>et</strong> sur un titre conforme : une méthode qui nommerait une commande devenue permissive vaut moins que rien (#4598) | <code>lint.yml</code> |
 | <code>scripts/methode/verifie-sous-commandes-openspec.py</code> | les <strong>invocations</strong> citées dans les douze fichiers d'OpenSpec existent dans l'outil épinglé, à <strong>deux niveaux</strong> : un garde qui ne lirait que le premier mot déclarerait <code>openspec new</code> valide et laisserait passer <code>openspec new frobnicate</code>. Il compare à l'outil épinglé et jamais à celui du <code>PATH</code>, qui peut être d'une autre version. Il est <strong>vert sur le corpus d'aujourd'hui</strong>, donc tout son poids porte sur son auto-test, dont le premier cas est un témoin vert et le dernier rejoue le faux positif de l'en-tête YAML (#4514). Il refuse <strong>par entrée de corpus</strong> et non sur le total : un chemin disparu laisse les autres rendre des fichiers, et un refus sur le total resterait vert en n'ayant lu qu'une partie de ce qu'il annonce (#4566) | <code>lint.yml</code>, job <code>outillage-release</code> |</p>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
 <p>Ces gardes sont elles-mêmes du shell, et le dépôt en compte <strong>50 scripts</strong> hors <code>node_modules</code>. Le
@@ -13868,7 +13868,7 @@ deux <code>SC2064</code>/<code>SC2046</code> où l'expansion immédiate et le d�
 doublon de <code>\n</code> est voulu, et deux <code>SC2094</code> où shellcheck croit voir une écriture qui vit dans une
 autre fonction. <strong>Les quatre premières auraient cassé un mécanisme qui marche si on les avait
 « corrigées ».</strong></p>
-<p><strong>Le modèle vient de #2947</strong> (<code>verifie-titre-pr.sh</code>) et il est le bon : le script <strong>se réinvoque
+<p><strong>Le modèle vient de #2947</strong> (<code>verifie_titre_pr.py</code>) et il est le bon : le script <strong>se réinvoque
 lui-même</strong> sur un cas connu, donc le cas de test et le chemin réel sont le même code <strong>par
 construction</strong>. Les gardes qui balaient une arborescence l'appliquent en rendant leur racine
 surchargeable par variable d'environnement, et en montant un bac jetable.</p>
@@ -14079,37 +14079,37 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/trie-les-echecs-de-plateforme.sh</code></td>
+<td><code>.github/scripts/trie_les_echecs_de_plateforme.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/veille-contrat-api.sh</code></td>
+<td><code>.github/scripts/veille_contrat_api.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/veille-plateformes.sh</code></td>
+<td><code>.github/scripts/veille_plateformes.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verdict-du-tournage.sh</code></td>
+<td><code>.github/scripts/verdict_du_tournage.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-affichage-flatpak.sh</code></td>
+<td><code>.github/scripts/verifie_affichage_flatpak.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-apt.sh</code></td>
+<td><code>.github/scripts/verifie_apt.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14121,7 +14121,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-chemins-ascii.sh</code></td>
+<td><code>.github/scripts/verifie_chemins_ascii.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14145,7 +14145,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-corps-pr.sh</code></td>
+<td><code>.github/scripts/verifie_corps_pr.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14157,19 +14157,19 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-demarrage-emballage.sh</code></td>
+<td><code>.github/scripts/verifie_demarrage_emballage.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-epinglage.sh</code></td>
+<td><code>.github/scripts/verifie_epinglage.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-forme-du-jeton.sh</code></td>
+<td><code>.github/scripts/verifie_forme_du_jeton.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14193,7 +14193,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-jeton.sh</code></td>
+<td><code>.github/scripts/verifie_jeton.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14211,7 +14211,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-portee-des-secrets.sh</code></td>
+<td><code>.github/scripts/verifie_portee_des_secrets.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14235,7 +14235,7 @@ liste est le plan de travail des chantiers de conversion.</p>
 <td>conversion</td>
 </tr>
 <tr>
-<td><code>.github/scripts/verifie-titre-pr.sh</code></td>
+<td><code>.github/scripts/verifie_titre_pr.py</code></td>
 <td>garde</td>
 <td style="text-align: center;">oui</td>
 <td>conversion</td>
@@ -14320,8 +14320,8 @@ urgence, n'étant tenus par aucun auto-test.</p>
 <code>verifie_inventaires_ci.py</code> retire les lignes de commentaire puis cherche la chaîne <code>--auto-test</code>,
 là où sa moitié Python fait un vrai contrôle par <code>ast</code> en excluant les docstrings depuis #5032.
 Confronté à la mesure par contraste, <strong>il tombait juste : 45 des deux côtés, les mêmes 45</strong> - une
-mesure prise avant les conversions de #5210, #5219, #5221 et #5229, qui ont ramené la moitié shell à
-<strong>29</strong>, contre <strong>68</strong> du côté Python.
+mesure prise avant les conversions de #5210, #5219, #5221, #5229 et #5231, qui ont ramené la moitié
+shell à <strong>15</strong>, contre <strong>82</strong> du côté Python.
 La confrontation n'a pas été refaite depuis, et ce qui est déclaré ici est la <strong>fragilité de la
 règle</strong>, pas la fraîcheur du chiffre : elle est fragile par construction, et c'est un risque écrit
 plutôt que corrigé au passage.</p>
@@ -14413,7 +14413,7 @@ code qu'on ne saurait pas identifier, et un SBOM décrit une construction non re
 quelle version tourne, et une mise à jour Dependabot n'aurait rien de lisible à modifier.</p>
 <p><strong>Épingler ne gèle rien.</strong> Dependabot met à jour un SHA épinglé <strong>et</strong> son commentaire. On échange une
 mise à jour invisible contre une mise à jour qui passe par une PR.</p>
-<p><strong>La garde</strong> : <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/verifie-epinglage.sh"><code>verifie-epinglage.sh</code></a>,
+<p><strong>La garde</strong> : <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/verifie_epinglage.py"><code>verifie_epinglage.py</code></a>,
 dans le job <code>lint</code>. Elle refuse toute référence non figée <strong>et</strong> tout SHA sans commentaire de version.
 Sans elle, la prochaine action ajoutée le serait par tag et l'épinglage se déferait en silence - la
 forme même du défaut corrigé. Pour résoudre un tag :</p>
@@ -14481,8 +14481,8 @@ l'historique des exécutions, pas seulement dans le log d'un job - puis dans son
 ne porte de marqueur, la veille refuse en disant que c'est <strong>elle</strong> qui est en cause - et distingue
 les deux causes : des exécutions toutes antérieures à la pose du marqueur (qui se résout seule), ou un
 <code>run-name:</code> renommé sans report.</p>
-<p>Comme <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille-contrat-api.sh"><code>veille-contrat-api.sh</code></a>,
-<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille-plateformes.sh"><code>veille-plateformes.sh</code></a>
+<p>Comme <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille_contrat_api.py"><code>veille_contrat_api.py</code></a>,
+<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/veille_plateformes.py"><code>veille_plateformes.py</code></a>
 <strong>ne persiste rien</strong> : l'historique des exécutions <em>est</em> la date cherchée. Elle refuse explicitement
 dans trois cas où un dispositif naïf rendrait un « 0 jour » rassurant : historique <strong>vide</strong> (la
 question n'a pas été posée), aucune exécution programmée réussie (preuve <strong>absente</strong>, pas périmée),
@@ -14564,7 +14564,7 @@ se pose sur les <strong>imports</strong>, pas sur la ressemblance des noms.</p>
 <p>Le SBOM répond de ce que le fat-jar <strong>embarque</strong>. Restaient les <strong>actions GitHub</strong> qui le fabriquent,
 le signent et le publient - un autre approvisionnement, aussi capable de vieillir, et que rien ne
 regardait.</p>
-<p><code>verifie-epinglage.sh</code> garde leur <strong>cohérence</strong> : tout figé par SHA, aucune divergence entre deux
+<p><code>verifie_epinglage.py</code> garde leur <strong>cohérence</strong> : tout figé par SHA, aucune divergence entre deux
 emplacements. C'est une propriété du dépôt, vraie indéfiniment, <strong>y compris quand l'amont a pris une
 majeure d'avance</strong>. Un SHA figé reste figé.</p>
 <p>Mesuré au 2026-08-06 : <code>actions/attest-build-provenance</code> était épinglée sur <strong>v3.0.0</strong> (août 2025)
@@ -14776,7 +14776,7 @@ aussi ce qui surprend un contributeur au mauvais moment.</p>
 Or le secret que ce dépôt risque de laisser fuir est un <strong>jeton VigieChiro</strong>, lu dans
 <code>localStorage['auth-session-token']</code> : une chaîne <strong>opaque</strong>, sans préfixe distinctif, qu'aucun
 catalogue ne connaît. Ce qui l'attraperait - les motifs personnalisés - demande GHAS.</p>
-<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/verifie-jeton.sh"><code>verifie-jeton.sh</code></a>
+<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/scripts/verifie_jeton.py"><code>verifie_jeton.py</code></a>
 cherche donc le <strong>contexte</strong> et non la forme : le nom de la clé, une affectation, et une valeur
 littérale d'au moins 12 caractères. Les quatre usages légitimes du dépôt passent par construction (le
 marque-place <code>XXXX</code>, la variable d'environnement, le secret Actions, la propriété Maven vide).</p>
