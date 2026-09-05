@@ -14027,6 +14027,16 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>verifie_portees_de_ci.py</code></td>
+<td>une <strong>portée de job</strong> tient ce qu'elle promet : bijection job / portée, aucune porte décorative, aucun chemin mort, chaque portée nomme son propre atelier et le mécanisme, et aucun chemin écrit dans un <code>run:</code> n'échappe à la portée de son job. Le mode de panne qu'elle ferme est le <strong>faux vert</strong> : une portée qui ne correspond à rien fait écrire « sans objet » à un job qui aurait dû juger (chantier #5294)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>porte_du_job.py</code></td>
+<td>l'<strong>appariement</strong> d'une portée : <code>**</code> traverse les <code>/</code>, <code>*</code> ne les traverse pas, et un motif sans <code>/</code> n'apparie que la racine. C'est lui qui décide si un job tourne, donc son dérapage ferait écrire « sans objet » à des jobs qui auraient dû juger. Un job inconnu de <code>PORTEES</code> fait rougir, jamais taire (chantier #5294)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>clips_orphelins.py</code></td>
 <td>désigne les clips de la pré-version roulante que le <strong>dernier tournage n'a pas produits</strong>, et <strong>refuse un dossier de tournage vide</strong> : <code>--clobber</code> ne retire rien, donc un cas renommé laissait son clip en ligne, montrant un comportement disparu</td>
 <td><code>recette-filmee.yml</code> (autotest : <code>lint.yml</code>)</td>
