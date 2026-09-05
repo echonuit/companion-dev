@@ -10097,6 +10097,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5258-la-page-qu-on-lit-avant-de-pousser-nomme-ce-qu-il-faut-lancer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5258 · La page qu'on lit avant de pousser nomme ce qu'il faut lancer
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13658,6 +13693,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>scripts/methode/etapes-sans-renvoi-aval.py</code></td>
 <td>qu'aucune <strong>étape numérotée</strong> des six compétences du cycle ne délègue vers une compétence située plus loin - la prose, elle, reste libre de nommer la suite. Il <strong>refuse</strong> quand il ne trouve pas de liste d'étapes, parce que les six ne la titrent pas pareil et qu'un motif calé sur un seul titre en sauterait deux (ADR A3)</td>
+<td><code>lint.yml</code> (autotest dédié)</td>
+</tr>
+<tr>
+<td><code>scripts/methode/verifie-batterie-locale.py</code></td>
+<td>que la page qu'on lit avant de pousser, la section « batterie locale » d'<code>ouvrir-une-pr</code>, <strong>nomme</strong> chaque garde qui juge le dépôt en CI hors de ce que <code>scripts/adr/rapport.py</code> balaie. Sa population se dérive et ne s'énumère pas : une invocation <code>--auto-test</code> ne juge pas, un script sans <code>CONTRAT</code> produit sans juger, et les deux globs de <code>rapport.py</code> sont confrontés à son source. Elle s'arrête à <code>scripts/</code>, et l'ADR 5258 dit pourquoi : dans <code>.github/scripts/</code>, un seul des trente et un scripts déclare un contrat, si bien que la même règle y exclurait trente gardes en silence</td>
 <td><code>lint.yml</code> (autotest dédié)</td>
 </tr>
 <tr>
