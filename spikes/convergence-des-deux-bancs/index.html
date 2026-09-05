@@ -11624,6 +11624,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Les dialogues : le problème est déjà résolu, pour une autre raison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-quoi-ressemble-un-double-visible-et-pourquoi-cest-la-vraie-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        À quoi ressemble un double visible, et pourquoi c'est la vraie question
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -12033,6 +12050,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Les dialogues : le problème est déjà résolu, pour une autre raison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-quoi-ressemble-un-double-visible-et-pourquoi-cest-la-vraie-question" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        À quoi ressemble un double visible, et pourquoi c'est la vraie question
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
           <li class="md-nav__item">
@@ -12194,8 +12228,41 @@ doubles, <strong>47 fois</strong> dans <code>src/test</code>.</p>
 <p>Le banc de documentation n'a donc pas besoin d'un dialogue <strong>natif</strong>. Il a besoin d'un double qui
 s'<strong>affiche dans la scène</strong> au lieu de se taire. La couture existe, elle est éprouvée, et elle est
 employée quotidiennement pour une raison qui n'a rien à voir avec le film.</p>
-<p><strong>Ce que cela ne dit pas</strong> : à quoi ce double visible doit ressembler pour qu'un lecteur de la
-documentation reconnaisse ce qu'il aurait vu. C'est de la conception, et ce spike ne la tranche pas.</p>
+<h4 id="a-quoi-ressemble-un-double-visible-et-pourquoi-cest-la-vraie-question">À quoi ressemble un double visible, et pourquoi c'est la vraie question<a class="headerlink" href="#a-quoi-ressemble-un-double-visible-et-pourquoi-cest-la-vraie-question" title="Permanent link">&para;</a></h4>
+<p>La première version de cette page s'arrêtait ici, en renvoyant la question à la conception. C'était
+une échappatoire : un obstacle avait son prototype, l'autre n'avait qu'un argument. Le voici.</p>
+<p><img alt="Un sélecteur de dossier du graphe de scène, dans une fenêtre dessinée" src="../apercu-selecteur-simule.png" /></p>
+<p>Le geste se lit : quelqu'un qui regarde le film comprend qu'il choisit où enregistrer. Mais <strong>ce
+n'est pas le sélecteur du système</strong>. C'est une modale de l'application, dans son style, parce qu'un
+double visible ne peut être que cela : un nœud du graphe de scène.</p>
+<div class="admonition warning">
+<p class="admonition-title">Cette image est un dessin, et sa qualité ne mesure rien</p>
+<p>Elle a été composée à la main, et ses trois premières versions portaient des défauts qui étaient
+ceux du dessin - une colonne mal remplie, une ligne en double, une barre latérale qui descendait
+sous les boutons - et non ceux de l'approche. Les trois ont été trouvés en REGARDANT l'image, et
+aucun par la personne qui la dessinait. Un
+double réel serait un composant JavaFX assemblé de <code>TreeView</code>, <code>TableView</code>, <code>TextField</code> et
+<code>ComboBox</code>, stylé par la feuille de l'application, et il rendrait mieux que ce qu'une main
+compose dans ImageMagick.</p>
+<p>Ce que ce spike peut honnêtement affirmer se réduit donc à trois faits : <strong>la couture existe</strong>,
+<strong>les composants existent</strong>, et <strong>le dépôt sait déjà capturer ses modales</strong>. Le rendu réel se
+mesure en écrivant vingt lignes de JavaFX, pas en les dessinant. Juger l'approche sur cette
+image reviendrait à juger mon habileté au dessin, ce qui n'est la question de personne.</p>
+</div>
+<p>Un lecteur sous Windows, macOS ou GNOME verra donc, en faisant le geste lui-même, une boîte tout
+autre - arborescence, raccourcis, barre de chemin, boutons à une autre place.</p>
+<p><strong>Cette asymétrie n'est pas la même que celle du cadre.</strong> Une décoration dessinée simule ce qui
+<em>entoure</em> l'application, et l'utilisateur ne la confondra pas avec la sienne : il sait qu'il regarde
+une capture. Un sélecteur de fichiers simulé, lui, montre un dialogue <strong>du système</strong> qui n'est celui
+de personne, au moment précis où la documentation explique un geste que le lecteur va refaire.</p>
+<p><strong>Tranché à l'écriture de cette page</strong> : un sélecteur qui se comprend suffit. Les sélecteurs de
+fichiers diffèrent déjà d'une plateforme à l'autre, et un lecteur qui voit « choisir un dossier »
+avec une liste et deux boutons a compris le geste qu'il devra faire. La documentation montre une
+étape, elle ne promet pas une pixel-parité avec le bureau de chacun.</p>
+<p>Les deux autres réponses envisagées sont écartées, et il vaut la peine de dire pourquoi. <strong>Couper le
+passage par le sélecteur</strong> ferait un film qui saute l'étape la plus déroutante pour un débutant.
+<strong>Garder un banc qui voit le bureau</strong> pour la poignée de parcours concernés conserverait deux bancs,
+c'est-à-dire exactement ce que la convergence cherche à retirer.</p>
 <h3 id="la-fenetre-douze-lignes-de-dessin-sur-un-chemin-qui-existe">La fenêtre : douze lignes de dessin, sur un chemin qui existe<a class="headerlink" href="#la-fenetre-douze-lignes-de-dessin-sur-un-chemin-qui-existe" title="Permanent link">&para;</a></h3>
 <p><code>CartonDeTitre</code> dessine déjà un <code>BufferedImage</code> en AWT et le pousse dans le <strong>même encodeur</strong> que les
 images de scène, au même format. Dessiner un cadre autour d'une image de scène est le même geste sur
@@ -12236,9 +12303,15 @@ les huit coûtent.</p>
 <a href="../../recette/comparer-les-deux-bancs/">Comparer les deux bancs</a> le pose déjà pour la recette ; la
 convergence l'élargit sans le changer.</p>
 <h2 id="ce-que-ce-spike-etablit">Ce que ce spike établit<a class="headerlink" href="#ce-que-ce-spike-etablit" title="Permanent link">&para;</a></h2>
-<p><strong>Les deux raisons d'être du banc de documentation sont solubles côté Java</strong>, l'une déjà résolue par
+<p><strong>Les deux raisons d'être du banc de documentation sont solubles TECHNIQUEMENT côté Java</strong>, l'une par
 un dispositif que le dépôt emploie tous les jours, l'autre par douze lignes de dessin sur un chemin
 existant.</p>
+<p><strong>Et les deux sont acceptables</strong>, la question d'auteur ayant été tranchée en écrivant cette page :
+une décoration quelconque suffit pourvu qu'il y en ait une, et un sélecteur qui se comprend suffit
+même s'il n'est celui d'aucune plateforme.</p>
+<p>Ce qui reste vrai de l'ADR 3788 est respecté dans les deux cas : ce qui est simulé <strong>entoure</strong> ou
+<strong>illustre</strong>, jamais ne remplace ce qu'un humain doit juger. La mise en page de l'application, elle,
+n'est jamais touchée.</p>
 <p>Cela ne dit pas qu'il faut converger. Cela dit que le lot D ne doit <strong>pas</strong> être ouvert comme une
 conversion de 2 065 lignes vers Python avant que la question de la convergence soit tranchée : ce
 serait investir dans un corpus dont on ignore s'il est condamné, ce que le chantier #5215 avait
