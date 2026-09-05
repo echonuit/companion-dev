@@ -10482,6 +10482,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5257-un-rouge-par-plantage-ne-prouve-rien/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5257 · Un rouge par plantage ne prouve rien
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5239-la-mesure-de-pixels-reste-un-sous-processus/" class="md-nav__link">
         
   
@@ -12856,14 +12891,25 @@ sa cible - et un <code>-Pmutation</code> ciblé l'aurait signalé sans qu'on ait
 <p><strong>En pratique</strong> : à la passe 6 d'une clôture, lancer PIT ciblé sur les classes que le chantier a
 introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindre.</p>
 <h3 id="demander-a-un-garde-ce-quil-est-contrat">Demander à un garde ce qu'il est : <code>--contrat</code><a class="headerlink" href="#demander-a-un-garde-ce-quil-est-contrat" title="Permanent link">&para;</a></h3>
-<h3 id="ou-vit-le-fonds-commun-des-gardes">Où vit le fonds commun des gardes<a class="headerlink" href="#ou-vit-le-fonds-commun-des-gardes" title="Permanent link">&para;</a></h3>
-<p><code>scripts/_commun/</code> porte le vocabulaire des corpus, les verdicts et l'aide <code>--contrat</code>. Il s'atteint par une seule forme, depuis n'importe quel garde :</p>
+<h3 id="ou-vivent-les-fonds-communs-des-gardes">Où vivent les fonds communs des gardes<a class="headerlink" href="#ou-vivent-les-fonds-communs-des-gardes" title="Permanent link">&para;</a></h3>
+<p><strong>Il y en a DEUX, et chacun sert son arbre.</strong> <code>scripts/_commun/</code> porte le vocabulaire des corpus, les
+verdicts, l'aide <code>--contrat</code> et l'assertion des auto-tests. <code>.github/scripts/_forge.py</code> porte ce que
+les cliquets de forge partagent : la lecture du cliquet dans un en-tête d'ADR, l'interrogation de la
+forge avec son refus quand <code>gh</code> ne répond pas, et le banc de leurs cas (#4954).</p>
+<p><strong>Le second n'est pas une copie du premier, et la mesure a décidé de leur séparation.</strong> Verser de la
+logique de forge dans <code>scripts/_commun/</code> en ferait une bibliothèque de domaine, ce que #5216 avait
+mesuré comme non justifié : « le partage réel est plus étroit qu'il n'y paraît ; ce que tout le monde
+a, c'est l'auto-test, le reste se répartit par tiers ».</p>
+<p>Le premier s'atteint par une seule forme, depuis n'importe quel garde :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RACINE</span> <span class="o">/</span> <span class="s2">"scripts"</span><span class="p">))</span>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">_commun</span><span class="w"> </span><span class="kn">import</span> <span class="n">DECISIONS</span><span class="p">,</span> <span class="n">rapporte</span>
 </code></pre></div>
 <p><strong>Il a vécu dans <code>scripts/adr/</code> jusqu'à #5216</strong>, c'est-à-dire chez l'un de ses usagers, et quatre formes de chemin coexistaient pour l'atteindre. La quatrième n'a été trouvée ni par le motif de réécriture ni par la relecture du diff, mais par un relevé des 54 auto-tests avant et après : un refactoring à comportement constant se prouve en comparant deux mesures.</p>
-<p><strong>Soixante-huit points d'entrée</strong> répondent à <code>--contrat</code> et déclarent six champs : les 43 de
-<code>scripts/adr</code>, les 24 de <code>scripts/methode</code>, et le dernier garde shell. La réponse s'obtient sans rien
+<p><strong>Soixante-huit points d'entrée</strong> répondent à <code>--contrat</code> et déclarent six champs : les <strong>44</strong> de
+<code>scripts/adr</code> et les <strong>24</strong> de <code>scripts/methode</code>. Le total n'a pas bougé mais sa composition si :
+la page annonçait « 43, 24, et le dernier garde shell », et <strong>aucun des deux scripts shell restants
+ne répond à <code>--contrat</code></strong>. Relevé à la clôture de #5257, en lançant les 70 points d'entrée un par un
+plutôt qu'en recopiant le chiffre. La réponse s'obtient sans rien
 lire du dépôt : la branche s'imprime <strong>avant tout le reste</strong>, pour qu'un garde dont une dépendance
 manque rende quand même sa déclaration.</p>
 <p><code>verifie_contrat_obligatoire.py</code> <strong>refuse</strong> un point d'entrée de ces deux dossiers qui n'en
