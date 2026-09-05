@@ -10132,6 +10132,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5278-une-attente-qui-lit-le-graphe-le-lit-sur-le-fil/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5278 · Une attente qui lit le graphe le lit sur le fil JavaFX
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13770,6 +13805,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>scripts/methode/verifie-batterie-locale.py</code></td>
 <td>que la page qu'on lit avant de pousser, la section « batterie locale » d'<code>ouvrir-une-pr</code>, <strong>nomme</strong> chaque garde qui juge le dépôt en CI hors de ce que <code>scripts/adr/rapport.py</code> balaie. Sa population se dérive et ne s'énumère pas : une invocation <code>--auto-test</code> ne juge pas, un script sans <code>CONTRAT</code> produit sans juger, et les deux globs de <code>rapport.py</code> sont confrontés à son source. Elle s'arrête à <code>scripts/</code>, et l'ADR 5258 dit pourquoi : dans <code>.github/scripts/</code>, un seul des trente et un scripts déclare un contrat, si bien que la même règle y exclurait trente gardes en silence</td>
 <td><code>lint.yml</code> (autotest dédié)</td>
+</tr>
+<tr>
+<td><code>5278-attente-hors-du-fil.py</code></td>
+<td>les appels a <code>Attente.que</code> dont le predicat lit le graphe de scene depuis le fil du test, la ou <code>Attente.queSurLeFil</code> existe depuis #4408 pour le lire sur le fil FX. La regle se derive des lectures de noeuds (<code>lookup(</code>, <code>queryAs</code>, <code>getItems()</code>, <code>getScene()</code>, <code>getChildren()</code>, <code>getText()</code>) et non d'une liste de classes. Il <strong>compte</strong> et ne juge pas : <code>queSurLeFil</code> coute un aller-retour par tour de boucle, et un site legitimement laisse en <code>que</code> ecrit sa raison. Cliquet a 63, que les lots #5269 et #5279 descendent</td>
+<td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
 </tr>
 <tr>
 <td><code>scripts/methode/releve-les-planchers.py</code></td>
