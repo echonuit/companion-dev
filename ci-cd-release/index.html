@@ -10167,6 +10167,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5307-le-dispositif-de-designation-se-choisit-en-un-endroit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5307 · Le dispositif de désignation se choisit en un endroit
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13809,6 +13844,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>5278-attente-hors-du-fil.py</code></td>
 <td>les appels a <code>Attente.que</code> dont le predicat lit le graphe de scene depuis le fil du test, la ou <code>Attente.queSurLeFil</code> existe depuis #4408 pour le lire sur le fil FX. La regle se derive des lectures de noeuds (<code>lookup(</code>, <code>queryAs</code>, <code>getItems()</code>, <code>getScene()</code>, <code>getChildren()</code>, <code>getText()</code>) et non d'une liste de classes. Il <strong>compte</strong> et ne juge pas : <code>queSurLeFil</code> coute un aller-retour par tour de boucle, et un site legitimement laisse en <code>que</code> ecrit sa raison. Cliquet a 63, que les lots #5269 et #5279 descendent</td>
+<td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
+</tr>
+<tr>
+<td><code>5307-designation-hors-fabrique.py</code></td>
+<td>les constructions du selecteur de fichiers NATIF hors de <code>commun/view/Selecteurs.java</code>, la fabrique posee par l'ADR 5307. Le choix du dispositif etait ecrit douze fois en dur, donc il n'existait aucun endroit ou le changer. Cliquet a <strong>zero</strong>, et il ne borne pas une dette : il compte une population qui doit rester vide, aucune raison legitime ne justifiant de construire le selecteur natif ailleurs. Manquer un site ne casse rien - l'ecran oublie ouvre le dialogue du systeme et a l'air juste - ce qui est precisement pourquoi un compte le tient plutot que la relecture</td>
 <td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
 </tr>
 <tr>
