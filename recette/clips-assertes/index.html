@@ -11988,6 +11988,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#s2-67-une_nuit_qui_couvre_ne_se_fait_pas_accuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-67 · une_nuit_qui_couvre_ne_se_fait_pas_accuser
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -14093,6 +14104,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#s2-67-une_nuit_qui_couvre_ne_se_fait_pas_accuser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S2-67 · une_nuit_qui_couvre_ne_se_fait_pas_accuser
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -14714,7 +14736,21 @@ chemin de l'observateur, et il commence donc lui aussi par un import freiné.</p
 <video controls muted playsinline preload="none" width="100%"
   src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioDiagnosticPassageTest.lire_le_diagnostic_d_un_passage.mp4"></video>
 
+<h3 id="s2-67-une_nuit_qui_couvre_ne_se_fait_pas_accuser">S2-67 · <code>une_nuit_qui_couvre_ne_se_fait_pas_accuser</code><a class="headerlink" href="#s2-67-une_nuit_qui_couvre_ne_se_fait_pas_accuser" title="Permanent link">&para;</a></h3>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-recette/ScenarioDiagnosticPassageTest.une_nuit_qui_couvre_ne_se_fait_pas_accuser.mp4"></video>
+
+<p>Le <strong>contraire</strong> du clip précédent, et le seul qui mettrait la règle en défaut si elle revenait. La
+nuit y déborde la fenêtre exigée des deux côtés, <code>19:30 à 07:45</code> contre <code>20:00 à 07:15</code>, et l'écran
+rend une <strong>information</strong> au lieu d'un avertissement : le protocole est un plancher, et le dépasser
+n'est pas s'en écarter.</p>
 <blockquote>
+<p>Il a fallu une <strong>seconde carte</strong>, <code>sd-nuit-longue</code> : la nominale ne couvre pas la fenêtre, et c'est
+ce qui rend <code>S2-66</code> jouable. Sans elle le geste restait filmé pour moitié, et la page annonçait un
+clip qui ne montrait jamais ce cas-là (#5061).</p>
+<p>Cette carte demandait autrefois une fixture entière. La clé <code>acquisition:</code> du format de spec,
+ouverte par #5200 pour un autre sujet, la réduit à une ligne : la fenêtre annoncée par le capteur
+est la seule chose dont dépend toute la couverture.</p>
 <p><code>S2-39</code> <strong>ne se lit pas sur cet écran</strong>. L'enregistreur et le nombre de mesures sont en barre de
 statut, qui appartient au chrome : le contrôleur du diagnostic y publie un résumé (#693, #3548), et
 c'est le chrome qui le rend. Le clip montre les deux à la fois, ce qu'un banc monté sur la seule vue
