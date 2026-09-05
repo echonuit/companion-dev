@@ -11682,6 +11682,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-montage-de-validation-les-deux-prototypes-poses-sur-un-vrai-clip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le montage de validation : les deux prototypes posés sur un vrai clip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-ce-spike-na-pas-mesure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12108,6 +12119,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-montage-de-validation-les-deux-prototypes-poses-sur-un-vrai-clip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le montage de validation : les deux prototypes posés sur un vrai clip
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-ce-spike-na-pas-mesure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12180,7 +12202,7 @@ produit le banc Java, et dont la dernière ligne pose sans le savoir la question
 que l'<a href="../../decisions/5188-bash-disparait-une-tolerance-est-un-delai/">ADR 5188</a> tolère « tant que le
 banc Java n'est pas définitivement validé ». Et celui de la documentation,
 <code>scripts/doc-video/filme-un-parcours.sh</code> (2 065 lignes), qui n'a aucune tolérance écrite et qui est
-le dernier lot du chantier #5235.</p>
+le dernier lot du chantier #5235, son <strong>lot D</strong>.</p>
 <p>La question s'est posée à l'ouverture de ce lot : convertir 2 065 lignes de shell en Python, ou
 demander d'abord si ce banc doit exister.</p>
 <h2 id="les-deux-raisons-detre-qui-lont-tenu-a-lecart">Les deux raisons d'être qui l'ont tenu à l'écart<a class="headerlink" href="#les-deux-raisons-detre-qui-lont-tenu-a-lecart" title="Permanent link">&para;</a></h2>
@@ -12289,12 +12311,60 @@ personne.</p>
 <p><strong>Tranché à l'ouverture de ce spike</strong> : ce qui compte est d'<strong>avoir</strong> une décoration, pas laquelle.
 Le lecteur de la documentation a besoin de savoir qu'il regarde une fenêtre d'application ; il n'a
 pas besoin que ce soit la sienne.</p>
+<h2 id="le-montage-de-validation-les-deux-prototypes-poses-sur-un-vrai-clip">Le montage de validation : les deux prototypes posés sur un vrai clip<a class="headerlink" href="#le-montage-de-validation-les-deux-prototypes-poses-sur-un-vrai-clip" title="Permanent link">&para;</a></h2>
+<p>Les deux images ci-dessus sont des dessins, et une page qui conclut « soluble » sur deux dessins n'a
+pas mesuré grand-chose. Le banc Java a donc été lancé pour de vrai, et ses prototypes composés sur ce
+qu'il a rendu.</p>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-spike-convergence/spike-convergence-parcours-monte.mp4"></video>
+
+<p>Le film enchaîne l'écran du carré, le clic sur « Importer une nuit », l'assistant d'import au champ
+vide, <strong>le sélecteur de dossier qui s'ouvre</strong> sur le volume <code>VIGIECHIRO</code>, puis l'inspection qui
+annonce le journal, le relevé et les six WAV. Le tout dans un cadre de fenêtre.</p>
+<p><strong>Ce qui sort du banc, et ce qui a été ajouté.</strong> L'application, ses écrans, sa carte, son inspection
+et son pointeur sortent du banc Java, tourné sans Xvfb, sans gestionnaire de fenêtres et sans
+xdotool : <code>3 clips, 49 s de film, 81 s de build</code>. Le cadre et le dialogue ont été composés après
+coup.</p>
+<p>Le contenu du sélecteur n'est pas inventé : <code>bruts</code>, <code>LogPR1925492.txt</code> (817 o) et
+<code>PaRecPR1925492_THLog.csv</code> (205 o) sont l'arbre que <code>GenerateurCartesSD</code> produit depuis
+<code>sd-nominale.yaml</code>. La flèche non plus : c'est celle du banc, <code>CalqueDesGestes.FLECHE_X/Y</code> au même
+facteur, même corps et même liseré.</p>
+<p>Il est réel <strong>et pourtant faux</strong>, et c'est le dessin du sélecteur qui l'a fait voir : les vraies
+cartes SD n'ont pas de dossier <code>bruts/</code>, les enregistreurs déposent leurs WAV à la racine. Le
+produit accepte les deux dispositions, mais les <strong>seize</strong> specs de recette produisent la seconde,
+si bien que la branche réelle n'est jouée par aucun cas de recette. Consigné en #5281, hors du
+périmètre de ce spike.</p>
+<div class="admonition warning">
+<p class="admonition-title">Ce montage est un montage, et trois choses y sont fausses</p>
+<p><strong>Le cadre et le dialogue n'existent pas.</strong> Aucun code ne les produit aujourd'hui ; ils sont
+posés sur les images par un script de composition qui ne sera pas livré.</p>
+<p><strong>Le film ne montre qu'un temps du parcours, et c'est une mesure.</strong> Les trois clips ont d'abord
+été concaténés : à quarante secondes, le film <strong>repartait</strong> de l'écran du site. Chaque clip est
+un test, et un test démarre à zéro. Trois clips bout à bout ne font pas un parcours, ils font
+trois redémarrages - un film de documentation tient en <strong>une</strong> prise, et c'est le vrai travail
+du portage.</p>
+<p><strong>Une contradiction est visible et n'a pas été maquillée.</strong> Le sélecteur annonce
+<code>/media/VIGIECHIRO/bruts</code> ; à la seconde suivante, le vrai clip remplit le champ avec le dossier
+temporaire où le test a matérialisé sa carte. Un double visible devra donc rendre un chemin
+<strong>montrable</strong>, contrainte que ni les dessins ni le raisonnement n'avaient fait apparaître.</p>
+</div>
+<p><strong>Ce que le montage a mesuré au-delà de la faisabilité</strong> : décoré et muni d'un sélecteur visible, le
+clip <strong>cesse de ressembler à un clip de recette</strong>. C'était la question que les dessins ne pouvaient
+pas trancher, puisqu'ils ne montraient pas l'application en train de fonctionner.</p>
 <h2 id="ce-que-ce-spike-na-pas-mesure">Ce que ce spike n'a PAS mesuré<a class="headerlink" href="#ce-que-ce-spike-na-pas-mesure" title="Permanent link">&para;</a></h2>
 <p>Trois choses, et elles décident du coût plutôt que de la faisabilité.</p>
 <p><strong>Ce que les huit parcours de documentation font que le banc Java ne sait pas faire.</strong> Le banc bash
 porte une carte (<code>preparer_la_carte</code>, <code>monter_la_carte</code>, <code>demonter_la_carte</code>), un montage à plages
-accélérées (<code>plages_a_accelerer</code>, <code>filtre_de_montage</code>) et un index (<code>ecrire_index</code>). Trois de ces
-quatre ont un équivalent Java - <code>Encodeur</code>, <code>IndexDesCas</code> - ; <strong>la carte n'en a pas</strong>.</p>
+accélérées (<code>plages_a_accelerer</code>, <code>filtre_de_montage</code>) et un index (<code>ecrire_index</code>).</p>
+<p>Cette page a d'abord écrit que <strong>la carte n'avait pas d'équivalent</strong>, et que c'était l'inconnue
+décisive. C'était faux, et le tournage l'a démenti. Le parcours bash déclare
+<code>recette/fixtures/spec/sd-nominale.yaml</code> ; le scénario Java déclare <code>FIXTURE = "sd-nominale"</code>. Les
+deux passent par <code>GenerateurCartesSD</code> sur <strong>la même spec déclarative</strong> - le bash par un fork
+<code>mvnw exec:java@generer-sd</code>, le Java en processus via <code>CarteDeRecette.materialiser</code>.</p>
+<p>Ce qui n'a pas d'équivalent est <code>monter_la_carte</code> : un montage <code>udisksctl</code> en boucle, qui existe pour
+qu'un volume étiqueté <code>VIGIECHIRO</code> paraisse dans le sélecteur <strong>natif</strong>, où le parcours va le lire
+par OCR. Simuler le sélecteur retire donc du même geste la raison d'être du montage : les deux
+obstacles n'en font qu'un, ce que ni le raisonnement ni les dessins n'avaient vu.</p>
 <p><strong>Le coût réel d'un parcours porté</strong>, mesuré et non estimé. Un seul parcours converti dirait ce que
 les huit coûtent.</p>
 <p><strong>Ce que deviennent les deux ADR</strong> qui nomment <code>lance-test-filme.sh</code> comme leur vérification, la
@@ -12312,10 +12382,15 @@ même s'il n'est celui d'aucune plateforme.</p>
 <p>Ce qui reste vrai de l'ADR 3788 est respecté dans les deux cas : ce qui est simulé <strong>entoure</strong> ou
 <strong>illustre</strong>, jamais ne remplace ce qu'un humain doit juger. La mise en page de l'application, elle,
 n'est jamais touchée.</p>
-<p>Cela ne dit pas qu'il faut converger. Cela dit que le lot D ne doit <strong>pas</strong> être ouvert comme une
-conversion de 2 065 lignes vers Python avant que la question de la convergence soit tranchée : ce
-serait investir dans un corpus dont on ignore s'il est condamné, ce que le chantier #5215 avait
-justement évité en refusant de bâtir un banc de mutation pour les gardes bash.</p>
+<p>Cela ne dit toujours pas qu'il <strong>faut</strong> converger, et le montage ne le dit pas non plus : il montre
+que l'artefact visé est atteignable, pas qu'il vaut son prix.</p>
+<p>Ce que cela tranche est le <strong>chemin</strong>. Le lot D ne doit pas être ouvert comme une conversion de
+2 065 lignes vers Python avant que la convergence soit décidée : ce serait investir dans un corpus
+dont on ignore s'il est condamné, ce que le chantier #5215 avait justement évité en refusant de bâtir
+un banc de mutation pour les gardes bash.</p>
+<p><strong>C'est ce qui a été fait.</strong> Le lot D est ouvert en sous-chantier (#5282), qui tranchera la question
+en portant <strong>un</strong> des huit parcours plutôt qu'en les convertissant tous. Il est le seul à pouvoir
+conclure « non ».</p>
 <h2 id="ce-quil-couterait-de-se-tromper">Ce qu'il coûterait de se tromper<a class="headerlink" href="#ce-quil-couterait-de-se-tromper" title="Permanent link">&para;</a></h2>
 <p><strong>Convertir puis converger</strong> : 2 065 lignes portées en Python, confrontées mode par mode, puis
 jetées. Le coût de la confrontation est le plus élevé du chantier, et il serait entièrement perdu.</p>
