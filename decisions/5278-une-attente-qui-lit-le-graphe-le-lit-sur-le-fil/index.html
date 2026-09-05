@@ -12129,8 +12129,10 @@ comme victime. Il n'est pas seul, et c'est ce que le cliquet compte.</p>
 <p><strong>Un prédicat d'attente qui lit le graphe de scène se lit sur le fil JavaFX</strong>, ou son site est compté
 par un cliquet qui descend.</p>
 <p>Le cliquet plutôt que l'invariant, parce que la population est de 63 dans 31 classes et que la
-convertir d'un coup ferait une demande qu'aucune relecture ne tiendrait. Il s'est ouvert à 63. Le lot #5269 l'a descendu à <strong>31</strong> en convertissant les
-trente-deux sites des bancs que le relevé accuse ; #5279 traitera les trente et un restants.</p>
+convertir d'un coup ferait une demande qu'aucune relecture ne tiendrait. Il s'est ouvert à 63. Le lot #5269 l'a descendu à <strong>31</strong> en convertissant les trente-deux sites
+des bancs que le relevé accuse, et #5279 à <strong>zéro</strong> en traitant les trente et un restants. Le
+cliquet à zéro n'est pas un invariant déguisé : une attente qu'on ajouterait sans pouvoir la lire
+sur le fil reste possible, en <strong>relevant le cliquet ici</strong>, c'est-à-dire en écrivant pourquoi.</p>
 <p><strong>La règle se dérive des lectures de nœuds</strong> : <code>lookup(</code>, <code>queryAs</code>, <code>getItems()</code>, <code>getScene()</code>,
 <code>getChildren()</code>, <code>getText()</code>. Énumérer les classes fautives donnerait une liste à tenir à la main, qui
 dérive de ce qu'elle décrit sans que rien ne rougisse. L'ADR 5258 vient de mesurer ce défaut sur une
