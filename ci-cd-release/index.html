@@ -13631,6 +13631,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td>à la main, à l'ouverture d'un lot de portage</td>
 </tr>
 <tr>
+<td><code>.github/scripts/temoins_de_ci_non_decoratifs.py</code></td>
+<td>qu'aucun <code>--auto-test</code> de garde de <strong>CI</strong> ne reste vert quand le garde perd sa détection : le troisième banc, après celui des ADR et celui de la méthode, et il manquait. #5215 avait clos #4865 en affirmant qu'un garde converti « entre gratuitement dans un banc qui existe » ; mesuré à la clôture de #5218, il n'y entrait pas, et 43 gardes portaient 178 cas que rien ne mutait. Son verdict a <strong>trois</strong> valeurs et non deux : la neutralisation rend <code>[]</code>, ce qui fait <strong>planter</strong> l'auto-test des gardes dont les fonctions rendent des tuples ou des chemins, et un rouge par plantage ne prouve rien (<a href="../decisions/4918-un-cas-rouge-pour-la-mauvaise-raison-ne-prouve-rien/">ADR 4918</a>). Les non concluants se comptent donc à part, et il ne <strong>refuse</strong> que sur un décoratif. Sur les 43 : 34 tiennent, 9 ne concluent pas, 0 sont décoratifs. Sa population se dérive de <strong>tous</strong> les ateliers et non du seul <code>lint.yml</code>, qui n'en nomme que 40</td>
+<td><code>lint.yml</code> (autotest dédié)</td>
+</tr>
+<tr>
 <td><code>scripts/methode/temoins-de-methode-non-decoratifs.py</code></td>
 <td>qu'aucun <code>--auto-test</code> de garde de méthode ne reste vert quand le garde perd sa détection - l'article A2 rendu mécanique pour <code>scripts/methode/</code>, comme <code>verifie_temoins_non_decoratifs.py</code> le fait pour <code>scripts/adr/</code>. La neutralisation s'<strong>insère</strong> avant le point d'entrée et non en fin de fichier, et la fonction d'auto-test en est épargnée. <strong>Refuse</strong>, en sortant 1, quand un garde n'a pas de point d'entrée où insérer la neutralisation : il le nommait en sortant 0, et six gardes sur quinze sont restés sans preuve sous une CI verte jusqu'à #4788</td>
 <td><code>lint.yml</code> (autotest dédié)</td>
