@@ -10457,6 +10457,76 @@
   
   
     <li class="md-nav__item">
+      <a href="5218-un-portage-se-prouve-par-confrontation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5218 · Un portage se prouve par confrontation
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5219-un-renommage-de-conversion-emporte-les-pointeurs-pas-la-prose/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5219 · Un renommage de conversion emporte les pointeurs, pas la prose
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5239-la-mesure-de-pixels-reste-un-sous-processus/" class="md-nav__link">
         
   
@@ -13294,6 +13364,16 @@
 <td><a href="5157-le-dispositif-se-lit-sans-mode/">5157</a></td>
 <td>L'ADR 5125 a clos le vocabulaire des dispositifs sans dire lequel choisir quand un outil en fait plusieurs. Le sous-chantier C a d'abord écrit « ce que la CI appelle », règle muette pour trois outils sur vingt-quatre : l'un refuse mais n'est lancé qu'en auto-test, deux ne figurent dans aucun atelier. La règle retenue est <strong>ce que l'outil fait quand on l'appelle sans mode</strong>, parce qu'un contrat déclare ce qu'un point d'entrée EST et non ce qu'un atelier en fait. Un mot dont la raison ne se lit pas dans une aide s'écrit à côté du contrat</td>
 <td>#5157, sous-chantier #5154</td>
+</tr>
+<tr>
+<td><a href="5218-un-portage-se-prouve-par-confrontation/">5218</a></td>
+<td>Cinquante scripts sont passes en Python, et l ADR 5188 disait que « c est une relecture qui trie ». La mesure dit le contraire : <strong>quatre fois un auto-test etait vert pendant que la sortie differait</strong>, et aucun des quatre n a ete trouve par un cas ni par la relecture du diff. Un portage se prouve en lancant les deux versions mode par mode, avec un leurre par outil absent, et le seul ecart tolere - l alignement en octets contre caracteres - se declare une fois</td>
+<td>#5218, sous-chantier #5215</td>
+</tr>
+<tr>
+<td><a href="5219-un-renommage-de-conversion-emporte-les-pointeurs-pas-la-prose/">5219</a></td>
+<td>Cinquante fichiers ont change de nom, et le depot les nomme a des centaines d endroits. Ce qui DESIGNE suit le renommage, <code>enforced_by</code>, javadoc, appel de workflow, parce qu un pointeur faux ne date rien : il casse. Ce qui RACONTE garde le nom d epoque, parce qu une ADR est immuable et qu un fait date reste vrai. Mesure a la cloture : sur 65 renvois en prose a des scripts disparus, <strong>un seul</strong> etait devenu faux pour un lecteur qui agirait</td>
+<td>#5219, sous-chantier #5218</td>
 </tr>
 <tr>
 <td><a href="5239-la-mesure-de-pixels-reste-un-sous-processus/">5239</a></td>

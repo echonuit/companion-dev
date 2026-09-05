@@ -1209,6 +1209,14 @@
          <lastmod>2026-09-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5218-un-portage-se-prouve-par-confrontation/</loc>
+         <lastmod>2026-09-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5219-un-renommage-de-conversion-emporte-les-pointeurs-pas-la-prose/</loc>
+         <lastmod>2026-09-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5239-la-mesure-de-pixels-reste-un-sous-processus/</loc>
          <lastmod>2026-09-05</lastmod>
     </url>
