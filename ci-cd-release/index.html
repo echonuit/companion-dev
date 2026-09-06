@@ -11901,10 +11901,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pourquoi-build-et-paquet-sont-deux-jobs" class="md-nav__link">
+  <a href="#pourquoi-build-emballage-et-bats-sont-trois-jobs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pourquoi build et paquet sont deux jobs
+        Pourquoi build, emballage et bats sont trois jobs
       
     </span>
   </a>
@@ -12511,10 +12511,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pourquoi-build-et-paquet-sont-deux-jobs" class="md-nav__link">
+  <a href="#pourquoi-build-emballage-et-bats-sont-trois-jobs" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pourquoi build et paquet sont deux jobs
+        Pourquoi build, emballage et bats sont trois jobs
       
     </span>
   </a>
@@ -13064,9 +13064,15 @@ publication.</p>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
-<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>paquet</code></td>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>emballage</code></td>
 <td>push <code>main</code> + PR</td>
-<td>Assemblage du fat-jar (<code>package -DskipTests</code>), smoke-test, idempotence, app-image, puis <strong>E2E CLI bats sur le lanceur empaqueté</strong>. <strong>En parallèle</strong> de <code>build</code></td>
+<td>Assemblage du fat-jar (<code>package -DskipTests</code>), smoke-test, idempotence, app-image, démarrage réel, archive portable. Verse l'app-image au job <code>bats</code>. <strong>En parallèle</strong> de <code>build</code></td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>bats</code></td>
+<td>push <code>main</code> + PR</td>
+<td><strong>E2E CLI bats sur le lanceur empaqueté</strong>, 129 cas. Sorti d'<code>emballage</code> en #5301 : il en faisait 80 % du temps, et un cas rouge cachait l'état de l'emballage</td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
@@ -13258,7 +13264,7 @@ captures + PMD), <code>maven.yml</code> porte les <strong>tests + couverture</st
   profil : la couverture y est bloquante, PMD non.</li>
 </ul>
 <p><strong>Spotless</strong> (Palantir Java Format) formate via un <em>hook</em> pre-commit et est vérifié par <code>lint.yml</code> (<code>spotless:check</code>).</p>
-<h2 id="pourquoi-build-et-paquet-sont-deux-jobs">Pourquoi <code>build</code> et <code>paquet</code> sont deux jobs<a class="headerlink" href="#pourquoi-build-et-paquet-sont-deux-jobs" title="Permanent link">&para;</a></h2>
+<h2 id="pourquoi-build-emballage-et-bats-sont-trois-jobs">Pourquoi <code>build</code>, <code>emballage</code> et <code>bats</code> sont trois jobs<a class="headerlink" href="#pourquoi-build-emballage-et-bats-sont-trois-jobs" title="Permanent link">&para;</a></h2>
 <p><code>maven.yml</code> portait auparavant quatre préoccupations à la file dans un seul job. Deux coûts en
 découlaient. Le premier, mesuré : 449 s de tests, puis 148 s d'E2E bats, puis 9 s d'idempotence <strong>en
 série</strong>, soit ~10 min avant le moindre verdict. Le second, plus gênant, était une <strong>dépendance
@@ -13281,9 +13287,14 @@ fausse</strong> : les étapes de packaging ne s'exécutaient qu'après le succè
 <td>le comportement, et la couverture au seuil</td>
 </tr>
 <tr>
-<td><code>paquet</code></td>
+<td><code>emballage</code></td>
 <td>l'assemblage, puis l'app-image</td>
-<td>que le jar <strong>démarre</strong>, que la CLI répond <strong>depuis le lanceur livré</strong>, que le shade est idempotent</td>
+<td>que le jar <strong>démarre</strong>, que le shade est idempotent, que l'archive portable survit à son emballage</td>
+</tr>
+<tr>
+<td><code>bats</code></td>
+<td>l'app-image que <code>emballage</code> verse</td>
+<td>que la CLI répond <strong>depuis le lanceur livré</strong>, sur 129 cas de shell</td>
 </tr>
 </tbody>
 </table>
