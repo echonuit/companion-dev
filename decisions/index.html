@@ -10352,6 +10352,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5310-la-fabrique-est-injectable-la-fenetre-reste-un-argument/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5310 · La fabrique est injectable, la fenêtre reste un argument
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13284,7 +13319,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->741<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 297<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->741<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 300<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -13671,6 +13706,11 @@
 <td><a href="5329-une-suite-repartie-eprouve-l-ordre-par-quarts/">5329</a></td>
 <td><code>ordre-alternatif</code> rejouait la suite entière en fork unique et ordre inverse, tenant le chemin critique à <strong>20,4 min</strong> et n'aboutissant pas quatre fois sur dix. Il est réparti en <strong>quatre lots dérivés de l'arbre</strong>, la graine tournant d'un passage à l'autre. Ce que la répartition coûte est nommé : une pollution entre deux classes de deux lots devient invisible sur un passage donné, et c'est la graine qui reconstitue la couverture au fil des passages. L'union des lots est confrontée au corpus <strong>classe par classe</strong>, un compte égal ne prouvant pas une couverture égale.</td>
 <td>#5329, chantier #5294</td>
+</tr>
+<tr>
+<td><a href="5310-la-fabrique-est-injectable-la-fenetre-reste-un-argument/">5310</a></td>
+<td>Le réglage qui tranche entre les deux dispositifs de désignation vit dans <code>Reglages</code>, et <strong>aucun</strong> des douze écrans appelants ne l'a injecté. La fabrique devient donc un objet injecté, sa fenêtre restant un argument de méthode : ce que l'ADR 5307 refuse de lier dans l'injecteur est <code>SelecteurFichier</code>, dont le choix dépend d'une fenêtre inconnue de lui, et non la fabrique. Cette ADR <strong>précise</strong> la 5307 plutôt que de la contredire, une ADR ne se réécrivant pas.</td>
+<td>#5310, chantier #5282</td>
 </tr>
 </tbody>
 </table>
