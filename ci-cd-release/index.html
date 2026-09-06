@@ -10202,6 +10202,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5329-une-suite-repartie-eprouve-l-ordre-par-quarts/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5329 · Une suite répartie éprouve l'ordre par quarts
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13070,6 +13105,12 @@ publication.</p>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>ordre-alternatif</code></td>
+<td>push <code>main</code> + PR</td>
+<td>Rejoue la suite en <strong>fork unique et ordre inverse</strong>, réparti en <strong>quatre lots</strong> depuis #5329, la graine tournant d'un passage à l'autre</td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>bats</code></td>
 <td>push <code>main</code> + PR</td>
 <td><strong>E2E CLI bats sur le lanceur empaqueté</strong>, 129 cas. Sorti d'<code>emballage</code> en #5301 : il en faisait 80 % du temps, et un cas rouge cachait l'état de l'emballage</td>
@@ -14080,6 +14121,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>verifie_portees_de_ci.py</code></td>
 <td>une <strong>portée de job</strong> tient ce qu'elle promet : bijection job / portée, aucune porte décorative, aucun chemin mort, chaque portée nomme son propre atelier et le mécanisme, et aucun chemin écrit dans un <code>run:</code> n'échappe à la portée de son job. Le mode de panne qu'elle ferme est le <strong>faux vert</strong> : une portée qui ne correspond à rien fait écrire « sans objet » à un job qui aurait dû juger (chantier #5294)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>partition_de_la_suite.py</code></td>
+<td>l'<strong>union des quatre lots</strong> d'<code>ordre-alternatif</code> est le corpus de test, confrontée classe par classe et pour toutes les graines. Un compte égal ne prouve pas une couverture égale : c'est le défaut de #4544 monté d'un cran, où un passage tronqué annonçait 758 classes en en jouant 618. Refuse aussi un lot vide, un recouvrement et un déséquilibre (#5329)</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
