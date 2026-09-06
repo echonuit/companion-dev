@@ -14281,6 +14281,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (autotest dédié)</td>
 </tr>
 <tr>
+<td><code>scripts/methode/prepare-l-environnement.py</code></td>
+<td><strong>pose</strong> ce qu'un worktree neuf n'a pas - l'outil OpenSpec et <code>ruff</code> - au lieu de laisser leurs gardes refuser. Appelé par <code>.githooks/post-checkout</code> sur le SHA nul, qui dit un <code>worktree add</code> ou un clone. Mesuré : le garde des specs passe de <strong>refus</strong> à <strong>verdict</strong>, et <code>worktree add</code> reste à 1 s. Il ne bloque jamais et ne se tait jamais - un outil introuvable est dit en une ligne, pas en trace. <strong>Aucun gardien en CI</strong> : le runner installe tout lui-même et ne joue pas ce chemin, donc son auto-test porte seul (#5406)</td>
+<td><code>lint.yml</code> (autotest seul)</td>
+</tr>
+<tr>
 <td><code>scripts/methode/passes-citees-existent.py</code></td>
 <td>qu'une citation de passe de clôture désigne une passe qui <strong>existe</strong> : les bornes sont dérivées des titres <code>### N.</code> du cycle, jamais écrites en dur. Mesuré en #4518 : une citation remise à l'ancienne numérotation laissait verts trente tests et les deux gardes de méthode. <strong>Ne voit pas</strong> une citation valide mais fausse, dont le numéro existe et dont le sens a glissé : son en-tête le dit et un cas d'auto-test l'éprouve (#4844)</td>
 <td></td>
