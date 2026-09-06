@@ -10447,6 +10447,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5373-une-liste-qu-un-garde-confronte-est-un-inventaire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5373 · Une liste qu'un garde confronte est un inventaire
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -14388,6 +14423,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>scripts/batterie.py</code></td>
 <td>la <strong>porte d'entrée unique</strong> : ce qu'un diff engage, et ce qu'il n'engage pas. Un garde qui ne déclare pas ses <code>chemins</code> est <strong>lancé</strong>, et un garde illisible est signalé puis lancé : le défaut penche du côté coûteux, jamais du côté muet. Elle refuse d'engager zéro garde sur un diff non vide (<a href="../decisions/5340-un-garde-qui-ne-declare-pas-ses-chemins-est-lance/">ADR 5340</a>)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
+<td><code>gardes-java-declares.py</code></td>
+<td>une classe <code>*Test.java</code> qui <strong>construit</strong> un chemin vers de la prose est déclarée dans <code>batterie.GARDES_JAVA</code>, ou elle fait rougir. La population se <strong>dérive</strong> de l'arbre et la déclaration lui est confrontée : une liste qu'un garde confronte n'est plus une liste (<a href="../decisions/5373-une-liste-qu-un-garde-confronte-est-un-inventaire/">ADR 5373</a>)</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
