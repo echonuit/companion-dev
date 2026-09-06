@@ -13252,6 +13252,11 @@ qu'elle attendait</strong> en expirant, sans quoi l'échec arrive plus tard sur 
 code là où c'est la mise en place qui n'a pas eu lieu.</p>
 <p><strong><code>Attente.queSurLeFil</code> quand le prédicat touche la scène</strong> : <code>waitFor</code> rappelle le prédicat depuis
 le fil du <strong>test</strong>, et le graphe de scène n'est pas partageable.</p>
+<p>Ce n'est plus une recommandation : <code>scripts/adr/5278-attente-hors-du-fil.py</code> la tient par un
+<strong>cliquet à zéro</strong>, et l'ADR 5278 en porte la décision. Toucher la scène s'entend au sens large,
+et les deux familles se valent : chercher un nœud (<code>lookup(</code>, <code>queryAs</code>) et lire une propriété
+sur un nœud qu'on tient déjà (<code>isVisible</code>, <code>isDisabled</code>). La seconde s'oubliait, et elle a coûté
+quatre chutes à <code>MainViewTest</code> <strong>après</strong> que #4694 l'eut réparé avec la mauvaise forme.</p>
 <p>Quatre bancs de #4804 sont tombés faute de cette attente, entre 3 et 4 fois sur 1 150 passages,
 chacun sous une forme différente : une respiration de tournage qui ne s'arrête que si l'on filme
 (#4694), un commentaire qui <strong>conclut</strong> qu'il n'y a rien à attendre (#4813), rien du tout entre le
