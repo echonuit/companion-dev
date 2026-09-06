@@ -10307,6 +10307,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../../decisions/5282-les-huit-parcours-filmes-passent-au-banc-java/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5282 · Les huit parcours filmés passent au banc Java
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -11868,6 +11903,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-parcours-reel-ce-que-le-montage-promettait-livre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le parcours RÉEL : ce que le montage promettait, livré
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-ce-spike-na-pas-mesure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12305,6 +12351,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#le-parcours-reel-ce-que-le-montage-promettait-livre" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le parcours RÉEL : ce que le montage promettait, livré
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-ce-spike-na-pas-mesure" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12526,6 +12583,54 @@ temporaire où le test a matérialisé sa carte. Un double visible devra donc re
 <p><strong>Ce que le montage a mesuré au-delà de la faisabilité</strong> : décoré et muni d'un sélecteur visible, le
 clip <strong>cesse de ressembler à un clip de recette</strong>. C'était la question que les dessins ne pouvaient
 pas trancher, puisqu'ils ne montraient pas l'application en train de fonctionner.</p>
+<h2 id="le-parcours-reel-ce-que-le-montage-promettait-livre">Le parcours RÉEL : ce que le montage promettait, livré<a class="headerlink" href="#le-parcours-reel-ce-que-le-montage-promettait-livre" title="Permanent link">&para;</a></h2>
+<p>Le montage ci-dessus était un montage, et il l'écrivait. Le sous-chantier #5282 a livré ce qu'il
+simulait : la décoration est dessinée par le banc (#5285), le dialogue est une vraie fenêtre de
+l'application (#5308, #5309), un réglage le choisit (#5310), et un parcours de documentation le joue
+<strong>sans substituer son sélecteur</strong> (#5311).</p>
+<video controls muted playsinline preload="none" width="100%"
+  src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-spike-convergence/parcours-importer-une-nuit-banc-java.mp4"></video>
+
+<p><strong>Les trois choses fausses du montage sont levées, une par une.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Ce que le montage avouait</th>
+<th>Ce que ce clip rend</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>« le cadre et le dialogue n'existent pas »</td>
+<td>ils sortent du code livré, et aucun script de composition n'intervient</td>
+</tr>
+<tr>
+<td>« le film ne montre qu'un temps du parcours »</td>
+<td><strong>une seule prise de 30 s</strong>, un seul test, aucune concaténation</td>
+</tr>
+<tr>
+<td>« une contradiction est visible » : chemin annoncé ≠ chemin réel</td>
+<td>le champ « Dossier source » porte <strong>exactement</strong> ce que le dialogue a désigné</td>
+</tr>
+</tbody>
+</table>
+<p><strong>La contrainte que le montage avait fait apparaître a été traitée, et pas contournée.</strong> Il concluait
+qu'« un double visible devra rendre un chemin <strong>montrable</strong> ». Le dialogue étant réel, il montre le
+vrai chemin - or <code>CarteDeRecette.materialiser</code> rend <code>/tmp/vc-carte-sd-nominale857838373229970727</code>, qui
+se tape à l'écran pendant six secondes. Le premier tournage l'a montré, et le clip était vert.</p>
+<p>Le parcours recopie donc la carte sous <code>/tmp/vigiechiro-parcours/VIGIECHIRO</code> : le geste filmé devient
+« aller au dossier des cartes, <strong>cliquer</strong> sur la carte, valider », ce qu'un observateur ferait. C'est
+la seule chose que le clip arrange, et elle est de l'ordre du décor, pas du comportement.</p>
+<div class="admonition note">
+<p class="admonition-title">Ce clip montre une configuration qui n'est pas le défaut</p>
+<p>Le dialogue de l'application se <strong>choisit</strong> : le défaut du produit reste le dialogue du système,
+et une installation neuve se comporte comme avant. Le parcours arme le réglage comme un
+utilisateur le poserait, en écrivant la préférence que l'écran des réglages écrit.</p>
+<p>Cela ne tombe pas sous l'<a href="../../decisions/3788-un-banc-qui-maximise-tout-ne-montre-pas-ce-qu-on-livre/">ADR 3788</a>,
+qui vise une mise en page qu'on ne livre pas. Ici la configuration est livrée et choisissable ; ce
+que le film montre, un utilisateur peut l'obtenir. La distinction se lit mal si personne ne
+l'écrit, d'où cet encadré.</p>
+</div>
 <h2 id="ce-que-ce-spike-na-pas-mesure">Ce que ce spike n'a PAS mesuré<a class="headerlink" href="#ce-que-ce-spike-na-pas-mesure" title="Permanent link">&para;</a></h2>
 <p>Trois choses, et elles décident du coût plutôt que de la faisabilité.</p>
 <p><strong>Ce que les huit parcours de documentation font que le banc Java ne sait pas faire.</strong> Le banc bash
