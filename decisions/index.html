@@ -10142,6 +10142,41 @@
   
   
     <li class="md-nav__item">
+      <a href="4993-un-avant-se-fabrique-il-ne-se-gele-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4993 · Un avant se fabrique, il ne se gele pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4984-le-protocole-est-un-plancher-et-ce-qu-on-ignore-ne-se-decide-pas/" class="md-nav__link">
         
   
@@ -13716,6 +13751,11 @@
 <td><a href="5053-le-compte-lu-vient-de-l-arbre-vise-pas-de-la-source/">5053</a></td>
 <td>Un garde qui lit une source DÉRIVÉE n'a pas la population de sa source. Mesuré sur le rapport PMD : 425 fichiers et 1 493 violations, toutes en zone de test, la production n'y ayant aucune entrée parce qu'elle est PROPRE et non parce qu'elle n'a pas été lue. Compter les entrées aurait donné <code>lus=0</code> en production et fait refuser une zone irréprochable. <code>lus</code> compte donc les unités vers lesquelles le garde a été POINTÉ : 1 226 fichiers de production, 854 de test. Le verdict distingue enfin « zéro violation » de « PMD n'a pas tourné sur cette zone »</td>
 <td>#5053, sous-chantier du compte lu (#5015)</td>
+</tr>
+<tr>
+<td><a href="4993-un-avant-se-fabrique-il-ne-se-gele-pas/">4993</a></td>
+<td>Montrer a l observateur ce que huit correctifs changent A L ECRAN supposait un avant/apres, donc le meme cas joue sur deux versions. Or le cas qui demontre un correctif est ecrit AVEC lui : il n existe pas dans la version d avant. Le raisonnement d ouverture en tirait un GEL DES FUSIONS, et il se mordait la queue - ecrire les cas etait l un des lots, donc le gel aurait bloque huit correctifs pendant tout le sous-chantier. Il reposait sur une premisse fausse : git garde le code fautif indefiniment, et un avant se reconstitue a tout moment, soit en appliquant l inverse de la production sur <code>main</code>, soit en partant de son parent pour y greffer le scenario. On ne defait que la PRODUCTION : le scenario reste celui d aujourd hui, sans quoi la paire montrerait deux gestes differents. Le test echoue alors, et c est voulu</td>
+<td>#4980, sous-chantier #4993</td>
 </tr>
 <tr>
 <td><a href="5015-un-garde-sans-unite-a-compter-le-declare-chez-lui/">5015</a></td>
