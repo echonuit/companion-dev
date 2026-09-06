@@ -1245,6 +1245,10 @@
          <lastmod>2026-09-06</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5281-une-fixture-porte-la-disposition-du-parc-pas-la-plus-commode/</loc>
+         <lastmod>2026-09-06</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5282-les-huit-parcours-filmes-passent-au-banc-java/</loc>
          <lastmod>2026-09-06</lastmod>
     </url>
@@ -1262,6 +1266,10 @@
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5329-une-suite-repartie-eprouve-l-ordre-par-quarts/</loc>
+         <lastmod>2026-09-06</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5334-un-motif-statique-ne-distingue-pas-une-assertion-pressee/</loc>
          <lastmod>2026-09-06</lastmod>
     </url>
     <url>

@@ -10492,6 +10492,76 @@
   
   
     <li class="md-nav__item">
+      <a href="5334-un-motif-statique-ne-distingue-pas-une-assertion-pressee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5334 · Un motif statique ne distingue pas une assertion pressée
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5281-une-fixture-porte-la-disposition-du-parc-pas-la-plus-commode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5281 · Une fixture porte la disposition du parc
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/" class="md-nav__link">
         
   
@@ -13976,6 +14046,16 @@
 <td><a href="5282-les-huit-parcours-filmes-passent-au-banc-java/">5282</a></td>
 <td>Le spike de convergence avait etabli que les deux raisons d'etre du banc bash etaient techniquement solubles cote Java, sans mesurer ni le cout d'un parcours porte, ni ce qu'un clip reel donnerait. Les deux manquants sont livres : une prise de 30 s ou le dialogue s'ouvre, le dossier se designe et le chemin arrive dans l'ecran, sans composition. Le cout va d'abord dans le mauvais sens - un parcours Java fait <strong>158</strong> lignes utiles contre <strong>37</strong> en bash - mais le total decide : 8 x 158 = 1 264 contre 8 x 37 + 3 360 = 3 656, l'orchestration bash disparaissant au lieu d'etre portee.</td>
 <td>#5311, chantier #5282</td>
+</tr>
+<tr>
+<td><a href="5334-un-motif-statique-ne-distingue-pas-une-assertion-pressee/">5334</a></td>
+<td>Une assertion posee juste apres un geste asynchrone lit un port que le travail n a pas ecrit ; elle passe presque toujours, et son echec se classe « flake ». Trois criteres STATIQUES ont ete essayes sur les 64 sites d une forme de surface : l executeur declare en designe 48, « aucune attente devant » en designe 0 une fois les aides partagees suivies. Le defaut se cherche donc par MUTATION : <code>ExecuteurTacheDiffere</code> retarde le travail, et une assertion pressee tombe dans le trou a tous les coups. Neuf sites designes, <strong>zero defaut</strong> - le dispositif a etabli qu ils tiennent en NE rougissant PAS.</td>
+<td>#5334, chantier #5357</td>
+</tr>
+<tr>
+<td><a href="5281-une-fixture-porte-la-disposition-du-parc-pas-la-plus-commode/">5281</a></td>
+<td>Les enregistreurs deposent leurs WAV <strong>a la racine</strong> ; les seize specs de recette produisaient un <code>bruts/</code> sans qu aucune ne puisse en decider. La branche du parc n etait donc jouee par aucune recette, alors que <code>InspecteurDossier</code> la gere expres. Le defaut de la spec devient la disposition du PARC, une seule carte gardant <code>bruts/</code> pour que l autre branche garde sa recette. Un controle qui sert le produit ne peut pas etre plus strict que lui : <code>carte_utilisable</code> exigeait le sous-dossier et rejetait une carte reelle.</td>
+<td>#5281, chantier #5357</td>
 </tr>
 <tr>
 <td><a href="5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/">5285</a></td>
