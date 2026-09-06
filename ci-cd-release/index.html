@@ -13386,9 +13386,21 @@ publication.</p>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
-<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a></td>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a> · job <code>lint</code></td>
 <td>push <code>main</code> + PR</td>
-<td>« Quality gate » (statique) : <code>spotless:check</code> + complétude des captures + <code>test-compile pmd:pmd</code> qui <strong>produit</strong> le rapport, puis les <strong>cliquets ADR</strong> qui le jugent</td>
+<td>Le <strong>lint au sens propre</strong> : Spotless, ruff, shellcheck</td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a> · job <code>methode</code></td>
+<td>push <code>main</code> + PR</td>
+<td>Les <strong>gardes de méthode</strong> : la prose, les inventaires, les concordances, et <code>test-compile pmd:pmd</code> qui <strong>produit</strong> le rapport que le cliquet 4617 juge juste après - le producteur vit avec son consommateur</td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a> · job <code>temoins</code></td>
+<td>push <code>main</code> + PR</td>
+<td>Les <strong>bancs de mutation</strong> : chaque garde perd sa détection, sa suite doit rougir. Porté depuis #5365, il ne s'exerce que si le diff touche un garde</td>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
