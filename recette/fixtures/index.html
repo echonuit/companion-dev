@@ -11249,6 +11249,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ou-vivent-les-wav-et-pourquoi-cest-a-la-racine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Où vivent les WAV, et pourquoi c'est à la racine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-format-de-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12350,6 +12361,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ou-vivent-les-wav-et-pourquoi-cest-a-la-racine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Où vivent les WAV, et pourquoi c'est à la racine
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-format-de-spec" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12449,10 +12471,20 @@
 
 
 <h1 id="fixtures-le-generateur-de-cartes-sd">Fixtures : le générateur de cartes SD<a class="headerlink" href="#fixtures-le-generateur-de-cartes-sd" title="Permanent link">&para;</a></h1>
-<p>Les cartes SD de recette (arbres <code>LogPR&lt;serie&gt;.txt</code> + <code>PaRecPR&lt;serie&gt;_THLog.csv</code> + <code>bruts/*.wav</code>)
+<p>Les cartes SD de recette (arbres <code>LogPR&lt;serie&gt;.txt</code> + <code>PaRecPR&lt;serie&gt;_THLog.csv</code> + les <code>*.wav</code>)
 pesaient autrefois plusieurs centaines de méga-octets et étaient <strong>faites à la main</strong> : impossibles à
 committer (binaire lourd, dépôt public et forké) et <strong>non rejouables</strong> (rien ne garantissait de les
 reconstruire à l'identique).</p>
+<h2 id="ou-vivent-les-wav-et-pourquoi-cest-a-la-racine">Où vivent les WAV, et pourquoi c'est à la racine<a class="headerlink" href="#ou-vivent-les-wav-et-pourquoi-cest-a-la-racine" title="Permanent link">&para;</a></h2>
+<p>Les enregistreurs déposent leurs fichiers <strong>à la racine</strong> de la carte. Le produit accepte aussi un
+sous-dossier <code>bruts/</code> - <code>InspecteurDossier</code> regarde les deux - mais c'est la racine que le parc porte.</p>
+<p>Les seize specs produisaient pourtant un <code>bruts/</code>, <strong>sans qu'aucune ne puisse en décider</strong> : le champ
+n'existait pas. La disposition réelle n'était donc jouée par aucun cas de recette, et les parcours
+filmés montraient une carte que le lecteur n'a pas sous les yeux (#5281).</p>
+<p>Depuis, <code>brutsDansUnSousDossier</code> tranche, et son défaut est <strong>faux</strong> : une spec qui ne dit rien décrit
+ce qu'un enregistreur produit. <strong><code>sd-prefixee</code> est la seule à le poser à vrai</strong>, pour que la branche du
+sous-dossier garde sa recette - c'est la carte de quelqu'un qui a organisé ses fichiers, et le choix
+lui revenait naturellement.</p>
 <p>On les décrit désormais par des <strong>specs déclaratives</strong> de quelques kilo-octets, sous
 <code>recette/fixtures/spec/</code>, qu'un <strong>générateur déterministe</strong> matérialise sur disque. La spec est la
 source de vérité ; l'arbre SD n'en est qu'un artefact reconstructible <strong>octet pour octet</strong> : le
@@ -12487,23 +12519,26 @@ reste concise. Exemple commenté (le cas propre) :</p>
 <a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
 <a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="nt">zip</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">                       </span><span class="c1"># produit aussi sd-nominale.zip (chemin de décompression)</span>
 <a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>
-<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="nt">enregistreurs</span><span class="p">:</span><span class="w">                  </span><span class="c1"># un ou plusieurs enregistreurs présents dans bruts/</span>
-<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serie</span><span class="p">:</span><span class="w"> </span><span class="s">"1925492"</span>
-<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="w">    </span><span class="nt">horodatages</span><span class="p">:</span><span class="w">                </span><span class="c1"># PaRecPR&lt;serie&gt;_&lt;yyyyMMdd&gt;_&lt;HHmmss&gt;.wav</span>
-<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_203922"</span>
-<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_210515"</span>
-<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="c1"># fauxWav: ["20260422_211500"]   # octets non-WAV : rejetés à l'import</span>
-<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>
-<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="nt">attendu</span><span class="p">:</span><span class="w">                        </span><span class="c1"># contrat de recette (voir « Le garde-fou »)</span>
-<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">  </span><span class="nt">aJournal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="w">  </span><span class="nt">aReleve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="w">  </span><span class="nt">journalLisible</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">          </span><span class="c1"># false -&gt; l'inspection doit échouer</span>
-<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">plusieursEnregistreurs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># bandeau « mélange »</span>
-<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="nt">incoherent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">             </span><span class="c1"># bandeau « incohérence »</span>
-<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="nt">nuits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                      </span><span class="c1"># nombre de nuits détectées</span>
-<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">  </span><span class="nt">etatNommage</span><span class="p">:</span><span class="w"> </span><span class="s">"BRUT"</span><span class="w">           </span><span class="c1"># BRUT, PREFIXE ou VIDE</span>
-<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">  </span><span class="nt">rejets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">                     </span><span class="c1"># &gt; 0 déclenche la vérification d'import réel</span>
-<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">  </span><span class="nt">completudes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">               </span><span class="c1"># une par nuit, dans l'ordre : COMPLETE, TRONQUEE ou INCONNUE</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="c1"># brutsDansUnSousDossier: true  # range les WAV dans bruts/ ; ABSENT = à la racine, ce que les</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="w">                                </span><span class="c1"># enregistreurs déposent réellement (#5281)</span>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="nt">enregistreurs</span><span class="p">:</span><span class="w">                  </span><span class="c1"># un ou plusieurs enregistreurs de la carte</span>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">serie</span><span class="p">:</span><span class="w"> </span><span class="s">"1925492"</span>
+<a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="w">    </span><span class="nt">horodatages</span><span class="p">:</span><span class="w">                </span><span class="c1"># PaRecPR&lt;serie&gt;_&lt;yyyyMMdd&gt;_&lt;HHmmss&gt;.wav</span>
+<a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_203922"</span>
+<a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">"20260422_210515"</span>
+<a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="w">    </span><span class="c1"># fauxWav: ["20260422_211500"]   # octets non-WAV : rejetés à l'import</span>
+<a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a>
+<a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="nt">attendu</span><span class="p">:</span><span class="w">                        </span><span class="c1"># contrat de recette (voir « Le garde-fou »)</span>
+<a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="w">  </span><span class="nt">aJournal</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="w">  </span><span class="nt">aReleve</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="w">  </span><span class="nt">journalLisible</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w">          </span><span class="c1"># false -&gt; l'inspection doit échouer</span>
+<a id="__codelineno-0-40" name="__codelineno-0-40" href="#__codelineno-0-40"></a><span class="w">  </span><span class="nt">plusieursEnregistreurs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># bandeau « mélange »</span>
+<a id="__codelineno-0-41" name="__codelineno-0-41" href="#__codelineno-0-41"></a><span class="w">  </span><span class="nt">incoherent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w">             </span><span class="c1"># bandeau « incohérence »</span>
+<a id="__codelineno-0-42" name="__codelineno-0-42" href="#__codelineno-0-42"></a><span class="w">  </span><span class="nt">nuits</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                      </span><span class="c1"># nombre de nuits détectées</span>
+<a id="__codelineno-0-43" name="__codelineno-0-43" href="#__codelineno-0-43"></a><span class="w">  </span><span class="nt">etatNommage</span><span class="p">:</span><span class="w"> </span><span class="s">"BRUT"</span><span class="w">           </span><span class="c1"># BRUT, PREFIXE ou VIDE</span>
+<a id="__codelineno-0-44" name="__codelineno-0-44" href="#__codelineno-0-44"></a><span class="w">  </span><span class="nt">rejets</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0</span><span class="w">                     </span><span class="c1"># &gt; 0 déclenche la vérification d'import réel</span>
+<a id="__codelineno-0-45" name="__codelineno-0-45" href="#__codelineno-0-45"></a><span class="w">  </span><span class="nt">completudes</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[]</span><span class="w">               </span><span class="c1"># une par nuit, dans l'ordre : COMPLETE, TRONQUEE ou INCONNUE</span>
 </code></pre></div>
 <p>Deux variantes utiles :</p>
 <ul>
@@ -12578,7 +12613,7 @@ reste concise. Exemple commenté (le cas propre) :</p>
 </tr>
 <tr>
 <td><code>sd-prefixee</code></td>
-<td>bruts déjà préfixés <code>Car...</code> -&gt; état de nommage <code>PREFIXE</code></td>
+<td>bruts déjà préfixés <code>Car...</code> -&gt; état de nommage <code>PREFIXE</code>. <strong>La seule carte rangée dans <code>bruts/</code></strong></td>
 <td>3</td>
 </tr>
 <tr>
