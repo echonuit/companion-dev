@@ -12212,6 +12212,11 @@ autre population du même dépôt.</p>
 à chaque tour de boucle. Là où le prédicat ne touche le graphe que par un chemin sûr, la conversion
 coûterait sans rien tenir. Le garde <strong>compte</strong> ; le jugement reste au site, et un site laissé en <code>que</code>
 écrit sa raison plutôt que de sortir du compte en silence.</p>
+<p><strong>La décision est plus large que son garde, et l'écart se déclare.</strong> La règle vaut pour tout prédicat
+d'attente ; le garde ne compte que les appels à <code>Attente.que</code>. Un <code>WaitForAsyncUtils.waitFor</code> <strong>nu</strong>
+porte la même faute et lui échappe, et le dépôt en a un fautif, <code>AttenteAvantClic.attendreCliquable</code>,
+trouvé à la passe 7 de la clôture et consigné en #5330. Cette limite était <strong>tue</strong>, et c'est ce
+silence qui a laissé le site invisible : une limite qu'on ne déclare pas se lit comme une couverture.</p>
 <p><strong>Elle ne change rien au comportement de <code>Attente</code> sur une exception.</strong> <code>lireSurLeFil</code> re-lève
 délibérément un prédicat qui a levé, et sa raison est écrite dans le code : « le taire ferait expirer
 l'attente sur un délai, en accusant la lenteur là où il y a une exception ». Cette décision-ci la
