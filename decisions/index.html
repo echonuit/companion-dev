@@ -10527,6 +10527,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5345-un-banc-de-mutation-ne-mute-que-ce-que-le-diff-touche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5345 · Un banc de mutation ne mute que ce que le diff touche
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13871,6 +13906,11 @@
 <td><a href="5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/">5285</a></td>
 <td>Le banc de recette n'a pas de gestionnaire de fenetres, et ses clips montrent une scene nue ; un lecteur de la documentation doit savoir qu'il regarde une <strong>fenetre</strong>. La decoration est donc dessinee, ce que l'ADR 3788 n'interdit pas : son mensonge portait sur la MISE EN PAGE, et ce cadre-ci entoure une scene rendue a sa taille reelle. Le focus, lui, ne se lit <strong>pas</strong> avec <code>isFocused()</code>, qui rend vrai pour toutes les fenetres sous Monocle headless : il se lit a la <strong>modalite</strong>, et c'est la ligne la plus facile a « simplifier » a tort de ce chantier.</td>
 <td>#5285, chantier #5282</td>
+</tr>
+<tr>
+<td><a href="5345-un-banc-de-mutation-ne-mute-que-ce-que-le-diff-touche/">5345</a></td>
+<td>Le banc de mutation neutralise chaque garde puis le relance : son coût croît <strong>linéairement avec le corpus</strong>. Le chantier #5294 y ayant ajouté six gardes, <code>lint</code> est passé de 9,6 à 11,3 min et <strong>est devenu le chemin critique</strong> : le dépôt s'est ralenti en se gardant mieux. Le banc ne mute donc que les gardes du diff. Deux replis le tiennent : toucher le fonds partagé mute tout, et sans base on mute tout. Une portée vide <strong>conclut</strong> en le disant, là où un corpus vide refuse.</td>
+<td>#5345, chantier #5294</td>
 </tr>
 </tbody>
 </table>
