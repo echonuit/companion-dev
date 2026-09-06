@@ -14276,6 +14276,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code> (autotest dédié)</td>
 </tr>
 <tr>
+<td><code>scripts/methode/verifie-commandes-prescrites.py</code></td>
+<td>qu'une distribution déclarée dans <code>[tool.vigiechiro.commandes]</code> soit <strong>nommée</strong> dans une surface de méthode, et que ses commandes y soient prescrites. Le dépôt prescrivait <code>graphify</code> dans vingt fichiers sans nommer une seule fois <code>graphifyy</code> : or <code>pip install graphify</code> n'existe pas et <code>npm i -g graphify</code> installe un paquet tiers sans rapport - on n'obtient pas une erreur, on obtient le mauvais outil. Il cherche le <strong>mot entier</strong>, <code>graphify</code> étant une sous-chaîne de <code>graphifyy</code> (#4849)</td>
+<td><code>lint.yml</code> (autotest dédié)</td>
+</tr>
+<tr>
 <td><code>scripts/methode/passes-citees-existent.py</code></td>
 <td>qu'une citation de passe de clôture désigne une passe qui <strong>existe</strong> : les bornes sont dérivées des titres <code>### N.</code> du cycle, jamais écrites en dur. Mesuré en #4518 : une citation remise à l'ancienne numérotation laissait verts trente tests et les deux gardes de méthode. <strong>Ne voit pas</strong> une citation valide mais fausse, dont le numéro existe et dont le sens a glissé : son en-tête le dit et un cas d'auto-test l'éprouve (#4844)</td>
 <td></td>
