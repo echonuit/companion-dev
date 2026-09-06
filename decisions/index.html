@@ -10457,6 +10457,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5285 · La décoration entoure, le focus se lit à la modalité
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13389,7 +13424,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->741<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 300<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->741<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 302<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -13499,7 +13534,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 189<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 190<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -13791,6 +13826,11 @@
 <td><a href="5282-les-huit-parcours-filmes-passent-au-banc-java/">5282</a></td>
 <td>Le spike de convergence avait etabli que les deux raisons d'etre du banc bash etaient techniquement solubles cote Java, sans mesurer ni le cout d'un parcours porte, ni ce qu'un clip reel donnerait. Les deux manquants sont livres : une prise de 30 s ou le dialogue s'ouvre, le dossier se designe et le chemin arrive dans l'ecran, sans composition. Le cout va d'abord dans le mauvais sens - un parcours Java fait <strong>158</strong> lignes utiles contre <strong>37</strong> en bash - mais le total decide : 8 x 158 = 1 264 contre 8 x 37 + 3 360 = 3 656, l'orchestration bash disparaissant au lieu d'etre portee.</td>
 <td>#5311, chantier #5282</td>
+</tr>
+<tr>
+<td><a href="5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/">5285</a></td>
+<td>Le banc de recette n'a pas de gestionnaire de fenetres, et ses clips montrent une scene nue ; un lecteur de la documentation doit savoir qu'il regarde une <strong>fenetre</strong>. La decoration est donc dessinee, ce que l'ADR 3788 n'interdit pas : son mensonge portait sur la MISE EN PAGE, et ce cadre-ci entoure une scene rendue a sa taille reelle. Le focus, lui, ne se lit <strong>pas</strong> avec <code>isFocused()</code>, qui rend vrai pour toutes les fenetres sous Monocle headless : il se lit a la <strong>modalite</strong>, et c'est la ligne la plus facile a « simplifier » a tort de ce chantier.</td>
+<td>#5285, chantier #5282</td>
 </tr>
 </tbody>
 </table>

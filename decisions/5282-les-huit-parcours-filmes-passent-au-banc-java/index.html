@@ -16,7 +16,7 @@
         <link rel="prev" href="../5340-un-garde-qui-ne-declare-pas-ses-chemins-est-lance/">
       
       
-        <link rel="next" href="../4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/">
+        <link rel="next" href="../5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/">
       
       
         
@@ -10427,6 +10427,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ce-que-deviennent-les-deux-adr-dont-lance-test-filmesh-est-lapplicateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que deviennent les deux ADR dont lance-test-filme.sh est l'applicateur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10441,6 +10452,41 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5285 · La décoration entoure, le focus se lit à la modalité
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
     </li>
   
 
@@ -12215,6 +12261,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ce-que-deviennent-les-deux-adr-dont-lance-test-filmesh-est-lapplicateur" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que deviennent les deux ADR dont lance-test-filme.sh est l'applicateur
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#consequences" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12263,22 +12320,20 @@
 
 <h2 id="la-question-et-pourquoi-aucun-raisonnement-ne-pouvait-y-repondre">La question, et pourquoi aucun raisonnement ne pouvait y répondre<a class="headerlink" href="#la-question-et-pourquoi-aucun-raisonnement-ne-pouvait-y-repondre" title="Permanent link">&para;</a></h2>
 <p>Le dépôt tient <strong>deux</strong> bancs filmés : celui de recette, en Java, et celui de documentation, en bash
-(<code>filme-un-parcours.sh</code>, 2 065 lignes, plus 1 295 lignes d'orchestration). Le
+(<code>filme-un-parcours.sh</code>, 2 065 lignes, plus 1 295 d'orchestration). Le
 <a href="../../spikes/convergence-des-deux-bancs/">spike de convergence</a> a établi que les deux raisons d'être
-du second - une décoration de fenêtre, un sélecteur de fichiers visible - étaient <strong>techniquement</strong>
-solubles côté Java. Il s'est arrêté là, en écrivant qu'il ne mesurait ni le coût d'un parcours porté,
-ni ce qu'un clip réel donnerait.</p>
+du second - une décoration, un sélecteur visible - étaient <strong>techniquement</strong> solubles côté Java, sans
+mesurer ni le coût d'un parcours porté, ni ce qu'un clip réel donnerait.</p>
 <p>Ce chantier a livré les deux manquants et filmé le parcours. <strong>La réponse est oui.</strong></p>
 <h2 id="ce-que-le-clip-etablit-et-qui-ne-se-deduisait-pas">Ce que le clip établit, et qui ne se déduisait pas<a class="headerlink" href="#ce-que-le-clip-etablit-et-qui-ne-se-deduisait-pas" title="Permanent link">&para;</a></h2>
 <p><code>ParcoursImporterUneNuitTest</code> rend <strong>une prise de 30 secondes</strong> où le clic sur « Parcourir » ouvre un
 dialogue, où le dossier se désigne, et où le chemin désigné arrive dans l'écran. Aucune composition
 après coup, aucune concaténation.</p>
-<p>Les trois choses que le montage de validation avouait fausses sont levées ensemble. La troisième est
-celle qui comptait : le montage annonçait <code>/media/VIGIECHIRO/bruts</code> quand le clip réel remplissait le
-champ avec un dossier temporaire, et il en tirait qu'« un double visible devra rendre un chemin
-montrable ». Le dialogue étant réel, il montre le vrai chemin - et <code>CarteDeRecette.materialiser</code> rend
-<code>/tmp/vc-carte-sd-nominale857838373229970727</code>, qui se tape à l'écran pendant six secondes. Le premier
-tournage était <strong>vert</strong> et le clip était mauvais.</p>
+<p>Les trois choses que le montage avouait fausses sont levées ensemble. La troisième comptait : il
+annonçait <code>/media/VIGIECHIRO/bruts</code> quand le clip réel montrait un dossier temporaire, et en tirait
+qu'« un double visible devra rendre un chemin montrable ». Le dialogue étant réel, il montre le vrai
+chemin - et <code>CarteDeRecette.materialiser</code> rend <code>/tmp/vc-carte-sd-nominale857838373229970727</code>, qui se
+tape à l'écran pendant six secondes. Le premier tournage était <strong>vert</strong> et le clip était mauvais.</p>
 <h2 id="le-cout-reel-mesure-et-il-va-dabord-dans-le-mauvais-sens">Le coût réel, mesuré, et il va d'abord dans le mauvais sens<a class="headerlink" href="#le-cout-reel-mesure-et-il-va-dabord-dans-le-mauvais-sens" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -12316,6 +12371,18 @@ la fois, chacun jouant son geste sans substituer son sélecteur.</p>
 <p><strong>Ce qui n'est pas décidé ici.</strong> Le retrait de <code>filme-un-parcours.sh</code> et la descente du cliquet de
 l'<a href="../5188-bash-disparait-une-tolerance-est-un-delai/">ADR 5188</a> attendent que les huit soient portés :
 un banc retiré avant que son remplaçant couvre tout laisse la documentation sans clips.</p>
+<h2 id="ce-que-deviennent-les-deux-adr-dont-lance-test-filmesh-est-lapplicateur">Ce que deviennent les deux ADR dont <code>lance-test-filme.sh</code> est l'applicateur<a class="headerlink" href="#ce-que-deviennent-les-deux-adr-dont-lance-test-filmesh-est-lapplicateur" title="Permanent link">&para;</a></h2>
+<p>Les <a href="../3774-le-clip-se-taille-sur-le-test/">ADR 3774</a> et
+<a href="../3788-un-banc-qui-maximise-tout-ne-montre-pas-ce-qu-on-livre/">3788</a> déclarent toutes deux
+<code>verification: certaine</code>, appliquée par <code>.github/scripts/lance-test-filme.sh</code>. Le spike les avait
+nommées sans les trancher ; cette décision les rattrape, puisqu'elle condamne à terme ce script.</p>
+<p><strong>Ce qu'elles disent ne change pas.</strong> Un clip se taille sur le test, et un banc qui maximise tout ne
+montre pas ce qu'on livre : les deux règles valent autant côté Java, et le banc de recette les tient
+déjà - <code>CameraDeScene</code> filme la scène à sa taille, pas à celle de l'écran.</p>
+<p><strong>Ce qui change est leur applicateur, et il se déplacera avec le dernier parcours porté.</strong> Le faire
+maintenant serait pire que l'attendre : <code>lance-test-filme.sh</code> applique encore ces règles pour les huit
+parcours, et lui retirer son titre pendant qu'il travaille laisserait les deux ADR sans gage. Cette
+bascule appartient au lot qui retire le script, pas à celui qui décide la migration.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p><strong>Un parcours de documentation est un artefact DISTINCT d'un cas de recette</strong>, et le rester. Le cas de
 recette doit demeurer déterministe et rapide : le faire passer par un vrai dialogue lui ajouterait des
@@ -12382,13 +12449,13 @@ documentation dont on ne lit que le verdict garde une exécution, pas un film.</
         
         
           
-          <a href="../4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4961 · Le critère de fin vit dans le corps de sa sous-issue">
+          <a href="../5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 5285 · La décoration entoure, le focus se lit à la modalité">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                4961 · Le critère de fin vit dans le corps de sa sous-issue
+                5285 · La décoration entoure, le focus se lit à la modalité
               </div>
             </div>
             <div class="md-footer__button md-icon">

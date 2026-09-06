@@ -10433,6 +10433,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5285-la-decoration-entoure-et-le-focus-se-lit-a-la-modalite/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5285 · La décoration entoure, le focus se lit à la modalité
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13289,7 +13324,7 @@ triplet - un <strong>contrat neutre</strong>, une <strong>implémentation réell
 <tr>
 <td><code>SelecteurFichier</code> (#1425)</td>
 <td>la <strong>désignation</strong> d'un fichier / dossier</td>
-<td><code>SelecteurFichierJavaFx</code></td>
+<td><code>SelecteurFichierJavaFx</code> <strong>ou</strong> <code>SelecteurFichierEnFenetre</code>, par la fabrique <code>Selecteurs</code> (#5307)</td>
 <td>répond un chemin, <strong>ou rien</strong> (annulé)</td>
 </tr>
 <tr>
@@ -13389,9 +13424,16 @@ la première ligne. Deux ports sur trois, c'est zéro geste testable.</p>
 </li>
 </ul>
 <p><strong>Ce qui reste en dur</strong> (et c'est légitime) : les <strong>implémentations</strong> des ports elles-mêmes
-(<code>ConfirmationNavigation</code>, <code>NotificationDialogue</code>, <code>SelecteurFichierJavaFx</code>, <code>ChoixDansListe</code>,
-<code>ChoixParBoutons</code>), et le <strong>filet global</strong> d'<code>App.java</code> (exceptions non capturées, #795) - le seul endroit
-où le dialogue <strong>est</strong> la fonction.</p>
+(<code>ConfirmationNavigation</code>, <code>NotificationDialogue</code>, <code>ChoixDansListe</code>, <code>ChoixParBoutons</code>), et le <strong>filet
+global</strong> d'<code>App.java</code> (exceptions non capturées, #795) - le seul endroit où le dialogue <strong>est</strong> la
+fonction.</p>
+<p><strong><code>SelecteurFichier</code> a quitté cette liste</strong> (#5307). Il a <strong>deux</strong> implémentations - celle du système
+et celle de l'application - et le choix entre elles dépend d'un réglage. Écrit en dur, ce choix
+l'était douze fois, donc nulle part : la fabrique <code>Selecteurs</code> est le seul endroit où il se construit,
+et <code>scripts/adr/5307-designation-hors-fabrique.py</code> tient un cliquet à zéro sur les autres.</p>
+<p>Le port est donc devenu la couture de <strong>configuration</strong> en plus de celle de testabilité, et les deux
+se superposent sans se remplacer : un écran garde toujours son <code>SelecteurFichierModifiable</code> en champ
+<code>final</code> pour ses tests.</p>
 <p><strong>Le contre-exemple à connaître.</strong> Un refus <strong>prévenu par l'affordance</strong> n'a pas de notification à
 tester - il n'arrive jamais. Sur M-Site-detail, « Supprimer » est grisé quand un point porte des
 passages (#789), et <strong>JavaFX n'émet aucune action sur un bouton désactivé</strong> (<code>Button.fire()</code> est un
