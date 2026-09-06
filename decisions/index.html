@@ -10737,6 +10737,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5093-la-couverture-et-la-completude-sont-deux-axes/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5093 · La couverture et la completude sont deux axes
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5125-un-point-d-entree-qui-ne-juge-pas-dit-ce-qu-il-est/" class="md-nav__link">
         
   
@@ -13806,6 +13841,11 @@
 <td><a href="5089-un-chemin-suivi-ne-porte-que-de-l-ascii/">5089</a></td>
 <td><code>git ls-files</code> et <code>git diff --name-only</code> ÉCHAPPENT les chemins non-ASCII par défaut, ce qui les rend invisibles à tout outillage qui teste ensuite l'existence du fichier, EN SILENCE. Mesuré le 1er septembre : une passe du graphe a écarté 50 fichiers de <code>brief/</code> et pris 6 renommages pour 56 suppressions, sans qu'aucun garde rougisse. 101 chemins sur 3 203 étaient fautifs, tous sous <code>brief/</code>, et tous déjà en NFC : le défaut est le jeu de caractères, pas la normalisation Unicode. Un chemin suivi ne porte donc que de l'ASCII, à tolérance zéro. La règle ne dit rien de la casse ni des espaces, que <code>core.quotePath</code> n'échappe pas ; et la prose, les titres et le texte des liens gardent leurs accents, la tension avec l'article A24 étant assumée</td>
 <td>#5089, chantier #5088</td>
+</tr>
+<tr>
+<td><a href="5093-la-couverture-et-la-completude-sont-deux-axes/">5093</a></td>
+<td>L ADR 4984 annoncait que le troisieme niveau, la nuit interrompue en son milieu, n etait PAS livre faute de donnee persistee, et que le lot #5030 la persisterait. Il l a fait, et #5093 l a rendue - mais pas comme un troisieme NIVEAU de couverture : comme un SECOND AXE. La couverture lit les heures contre la fenetre calculee, la completude lit le journal du capteur, et les quatre combinaisons existent : une nuit peut couvrir la fenetre ET s etre interrompue. Un niveau de plus aurait ordonne la gravite et force un arbitrage entre deux mesures qui ne se comparent pas. Chaque axe se replie sur son propre « je ne sais pas », le journal etant CIRCULAIRE : son silence ne prouve pas que la nuit fut entiere. Et la presentation ne conclut pas au-dela : le journal atteste sa propre fin, jamais celle de l audio, ce qu un libelle a pourtant affirme pendant des semaines (#5352) <em>(complete 4984)</em></td>
+<td>#4980, lots #5030 et #5093</td>
 </tr>
 <tr>
 <td><a href="5125-un-point-d-entree-qui-ne-juge-pas-dit-ce-qu-il-est/">5125</a></td>
