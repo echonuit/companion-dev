@@ -10552,6 +10552,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5376-un-job-tourne-toujours-et-une-etape-decide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5376 · Un job tourne toujours et une étape décide
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5398-une-exemption-se-declare-elle-ne-s-infere-pas/" class="md-nav__link">
         
   
@@ -12321,6 +12356,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#sans-objet-dans-un-recapitulatif-et-pourquoi-cest-sur-5376" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        « Sans objet » dans un récapitulatif, et pourquoi c'est sûr (#5376)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pourquoi-build-emballage-et-bats-sont-trois-jobs" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12924,6 +12970,17 @@
     <span class="md-ellipsis">
       
         Le portail qualité (-Pquality-gate)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sans-objet-dans-un-recapitulatif-et-pourquoi-cest-sur-5376" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        « Sans objet » dans un récapitulatif, et pourquoi c'est sûr (#5376)
       
     </span>
   </a>
@@ -13702,6 +13759,24 @@ captures + PMD), <code>maven.yml</code> porte les <strong>tests + couverture</st
   profil : la couverture y est bloquante, PMD non.</li>
 </ul>
 <p><strong>Spotless</strong> (Palantir Java Format) formate via un <em>hook</em> pre-commit et est vérifié par <code>lint.yml</code> (<code>spotless:check</code>).</p>
+<h2 id="sans-objet-dans-un-recapitulatif-et-pourquoi-cest-sur-5376">« Sans objet » dans un récapitulatif, et pourquoi c'est sûr (#5376)<a class="headerlink" href="#sans-objet-dans-un-recapitulatif-et-pourquoi-cest-sur-5376" title="Permanent link">&para;</a></h2>
+<p>Un job vert dont le journal dit « sans objet » n'a <strong>rien vérifié</strong>, et c'est voulu. La règle est
+qu'<strong>un job de demande tourne toujours et conclut ; sa première étape décide, et les suivantes en
+dépendent</strong>. Sa portée est déclarée dans un seul endroit, <code>.github/scripts/porte_du_job.py</code>, où tout
+job de demande figure : avec ses chemins, ou parmi les inconditionnels avec sa raison écrite.</p>
+<p><strong>Le filtre <code>paths:</code> de la forge est interdit ici</strong>, et ce n'est pas une préférence. Un job qui ne se
+déclenche pas ne rend aucun verdict, or l'ADR 4571 refuse une fusion sans verdict complet et exclut
+<code>skipped</code> de ses conclusions probantes ; et un job <strong>absent</strong> du récapitulatif ne se distingue pas
+d'un job vert, ce qui est le motif de l'ADR 2748. Le silence explicite est donc préféré à l'absence,
+et la différence est tout l'objet du patron.</p>
+<p><strong>Ce que ce silence coûte</strong> : 5 à 9 secondes par job, le temps d'un checkout et du <code>git fetch</code> de la
+base. La forge facturant à la minute entamée, un job muet coûte une minute facturée. C'est le prix du
+récapitulatif complet.</p>
+<p><strong>Une demande qui touche l'outillage rallume tout</strong>, et il ne faut pas s'en étonner : chaque portée
+nomme son propre atelier et le mécanisme qui la lit, sans quoi une modification du dispositif ne
+serait jamais éprouvée par lui.</p>
+<p>La décision, ses deux verrous et la condition qui la périmerait - l'arrivée d'une protection de
+branche sur <code>main</code> - sont dans l'<a href="../decisions/5376-un-job-tourne-toujours-et-une-etape-decide/">ADR 5376</a>.</p>
 <h2 id="pourquoi-build-emballage-et-bats-sont-trois-jobs">Pourquoi <code>build</code>, <code>emballage</code> et <code>bats</code> sont trois jobs<a class="headerlink" href="#pourquoi-build-emballage-et-bats-sont-trois-jobs" title="Permanent link">&para;</a></h2>
 <p><code>maven.yml</code> portait auparavant quatre préoccupations à la file dans un seul job. Deux coûts en
 découlaient. Le premier, mesuré : 449 s de tests, puis 148 s d'E2E bats, puis 9 s d'idempotence <strong>en

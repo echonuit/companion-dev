@@ -10667,6 +10667,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5376-un-job-tourne-toujours-et-une-etape-decide/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5376 · Un job tourne toujours et une étape décide
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5398-une-exemption-se-declare-elle-ne-s-infere-pas/" class="md-nav__link">
         
   
@@ -14111,6 +14146,11 @@
 <td><a href="5398-une-exemption-se-declare-elle-ne-s-infere-pas/">5398</a></td>
 <td>La porte écartait un garde à arguments en lisant sa sortie : première ligne commençant par « Usage ». Un vrai refus débutant par ce mot était donc retiré du compte des refus, et la porte finissait verte. Deviner ne marche pas : les deux gardes concernés emploient deux idiomes, <code>SystemExit</code> et <code>argparse</code>, avec des codes et des longueurs différents. L'exemption est donc <strong>déclarée</strong> et confrontée. La confrontation est asymétrique : une déclaration périmée refuse, un garde neuf non déclaré est simplement compté refus.</td>
 <td>#5398, chantier #5380</td>
+</tr>
+<tr>
+<td><a href="5376-un-job-tourne-toujours-et-une-etape-decide/">5376</a></td>
+<td>Le remède évident au coût de la CI est le filtre <code>paths:</code>, et ce dépôt l'interdit. Deux décisions le condamnent : un job qui ne tourne pas ne rend <strong>aucun verdict</strong> (ADR 4571, qui exclut <code>skipped</code> de ses conclusions probantes), et un job <strong>absent</strong> du récapitulatif ne se distingue pas d'un job vert (ADR 2748). Le job tourne donc toujours et une étape décide ; quand elle dit non, il conclut « sans objet » en 5 à 9 s, facturés une minute. Chaque portée nomme son propre atelier, d'où une demande d'outillage qui rallume tout.</td>
+<td>#5376, chantier #5380</td>
 </tr>
 </tbody>
 </table>
