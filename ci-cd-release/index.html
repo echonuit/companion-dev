@@ -14083,6 +14083,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
+<td><code>mesure_minutes_par_pr.py</code></td>
+<td>ce qu'une <strong>demande</strong> paie et attend, par job : minutes <strong>facturées</strong> (lues dans <code>billable</code>, arrondi compris), horloge jusqu'au dernier verdict, et <strong>taux de « sans objet »</strong>. Il relève et ne refuse rien ; seul son auto-test tourne en CI. <code>mesure_duree_portail.py</code> ne peut pas le remplacer : il lit <code>main</code>, où toutes les portées rendent « oui », donc il afficherait zéro gain par construction (chantier #5294)</td>
+<td><code>lint.yml</code></td>
+</tr>
+<tr>
 <td><code>porte_du_job.py</code></td>
 <td>l'<strong>appariement</strong> d'une portée : <code>**</code> traverse les <code>/</code>, <code>*</code> ne les traverse pas, et un motif sans <code>/</code> n'apparie que la racine. C'est lui qui décide si un job tourne, donc son dérapage ferait écrire « sans objet » à des jobs qui auraient dû juger. Un job inconnu de <code>PORTEES</code> fait rougir, jamais taire (chantier #5294)</td>
 <td><code>lint.yml</code></td>
