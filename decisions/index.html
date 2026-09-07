@@ -10877,6 +10877,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5437-une-fixture-qui-suppose-la-plateforme-se-refuse-localement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5437 · Une fixture qui suppose la plateforme se refuse localement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13954,7 +13989,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 208<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 209<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -14311,6 +14346,11 @@
 <td><a href="5430-lire-la-structure-coute-et-ce-cout-s-accepte/">5430</a></td>
 <td>Les cinq gardes migrés passent de <strong>0,18 s à 6,26 s</strong>, soit un facteur 35, parce qu'ils partaient de la lecture la moins chère de toutes. Ce que le motif rendait n'était pas le même verdict plus vite : <code>String s = "}"</code> tronquait le corps d'une aide, donc son <code>lookup(</code> disparaissait, donc l'attente qui lui délègue échappait à un cliquet <strong>à zéro</strong> - un faux négatif que rien ne distingue d'un succès. Le coût se circonscrit par les <code>chemins</code> du <code>CONTRAT</code>, jamais par un retour au motif ni par une restriction au diff, qu'un cliquet ne peut pas prendre sans rendre un compte partiel.</td>
 <td>#5430, chantier #5402</td>
+</tr>
+<tr>
+<td><a href="5437-une-fixture-qui-suppose-la-plateforme-se-refuse-localement/">5437</a></td>
+<td>L'ADR 3802 disait qu'un test de plateforme passe par une couture, et son seul gage était un workflow HEBDOMADAIRE : quatre fixtures l'ont enfreinte en six jours, après onze corrigées en août. Un garde local refuse désormais l'appel POSIX non déclaré, cliquet à zéro, en acceptant les quatre formes que le dépôt employait déjà. Il lit l'arbre syntaxique et non un motif : sur l'état du 2026-09-06, le motif retenait SEPT fichiers là où le garde en retient deux. Le second motif du chantier, le modificateur clavier, n'a PAS été écrit : population illégitime vide, donc garde indémontrable</td>
+<td>#5437, chantier #5433</td>
 </tr>
 </tbody>
 </table>

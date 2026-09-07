@@ -10762,6 +10762,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5437-une-fixture-qui-suppose-la-plateforme-se-refuse-localement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5437 · Une fixture qui suppose la plateforme se refuse localement
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13522,6 +13557,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>5278-attente-hors-du-fil.py</code></td>
 <td>les appels a <code>Attente.que</code> dont le predicat lit le graphe de scene depuis le fil du test, la ou <code>Attente.queSurLeFil</code> existe depuis #4408 pour le lire sur le fil FX. La regle se derive des lectures de noeuds, en DEUX familles : celles qui <strong>cherchent</strong> un noeud (<code>lookup(</code>, <code>queryAs</code>, <code>getItems()</code>, <code>getScene()</code>, <code>getChildren()</code>, <code>getText()</code>) et celles qui lisent une <strong>propriete</strong> sur un noeud deja capture (<code>isVisible</code>, <code>isDisabled</code>, <code>isManaged</code>, <code>isSelected</code>, <code>isFocused</code>). La seconde famille manquait, et son absence laissait dix sites invisibles dont un dans chacun des trois bancs les plus accuses du releve (#5323). Depuis #5353 il <strong>suit la delegation</strong> : un predicat qui passe par une aide de son fichier est compte, transitivement, ce qui a rendu visibles trente-neuf sites que le motif ratait. Depuis #5430 l argument et le corps des aides sont bornes par la <strong>structure</strong>, et non par equilibrage de caracteres : une accolade vivant dans une chaine tronquait le corps d une aide, donc son <code>lookup(</code> disparaissait, donc l attente qui lui delegue echappait au cliquet. Il <strong>compte</strong> et ne juge pas : <code>queSurLeFil</code> coute un aller-retour par tour de boucle, et un site legitimement laisse en <code>que</code> ecrit sa raison. Cliquet ouvert a 63, descendu a <strong>zero</strong> par les lots #5269, #5279 et #5323</td>
+<td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
+</tr>
+<tr>
+<td><code>5437-fixture-suppose-la-plateforme.py</code></td>
+<td>les appels POSIX qui JETTENT sur un systeme sans vue <code>posix</code> (<code>setPosixFilePermissions</code>, <code>getPosixFilePermissions</code>, <code>asFileAttribute</code>) quand rien ne declare l exigence. <code>fromString</code> en est exclue : elle analyse une chaine et ne touche aucun fichier. QUATRE formes valent declaration, et ce sont celles que le depot employait deja : <code>@EnabledIf</code> sur la methode ou la classe, un <code>assumeTrue</code> en TETE de methode, un <code>try</code> / <code>catch (UnsupportedOperationException)</code>, et une aide dont tous les appelants du fichier declarent. La lecture passe par l arbre syntaxique et non par un motif : sur l etat du 2026-09-06, un <code>grep</code> retenait SEPT fichiers la ou ce garde en retient deux, les cinq autres etant une citation en commentaire, deux <code>assumeTrue</code>, une aide qui delegue et une aide qui rattrape l exception. Ce qu il ne voit PAS : une aide appelee depuis un AUTRE fichier, et un <code>@EnabledIf</code> dont le predicat rendrait toujours vrai, suivi par son nom et non par son corps. Cliquet a <strong>zero</strong> des l ouverture, l ADR 3802 ayant ete appliquee par #5435 et #5436</td>
 <td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
 </tr>
 <tr>
