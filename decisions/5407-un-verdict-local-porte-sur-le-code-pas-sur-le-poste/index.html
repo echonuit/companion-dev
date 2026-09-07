@@ -12673,9 +12673,14 @@ l'<a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">ADR 2748</a>
 </thead>
 <tbody>
 <tr>
-<td>déclarée, posable</td>
+<td>déclarée, posable, <strong>dont un garde dépend</strong></td>
 <td>l'outil OpenSpec, le <code>.venv</code> et son groupe <code>gardes</code></td>
 <td>il la <strong>pose</strong>, à la création du worktree</td>
+</tr>
+<tr>
+<td>déclarée, posable, <strong>dont aucun garde ne dépend</strong></td>
+<td>le groupe <code>recherche</code> et son <code>semgrep</code></td>
+<td>il la <strong>propose</strong> : la poser coûterait à chaque worktree pour un outil qu'on ouvre rarement</td>
 </tr>
 <tr>
 <td>déclarée, chère et conditionnelle</td>
