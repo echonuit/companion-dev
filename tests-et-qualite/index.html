@@ -10797,6 +10797,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5433-deux-arbres-ecrivent-la-meme-question-et-c-est-la-forme-juste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5433 · Deux arbres écrivent la même question de plateforme
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13814,6 +13849,49 @@ au lieu de juger, dispatchée sur la plateforme concernée, lue, <strong>puis</s
 <p>Les deux sondes de cette campagne ont <strong>contredit</strong> l'hypothèse qui les demandait. Une sonde qui
 aurait asserté l'hypothèse serait passée au rouge sans qu'on sache pourquoi.</p>
 <p>Détail : <a href="../decisions/3802-un-defaut-de-plateforme-se-sonde-il-ne-se-deduit-pas/">ADR 3802</a>.</p>
+<h3 id="et-le-test-qui-reste-declare-ce-quil-exige-de-la-plateforme">Et le test qui RESTE déclare ce qu'il exige de la plateforme<a class="headerlink" href="#et-le-test-qui-reste-declare-ce-quil-exige-de-la-plateforme" title="Permanent link">&para;</a></h3>
+<p>La sonde dit quel comportement câbler. Le test qui subsiste doit, lui, être jouable <strong>partout</strong> : une
+fixture qui suppose son système meurt avant sa première assertion, et le rapport compte alors une
+<strong>erreur</strong> sur ce qu'elle préparait, jamais un rouge sur ce qu'elle éprouvait.</p>
+<p><code>Files.setPosixFilePermissions</code> et ses voisines jettent <code>UnsupportedOperationException</code> là où la vue
+<code>posix</code> n'existe pas, NTFS en tête. Cinq écritures satisfont le garde, et ce sont celles que le
+dépôt employait déjà :</p>
+<table>
+<thead>
+<tr>
+<th>Forme</th>
+<th>Quand l'employer</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>@EnabledIf("fr.univ_amu.iut.fixture.SystemeDeFichiers#posixDisponible")</code></td>
+<td>la fixture EXIGE POSIX et le cas n'a pas de sens ailleurs. La forme préférée : elle se voit dans le rapport</td>
+</tr>
+<tr>
+<td><code>assumeTrue(SystemeDeFichiers.posixDisponible())</code> en <strong>tête</strong> de méthode</td>
+<td>même exigence, moins visible. Jamais au milieu : elle emporterait les assertions qui n'ont rien de POSIX</td>
+</tr>
+<tr>
+<td><code>try</code> / <code>catch (UnsupportedOperationException)</code></td>
+<td>le code se replie et n'éprouve rien de la plateforme</td>
+</tr>
+<tr>
+<td>une aide privée dont <strong>tous</strong> les appelants du fichier déclarent</td>
+<td>la délégation voulue par #3778, pour que l'hypothèse ne vive pas dans le helper</td>
+</tr>
+<tr>
+<td><code>if (SystemeDeFichiers.posixDisponible())</code></td>
+<td>les deux branches sont éprouvées, l'une attendant le succès et l'autre le refus</td>
+</tr>
+</tbody>
+</table>
+<p>Le prédicat a <strong>une seule écriture</strong>, <code>fixture.SystemeDeFichiers.posixDisponible()</code>. Il en a eu cinq,
+et une copie qui diverge de ses soeurs ne fait rougir personne.</p>
+<p><code>scripts/adr/5437-fixture-suppose-la-plateforme.py</code> refuse toute autre forme, cliquet à zéro. Ce qu'il
+ne voit pas est déclaré : une aide appelée depuis un <strong>autre</strong> fichier, et un <code>@EnabledIf</code> dont le
+prédicat rendrait toujours vrai, suivi par son nom et non par son corps.</p>
+<p>Détail : <a href="../decisions/5437-une-fixture-qui-suppose-la-plateforme-se-refuse-localement/">ADR 5437</a>.</p>
 <h3 id="la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne">La police d'un test n'est pas celle du produit, sauf si on la lui donne<a class="headerlink" href="#la-police-dun-test-nest-pas-celle-du-produit-sauf-si-on-la-lui-donne" title="Permanent link">&para;</a></h3>
 <p><code>Typographie.installer()</code> garde un <code>static boolean</code> : l'enregistrement de la police embarquée est
 <strong>global au JVM et fait une seule fois</strong>. Un test qui monte sa scène à la main voit donc la police du

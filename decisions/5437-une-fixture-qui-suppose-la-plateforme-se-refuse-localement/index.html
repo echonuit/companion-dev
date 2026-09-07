@@ -16,7 +16,7 @@
         <link rel="prev" href="../5430-lire-la-structure-coute-et-ce-cout-s-accepte/">
       
       
-        <link rel="next" href="../4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/">
+        <link rel="next" href="../5433-deux-arbres-ecrivent-la-meme-question-et-c-est-la-forme-juste/">
       
       
         
@@ -10919,6 +10919,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../5433-deux-arbres-ecrivent-la-meme-question-et-c-est-la-forme-juste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5433 · Deux arbres écrivent la même question de plateforme
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -12784,7 +12819,7 @@ l'appliquait au moment où elle aurait servi.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Un appel POSIX qui peut jeter, dans l'arbre de test, déclare l'exigence qu'il porte.</strong> Un garde
 local le refuse à chaque demande, cliquet à zéro.</p>
-<p>Quatre formes valent déclaration, et ce sont celles que le dépôt employait déjà :</p>
+<p>Cinq formes valent déclaration, et ce sont celles que le dépôt employait déjà :</p>
 <table>
 <thead>
 <tr>
@@ -12809,18 +12844,26 @@ local le refuse à chaque demande, cliquet à zéro.</p>
 <td>une aide dont tous les appelants du fichier déclarent</td>
 <td>la délégation que #3778 a voulue</td>
 </tr>
+<tr>
+<td>un <code>if</code> dont la <strong>condition</strong> nomme le prédicat</td>
+<td>les deux branches sont éprouvées, l'une attendant le succès, l'autre le refus</td>
+</tr>
 </tbody>
 </table>
+<p><strong>La cinquième a été trouvée en clôturant</strong>, et par le garde lui-même : la passe 6 a écrit le banc qui
+manquait au prédicat, lequel appelle l'API dans les deux branches d'un <code>if</code> pour confronter ce que le
+prédicat annonce à ce que le système fait. Le garde a refusé son propre banc de clôture, à juste
+titre : il ne connaissait pas cette écriture. Seule la <strong>condition</strong> est lue, jamais le <code>if</code> entier,
+sinon n'importe quel <code>if</code> placé autour de l'appel vaudrait déclaration.</p>
 <p><code>assumeTrue</code> est accepté à côté de <code>@EnabledIf</code>, alors que #3778 préfère le second. Le mal que cette
 ADR nomme est celui d'un <code>assumeTrue</code> posé <strong>au milieu</strong> d'une méthode, qui emporte les assertions
 n'ayant rien de POSIX. En tête, il protège aussi bien. Refuser la forme ancienne ferait rougir ce
 garde sur des cas justes, pour une préférence de style qu'une autre décision porte déjà.</p>
 <h2 id="pourquoi-larbre-syntaxique-et-non-un-motif-de-ligne">Pourquoi l'arbre syntaxique, et non un motif de ligne<a class="headerlink" href="#pourquoi-larbre-syntaxique-et-non-un-motif-de-ligne" title="Permanent link">&para;</a></h2>
 <p>Mesuré sur l'arbre du 2026-09-06 : un motif textuel retient <strong>sept</strong> fichiers, le garde en retient
-<strong>deux</strong>, et ce sont les deux qui étaient réellement cassés. Cinq des sept sont légitimes : une
-citation en commentaire, deux <code>assumeTrue</code>, une aide qui délègue, une aide qui rattrape l'exception.</p>
-<p>Un motif qui se trompe cinq fois sur sept ne peut pas annoncer un zéro qui veuille dire quelque
-chose. Le garde lit donc <code>scripts/_commun/arbre.py</code>.</p>
+<strong>deux</strong>, et ce sont les deux qui étaient cassés. Cinq des sept sont légitimes. Un motif qui se
+trompe ainsi ne peut pas annoncer un zéro qui veuille dire quelque chose : le garde lit donc
+<code>scripts/_commun/arbre.py</code>.</p>
 <p>Deux des faux positifs sont de plus des <code>///</code> du JEP 467, et <code>tree-sitter</code> est le seul lecteur du
 dépôt qui les rende fidèlement : Spoon les classe en <code>//</code> et re-sérialise en <code>// /</code>, JavaParser ne
 les voit pas sous <code>getJavadoc()</code>.</p>
@@ -12850,8 +12893,7 @@ ici plutôt qu'un principe : <code>MainViewTest</code> pousse <code>^F</code> et
 <ul>
 <li><strong>Amender l'<code>enforced_by</code> de la 3802.</strong> Une ADR acceptée ne se réécrit pas ici : elle se complète.</li>
 <li><strong>Poser le cliquet au-dessus de zéro pour tolérer les deux <code>assumeTrue</code>.</strong> Ils sont justes, pas
-  tolérés. Un cliquet les aurait comptés comme une dette, et aurait appris à lire un chiffre non nul
-  comme normal.</li>
+  tolérés : un cliquet les aurait comptés comme une dette.</li>
 </ul>
 
 
@@ -12908,13 +12950,13 @@ ici plutôt qu'un principe : <code>MainViewTest</code> pousse <code>^F</code> et
         
         
           
-          <a href="../4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 4961 · Le critère de fin vit dans le corps de sa sous-issue">
+          <a href="../5433-deux-arbres-ecrivent-la-meme-question-et-c-est-la-forme-juste/" class="md-footer__link md-footer__link--next" aria-label="Suivant: 5433 · Deux arbres écrivent la même question de plateforme">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Suivant
               </span>
               <div class="md-ellipsis">
-                4961 · Le critère de fin vit dans le corps de sa sous-issue
+                5433 · Deux arbres écrivent la même question de plateforme
               </div>
             </div>
             <div class="md-footer__button md-icon">

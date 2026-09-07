@@ -10912,6 +10912,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5433-deux-arbres-ecrivent-la-meme-question-et-c-est-la-forme-juste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5433 · Deux arbres écrivent la même question de plateforme
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13989,7 +14024,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 210<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 212<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -14351,6 +14386,11 @@
 <td><a href="5437-une-fixture-qui-suppose-la-plateforme-se-refuse-localement/">5437</a></td>
 <td>L'ADR 3802 disait qu'un test de plateforme passe par une couture, et son seul gage était un workflow HEBDOMADAIRE : quatre fixtures l'ont enfreinte en six jours, après onze corrigées en août. Un garde local refuse désormais l'appel POSIX non déclaré, cliquet à zéro, en acceptant les quatre formes que le dépôt employait déjà. Il lit l'arbre syntaxique et non un motif : sur l'état du 2026-09-06, le motif retenait SEPT fichiers là où le garde en retient deux. Le second motif du chantier, le modificateur clavier, n'a PAS été écrit : population illégitime vide, donc garde indémontrable</td>
 <td>#5437, chantier #5433</td>
+</tr>
+<tr>
+<td><a href="5433-deux-arbres-ecrivent-la-meme-question-et-c-est-la-forme-juste/">5433</a></td>
+<td>« Ce système porte-t-il POSIX ? » s'écrit en production et dans l'arbre de test, et les unifier est refusé. Trois mesures : UN site d'appel en production, le seuil de #5075 non atteint (29 fonctions en 13 signatures là-bas, deux écritures d'une ligne ici), et surtout la branche qu'une couture injectable exposerait est un MUTANT ÉQUIVALENT, ce que le doc-comment d'<code>attributsDeCreation</code> écrivait déjà avant le chantier. Le test acheté exercerait deux issues indiscernables. Trois ADR déclinent un dispositif pour trois raisons distinctes : l'information manque (5414), la population est vide (5437), la branche est inobservable (celle-ci)</td>
+<td>#5433, passe 7</td>
 </tr>
 </tbody>
 </table>

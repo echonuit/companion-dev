@@ -10797,6 +10797,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5433-deux-arbres-ecrivent-la-meme-question-et-c-est-la-forme-juste/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5433 · Deux arbres écrivent la même question de plateforme
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13561,7 +13596,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>5437-fixture-suppose-la-plateforme.py</code></td>
-<td>les appels POSIX qui JETTENT sur un systeme sans vue <code>posix</code> (<code>setPosixFilePermissions</code>, <code>getPosixFilePermissions</code>, <code>asFileAttribute</code>) quand rien ne declare l exigence. <code>fromString</code> en est exclue : elle analyse une chaine et ne touche aucun fichier. QUATRE formes valent declaration, et ce sont celles que le depot employait deja : <code>@EnabledIf</code> sur la methode ou la classe, un <code>assumeTrue</code> en TETE de methode, un <code>try</code> / <code>catch (UnsupportedOperationException)</code>, et une aide dont tous les appelants du fichier declarent. La lecture passe par l arbre syntaxique et non par un motif : sur l etat du 2026-09-06, un <code>grep</code> retenait SEPT fichiers la ou ce garde en retient deux, les cinq autres etant une citation en commentaire, deux <code>assumeTrue</code>, une aide qui delegue et une aide qui rattrape l exception. Ce qu il ne voit PAS : une aide appelee depuis un AUTRE fichier, et un <code>@EnabledIf</code> dont le predicat rendrait toujours vrai, suivi par son nom et non par son corps. Cliquet a <strong>zero</strong> des l ouverture, l ADR 3802 ayant ete appliquee par #5435 et #5436</td>
+<td>les appels POSIX qui JETTENT sur un systeme sans vue <code>posix</code> (<code>setPosixFilePermissions</code>, <code>getPosixFilePermissions</code>, <code>asFileAttribute</code>) quand rien ne declare l exigence. <code>fromString</code> en est exclue : elle analyse une chaine et ne touche aucun fichier. CINQ formes valent declaration, et ce sont celles que le depot employait deja : <code>@EnabledIf</code> sur la methode ou la classe, un <code>assumeTrue</code> en TETE de methode, un <code>if</code> dont la CONDITION nomme le predicat, un <code>try</code> / <code>catch (UnsupportedOperationException)</code>, et une aide dont tous les appelants du fichier declarent. La lecture passe par l arbre syntaxique et non par un motif : sur l etat du 2026-09-06, un <code>grep</code> retenait SEPT fichiers la ou ce garde en retient deux, les cinq autres etant une citation en commentaire, deux <code>assumeTrue</code>, une aide qui delegue et une aide qui rattrape l exception. Ce qu il ne voit PAS : une aide appelee depuis un AUTRE fichier, et un <code>@EnabledIf</code> dont le predicat rendrait toujours vrai, suivi par son nom et non par son corps. Cliquet a <strong>zero</strong> des l ouverture, l ADR 3802 ayant ete appliquee par #5435 et #5436</td>
 <td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
 </tr>
 <tr>
