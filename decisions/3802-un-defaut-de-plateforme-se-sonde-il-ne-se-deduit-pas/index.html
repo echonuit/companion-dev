@@ -6603,6 +6603,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ce-qui-tient-cette-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui tient cette décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contexte" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12645,6 +12656,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#ce-qui-tient-cette-decision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qui tient cette décision
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#contexte" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12717,14 +12739,24 @@
 
 
 <h1 id="un-defaut-de-plateforme-se-sonde-il-ne-se-deduit-pas">Un défaut de plateforme se sonde, il ne se déduit pas<a class="headerlink" href="#un-defaut-de-plateforme-se-sonde-il-ne-se-deduit-pas" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-16</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A4 · Un cas joué n&#x27;est pas un cas prouvé</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#3802, suites du chantier #3518</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>.github/workflows/suite-sous-windows-et-macos.yml</code></span></div></div>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-16</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A4 · Un cas joué n&#x27;est pas un cas prouvé</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#3802, suites du chantier #3518</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification probable</span><span class="adr-bandeau__valeur"><code>scripts/adr/5437-fixture-suppose-la-plateforme.py</code></span></div></div>
 
 <div class="admonition warning">
 <p class="admonition-title">Ce qui fait foi aujourd'hui</p>
-<p><strong>2026-09-07</strong> : l'<code>enforced_by</code> ci-dessus ne nomme qu'un détecteur hebdomadaire. Un garde local
-refuse désormais la fixture non déclarée, par
-<a href="../5437-une-fixture-qui-suppose-la-plateforme-se-refuse-localement/">5437</a>.</p>
+<p><strong>Complétée le 2026-09-07</strong> par
+<a href="../5437-une-fixture-qui-suppose-la-plateforme-se-refuse-localement/">ADR 5437</a> : un garde local
+refuse la fixture qui suppose la plateforme, au lieu de la détecter le mardi suivant.</p>
 </div>
+<h2 id="ce-qui-tient-cette-decision">Ce qui tient cette décision<a class="headerlink" href="#ce-qui-tient-cette-decision" title="Permanent link">&para;</a></h2>
+<p><strong><code>probable</code>, et non <code>certaine</code>.</strong> La règle est de méthode : rien ne peut prouver qu'une sonde a
+précédé un test, et l'ADR 2465 réserve <code>certaine</code> à un invariant qui échoue en CI.</p>
+<p>La moitié mécanisable, elle, existe : <code>scripts/adr/5437-fixture-suppose-la-plateforme.py</code> liste les
+fixtures qui appellent une API POSIX sans déclarer qu'elles l'exigent, cliquet à zéro, sur chaque
+demande. C'est la définition de <code>probable</code>.</p>
+<p>L'<code>enforced_by</code> nommait <code>suite-sous-windows-et-macos.yml</code>, qui ne se déclenche ni sur une demande ni
+sur une poussée. Ce détecteur hebdomadaire reste en place ; il n'était pas ce que <code>certaine</code>
+promettait. Le geste suit l'<a href="../5414-une-regle-que-rien-ne-peut-garder-se-declare/">ADR 5414</a> : ce que
+rien ne peut garder se déclare. Mesuré par #5448.</p>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'ADR 3664 avait établi qu'un relevé qui n'a pas ouvert les fichiers est une hypothèse. Cette campagne
 en a rencontré une forme plus dure : <strong>des défauts qu'aucune mesure locale ne peut juger</strong>, quelle que

@@ -12727,7 +12727,7 @@
 
 
 <h1 id="un-avant-se-fabrique-a-partir-du-passe-il-ne-se-gele-pas-dans-le-present">Un avant se fabrique à partir du passé, il ne se gèle pas dans le présent<a class="headerlink" href="#un-avant-se-fabrique-a-partir-du-passe-il-ne-se-gele-pas-dans-le-present" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-31</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A4 · Un cas joué n&#x27;est pas un cas prouvé</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4980 (le retour de terrain de la 2.189.0), sous-chantier #4993</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>dev-docs/recette/avant-apres-de-la-2189.md</code></span></div></div>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-31</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A4 · Un cas joué n&#x27;est pas un cas prouvé</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4980 (le retour de terrain de la 2.189.0), sous-chantier #4993</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">non mécanisée, et le motif est déclaré</span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le sous-chantier #4993 devait montrer à l'observateur d'une session de terrain ce que huit correctifs
@@ -12775,6 +12775,14 @@ produit quand même, l'enregistreur indexant délibérément le film d'un cas ro
 <p>Le mode d'emploi complet, avec le piège qui invalide la paire et le témoin qui le dit, vit dans
 <a href="../../recette/avant-apres-de-la-2189/">Ce que la 2.189.0 montrait, et ce qu'elle montre maintenant</a>.
 Cette ADR ne porte que la décision : <strong>on ne gèle pas le dépôt pour produire une preuve</strong>.</p>
+<p><strong>Et cette page n'est pas ce qui tient la décision.</strong> Elle a figuré en <code>enforced_by</code> jusqu'au
+2026-09-07, l'ADR se déclarant <code>certaine</code>. Une page de prose ne s'exécute pas : elle ne peut faire
+rougir aucune demande de fusion, et le champ promettait donc quelque chose que rien ne rendait. Le
+renvoi était juste, seul son emplacement était faux.</p>
+<p>Ce que la décision règle - à partir de quoi on fabrique un avant, et qu'aucune fusion n'attend - est
+un geste de méthode qu'aucun dispositif ne peut observer. Le niveau est donc <code>humaine</code>, ce que le
+champ <code>verified:</code> disait déjà en nommant le porteur du produit, et c'est ce que l'<a href="../5414-une-regle-que-rien-ne-peut-garder-se-declare/">ADR 5414</a>
+prescrit : une règle que rien ne peut garder se déclare. Mesuré et corrigé par #5448.</p>
 <p>Elle prolonge l'<a href="../4111-un-clip-montre-la-version-qu-on-valide/">ADR 4111</a>, qui exige qu'un
 clip dise la version qu'il montre. Un avant fabriqué n'échappe pas à la règle : il montre un état qui
 n'a jamais été publié, et il doit donc dire duquel il part.</p>

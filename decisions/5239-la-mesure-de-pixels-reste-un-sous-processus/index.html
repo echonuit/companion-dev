@@ -12727,7 +12727,7 @@
 
 
 <h1 id="la-mesure-de-pixels-reste-un-sous-processus-imagemagick">La mesure de pixels reste un sous-processus ImageMagick<a class="headerlink" href="#la-mesure-de-pixels-reste-un-sous-processus-imagemagick" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-05</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A26 · La provenance se déclare</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5239 (sous-chantier #5235, chantier #5215)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>.github/assets/mesure_pixels.py</code></span></div></div>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-05</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A26 · La provenance se déclare</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5239 (sous-chantier #5235, chantier #5215)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">non mécanisée, et le motif est déclaré</span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le chantier de conversion #5215 fait disparaître le shell du dépôt. Le lot B de #5235 y amène quatre
@@ -12767,6 +12767,22 @@ rectangle - trois choses qu'ImageMagick fait en une commande.</p>
 <p><code>mesure_pixels.py</code> porte l'appel, et son en-tête porte cette décision. Le fichier est le seul endroit
 du dépôt où la part de pixels se calcule : c'est déjà ce que #4295 avait établi, après que le même
 défaut a dû être corrigé deux fois dans deux copies.</p>
+<p><strong>Ce fichier ne juge pourtant rien, et il a figuré en <code>enforced_by</code> jusqu'au 2026-09-07.</strong> C'est le
+<strong>code régi</strong> par la décision, pas son applicateur : qui remplacerait le sous-processus par un appel
+de bibliothèque obtiendrait un fichier différent, et rien ne rougirait. Un gage qui est son propre
+sujet ne peut pas constater sa propre violation. Ses deux appelants, <code>compare_tournages.py</code> et
+<code>compare_apercus.py</code>, ne tournent d'ailleurs que sous <code>comparer-tournages.yml</code>, en
+<code>workflow_dispatch</code> seul.</p>
+<p><strong>Ce qui en est tout de même tenu, et jusqu'où.</strong>
+<code>scripts/methode/verifie-dependances-declarees.py</code> refuse un import hors
+bibliothèque standard qui ne figure dans aucun fichier de dépendances : un <code>import PIL</code> glissé dans la
+couche des gardes rougirait sur la demande qui l'introduit. Il ne refuse pas l'import <strong>déclaré</strong>, et
+c'est précisément la façon dont cette décision se violerait délibérément. La couverture est donc
+partielle, et une partie de la règle repose sur la revue.</p>
+<p>Le niveau est <code>humaine</code> pour cette raison, et non parce que la règle serait invérifiable : un contrôle
+qui refuse une bibliothèque d'images sous <code>scripts/</code> et <code>.github/</code> est possible, il n'est pas posé,
+et l'<a href="../5414-une-regle-que-rien-ne-peut-garder-se-declare/">ADR 5414</a> tranche ce cas : on le déclare, au lieu de se
+donner un gage qui n'observe rien. Mesuré et corrigé par #5448.</p>
 
 
 
