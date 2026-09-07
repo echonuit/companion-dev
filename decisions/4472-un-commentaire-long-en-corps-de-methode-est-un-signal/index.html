@@ -10803,6 +10803,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../5402-un-lecteur-livre-vaut-mieux-que-trois-annonces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5402 · Un lecteur livré vaut mieux que trois annoncés
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5430-lire-la-structure-coute-et-ce-cout-s-accepte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5430 · Lire la structure coûte, et ce coût s'accepte
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -12712,16 +12782,21 @@ de quinze lignes là où elle en comptait un.</p>
 laisserait un raccourcissement de javadoc compenser un débordement en corps, pour un total stable et
 un verdict vert - la règle 2 de l'ADR
 <a href="../2867-une-dette-se-tient-par-un-cliquet/">« Une dette qu'on migre au fil de l'eau se tient par un cliquet »</a>.</p>
-<p><strong>La borne est la profondeur d'accolades.</strong> À la profondeur 1, entre les membres d'une classe, un
-bloc de <code>//</code> documente une <strong>section</strong> et non du code : il ne compte pas. À la profondeur 0, avant la
-classe, c'est un en-tête de fichier. Les trois cas sont tenus par des témoins.</p>
+<p><strong>La borne est le corps de code.</strong> Dans un corps de méthode, de constructeur ou de lambda, un bloc de
+<code>//</code> documente du code. Entre les membres d'une classe, il documente une <strong>section</strong> et ne compte
+pas. Avant la classe, c'est un en-tête de fichier. Les trois cas sont tenus par des témoins.</p>
+<p>Elle s'énonçait « profondeur d'accolades » jusqu'au 2026-09-06, parce que le garde la calculait
+ainsi. Elle se pose désormais à la <strong>structure</strong>.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p>Le niveau est <code>probable</code> : un bloc long peut être justifié - une formule, un protocole, un
 contre-exemple - et le script rend des <strong>suspects</strong> qu'un humain trie.</p>
-<p><strong>Le comptage des accolades est naïf</strong> : il ne comprend ni les chaînes ni les caractères, donc une
-accolade dans un littéral fausse la profondeur. C'est assumé, parce que le verdict ne bascule que si
-elle déplace un bloc de part et d'autre de la borne, et qu'un faux positif se trie à la lecture comme
-les autres.</p>
+<p><strong>L'approximation de lecture a été retirée le 2026-09-06, par le lot 0 de #5402 livré en #5420.</strong></p>
+<p>Le comptage ne comprenait ni les chaînes ni les caractères. C'était assumé, le verdict ne basculant
+que si l'accolade déplace un bloc de part et d'autre de la borne. La dette était réelle : sur
+5 079 blocs, l'arbre contredisait le comptage <strong>huit fois</strong>, sans qu'aucun ne franchisse le seuil.</p>
+<p><code>arbre.py</code> lit désormais la structure, et la migration a rendu <strong>43 suspects contre 43</strong>, sans un
+désaccord sur leur identité. Ce que le comptage rendait juste par chance du corpus, la structure le
+rend juste par construction.</p>
 <h2 id="alternative-ecartee">Alternative écartée<a class="headerlink" href="#alternative-ecartee" title="Permanent link">&para;</a></h2>
 <p><strong>Étendre le cliquet A30 aux <code>//</code>.</strong> Un seul compteur pour deux populations, ce que ce dépôt refuse
 ailleurs pour la même raison. Et le seuil ne pourrait pas être le même : la javadoc de classe a le

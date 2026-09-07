@@ -10692,6 +10692,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5402-un-lecteur-livre-vaut-mieux-que-trois-annonces/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5402 · Un lecteur livré vaut mieux que trois annoncés
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5430-lire-la-structure-coute-et-ce-cout-s-accepte/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5430 · Lire la structure coûte, et ce coût s'accepte
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4961-le-critere-de-fin-d-un-lot-vit-dans-le-corps-de-sa-sous-issue/" class="md-nav__link">
         
   
@@ -13515,7 +13585,9 @@ introduites, et vérifier à la main les garde-fous que PIT ne peut pas atteindr
 <h3 id="demander-a-un-garde-ce-quil-est-contrat">Demander à un garde ce qu'il est : <code>--contrat</code><a class="headerlink" href="#demander-a-un-garde-ce-quil-est-contrat" title="Permanent link">&para;</a></h3>
 <h3 id="ou-vivent-les-fonds-communs-des-gardes">Où vivent les fonds communs des gardes<a class="headerlink" href="#ou-vivent-les-fonds-communs-des-gardes" title="Permanent link">&para;</a></h3>
 <p><strong>Il y en a DEUX, et chacun sert son arbre.</strong> <code>scripts/_commun/</code> porte le vocabulaire des corpus, les
-verdicts, l'aide <code>--contrat</code> et l'assertion des auto-tests. <code>.github/scripts/_forge.py</code> porte ce que
+verdicts, l'aide <code>--contrat</code>, l'assertion des auto-tests et, depuis #5420, le <strong>lecteur d'arbre</strong>
+<code>arbre.py</code> : six gardes lui délèguent la lecture de la structure du Java plutôt que de compter des
+accolades. <code>.github/scripts/_forge.py</code> porte ce que
 les cliquets de forge partagent : la lecture du cliquet dans un en-tête d'ADR, l'interrogation de la
 forge avec son refus quand <code>gh</code> ne répond pas, et le banc de leurs cas (#4954).</p>
 <p><strong>Le second n'est pas une copie du premier, et la mesure a décidé de leur séparation.</strong> Verser de la
@@ -13527,11 +13599,17 @@ a, c'est l'auto-test, le reste se répartit par tiers ».</p>
 <a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">_commun</span><span class="w"> </span><span class="kn">import</span> <span class="n">DECISIONS</span><span class="p">,</span> <span class="n">rapporte</span>
 </code></pre></div>
 <p><strong>Il a vécu dans <code>scripts/adr/</code> jusqu'à #5216</strong>, c'est-à-dire chez l'un de ses usagers, et quatre formes de chemin coexistaient pour l'atteindre. La quatrième n'a été trouvée ni par le motif de réécriture ni par la relecture du diff, mais par un relevé des 54 auto-tests avant et après : un refactoring à comportement constant se prouve en comparant deux mesures.</p>
-<p><strong>Soixante-huit points d'entrée</strong> répondent à <code>--contrat</code> et déclarent six champs : les <strong>44</strong> de
-<code>scripts/adr</code> et les <strong>24</strong> de <code>scripts/methode</code>. Le total n'a pas bougé mais sa composition si :
-la page annonçait « 43, 24, et le dernier garde shell », et <strong>aucun des deux scripts shell restants
-ne répond à <code>--contrat</code></strong>. Relevé à la clôture de #5257, en lançant les 70 points d'entrée un par un
-plutôt qu'en recopiant le chiffre. La réponse s'obtient sans rien
+<p><strong>Soixante-seize points d'entrée</strong> répondent à <code>--contrat</code> et déclarent six champs : les <strong>47</strong> de
+<code>scripts/adr</code>, les <strong>28</strong> de <code>scripts/methode</code>, et <strong>la porte elle-même</strong>, <code>scripts/batterie.py</code>, qui
+vit à la racine de <code>scripts/</code>. Cette troisième famille ne compte qu'un fichier, et la page l'a ignorée
+tant qu'elle n'énumérait que deux dossiers : c'est le même angle mort que l'issue #5397 relève pour
+les bancs de mutation, où un garde à la racine tombe entre eux.</p>
+<p>Relevé à la clôture de #5402, en <strong>lançant</strong> les points d'entrée un par un plutôt qu'en recopiant le
+chiffre. Le geste n'est pas décoratif : chercher <code>sort_si_contrat_demande</code> dans le texte en rend
+<strong>75</strong>, un de moins, parce qu'un script atteint l'aide sans écrire son nom. Une mention n'est pas un
+dispatch, et une absence de mention n'est pas une absence de capacité.</p>
+<p>Le chiffre a valu 68 à la clôture de #5257, quand la page annonçait « 43, 24, et le dernier garde
+shell » alors qu'<strong>aucun des deux scripts shell restants ne répond à <code>--contrat</code></strong>. La réponse s'obtient sans rien
 lire du dépôt : la branche s'imprime <strong>avant tout le reste</strong>, pour qu'un garde dont une dépendance
 manque rende quand même sa déclaration.</p>
 <p><code>verifie_contrat_obligatoire.py</code> <strong>refuse</strong> un point d'entrée de ces deux dossiers qui n'en
