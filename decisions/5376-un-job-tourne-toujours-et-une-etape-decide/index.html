@@ -10650,6 +10650,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#la-correspondance-job-vers-portee-est-une-bijection-et-ce-nest-pas-une-commodite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La correspondance job vers portée est une bijection, et ce n'est pas une commodité
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pourquoi-paths-est-interdit-et-ce-nest-pas-une-preference" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12530,6 +12541,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#la-correspondance-job-vers-portee-est-une-bijection-et-ce-nest-pas-une-commodite" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        La correspondance job vers portée est une bijection, et ce n'est pas une commodité
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#pourquoi-paths-est-interdit-et-ce-nest-pas-une-preference" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12630,6 +12652,14 @@ pas.</p>
 la réponse est non, le job écrit « sans objet » et finit <strong>vert en ayant conclu</strong>.</p>
 <p>La portée d'un job est déclarée dans un seul endroit, <code>.github/scripts/porte_du_job.py</code>, et tout job
 de demande y figure : soit avec ses chemins, soit dans les inconditionnels avec <strong>sa raison écrite</strong>.</p>
+<h2 id="la-correspondance-job-vers-portee-est-une-bijection-et-ce-nest-pas-une-commodite">La correspondance job vers portée est une bijection, et ce n'est pas une commodité<a class="headerlink" href="#la-correspondance-job-vers-portee-est-une-bijection-et-ce-nest-pas-une-commodite" title="Permanent link">&para;</a></h2>
+<p>Un nom de job ne désigne qu'un seul job. Cette contrainte a l'air d'un détail d'implémentation ;
+c'est elle qui empêche qu'un job soit <strong>couvert par la déclaration d'un autre</strong>.</p>
+<p>Mesuré le 2026-09-07, avant #5439 : <code>docs.yml</code> et <code>maven.yml</code> portaient tous deux un job <code>build</code>. Le
+garde comptant par nom, une seule entrée les satisfaisait, avec une raison écrite qui appartenait à
+l'un et était fausse pour l'autre. Vingt couples se déclenchaient pour dix-neuf noms distincts, et le
+garde d'exhaustivité était <strong>vert sur un job qu'il n'avait jamais examiné</strong>.</p>
+<p>Le dispositif reproduisait donc chez lui le défaut qu'il ferme partout ailleurs.</p>
 <h2 id="pourquoi-paths-est-interdit-et-ce-nest-pas-une-preference">Pourquoi <code>paths:</code> est interdit, et ce n'est pas une préférence<a class="headerlink" href="#pourquoi-paths-est-interdit-et-ce-nest-pas-une-preference" title="Permanent link">&para;</a></h2>
 <p>Deux décisions antérieures le condamnent, chacune de son côté.</p>
 <p><strong>Un job qui ne tourne pas ne rend aucun verdict.</strong> L'ADR 4571 refuse une fusion sans verdict complet,
