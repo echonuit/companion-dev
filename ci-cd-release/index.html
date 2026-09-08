@@ -2922,6 +2922,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/2112-on-ne-signe-pas-les-installeurs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2112 · On ne signe pas les installeurs
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/2213-un-dispositif-rapporte-avant-de-conclure/" class="md-nav__link">
         
   
@@ -13225,7 +13260,8 @@ généré sous macOS se vérifie sous Linux, et réciproquement. C'est vérifié
 <p><strong>Ce qu'une empreinte prouve, et ce qu'elle ne prouve pas.</strong> Elle atteste que le fichier est
 <strong>identique</strong> à celui publié : elle détecte un téléchargement corrompu ou tronqué. Elle ne remplace
 <strong>pas</strong> une signature - publiée au même endroit que les fichiers, elle n'atteste d'aucune identité.
-La signature de code reste cadrée en #2112, où elle est suspendue à une décision de financement.</p>
+La signature de code n'est pas financée : l'<a href="../decisions/2112-on-ne-signe-pas-les-installeurs/">ADR 2112</a>
+tranche que le produit s'arrête à la notification de mise à jour.</p>
 <p>Chaque installeur embarque son <strong>runtime</strong> (jpackage, profil <code>-Pinstaller</code>) : l'utilisateur final
 <strong>n'installe pas Java</strong>. Construire un installeur localement :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./mvnw<span class="w"> </span>-Pinstaller<span class="w"> </span>-Djpackage.type<span class="o">=</span>deb<span class="w"> </span>-DskipTests<span class="w"> </span>verify<span class="w">   </span><span class="c1"># ou dmg / msi selon l'OS</span>
@@ -14637,7 +14673,7 @@ sont exclus - attester une empreinte de trois lignes n'apprend rien.</p>
 <p><strong>Les deux droits ajoutés au job sont bornés</strong> : <code>id-token: write</code> ne sert qu'à prouver à Sigstore qui
 construit, <code>attestations: write</code> n'écrit que dans le magasin d'attestations du dépôt. Ni l'un ni
 l'autre ne touche au code, aux issues ou aux pull requests - le moindre privilège de #2739 tient.</p>
-<p><strong>Elle ne remplace pas la signature des installeurs</strong> (#2112, EPIC #2104) : la signature parle aux
+<p><strong>Elle ne remplace pas la signature des installeurs</strong> (<a href="../decisions/2112-on-ne-signe-pas-les-installeurs/">ADR 2112</a>) : la signature parle aux
 systèmes d'exploitation (SmartScreen, Gatekeeper), l'attestation parle à qui veut auditer. Les deux
 sont complémentaires, aucune ne rend l'autre inutile.</p>
 <h2 id="linventaire-des-dependances-livrees-et-sa-surveillance-2740">L'inventaire des dépendances livrées, et sa surveillance (#2740)<a class="headerlink" href="#linventaire-des-dependances-livrees-et-sa-surveillance-2740" title="Permanent link">&para;</a></h2>
