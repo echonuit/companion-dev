@@ -13867,7 +13867,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>scripts/batterie.py</code></td>
-<td>la <strong>porte d'entrée unique</strong> : ce qu'un diff engage, et ce qu'il n'engage pas. Un garde qui ne déclare pas ses <code>chemins</code> est <strong>lancé</strong>, et un garde illisible est signalé puis lancé : le défaut penche du côté coûteux, jamais du côté muet. Elle refuse d'engager zéro garde sur un diff non vide (<a href="../decisions/5340-un-garde-qui-ne-declare-pas-ses-chemins-est-lance/">ADR 5340</a>)</td>
+<td>la <strong>porte d'entrée unique</strong> : ce qu'un diff engage, et ce qu'il n'engage pas. Un garde qui ne déclare pas ses <code>chemins</code> est <strong>lancé</strong>, et un garde illisible est signalé puis lancé : le défaut penche du côté coûteux, jamais du côté muet. Elle refuse d'engager zéro garde sur un diff non vide (<a href="../decisions/5340-un-garde-qui-ne-declare-pas-ses-chemins-est-lance/">ADR 5340</a>). Elle refuse aussi les fichiers neufs hors de l'index : la porte voit leurs chemins, mais les gardes fondés sur <code>git ls-files</code> les excluraient encore de leur population</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
