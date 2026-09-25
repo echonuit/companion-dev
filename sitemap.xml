@@ -281,6 +281,10 @@
          <lastmod>2026-09-25</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/1874-la-cli-rend-le-lien-sans-ouvrir-de-navigateur/</loc>
+         <lastmod>2026-09-25</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/1881-l-identifiant-d-une-adr-est-le-numero-de-son-chantier/</loc>
          <lastmod>2026-09-25</lastmod>
     </url>
@@ -1426,6 +1430,10 @@
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/retours/2189-ce-que-ton-retour-a-produit/</loc>
+         <lastmod>2026-09-25</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/retours/5505-avant-apres/</loc>
          <lastmod>2026-09-25</lastmod>
     </url>
     <url>
