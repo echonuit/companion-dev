@@ -13447,6 +13447,11 @@ L'IHM garde la sienne : le trajet des journaux est un choix de surface, et perso
 d'une fenêtre. Pour un incident, la sortie d'erreur indique le chemin des journaux du workspace
 et invite à joindre le fichier <code>vigiechiro-*.log</code> le plus récent au signalement.
 Les refus métier et les erreurs d'arguments ne portent pas cette indication.</p>
+<p>Les appels en processus à <code>Cli.executer</code> passent par <code>StrategieExecutionCli</code> : elle migre la base,
+réserve le dossier si la commande écrit, puis exécute la commande. Les incidents et les refus de
+migration ou de verrou utilisent le même rendu et la même journalisation que ceux des commandes
+(#5506). Une base devenue illisible après la construction de l'injecteur rend ainsi le code <code>1</code>,
+un message et le chemin des journaux, sans pile sur le flux d'erreur fourni par l'appelant.</p>
 <h3 id="workspace-surchargeable">Workspace surchargeable<a class="headerlink" href="#workspace-surchargeable" title="Permanent link">&para;</a></h3>
 <p>Comme l'IHM, la CLI travaille dans un <strong>workspace</strong> (qui contient la base <code>vigiechiro.db</code>). L'option
 globale <code>--workspace &lt;dir&gt;</code> est consommée par <code>main()</code> <strong>avant</strong> de bâtir l'injecteur (elle positionne
@@ -13480,7 +13485,7 @@ où ces bornes se relèvent, et inventer une consigne propre à l'écran promett
 <p>L'application graphique <strong>réserve</strong> le dossier de travail pour toute sa durée (<code>VerrouWorkspace</code>,</p>
 <h1 id="2731-la-cli-ne-le-demandait-jamais-et-ecrivait-donc-par-dessus-alors-que-la-doc-du-verrou-nomme">2731) ; la CLI ne le demandait jamais et écrivait donc par-dessus, alors que la doc du verrou nomme<a class="headerlink" href="#2731-la-cli-ne-le-demandait-jamais-et-ecrivait-donc-par-dessus-alors-que-la-doc-du-verrou-nomme" title="Permanent link">&para;</a></h1>
 <p>elle-même le cas : « deux instances graphiques, <strong>une IHM et une CLI</strong>, ou une restauration pendant un
-import ». Depuis #3498, <code>Cli.migrerPuisExecuter</code> prend le verrou <strong>par défaut</strong>, pour toute la durée
+import ». Depuis #3498, <code>StrategieExecutionCli</code> prend le verrou <strong>par défaut</strong>, pour toute la durée
 de la commande. Un dossier déjà occupé donne un refus : code <code>2</code>, état intact.</p>
 <p>Une commande s'en dispense en portant l'interface marqueur <code>fr.univ_amu.iut.cli.LectureSeule</code>. <strong>La
 déclaration porte sur les lectrices, pas sur les écrivaines</strong>, et le sens compte : oublier de déclarer
