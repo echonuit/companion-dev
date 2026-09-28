@@ -9366,6 +9366,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#revision-du-2026-09-28-le-prefixe-ne-distinguait-pas-la-machinerie-de-la-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Révision du 2026-09-28 : le préfixe ne distinguait pas la machinerie de la détection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#la-cecite-declaree" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12967,6 +12978,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#revision-du-2026-09-28-le-prefixe-ne-distinguait-pas-la-machinerie-de-la-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Révision du 2026-09-28 : le préfixe ne distinguait pas la machinerie de la détection
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#la-cecite-declaree" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13038,8 +13060,19 @@
 <li>Un témoin nouveau est éprouvé dès sa PR, et non à la clôture suivante.</li>
 <li>L'auto-test du garde prouve le mécanisme dans les <strong>deux</strong> sens : qu'un témoin solide fait bien rougir la suite sous mutation, et que sans mutation la suite est verte. Sans le second, un script qui répondrait toujours « tout va bien » passerait le premier.</li>
 </ul>
+<h2 id="revision-du-2026-09-28-le-prefixe-ne-distinguait-pas-la-machinerie-de-la-detection">Révision du 2026-09-28 : le préfixe ne distinguait pas la machinerie de la détection<a class="headerlink" href="#revision-du-2026-09-28-le-prefixe-ne-distinguait-pas-la-machinerie-de-la-detection" title="Permanent link">&para;</a></h2>
+<p>La décision tient, sa mécanique change. « La mutation ne remplace que les fonctions de module non
+préfixées » définissait une cécité, et en cachait une seconde : <strong>un nom ne dit pas si une fonction
+est de la machinerie ou de la détection</strong>. Une détection nommée <code>_completude</code> ou <code>_forge</code> par
+convention d'interne était hors d'atteinte, et son garde passait pour éprouvé ou décoratif sans que
+rien de vrai n'ait été mesuré. Le motif « auto » + « test » des deux autres bancs épargnait de même
+quatre détections.</p>
+<p>L'exemption se <strong>dérive</strong> désormais du graphe d'appel : est machinerie ce que seul le point d'entrée
+d'auto-test atteint. Le préfixe n'est conservé que comme filtre, ce qui rend le changement monotone.</p>
+<p>Mesuré : 119 fonctions entrent dans la portée de la mutation, et <code>verifie_scripts.py</code> sort de la
+liste ci-dessous, sa détection étant enfin atteinte. Issue #5524.</p>
 <h2 id="la-cecite-declaree">La cécité déclarée<a class="headerlink" href="#la-cecite-declaree" title="Permanent link">&para;</a></h2>
-<p>La mutation ne remplace que les <strong>fonctions de module non préfixées</strong>. Un témoin qui n'éprouverait qu'une constante, une expression régulière ou une classe y survit sans être décoratif pour autant. Le garde ne prononce donc rien sur ceux-là, et il nomme ses exemptions une par une plutôt que de les taire :</p>
+<p>La mutation ne remplace que les fonctions de module que l'exemption dérivée ci-dessus ne protège pas. Un témoin qui n'éprouverait qu'une constante, une expression régulière ou une classe y survit sans être décoratif pour autant. Le garde ne prononce donc rien sur ceux-là, et il nomme ses exemptions une par une plutôt que de les taire :</p>
 <table>
 <thead>
 <tr>
