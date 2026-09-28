@@ -540,6 +540,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#les-appelants-dune-methode-java-se-resolvent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les appelants d'une méthode Java se RÉSOLVENT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-graphe-dabord" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -10923,6 +10934,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5464-deux-tiers-d-une-frontiere-sortent-en-chantier-enfant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5464 · Deux tiers d'une frontière sortent en chantier enfant
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5532-un-index-d-appels-repond-il-ne-refuse-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5532 · Un index d'appels répond, il ne refuse pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5539-un-engagement-date-se-lit-par-un-dispositif/" class="md-nav__link">
         
   
@@ -12914,6 +12995,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#les-appelants-dune-methode-java-se-resolvent" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les appelants d'une méthode Java se RÉSOLVENT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-graphe-dabord" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -12991,7 +13083,7 @@
 
 
 <h1 id="chercher-dans-le-depot">Chercher dans le dépôt<a class="headerlink" href="#chercher-dans-le-depot" title="Permanent link">&para;</a></h1>
-<p>Trois outils, et ils ne répondent pas aux mêmes questions. Se tromper d'outil coûte rarement une
+<p>Quatre outils, et ils ne répondent pas aux mêmes questions. Se tromper d'outil coûte rarement une
 erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, ce qui est pire.</p>
 <table>
 <thead>
@@ -13003,9 +13095,14 @@ erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, 
 </thead>
 <tbody>
 <tr>
-<td>un concept, ses voisins, qui l'appelle</td>
+<td>un concept, ses voisins, ce qui lui ressemble</td>
 <td><code>graphify</code></td>
 <td>un sous-graphe déjà réduit</td>
+</tr>
+<tr>
+<td><strong>qui appelle CETTE méthode Java</strong>, résolu</td>
+<td><code>scripts/qualite/appelants.py</code></td>
+<td>ses porteurs et leurs appelants, types résolus</td>
 </tr>
 <tr>
 <td>une <strong>forme de code</strong> (appel, constructeur, structure)</td>
@@ -13019,14 +13116,27 @@ erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, 
 </tr>
 </tbody>
 </table>
+<h2 id="les-appelants-dune-methode-java-se-resolvent">Les appelants d'une méthode Java se RÉSOLVENT<a class="headerlink" href="#les-appelants-dune-methode-java-se-resolvent" title="Permanent link">&para;</a></h2>
+<p>Le dépôt déclare <strong>1 235 noms de méthode dans plusieurs classes</strong> : <code>preparer</code> dans 188, <code>start</code> dans
+150, <code>nettoyer</code> dans 77. Devant eux, <code>grep</code> et <code>semgrep</code> rendent une liste de fichiers à ouvrir, et le
+graphe rend des arêtes en partie <strong>inférées</strong>. Aucun des trois ne dit laquelle des 188 est appelée.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3<span class="w"> </span>scripts/qualite/appelants.py<span class="w"> </span>preparer
+</code></pre></div>
+<p>Il lit l'index que Spoon produit à la compilation, que la CI rebâtit à chaque demande de fusion. Sur
+<code>preparer</code>, la question passe de <strong>243 fichiers à lire</strong> à <strong>neuf porteurs</strong> appelés d'ailleurs, dont
+le premier voit ses dix appelants nommés. Il <strong>refuse</strong> si l'index manque, plutôt que de rendre
+« aucun appelant » pour toute méthode, ce qui se lirait exactement comme du code mort.</p>
+<p><strong>Ce qu'il ne dit pas</strong>, et le contresens à ne pas commettre : « aucun appelant hors de son fichier »
+n'est pas du code mort. C'est l'état normal d'une aide privée, et cela vaut <strong>70 %</strong> du corpus, dont
+5 014 cas que JUnit appelle par réflexion.</p>
 <h2 id="le-graphe-dabord">Le graphe d'abord<a class="headerlink" href="#le-graphe-dabord" title="Permanent link">&para;</a></h2>
 <p>C'est la règle du dépôt, et elle est dans <code>AGENTS.md</code> : quand <code>graphify-out/graph.json</code> existe,
 <code>graphify query "&lt;question&gt;"</code> passe avant tout le reste. Il oriente ; les deux autres outils
 précisent ensuite.</p>
 <h2 id="semgrep-pour-les-questions-de-forme"><code>semgrep</code> pour les questions de forme<a class="headerlink" href="#semgrep-pour-les-questions-de-forme" title="Permanent link">&para;</a></h2>
 <p><code>semgrep</code> lit l'arbre syntaxique, pas les lignes. Il répond juste là où <code>grep</code> ne peut que deviner :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'CritereListe.$M(...)'</span><span class="w"> </span>src/main
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'new Scene(...)'</span><span class="w"> </span>src/main
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'CritereListe.$M(...)'</span><span class="w"> </span>src/main
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'new Scene(...)'</span><span class="w"> </span>src/main
 </code></pre></div>
 <p>Le second exemple n'est pas gratuit : la règle du dépôt est de passer par <code>Habillage.scene(...)</code>, et
 la question « qui construit une <code>Scene</code> à la main ? » n'a pas de réponse textuelle fiable - le nom

@@ -10918,6 +10918,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5464-deux-tiers-d-une-frontiere-sortent-en-chantier-enfant/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5464 · Deux tiers d'une frontière sortent en chantier enfant
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5532-un-index-d-appels-repond-il-ne-refuse-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5532 · Un index d'appels répond, il ne refuse pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5539-un-engagement-date-se-lit-par-un-dispositif/" class="md-nav__link">
         
   
@@ -13067,7 +13137,9 @@ même graphe</strong>.</p>
 <p>Ce qu'il apporte et que <code>grep</code> ne peut pas donner :</p>
 <ul>
 <li>les arêtes <code>calls</code> descendent au niveau <strong>méthode</strong> : « qui appelle réellement ceci ? » et,
-  symétriquement, « ce code sert-il encore à quelqu'un ? » ;</li>
+  symétriquement, « ce code sert-il encore à quelqu'un ? ». Pour une méthode <strong>Java</strong> dont le nom est
+  porté par plusieurs classes, <code>scripts/qualite/appelants.py</code> rend la réponse <strong>résolue</strong> plutôt
+  qu'inférée, et c'est là que les deux se complètent (#5532) ;</li>
 <li>les arêtes <code>conceptually_related_to</code> répondent à « <strong>qui d'autre fait X ?</strong> » quand X est une <strong>idée</strong>
   et non un identifiant ;</li>
 <li>il <strong>traverse les corpus</strong> : quelles maquettes du brief décrivent ce composant, quelles pages
