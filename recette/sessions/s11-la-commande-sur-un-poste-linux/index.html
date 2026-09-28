@@ -12473,6 +12473,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#essai-sur-le-poste-ubuntu-les-25-et-28-septembre-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Essai sur le poste Ubuntu, les 25 et 28 septembre 2026
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-cette-session-ne-prouve-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13037,6 +13048,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#essai-sur-le-poste-ubuntu-les-25-et-28-septembre-2026" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Essai sur le poste Ubuntu, les 25 et 28 septembre 2026
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-cette-session-ne-prouve-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13086,7 +13108,7 @@
 système et dans un terminal.
 <strong>Features</strong> : aucune ; elle porte sur l'<strong>exposition de la ligne de commande</strong> (#4071, suite de
 l'EPIC #2104).
-· <strong>Statut : à jouer.</strong>
+· <strong>Statut : partielle sur Ubuntu 26.04 avec GNOME ; menu Debian à revoir et Flatpak 2.194.0 absent (#5548).</strong>
 Retour à la <a href="../../">méthode</a>.</p>
 </blockquote>
 <h2 id="objectif">Objectif<a class="headerlink" href="#objectif" title="Permanent link">&para;</a></h2>
@@ -13175,6 +13197,49 @@ Ne jamais altérer le workspace de travail habituel.</p>
 <ul>
 <li><strong>S11-17</strong> · <em>hors-portée: la réponse et le journal sont hors de l'application</em> · <code>vigiechiro --workspace "$RECETTE_INCIDENT" lister-sites</code> rend le code 1. Le message sur stderr désigne <code>"$RECETTE_INCIDENT/logs"</code> sans afficher de pile Java ; le fichier <code>vigiechiro-*.log</code> le plus récent y porte la trace de l'incident.</li>
 </ul>
+<h2 id="essai-sur-le-poste-ubuntu-les-25-et-28-septembre-2026">Essai sur le poste Ubuntu, les 25 et 28 septembre 2026<a class="headerlink" href="#essai-sur-le-poste-ubuntu-les-25-et-28-septembre-2026" title="Permanent link">&para;</a></h2>
+<p>Le 25 septembre, les sommes SHA-256 des paquets <code>.deb</code> et AppImage publiés en 2.194.0 ont été
+vérifiées. Le poste était sous Ubuntu 26.04 avec GNOME. Un Flatpak 2.193.0 y était déjà installé :
+il a été retiré temporairement, sans effacer ses données, puis restauré à la même version.</p>
+<table>
+<thead>
+<tr>
+<th>Cases</th>
+<th>Observation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>S11-01, S11-03, S11-05, S11-06</td>
+<td>Le <code>.deb</code> 2.194.0 s'installe avec le statut <code>ii</code>. <code>/usr/bin/vigiechiro</code> pointe vers <code>/opt/vigiechirocompanion/bin/vigiechiro</code> ; <code>--version</code> donne 2.194.0, <code>ihm</code> ouvre la fenêtre et <code>lister-sites</code> répond « Aucun site enregistré. » dans un workspace jetable.</td>
+</tr>
+<tr>
+<td>S11-02, S11-04, S11-08</td>
+<td>Le menu et son double-clic ont été observés une première fois alors que le Flatpak 2.193.0 portait le même nom. Cette observation ne prouve pas que l'entrée venait du <code>.deb</code>. Après retrait des deux installations, les fichiers d'entrée ont disparu du système, mais le menu GNOME n'a pas été vérifié. Ces trois cases restent à rejouer avec le <code>.deb</code> seul.</td>
+</tr>
+<tr>
+<td>S11-07</td>
+<td>Après <code>apt remove</code>, la commande et son lien sous <code>/usr/bin</code> ont disparu.</td>
+</tr>
+<tr>
+<td>S11-12, S11-13</td>
+<td>Le double-clic sur l'AppImage 2.194.0 ouvre la fenêtre ; <code>--version</code> répond en texte avec le numéro 2.194.0.</td>
+</tr>
+<tr>
+<td>S11-14 à S11-17</td>
+<td>Sur le <code>.deb</code> 2.194.0, les codes sont 0, 2, 2 et 1. L'espèce rend seulement l'URL PNA ; les refus n'écrivent aucune URL ; l'incident désigne <code>logs/</code> sans pile sur stderr, et le fichier <code>vigiechiro-0.log</code> contient <code>SQLITE_NOTADB</code>.</td>
+</tr>
+<tr>
+<td>S11-09 à S11-11</td>
+<td>Le Flatpak disponible sur le dépôt officiel reste en 2.193.0. Son entrée de menu ouvre la fenêtre ; son lancement sans argument ouvre aussi la fenêtre et <code>lister-sites</code> répond en texte. Ces observations ne valident pas les cases pour la version publiée 2.194.0.</td>
+</tr>
+</tbody>
+</table>
+<p>Le <a href="https://github.com/echonuit/vigiechiro-pr-companion/actions/runs/35826167683/job/107069355439">job de publication Flatpak de la 2.194.0</a>
+a échoué sur l'authentification du <code>git push</code> vers <code>echonuit/flatpak.git</code>. L'issue <a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/5548">#5548</a>
+porte ce défaut. Rejouer les cases Flatpak sur une même version que le <code>.deb</code> et l'AppImage après
+sa correction. Rejouer aussi S11-02, S11-04 et S11-08 avec le <code>.deb</code> comme seule installation.
+Le Flatpak 2.193.0 et ses données utilisateur ont été restaurés ; le <code>.deb</code> a été retiré.</p>
 <h2 id="ce-que-cette-session-ne-prouve-pas">Ce que cette session ne prouve pas<a class="headerlink" href="#ce-que-cette-session-ne-prouve-pas" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>macOS</strong> : la commande y est installée mais hors du <code>PATH</code> (#4088). Rien ici ne la concerne.</li>
