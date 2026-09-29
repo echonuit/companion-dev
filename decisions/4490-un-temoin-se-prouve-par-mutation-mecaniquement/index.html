@@ -11094,6 +11094,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../5572-un-verdict-se-remesure-la-ou-il-retire-une-question/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5572 · Un verdict se remesure là où il retire une question
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../5483-un-gage-inerte-est-un-defaut-pas-un-quatrieme-niveau/" class="md-nav__link">
         
   
@@ -13151,6 +13186,10 @@
 <h1 id="un-temoin-se-prouve-par-mutation-et-la-mutation-est-mecanique">Un témoin se prouve par mutation, et la mutation est mécanique<a class="headerlink" href="#un-temoin-se-prouve-par-mutation-et-la-mutation-est-mecanique" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-26</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A2 · Un garde est vu rouge sur sa propre mutation</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4490 (passe 9 de la clôture de #4462)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>scripts/adr/verifie_temoins_non_decoratifs.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>Complétée le 2026-09-29</strong> par <a href="../5572-un-verdict-se-remesure-la-ou-il-retire-une-question/">ADR 5572</a> : sa mutation reste le dispositif de l'article A2 ; la 5572 la relie aux six autres décisions du même défaut, et dit où un verdict se remesure quand aucune mutation ne le couvre.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p><code>verifie_scripts.py</code> clôt sur une phrase : « les N scripts chargés <strong>détectent</strong> leur violation témoin ». Elle affirme davantage que ce que la suite vérifie. Un témoin peut exister, s'exécuter, passer, et ne rien tenir.</p>
 <p>Celui du cliquet de longueur d'ADR n'affirmait que <code>isinstance(suspects(), list)</code>. Un garde qui aurait cessé de détecter le passait. Le défaut a vécu jusqu'à ce qu'une passe de clôture aille le chercher à la main, et c'est le faux vert que le dépôt refuse partout ailleurs, installé dans le dispositif même qui le refuse.</p>
