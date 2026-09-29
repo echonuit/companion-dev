@@ -1037,6 +1037,10 @@
          <lastmod>2026-09-29</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4650-un-geste-de-test-vise-une-donnee-pas-une-position/</loc>
+         <lastmod>2026-09-29</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/4656-une-copie-morte-se-supprime-la-ou-le-geste-vit/</loc>
          <lastmod>2026-09-29</lastmod>
     </url>
@@ -1358,6 +1362,10 @@
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5572-un-verdict-se-remesure-la-ou-il-retire-une-question/</loc>
+         <lastmod>2026-09-29</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5582-le-budget-de-commentaire-se-compte-par-zone/</loc>
          <lastmod>2026-09-29</lastmod>
     </url>
     <url>

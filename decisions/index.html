@@ -11157,6 +11157,76 @@
   
   
     <li class="md-nav__item">
+      <a href="5582-le-budget-de-commentaire-se-compte-par-zone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5582 · Le budget de commentaire se compte par zone
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4650-un-geste-de-test-vise-une-donnee-pas-une-position/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4650 · Un geste de test vise une donnée, pas une position
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5483-un-gage-inerte-est-un-defaut-pas-un-quatrieme-niveau/" class="md-nav__link">
         
   
@@ -14347,7 +14417,7 @@
 </tr>
 <tr>
 <td><a href="4472-un-commentaire-long-en-corps-de-methode-est-un-signal/">4472</a></td>
-<td>Le cliquet 4359 ne compte que les lignes <code>///</code> : raccourcir une javadoc en poussant son récit trois lignes plus bas le faisait DESCENDRE sans que rien ne soit résorbé. Un compteur séparé, jamais mêlé au premier - les mêler laisserait un raccourcissement compenser un débordement, total stable et verdict vert. La mesure rassure et c'est pourquoi elle vaut d'être tenue : 4 656 blocs, médiane 2, aucun au-dessus de 15. Seuil à 8, cliquet à <!--inv:cliquet-commentaire-corps-->43<!--/inv--></td>
+<td>Le cliquet 4359 ne compte que les lignes <code>///</code> : raccourcir une javadoc en poussant son récit trois lignes plus bas le faisait DESCENDRE sans que rien ne soit résorbé. Un compteur séparé, jamais mêlé au premier - les mêler laisserait un raccourcissement compenser un débordement, total stable et verdict vert. La mesure rassure et c'est pourquoi elle vaut d'être tenue : 4 656 blocs, médiane 2, aucun au-dessus de 15. Seuil à 8, cliquet à <!--inv:cliquet-commentaire-corps-->24<!--/inv--></td>
 <td>#4472, chantier #4394</td>
 </tr>
 <tr>
@@ -14834,6 +14904,16 @@
 <td><a href="5572-un-verdict-se-remesure-la-ou-il-retire-une-question/">5572</a></td>
 <td>Sept décisions traitaient déjà le même défaut - un dispositif rend un verdict sans avoir exercé ce qu'il prétend juger - sous sept vocabulaires, et cinq ne déclaraient AUCUNE relation : chercher les mots d'une forme ne rendait aucune des six autres. Huit instances en un mois sur cinq chantiers, et <strong>aucune trouvée par un garde</strong> : les huit l'ont été parce que quelqu'un a remesuré ce qu'un autre annonçait. Sept décisions correctes n'ont pas empêché la huitième, donc une huitième de la même facture n'empêcherait pas la neuvième. La remesure est due là où un verdict autorise à ARRÊTER DE CHERCHER, et remesurer veut dire dériver le même nombre par un chemin qui ne passe pas par le dispositif. Écarté : un garde tenant la liste de la famille à la main, qui serait le gage inerte de l'ADR 5483 écrit pour garder l'ADR qui le condamne</td>
 <td>#5572, chantier #4650</td>
+</tr>
+<tr>
+<td><a href="5582-le-budget-de-commentaire-se-compte-par-zone/">5582</a></td>
+<td>Deux décisions refusaient déjà le compteur unique sur deux zones - l'ADR 4682 pour le portail, l'ADR 4587 pour les renvois - et <strong>aucune n'avait été appliquée ailleurs</strong>. La passe 7 de la clôture de #4650 a croisé les cliquets non nuls du dépôt avec les zones Java que leur gage lit : il restait UN cas, l'ADR 4472, dont les 43 suspects se répartissaient en 24 de production et 19 de test. Un gain de cinq côté test payait donc une régression de cinq côté production, le cliquet restant vert. Le comptage se sépare, la règle ne change pas : le budget de huit lignes vaut des deux côtés, et rien n'établit d'asymétrie de norme - contrairement au portail, où 4617 écarte explicitement les littéraux dupliqués du test. Transposer le mécanisme sans sa justification aurait affirmé une asymétrie que personne n'a mesurée</td>
+<td>#5582, chantier #4650</td>
+</tr>
+<tr>
+<td><a href="4650-un-geste-de-test-vise-une-donnee-pas-une-position/">4650</a></td>
+<td>Le lot #4554 a livré <code>DoubleClicDeterministe</code>, qui envoie l'événement à la ligne trouvée par son CONTENU au lieu de cliquer une position que la mise en page décide. Douze classes l'emploient sur seize sites. Quatre appels positionnels subsistent et les quatre sont légitimes - mais leur raison vivait dans TROIS commentaires qui ne se connaissaient pas, dont deux disaient la même chose, l'un renvoyant à « la même raison qu'au parcours jumeau ». Le garde ne refuse pas l'appel positionnel, il refuse l'appel positionnel MUET : la frontière reste un jugement, donc elle se déclare au point d'appel (ADR 5398). Il lit l'arbre et non un motif, la javadoc du helper citant <code>doubleClickOn</code> pour dire ce qu'il imite. Posé, il a trouvé le seul des quatre sites dont la raison n'était pas écrite</td>
+<td>#4650, passe 11</td>
 </tr>
 <tr>
 <td><a href="5483-un-gage-inerte-est-un-defaut-pas-un-quatrieme-niveau/">5483</a></td>

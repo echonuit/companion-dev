@@ -11153,6 +11153,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../5582-le-budget-de-commentaire-se-compte-par-zone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5582 · Le budget de commentaire se compte par zone
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4650-un-geste-de-test-vise-une-donnee-pas-une-position/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4650 · Un geste de test vise une donnée, pas une position
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../5483-un-gage-inerte-est-un-defaut-pas-un-quatrieme-niveau/" class="md-nav__link">
         
   
@@ -13199,6 +13269,10 @@
 <h1 id="un-commentaire-long-en-corps-de-methode-est-un-signal-pas-un-decor">Un commentaire long en corps de méthode est un signal, pas un décor<a class="headerlink" href="#un-commentaire-long-en-corps-de-methode-est-un-signal-pas-un-decor" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-25</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A30 · Le code dit ce qu&#x27;il fait, la javadoc dit son contrat, l&#x27;ADR dit pourquoi</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4472 (le commentaire en corps, chantier #4394)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification probable</span><span class="adr-bandeau__valeur"><code>scripts/adr/4472-commentaire-en-corps.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>Amendée le 2026-09-29</strong> par <a href="../5582-le-budget-de-commentaire-se-compte-par-zone/">ADR 5582</a> : le budget de huit lignes ne change pas, mais son cliquet ne couvre plus que la PRODUCTION, à 24. La zone de test porte le sien, à 19, et le garde sort sur le pire des deux.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Le cliquet de l'article A30 compte les lignes de prose des blocs <code>///</code>. Il ne voit donc <strong>rien</strong> des
 commentaires <code>//</code> : le dépôt en porte <strong>10 198 lignes réparties en 4 656 blocs</strong>, dont la quasi-totalité
@@ -13250,7 +13324,7 @@ c'est la règle du dépôt : <em>ce qui n'est pas compté grandit</em>.</p>
 <p><strong>Un bloc de <code>//</code> dans un corps de méthode a un budget de 8 lignes</strong>, et chaque ligne au-delà compte
 une. Le seuil est le double du 9ᵉ décile : il laisse passer le régime normal et ne signale que ce qui
 en sort franchement.</p>
-<p>Le cliquet est posé à <strong><!--inv:cliquet-commentaire-corps-->43<!--/inv--></strong>, l'état du jour.</p>
+<p>Le cliquet est posé à <strong><!--inv:cliquet-commentaire-corps-->24<!--/inv--></strong>, l'état du jour.</p>
 <p><strong>79 → 43</strong> (#4583). Le chantier #4502 avait écarté ce ruban en invoquant cette ADR, et le motif
 n'avait pas voix : son objet était d'aligner sur <code>vigiechiro-companion</code>, qui en compte 59.</p>
 <p>Huit blocs sur vingt-sept ont été ouverts et contractés, aucun raccourci pour atteindre un chiffre.

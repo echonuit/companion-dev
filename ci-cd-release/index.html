@@ -11042,6 +11042,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5582-le-budget-de-commentaire-se-compte-par-zone/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5582 · Le budget de commentaire se compte par zone
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4650-un-geste-de-test-vise-une-donnee-pas-une-position/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4650 · Un geste de test vise une donnée, pas une position
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5483-un-gage-inerte-est-un-defaut-pas-un-quatrieme-niveau/" class="md-nav__link">
         
   
@@ -13926,7 +13996,12 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>4472-commentaire-en-corps.py</code></td>
-<td>les blocs de <code>//</code> qui débordent dans un corps de méthode, population que le cliquet 4359 ne voit pas</td>
+<td>les blocs de <code>//</code> qui débordent dans un corps de méthode, population que le cliquet 4359 ne voit pas. <strong>Deux cliquets depuis #5582</strong>, la production (ADR 4472) et la zone de test (ADR 5582), le code de sortie étant le pire des deux : sous un seuil unique, un gain de cinq blocs d'un côté payait une régression de cinq de l'autre (ADR 4682)</td>
+<td><code>lint.yml</code> (cliquets ADR, autotest dédié)</td>
+</tr>
+<tr>
+<td><code>4650-double-clic-vise-la-donnee.py</code></td>
+<td>les double-clics de test qui visent une POSITION sans déclarer pourquoi. Il ne refuse pas l'appel positionnel - trois parcours E2E et un cas filmé en ont besoin, pour deux raisons différentes - il refuse l'appel <strong>muet</strong>, la frontière étant un jugement qui se déclare (ADR 5398). Il lit l'arbre et non un motif : la javadoc du helper cite <code>doubleClickOn</code> pour dire ce qu'il imite, et un <code>grep</code> la compte comme un appel. Cliquet à zéro</td>
 <td><code>lint.yml</code> (cliquets ADR, autotest dédié)</td>
 </tr>
 <tr>
