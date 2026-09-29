@@ -551,6 +551,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-porteurs-dun-contrat-et-les-lecteurs-dun-champ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les porteurs d'un contrat, et les lecteurs d'un champ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-graphe-dabord" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13181,6 +13192,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#les-porteurs-dun-contrat-et-les-lecteurs-dun-champ" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Les porteurs d'un contrat, et les lecteurs d'un champ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-graphe-dabord" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13258,7 +13280,7 @@
 
 
 <h1 id="chercher-dans-le-depot">Chercher dans le dépôt<a class="headerlink" href="#chercher-dans-le-depot" title="Permanent link">&para;</a></h1>
-<p>Quatre outils, et ils ne répondent pas aux mêmes questions. Se tromper d'outil coûte rarement une
+<p>Six outils, et ils ne répondent pas aux mêmes questions. Se tromper d'outil coûte rarement une
 erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, ce qui est pire.</p>
 <table>
 <thead>
@@ -13280,6 +13302,16 @@ erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, 
 <td>ses porteurs et leurs appelants, types résolus</td>
 </tr>
 <tr>
+<td><strong>qui tient CE contrat Java</strong>, résolu</td>
+<td><code>scripts/qualite/implemente.py</code></td>
+<td>ses porteurs, noms qualifiés</td>
+</tr>
+<tr>
+<td><strong>qui lit CE champ Java</strong>, hors de sa classe</td>
+<td><code>scripts/qualite/lecteurs.py</code></td>
+<td>ses déclarations, et qui les lit</td>
+</tr>
+<tr>
 <td>une <strong>forme de code</strong> (appel, constructeur, structure)</td>
 <td><code>semgrep</code></td>
 <td>les occurrences, avec leur position</td>
@@ -13291,8 +13323,11 @@ erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, 
 </tr>
 </tbody>
 </table>
+<p>Les trois du milieu lisent le même modèle Spoon, bâti une fois à la compilation, et refusent de
+répondre si leur index manque. Ce qu'ils partagent surtout est ce qu'ils <strong>ne</strong> disent pas : aucun des
+trois ne rend une liste de code mort, et les trois taux qui suivent disent pourquoi.</p>
 <h2 id="les-appelants-dune-methode-java-se-resolvent">Les appelants d'une méthode Java se RÉSOLVENT<a class="headerlink" href="#les-appelants-dune-methode-java-se-resolvent" title="Permanent link">&para;</a></h2>
-<p>Le dépôt déclare <strong>1 235 noms de méthode dans plusieurs classes</strong> : <code>preparer</code> dans 188, <code>start</code> dans
+<p>Le dépôt déclare <strong>1 422 noms de méthode dans plusieurs classes</strong> : <code>preparer</code> dans 188, <code>start</code> dans
 150, <code>nettoyer</code> dans 77. Devant eux, <code>grep</code> et <code>semgrep</code> rendent une liste de fichiers à ouvrir, et le
 graphe rend des arêtes en partie <strong>inférées</strong>. Aucun des trois ne dit laquelle des 188 est appelée.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3<span class="w"> </span>scripts/qualite/appelants.py<span class="w"> </span>preparer
@@ -13302,16 +13337,33 @@ graphe rend des arêtes en partie <strong>inférées</strong>. Aucun des trois n
 le premier voit ses dix appelants nommés. Il <strong>refuse</strong> si l'index manque, plutôt que de rendre
 « aucun appelant » pour toute méthode, ce qui se lirait exactement comme du code mort.</p>
 <p><strong>Ce qu'il ne dit pas</strong>, et le contresens à ne pas commettre : « aucun appelant hors de son fichier »
-n'est pas du code mort. C'est l'état normal d'une aide privée, et cela vaut <strong>70 %</strong> du corpus, dont
+n'est pas du code mort. C'est l'état normal d'une aide privée, et cela vaut <strong>69 %</strong> du corpus, dont
 5 014 cas que JUnit appelle par réflexion.</p>
+<h2 id="les-porteurs-dun-contrat-et-les-lecteurs-dun-champ">Les porteurs d'un contrat, et les lecteurs d'un champ<a class="headerlink" href="#les-porteurs-dun-contrat-et-les-lecteurs-dun-champ" title="Permanent link">&para;</a></h2>
+<p>Deux questions de la même famille, deux outils bâtis sur le même patron.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>python3<span class="w"> </span>scripts/qualite/implemente.py<span class="w"> </span>DaoGenerique<span class="w">   </span><span class="c1"># 30 porteurs, qualifiés</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python3<span class="w"> </span>scripts/qualite/lecteurs.py<span class="w"> </span>service<span class="w">          </span><span class="c1"># 168 déclarations, dont 24 lues d'ailleurs</span>
+</code></pre></div>
+<p>Le gain n'est pas le compte, c'est la <strong>résolution</strong>. Un <code>grep</code> sur <code>implements Contrat</code> rate la classe
+qui l'obtient par sa mère, et rate les <strong>22 interfaces imbriquées</strong> du dépôt. Un <code>grep</code> sur un nom de
+champ ne distingue pas le champ de la variable locale, du paramètre ni de la méthode homonymes :
+sur <code>service</code>, il rend <strong>3 398 lignes</strong> à trier, et <strong>995 des 3 730</strong> noms de champ du dépôt sont
+déclarés dans plusieurs classes.</p>
+<p><strong>Ce qu'ils ne disent pas</strong>, et c'est la même mise en garde qu'au-dessus, avec des taux plus raides :
+<strong>27 des 123 contrats</strong> n'ont aucun porteur, et <strong>8 195 des 8 933 champs</strong> n'ont aucun lecteur hors de
+leur classe, soit 92 %. Ni les uns ni les autres ne sont morts : un contrat posé pour un point
+d'extension, un état privé lu par les méthodes de sa propre classe sont exactement cela.</p>
+<p><code>lecteurs.py</code> ne retient que les <strong>lectures</strong>, jamais les écritures. Les confondre ferait passer un
+champ qu'un constructeur écrit et que personne ne lit pour « utilisé ailleurs », soit le faux négatif
+que l'index existe pour éviter ; les 4 347 écritures du corpus ne sont donc pas indexées.</p>
 <h2 id="le-graphe-dabord">Le graphe d'abord<a class="headerlink" href="#le-graphe-dabord" title="Permanent link">&para;</a></h2>
 <p>C'est la règle du dépôt, et elle est dans <code>AGENTS.md</code> : quand <code>graphify-out/graph.json</code> existe,
 <code>graphify query "&lt;question&gt;"</code> passe avant tout le reste. Il oriente ; les deux autres outils
 précisent ensuite.</p>
 <h2 id="semgrep-pour-les-questions-de-forme"><code>semgrep</code> pour les questions de forme<a class="headerlink" href="#semgrep-pour-les-questions-de-forme" title="Permanent link">&para;</a></h2>
 <p><code>semgrep</code> lit l'arbre syntaxique, pas les lignes. Il répond juste là où <code>grep</code> ne peut que deviner :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'CritereListe.$M(...)'</span><span class="w"> </span>src/main
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'new Scene(...)'</span><span class="w"> </span>src/main
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'CritereListe.$M(...)'</span><span class="w"> </span>src/main
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'new Scene(...)'</span><span class="w"> </span>src/main
 </code></pre></div>
 <p>Le second exemple n'est pas gratuit : la règle du dépôt est de passer par <code>Habillage.scene(...)</code>, et
 la question « qui construit une <code>Scene</code> à la main ? » n'a pas de réponse textuelle fiable - le nom
