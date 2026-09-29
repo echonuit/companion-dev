@@ -10939,6 +10939,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../5533-un-refus-declare-sa-forme-la-porte-ne-la-devine-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5533 · Un refus déclare sa forme
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../5539-un-engagement-date-se-lit-par-un-dispositif/" class="md-nav__link">
         
   
@@ -13142,6 +13177,10 @@
 <h1 id="aucune-position-nest-fiable-dans-le-refus-dun-garde-donc-on-en-montre-plus">Aucune position n'est fiable dans le refus d'un garde, donc on en montre plus<a class="headerlink" href="#aucune-position-nest-fiable-dans-le-refus-dun-garde-donc-on-en-montre-plus" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-07</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A3 · Un dispositif dit ce qu&#x27;il couvre, et ce qu&#x27;il n&#x27;a pas pu lire</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5478 (le chantier qui fermait des faux verts en a produit un), lot #5475</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>scripts/batterie.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>Amendée le 2026-09-29</strong> par l'<a href="../5533-un-refus-declare-sa-forme-la-porte-ne-la-devine-pas/">ADR 5533</a> : la porte lit d'abord une forme <strong>déclarée</strong> - <code>REFUS :</code> et <code>POUR REPARER :</code> - et n'en montre les deux premières lignes non vides que si le garde ne l'emploie pas. L'esprit de cette décision tient : elle refusait de <strong>deviner</strong> une structure, et lire une structure déclarée n'est pas deviner.</p>
+</div>
 <h2 id="le-contexte">Le contexte<a class="headerlink" href="#le-contexte" title="Permanent link">&para;</a></h2>
 <p><code>scripts/batterie.py</code> récapitule les refus qu'elle a recueillis. Elle en citait <strong>une</strong> ligne, et le
 choix de laquelle est le sujet de cette décision.</p>
@@ -13154,6 +13193,11 @@ refus dont la conduite à tenir était invisible.</p>
 <h2 id="la-decision">La décision<a class="headerlink" href="#la-decision" title="Permanent link">&para;</a></h2>
 <p><strong>On montre plus au lieu de deviner : les deux premières lignes non vides</strong>, chacune bornée
 séparément.</p>
+<p><strong>Amendé (#5485).</strong> Ce qui suit reste vrai d'un garde qui n'a pas de forme déclarée, et c'est le cas
+de la plupart. Pour les autres, la porte lit la forme et montre la cause et le geste <strong>où qu'ils
+soient</strong>. La différence n'est pas le nombre de lignes, c'est <strong>qui décide lesquelles</strong> : la position
+avant, le garde lui-même désormais. Le geste de <code>4617</code> vivait en troisième ligne et se perdait ; il
+s'affiche.</p>
 <p>Ce n'est pas un compromis sur le nombre, c'est le refus d'une inférence. Deviner la position de la
 cause ou du geste reviendrait à inférer une <strong>structure</strong> que les gardes ne partagent pas, et l'ADR
 5398 vient précisément de refuser qu'une exemption s'infère de la forme d'une sortie.</p>
