@@ -11120,6 +11120,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5553-trois-index-repondent-aucun-ne-devient-un-garde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5553 · Les trois index répondent, aucun ne devient un garde
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5562-une-mesure-declare-la-composition-de-ce-qu-elle-resume/" class="md-nav__link">
         
   
@@ -13362,8 +13397,9 @@ erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, 
 répondre si leur index manque. Ce qu'ils partagent surtout est ce qu'ils <strong>ne</strong> disent pas : aucun des
 trois ne rend une liste de code mort, et les trois taux qui suivent disent pourquoi.</p>
 <h2 id="les-appelants-dune-methode-java-se-resolvent">Les appelants d'une méthode Java se RÉSOLVENT<a class="headerlink" href="#les-appelants-dune-methode-java-se-resolvent" title="Permanent link">&para;</a></h2>
-<p>Le dépôt déclare <strong>1 422 noms de méthode dans plusieurs classes</strong> : <code>preparer</code> dans 188, <code>start</code> dans
-150, <code>nettoyer</code> dans 77. Devant eux, <code>grep</code> et <code>semgrep</code> rendent une liste de fichiers à ouvrir, et le
+<p>Le dépôt déclare <strong>1 424 noms de méthode dans plusieurs classes</strong>, sur 10 360 noms distincts :
+<code>preparer</code> dans 188, <code>start</code> dans 150, <code>nettoyer</code> dans 77. Ces deux comptes suivent la population et
+valent au 2026-09-29 ; le rapport, lui, tient. Devant eux, <code>grep</code> et <code>semgrep</code> rendent une liste de fichiers à ouvrir, et le
 graphe rend des arêtes en partie <strong>inférées</strong>. Aucun des trois ne dit laquelle des 188 est appelée.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>python3<span class="w"> </span>scripts/qualite/appelants.py<span class="w"> </span>preparer
 </code></pre></div>
@@ -13380,12 +13416,12 @@ n'est pas du code mort. C'est l'état normal d'une aide privée, et cela vaut <s
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>python3<span class="w"> </span>scripts/qualite/lecteurs.py<span class="w"> </span>service<span class="w">          </span><span class="c1"># 168 déclarations, dont 24 lues d'ailleurs</span>
 </code></pre></div>
 <p>Le gain n'est pas le compte, c'est la <strong>résolution</strong>. Un <code>grep</code> sur <code>implements Contrat</code> rate la classe
-qui l'obtient par sa mère, et rate les <strong>22 interfaces imbriquées</strong> du dépôt. Un <code>grep</code> sur un nom de
+qui l'obtient par sa mère, et rate les <strong>25 contrats imbriqués</strong> du dépôt. Un <code>grep</code> sur un nom de
 champ ne distingue pas le champ de la variable locale, du paramètre ni de la méthode homonymes :
 sur <code>service</code>, il rend <strong>3 398 lignes</strong> à trier, et <strong>995 des 3 730</strong> noms de champ du dépôt sont
 déclarés dans plusieurs classes.</p>
 <p><strong>Ce qu'ils ne disent pas</strong>, et c'est la même mise en garde qu'au-dessus, avec des taux plus raides :
-<strong>27 des 123 contrats</strong> n'ont aucun porteur, et <strong>8 195 des 8 933 champs</strong> n'ont aucun lecteur hors de
+<strong>27 des 123 contrats</strong> n'ont aucun porteur, et <strong>8 196 des 8 934 champs</strong> n'ont aucun lecteur hors de
 leur classe, soit 92 %. Ni les uns ni les autres ne sont morts : un contrat posé pour un point
 d'extension, un état privé lu par les méthodes de sa propre classe sont exactement cela.</p>
 <p><code>lecteurs.py</code> ne retient que les <strong>lectures</strong>, jamais les écritures. Les confondre ferait passer un
