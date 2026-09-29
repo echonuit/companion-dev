@@ -13194,9 +13194,15 @@ publication.</p>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
-<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>duree-du-portail</code></td>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a> · job <code>duree-du-portail</code></td>
 <td>push <code>main</code> + PR</td>
 <td>Compare la <strong>médiane</strong> des 12 dernières exécutions réussies sur <code>main</code> à celle des 12 d'avant, et <strong>avertit</strong> au-delà de 20 % d'écart. Une CI riche se dégrade par accumulation, jamais d'un coup : chaque ajout coûte trente secondes que personne ne remarque. Deux <strong>médianes</strong>, et non une exécution contre un seuil : sur trente exécutions, deux durent le double des autres, et un butoir aurait rougi sans qu'aucune PR soit fautive (#3508)</td>
+<td>Non - il avertit</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>duree-de-l-atelier-des-gardes</code></td>
+<td>push <code>main</code> + PR</td>
+<td>La <strong>même</strong> mesure, sur <code>lint.yml</code> : deux médianes glissantes de douze exécutions vertes, avertissement au-delà de 20 % d'écart. Elle manquait, et <code>lint.yml</code> était le seul atelier que rien ne suivait alors que l'instrument prend le workflow en argument (#5540). Les deux mesures sont <strong>croisées</strong> - celle-ci lit <code>lint.yml</code> depuis <code>maven.yml</code>, <code>duree-du-portail</code> lit <code>maven.yml</code> depuis <code>lint.yml</code> - parce qu'un atelier qui se mesure entre dans la fenêtre qu'il calcule. <code>maven.yml</code> se mesurait ainsi depuis #3508 : mesuré à 0,9 % du flux et 0,2 point de dérive, donc bénin, et corrigé quand même, une rétroaction se composant là où un compte se constate. Un cas de <code>--auto-test</code> refuse désormais qu'un atelier mesure celui où il vit, et il a rougi sur l'état d'avant</td>
 <td>Non - il avertit</td>
 </tr>
 <tr>
