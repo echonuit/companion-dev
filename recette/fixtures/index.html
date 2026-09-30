@@ -12244,10 +12244,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-12-cartes-de-recette" class="md-nav__link">
+  <a href="#les-cartes-de-recette" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les 12 cartes de recette
+        Les cartes de recette
       
     </span>
   </a>
@@ -13356,10 +13356,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#les-12-cartes-de-recette" class="md-nav__link">
+  <a href="#les-cartes-de-recette" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Les 12 cartes de recette
+        Les cartes de recette
       
     </span>
   </a>
@@ -13537,7 +13537,7 @@ reste concise. Exemple commenté (le cas propre) :</p>
 </code></pre></div>
 </li>
 </ul>
-<h2 id="les-12-cartes-de-recette">Les 12 cartes de recette<a class="headerlink" href="#les-12-cartes-de-recette" title="Permanent link">&para;</a></h2>
+<h2 id="les-cartes-de-recette">Les cartes de recette<a class="headerlink" href="#les-cartes-de-recette" title="Permanent link">&para;</a></h2>
 <p>Chaque carte exerce <strong>une</strong> pathologie de l'assistant d'import (voir l'étape 5 de
 <a href="../sessions/s2-importer/">S2 · Importer une nuit</a>).</p>
 <table>
@@ -13580,6 +13580,11 @@ reste concise. Exemple commenté (le cas propre) :</p>
 <td>3</td>
 </tr>
 <tr>
+<td><code>sd-sans-journal-multi</code></td>
+<td>deux nuits <strong>sans</strong> journal -&gt; la table paraît, et ses deux badges disent « complétude inconnue » (#5145)</td>
+<td>4</td>
+</tr>
+<tr>
 <td><code>sd-journal-corrompu</code></td>
 <td><code>LogPR</code> illisible -&gt; l'inspection échoue avec un message clair</td>
 <td>3</td>
@@ -13608,6 +13613,26 @@ reste concise. Exemple commenté (le cas propre) :</p>
 <td><code>sd-nuit-interrompue</code></td>
 <td>le journal ne se referme jamais -&gt; nuit <strong>tronquée</strong> (#5093)</td>
 <td>3</td>
+</tr>
+<tr>
+<td><code>sd-nuit-longue</code></td>
+<td>une nuit qui <strong>couvre</strong> la fenêtre du protocole et la dépasse -&gt; aucune alerte : la règle est un plancher (#5061)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>sd-fin-precoce</code></td>
+<td>le début est couvert, la fin non : l'enregistrement s'arrête avant 30 min après le lever -&gt; au diagnostic, l'alerte nomme ce bord (#5200)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>sd-hors-fenetre</code></td>
+<td>aucun des deux bords : l'enregistrement commence trop tard <strong>et</strong> s'arrête trop tôt -&gt; au diagnostic, l'alerte nomme les deux (#5200)</td>
+<td>6</td>
+</tr>
+<tr>
+<td><code>sd-carte-reutilisee</code></td>
+<td>une nuit de wav, un journal qui commence cinq nuits plus tôt et raconte aussi la leur -&gt; <strong>aucune</strong> incohérence (#5631)</td>
+<td>2</td>
 </tr>
 </tbody>
 </table>

@@ -13570,6 +13570,15 @@ alignés sur l'écran actuel, à confirmer au re-jeu.</em></p>
 <li><strong>S2-47</strong> · <em>geste: importer-malgre-des-rejets</em> · <code>sd-rejets</code> : l'import aboutit malgré le faux wav, la zone des rejets liste « nom - raison ».</li>
 <li><strong>S2-48</strong> · <em>geste: importer-depuis-une-archive-zip</em> · <code>sd-nominale.zip</code> : la décompression affiche sa barre et son bouton Annuler avant l'inspection.</li>
 <li><strong>S2-49</strong> · <em>geste: reimporter-une-nuit-deja-connue</em> · Ré-inspection de <code>sd-nominale</code> : bandeau « nuit déjà importée », informatif.</li>
+<li><strong>S2-80</strong> · <em>geste: reimporter-plusieurs-nuits-deja-connues</em> · <code>sd-multi-nuits</code> : importer les seules nuits du 04/07 et du 05/07
+  (décocher le 03/07), puis ré-inspecter la carte. Le bandeau « déjà importée » nomme le 04/07 et le 05/07, et pas le
+  03/07, bien que ce soit la nuit que le journal raconte en premier (#5600).</li>
+<li><strong>S2-81</strong> · <em>geste: reimporter-plusieurs-nuits-deja-connues</em> · Suite de S2-80, les trois nuits cochées : <strong>Importer</strong> demande
+  « 2 nuits de cette carte ont déjà été importées », nomme « nuit du 04/07/2026 » et « nuit du 05/07/2026 » avec leur
+  passage, et conclut « Importer quand même comme nouveaux passages ? » (#5639).</li>
+<li><strong>S2-82</strong> · <em>geste: une-carte-reutilisee-a-une-nuit</em> · <code>sd-carte-reutilisee</code> : l'inspection ne montre <strong>aucun</strong>
+  bandeau « incohérence », bien que le journal commence le 19/08 et que la carte ne porte que la nuit du 24/08 : le
+  journal raconte aussi cette nuit-là (#5631).</li>
 <li><strong>S2-50</strong> · <em>geste: reimporter-une-nuit-deja-connue</em> · Rattachement au même point + année + n° : bandeau « n° déjà pris » avec « Utiliser ce n° » et</li>
 </ul>
 <p><strong>Bloc · Gestes de ligne (EPIC #1792)</strong> : <strong>automatisable</strong>, contrairement à ce qui était écrit ici.</p>
