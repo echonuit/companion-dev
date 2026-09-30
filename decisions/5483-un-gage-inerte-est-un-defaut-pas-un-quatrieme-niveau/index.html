@@ -13315,7 +13315,7 @@
 
 
 <h1 id="un-gage-inerte-est-un-defaut-de-ladr-pas-un-quatrieme-niveau-de-verification">Un gage inerte est un défaut de l'ADR, pas un quatrième niveau de vérification<a class="headerlink" href="#un-gage-inerte-est-un-defaut-de-ladr-pas-un-quatrieme-niveau-de-verification" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-25</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A6 · La vérification se déclare, sur trois niveaux</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">EPIC #5483</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>scripts/adr/verifie_okf.py</code></span></div></div>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-25</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A6 · La vérification se déclare, sur trois niveaux</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">EPIC #5483</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>scripts/adr/verifie_okf.py</code>, <code>scripts/adr/verifie_gages_joues.py</code></span></div></div>
 
 <div class="admonition warning">
 <p class="admonition-title">Ce qui fait foi aujourd'hui</p>
@@ -13347,6 +13347,12 @@ en <code>humaine</code>, leur règle étant de méthode.</p>
 <ul>
 <li><strong>Le niveau se choisit par ce que le gage RÉPOND</strong>, non par ce à quoi il ressemble. Un
   <code>enforced_by</code> se relit en demandant : qu'est-ce qui rougit, sur quelle demande ?</li>
+<li><strong>Les deux espèces sont mécanisées depuis #5594</strong>, et par deux gardes distincts :
+  <code>verifie_okf.py</code> refuse le gage d'<strong>en-tête</strong>, un <code>enforced_by:</code> que la demande ne joue pas ;
+  <code>verifie_gages_joues.py</code> refuse le gage de <strong>code</strong>, une fonction qui juge et qu'aucun harnais
+  n'appelle. Mesuré au commit et non au jour, <strong>deux des cinq gages de <code>scripts/_commun/</code> sont nés
+  inertes</strong>, dont un pendant vingt-deux jours, et tous deux ont été trouvés par accident en remontant
+  un faux verdict de mutation.</li>
 <li><strong>Le refus est mécanique depuis #5484</strong> : <code>verifie_okf.py</code> refuse quatre formes de gage inerte, et
   la quatrième - un script qu'aucun atelier de demande n'invoque - a été trouvée en écrivant le garde.</li>
 <li><strong>Une décision que rien ne peut tenir se déclare <code>humaine</code></strong>, ce que
