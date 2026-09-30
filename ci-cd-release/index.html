@@ -13108,6 +13108,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#quels-ateliers-portent-un-suivi-de-duree-et-pourquoi-les-autres-non-5591" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quels ateliers portent un suivi de durée, et pourquoi les autres non (#5591)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#le-portail-qualite-pquality-gate" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13222,6 +13233,17 @@
     <span class="md-ellipsis">
       
         Les workflows
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#quels-ateliers-portent-un-suivi-de-duree-et-pourquoi-les-autres-non-5591" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Quels ateliers portent un suivi de durée, et pourquoi les autres non (#5591)
       
     </span>
   </a>
@@ -13510,6 +13532,140 @@ voit à l'œuvre entre deux lundis.</p>
 <p>Pages et release ne s'activent que via des <strong>variables de dépôt</strong> (<code>ENABLE_PAGES</code>,
 <code>ENABLE_RELEASE</code> = <code>true</code>). Tant qu'elles sont absentes, ces étapes ne rougissent pas la CI.</p>
 </div>
+<h2 id="quels-ateliers-portent-un-suivi-de-duree-et-pourquoi-les-autres-non-5591">Quels ateliers portent un suivi de durée, et pourquoi les autres non (#5591)<a class="headerlink" href="#quels-ateliers-portent-un-suivi-de-duree-et-pourquoi-les-autres-non-5591" title="Permanent link">&para;</a></h2>
+<p><code>mesure_duree_portail.py</code> compare deux médianes glissantes de <strong>douze</strong> exécutions réussies sur
+<code>main</code>, donc il lui en faut <strong>vingt-quatre</strong>. Ce n'est pas un réglage : c'est la condition sans
+laquelle il refuse de conclure, et elle décide à elle seule quels ateliers peuvent être suivis.</p>
+<p>Mesuré le 2026-09-30 en jouant l'instrument sur les vingt ateliers, avec sa propre requête
+(<code>?branch=main&amp;status=success&amp;per_page=24</code>) plutôt qu'un comptage réécrit.</p>
+<table>
+<thead>
+<tr>
+<th>Atelier</th>
+<th style="text-align: right;">Exécutions vertes sur <code>main</code></th>
+<th>Suivi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>critere-de-fin.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>possible</strong></td>
+</tr>
+<tr>
+<td><code>release.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>possible</strong></td>
+</tr>
+<tr>
+<td><code>codeql.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>possible</strong></td>
+</tr>
+<tr>
+<td><code>lint.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>suivi</strong> depuis #5540</td>
+</tr>
+<tr>
+<td><code>maven.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>suivi</strong> depuis #3508</td>
+</tr>
+<tr>
+<td><code>capture-vues.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>possible</strong></td>
+</tr>
+<tr>
+<td><code>docs.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>possible</strong></td>
+</tr>
+<tr>
+<td><code>mutation-ihm.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>possible</strong></td>
+</tr>
+<tr>
+<td><code>mutation-model.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>possible</strong></td>
+</tr>
+<tr>
+<td><code>recette-filmee.yml</code></td>
+<td style="text-align: right;">assez</td>
+<td><strong>possible</strong></td>
+</tr>
+<tr>
+<td><code>api-live.yml</code></td>
+<td style="text-align: right;">16</td>
+<td>non : sous les 24</td>
+</tr>
+<tr>
+<td><code>tournage-recette.yml</code></td>
+<td style="text-align: right;">16</td>
+<td>non : sous les 24</td>
+</tr>
+<tr>
+<td><code>suite-sous-windows-et-macos.yml</code></td>
+<td style="text-align: right;">11</td>
+<td>non : sous les 24</td>
+</tr>
+<tr>
+<td><code>adr-rapport.yml</code></td>
+<td style="text-align: right;">10</td>
+<td>non : sous les 24</td>
+</tr>
+<tr>
+<td><code>securite-dependances.yml</code></td>
+<td style="text-align: right;">8</td>
+<td>non : sous les 24</td>
+</tr>
+<tr>
+<td><code>flatpak.yml</code></td>
+<td style="text-align: right;">6</td>
+<td>non : sous les 24</td>
+</tr>
+<tr>
+<td><code>comparer-tournages.yml</code></td>
+<td style="text-align: right;">3</td>
+<td>non : sous les 24</td>
+</tr>
+<tr>
+<td><code>winget.yml</code></td>
+<td style="text-align: right;">1</td>
+<td>non : sous les 24</td>
+</tr>
+<tr>
+<td><code>titre-pr.yml</code></td>
+<td style="text-align: right;"><strong>aucune, par construction</strong></td>
+<td>non : ne tourne jamais sur <code>main</code></td>
+</tr>
+<tr>
+<td><code>corps-pr.yml</code></td>
+<td style="text-align: right;"><strong>aucune, par construction</strong></td>
+<td>non : ne tourne jamais sur <code>main</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Dix des vingt peuvent être suivis, deux ne pourront jamais l'être.</strong> <code>titre-pr.yml</code> et <code>corps-pr.yml</code>
+ne se déclenchent que sur <code>pull_request</code> : ils n'ont aucune exécution sur <code>main</code> et n'en auront jamais.
+Les huit autres sont sous le seuil parce qu'ils tournent rarement - un rapport du lundi, une release,
+un tournage appelé - et le temps seul ne les y amènera pas tous.</p>
+<p><strong>Le critère, en une phrase</strong> : un atelier mérite un suivi quand il tourne sur <code>main</code> assez souvent
+pour porter deux médianes de douze, et que son allongement ne serait signalé par rien d'autre. Un
+atelier rare n'y échappe pas par indulgence : l'instrument ne saurait pas conclure sur lui, et un
+avertissement qu'on ne peut pas fonder s'apprend à ignorer.</p>
+<p><strong>Ce que la mesure a trouvé en chemin, et qui n'est pas de la documentation.</strong> Trois des dix
+mesurables dépassent le seuil de 20 % <strong>en ce moment</strong>, et rien ne le dit puisque rien ne les joue :
+<code>release.yml</code> à <strong>+597 %</strong> (0,9 puis 6,4 min), <code>recette-filmee.yml</code> à <strong>+196 %</strong> (6,2 puis 18,3 min,
+ce qui confirme la mesure de #4842), <code>mutation-ihm.yml</code> à <strong>+24 %</strong> (51,9 puis 64,5 min). Consigné en
+<strong>#5615</strong> plutôt que traité ici, chaque dérive demandant une décision distincte.</p>
+<p><strong>Et les deux derniers rendent un message faux.</strong> Sur <code>titre-pr.yml</code> et <code>corps-pr.yml</code>, l'instrument
+écrit « Historique des exécutions illisible après trois tentatives » là où il n'y a rien à lire. Il
+confond une absence avec un échec de lecture, ce qui est le défaut que ce dépôt refuse ailleurs.
+Consigné avec les trois dérives, en <strong>#5615</strong>.</p>
 <h2 id="le-portail-qualite-pquality-gate">Le portail qualité (<code>-Pquality-gate</code>)<a class="headerlink" href="#le-portail-qualite-pquality-gate" title="Permanent link">&para;</a></h2>
 <p>Le profil Maven <code>quality-gate</code> rend <strong>bloquants</strong> des contrôles tolérants par défaut :</p>
 <ul>
