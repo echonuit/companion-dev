@@ -1662,6 +1662,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4967-une-seule-definition-d-un-epic-pour-les-quatre-dispositifs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4967 · Une seule définition d'un EPIC
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4974-un-garde-qui-lit-un-nom-se-contourne-en-renommant/" class="md-nav__link">
         
   
@@ -14317,7 +14352,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>loupe-4712-lots-multi-pr.py</code></td>
-<td>les lots de chaque EPIC ouvert, mis sous les yeux pour que la question du sous-chantier se pose ; elle ne tranche pas, le nombre de PR qu'un lot portera étant un jugement. Elle lit la forge, et sans <code>gh</code> authentifié elle sort en 2 plutôt que de rendre un rapport vide (ADR 4712). <strong>Muette au rapport hebdomadaire jusqu'à #4992</strong>, faute d'un jeton sur l'étape qui le publie</td>
+<td>les lots de chaque EPIC ouvert, mis sous les yeux pour que la question du sous-chantier se pose ; elle ne tranche pas, le nombre de PR qu'un lot portera étant un jugement. Elle lit la forge, et sans <code>gh</code> authentifié elle sort en 2 plutôt que de rendre un rapport vide (ADR 4712). <strong>Muette au rapport hebdomadaire jusqu'à #4992</strong>, faute d'un jeton sur l'étape qui le publie. Depuis #4967 un lot est aussi une <strong>sous-issue native</strong> et un EPIC se reconnaît au label <strong>ou</strong> au titre : elle est passée de 79 candidats à 143, et montre les lots de 26 EPIC au lieu de 18, dont le sas #4562 et ses 43 sous-issues. Sa liste finale dit « aucun lot <strong>ouvert</strong> », parce qu'elle ne collecte que les issues ouvertes</td>
 <td><code>adr-rapport.yml</code>, à la main au découpage d'un chantier et à la passe 9 d'une clôture (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
@@ -14707,12 +14742,12 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie_cloture_consignee.py</code></td>
-<td>un EPIC clos <strong>sans trace de clôture</strong>. Le dépôt écrit à trois endroits que tout chantier se clôt par quatorze passes, et rien ne le vérifiait : 43 sur 64 n'en portaient aucune. La cause n'était pas l'inattention - la compétence <code>clore-un-chantier</code> ne mentionnait nulle part le modèle à coller, et qui la suivait à la lettre ne laissait donc aucune trace (<a href="../decisions/4659-une-cloture-sans-trace-ne-se-distingue-pas-d-une-cloture-absente/">ADR 4659</a>). <strong>Cliquet</strong> à 42, qui ne peut que descendre : les anciennes sont assumées, une de plus rougit. Il <strong>refuse</strong> si la forge ne répond pas</td>
+<td>un EPIC clos <strong>sans trace de clôture</strong>. Le dépôt écrit à trois endroits que tout chantier se clôt par quatorze passes, et rien ne le vérifiait : 43 sur 64 n'en portaient aucune. La cause n'était pas l'inattention - la compétence <code>clore-un-chantier</code> ne mentionnait nulle part le modèle à coller, et qui la suivait à la lettre ne laissait donc aucune trace (<a href="../decisions/4659-une-cloture-sans-trace-ne-se-distingue-pas-d-une-cloture-absente/">ADR 4659</a>). <strong>Cliquet</strong> à 65, qui ne peut que descendre : les anciennes sont assumées, une de plus rougit. Il <strong>refuse</strong> si la forge ne répond pas, et depuis #4967 <strong>si sa collecte touche le plafond</strong>, un corpus tronqué le faisant passer au lieu de rougir. Le cliquet est passé de 42 à 65 parce que #4967 a corrigé sa <strong>population</strong> : il demandait <code>--label epic</code>, donc 58 EPIC clos sur 154 ne lui étaient jamais soumis, dont 23 sans trace</td>
 <td><code>lint.yml</code> - bloquant (autotest : <code>lint.yml</code>, hors ligne)</td>
 </tr>
 <tr>
 <td><code>verifie_specification_consignee.py</code></td>
-<td>une clôture qui n'a pas répondu à la <strong>passe 10</strong>, celle de l'archivage OpenSpec. Cliquet de <strong>déficit</strong> et non fraction de couverture : la question « combien de capacités sur combien » n'a pas de dénominateur, le dépôt en offrant cinq incompatibles. Il reconnaît la ligne à son <strong>contenu</strong> et non à son numéro, #4840 ayant renuméroté le cycle. Un EPIC clos sans AUCUNE trace ne lui appartient pas : c'est le cliquet voisin de #4659 qui monte alors</td>
+<td>une clôture qui n'a pas répondu à la <strong>passe 10</strong>, celle de l'archivage OpenSpec. Cliquet de <strong>déficit</strong> et non fraction de couverture : la question « combien de capacités sur combien » n'a pas de dénominateur, le dépôt en offrant cinq incompatibles. Il reconnaît la ligne à son <strong>contenu</strong> et non à son numéro, #4840 ayant renuméroté le cycle. Un EPIC clos sans AUCUNE trace ne lui appartient pas : c'est le cliquet voisin de #4659 qui monte alors. <strong>Cliquet</strong> à 2 depuis #4967, qui a corrigé sa population de la même façon : 21 EPIC clos lui échappaient, dont 20 portaient la marque, et #5414 est la trouvaille</td>
 <td><code>lint.yml</code></td>
 </tr>
 </tbody>

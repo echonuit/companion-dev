@@ -1664,6 +1664,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../4967-une-seule-definition-d-un-epic-pour-les-quatre-dispositifs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4967 · Une seule définition d'un EPIC
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4974-un-garde-qui-lit-un-nom-se-contourne-en-renommant/" class="md-nav__link">
         
   
@@ -9097,6 +9132,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#revision-du-2026-09-30-la-population-etait-fausse-dun-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Révision du 2026-09-30 : la population était fausse d'un tiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-le-garde-ne-pretend-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13385,6 +13431,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#revision-du-2026-09-30-la-population-etait-fausse-dun-tiers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Révision du 2026-09-30 : la population était fausse d'un tiers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-que-le-garde-ne-pretend-pas" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -13457,7 +13514,8 @@
 <p>Le dépôt écrit à <strong>trois</strong> endroits que tout chantier se clôt par douze passes : <code>CONTRIBUTING.md</code> §5
 à l'indicatif, <code>dev-docs/cycle-de-chantier.md</code> avec la raison de chaque passe, et la compétence
 <code>clore-un-chantier</code> dont la loi d'airain garde leur ordre.</p>
-<p>Rien ne le vérifiait. Mesuré le 2026-08-28 sur les EPIC clos, corps <strong>et</strong> commentaires cherchés :</p>
+<p>Rien ne le vérifiait. Mesuré le 2026-08-28 sur les EPIC clos <strong>portant le label <code>epic</code></strong>, corps
+<strong>et</strong> commentaires cherchés :</p>
 <table>
 <thead>
 <tr>
@@ -13498,10 +13556,39 @@ parce qu'elle ne s'écrit pas, elle se coche.</p>
 avaient réellement eu lieu. Refuser tout net rendrait le dépôt rouge sans qu'aucune PR soit
 fautive, et le garde se ferait désactiver la première semaine - le dépôt sait déjà qu'un avertisseur
 qui crie sur l'historique existant s'apprend à ignorer dès le premier jour.</p>
-<p>Le cliquet ne peut que <strong>descendre</strong>. Fermer un EPIC sans trace le fait monter à 43, et c'est ce
+<p>Le cliquet ne peut que <strong>descendre</strong>. Fermer un EPIC sans trace le fait monter d'un, et c'est ce
 mouvement-là qui rougit. Il est déjà descendu une fois, le jour de son écriture.</p>
-<p><strong>Les 42 sont assumées, pas rattrapées.</strong> Rejouer douze passes sur un chantier clos depuis un an
+<p><strong>Elles sont assumées, pas rattrapées.</strong> Rejouer quatorze passes sur un chantier clos depuis un an
 n'aurait pas de sens ; le dire une fois, dans ce chiffre, en a.</p>
+<h2 id="revision-du-2026-09-30-la-population-etait-fausse-dun-tiers">Révision du 2026-09-30 : la population était fausse d'un tiers<a class="headerlink" href="#revision-du-2026-09-30-la-population-etait-fausse-dun-tiers" title="Permanent link">&para;</a></h2>
+<p>Le garde demandait <code>--label epic</code>, donc la <strong>forge</strong> filtrait pour lui, alors que le dépôt désigne
+aussi un EPIC par le préfixe de son titre.</p>
+<table>
+<thead>
+<tr>
+<th>Sur les 1 737 issues closes</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>par le label, ce qu'il lisait</td>
+<td><strong>96</strong></td>
+</tr>
+<tr>
+<td>par l'union, ce qu'il devait lire</td>
+<td><strong>154</strong></td>
+</tr>
+<tr>
+<td>jamais lus</td>
+<td><strong>58</strong>, dont <strong>23</strong> sans trace</td>
+</tr>
+</tbody>
+</table>
+<p>D'où le cliquet à <strong>65</strong>. Le compte monte parce que la mesure commence à dire vrai, non parce qu'une
+clôture a régressé, et les 23 sont assumées comme les 42 l'ont été.</p>
+<p>Le contrôle : compter les manques parmi les 96 rend exactement <strong>42</strong>, le chiffre que cet en-tête
+portait. La divergence était dans la population, pas dans la détection. Voir <a href="../4967-une-seule-definition-d-un-epic-pour-les-quatre-dispositifs/">ADR 4967</a>.</p>
 <h2 id="ce-que-le-garde-ne-pretend-pas">Ce que le garde ne prétend pas<a class="headerlink" href="#ce-que-le-garde-ne-pretend-pas" title="Permanent link">&para;</a></h2>
 <p>Il cherche l'en-tête <code>## Clôture de chantier</code>. C'est une <strong>convention</strong>, pas une preuve : un EPIC peut
 la porter sans que les passes aient eu lieu.</p>
@@ -13514,11 +13601,15 @@ et tournent dans la batterie locale : y mettre celui-ci ferait rougir quiconque 
 <p>Placé ici, il peut <strong>refuser plutôt que conclure</strong> quand la forge ne répond pas, sans que ce refus
 coûte à personne.</p>
 <h2 id="comment-on-saurait-quelle-est-rompue">Comment on saurait qu'elle est rompue<a class="headerlink" href="#comment-on-saurait-quelle-est-rompue" title="Permanent link">&para;</a></h2>
-<p><code>.github/scripts/verifie-cloture-consignee.sh --auto-test</code> porte sept cas, dont <strong>trois qui doivent
+<p><code>.github/scripts/verifie_cloture_consignee.py --auto-test</code> porte <strong>28 cas, dont 5 qui doivent
 refuser</strong>. Le premier est celui qui compte : un EPIC de plus sans trace doit faire rougir le garde.
 Sans lui, tous ses verts ne vaudraient rien.</p>
-<p>Les deux derniers tiennent le refus lui-même : une ADR sans cliquet lisible, et une ADR introuvable,
-font <strong>refuser</strong> et non conclure.</p>
+<p>Trois des cinq tiennent le refus lui-même : une ADR sans cliquet lisible, une ADR introuvable, et
+la marque disparue du modèle.</p>
+<p>Les <strong>dix-neuf</strong> derniers, ajoutés par #4967, éprouvent la <strong>définition</strong> d'un EPIC et la
+<strong>collecte</strong> élargie, dont son refus <strong>au plafond</strong> : un corpus tronqué rend moins de manques, donc un
+cliquet qui passe, et c'est le cinquième qui doit refuser. Ils vivent ici parce que le leurre du garde
+injecte le corpus déjà constitué et court-circuite la requête.</p>
 
 
 
