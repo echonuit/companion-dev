@@ -11402,6 +11402,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5669-une-carte-de-plusieurs-nuits-se-juge-sur-les-nuits-racontees/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5669 · Une carte de plusieurs nuits se juge sur les nuits racontées
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4650-un-geste-de-test-vise-une-donnee-pas-une-position/" class="md-nav__link">
         
   
@@ -14617,7 +14652,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->741<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 329<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->741<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 331<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -14727,7 +14762,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 238<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 239<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -15178,6 +15213,11 @@
 <tr>
 <td><a href="5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/">5629</a></td>
 <td>Le journal de l'enregistreur est circulaire : sa première ligne raconte souvent une nuit importée puis effacée de la carte. L'inspection s'en servait pour dire qu'une nuit était déjà importée, et le contrôle de cohérence pour juger la date. Les nuits d'une carte sont celles de ses enregistrements, le journal n'est cru que pour sa série et les nuits qu'il raconte, et sa première ligne n'est qu'un repli.</td>
+<td></td>
+</tr>
+<tr>
+<td><a href="5669-une-carte-de-plusieurs-nuits-se-juge-sur-les-nuits-racontees/">5669</a></td>
+<td>L'ADR 5629 exemptait de tout jugement de date une carte de plusieurs nuits, parce que le journal circulaire n'en raconte parfois que les premières. L'exemption couvrait aussi un journal d'un autre déploiement qui n'en raconte aucune. Une seule nuit racontée suffit désormais à dire le journal cohérent, et aucune le dit étranger.</td>
 <td></td>
 </tr>
 </tbody>
