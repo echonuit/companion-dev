@@ -10317,6 +10317,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5087-une-version-hors-des-checks-se-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5087 · Une version hors des checks se déclare
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5258-la-page-qu-on-lit-avant-de-pousser-nomme-ce-qu-il-faut-lancer/" class="md-nav__link">
         
   
@@ -14784,6 +14819,11 @@
 <td><a href="5054-un-temoin-qui-n-affirme-que-des-vides-ne-prouve-rien/">5054</a></td>
 <td>Les premiers cas éprouvant le refus sur population vide affirmaient une seule chose : « quand on vide sa population, le garde rend zéro ». Ils passaient, et ils étaient DÉCORATIFS : la neutralisation de l'ADR 4490 remplace chaque fonction par <code>lambda: []</code>, si bien que l'assertion restait vraie sur un garde mort. Le faux vert du chantier, reproduit dans le cas écrit pour l'éliminer, et trouvé par le garde des témoins. Un cas affirme donc d'abord que la population DISCRIMINE, puis qu'elle se vide ; c'est la première assertion qui rougit sous mutation. Le corpus de l'ADR 4490 passe de 27 à 29 gardes</td>
 <td>#5054, sous-chantier du compte lu (#5015)</td>
+</tr>
+<tr>
+<td><a href="5087-une-version-hors-des-checks-se-declare/">5087</a></td>
+<td>La demande #5078 bumpait <code>pitest-maven</code> et ses <strong>dix-neuf checks sont passes au vert sans qu aucun n execute pitest</strong>. Trois bumps ont eu ce sort. La carte se DERIVE du <code>pom.xml</code> et des flux : sur neuf profils, <code>ecj</code> porte deux versions mais <code>maven.yml</code> l exerce en demande, et <code>mutation</code> porte les deux seules qu aucun flux <code>pull_request</code> n active. Elles se declarent donc dans un manifeste, avec ce qui les atteste, et un garde confronte le pom a ce manifeste - la valeur EST la marque, comme l empreinte de <code>relus.txt</code>. Un INVARIANT et non un cliquet : une divergence est fausse ou elle n est pas. Ce qu il ne fait PAS : tester pitest. Il refuse le SILENCE, le filet qui repond etant nocturne et refusant de juger une demande</td>
+<td>#5087, chantier #5584</td>
 </tr>
 <tr>
 <td><a href="5089-un-chemin-suivi-ne-porte-que-de-l-ascii/">5089</a></td>

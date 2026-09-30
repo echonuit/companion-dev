@@ -10202,6 +10202,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5087-une-version-hors-des-checks-se-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5087 · Une version hors des checks se déclare
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5258-la-page-qu-on-lit-avant-de-pousser-nomme-ce-qu-il-faut-lancer/" class="md-nav__link">
         
   
@@ -14677,6 +14712,7 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>scripts/adr/4359-blocs-relus.py</code> | le registre des blocs de javadoc <strong>relus et gardés volontairement</strong> ne porte aucune entrée périmée. L'empreinte porte sur le TEXTE du bloc : une édition l'invalide, ce qui force une nouvelle lecture au lieu de la présumer. Il <strong>ne fait pas baisser le cliquet</strong> - il mémorise une revue, il ne desserre pas une dette (<a href="../decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/">ADR 4359</a>) | <code>lint.yml</code> |
 | <code>scripts/adr/4617-code-mort-et-zone-de-test.py</code> | ce que le portail trouve, <strong>un cliquet par zone</strong> et le pire des deux verdicts : la production est à <strong>zéro</strong>, ce qui se lit comme un refus (<a href="../decisions/4682-le-portail-compte-chaque-zone-a-part/">ADR 4682</a>), la zone de test à <strong>40</strong> (<a href="../decisions/4617-le-portail-voit-les-tests-et-le-code-mort/">ADR 4617</a>). Un compteur unique laisserait une régression d'un côté se payer par un gain de l'autre. Il lit le rapport de PMD et non les sources, refuse quand ce rapport manque plutôt que de rendre zéro, et écarte les littéraux dupliqués de la seule zone de test, où les répéter est le geste juste | <code>lint.yml</code> |
 | <code>scripts/adr/4395-renvois-en-javadoc.py</code> | le nombre de renvois <code>#N</code> portés par la javadoc de production <strong>ne descend pas</strong>. C'est un PLANCHER et non un cliquet : sa polarité est inversée, descendre est la perte. Il existe parce que la résorption de la javadoc coupe la prose où vivent ces citations, et qu'un renvoi perdu ne casse rien - il cesse d'ouvrir. Plancher à 3 111, article A30 | <code>lint.yml</code> |
+| <code>scripts/adr/5087-versions-hors-des-checks.py</code> | les versions d artefact qu <strong>aucun flux declenche par une demande n exerce</strong>, confrontees a ce qu un manifeste atteste. La demande #5078 bumpait <code>pitest-maven</code> et ses <strong>dix-neuf checks sont passes au vert sans qu aucun n execute pitest</strong> ; trois bumps ont eu ce sort - #61, #2269, #5078 - et la question « quel check aurait rougi » n a ete posee sur le troisieme qu a cause d un rouge de runner sans rapport. <strong>La carte se DERIVE</strong> du <code>pom.xml</code> et des flux, elle ne se tient pas : sur neuf profils, <code>ecj</code> porte deux versions mais <code>maven.yml</code> l exerce en demande, et <code>mutation</code> porte les deux seules qui sont exposees, <code>pitest.version</code> et <code>pitest.junit5.version</code>. Le manifeste est <code>scripts/methode/versions-verifiees.txt</code>, et <strong>la valeur y EST la marque</strong> : si le pom bouge et que la ligne ne suit pas, le garde refuse - meme patron que l empreinte de <code>relus.txt</code>. Un <strong>INVARIANT</strong> et non un cliquet, une divergence etant fausse ou inexistante, jamais une dette qui descend. Deux pieges de derivation sont tenus par des cas plutot que par de la prudence : un releve libre des <code>-P</code> rend <strong>deux flux sur huit</strong> a tort - <code>-Process</code> et <code>-PassThru</code> sont des drapeaux PowerShell, <code>multi-PR</code> un mot compose - d ou la resolution contre les noms que le pom declare ; et <strong>trois profils sur neuf</strong> s activent par <code>&lt;os&gt;</code>, donc invisibles a cette lecture, et il les NOMME plutot que de les taire. Ce qu il ne fait PAS : tester pitest. Il refuse le SILENCE, le filet qui repond etant nocturne et refusant explicitement de juger une demande | <code>lint.yml</code> (cliquets ADR, ou il entre par le glob <code>scripts/adr/[0-9]*.py</code>), et la porte locale |
 | <code>scripts/graphify/pont_ressources.py</code> | l'index de classe Java préfère la <strong>classe</strong> à la page <code>X.java</code>, et le compte des commandes CLI couvertes reste borné par le nombre de commandes | <code>lint.yml</code> |
 | <code>scripts/graphify/rebuild.py</code> | <code>GRAPH_REPORT.md</code> annonce le corpus réel, et non un corpus vide suivi d'un verdict qui le contredit | <code>lint.yml</code> |
 | <code>scripts/adr/verifie_okf.py</code> | chaque ADR porte un en-tête typé, se rattache à un article de la constitution, et gage le niveau de vérification qu'elle déclare : une « humaine » qui nomme un applicateur n'en est pas une, une « humaine » qui ne dit POURQUOI rien ne la tient - ni <code>verification_note:</code> ni <code>loupe:</code> - laisse le test de documentation sur une référence vide, une « certaine » ou une « probable » dont l'<code>enforced_by</code> ne peut pas rougir non plus, le refus nommant le niveau autant que la forme, et le corpus ne descend pas sous son plancher | <code>lint.yml</code> |
