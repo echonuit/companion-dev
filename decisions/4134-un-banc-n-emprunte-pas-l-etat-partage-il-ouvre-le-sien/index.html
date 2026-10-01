@@ -11503,6 +11503,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5663 · La plateforme de test pose l'état de la JVM dans un fork à elle
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5666-la-plateforme-de-test-se-construit-sans-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5666 · La plateforme de test se construit sans cache
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/" class="md-nav__link">
         
   
@@ -13759,6 +13829,10 @@
 <h1 id="un-banc-nemprunte-pas-letat-partage-du-harnais-il-ouvre-le-sien">Un banc n'emprunte pas l'état partagé du harnais, il ouvre le sien<a class="headerlink" href="#un-banc-nemprunte-pas-letat-partage-du-harnais-il-ouvre-le-sien" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-22</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A4 · Un cas joué n&#x27;est pas un cas prouvé</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4134, clôture de l&#x27;EPIC #4133</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>AppTest#le_stage_partage_reste_ajustable</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>Amendée le 2026-10-01</strong> par l'<a href="../5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/">ADR 5663</a> : la plateforme de test écrit l'état de la JVM (contexte TLS par défaut, hôtes S3 admis) sans le rendre, parce qu'elle ne peut pas ouvrir le sien. La règle tient un cran plus haut : le fork est à elle seule, son tag étant exclu du build par défaut et joué par un profil dédié.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>TestFX réutilise <strong>la même fenêtre primaire</strong> pour toutes les classes d'un même fork. Une classe qui
 la dimensionne, la déplace ou la ferme laisse cet état à toutes celles qui passent après elle - et

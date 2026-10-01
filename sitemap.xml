@@ -1413,6 +1413,14 @@
          <lastmod>2026-10-01</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/</loc>
+         <lastmod>2026-10-01</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5666-la-plateforme-de-test-se-construit-sans-cache/</loc>
+         <lastmod>2026-10-01</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5669-une-carte-de-plusieurs-nuits-se-juge-sur-les-nuits-racontees/</loc>
          <lastmod>2026-10-01</lastmod>
     </url>

@@ -11392,6 +11392,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5663 · La plateforme de test pose l'état de la JVM dans un fork à elle
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5666-la-plateforme-de-test-se-construit-sans-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5666 · La plateforme de test se construit sans cache
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/" class="md-nav__link">
         
   
@@ -13749,7 +13819,9 @@ transport.</p>
 <div class="admonition warning">
 <p class="admonition-title">Jamais en CI</p>
 <p>Ces vérifications frappent l'API <strong>de production</strong> et exigent un token 14 j. Elles sont <strong>exclues du
-build par défaut</strong> (<code>surefire.excludedGroups=api-live</code>) et ne tournent qu'à la demande.</p>
+build par défaut</strong> (le tag <code>api-live</code> figure dans <code>surefire.excludedGroups</code>) et ne tournent qu'à la
+demande. Ce qui se vérifie <strong>sans jeton</strong>, contre une API Vigie-Chiro montée par les tests eux-mêmes :
+la <a href="../tests-et-qualite/#la-plateforme-de-test">plateforme de test</a>.</p>
 </div>
 <p>Récupérer un token : sur le site VigieChiro connecté, exécuter le marque-page qui lit
 <code>localStorage['auth-session-token']</code>.</p>

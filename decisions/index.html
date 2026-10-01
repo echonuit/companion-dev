@@ -11507,6 +11507,76 @@
   
   
     <li class="md-nav__item">
+      <a href="5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5663 · La plateforme de test pose l'état de la JVM dans un fork à elle
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5666-la-plateforme-de-test-se-construit-sans-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5666 · La plateforme de test se construit sans cache
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/" class="md-nav__link">
         
   
@@ -14747,7 +14817,7 @@
 </tr>
 <tr>
 <td><a href="4134-un-banc-n-emprunte-pas-l-etat-partage-il-ouvre-le-sien/">4134</a></td>
-<td>TestFX reutilise LA MEME fenetre primaire dans un fork : une classe qui la dimensionne, la deplace ou la FERME laisse cet etat a toutes les suivantes, et seulement dans l ordre ou la repartition les a mises. Le defaut est revenu CINQ fois (#1940, #1967, #3452, #4130, #4145), toujours signale par une classe qui n y etait pour rien. L ADR 3960 disait « rendre l etat » et les deux bancs le faisaient - ils reposaient la LARGEUR. Mesure : figee a 900x300 la fenetre ignore la scene suivante ; apres <code>sizeToScene</code> elle vaut 33x270, puis 369x504. LA VALEUR N EST PAS LA PROPRIETE. Un banc ouvre donc la sienne, <code>initOwner</code> sur celle du harnais, et la referme avec lui. Deux gardes : sur les SOURCES (aucun Stage recu n est fige) et sur la PROPRIETE (on pose une scene plus haute, la fenetre doit suivre). <code>sizeToScene</code> DEFIGE : le premier jet du garde de propriete l appelait avant de mesurer, et son mutant a SURVECU - il defaisait le defaut avant de le chercher. Le plancher de 600 px (#3452) masque la mesure si les deux scenes tiennent dessous. La classe qui HEBERGE le garde de #1940 etait la cinquieme fautive : elle prenait le Stage du harnais comme modale, et « Echap ferme la modale » le fermait pour tout le monde</td>
+<td>TestFX reutilise LA MEME fenetre primaire dans un fork : une classe qui la dimensionne, la deplace ou la FERME laisse cet etat a toutes les suivantes, et seulement dans l ordre ou la repartition les a mises. Le defaut est revenu CINQ fois (#1940, #1967, #3452, #4130, #4145), toujours signale par une classe qui n y etait pour rien. L ADR 3960 disait « rendre l etat » et les deux bancs le faisaient - ils reposaient la LARGEUR. Mesure : figee a 900x300 la fenetre ignore la scene suivante ; apres <code>sizeToScene</code> elle vaut 33x270, puis 369x504. LA VALEUR N EST PAS LA PROPRIETE. Un banc ouvre donc la sienne, <code>initOwner</code> sur celle du harnais, et la referme avec lui. Deux gardes : sur les SOURCES (aucun Stage recu n est fige) et sur la PROPRIETE (on pose une scene plus haute, la fenetre doit suivre). <code>sizeToScene</code> DEFIGE : le premier jet du garde de propriete l appelait avant de mesurer, et son mutant a SURVECU - il defaisait le defaut avant de le chercher. Le plancher de 600 px (#3452) masque la mesure si les deux scenes tiennent dessous. La classe qui HEBERGE le garde de #1940 etait la cinquieme fautive : elle prenait le Stage du harnais comme modale, et « Echap ferme la modale » le fermait pour tout le monde <strong>Amendée par l'ADR 5663</strong> : la plateforme de test écrit l'état de la JVM sans le rendre, dans un fork qui n'est qu'à elle</td>
 <td>#4134, clôture de l'EPIC #4133</td>
 </tr>
 <tr>
@@ -15007,7 +15077,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 256<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 260<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -15444,6 +15514,16 @@
 <td><a href="5641-les-tests-connectes-ont-deux-cibles/">5641</a></td>
 <td>Tout ce qui parlait à Vigie-Chiro depuis les tests passait par la plateforme nationale, derrière un jeton de quatorze jours renouvelé à la main, et l'ADR 4444 tenait le back local hors de la CI parce qu'une copie figée dériverait en silence. Elle n'avait examiné que la copie seule. Un test connecté déclare désormais sa cible : la <strong>plateforme de test</strong>, montée par les tests (API épinglée, Mongo, faux S3 en TLS, front web), au quotidien, sans jeton et écritures libres ; la <strong>plateforme nationale</strong>, en confrontation régulière. Un test vert sur l'une et rouge sur l'autre est une dérive qui ouvre une issue, et son remède est de remonter l'épinglage. Gardé de 4444 : un transfert ou une durée ne se prouvent pas sur un lien local nu, et un contrat d'écriture n'atteste pas la lecture, d'où le front embarqué. <code>humaine</code> tant que rien ne tient la confrontation : deux tests tiennent déjà la plateforme et la cible d'un scénario (#5699, #5665), et la décision passera à <code>certaine</code> avec #5647</td>
 <td>#5641, chantier #5640</td>
+</tr>
+<tr>
+<td><a href="5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/">5663</a></td>
+<td>L'ADR 4134 veut qu'un banc ouvre son état au lieu d'emprunter celui du fork. La plateforme de test ne le peut pas : pour déposer sur le faux S3 en TLS, elle pose le contexte TLS par défaut de la JVM et les hôtes S3 admis, et ne les rend pas, montée une fois par JVM. <strong>Le fork est l'état qu'elle ouvre</strong> : toute classe qui la monte, par le banc ou par l'extension, porte le tag <code>plateforme-de-test</code>, que le build par défaut exclut et qu'un profil dédié joue seul. Écartés : un client injecté dans <code>TransportVigieChiro</code> (la production élargie pour un test), la restauration (l'ordre resterait la vraie dépendance), un magasin de confiance au lancement (le certificat naît avec le conteneur). Le cas qui tenait le tag ne voyait que les scénarios, et a été élargi aux tests d'API à la clôture</td>
+<td>#5663, EPIC #5642</td>
+</tr>
+<tr>
+<td><a href="5666-la-plateforme-de-test-se-construit-sans-cache/">5666</a></td>
+<td>Le lot du job <code>plateforme-de-test</code> exigeait un cache de construction des images. Mesuré d'abord : 20 s en local pour l'image de l'API, une étape de 90 à 131 s en CI sur huit runs de <code>main</code>, et surtout un job qui tourne en parallèle et finit neuvième sur quatorze, loin derrière le plus long (535 à 912 s). Gagner vingt secondes n'avance pas le verdict, donc <strong>pas de cache</strong>. La question se rouvre si ce job devient le plus long de son run ; la mesure se refait sur plusieurs runs, jamais un seul. <code>humaine</code>, aucun garde ne tenant un rapport de durées qui varie d'un facteur deux selon le runner</td>
+<td>#5666, EPIC #5642</td>
 </tr>
 <tr>
 <td><a href="4650-un-geste-de-test-vise-une-donnee-pas-une-position/">4650</a></td>

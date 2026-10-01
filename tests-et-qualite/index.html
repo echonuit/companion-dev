@@ -11392,6 +11392,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5663 · La plateforme de test pose l'état de la JVM dans un fork à elle
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5666-la-plateforme-de-test-se-construit-sans-cache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5666 · La plateforme de test se construit sans cache
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/" class="md-nav__link">
         
   
@@ -14398,6 +14468,8 @@ fork, ce que garantit le profil, qui ne joue que ce tag.</p>
 le refuse sinon pour un scénario.</p>
 <h3 id="ses-epingles">Ses épingles<a class="headerlink" href="#ses-epingles" title="Permanent link">&para;</a></h3>
 <p><code>epingles.properties</code> est le <strong>seul</strong> endroit qui porte la révision de l'API et le digest de Mongo.
+<code>api.Dockerfile</code> ne donne donc aucune valeur par défaut à <code>REVISION</code>, et <code>ImageDeLApiSansRevisionTest</code>
+exige qu'il refuse de se construire sans elle.
 Remonter la révision est le remède d'une dérive constatée face à la plateforme nationale : c'est une
 décision, qui se dit dans la demande qui la porte.</p>
 <h3 id="ce-quelle-ne-prouve-pas">Ce qu'elle ne prouve pas<a class="headerlink" href="#ce-quelle-ne-prouve-pas" title="Permanent link">&para;</a></h3>
