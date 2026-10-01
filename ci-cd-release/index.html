@@ -13636,6 +13636,12 @@ publication.</p>
 <td><strong>Oui</strong></td>
 </tr>
 <tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/maven.yml">maven.yml</a> · job <code>plateforme-de-test</code></td>
+<td>push <code>main</code> + PR</td>
+<td>Monte la <strong>plateforme de test</strong> de l'<a href="../decisions/5641-les-tests-connectes-ont-deux-cibles/">ADR 5641</a> par Testcontainers - l'API Vigie-Chiro à la révision d'<code>scripts/plateforme-de-test/epingles.properties</code>, Mongo, le faux S3 en TLS, l'état de départ déclaré - puis y joue Companion sous <code>-Pplateforme-de-test</code>, <strong>sans aucun jeton</strong> de la plateforme nationale. Ubuntu seulement, faute de Docker ailleurs ; le tag reste exclu de <code>./mvnw test</code>. Sa portée inclut <code>scripts/plateforme-de-test/**</code> : une épingle remontée change le verdict sans toucher une ligne de Java (#5666)</td>
+<td><strong>Oui</strong></td>
+</tr>
+<tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/lint.yml">lint.yml</a> · job <code>duree-du-portail</code></td>
 <td>push <code>main</code> + PR</td>
 <td>Compare la <strong>médiane</strong> des 12 dernières exécutions réussies sur <code>main</code> à celle des 12 d'avant, et <strong>avertit</strong> au-delà de 20 % d'écart. Une CI riche se dégrade par accumulation, jamais d'un coup : chaque ajout coûte trente secondes que personne ne remarque. Deux <strong>médianes</strong>, et non une exécution contre un seuil : sur trente exécutions, deux durent le double des autres, et un butoir aurait rougi sans qu'aucune PR soit fautive (#3508)</td>
