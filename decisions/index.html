@@ -12375,6 +12375,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5707-un-geste-du-pointeur-situe-sa-cible-sur-le-fil/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5707 · Un geste du pointeur situe sa cible sur le fil JavaFX
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15379,6 +15414,11 @@
 <td><a href="5684-une-decision-pure-et-son-refus-se-separent-pour-etre-vus-rouges/">5684</a></td>
 <td>L'ADR 4967 justifiait une séparation de conception par un défaut d'outillage que #5673 a corrigé <strong>le même jour</strong> : sa conclusion pratique était caduque avant d'être lue. La séparation tient, pour une raison qu'elle ne nommait pas : une fonction <strong>pure</strong> se joue hors ligne, un refus non, puisque sortir en 2 n'est pas une valeur de retour. Les séparer est ce qui permet de voir les DEUX rouges. Elle amende 4967 au lieu de la réécrire, une ADR acceptée ne se réécrivant pas</td>
 <td>#5684, sas #4562</td>
+</tr>
+<tr>
+<td><a href="5707-un-geste-du-pointeur-situe-sa-cible-sur-le-fil/">5707</a></td>
+<td>Un geste du pointeur ne fait pas que bouger : il <strong>situe</strong> sa cible, et TestFX le fait sur le fil appelant en lisant les bornes de chaque candidat, ce qui itère les éléments de tout <code>Path</code> du sous-arbre - le caret d'un champ de saisie en est un. Une <code>ConcurrentModificationException</code> une fois sur 558 tirages. Le geste situe désormais sa cible <strong>sur le fil</strong>, et le point vient de <code>robot.point(...)</code> et non d'un calcul à nous : la première version prenait le centre de <code>localToScreen</code>, sans l'intersection avec la scène que TestFX fait, et le clic partait hors de la fenêtre. Un <strong>cliquet</strong> et non un banc : deux témoins Java ont été écrits et jetés, le fil JavaFX recalculant toute propriété partagée le premier et servant son cache au fil du test. Cliquet à 163, et la population de 5068 y est contenue, 38 sur 38</td>
+<td>#5707, lot de l'EPIC #5697</td>
 </tr>
 </tbody>
 </table>

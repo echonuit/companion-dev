@@ -12382,6 +12382,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5707-un-geste-du-pointeur-situe-sa-cible-sur-le-fil/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5707 · Un geste du pointeur situe sa cible sur le fil JavaFX
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -13676,6 +13711,15 @@
 <h1 id="une-dette-assumee-se-compte">Une dette assumée se compte<a class="headerlink" href="#une-dette-assumee-se-compte" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-01</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A9 · La dette se tient par un cliquet, pas par un nettoyage</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5068, lot 1 de l&#x27;EPIC #5041</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>scripts/adr/5068-clic-sur-reference-tenue.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>2026-10-01</strong> : cette décision est <strong>complétée</strong> par
+<a href="../5707-un-geste-du-pointeur-situe-sa-cible-sur-le-fil/">5707</a>. Les 38 sites qu'elle compte sont
+tous dans la population de 5707, 38 sur 38, qui demande davantage : un geste du pointeur situe sa
+cible <strong>sur le fil JavaFX</strong>. Le remède prescrit ici - passer au sélecteur plutôt que tenir une
+référence - retire un site de ce cliquet et le laisse dans celui de 5707 ; passer par
+<code>GesteVisible.pointSurLeFil</code> le retire des deux. Le reste fait foi.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p><code>clickOn(Node)</code> calcule son point de clic depuis <code>node.getScene()</code>. Une scène nulle signifie que le
 nœud n'est plus attaché au graphe au moment du clic : il a été résolu plus haut, et rien ne garantit
