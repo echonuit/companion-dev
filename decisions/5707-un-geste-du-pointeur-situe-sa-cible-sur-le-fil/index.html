@@ -13823,6 +13823,9 @@ tirages</strong> de trente jours - un minorant, le relevé ne lisant que <code>m
 <p>La pile est celle du fil <strong>du test</strong> : c'est lui qui itère, et le fil JavaFX qui écrit. Cette forme
 n'abîme rien, contrairement aux deux que nomme <code>CadreVisible.lireSurLeFilFx</code> : elle est levée chez le
 lecteur, le graphe reste intact, et le journal montre 5 603 tests pour une erreur, sans cascade.</p>
+<p><strong>Révision du 2026-10-01</strong> : ce minorant a une <strong>seconde</strong> raison, trouvée par #5738 - le relevé ne
+lit que les tirages <strong>rejoués</strong>, 21 sur les 59 qui portent un rouge. La décision ne change pas : elle
+tient sur le mécanisme, pas sur le taux.</p>
 <h2 id="la-decision">La décision<a class="headerlink" href="#la-decision" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Un geste du pointeur <strong>situe sa cible sur le fil JavaFX</strong>, et ne reçoit ensuite qu'un point.</p>
