@@ -10387,6 +10387,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5211-un-rappel-parle-au-moment-ou-l-on-travaille/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5211 · Un rappel parle au moment où l'on travaille
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5258-la-page-qu-on-lit-avant-de-pousser-nomme-ce-qu-il-faut-lancer/" class="md-nav__link">
         
   
@@ -15249,6 +15284,11 @@
 <td><a href="5065-un-verdict-dit-ce-qu-il-n-a-pas-juge/">5065</a></td>
 <td>Le pré-check rendait « conforme » quand il n'avait rien pu juger, et se repliait en silence sur une autre fenêtre que le diagnostic. Un verdict distingue désormais trois états, jamais deux, et nomme la source de second choix sur laquelle il statue. Sœur produit de l'ADR 2748.</td>
 <td>#5065</td>
+</tr>
+<tr>
+<td><a href="5211-un-rappel-parle-au-moment-ou-l-on-travaille/">5211</a></td>
+<td>L'ADR 4992 assumait le silence du rappel de critère de fin par « la loupe hebdomadaire balayant le stock ». <strong>La phrase était fausse</strong> : la loupe ne lit que les sous-issues OUVERTES et ne passe que le lundi à 6 h UTC, donc sur 386 lots clos nés depuis la règle, 49 seulement ont pu traverser un de ses passages, soit 13 %, la médiane de vie d'un lot étant de 4,4 h. Trouvé sur #5684, où le rappel a commenté, a été ignoré, et le lot a été clos sans critère nulle part. Le rappel parle désormais à DEUX moments, le second à l'ouverture d'une demande qui ferme le lot, et il NOMME les lots muets. Rien ne refuse toujours : l'arbitrage de #4961 avait écarté le ROUGE, pas le signalement, et un refus tomberait sur 20 % des lots</td>
+<td>#5211, lot de l'EPIC #5584</td>
 </tr>
 <tr>
 <td><a href="5258-la-page-qu-on-lit-avant-de-pousser-nomme-ce-qu-il-faut-lancer/">5258</a></td>
