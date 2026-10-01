@@ -14152,8 +14152,8 @@
 </tr>
 <tr>
 <td><a href="3099-une-puce-preselectionnee-annonce-ce-quelle-filtre/">3099</a></td>
-<td>Deux puces de Sons &amp; validation filtrent dès leur ajout, contre la règle « rien de coché n'écarte rien ». C'est <strong>acceptable parce qu'elles annoncent leur valeur</strong> : la capture montre « Taxon parent</td>
-<td>Chiroptères » lisible sans déplier. Un critère qui filtrerait d'emblée <strong>sans le montrer</strong> serait, lui, un défaut</td>
+<td>Deux puces de Sons &amp; validation filtrent dès leur ajout, contre la règle « rien de coché n'écarte rien ». C'est <strong>acceptable parce qu'elles annoncent leur valeur</strong> : la capture montre « Taxon parent | Chiroptères » lisible sans déplier. Un critère qui filtrerait d'emblée <strong>sans le montrer</strong> serait, lui, un défaut</td>
+<td>#3099, palier 4 du chantier #3092</td>
 </tr>
 <tr>
 <td><a href="3151-un-ecran-n-offre-pas-ce-qu-il-ne-montre-pas/">3151</a></td>
@@ -15143,17 +15143,17 @@
 <tr>
 <td><a href="5065-un-verdict-dit-ce-qu-il-n-a-pas-juge/">5065</a></td>
 <td>Le pré-check rendait « conforme » quand il n'avait rien pu juger, et se repliait en silence sur une autre fenêtre que le diagnostic. Un verdict distingue désormais trois états, jamais deux, et nomme la source de second choix sur laquelle il statue. Sœur produit de l'ADR 2748.</td>
-<td></td>
+<td>#5065</td>
 </tr>
 <tr>
 <td><a href="5258-la-page-qu-on-lit-avant-de-pousser-nomme-ce-qu-il-faut-lancer/">5258</a></td>
 <td>La section « batterie locale » d'<code>ouvrir-une-pr</code> annonçait quatre gardes rougissant en CI hors de <code>rapport.py</code> ; ils sont trente, et la page en nommait trois. Un garde confronte désormais ce que la page prescrit à ce que les ateliers lancent, et son cliquet est à zéro. Sœur de l'ADR 4745 : la prose de méthode est de la prescription, et une prescription se confronte à la machine.</td>
-<td></td>
+<td>#5006, lot #5258</td>
 </tr>
 <tr>
 <td><a href="5278-une-attente-qui-lit-le-graphe-le-lit-sur-le-fil/">5278</a></td>
 <td>Soixante-trois attentes lisaient le graphe de scène depuis le fil du test, là où <code>Attente.queSurLeFil</code> existe depuis #4408 pour le lire sur le fil FX. Un <code>IndexOutOfBounds</code> d'index égal à la longueur en CI est la signature de cette lecture concurrente. Cliquet à 63, dérivé des lectures de nœuds et non d'une liste de classes.</td>
-<td></td>
+<td>#5277, lot #5278</td>
 </tr>
 <tr>
 <td><a href="5307-le-dispositif-de-designation-se-choisit-en-un-endroit/">5307</a></td>
@@ -15328,12 +15328,12 @@
 <tr>
 <td><a href="5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/">5629</a></td>
 <td>Le journal de l'enregistreur est circulaire : sa première ligne raconte souvent une nuit importée puis effacée de la carte. L'inspection s'en servait pour dire qu'une nuit était déjà importée, et le contrôle de cohérence pour juger la date. Les nuits d'une carte sont celles de ses enregistrements, le journal n'est cru que pour sa série et les nuits qu'il raconte, et sa première ligne n'est qu'un repli.</td>
-<td></td>
+<td>#5629, lots #5600 et #5631</td>
 </tr>
 <tr>
 <td><a href="5669-une-carte-de-plusieurs-nuits-se-juge-sur-les-nuits-racontees/">5669</a></td>
 <td>L'ADR 5629 exemptait de tout jugement de date une carte de plusieurs nuits, parce que le journal circulaire n'en raconte parfois que les premières. L'exemption couvrait aussi un journal d'un autre déploiement qui n'en raconte aucune. Une seule nuit racontée suffit désormais à dire le journal cohérent, et aucune le dit étranger.</td>
-<td></td>
+<td>#5629, lot #5669</td>
 </tr>
 <tr>
 <td><a href="5684-une-decision-pure-et-son-refus-se-separent-pour-etre-vus-rouges/">5684</a></td>
