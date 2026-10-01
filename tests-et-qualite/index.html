@@ -14219,6 +14219,56 @@ test (une clé = un fait que le code sait recalculer). Et le test exige qu'<stro
 par clé, pour qu'un inventaire ne perde pas discrètement son ancre. Enfin, <code>aucune_commande_documentee_n_a_disparu_de_la_cli</code>
 fait le trajet <strong>inverse</strong> du tableau CLI : une commande décrite dans <code>cli.md</code> mais <strong>absente</strong> du câblage
 (renommée, supprimée) fait rougir tout autant.</p>
+<h2 id="la-plateforme-de-test">La plateforme de test<a class="headerlink" href="#la-plateforme-de-test" title="Permanent link">&para;</a></h2>
+<p>Les tests connectés ont deux cibles (<a href="../decisions/5641-les-tests-connectes-ont-deux-cibles/">ADR 5641</a>) :
+la plateforme nationale, qui demande un jeton et sert à une confrontation régulière, et la <strong>plateforme
+de test</strong>, que les tests montent eux-mêmes par Testcontainers, sans jeton ni secret.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>./mvnw<span class="w"> </span>-Pplateforme-de-test<span class="w"> </span><span class="nb">test</span><span class="w">   </span><span class="c1"># Docker requis ; joue le seul tag `plateforme-de-test`</span>
+</code></pre></div>
+<p>Le tag est exclu de <code>./mvnw test</code>, que jouent aussi les runners Windows et macOS, sans Docker
+utilisable. En CI, le job <code>plateforme-de-test</code> de <code>maven.yml</code> le joue sur Ubuntu à chaque demande qui
+touche le code ou <code>scripts/plateforme-de-test/</code>.</p>
+<h3 id="ce-quelle-monte">Ce qu'elle monte<a class="headerlink" href="#ce-quelle-monte" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/commun/api/plateforme/PlateformeDeTest.java"><code>PlateformeDeTest</code></a>
+monte une plateforme <strong>par JVM</strong>, au premier test qui la demande, dans cet ordre :</p>
+<ol>
+<li>Mongo, par le digest de <code>scripts/plateforme-de-test/epingles.properties</code> ;</li>
+<li>le faux S3 en TLS (<code>faux_s3.py</code>, <code>faux-s3.Dockerfile</code>), dont le certificat couvre l'hôte que
+   Testcontainers rend ;</li>
+<li>l'API Vigie-Chiro (<code>api.Dockerfile</code>), à la révision épinglée, sous <code>/api/v1</code>, avec
+   <code>DEV_FAKE_S3_URL</code> pointé sur l'adresse du faux S3 <strong>vue depuis la JVM</strong>, d'où l'ordre ;</li>
+<li>l'état de départ déclaré (<code>etat-de-depart.json</code>), matérialisé par <code>amorcer.py</code> dans le
+   conteneur de l'API.</li>
+</ol>
+<p>Elle pose ensuite <code>vigiechiro.s3.hotes</code> et fait accepter le certificat du faux S3 par
+<code>SSLContext.setDefault</code>. Cela ne tient que si aucun client HTTP n'a été construit avant dans le
+fork, ce que garantit le profil, qui ne joue que ce tag.</p>
+<h3 id="lemployer">L'employer<a class="headerlink" href="#lemployer" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Un test d'API : <code>PlateformeDeTest.acces()</code> rend l'URL de base, les jetons par clé d'utilisateur
+  déclarée (<code>observatrice</code>, <code>validatrice</code>, <code>administratrice</code>) et les identifiants de l'état de départ
+  (<code>participations:nuit-traitee</code>). Exemple :
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/commun/api/plateforme/DepotSurLaPlateformeDeTestTest.java"><code>DepotSurLaPlateformeDeTestTest</code></a>.</li>
+<li>Un scénario d'écran : <code>BancDeRecette.surLaPlateformeDeTest("observatrice")</code>, exclusive des autres
+  déclarations du banc. Le banc vise la plateforme et dépose le jeton sans profil ; la modale le
+  revérifie seule. Exemple :
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/connexion/view/ScenarioPlateformeDeTestConnexionTest.java"><code>ScenarioPlateformeDeTestConnexionTest</code></a>.</li>
+</ul>
+<p>Dans les deux cas la classe porte <code>@Tag("plateforme-de-test")</code>, et <code>DeclarationDeLaPlateformeTest</code>
+le refuse sinon pour un scénario.</p>
+<h3 id="ses-epingles">Ses épingles<a class="headerlink" href="#ses-epingles" title="Permanent link">&para;</a></h3>
+<p><code>epingles.properties</code> est le <strong>seul</strong> endroit qui porte la révision de l'API et le digest de Mongo.
+Remonter la révision est le remède d'une dérive constatée face à la plateforme nationale : c'est une
+décision, qui se dit dans la demande qui la porte.</p>
+<h3 id="ce-quelle-ne-prouve-pas">Ce qu'elle ne prouve pas<a class="headerlink" href="#ce-quelle-ne-prouve-pas" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>La signature v2</strong> des dépôts : en mode <code>DEV_FAKE_S3_URL</code>, l'API ne signe aucune URL, et toutes
+  les parties d'un multipart arrivent sur la même adresse (#5658).</li>
+<li><strong>Le traitement</strong> : pas de worker Tadarida. Une participation « traitée » vient de l'état
+  déclaré, et un calcul lancé reste planifié.</li>
+<li><strong>La lecture par la fiche web</strong> des écritures de Companion : c'est le lot #5645.</li>
+<li><strong>Un transfert ou une durée</strong> : sur un lien local, la latence est nulle (lot #5646).</li>
+</ul>
 <h2 id="les-outils-qualite">Les outils qualité<a class="headerlink" href="#les-outils-qualite" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -14295,11 +14345,11 @@ c'est lui qui bloque la CI. Or, laissée par défaut, l'extension applique le pr
 <p>Le réglage qui les réaligne <strong>ne peut pas être versionné</strong> : <code>sonarlint.rules</code> est de scope
 <code>application</code>, donc VS Code le lit <strong>uniquement</strong> depuis les réglages utilisateur et ignore
 silencieusement un bloc placé dans <code>.vscode/settings.json</code>. À recopier dans ses réglages personnels :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">"sonarlint.rules"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">    </span><span class="nt">"java:S107"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w"> </span><span class="nt">"constructorMax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">    </span><span class="nt">"java:S3776"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Threshold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">    </span><span class="nt">"java:S106"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="w"> </span><span class="p">}</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nt">"sonarlint.rules"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span><span class="nt">"java:S107"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"maximum"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="p">,</span><span class="w"> </span><span class="nt">"constructorMax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"11"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="nt">"java:S3776"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"on"</span><span class="p">,</span><span class="w"> </span><span class="nt">"parameters"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"Threshold"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30"</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">    </span><span class="nt">"java:S106"</span><span class="p">:</span><span class="w">  </span><span class="p">{</span><span class="w"> </span><span class="nt">"level"</span><span class="p">:</span><span class="w"> </span><span class="s2">"off"</span><span class="w"> </span><span class="p">}</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="p">}</span>
 </code></pre></div>
 <p>Trois points à ne pas redécouvrir :</p>
 <ul>
@@ -14325,9 +14375,9 @@ l'écart tient en trois lignes, le bloc ci-dessus suffit.</p>
 <li>
 <p><strong>PIT</strong> (<code>-Pmutation</code>) évalue si les tests <strong>détectent</strong> des mutations du code. Lent sur tout le
   dépôt, mais <strong>rapide ciblé</strong> sur la classe qu'on vient d'écrire - et c'est ainsi qu'il sert le mieux :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>./mvnw<span class="w"> </span>-Pmutation<span class="w"> </span>test-compile<span class="w"> </span>org.pitest:pitest-maven:mutationCoverage<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="w">    </span>-DtargetClasses<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuit<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span>-DtargetTests<span class="o">=</span>fr.univ_amu.iut.passage.viewmodel.SaisieHorairesNuitTest
 </code></pre></div>
 </li>
 </ul>
@@ -14338,7 +14388,7 @@ l'<code>argLine</code> de Surefire, qui contient deux valeurs posées par des gr
 (<code>./mvnw -Pmutation org.pitest:...:mutationCoverage</code>) n'exécute <strong>aucune</strong> phase : les deux restent
 littérales, le minion reçoit <code>-javaagent:${net.bytebuddy:byte-buddy-agent:jar}</code>, refuse de démarrer, et
 PIT ne rapporte que :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>PIT &gt;&gt; SEVERE : Coverage generator Minion exited abnormally due to MINION_DIED
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>PIT &gt;&gt; SEVERE : Coverage generator Minion exited abnormally due to MINION_DIED
 </code></pre></div>
 <p>Ce message <strong>ne dit pas</strong> la cause, et il est identique quelle que soit la classe visée - y compris une
 classe pure sans JavaFX ni SQLite. D'où la conclusion tentante, et fausse, que « PIT ne marche pas sur ce
@@ -14435,7 +14485,7 @@ greffon <strong>commercial</strong> (arcmutate). Les options <code>historyInputF
 au descripteur du greffon Maven, mais les passer sans lui ne les fait pas ignorer : PIT <strong>refuse de
 démarrer</strong>. Le descripteur dit que l'option existe, pas que la fonction est là (#2768).</p>
 <p>Le même bilan se lit en local, sur n'importe quel rapport :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>python3<span class="w"> </span>scripts/qualite/rapport_mutation.py<span class="w"> </span>--markdown
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>python3<span class="w"> </span>scripts/qualite/rapport_mutation.py<span class="w"> </span>--markdown
 </code></pre></div>
 <p>Il trie les classes par nombre de survivants plutôt que d'afficher un pourcentage : le score situe, la
 liste travaille.</p>
@@ -14498,8 +14548,8 @@ logique de forge dans <code>scripts/_commun/</code> en ferait une bibliothèque 
 mesuré comme non justifié : « le partage réel est plus étroit qu'il n'y paraît ; ce que tout le monde
 a, c'est l'auto-test, le reste se répartit par tiers ».</p>
 <p>Le premier s'atteint par une seule forme, depuis n'importe quel garde :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RACINE</span> <span class="o">/</span> <span class="s2">"scripts"</span><span class="p">))</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">_commun</span><span class="w"> </span><span class="kn">import</span> <span class="n">DECISIONS</span><span class="p">,</span> <span class="n">rapporte</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">RACINE</span> <span class="o">/</span> <span class="s2">"scripts"</span><span class="p">))</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">_commun</span><span class="w"> </span><span class="kn">import</span> <span class="n">DECISIONS</span><span class="p">,</span> <span class="n">rapporte</span>
 </code></pre></div>
 <p><strong>Il a vécu dans <code>scripts/adr/</code> jusqu'à #5216</strong>, c'est-à-dire chez l'un de ses usagers, et quatre formes de chemin coexistaient pour l'atteindre. La quatrième n'a été trouvée ni par le motif de réécriture ni par la relecture du diff, mais par un relevé des 54 auto-tests avant et après : un refactoring à comportement constant se prouve en comparant deux mesures.</p>
 <p><strong>Soixante-seize points d'entrée</strong> répondent à <code>--contrat</code> et déclarent six champs : les <strong>47</strong> de
@@ -14518,15 +14568,15 @@ manque rende quand même sa déclaration.</p>
 <p><code>verifie_contrat_obligatoire.py</code> <strong>refuse</strong> un point d'entrée de ces deux dossiers qui n'en
 déclarerait pas. Ce n'est pas un cliquet : il n'y a pas de marge à relever, et l'échappatoire est une
 liste d'exceptions <strong>nommées</strong>, vide aujourd'hui.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>python3<span class="w"> </span>scripts/adr/0008-echec-silencieux.py<span class="w"> </span>--contrat
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python3<span class="w"> </span>scripts/adr/0008-echec-silencieux.py<span class="w"> </span>--contrat
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>CONTRAT | garde=scripts/adr/0008-echec-silencieux.py
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>geste: échec silencieux : catch au corps vide
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>population: PRODUCTION + TESTS
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>dispositif: cliquet
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>seuil: 0, polarite=descend
-<a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>temoin: scripts/adr/verifie_scripts.py#test_0008_echec_silencieux
-<a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>decision: ADR 0008
+<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>CONTRAT | garde=scripts/adr/0008-echec-silencieux.py
+<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>geste: échec silencieux : catch au corps vide
+<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>population: PRODUCTION + TESTS
+<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>dispositif: cliquet
+<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>seuil: 0, polarite=descend
+<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>temoin: scripts/adr/verifie_scripts.py#test_0008_echec_silencieux
+<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>decision: ADR 0008
 </code></pre></div>
 <table>
 <thead>
