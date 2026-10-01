@@ -12162,6 +12162,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5628-un-ecart-de-medianes-ne-se-conclut-pas-sans-sa-dispersion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5628 · Un écart de médianes ne se conclut pas sans sa dispersion
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5684-une-decision-pure-et-son-refus-se-separent-pour-etre-vus-rouges/" class="md-nav__link">
         
   
@@ -14877,7 +14912,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>mesure_duree_portail.py</code></td>
-<td>l'<strong>allongement</strong> d'un atelier, médiane contre médiane. Il <strong>déclare la composition</strong> de ses deux fenêtres et <strong>refuse de conclure</strong> quand elles ne sont pas faites des mêmes déclencheurs (#5626) : <code>release.yml</code> annonçait <strong>+709 %</strong> en comparant douze poussées d'août, retirées de son bloc <code>on:</code> depuis, à des releases de septembre - un faux positif qui ne se serait <strong>jamais</strong> résorbé. Il rend <strong>trois</strong> réponses et non deux depuis #5615 : une mesure, « pas encore d'historique », et « sans objet » quand l'atelier ne se déclenche pas sur <code>main</code> - <code>titre-pr.yml</code> et <code>corps-pr.yml</code> n'y auront jamais d'exécution, et leur annoncer « historique illisible » produisait un avertissement qu'on ne peut <strong>jamais</strong> lever. Le prédicat se dérive du bloc <code>on:</code> et a été confronté aux exécutions réelles des vingt ateliers, <strong>0 désaccord</strong>. Il prend l'atelier en argument depuis #3508, et depuis #5540 il en suit <strong>deux</strong> : les mesures sont <strong>croisées</strong>, aucun atelier ne se mesurant plus lui-même</td>
+<td>l'<strong>allongement</strong> d'un atelier, médiane contre médiane. Il <strong>déclare la composition</strong> de ses deux fenêtres et <strong>refuse de conclure</strong> quand elles ne sont pas faites des mêmes déclencheurs (#5626) : <code>release.yml</code> annonçait <strong>+709 %</strong> en comparant douze poussées d'août, retirées de son bloc <code>on:</code> depuis, à des releases de septembre - un faux positif qui ne se serait <strong>jamais</strong> résorbé. <strong>Et il ne conclut pas sans la dispersion</strong> (#5628) : un écart plus petit que la dispersion de ses propres fenêtres est un tirage, pas une dérive - <code>mutation-ihm.yml</code> annonçait +59 % pour <strong>0,42 dispersion</strong>, à corpus constant et avec la même dispersion des deux côtés. La dispersion d'une médiane est l'<strong>écart absolu médian</strong> et non l'écart-type : groupé sur les 24 il inclut le changement de régime, donc aucun des dix ateliers n'atteignait une unité, <code>release.yml</code> et ses +708 % compris, et un seuil là aurait rendu l'avertisseur <strong>entièrement muet</strong>. Deux ateliers cessent d'avertir, et c'est l'effet voulu. Il rend donc <strong>quatre</strong> réponses, après les trois de #5615 : une mesure, « pas encore d'historique », et « sans objet » quand l'atelier ne se déclenche pas sur <code>main</code> - <code>titre-pr.yml</code> et <code>corps-pr.yml</code> n'y auront jamais d'exécution, et leur annoncer « historique illisible » produisait un avertissement qu'on ne peut <strong>jamais</strong> lever. Le prédicat se dérive du bloc <code>on:</code> et a été confronté aux exécutions réelles des vingt ateliers, <strong>0 désaccord</strong>. Il prend l'atelier en argument depuis #3508, et depuis #5540 il en suit <strong>deux</strong> : les mesures sont <strong>croisées</strong>, aucun atelier ne se mesurant plus lui-même</td>
 <td><code>maven.yml</code> (il y lit <code>lint.yml</code>) <strong>et</strong> <code>lint.yml</code> (il y lit <code>maven.yml</code>) - il <strong>avertit</strong>, il ne bloque pas (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>

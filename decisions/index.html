@@ -12277,6 +12277,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5628-un-ecart-de-medianes-ne-se-conclut-pas-sans-sa-dispersion/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5628 · Un écart de médianes ne se conclut pas sans sa dispersion
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5684-une-decision-pure-et-son-refus-se-separent-pour-etre-vus-rouges/" class="md-nav__link">
         
   
@@ -15284,6 +15319,11 @@
 <td><a href="5433-deux-arbres-ecrivent-la-meme-question-et-c-est-la-forme-juste/">5433</a></td>
 <td>« Ce système porte-t-il POSIX ? » s'écrit en production et dans l'arbre de test, et les unifier est refusé. Trois mesures : UN site d'appel en production, le seuil de #5075 non atteint (29 fonctions en 13 signatures là-bas, deux écritures d'une ligne ici), et surtout la branche qu'une couture injectable exposerait est un MUTANT ÉQUIVALENT, ce que le doc-comment d'<code>attributsDeCreation</code> écrivait déjà avant le chantier. Le test acheté exercerait deux issues indiscernables. Trois ADR déclinent un dispositif pour trois raisons distinctes : l'information manque (5414), la population est vide (5437), la branche est inobservable (celle-ci)</td>
 <td>#5433, passe 7</td>
+</tr>
+<tr>
+<td><a href="5628-un-ecart-de-medianes-ne-se-conclut-pas-sans-sa-dispersion/">5628</a></td>
+<td>L'ADR 3560 a choisi deux médianes glissantes contre un butoir, et ne disait pas <strong>de combien</strong> deux médianes doivent différer. <code>mutation-ihm.yml</code> a annoncé <strong>+59 %</strong> pour un écart valant <strong>0,42 dispersion</strong>, à corpus constant et avec la même dispersion des deux côtés : rien n'avait changé que le tirage, et l'avertissement a fait chercher une cause inexistante. Un écart ne se conclut donc plus sans sa dispersion, et <strong>celle d'une médiane est l'écart absolu médian</strong> - l'écart-type groupé inclut le changement de régime, donc aucun des dix ateliers n'atteignait une unité, <code>release.yml</code> et ses +708 % compris ; calculé par fenêtre, il reste trompé par une population bimodale. Le minimum vaut <strong>un</strong>, mesuré dans le seul trou de la distribution, et la première dérivation était fausse pour avoir compté un atelier que la règle n'atteint jamais</td>
+<td>#5628, suite de #5615</td>
 </tr>
 <tr>
 <td><a href="5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/">5629</a></td>
