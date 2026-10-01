@@ -14867,7 +14867,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 245<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 249<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -15287,7 +15287,7 @@
 </tr>
 <tr>
 <td><a href="5641-les-tests-connectes-ont-deux-cibles/">5641</a></td>
-<td>Tout ce qui parlait à Vigie-Chiro depuis les tests passait par la plateforme nationale, derrière un jeton de quatorze jours renouvelé à la main, et l'ADR 4444 tenait le back local hors de la CI parce qu'une copie figée dériverait en silence. Elle n'avait examiné que la copie seule. Un test connecté déclare désormais sa cible : la <strong>plateforme de test</strong>, montée par les tests (API épinglée, Mongo, faux S3 en TLS, front web), au quotidien, sans jeton et écritures libres ; la <strong>plateforme nationale</strong>, en confrontation régulière. Un test vert sur l'une et rouge sur l'autre est une dérive qui ouvre une issue, et son remède est de remonter l'épinglage. Gardé de 4444 : un transfert ou une durée ne se prouvent pas sur un lien local nu, et un contrat d'écriture n'atteste pas la lecture, d'où le front embarqué. <code>humaine</code> tant que les lots 2, 4 et 7 de #5640 n'ont pas livré leurs gardes</td>
+<td>Tout ce qui parlait à Vigie-Chiro depuis les tests passait par la plateforme nationale, derrière un jeton de quatorze jours renouvelé à la main, et l'ADR 4444 tenait le back local hors de la CI parce qu'une copie figée dériverait en silence. Elle n'avait examiné que la copie seule. Un test connecté déclare désormais sa cible : la <strong>plateforme de test</strong>, montée par les tests (API épinglée, Mongo, faux S3 en TLS, front web), au quotidien, sans jeton et écritures libres ; la <strong>plateforme nationale</strong>, en confrontation régulière. Un test vert sur l'une et rouge sur l'autre est une dérive qui ouvre une issue, et son remède est de remonter l'épinglage. Gardé de 4444 : un transfert ou une durée ne se prouvent pas sur un lien local nu, et un contrat d'écriture n'atteste pas la lecture, d'où le front embarqué. <code>humaine</code> tant que rien ne tient la confrontation : deux tests tiennent déjà la plateforme et la cible d'un scénario (#5699, #5665), et la décision passera à <code>certaine</code> avec #5647</td>
 <td>#5641, chantier #5640</td>
 </tr>
 <tr>

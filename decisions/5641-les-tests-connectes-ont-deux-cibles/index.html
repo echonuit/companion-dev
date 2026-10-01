@@ -11383,10 +11383,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pourquoi-aucun-garde-ne-la-tient-encore" class="md-nav__link">
+  <a href="#ce-qui-la-tient-et-ce-qui-manque-encore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pourquoi aucun garde ne la tient encore
+        Ce qui la tient, et ce qui manque encore
       
     </span>
   </a>
@@ -13595,10 +13595,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pourquoi-aucun-garde-ne-la-tient-encore" class="md-nav__link">
+  <a href="#ce-qui-la-tient-et-ce-qui-manque-encore" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pourquoi aucun garde ne la tient encore
+        Ce qui la tient, et ce qui manque encore
       
     </span>
   </a>
@@ -13639,7 +13639,7 @@
 
 
 <h1 id="les-tests-connectes-ont-deux-cibles-et-la-plateforme-nationale-confronte-la-plateforme-de-test">Les tests connectés ont deux cibles, et la plateforme nationale confronte la plateforme de test<a class="headerlink" href="#les-tests-connectes-ont-deux-cibles-et-la-plateforme-nationale-confronte-la-plateforme-de-test" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-30</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A5 · La mesure fait foi, et dit d&#x27;où elle vient</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5640 (deux cibles pour les tests connectés), lot #5641</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">la plateforme de test et la confrontation n existent pas encore : les gardes qui tiendront la decision arrivent avec les lots 2, 4 et 7 du chantier #5640</span></div></div>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-30</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A5 · La mesure fait foi, et dit d&#x27;où elle vient</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5640 (deux cibles pour les tests connectés), lot #5641</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">deux tests tiennent deja la plateforme de test et la cible d un scenario, mais rien ne tient encore la confrontation, qui est le coeur de la decision : elle recoit son garde avec #5647, et la decision passera alors a certaine</span></div></div>
 
 <h2 id="le-contexte">Le contexte<a class="headerlink" href="#le-contexte" title="Permanent link">&para;</a></h2>
 <p>Tout ce qui parle à Vigie-Chiro depuis les tests passe aujourd'hui par la plateforme nationale : le
@@ -13694,16 +13694,14 @@ un rôle, celui de la confrontation, mais il ne protège que ce qu'il possède :
 peut écrire les localités de n'importe quel site des trois protocoles.</p>
 <p><strong>Le worker de traitement dans la plateforme de test.</strong> Écarté pour ce chantier : une image lourde et
 des binaires anciens, pour les seuls cas qui regardent un état de traitement bouger.</p>
-<h2 id="pourquoi-aucun-garde-ne-la-tient-encore">Pourquoi aucun garde ne la tient encore<a class="headerlink" href="#pourquoi-aucun-garde-ne-la-tient-encore" title="Permanent link">&para;</a></h2>
-<p>Les deux gardes des décisions amendées ne deviennent pas faux.
-<code>BancDeRecetteUrlTest#le_banc_ignore_l_url_ambiante</code> épingle hors ligne un scénario qui n'a déclaré
-aucun serveur, et <code>verifie_decisions_du_tournage_connecte.py</code> refuse de comparer les clips de la
-plateforme nationale. Ce qu'il faudra accepter en plus, une cible de test déclarée et des clips
-tournés sur elle, n'existe pas encore. Élargir ces gardes maintenant les ferait accepter une source
-que rien ne produit.</p>
-<p>Chacun s'élargit donc avec le lot qui crée ce qu'il accepte : le premier avec la plateforme de test
-(#5642), le second avec les tournages (#5644). La confrontation reçoit son garde avec le lot de la
-dérive (#5647). Cette décision passera alors à <code>certaine</code>.</p>
+<h2 id="ce-qui-la-tient-et-ce-qui-manque-encore">Ce qui la tient, et ce qui manque encore<a class="headerlink" href="#ce-qui-la-tient-et-ce-qui-manque-encore" title="Permanent link">&para;</a></h2>
+<p><code>BancDeRecettePlateformeDeTestTest#le_banc_vise_la_plateforme_de_test_declaree</code> tient que la
+déclaration produit la bonne cible : un scénario qui déclare la plateforme de test la compose, et
+jamais l'adresse ambiante. <code>DepotSurLaPlateformeDeTestTest</code> tient que la plateforme se monte et que
+Companion y dépose une archive en parties ; le job <code>plateforme-de-test</code> le joue à chaque demande.</p>
+<p>Il manque la confrontation : rien n'ouvre encore d'issue quand un test passe sur une cible et rougit
+sur l'autre. Elle reçoit son garde avec #5647, et cette décision passera alors à <code>certaine</code>. Le garde
+qui refuse de comparer les clips connectés s'élargit avec les tournages (#5644).</p>
 
 
 
