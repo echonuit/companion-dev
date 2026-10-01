@@ -13396,6 +13396,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Quels ateliers portent un suivi de durée, et pourquoi les autres non (#5591)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-releve-des-bancs-instables-et-pourquoi-il-est-nocturne-5617" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le relevé des bancs instables, et pourquoi il est nocturne (#5617)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -13528,6 +13545,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Quels ateliers portent un suivi de durée, et pourquoi les autres non (#5591)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#le-releve-des-bancs-instables-et-pourquoi-il-est-nocturne-5617" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le relevé des bancs instables, et pourquoi il est nocturne (#5617)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -13586,7 +13620,7 @@
 
 
 <h1 id="cicd-et-release">CI/CD et release<a class="headerlink" href="#cicd-et-release" title="Permanent link">&para;</a></h1>
-<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->20<!--/inv--> workflows et le processus de
+<p>Tout est automatisé par <strong>GitHub Actions</strong>. Cette page cartographie les <!--inv:workflows-ci-->21<!--/inv--> workflows et le processus de
 publication.</p>
 <h2 id="les-workflows">Les workflows<a class="headerlink" href="#les-workflows" title="Permanent link">&para;</a></h2>
 <table>
@@ -13748,6 +13782,12 @@ publication.</p>
 <td>quotidien (5 h UTC) + manuel</td>
 <td>Mesure de mutation PIT sur les vues d'<strong>une feature par tour</strong> (rotation sans état, cycle de 15 jours), <strong>E2E exclus</strong></td>
 <td>—</td>
+</tr>
+<tr>
+<td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/releve-des-bancs-instables.yml">releve-des-bancs-instables.yml</a></td>
+<td>quotidien (7 h UTC) + manuel</td>
+<td><strong>Taux d'intermittence des bancs</strong>, lu dans les exécutions passées : il ne rejoue rien, « les runs passés SONT les tirages ». Il existait et n'était <strong>jamais joué</strong> avant #5617 - <code>lint.yml</code> ne lançait que son auto-test - donc son verdict ne déclenchait rien parce qu'il n'était jamais produit. Nocturne parce qu'il dézippe l'archive de journaux de chaque tentative rejouée : le coût est borné par les <strong>relances</strong> et non par les runs, huit archives pour 144 tirages sur sept jours. Il <strong>ne refuse rien</strong> - un taux n'est pas un verdict sur une demande, et bloquer punirait celle qui a croisé le banc - son seul code non nul étant un refus de conclure. Sortie portée au résumé de l'exécution</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/flatpak.yml">flatpak.yml</a></td>
@@ -13924,6 +13964,11 @@ laquelle il refuse de conclure, et elle décide à elle seule quels ateliers peu
 <td>non : sous les 24</td>
 </tr>
 <tr>
+<td><code>releve-des-bancs-instables.yml</code></td>
+<td style="text-align: right;"><strong>aucune, neuf</strong></td>
+<td>non : sous les 24, et pour 24 nuits</td>
+</tr>
+<tr>
 <td><code>titre-pr.yml</code></td>
 <td style="text-align: right;"><strong>aucune, par construction</strong></td>
 <td>non : ne tourne jamais sur <code>main</code></td>
@@ -13935,7 +13980,25 @@ laquelle il refuse de conclure, et elle décide à elle seule quels ateliers peu
 </tr>
 </tbody>
 </table>
-<p><strong>Dix des vingt peuvent être suivis, deux ne pourront jamais l'être.</strong> <code>titre-pr.yml</code> et <code>corps-pr.yml</code>
+<h3 id="le-releve-des-bancs-instables-et-pourquoi-il-est-nocturne-5617">Le relevé des bancs instables, et pourquoi il est nocturne (#5617)<a class="headerlink" href="#le-releve-des-bancs-instables-et-pourquoi-il-est-nocturne-5617" title="Permanent link">&para;</a></h3>
+<p><code>releve-des-bancs-instables.yml</code> joue <code>scripts/methode/releve-les-bancs-instables.py</code> chaque nuit à
+7 h UTC, sur une fenêtre de trente jours, et porte sa sortie au <strong>résumé de l'exécution</strong>.</p>
+<p><strong>Il existait et n'était jamais joué.</strong> <code>lint.yml</code> lançait son <code>--auto-test</code>, de façon bloquante, et
+rien d'autre : son verdict ne déclenchait rien parce qu'il n'était jamais <strong>produit</strong>. Six bancs du
+dépôt rougissent par intermittence, le relevé sait dire leur taux, et personne ne le lui demandait.</p>
+<p><strong>Pas dans <code>lint.yml</code></strong>, parce qu'il lit les exécutions passées et <strong>dézippe l'archive de journaux</strong>
+de chaque tentative rejouée. Le coût est borné par le nombre de <strong>relances</strong>, pas de runs : sur sept
+jours, 144 tirages pour <strong>8 relances</strong>, donc huit archives. Trente jours en coûtent une trentaine, ce
+qui tient dans une nuit et que personne n'attend.</p>
+<p><strong>Il ne refuse rien.</strong> Un taux d'intermittence n'est pas un verdict sur une demande, et un atelier qui
+bloquerait sur un banc instable punirait celle qui a eu la malchance de le croiser. Son seul code non
+nul est un <strong>refus de conclure</strong> - <code>gh</code> ou <code>unzip</code> absent, forge muette - et celui-là doit rougir.</p>
+<p><strong>Sa déclaration de limite a menti jusqu'à ce lot.</strong> Elle annonçait « atelier <code>build</code> seul, 7
+invisibles », alors que <code>joindreLesJournaux</code> joint <strong>un journal par atelier</strong> de l'archive, soit les
+huit qui lancent la suite. Une limitation déclarée à tort est pire qu'une réelle : qui lit « je ne
+vois qu'un atelier sur huit » escompte un taux qui n'a pas besoin de l'être. Les taux <strong>restent</strong> des
+minorants, mais pour l'autre moitié de la phrase - les autres flux qui lancent la suite.</p>
+<p><strong>Dix des vingt et un peuvent être suivis, deux ne pourront jamais l'être.</strong> Le vingt et unième est <code>releve-des-bancs-instables.yml</code>, neuf depuis #5617, qui n'aura pas vingt-quatre exécutions avant vingt-quatre nuits. <code>titre-pr.yml</code> et <code>corps-pr.yml</code>
 ne se déclenchent que sur <code>pull_request</code> : ils n'ont aucune exécution sur <code>main</code> et n'en auront jamais.
 Les huit autres sont sous le seuil parce qu'ils tournent rarement - un rapport du lundi, une release,
 un tournage appelé - et le temps seul ne les y amènera pas tous.</p>
