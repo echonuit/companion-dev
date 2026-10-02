@@ -12550,6 +12550,76 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5584-une-mesure-importe-le-motif-du-dispositif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5584 · Une mesure importe le motif du dispositif
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5700-un-controle-de-forme-suit-son-lecteur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5700 · Un contrôle de forme suit son lecteur
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15579,6 +15649,16 @@
 <td><a href="5707-un-geste-du-pointeur-situe-sa-cible-sur-le-fil/">5707</a></td>
 <td>Un geste du pointeur ne fait pas que bouger : il <strong>situe</strong> sa cible, et TestFX le fait sur le fil appelant en lisant les bornes de chaque candidat, ce qui itère les éléments de tout <code>Path</code> du sous-arbre - le caret d'un champ de saisie en est un. Une <code>ConcurrentModificationException</code> une fois sur 558 tirages. Le geste situe désormais sa cible <strong>sur le fil</strong>, et le point vient de <code>robot.point(...)</code> et non d'un calcul à nous : la première version prenait le centre de <code>localToScreen</code>, sans l'intersection avec la scène que TestFX fait, et le clic partait hors de la fenêtre. Un <strong>cliquet</strong> et non un banc : deux témoins Java ont été écrits et jetés, le fil JavaFX recalculant toute propriété partagée le premier et servant son cache au fil du test. Cliquet à 163, et la population de 5068 y est contenue, 38 sur 38</td>
 <td>#5707, lot de l'EPIC #5697</td>
+</tr>
+<tr>
+<td><a href="5584-une-mesure-importe-le-motif-du-dispositif/">5584</a></td>
+<td>Le chantier traitait les dispositifs qui rendent un verdict sans avoir exercé ce qu'ils jugent, et sa clôture en a produit <strong>cinq de plus, toutes dans mes propres mesures, en une journée</strong> : une clé de matrice retapée rendait une colonne de <code>?</code> ; un <code>Closes #N</code> non ancré lisait la PROSE d'un corps de demande comme une fermeture ; <code>docs/</code> matchait <code>dev-docs/</code>, 16 au lieu de 0 ; deux motifs comptaient 77 puis 114 cas de test, tous deux faux ; et le motif du critère de fin comptait le RAPPEL lui-même comme une réponse. Aucune n'a rougi. Une mesure importe donc le motif du dispositif, ou l'ancre, et un texte qui documente un motif contient le motif. Ce qui les a attrapées est la DIVERGENCE de deux chemins, jamais la vigilance</td>
+<td>#5584, passe 11 de sa clôture</td>
+</tr>
+<tr>
+<td><a href="5700-un-controle-de-forme-suit-son-lecteur/">5700</a></td>
+<td>Le contrôle de forme d'une ligne de tableau ne jugeait qu'un fichier sur les <strong>651</strong> du dépôt, et la passe 0 a trouvé quatre lignes amputées ailleurs, dont <strong>trois pipes nus écrits le jour même</strong> par la session qui livrait le contrôle. Il vit désormais dans <code>scripts/_commun/tableaux.py</code> et suit les DEUX dispositifs qui lisent déjà un tableau, l'index des ADR et la page des gardes, dont la forme a une conséquence lisible. Il ne devient PAS un garde des 651 : le dépôt est propre, donc un cliquet naîtrait sans marge, et je n'ai aucun témoin négatif pour les formes légitimes que je n'ai pas rencontrées</td>
+<td>#5700, passe 7 de la clôture de #5584</td>
 </tr>
 </tbody>
 </table>

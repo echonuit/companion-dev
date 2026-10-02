@@ -12435,6 +12435,76 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5584-une-mesure-importe-le-motif-du-dispositif/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5584 · Une mesure importe le motif du dispositif
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5700-un-controle-de-forme-suit-son-lecteur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5700 · Un contrôle de forme suit son lecteur
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -13997,7 +14067,7 @@ publication.</p>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/releve-des-bancs-instables.yml">releve-des-bancs-instables.yml</a></td>
 <td>quotidien (7 h UTC) + manuel</td>
 <td><strong>Taux d'intermittence des bancs</strong>, lu dans les exécutions passées : il ne rejoue rien, « les runs passés SONT les tirages ». Il existait et n'était <strong>jamais joué</strong> avant #5617 - <code>lint.yml</code> ne lançait que son auto-test - donc son verdict ne déclenchait rien parce qu'il n'était jamais produit. Nocturne parce qu'il dézippe l'archive de journaux de chaque tentative rejouée : le coût est borné par les <strong>relances</strong> et non par les runs, huit archives pour 144 tirages sur sept jours. Il <strong>ne refuse rien</strong> - un taux n'est pas un verdict sur une demande, et bloquer punirait celle qui a croisé le banc - son seul code non nul étant un refus de conclure. Sortie portée au résumé de l'exécution</td>
-<td></td>
+<td>—</td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/flatpak.yml">flatpak.yml</a></td>
@@ -14862,7 +14932,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>scripts/methode/passes-citees-existent.py</code></td>
 <td>qu'une citation de passe de clôture désigne une passe qui <strong>existe</strong> : les bornes sont dérivées des titres <code>### N.</code> du cycle, jamais écrites en dur. Mesuré en #4518 : une citation remise à l'ancienne numérotation laissait verts trente tests et les deux gardes de méthode. <strong>Ne voit pas</strong> une citation valide mais fausse, dont le numéro existe et dont le sens a glissé : son en-tête le dit et un cas d'auto-test l'éprouve (#4844)</td>
-<td></td>
+<td><code>lint.yml</code></td>
 </tr>
 <tr>
 <td><code>scripts/methode/etapes-sans-renvoi-aval.py</code></td>
@@ -15116,7 +15186,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>scripts/methode/releve-les-harnais-muets.py</code></td>
-<td>les harnais d'auto-test qui ne peuvent pas <strong>nommer le cas qui lève</strong>. <strong>Il refuse depuis #5570</strong>, au-dessus d'un cliquet de 81 : un cliquet posé à la valeur mesurée n'exige rien des 81 et exige tout des suivants, là où la phrase qu'il portait jusque-là, « refuser reviendrait à bloquer le dépôt sur une dette », était l'argument d'un butoir. Son compte était subi : 74 muets en septembre, 75 trois semaines plus tard. Il dérive sa population de ce que le harnais <strong>fait de son échec</strong> - la marque posée en ligne, ou un cas passé en valeur à une aide qui tient le libellé - et jamais de la forme de son écriture. C'est ce qui l'a fait trouver <code>scripts/batterie.py</code>, que les populations de #5460 et #5461 manquaient toutes deux, définies l'une par une <code>verifie</code> locale et l'autre par <code>cas.append</code> : la porte n'écrit ni l'un ni l'autre et portait le défaut sur dix-sept sites. Son témoin négatif est ce qui le tient : un harnais entièrement différé ne figure dans aucune des deux formes. Son balayage est <strong>récursif</strong> depuis #5570, et il ne l'était pas : huit gardes dont la porte joue l'auto-test étaient hors population, six d'entre eux muets, donc un cliquet posé avant cette réparation aurait verrouillé le mauvais chiffre. Mesure du 2026-10-01 : <code>lus=101 | muets=81</code>, dont 46 en forme B et 35 en forme A, et 20 entièrement différés</td>
+<td>les harnais d'auto-test qui ne peuvent pas <strong>nommer le cas qui lève</strong>. <strong>Il refuse depuis #5570</strong>, au-dessus d'un cliquet de 81 : un cliquet posé à la valeur mesurée n'exige rien des 81 et exige tout des suivants, là où la phrase qu'il portait jusque-là, « refuser reviendrait à bloquer le dépôt sur une dette », était l'argument d'un butoir. Son compte était subi : 74 muets en septembre, 75 trois semaines plus tard. Il dérive sa population de ce que le harnais <strong>fait de son échec</strong> - la marque posée en ligne, ou un cas passé en valeur à une aide qui tient le libellé - et jamais de la forme de son écriture. C'est ce qui l'a fait trouver <code>scripts/batterie.py</code>, que les populations de #5460 et #5461 manquaient toutes deux, définies l'une par une <code>verifie</code> locale et l'autre par <code>cas.append</code> : la porte n'écrit ni l'un ni l'autre et portait le défaut sur dix-sept sites. Son témoin négatif est ce qui le tient : un harnais entièrement différé ne figure dans aucune des deux formes. Son balayage est <strong>récursif</strong> depuis #5570, et il ne l'était pas : huit gardes dont la porte joue l'auto-test étaient hors population, six d'entre eux muets, donc un cliquet posé avant cette réparation aurait verrouillé le mauvais chiffre. Mesure du 2026-10-01 : <code>lus=101 \| muets=81</code>, dont 46 en forme B et 35 en forme A, et 20 entièrement différés</td>
 <td><code>lint.yml</code> (autotest dédié)</td>
 </tr>
 <tr>
@@ -15244,7 +15314,7 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>scripts/adr/5087-versions-hors-des-checks.py</code> | les versions d artefact qu <strong>aucun flux declenche par une demande n exerce</strong>, confrontees a ce qu un manifeste atteste. La demande #5078 bumpait <code>pitest-maven</code> et ses <strong>dix-neuf checks sont passes au vert sans qu aucun n execute pitest</strong> ; trois bumps ont eu ce sort - #61, #2269, #5078 - et la question « quel check aurait rougi » n a ete posee sur le troisieme qu a cause d un rouge de runner sans rapport. <strong>La carte se DERIVE</strong> du <code>pom.xml</code> et des flux, elle ne se tient pas : sur neuf profils, <code>ecj</code> porte deux versions mais <code>maven.yml</code> l exerce en demande, et <code>mutation</code> porte les deux seules qui sont exposees, <code>pitest.version</code> et <code>pitest.junit5.version</code>. Le manifeste est <code>scripts/methode/versions-verifiees.txt</code>, et <strong>la valeur y EST la marque</strong> : si le pom bouge et que la ligne ne suit pas, le garde refuse - meme patron que l empreinte de <code>relus.txt</code>. Un <strong>INVARIANT</strong> et non un cliquet, une divergence etant fausse ou inexistante, jamais une dette qui descend. Deux pieges de derivation sont tenus par des cas plutot que par de la prudence : un releve libre des <code>-P</code> rend <strong>deux flux sur huit</strong> a tort - <code>-Process</code> et <code>-PassThru</code> sont des drapeaux PowerShell, <code>multi-PR</code> un mot compose - d ou la resolution contre les noms que le pom declare ; et <strong>trois profils sur neuf</strong> s activent par <code>&lt;os&gt;</code>, donc invisibles a cette lecture, et il les NOMME plutot que de les taire. Ce qu il ne fait PAS : tester pitest. Il refuse le SILENCE, le filet qui repond etant nocturne et refusant explicitement de juger une demande | <code>lint.yml</code> (cliquets ADR, ou il entre par le glob <code>scripts/adr/[0-9]*.py</code>), et la porte locale |
 | <code>scripts/graphify/pont_ressources.py</code> | l'index de classe Java préfère la <strong>classe</strong> à la page <code>X.java</code>, et le compte des commandes CLI couvertes reste borné par le nombre de commandes | <code>lint.yml</code> |
 | <code>scripts/graphify/rebuild.py</code> | <code>GRAPH_REPORT.md</code> annonce le corpus réel, et non un corpus vide suivi d'un verdict qui le contredit | <code>lint.yml</code> |
-| <code>scripts/adr/verifie_okf.py</code> | chaque ADR porte un en-tête typé, se rattache à un article de la constitution, et gage le niveau de vérification qu'elle déclare : une « humaine » qui nomme un applicateur n'en est pas une, une « humaine » qui ne dit POURQUOI rien ne la tient - ni <code>verification_note:</code> ni <code>loupe:</code> - laisse le test de documentation sur une référence vide, une « certaine » ou une « probable » dont l'<code>enforced_by</code> ne peut pas rougir non plus, le refus nommant le niveau autant que la forme, et le corpus ne descend pas sous son plancher. Depuis #5579 il refuse aussi un <strong>verbe de relation portant une espace</strong>, un verbe étant une clé et non une phrase : les deux <code>fait évoluer</code> du corpus étaient illisibles par tout motif de clé, donc leurs relations échappaient au garde d'encart. Ses comparaisons de vocabulaire passent maintenant par <code>scripts/_commun/relations.py</code>. Depuis #5700 il refuse aussi une <strong>ligne de l'index amputée</strong>, dont le compte de cellules diffère de celui de l'en-tête du tableau : six lignes sur 329 l'étaient, dont cinq sans leur colonne « Chantier », et le contrôle d'atteignabilite ne voyait rien puisque l'ADR y était bien citée. Le compte de référence se prend sur l'en-tête <code>| # |</code> et non sur un nombre inscrit dans le garde, et un « | » échappé reste de la prose | <code>lint.yml</code> |
+| <code>scripts/adr/verifie_okf.py</code> | chaque ADR porte un en-tête typé, se rattache à un article de la constitution, et gage le niveau de vérification qu'elle déclare : une « humaine » qui nomme un applicateur n'en est pas une, une « humaine » qui ne dit POURQUOI rien ne la tient - ni <code>verification_note:</code> ni <code>loupe:</code> - laisse le test de documentation sur une référence vide, une « certaine » ou une « probable » dont l'<code>enforced_by</code> ne peut pas rougir non plus, le refus nommant le niveau autant que la forme, et le corpus ne descend pas sous son plancher. Depuis #5579 il refuse aussi un <strong>verbe de relation portant une espace</strong>, un verbe étant une clé et non une phrase : les deux <code>fait évoluer</code> du corpus étaient illisibles par tout motif de clé, donc leurs relations échappaient au garde d'encart. Ses comparaisons de vocabulaire passent maintenant par <code>scripts/_commun/relations.py</code>. Depuis #5700 il refuse aussi une <strong>ligne de l'index amputée</strong>, dont le compte de cellules diffère de celui de l'en-tête du tableau : six lignes sur 329 l'étaient, dont cinq sans leur colonne « Chantier », et le contrôle d'atteignabilite ne voyait rien puisque l'ADR y était bien citée. Le compte de référence se prend sur l'en-tête <code>\| # \|</code> et non sur un nombre inscrit dans le garde, et un « | » échappé reste de la prose | <code>lint.yml</code> |
 | <code>scripts/adr/verifie_gages_joues.py</code> | la <strong>seconde espèce</strong> de l'ADR 5483, que rien ne gardait : une fonction qui JUGE et qu'aucun harnais n'appelle. Sa voisine ci-dessus refuse un <code>enforced_by:</code> d'en-tête que la demande ne joue pas ; celle-ci refuse le gage de <strong>code</strong>. La population se dérive de ce que la fonction <strong>déclare</strong> - l'annotation <code>list[tuple[str, bool]]</code>, un contrat et non un idiome (ADR 5452) - et l'appel se résout par les <strong>imports</strong>, jamais par le nom : <code>verifie_grammaire</code> est déclaré six fois, et chercher le nom trouverait un appelant pour les six dès qu'un seul est appelé. Mesuré au commit et non au jour, <strong>deux des six gages sont nés inertes</strong>, dont un pendant vingt-deux jours ; joué sur l'état d'avant #5590 il les nomme tous les deux. Le nom de module se dérive de la <strong>racine d'import</strong> qui couvre le fichier, et le dépôt en a deux - <code>scripts/</code> et <code>.github/scripts/</code> : jusqu'à #5657 il n'en connaissait qu'une, si bien qu'un gage déclaré dans <code>.github/scripts/</code> se serait dit inerte tout en étant joué. Tolérance zéro, sans cliquet | <code>lint.yml</code> |
 | <code>scripts/methode/matrice-constitution.py</code> | la matrice de <a href="../constitution/">la constitution</a> concorde avec les en-têtes des ADR, et <strong>nomme les articles que rien ne tient</strong> : c'est la liste des gardes qui restent à écrire | <code>lint.yml</code> |
 | <code>scripts/methode/matrice-ergonomie.py</code> | la matrice de <a href="../ergonomie/heuristiques/">l'annexe des heuristiques</a> concorde avec les en-têtes, et <strong>nomme les heuristiques que rien ne sert</strong> | <code>lint.yml</code> |
@@ -15261,7 +15331,7 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 | <code>scripts/qualite/lecteurs.py</code> | <strong>qui lit ce champ, hors de sa classe</strong>, la TROISIEME et derniere question de la frontiere de #5464. Il ne juge rien et n'a pas de cliquet : il REPOND. Le service est la RESOLUTION : un <code>grep</code> sur un nom de champ ne le distingue pas de la variable locale, du parametre ni de la methode homonymes, et <strong>995 des 3 730</strong> (au 2026-09-29) noms de champ du depot sont declares dans plusieurs classes - <code>service</code> dans 168, <code>dossier</code> dans 131, <code>ID_USER</code> dans 105. Sur <code>service</code>, <code>grep -rn</code> rend <strong>3 398 lignes</strong> la ou l'outil rend 168 declarations dont 24 lues d'ailleurs. Il <strong>refuse</strong> si l'index manque. <strong>Les LECTURES seules</strong>, limite declaree et non oubli : confondre <code>CtFieldRead</code> et <code>CtFieldWrite</code> ferait passer un champ qu'un constructeur ecrit et que personne ne lit pour « utilise ailleurs », et un cas Java le tient - rien dans la prose ne rougirait. Ce qu'il ne dit PAS : un champ sans lecteur externe n'est pas mort, et c'est <strong>92 %</strong> du corpus, 8 196 sur 8 934, le taux le plus raide des trois index. Aucun banc ne le mute. <strong>NEUF mutations Python et CINQ Java, jouees a la main, huit et cinq tuees</strong> : trois portent sur ce fichier (prefixe capture, tri inverse, muettes listees au lieu d etre comptees), trois sur le squelette partage <code>outil_d_index.py</code>, deux sur son lecteur <code>champs.py</code>, une sur <code>charge_index</code>. Citer les seules mutations DU FICHIER sous-estimerait l assise : un outil qui delegue son refus se mute aussi chez son delegue. <strong>Le neuvieme est un SURVIVANT declare</strong> - court-circuiter l <code>--auto-test</code> d un outil est indetectable de l interieur, <code>scripts/batterie.py</code> ne lisant que le code de sortie (lignes 703, 792, 815 et 899), et le dispositif qui l attraperait est un banc dont <code>scripts/qualite</code> est exclu par <code>declare_un_contrat</code> (mesure portee sur #5192). Une de ces mutations a demasque une concentration : le branchement <code>--auto-test</code> partage eteignait les TROIS outils sans etre vu, d ou son retour chez chaque outil | <code>lint.yml</code> (autotest seul), <strong>et la porte locale</strong>, qui joue les auto-tests que les ateliers lancent sous <code>scripts/</code> |
 | <code>scripts/plateforme-de-test/faux_s3.py</code> | <strong>le faux stockage d'objets de la plateforme de test</strong> (chantier #5640). Il ne juge rien : il SERT, dans son conteneur (<code>faux-s3.Dockerfile</code>), en TLS avec un certificat genere au demarrage. Un PUT garde les octets, rend <code>ETag</code> = MD5 et n'exige aucun <code>Content-Type</code>, parce que Companion envoie chaque partie d'un multipart sans ce type (#5597) ; <code>GET /_journal</code> rend les PUT recus. Celui de l'API amont ne peut pas servir : HTTP seul, sans <code>ETag</code>, il corrompt les binaires et plante sans <code>Content-Type</code>. Ce qu'il ne prouve PAS, la signature v2 : #5658. Son auto-test tourne en processus, sans TLS, sur sept cas ; <strong>trois mutations jouees a la main, trois tuees</strong> (premier octet jete, <code>ETag</code> qui n'est plus le MD5, <code>Content-Type</code> exige). La couche TLS s'eprouve dans l'image et par l'extension de #5663 | <code>lint.yml</code> (autotest seul), <strong>et la porte locale</strong> |
 | <code>scripts/plateforme-de-test/amorcer.py</code> | <strong>materialise l'etat de depart DECLARE de la plateforme de test</strong> (<code>etat-de-depart.json</code>, ADR 4406). Il ne juge rien : il tourne DANS le conteneur de l'API, qui a deja <code>pymongo</code>, pose les index par <code>bin/init_db.py</code>, et frappe un jeton par utilisateur, rendu a l'appelant et jamais ecrit ailleurs que dans Mongo. Sa moitie PURE traduit la declaration en documents a identifiants et horodatages DERIVES, donc deux generations sont identiques hors jetons. Un objet se cite par sa <code>cle</code>, pas par <code>nom</code>, qui est un vrai champ de l'API. Mesure en l'ecrivant : le verrou d'un site n'est PAS exige pour y creer une participation, l'inscription validee l'est (#5662). Son auto-test joue neuf cas sans Mongo ; <strong>deux mutations jouees a la main, deux tuees</strong> (un role perdu, deux generations qui different) | <code>lint.yml</code> (autotest seul), <strong>et la porte locale</strong> |
-| <code>scripts/plateforme-de-test/releve_des_sautes.py</code> | <strong>ce que la passe sur la plateforme de test a SAUTE, et pourquoi</strong> (#5748, chantier #5643). Un saut par <code>assumeTrue</code> sort vert, et une classe interrompue dans son <code>@BeforeAll</code> sort en « Tests run: 0 » : mesure sur #5760, la cible ignoree laissait les 29 sondes du contrat live sauter sans que le job rougisse. Il lit les rapports surefire du run (<code>target/surefire-reports/TEST-*.xml</code>, motif = texte de <code>&lt;skipped&gt;</code>), affiche les sautes par motif, et <strong>refuse</strong> un saut du au jeton ou a un verrou d'ecriture, aucun rapport lu, ou un rapport anterieur a <code>--depuis</code>. Les sautes faute de donnees s'affichent sans refuser (#5747). Joue en etape du job <code>plateforme-de-test</code>, meme quand Maven echoue ; son auto-test fabrique des rapports, dans <code>lint.yml</code>. |
+| <code>scripts/plateforme-de-test/releve_des_sautes.py</code> | <strong>ce que la passe sur la plateforme de test a SAUTE, et pourquoi</strong> (#5748, chantier #5643). Un saut par <code>assumeTrue</code> sort vert, et une classe interrompue dans son <code>@BeforeAll</code> sort en « Tests run: 0 » : mesure sur #5760, la cible ignoree laissait les 29 sondes du contrat live sauter sans que le job rougisse. Il lit les rapports surefire du run (<code>target/surefire-reports/TEST-*.xml</code>, motif = texte de <code>&lt;skipped&gt;</code>), affiche les sautes par motif, et <strong>refuse</strong> un saut du au jeton ou a un verrou d'ecriture, aucun rapport lu, ou un rapport anterieur a <code>--depuis</code>. Les sautes faute de donnees s'affichent sans refuser (#5747). Joue en etape du job <code>plateforme-de-test</code>, meme quand Maven echoue ; son auto-test fabrique des rapports. | <code>maven.yml</code> (job <code>plateforme-de-test</code>), autotest dans <code>lint.yml</code> |
 | <code>surveille_la_demande.py</code> | la <strong>fin des vérifications</strong> d'une demande, et rien d'autre : il ne juge pas la couleur, conclure que la demande est verte restant le travail de qui lit. <strong>Trois issues, donc trois codes</strong> - <code>0</code> conclu quelle que soit la couleur, <code>3</code> budget épuisé, <code>4</code> pas pu lire - parce que la règle « sortir en 0 quel que soit le verdict » ne distinguait pas « j'ai lu un verdict » de « je n'ai pas pu lire » : un moniteur sorti en 0 sur une coupure réseau laisse un journal qui se termine comme une surveillance conclue, vécu sur une demande qui était verte, 26 vérifications, sans qu'il l'ait jamais dit (#5621). Et une liste vide n'est <strong>pas</strong> une panne - la forge rend <code>[]</code> tant qu'elle n'a pas créé les check-runs, et les deux moniteurs écrits à la main le 2026-09-30 en étaient protégés par accident, leur garde <code>-gt 0</code> visant ce cas-là | nulle part : une session le lance à l'ouverture d'une demande (autotest : <code>lint.yml</code>) |
 | <code>verifie_outils_absents_refusent.py</code> | un appel à un <strong>outil externe</strong> qui <strong>lève</strong> au lieu de refuser. <code>check=False</code> ne couvre pas un exécutable introuvable : <code>subprocess.run</code> lève un <code>FileNotFoundError</code> avant qu'il y ait un code de sortie, et le dispositif s'arrête sur une trace au lieu d'une phrase. <code>_forge.liste_issues</code> <strong>promettait</strong> ce refus dans sa docstring et levait avant d'atteindre son propre test, et cette promesse a été <strong>citée</strong> - #5621 avait pris cette partition pour modèle (#5692). La protection se lit par l'<strong>arbre</strong> : un <code>try</code> ailleurs dans le même module ne protège rien, et chercher <code>except OSError</code> dans le texte ferait cette erreur. <strong>Deux formes admises</strong> - le filet qui rattrape, et la sonde <code>shutil.which</code> qui nomme la cause avant d'essayer, y compris <strong>extraite</strong> dans une fonction partagée. Ce garde a d'abord puni les deux : il accusait quatre sites sains, puis <code>_forge.py</code> APRÈS sa réparation, soit la factorisation qu'il devrait encourager. Tolérance zéro, sans cliquet | <code>lint.yml</code> |</p>
 <h3 id="et-un-analyseur-les-lit-tous-4108">Et un analyseur les lit tous (#4108)<a class="headerlink" href="#et-un-analyseur-les-lit-tous-4108" title="Permanent link">&para;</a></h3>
