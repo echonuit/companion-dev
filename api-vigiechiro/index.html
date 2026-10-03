@@ -13887,39 +13887,50 @@ transport.</p>
 </div>
 <h2 id="lancer-la-verification">Lancer la vérification<a class="headerlink" href="#lancer-la-verification" title="Permanent link">&para;</a></h2>
 <div class="admonition warning">
-<p class="admonition-title">Jamais en CI</p>
-<p>Ces vérifications frappent l'API <strong>de production</strong> et exigent un token 14 j. Elles sont <strong>exclues du
-build par défaut</strong> (le tag <code>api-live</code> figure dans <code>surefire.excludedGroups</code>) et ne tournent qu'à la
-demande. Ce qui se vérifie <strong>sans jeton</strong>, contre une API Vigie-Chiro montée par les tests eux-mêmes :
-la <a href="../tests-et-qualite/#la-plateforme-de-test">plateforme de test</a>.</p>
+<p class="admonition-title">Deux cibles, et une seule à chaque demande de fusion</p>
+<p>Ces vérifications sont <strong>exclues du build par défaut</strong> (le tag <code>api-live</code> figure dans
+<code>surefire.excludedGroups</code>). Elles jouent sur deux cibles (ADR 5641, #5643) :</p>
+<ul>
+<li><strong>la plateforme de test, à chaque demande de fusion</strong>, dans le job <code>plateforme-de-test</code> de
+  <code>maven.yml</code> : l'API épinglée, montée par les tests eux-mêmes, sans jeton, écritures comprises,
+  rien n'y étant à abîmer. Le job affiche ses tests sautés et leur motif, et refuse un saut dû au
+  jeton (#5748) ;</li>
+<li><strong>la plateforme nationale, chaque lundi, en lecture seule</strong>, dans <code>api-live.yml</code>, avec le secret
+  <code>VIGIECHIRO_TOKEN</code> ; <code>veille_contrat_api.py</code> fait rougir si trois passages manquent.</li>
+</ul>
+<p>Aucune demande de fusion ne joue la plateforme nationale, et <strong>aucune écriture n'y part en CI</strong> :
+les sondes d'écriture ne la visent qu'à la main, derrière les verrous ci-dessous.</p>
 </div>
-<p>Récupérer un token : sur le site VigieChiro connecté, exécuter le marque-page qui lit
-<code>localStorage['auth-session-token']</code>.</p>
+<p>Sans jeton, sur la plateforme de test (il faut Docker) :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>./mvnw<span class="w"> </span>-Pplateforme-de-test<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<p>Sur la plateforme nationale, récupérer un token : sur le site VigieChiro connecté, exécuter le
+marque-page qui lit <code>localStorage['auth-session-token']</code>.</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="1:1"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">REST-assured (référence)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Lecture seule (idempotent, sûr) :</span>
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># + probes d'écriture (POST/PATCH/upload) :</span>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX<span class="w"> </span>-Dvigiechiro.write<span class="o">=</span><span class="nb">true</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># + probes qui écrivent SUR une participation (corrections #1203, dépôt ZIP #984) :</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># elles exigent EN PLUS la participation de rebut, jamais une participation réelle,</span>
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="c1"># car ni une correction posée ni un fichier déclaré ne se retirent :</span>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX<span class="w"> </span>-Dvigiechiro.write<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w">    </span>-Dvigiechiro.participationEssai<span class="o">=</span>&lt;id-participation&gt;
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
-<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="c1"># + sonde des messages (#1456) : TROISIÈME verrou, obligatoire. Cette écriture est</span>
-<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1"># DÉFINITIVE ($push, aucune route ne retire ni ne modifie un message) :</span>
-<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX<span class="w"> </span>-Dvigiechiro.write<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span>-Dvigiechiro.participationEssai<span class="o">=</span>&lt;id-participation&gt;<span class="w"> </span>-Dvigiechiro.message<span class="o">=</span><span class="nb">true</span>
-<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>
-<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a><span class="c1"># Sonde d'ALLER-RETOUR (#1862) : écrit, relit, et compare champ à champ. Mêmes</span>
-<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="c1"># verrous que les probes sur participation ; elle restaure la configuration de départ :</span>
-<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX<span class="w"> </span>-Dvigiechiro.write<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="w">    </span>-Dvigiechiro.participationEssai<span class="o">=</span>&lt;id-participation&gt;<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="w">    </span>-Dtest<span class="o">=</span>AllerRetourParticipationLiveTest
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Lecture seule (idempotent, sûr) :</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># + probes d'écriture (POST/PATCH/upload) :</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX<span class="w"> </span>-Dvigiechiro.write<span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># + probes qui écrivent SUR une participation (corrections #1203, dépôt ZIP #984) :</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="c1"># elles exigent EN PLUS la participation de rebut, jamais une participation réelle,</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># car ni une correction posée ni un fichier déclaré ne se retirent :</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX<span class="w"> </span>-Dvigiechiro.write<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">    </span>-Dvigiechiro.participationEssai<span class="o">=</span>&lt;id-participation&gt;
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="c1"># + sonde des messages (#1456) : TROISIÈME verrou, obligatoire. Cette écriture est</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="c1"># DÉFINITIVE ($push, aucune route ne retire ni ne modifie un message) :</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX<span class="w"> </span>-Dvigiechiro.write<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="w">    </span>-Dvigiechiro.participationEssai<span class="o">=</span>&lt;id-participation&gt;<span class="w"> </span>-Dvigiechiro.message<span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="c1"># Sonde d'ALLER-RETOUR (#1862) : écrit, relit, et compare champ à champ. Mêmes</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1"># verrous que les probes sur participation ; elle restaure la configuration de départ :</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>./mvnw<span class="w"> </span>-Papi-live<span class="w"> </span><span class="nb">test</span><span class="w"> </span>-Dvigiechiro.token<span class="o">=</span>XXXX<span class="w"> </span>-Dvigiechiro.write<span class="o">=</span><span class="nb">true</span><span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">    </span>-Dvigiechiro.participationEssai<span class="o">=</span>&lt;id-participation&gt;<span class="w"> </span><span class="se">\</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">    </span>-Dtest<span class="o">=</span>AllerRetourParticipationLiveTest
 </code></pre></div>
 <p>Sans <code>-Dvigiechiro.token</code>, la suite se <strong>skippe</strong> proprement (aucun échec accidentel).</p>
 </div>
@@ -13939,8 +13950,8 @@ lecture seule et ne passe <strong>aucun</strong> de ces trois drapeaux : il ne p
 <div class="tabbed-set tabbed-alternate" data-tabs="2:1"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Newman (smoke)</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>newman<span class="w"> </span>run<span class="w"> </span>dev-docs/api/vigiechiro.postman_collection.json<span class="w"> </span>--env-var<span class="w"> </span><span class="nv">token</span><span class="o">=</span>XXXX
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1"># rapport HTML : ... --reporters cli,htmlextra</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>newman<span class="w"> </span>run<span class="w"> </span>dev-docs/api/vigiechiro.postman_collection.json<span class="w"> </span>--env-var<span class="w"> </span><span class="nv">token</span><span class="o">=</span>XXXX
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1"># rapport HTML : ... --reporters cli,htmlextra</span>
 </code></pre></div>
 <p>Collection : <a href="../api/vigiechiro.postman_collection.json">vigiechiro.postman_collection.json</a> (importable
 aussi dans Postman pour l'exploration interactive).</p>
@@ -14303,28 +14314,28 @@ plus d'étendue à borner).</p>
 (<code>SynchronisationParticipation</code>, #3854) interroge <code>q</code> pour choisir son conseil - récupérer le carré, ou
 l'activer sur le portail. La requête ne part que sur ce chemin d'échec.</p>
 <p><strong>Rejouer la carte</strong> quand le miroir du source bouge (<code>SAE201/vigiechiro-api</code>) :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nb">cd</span><span class="w"> </span>../vigiechiro-api/vigiechiro/resources
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>grep<span class="w"> </span>-nE<span class="w"> </span><span class="s2">"@\w+\.route\('[^']+'|@requires_auth"</span><span class="w"> </span>*.py
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nb">cd</span><span class="w"> </span>../vigiechiro-api/vigiechiro/resources
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>grep<span class="w"> </span>-nE<span class="w"> </span><span class="s2">"@\w+\.route\('[^']+'|@requires_auth"</span><span class="w"> </span>*.py
 </code></pre></div>
 <p>Puis reporter les routes <code>GET</code> dans <code>CatalogueApi</code> ; <code>CatalogueApiTest</code> refuse tout chemin annoncé
 qui n'existe pas dans le source, et se saute proprement si le miroir est absent.</p>
 <h3 id="objet-participation-schema-canonique">Objet <code>participation</code> (schéma canonique)<a class="headerlink" href="#objet-participation-schema-canonique" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">"point"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Z41"</span><span class="p">,</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">"date_debut"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-07-03T19:00:00+00:00"</span><span class="p">,</span>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">"date_fin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-07-04T04:00:00+00:00"</span><span class="p">,</span>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">  </span><span class="nt">"meteo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">"vent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FAIBLE"</span><span class="p">,</span><span class="w"> </span><span class="nt">"couverture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0-25"</span><span class="p">,</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">    </span><span class="nt">"temperature_debut"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="nt">"temperature_fin"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span>
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="w">  </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="w">    </span><span class="nt">"detecteur_enregistreur_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PassiveRecorder"</span><span class="p">,</span>
-<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="w">    </span><span class="nt">"detecteur_enregistreur_numero_serie"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1997632"</span><span class="p">,</span>
-<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="w">    </span><span class="nt">"micro0_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ICS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"micro0_position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANOPEE"</span><span class="p">,</span><span class="w"> </span><span class="nt">"micro0_hauteur"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span>
-<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="w">  </span><span class="p">},</span>
-<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="w">  </span><span class="nt">"traitement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"etat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FINI"</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a><span class="w">  </span><span class="nt">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"83555259248249459dbab1ba734c1faa"</span>
-<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"point"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Z41"</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">"date_debut"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-07-03T19:00:00+00:00"</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">"date_fin"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-07-04T04:00:00+00:00"</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">"meteo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">"vent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FAIBLE"</span><span class="p">,</span><span class="w"> </span><span class="nt">"couverture"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0-25"</span><span class="p">,</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">    </span><span class="nt">"temperature_debut"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w"> </span><span class="nt">"temperature_fin"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">  </span><span class="nt">"configuration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">    </span><span class="nt">"detecteur_enregistreur_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PassiveRecorder"</span><span class="p">,</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="nt">"detecteur_enregistreur_numero_serie"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1997632"</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">    </span><span class="nt">"micro0_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ICS"</span><span class="p">,</span><span class="w"> </span><span class="nt">"micro0_position"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CANOPEE"</span><span class="p">,</span><span class="w"> </span><span class="nt">"micro0_hauteur"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4"</span>
+<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="p">},</span>
+<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="w">  </span><span class="nt">"traitement"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"etat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FINI"</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="w">  </span><span class="nt">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"83555259248249459dbab1ba734c1faa"</span>
+<a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="p">}</span>
 </code></pre></div>
 <div class="admonition danger">
 <p class="admonition-title">Pièges vérifiés en réel (ils nous ont mordus)</p>
@@ -14370,20 +14381,20 @@ qui n'existe pas dans le source, et se saute proprement si le miroir est absent.
 <p><code>GET /participations/{id}/donnees</code> renvoie une collection Eve <strong>paginée</strong> (<code>_meta.max_results = 20</code> par
 page ; la participation canonique <code>6a4961f5…</code> en a <strong>4806</strong>, soit 241 pages). Chaque <strong>donnée</strong> correspond
 à <strong>un fichier WAV</strong> traité :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6a4fcaa2842983a29ba25363"</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">  </span><span class="nt">"titre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Car130711-2026-Pass1-Z41-PaRecPR1997632_20260703_220529_000"</span><span class="p">,</span>
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">  </span><span class="nt">"publique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">  </span><span class="nt">"observations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
-<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="p">{</span>
-<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">      </span><span class="nt">"frequence_mediane"</span><span class="p">:</span><span class="w"> </span><span class="mf">153.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"temps_debut"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="nt">"temps_fin"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span>
-<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="w">      </span><span class="nt">"tadarida_probabilite"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="p">,</span>
-<a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="w">      </span><span class="nt">"tadarida_taxon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5526cd5a…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"libelle_court"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noise"</span><span class="p">,</span><span class="w"> </span><span class="nt">"libelle_long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bruit"</span><span class="w"> </span><span class="p">},</span>
-<a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="w">      </span><span class="nt">"tadarida_taxon_autre"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"taxon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"libelle_court"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tetvir"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">"probabilite"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.02</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="w">    </span><span class="p">}</span>
-<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="w">  </span><span class="p">],</span>
-<a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="w">  </span><span class="nt">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span>
-<a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">{</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6a4fcaa2842983a29ba25363"</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span><span class="nt">"titre"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Car130711-2026-Pass1-Z41-PaRecPR1997632_20260703_220529_000"</span><span class="p">,</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span><span class="nt">"publique"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span><span class="nt">"observations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">    </span><span class="p">{</span>
+<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">      </span><span class="nt">"frequence_mediane"</span><span class="p">:</span><span class="w"> </span><span class="mf">153.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"temps_debut"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.1</span><span class="p">,</span><span class="w"> </span><span class="nt">"temps_fin"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.0</span><span class="p">,</span>
+<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">      </span><span class="nt">"tadarida_probabilite"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.9</span><span class="p">,</span>
+<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">      </span><span class="nt">"tadarida_taxon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5526cd5a…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"libelle_court"</span><span class="p">:</span><span class="w"> </span><span class="s2">"noise"</span><span class="p">,</span><span class="w"> </span><span class="nt">"libelle_long"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bruit"</span><span class="w"> </span><span class="p">},</span>
+<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">      </span><span class="nt">"tadarida_taxon_autre"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"taxon"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nt">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span><span class="p">,</span><span class="w"> </span><span class="nt">"libelle_court"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tetvir"</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="nt">"probabilite"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.02</span><span class="w"> </span><span class="p">}</span><span class="w"> </span><span class="p">]</span>
+<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">    </span><span class="p">}</span>
+<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">  </span><span class="p">],</span>
+<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">  </span><span class="nt">"_etag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"…"</span>
+<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="p">}</span>
 </code></pre></div>
 <p>Points vérifiés en réel (reconnaissance #1135, 2026-07-12, lecture seule) :</p>
 <ul>
@@ -14407,8 +14418,8 @@ bilan serveur régénéré par le seul dernier envoi), exposés par l'action ☰
 vers VigieChiro » de Sons &amp; validation et la commande <code>publier-corrections-vigiechiro</code>.</p>
 <p><strong>La route</strong> : <code>PATCH /donnees/{donnee_id}/observations/{index}</code> : l'<strong>indice dans le tableau
 <code>observations</code> est l'identifiant</strong> de l'observation (<code>404</code> si hors bornes).</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="err">PATCH /donnees/6a4fcaa2842983a29ba25363/observations/0</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="err">{ "observateur_taxon": "5526cd5a…", "observateur_probabilite": "SUR" }</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="err">PATCH /donnees/6a4fcaa2842983a29ba25363/observations/0</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="err">{ "observateur_taxon": "5526cd5a…", "observateur_probabilite": "SUR" }</span>
 </code></pre></div>
 <p>Règles imposées par le handler (<code>donnees.py</code>, <code>edit_observation</code>) :</p>
 <ul>
@@ -14462,11 +14473,11 @@ recalcul, ou verrouiller la relance quand des corrections existent).</p>
 <h3 id="les-trois-avis-et-le-fil-tout-arrive-deja-dans-get-donnees-1417">Les trois avis, et le fil : tout arrive déjà dans <code>GET …/donnees</code> (#1417)<a class="headerlink" href="#les-trois-avis-et-le-fil-tout-arrive-deja-dans-get-donnees-1417" title="Permanent link">&para;</a></h3>
 <p>Le spike de #724 a établi que <strong>rien de nouveau n'était à appeler</strong>. Le schéma de la ressource <code>donnees</code>
 porte, sur <strong>chaque observation</strong> :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="s1">'observateur_taxon'</span><span class="p">:</span>       <span class="n">relation</span><span class="p">(</span><span class="s1">'taxons'</span><span class="p">),</span>
-<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="s1">'observateur_probabilite'</span><span class="p">:</span> <span class="n">choice</span><span class="p">([</span><span class="s1">'SUR'</span><span class="p">,</span> <span class="s1">'PROBABLE'</span><span class="p">,</span> <span class="s1">'POSSIBLE'</span><span class="p">]),</span>
-<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="s1">'validateur_taxon'</span><span class="p">:</span>        <span class="n">relation</span><span class="p">(</span><span class="s1">'taxons'</span><span class="p">),</span>
-<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="s1">'validateur_probabilite'</span><span class="p">:</span>  <span class="n">choice</span><span class="p">([</span><span class="s1">'SUR'</span><span class="p">,</span> <span class="s1">'PROBABLE'</span><span class="p">,</span> <span class="s1">'POSSIBLE'</span><span class="p">]),</span>
-<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="s1">'messages'</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span><span class="s1">'message'</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">'auteur'</span><span class="p">:</span> <span class="n">relation</span><span class="p">(</span><span class="s1">'utilisateurs'</span><span class="p">),</span> <span class="s1">'date'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">}</span> <span class="p">],</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="s1">'observateur_taxon'</span><span class="p">:</span>       <span class="n">relation</span><span class="p">(</span><span class="s1">'taxons'</span><span class="p">),</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="s1">'observateur_probabilite'</span><span class="p">:</span> <span class="n">choice</span><span class="p">([</span><span class="s1">'SUR'</span><span class="p">,</span> <span class="s1">'PROBABLE'</span><span class="p">,</span> <span class="s1">'POSSIBLE'</span><span class="p">]),</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="s1">'validateur_taxon'</span><span class="p">:</span>        <span class="n">relation</span><span class="p">(</span><span class="s1">'taxons'</span><span class="p">),</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="s1">'validateur_probabilite'</span><span class="p">:</span>  <span class="n">choice</span><span class="p">([</span><span class="s1">'SUR'</span><span class="p">,</span> <span class="s1">'PROBABLE'</span><span class="p">,</span> <span class="s1">'POSSIBLE'</span><span class="p">]),</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="s1">'messages'</span><span class="p">:</span> <span class="p">[</span> <span class="p">{</span><span class="s1">'message'</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="s1">'auteur'</span><span class="p">:</span> <span class="n">relation</span><span class="p">(</span><span class="s1">'utilisateurs'</span><span class="p">),</span> <span class="s1">'date'</span><span class="p">:</span> <span class="n">datetime</span><span class="p">}</span> <span class="p">],</span>
 </code></pre></div>
 <p>Ces champs arrivaient donc à <strong>chaque import</strong>, dans la même charge utile : et le parseur les jetait.
 L'application présentait la correction de l'observateur comme le dernier mot, alors qu'un expert avait pu
@@ -14482,8 +14493,8 @@ la réviser sans qu'on le voie jamais.</p>
   les projections : le parseur accepte les deux.</li>
 </ul>
 <h3 id="put-donneesidobservationsindexmessages-poster-un-message-1418"><code>PUT /donnees/{id}/observations/{index}/messages</code> : poster un message (#1418)<a class="headerlink" href="#put-donneesidobservationsindexmessages-poster-un-message-1418" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="err">PUT /donnees/6a4fcaa2842983a29ba25363/observations/0/messages</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="err">{ "message": "Médiane basse pour un Eptser, non ?" }</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="err">PUT /donnees/6a4fcaa2842983a29ba25363/observations/0/messages</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="err">{ "message": "Médiane basse pour un Eptser, non ?" }</span>
 </code></pre></div>
 <ul>
 <li>rôle <strong><code>Observateur</code></strong> : <code>_check_access_rights</code> laisse passer le <strong>propriétaire</strong> de la donnée, notre
