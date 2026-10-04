@@ -901,6 +901,10 @@
          <lastmod>2026-10-04</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/4356-le-bouchon-n-apprend-pas-ce-que-le-serveur-reel-eprouve/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/4359-une-javadoc-contracte-elle-ne-raconte-pas/</loc>
          <lastmod>2026-10-04</lastmod>
     </url>
@@ -1438,6 +1442,10 @@
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5707-un-geste-du-pointeur-situe-sa-cible-sur-le-fil/</loc>
+         <lastmod>2026-10-04</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5746-une-sonde-live-declare-sa-cible-et-ce-qu-elle-saute-se-dit/</loc>
          <lastmod>2026-10-04</lastmod>
     </url>
     <url>

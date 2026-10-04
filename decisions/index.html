@@ -11577,6 +11577,76 @@
   
   
     <li class="md-nav__item">
+      <a href="5746-une-sonde-live-declare-sa-cible-et-ce-qu-elle-saute-se-dit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5746 · Une sonde live déclare sa cible, et ce qu'elle saute se dit
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4356-le-bouchon-n-apprend-pas-ce-que-le-serveur-reel-eprouve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4356 · Le bouchon n'apprend pas ce que le serveur réel éprouve
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/" class="md-nav__link">
         
   
@@ -15182,7 +15252,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 280<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 281<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -15622,13 +15692,23 @@
 </tr>
 <tr>
 <td><a href="5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/">5663</a></td>
-<td>L'ADR 4134 veut qu'un banc ouvre son état au lieu d'emprunter celui du fork. La plateforme de test ne le peut pas : pour déposer sur le faux S3 en TLS, elle pose le contexte TLS par défaut de la JVM et les hôtes S3 admis, et ne les rend pas, montée une fois par JVM. <strong>Le fork est l'état qu'elle ouvre</strong> : toute classe qui la monte, par le banc ou par l'extension, porte le tag <code>plateforme-de-test</code>, que le build par défaut exclut et qu'un profil dédié joue seul. Écartés : un client injecté dans <code>TransportVigieChiro</code> (la production élargie pour un test), la restauration (l'ordre resterait la vraie dépendance), un magasin de confiance au lancement (le certificat naît avec le conteneur). Le cas qui tenait le tag ne voyait que les scénarios, et a été élargi aux tests d'API à la clôture</td>
+<td>L'ADR 4134 veut qu'un banc ouvre son état au lieu d'emprunter celui du fork. La plateforme de test ne le peut pas : pour déposer sur le faux S3 en TLS, elle pose le contexte TLS par défaut de la JVM et les hôtes S3 admis, et ne les rend pas, montée une fois par JVM. <strong>Le fork est l'état qu'elle ouvre</strong> : toute classe qui la monte, par le banc ou par l'extension, porte le tag <code>plateforme-de-test</code>, que le build par défaut exclut et qu'un profil dédié joue seul. Écartés : un client injecté dans <code>TransportVigieChiro</code> (la production élargie pour un test), la restauration (l'ordre resterait la vraie dépendance), un magasin de confiance au lancement (le certificat naît avec le conteneur). Le cas qui tenait le tag ne voyait que les scénarios, et a été élargi aux tests d'API à la clôture <strong>Amendée par l'ADR 5746</strong> : <code>CibleLive</code> est une troisième façon de monter la plateforme, que le garde compte</td>
 <td>#5663, EPIC #5642</td>
 </tr>
 <tr>
 <td><a href="5666-la-plateforme-de-test-se-construit-sans-cache/">5666</a></td>
 <td>Le lot du job <code>plateforme-de-test</code> exigeait un cache de construction des images. Mesuré d'abord : 20 s en local pour l'image de l'API, une étape de 90 à 131 s en CI sur huit runs de <code>main</code>, et surtout un job qui tourne en parallèle et finit neuvième sur quatorze, loin derrière le plus long (535 à 912 s). Gagner vingt secondes n'avance pas le verdict, donc <strong>pas de cache</strong>. La question se rouvre si ce job devient le plus long de son run ; la mesure se refait sur plusieurs runs, jamais un seul. <code>humaine</code>, aucun garde ne tenant un rapport de durées qui varie d'un facteur deux selon le runner</td>
 <td>#5666, EPIC #5642</td>
+</tr>
+<tr>
+<td><a href="5746-une-sonde-live-declare-sa-cible-et-ce-qu-elle-saute-se-dit/">5746</a></td>
+<td>Les deux classes du contrat live ne visaient que la plateforme nationale, et un saut par <code>assumeTrue</code> sort vert : la cible ignorée, les 29 sondes sautaient sans que le job rougisse. <strong>La cible se déclare</strong> par le profil (<code>vigiechiro.cible</code>, lue par <code>CibleLive</code>), jamais par l'absence de jeton ; sur la plateforme de test les verrous d'écriture tombent. <strong>Rien ne saute, et ce qui saute se dit</strong> : le job affiche ses sautés et refuse tout saut, l'état de départ portant ce que les sondes supposent ; deux diagnostics nomment le jeton ou une classe entièrement sautée. Amende 5663 : <code>CibleLive</code> est une troisième façon de monter la plateforme, et le garde la compte</td>
+<td>#5746, EPIC #5643</td>
+</tr>
+<tr>
+<td><a href="4356-le-bouchon-n-apprend-pas-ce-que-le-serveur-reel-eprouve/">4356</a></td>
+<td>#4356 proposait d'enseigner au bouchon de la ligne de commande les pièges que le client absorbe (<code>max_results</code>, RFC 1123, <code>numero</code>, <code>401</code>/<code>403</code>/injoignable). Depuis #5643, chacun a sa sonde contre le serveur réel de la plateforme de test, à chaque demande. <strong>Le bouchon n'apprend rien</strong> : il répond ce que nous croyons que la plateforme répond (ADR 4142), et grossir en ferait une seconde source de vérité qui dériverait. La règle reste : tout comportement du bouchon cite sa sonde live. <code>humaine</code> : une décision de ne pas faire ne laisse aucun code à garder</td>
+<td>#4356, EPIC #5643</td>
 </tr>
 <tr>
 <td><a href="4650-un-geste-de-test-vise-une-donnee-pas-une-position/">4650</a></td>

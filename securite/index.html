@@ -11460,6 +11460,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5746-une-sonde-live-declare-sa-cible-et-ce-qu-elle-saute-se-dit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5746 · Une sonde live déclare sa cible, et ce qu'elle saute se dit
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4356-le-bouchon-n-apprend-pas-ce-que-le-serveur-reel-eprouve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4356 · Le bouchon n'apprend pas ce que le serveur réel éprouve
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/" class="md-nav__link">
         
   
@@ -14408,8 +14478,11 @@ d'objet. Une liste figée rendrait l'application inutilisable contre une instanc
 D'où la propriété système <code>vigiechiro.s3.hotes</code>, qui <strong>remplace</strong> la liste, et un message de refus qui
 nomme l'hôte observé <strong>et</strong> la propriété : un changement d'hébergement doit être une ligne à ajouter,
 pas un mur.</p>
-<p>Une <strong>sonde live</strong> (<code>ContratApiVigieChiroLiveTest</code>, hors CI) confronte l'allowlist à l'URL que la
-plateforme sert vraiment : si l'hébergement change, elle rougit là plutôt que chez un utilisateur.</p>
+<p>Une <strong>sonde live</strong> (<code>ContratApiVigieChiroLiveTest</code>) confronte l'allowlist à l'URL que la plateforme
+sert vraiment : si l'hébergement change, elle rougit là plutôt que chez un utilisateur. Elle joue
+<strong>chaque lundi</strong> contre la plateforme nationale (<code>api-live.yml</code>), seule à servir le vrai hébergement ;
+à chaque demande, elle joue aussi contre la plateforme de test, dont le faux S3 est admis par
+<code>vigiechiro.s3.hotes</code> (#5643).</p>
 <h2 id="chaine-dapprovisionnement">Chaîne d'approvisionnement<a class="headerlink" href="#chaine-dapprovisionnement" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Dependabot</strong> propose mensuellement les mises à jour <code>maven</code> et <code>github-actions</code> ; les bumps sont

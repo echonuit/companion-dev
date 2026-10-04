@@ -11462,6 +11462,76 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5746-une-sonde-live-declare-sa-cible-et-ce-qu-elle-saute-se-dit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5746 · Une sonde live déclare sa cible, et ce qu'elle saute se dit
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/4356-le-bouchon-n-apprend-pas-ce-que-le-serveur-reel-eprouve/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4356 · Le bouchon n'apprend pas ce que le serveur réel éprouve
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5629-la-premiere-ligne-du-journal-ne-date-aucune-nuit/" class="md-nav__link">
         
   
@@ -14568,9 +14638,15 @@ fork, ce que garantit le profil, qui ne joue que ce tag.</p>
   déclarations du banc. Le banc vise la plateforme et dépose le jeton sans profil ; la modale le
   revérifie seule. Exemple :
   <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/connexion/view/ScenarioPlateformeDeTestConnexionTest.java"><code>ScenarioPlateformeDeTestConnexionTest</code></a>.</li>
+<li>Une sonde du contrat live : <code>CibleLive.declaree()</code> rend la cible que le profil déclare
+  (<code>vigiechiro.cible</code>), la plateforme de test sous <code>-Pplateforme-de-test</code>, verrous d'écriture
+  ouverts, et la plateforme nationale sinon (#5643). Exemples : <code>ContratApiVigieChiroLiveTest</code> et
+  <code>AllerRetourParticipationLiveTest</code>, qui portent les deux tags. Le job affiche ce qu'il a sauté et
+  refuse tout saut (<code>scripts/plateforme-de-test/releve_des_sautes.py</code>) : une donnée qu'une sonde suppose
+  se déclare dans l'état de départ.</li>
 </ul>
-<p>Dans les deux cas la classe porte <code>@Tag("plateforme-de-test")</code>, et <code>DeclarationDeLaPlateformeTest</code>
-le refuse sinon pour un scénario.</p>
+<p>Dans les trois cas la classe porte <code>@Tag("plateforme-de-test")</code>, et <code>DeclarationDeLaPlateformeTest</code>
+le refuse sinon.</p>
 <h3 id="ses-epingles">Ses épingles<a class="headerlink" href="#ses-epingles" title="Permanent link">&para;</a></h3>
 <p><code>epingles.properties</code> est le <strong>seul</strong> endroit qui porte la révision de l'API et le digest de Mongo.
 <code>api.Dockerfile</code> ne donne donc aucune valeur par défaut à <code>REVISION</code>, et <code>ImageDeLApiSansRevisionTest</code>
