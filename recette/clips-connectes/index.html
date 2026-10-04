@@ -13182,6 +13182,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#s4-90-s4-92-publier-une-correction-puis-la-republier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S4-90, S4-92 · publier une correction, puis la republier
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -14207,6 +14218,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#s4-90-s4-92-publier-une-correction-puis-la-republier" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S4-90, S4-92 · publier une correction, puis la republier
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -14307,8 +14329,9 @@ l'<a href="../../decisions/5641-les-tests-connectes-ont-deux-cibles/">ADR 5641</
 <code>plateforme_de_test</code> de <code>tournage-recette.yml</code> (#5793) : l'API Vigie-Chiro épinglée, montée par les
 tests eux-mêmes, sur un état de départ déclaré, sans jeton, sur Ubuntu seul. Le scénario est le même :
 le banc lit la cible que le profil déclare, et seuls ses cas qui ont un sens sur cette cible sont
-joués (<code>recette-connectee &amp; plateforme-de-test</code>), aujourd'hui S8-01, S8-05, S8-06, S2-59, S2-60 et S4-47.</p>
-<p>S4-47 est le premier cas qui n'existe <strong>que</strong> là (#5795) : son scénario porte en plus
+joués (<code>recette-connectee &amp; plateforme-de-test</code>), aujourd'hui S8-01, S8-05, S8-06, S2-59, S2-60, S4-47, S4-90 et S4-92.</p>
+<p>S4-47 est le premier cas qui n'existe <strong>que</strong> là (#5795), S4-90 et S4-92 les suivants (#5796) : leurs
+scénarios portent en plus
 <code>plateforme-de-test-seule</code>, que le tournage national exclut et que son oracle n'attend pas.</p>
 <p>Ses clips vont sur une pré-version à elle, <code>clips-plateforme-de-test</code>, et non sur <code>clips-connectes</code>.
 Leur état de départ étant déclaré, ils pourront se comparer, sous la condition que l'ADR 5641 pose et
@@ -14492,6 +14515,31 @@ l'analyse est demandée, et la carte dit « Analyse planifiée ». Sans worker, 
 reste là, et c'est l'état que le cas décrit.</p>
 <p><strong>Ce qu'il ne prouve pas.</strong> Que l'analyse <strong>aboutisse</strong> : rien ne la traite sur la plateforme de test.</p>
 <video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-plateforme-de-test/ScenarioConnecteLancementTest.lancer_la_participation_rend_l_analyse_planifiee.mp4"></video>
+
+<h3 id="s4-90-s4-92-publier-une-correction-puis-la-republier">S4-90, S4-92 · publier une correction, puis la republier<a class="headerlink" href="#s4-90-s4-92-publier-une-correction-puis-la-republier" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>S4-90</strong> Après une publication menée à son terme, le compte rendu annonce les corrections envoyées
+<strong>sans écart</strong> « sans ancrage ».
+<strong>S4-92</strong> Republier immédiatement : la publication repart <strong>sans</strong> repasser par la récupération des
+identifiants.</p>
+</blockquote>
+<p><strong>D'où vient ce clip.</strong> De la <strong>plateforme de test</strong>, et d'elle seule : il vit sur la pré-version
+<code>clips-plateforme-de-test</code>. Les deux cas demandent des corrections réellement publiées. Contre un
+double, on lirait ce qu'on lui a fait dire ; contre la plateforme nationale, on réécrirait les
+observations d'un compte réel, et une correction publiée ne se retire pas.</p>
+<p><strong>Ce qu'il sème.</strong> Un passage local relié à la participation <code>nuit-traitee</code> de l'état de départ, avec
+ses deux séquences. Les codes de taxon sont reliés par le rapprochement que le produit joue à la
+connexion, pas par un lien fabriqué.</p>
+<p><strong>Ce qu'il montre.</strong> L'import depuis Vigie-Chiro rend deux observations. La première est corrigée de
+« Pippip » vers « Barbar », le second taxon de l'état de départ (#5794), et sa certitude déclarée.
+La première publication annonce qu'elle rapatriera d'abord un identifiant, puis rend son compte :
+une correction publiée, aucun écart. La seconde ne l'annonce plus.</p>
+<p><strong>Ce qu'il ne prouve pas.</strong> Que le portail montre la correction : c'est S4-91, qui reste hors de
+portée. Et pour S4-92 :</p>
+<blockquote>
+<p>Le récapitulatif de confirmation, sur lequel S4-92 se juge, est lu par le banc et ne paraît pas à l'image : le clip montre les deux publications et leur compte rendu, pas la phrase qui dit que la seconde ne rapatrie plus rien.</p>
+</blockquote>
+<video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-plateforme-de-test/ScenarioConnectePublicationTest.publier_une_correction_puis_la_republier.mp4"></video>
 
 <h2 id="ce-que-ces-clips-publient-et-le-compte-que-cela-engage">Ce que ces clips publient, et le compte que cela engage<a class="headerlink" href="#ce-que-ces-clips-publient-et-le-compte-que-cela-engage" title="Permanent link">&para;</a></h2>
 <p><code>S8-06</code> montre l'identité que la plateforme a rendue. Un clip connecté porte donc, <strong>en clair et sur
