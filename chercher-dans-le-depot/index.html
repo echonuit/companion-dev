@@ -570,6 +570,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Le graphe d&#39;abord">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-quil-lit-et-ce-quil-ne-lit-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qu'il lit, et ce qu'il ne lit pas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -12758,6 +12775,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5790-le-graphe-lit-la-prose-d-un-perimetre-declare/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5790 · Le graphe lit la prose d'un périmètre déclaré
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -13981,6 +14033,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Le graphe d&#39;abord">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ce-quil-lit-et-ce-quil-ne-lit-pas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce qu'il lit, et ce qu'il ne lit pas
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -14131,6 +14200,43 @@ que l'index existe pour éviter ; les 4 347 écritures du corpus ne sont donc pa
 <p>C'est la règle du dépôt, et elle est dans <code>AGENTS.md</code> : quand <code>graphify-out/graph.json</code> existe,
 <code>graphify query "&lt;question&gt;"</code> passe avant tout le reste. Il oriente ; les deux autres outils
 précisent ensuite.</p>
+<h3 id="ce-quil-lit-et-ce-quil-ne-lit-pas">Ce qu'il lit, et ce qu'il ne lit pas<a class="headerlink" href="#ce-quil-lit-et-ce-quil-ne-lit-pas" title="Permanent link">&para;</a></h3>
+<p>Le graphe a deux couches, et elles ne couvrent pas la même chose.</p>
+<table>
+<thead>
+<tr>
+<th>Couche</th>
+<th>Ce qu'elle lit</th>
+<th>Où</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>de structure</td>
+<td>les classes, les méthodes, et pour une page son fichier et ses titres</td>
+<td>tout le dépôt</td>
+</tr>
+<tr>
+<td>sémantique</td>
+<td>les concepts, les décisions et les règles que la <strong>prose</strong> porte, avec leur raison</td>
+<td><code>brief/</code>, <code>dev-docs/</code>, <code>docs/</code>, les <code>.md</code> de la racine hors <code>CHANGELOG.md</code></td>
+</tr>
+</tbody>
+</table>
+<p>Hors de ce périmètre, une page n'est connue que par ses titres : c'est le cas de <code>.github/</code>,
+d'<code>openspec/</code>, des compétences et de <code>recette/</code>. Une question conceptuelle n'y lira aucune prose, et
+le graphe ne le dira pas. Le périmètre, son coût et ses parades sont dans l'<a href="../decisions/5790-le-graphe-lit-la-prose-d-un-perimetre-declare/">ADR 5790</a>.</p>
+<p>Cela ne veut pas dire que personne ne lit ces pages. La prose de <code>.github/</code> est lue par l'instrument
+textuel de la passe 3 de la clôture, que porte la compétence <code>recoller-la-doc-au-code</code> depuis #5791 :
+le graphe n'en connaît que les titres, et cet instrument en est le lecteur.</p>
+<div class="admonition warning">
+<p class="admonition-title">Une page récente répond avec sa version d'avant</p>
+<p>La couche sémantique date d'un commit. Une page modifiée depuis garde ses nœuds d'avant, sans
+rien signaler : le graphe répond, et il répond l'ancienne prose. Sur une page qui vient de
+changer, lire la page.</p>
+</div>
+<p>Personne n'écrit ce graphe à la main : quand <code>VIGIECHIRO_GRAPHIFY=1</code> est posé, le crochet
+<code>post-commit</code> le refait par <code>scripts/graphify/rebuild.py</code>, qui conserve la couche sémantique.</p>
 <h2 id="semgrep-pour-les-questions-de-forme"><code>semgrep</code> pour les questions de forme<a class="headerlink" href="#semgrep-pour-les-questions-de-forme" title="Permanent link">&para;</a></h2>
 <p><code>semgrep</code> lit l'arbre syntaxique, pas les lignes. Il répond juste là où <code>grep</code> ne peut que deviner :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'CritereListe.$M(...)'</span><span class="w"> </span>src/main
