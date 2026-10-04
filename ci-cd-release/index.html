@@ -12582,6 +12582,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5774-un-refus-ne-voyage-pas-dans-le-canal-des-constats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5774 · Un refus ne voyage pas dans le canal des constats
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5775-le-depot-demande-au-poste-ou-vit-son-outil/" class="md-nav__link">
         
   
@@ -15096,7 +15131,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>scripts/methode/verifie-specs-valides.py</code></td>
-<td>que les <strong>specs principales</strong> d'OpenSpec valident, par l'outil épinglé. Il <strong>refuse</strong> sur un corpus vide plutôt que de conclure : l'outil sort en 0 en écrivant « No items found to validate », et un garde qui l'appellerait nu serait muet en ayant l'air sain. Il ne valide pas les changements <strong>actifs</strong>, légitimement incomplets pendant leur écriture. Depuis #5774 il sort en <strong>2</strong> sur un refus et non en 1, ce que sa fonction de jugement distinguait déjà avant de l'écraser au seuil de la sortie, et il nomme le prérequis le plus <strong>profond</strong> : l'interprète du shebang quand l'outil est posé mais inutilisable, là où il accusait auparavant la sortie de l'outil de ne porter aucune ligne « Totals: »</td>
+<td>que les <strong>specs principales</strong> d'OpenSpec valident, par l'outil épinglé. Il <strong>refuse</strong> sur un corpus vide plutôt que de conclure : l'outil sort en 0 en écrivant « No items found to validate », et un garde qui l'appellerait nu serait muet en ayant l'air sain. Il ne valide pas les changements <strong>actifs</strong>, légitimement incomplets pendant leur écriture. Depuis #5774 il sort en <strong>2</strong> sur un refus et non en 1, ce que sa fonction de jugement distinguait déjà avant de l'écraser au seuil de la sortie, et il nomme le prérequis le plus <strong>profond</strong> : l'interprète du shebang quand l'outil est posé mais inutilisable, là où il accusait auparavant la sortie de l'outil de ne porter aucune ligne « Totals: ». Et depuis la clôture de #5762, <strong>ses trois autres refus</strong> portent aussi la forme déclarée - ils écrivaient <code>REFUS :</code> sans champ de geste, donc <code>lit_le_refus</code> les rendait illisibles à la porte - tandis que sa branche d'<strong>écart réel</strong> cesse de porter ce mot : elle a jugé, elle sort en 1, et elle se faisait lire comme un empêchement</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>

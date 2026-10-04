@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://companion-dev.echonuit.fr/decisions/5775-le-depot-demande-au-poste-ou-vit-son-outil/">
       
       
-        <link rel="prev" href="../5700-un-controle-de-forme-suit-son-lecteur/">
+        <link rel="prev" href="../5774-un-refus-ne-voyage-pas-dans-le-canal-des-constats/">
       
       
         <link rel="next" href="../../recette/">
@@ -12581,6 +12581,41 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../5774-un-refus-ne-voyage-pas-dans-le-canal-des-constats/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5774 · Un refus ne voyage pas dans le canal des constats
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -13991,36 +14026,13 @@ de développement, <strong>12 n'avaient aucun <code>node_modules</code></strong>
 poste range <code>node</code> sous un gestionnaire de version. L'échappatoire de l'ADR 5407, « chaque échec nomme
 sa commande », tenait en lettre et c'est ce qui la rendait inopérante : la commande nommée était
 <code>npm ci</code>, celle qui ne peut pas s'exécuter.</p>
-<p>Le coût s'est payé ailleurs : <strong>huit corps de demande</strong> sur deux sessions ont classé les refus des
-gardes OpenSpec « environnementaux, étrangers à ce diff », ce que #5774 vient de corriger côté
-message.</p>
 <h2 id="decision">Décision<a class="headerlink" href="#decision" title="Permanent link">&para;</a></h2>
 <p><strong>Le dépôt ne cherche pas l'outil, il demande au poste.</strong> Quand le PATH ordinaire ne porte pas l'outil,
 le script interroge le shell que le poste déclare, par <code>command -v</code>, et utilise le chemin absolu rendu.</p>
 <p>Le poste <strong>déclare déjà</strong> où vit son outil, dans le profil de son propre shell, et cette déclaration
-est tenue par son propriétaire. Mesure qui tranche :</p>
-<table>
-<thead>
-<tr>
-<th>Ce qu'on interroge</th>
-<th>Ce qu'on obtient</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>/bin/sh -c 'command -v npm'</code></td>
-<td>introuvable, et c'est ce que le crochet voit</td>
-</tr>
-<tr>
-<td><code>bash -lc</code></td>
-<td>introuvable : ici, le gestionnaire vit dans <code>.zshrc</code>, pas dans un profil que <code>bash</code> lit</td>
-</tr>
-<tr>
-<td>le shell <strong>déclaré par le poste</strong>, en interactif</td>
-<td>le chemin absolu de l'outil</td>
-</tr>
-</tbody>
-</table>
+est tenue par son propriétaire. La mesure qui tranche : <code>/bin/sh -c</code> et <code>bash -lc</code> ne trouvent rien,
+le second parce que le gestionnaire vit ici dans <code>.zshrc</code> ; le shell <strong>déclaré par le poste</strong>, en
+interactif, rend le chemin absolu.</p>
 <p><strong>Quatre propriétés font partie de la décision</strong>, chacune avec son cas d'auto-test.</p>
 <p>Le poste n'est interrogé <strong>qu'après</strong> l'échec du PATH ordinaire : le faire d'avance coûterait à chaque
 arbre pour une question déjà résolue. <strong><code>stdout</code> seul</strong> est lu, parce qu'un profil écrit sur l'erreur,
@@ -14039,16 +14051,23 @@ Un poste qui les séparerait obtiendrait l'échec nommé du lanceur, et non un s
 poste. Un cas d'auto-test balaie le texte rendu contre cinq noms.</p>
 <p><strong>Tenir une table de dispositions connues.</strong> Elle vieillit, et le dépôt devrait la maintenir pour des
 postes qu'il ne voit pas.</p>
-<p><strong>Faire écrire un fichier non versionné</strong> où le poste déclarerait ses outils. Il dupliquerait une
-déclaration qui existe déjà, et personne ne penserait à l'écrire.</p>
+<p><strong>Faire écrire un fichier non versionné</strong> où le poste déclarerait ses outils. Ici il dupliquerait
+une déclaration qui existe déjà, celle du profil du shell. <strong>Le dépôt emploie pourtant cette forme
+ailleurs</strong>, et il faut le dire plutôt que de l'écarter : <code>.githooks/post-merge</code> lit
+<code>graphify-out/.graphify_python</code>. La différence est que <code>graphify</code> n'est déclaré par aucun profil,
+alors que <code>node</code> l'est par construction, puisque le gestionnaire de version qui l'installe écrit
+dans ce profil. Le critère n'est donc pas la forme, c'est : <strong>le poste déclare-t-il déjà cet outil
+quelque part ?</strong></p>
+<p>Avec <code>batterie.interprete()</code>, qui sonde une liste <strong>fermée</strong> de candidats connus du dépôt, cela fait
+trois stratégies, et leur choix se décide par l'état de l'ensemble des emplacements plausibles :
+fermé, on sonde ; déclaré par le poste, on demande ; ni l'un ni l'autre, le poste l'écrit.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
 <p><strong>Un compte juste cesse d'être jeté.</strong> Ce script rendait toujours <code>0</code>, en se justifiant par « jamais un
 motif de blocage ». La raison est bonne et ne couvre pas ce qu'elle justifiait : le crochet se protège
 <strong>déjà</strong> lui-même, par <code>|| true</code> suivi d'un <code>exit 0</code>. La non-blocance est la propriété de l'appelant.
 Le script rend donc <code>2</code> quand il n'a pas pu poser, ce que le dépôt distingue d'un <code>1</code>.</p>
-<p><strong>Les modules déclarés n'entrent pas dans ce code</strong>, et c'est une décision : un module absent de
-l'interprète courant n'est pas un échec du dépôt à poser, et les compter ferait sortir <code>2</code> à chaque
-création d'arbre sur un poste sain.</p>
+<p><strong>Les modules déclarés n'entrent pas dans ce code</strong> : un module absent de l'interprète courant n'est
+pas un échec du dépôt à poser, et les compter ferait sortir <code>2</code> sur un poste sain.</p>
 <p><strong>Ce que cette décision laisse ouvert.</strong> Un poste dont le profil est muet sur son outil obtient un
 refus qui le nomme, et rien de plus. C'est le bon comportement et ce n'est pas une pose : la famille
 « non posable » de l'ADR 5407 reste ce qu'elle était.</p>
@@ -14090,7 +14109,7 @@ refus qui le nomme, et rien de plus. C'est le bon comportement et ce n'est pas u
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../5700-un-controle-de-forme-suit-son-lecteur/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 5700 · Un contrôle de forme suit son lecteur">
+          <a href="../5774-un-refus-ne-voyage-pas-dans-le-canal-des-constats/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 5774 · Un refus ne voyage pas dans le canal des constats">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -14100,7 +14119,7 @@ refus qui le nomme, et rien de plus. C'est le bon comportement et ce n'est pas u
                 Précédent
               </span>
               <div class="md-ellipsis">
-                5700 · Un contrôle de forme suit son lecteur
+                5774 · Un refus ne voyage pas dans le canal des constats
               </div>
             </div>
           </a>
