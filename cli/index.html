@@ -12680,6 +12680,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5677 · Le dépôt part en WAV, un dépôt entamé garde son mode
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -14402,7 +14437,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>deposer-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;] [--archives\|--wav]</code></td>
 <td>#1043</td>
-<td><code>DepotVigieChiro.deposer</code> (moteur <strong>reprenable</strong> #982, téléversement <strong>parallèle</strong> #984). Défaut = <code>ChoixSourceDepot.pour</code>, <strong>le même choix que M-Lot</strong> : ZIP si présentes, sinon invite à les générer (étape 2), sinon repli WAV. <code>--archives</code>/<code>--wav</code> forcent l'un ou l'autre. <strong>Parité #2350</strong> : depuis le réessai gradué (#2354) une coupure momentanée n'échoue plus, elle <strong>attend</strong> ; la ligne <code>~ &lt;unité&gt;, nouvelle tentative dans N s</code> le dit, là où le silence faisait passer la temporisation pour un blocage</td>
+<td><code>DepotVigieChiro.deposer</code> (moteur <strong>reprenable</strong> #982, téléversement <strong>parallèle</strong> #984). Défaut = <code>ChoixSourceDepot.pour</code>, <strong>le même choix que M-Lot</strong> : le réglage <code>depot.mode</code>, WAV par défaut (#5677, ADR 5677), et un dépôt entamé garde le mode de ses unités déjà déposées. <code>--archives</code>/<code>--wav</code> forcent l'un ou l'autre. <strong>Parité #2350</strong> : depuis le réessai gradué (#2354) une coupure momentanée n'échoue plus, elle <strong>attend</strong> ; la ligne <code>~ &lt;unité&gt;, nouvelle tentative dans N s</code> le dit, là où le silence faisait passer la temporisation pour un blocage</td>
 </tr>
 <tr>
 <td><code>lancer-traitement-vigiechiro</code></td>

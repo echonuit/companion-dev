@@ -12780,6 +12780,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5677 · Le dépôt part en WAV, un dépôt entamé garde son mode
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -14052,6 +14087,14 @@
 <h1 id="le-depot-par-zip-est-le-mode-par-defaut-la-perte-de-laudio-serveur-est-assumee">Le dépôt par ZIP est le mode par défaut ; la perte de l'audio serveur est assumée<a class="headerlink" href="#le-depot-par-zip-est-le-mode-par-defaut-la-perte-de-laudio-serveur-est-assumee" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-07-13</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A11 · L&#x27;assumé se déclare, il ne se contourne pas</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">spike #984 (ZIP vs WAV) ; EPIC #1297 (décision produit)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">le ZIP comme mode par défaut et la perte assumée de l&#x27;audio serveur sont un arbitrage produit, non un invariant du code</span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>2026-10-04</strong> : le <strong>mode par défaut</strong> n'est plus le ZIP. Il est <strong>amendé</strong> par
+<a href="../5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/">5677</a> : sans réglage, le dépôt part en séquences WAV. L'« acquis de vitesse » qui
+justifiait le ZIP n'a pas été constaté au dépôt, où la compression prend du temps et du disque.
+Ce que cette page dit de l'audio d'un dépôt ZIP, non récupérable côté serveur, et du passage
+archivé qui en découle, fait toujours foi.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>VigieChiro accepte deux façons de déposer une nuit : téléverser les <strong>WAV</strong> un à un, ou pousser un <strong>ZIP</strong> de la nuit. Le ZIP est nettement plus <strong>rapide</strong> (un transfert au lieu de centaines). Mais un doute persistait depuis des semaines : le serveur <strong>conserve-t-il</strong> l'audio d'un dépôt ZIP, récupérable plus tard ?</p>
 <p>Le spike #984 (2026-07-13) a <strong>tranché</strong>, code de <code>Scille/vigiechiro-api</code> lu ligne à ligne <strong>et</strong> sonde live : en dépôt ZIP, le traitement recopie les WAV dans un cache interne (<code>TASK_PARTICIPATION_DATASTORE_CACHE</code>) <strong>hors S3 et hors API</strong>. Les documents produits n'ont <strong>aucun <code>s3_id</code></strong> : l'audio n'est <strong>pas</strong> récupérable par le client. En dépôt WAV, chaque fichier a son <code>s3_id</code> et reste ré-téléchargeable.</p>

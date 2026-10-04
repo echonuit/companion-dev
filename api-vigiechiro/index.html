@@ -12680,6 +12680,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5677 · Le dépôt part en WAV, un dépôt entamé garde son mode
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -14839,7 +14874,7 @@ booléen aveugle.</p>
 <p>Le serveur <strong>supprime toutes les <code>donnees</code> avant de recalculer</strong> (<code>task_participation.py:726-731</code>),
 puis relit les WAV via <code>get_file_from_s3</code> : qui <strong>renvoie <code>None</code> sans lever</strong> quand le fichier n'a
 pas de <code>s3_id</code> (<code>fichiers.py:118-121</code>). Or sur un dépôt en <strong>archives ZIP</strong> (notre mode par défaut
-depuis #984), les WAV extraits n'ont <strong>jamais</strong> de <code>s3_id</code> (#1244) et les ZIP ont été supprimés de
+de #984 à #5677), les WAV extraits n'ont <strong>jamais</strong> de <code>s3_id</code> (#1244) et les ZIP ont été supprimés de
 S3. Le recalcul rend donc une participation <strong>vide, définitivement</strong>.</p>
 <p>Vérifié en réel : un <code>compute</code> sur une participation <code>FINI</code> est <strong>accepté (HTTP 200)</strong>. <strong>Seule
 notre garde locale protège les données</strong> : <code>DepotVigieChiro.lancerTraitement(id, forcer)</code> refuse de
@@ -14903,13 +14938,13 @@ régénère le CSV côté serveur ; inutile ici, le pipeline le produit déjà a
   participation canonique <code>6a4961f5…</code> (déposée en zip via le site web, 4806 <code>donnees</code>), puis reproduit
   par <strong>notre chemin d'upload</strong> (API directe) sur une vraie nuit (<code>Car130711-2026-Pass2-Z41</code>, 04/07) :
   les 19 archives ZIP téléversées, <code>compute</code> lancé, WAV extraits et listés côté serveur. Le dépôt
-  <strong>en ZIP est désormais le mode par défaut</strong> (repli WAV seulement si l'espace disque est insuffisant),
+  <strong>en ZIP devient alors le mode par défaut</strong> (il l'est resté jusqu'à #5677, ADR 5677),
   déposé <strong>en parallèle</strong> (5 uploads simultanés, cf. <code>DepotVigieChiro</code>). La seule pièce manquante était
   <code>lien_participation</code> (§ « Téléversement d'un fichier », sans quoi les uploads étaient orphelins).
   Depuis #1287, <code>probe_zip_vs_wav</code> <strong>garde</strong> ce verdict au lieu de le contredire : elle <strong>affirme</strong> que la
   plateforme accepte un ZIP, et elle a été <strong>tirée</strong> (2026-07-14, participation de rebut) - déclaration,
   <code>PUT</code> S3 <code>application/zip</code>, finalisation : <strong>verte</strong>. Un rouge sur cette probe veut donc dire que <strong>le
-  mode de dépôt par défaut est cassé</strong>, et non, comme son libellé le laissait croire, qu'il faudrait
+  dépôt en archives ZIP est cassé</strong>, et non, comme son libellé le laissait croire, qu'il faudrait
   revenir au WAV.</li>
 <li>
 <p><strong>PATCH <code>/sites/{id}</code></strong> : <strong>HTTP 403</strong> pour un observateur. <strong>Ce verdict était exact et la conclusion

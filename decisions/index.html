@@ -12795,6 +12795,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5677 · Le dépôt part en WAV, un dépôt entamé garde son mode
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15212,7 +15247,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->740<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 383<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->740<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 393<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -15322,7 +15357,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 303<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 305<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -15859,6 +15894,11 @@
 <td><a href="5790-le-graphe-lit-la-prose-d-un-perimetre-declare/">5790</a></td>
 <td>Le graphe que <code>AGENTS.md</code> prescrit d'interroger d'abord était entièrement de structure : une page n'y entrait que par ses titres, et rien ne distinguait « je n'ai rien trouvé dans la prose » de « je n'ai pas lu la prose ». Une couche sémantique y est posée le 4 octobre sur un périmètre <strong>écrit</strong> : 577 pages, 3 090 nœuds, près de 7,9 millions de jetons. Trois parades se mesurent avant la fusion, dont le repli d'un nœud homonyme d'un titre, qui effaçait 62 identifiants de structure. La couche ne suit pas une page qui change, et la décision le déclare.</td>
 <td>#5790, lot 1 du chantier #5812</td>
+</tr>
+<tr>
+<td><a href="5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/">5677</a></td>
+<td>Le ZIP était le mode de dépôt par défaut parce qu'on le disait « le plus rapide », sans mesure. Le retour d'expérience du porteur dit l'inverse : la compression prend du temps et du disque sans gain perceptible au téléversement, et le ZIP fait en plus perdre l'audio en ligne. Sans réglage, le dépôt part donc en <strong>séquences WAV</strong> ; un réglage posé est respecté. Le changement a révélé qu'un dépôt entamé en ZIP et repris en WAV <strong>renvoyait toutes les séquences à côté des archives déjà en ligne</strong>, sans rien dire : un dépôt entamé garde désormais le mode de ses unités déposées</td>
+<td>#5677, chantier #5596</td>
 </tr>
 </tbody>
 </table>
