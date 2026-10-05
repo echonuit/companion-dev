@@ -13530,6 +13530,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5867-le-repli-manuel-s-offre-apres-un-refus-sans-recours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5867 · Le repli manuel s'offre après un refus sans recours
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15947,7 +15982,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->740<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 446<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->740<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 456<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -16057,7 +16092,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 355<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 365<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -16699,6 +16734,11 @@
 <td><a href="5868-une-citation-part-du-noeud-de-page-et-un-pont-ne-fabrique-pas-de-noeud-de-document/">5868</a></td>
 <td>Cinq pages de la racine, dont <code>AGENTS.md</code>, avaient perdu leur nœud de page : une passe de pont parcourait la racine sans y reconnaître de nœud de fichier, en fabriquait un second, et le suffixait <code>_doc</code>, que le moteur réserve au jumeau d'un document. Une citation part désormais du <strong>nœud de page</strong>, reconnu à sa nature, et les deux passes partagent ce choix au lieu d'en porter deux copies. <strong>Un pont ne fabrique plus de nœud de document</strong> : il ferait passer la page pour couverte, et le moteur ne relirait plus sa structure.</td>
 <td>#5868, lot 5 du chantier #5812 ; écrite à sa clôture</td>
+</tr>
+<tr>
+<td><a href="5867-le-repli-manuel-s-offre-apres-un-refus-sans-recours/">5867</a></td>
+<td>Connecté en séquences WAV, l'écran de lot n'offrait plus aucune voie quand Vigie-Chiro refusait des séquences sans recours. Le repli manuel s'offre dès qu'une séquence est refusée définitivement pour une cause autre que les droits : la carte des archives reparaît sous celle du téléversement, sans numéro, et le fil reste à trois étapes. La règle se lit dans le plan enregistré, à un seul endroit, pour l'écran et pour <code>deposer-vigiechiro</code>. La carte porte le dernier geste, « Marquer le passage déposé », et <code>deposer</code> ne re-prépare plus un dépôt entamé. Le dépôt que l'application téléverse garde sa forme</td>
+<td>Lot 34 du chantier #5596 (#5867)</td>
 </tr>
 </tbody>
 </table>

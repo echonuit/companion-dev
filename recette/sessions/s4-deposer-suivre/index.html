@@ -13415,6 +13415,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/5867-le-repli-manuel-s-offre-apres-un-refus-sans-recours/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5867 · Le repli manuel s'offre après un refus sans recours
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15016,6 +15051,7 @@ le dépôt normalement, et <strong>c'est le point</strong> - le cas à jouer est
 <li><strong>S4-35</strong> · <em>geste: reprendre-un-depot-apres-un-refus</em> · Reprendre le dépôt : seules les archives refusées repartent, jamais celles déjà en ligne.</li>
 <li><strong>S4-36</strong> · <em>geste: un-refus-422-ne-conseille-pas-la-reconnexion</em> · Rejouer S4-30 à S4-33 avec <code>VIGIECHIRO_STUB_REFUS=422</code> : le compte rendu <strong>ne conseille pas</strong> la
   reconnexion, parce qu'un contenu refusé ne se répare pas ainsi. Une reconnexion ne réarme rien.</li>
+<li><strong>S4-104</strong> · En forme par défaut (séquences WAV), téléverser avec <code>VIGIECHIRO_STUB_REFUS=422</code> : sous l'étape « 2. Téléverser sur Vigie-Chiro », la carte « <strong>Repli : déposer à la main</strong> » apparaît, dit combien de séquences ont été refusées et offre « Générer les archives de dépôt ». Le fil d'étapes compte toujours <strong>trois</strong> étapes, et le chemin du dossier <code>depot/</code> revient dans l'étape 2. Fermer puis rouvrir l'écran : le repli est toujours là, et le bouton de l'étape 2 <strong>ne s'appelle pas</strong> « Reprendre le dépôt ». Générer les archives : « <strong>Marquer le passage déposé</strong> » s'ouvre dans la carte ; le cliquer rend le passage « Déposé » et retire la carte. Avec <code>VIGIECHIRO_STUB_REFUS=403</code>, il n'apparaît pas : le compte rendu conseille la reconnexion, qui suffit.</li>
 </ul>
 <p><strong>Bloc B · Dépôt réel (130711, nuit du 05/07, ZIP, calcul lancé)</strong></p>
 <ul>
