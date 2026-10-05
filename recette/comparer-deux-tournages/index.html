@@ -15034,61 +15034,82 @@ instable qu'après plusieurs paires.</p>
 <h3 id="les-clips-de-la-plateforme-de-test-mesures">Les clips de la plateforme de test, mesurés<a class="headerlink" href="#les-clips-de-la-plateforme-de-test-mesures" title="Permanent link">&para;</a></h3>
 <p>L'<a href="../../decisions/5641-les-tests-connectes-ont-deux-cibles/">ADR 5641</a> ne levait le refus de comparer
 les clips connectés, pour la plateforme de test, que si la mesure le permettait. Elle a été prise le
-5 octobre 2026 (#5797) : <strong>quatre</strong> tournages du commit <code>edc6b69b5</code>, sur quatre runners, soit six
-paires.</p>
+5 octobre 2026 : <strong>six</strong> tournages du commit <code>82f90b2a6</code>, sur six runners, soit quinze paires,
+mesurées avec l'instrument du flux (#5870).</p>
 <table>
 <thead>
 <tr>
 <th>clip</th>
 <th>cas</th>
-<th>son plancher, sur six paires</th>
+<th>son plancher, sur quinze paires</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td><code>ScenarioConnectePublicationTest</code></td>
 <td>S4-90, S4-92</td>
-<td>0,003 %</td>
-</tr>
-<tr>
-<td><code>ScenarioConnecteAnnonceImportTest</code></td>
-<td>S2-59, S2-60</td>
-<td>0,016 %</td>
+<td>0,005 %</td>
 </tr>
 <tr>
 <td><code>ScenarioConnecteConnexionTest</code></td>
 <td>S8-01, S8-05, S8-06</td>
-<td>0,017 %</td>
+<td>0,134 %</td>
 </tr>
 <tr>
 <td><code>ScenarioConnecteActualisationTest</code></td>
 <td>S4-98</td>
-<td>0,230 %</td>
+<td>0,302 %</td>
+</tr>
+<tr>
+<td><code>ScenarioConnecteAnnonceImportTest</code></td>
+<td>S2-59, S2-60</td>
+<td>0,325 %</td>
 </tr>
 <tr>
 <td><code>ScenarioConnecteLancementTest</code></td>
 <td>S4-47</td>
-<td>0,267 %</td>
+<td>0,503 %</td>
 </tr>
 </tbody>
 </table>
-<p>Les deux plus hauts sont ceux de l'écran de lot, qui affiche un chemin temporaire au nom tiré au sort.
-Aucun ne dépasse le pire plancher des clips ordinaires, 0,809 % : ces clips se comparent.</p>
-<div class="admonition warning">
-<p class="admonition-title">Le quatrième tournage a dépassé un plancher, et c'est le résultat attendu</p>
-<p>Les planchers tirés des trois premiers tournages ont été éprouvés contre un quatrième, qu'ils
-n'avaient jamais vu. Le clip de la connexion est sorti à 0,017 %, pour un plancher de 0,013 % :
-<strong>1,3 fois son bruit</strong>. Les quatre autres sont restés à leur plancher ou dessous.</p>
-<p>Un plancher est le pire de ses tirages, et un tirage de plus le dépasse de temps en temps. Un
-rapport voisin de 1 se lit donc comme du bruit, et le fichier s'enrichit de la paire. Ce qui se
-regarde est un rapport qui s'en éloigne nettement.</p>
+<p>Aucun ne dépasse le pire plancher des clips ordinaires, 0,809 % : ces clips se comparent.</p>
+<div class="admonition danger">
+<p class="admonition-title">Un plancher se mesure avec l'instrument du flux, pas avec celui du poste</p>
+<p>Le même script, sur la même paire de clips, ne rend pas le même chiffre partout. Mesuré sur une
+paire de ces tournages : le clip de la connexion sort à <strong>0,020 %</strong> sur un poste (ffmpeg 8,
+ImageMagick 7) et à <strong>0,134 %</strong> sur le runner de <code>comparer-tournages.yml</code> (ffmpeg 6.1.1,
+ImageMagick 6.9.12) ; celui de l'import à 0,040 % et 0,325 %.</p>
+<p>Les premiers planchers de ces clips (#5797) avaient été pris sur un poste. Le flux les lisait
+ensuite avec ses propres outils, et annonçait quatre clips sur cinq « au-dessus de leur plancher »
+pour deux tournages du même commit. Une partie de ce qu'on a d'abord pris pour un défaut des clips
+était cet écart d'instrument.</p>
+<p>Les planchers se mesurent donc dans un conteneur de la distribution du runner, qui rend les
+chiffres du flux à la troisième décimale :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>docker run --rm -v &lt;tournages&gt;:/t -v "$PWD/.github/assets":/a ubuntu:24.04 bash -c '
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  apt-get update -qq &amp;&amp; apt-get install -y -qq ffmpeg imagemagick python3 &amp;&amp;
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  python3 /a/compare_tournages.py --plancher /t/&lt;A&gt; /t/&lt;B&gt; /a/planchers-tournages.tsv'
+</code></pre></div>
+<p>L'instrument qui a mesuré les planchers des clips ordinaires, plus bas dans ce fichier, n'est pas
+connu : c'est l'objet de #5885.</p>
+</div>
+<div class="admonition danger">
+<p class="admonition-title">Peu de paires ne voient pas le second mode d'un clip</p>
+<p>La première comparaison lancée par le flux (#5854) a rendu le clip de <code>S4-47</code> à <strong>20,044 %</strong>
+entre deux tournages du même commit. Le contenu était le même, la page n'était pas défilée au même
+endroit : le scénario amenait sa carte dans le cadre avant qu'elle ait pris sa hauteur finale, et
+JavaFX garde alors le décalage en pixels. Les quatre tournages de la première mesure étaient
+tombés du même côté.</p>
+<p>Un plancher bas ne prouve donc pas qu'un clip n'a qu'un mode. Ce qui l'établit est la <strong>cause</strong>,
+reproduite par un banc (<code>GesteVisibleBasDePageTest</code>), et son remède : un clip dont le verdict est
+le dernier élément de sa page finit par <code>GesteVisible.allerAuBasDeLaPage</code> (#5870). Les quinze
+paires ci-dessus ne montrent plus ce mode.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Une dernière image qui change tout</p>
 <p>Avant correction, le clip de l'import s'arrêtait pendant la transformation, à un endroit de la
-page différent à chaque tournage : <strong>19,275 %</strong> d'écart entre deux tournages du même commit. Une
-fois son compte rendu amené dans le cadre, <strong>0,016 %</strong>. Un plancher aberrant désigne d'abord un
-clip qui ne finit pas sur ce qu'il doit montrer.</p>
+page différent à chaque tournage : <strong>19,275 %</strong> d'écart entre deux tournages du même commit, sur
+un poste. Une fois son compte rendu amené dans le cadre, 0,040 % avec le même instrument. Un
+plancher aberrant désigne d'abord un clip qui ne finit pas sur ce qu'il doit montrer.</p>
 </div>
 <h3 id="ce-que-cette-mesure-a-corrige">Ce que cette mesure a corrigé<a class="headerlink" href="#ce-que-cette-mesure-a-corrige" title="Permanent link">&para;</a></h3>
 <p>Sur une comparaison réelle, deux cas dépassaient 1 % et semblaient donc être les vrais changements.
@@ -15104,14 +15125,14 @@ Rapportés à leur propre plancher, ils se séparent :</p>
 </ul>
 <h2 id="le-fichier-de-planchers">Le fichier de planchers<a class="headerlink" href="#le-fichier-de-planchers" title="Permanent link">&para;</a></h2>
 <p>Les planchers mesurés vivent dans <code>.github/assets/planchers-tournages.tsv</code>, une ligne par cas :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce   0.809   1
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce   0.809   1
 </code></pre></div>
 <p>Le cas, son plancher en pourcentage, et <strong>le nombre de paires de tournages qui l'ont produit</strong>.</p>
 <p>Le flux de comparaison le passe automatiquement, et chaque cas est alors classé par son <strong>rapport à
 son propre bruit</strong> plutôt que par son écart absolu. Le résumé compte les cas « au-dessus de leur
 propre plancher », qui est le nombre à regarder.</p>
 <h3 id="lenrichir">L'enrichir<a class="headerlink" href="#lenrichir" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>compare_tournages.py --plancher &lt;tournage A&gt; &lt;tournage B&gt; .github/assets/planchers-tournages.tsv
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>compare_tournages.py --plancher &lt;tournage A&gt; &lt;tournage B&gt; .github/assets/planchers-tournages.tsv
 </code></pre></div>
 <p>Relancer sur une <strong>autre</strong> paire garde le <strong>pire</strong> plancher observé et compte une paire de plus.</p>
 <div class="admonition warning">
