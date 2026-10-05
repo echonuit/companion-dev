@@ -14274,7 +14274,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>ajouter-point</code></td>
 <td><code>--site &lt;id&gt; --code &lt;c&gt; [--lat ..] [--lon ..] [--description ..]</code></td>
 <td>A10</td>
-<td><code>ServiceSites.ajouterPoint</code>. Avec une position, <strong>contrôle le carré du site hors ligne</strong> (#4671) : une divergence part sur <strong>stderr</strong>, l'identifiant du point reste seul sur stdout et le code de sortie ne change pas - <code>POINT=$(vigiechiro ajouter-point ...)</code> continue de marcher</td>
+<td><code>ServiceSites.ajouterPoint</code>. Avec une position, <strong>contrôle le carré du site hors ligne</strong> (#4671) : une divergence part sur <strong>stderr</strong>, l'identifiant du point reste seul sur stdout et le code de sortie ne change pas - <code>POINT=$(vigiechiro ajouter-point ...)</code> continue de marcher. <strong>Un point voisin se dit aussi</strong> (#5837) : un point du site à 40 m ou moins de la position donnée est nommé sur stderr, par la phrase de l'écran (<code>PointVoisin.Voisin.avertissement</code>), sans changer le code de sortie</td>
 </tr>
 <tr>
 <td><code>modifier-point</code></td>
@@ -14478,7 +14478,7 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 <td><code>lancer-traitement-vigiechiro</code></td>
 <td><code>--passage &lt;id&gt; [--token &lt;jeton&gt;] [--forcer]</code></td>
 <td>#984, #1261, #1265</td>
-<td><code>DepotVigieChiro.lancerTraitement</code> (<code>POST /participations/{id}/compute</code>), équivalent du bouton « Lancer la participation ». <code>0</code> <strong>dès lors que le traitement est en route</strong> (accepté <strong>ou</strong> déjà en cours : la commande est idempotente), <code>1</code> si le serveur a refusé la relance, <code>2</code> pour un refus métier en amont (dépôt indisponible, aucune participation liée au passage, rendu par le handler central, #2294). Une nuit <strong>déjà analysée n'est pas relancée</strong> : le serveur détruirait ses observations pour les recalculer, sans pouvoir les régénérer (audio absent d'un dépôt en archives, #1244), <code>--forcer</code> lève cette garde, typiquement après un échec</td>
+<td><code>DepotVigieChiro.lancerTraitement</code> (<code>POST /participations/{id}/compute</code>), équivalent du bouton « Lancer la participation ». <code>0</code> <strong>dès lors que le traitement est en route</strong> (accepté <strong>ou</strong> déjà en cours : la commande est idempotente), <code>1</code> si le serveur a refusé la relance, <code>2</code> pour un refus métier en amont (dépôt indisponible, aucune participation liée au passage, rendu par le handler central, #2294). Une nuit <strong>déjà analysée n'est pas relancée</strong> : le serveur détruirait ses observations pour les recalculer, sans pouvoir les régénérer (audio absent d'un dépôt en archives, #1244), <code>--forcer</code> lève cette garde, typiquement après un échec. La relance bloquée dit la raison qui vaut pour la nuit (#5835) : en archives l'audio n'est pas conservé, en séquences les observations seraient effacées avant d'être recalculées ; la forme vient de <code>ServiceLot.formeDuDepot</code></td>
 </tr>
 <tr>
 <td><code>etat-traitement-vigiechiro</code></td>
