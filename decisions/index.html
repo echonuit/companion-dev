@@ -13880,6 +13880,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5940-la-partition-du-graphe-se-garde-et-ne-se-refait-que-sur-demande/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5940 · La partition du graphe se garde
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -17099,6 +17134,11 @@
 <td><a href="5941-le-crochet-relit-la-structure-des-pages-en-une-extraction-avec-le-code/">5941</a></td>
 <td>Le chemin du crochet de commit ne relisait que le code : une page dont un titre changeait gardait ses titres d'avant jusqu'à la prochaine mise à jour complète. Il relit désormais la <strong>structure des pages que le commit touche</strong>, et dit les titres qu'il retire. Le code et les pages passent par <strong>une seule extraction</strong> : deux fusions de suite partiraient du même graphe, et la seconde effacerait la première.</td>
 <td>#5941, lot 12 du chantier #5812</td>
+</tr>
+<tr>
+<td><a href="5940-la-partition-du-graphe-se-garde-et-ne-se-refait-que-sur-demande/">5940</a></td>
+<td>Les libellés des communautés se perdaient pour un quart à chaque reconstruction, et la règle de report n'y était pour rien : le graphe entier était repartitionné à chaque fois, et <strong>388 communautés sur 1 119</strong> en sortaient identiques pour 365 nœuds de plus. La reconstruction <strong>garde la communauté</strong> de chaque nœud qui existait et range un neuf chez la majorité de ses voisins ; les libellés se reportent par identifiant. La partition entière ne se refait que sur demande, par <code>--repartitionne</code>.</td>
+<td>#5940, lot 11 du chantier #5812</td>
 </tr>
 </tbody>
 </table>

@@ -13917,6 +13917,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5940-la-partition-du-graphe-se-garde-et-ne-se-refait-que-sur-demande/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5940 · La partition du graphe se garde
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15415,6 +15450,9 @@ retire (<a href="../decisions/5941-le-crochet-relit-la-structure-des-pages-en-un
 suivent qu'à la mise à jour, qui relit la structure de toutes les pages :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>graphify-out/.graphify_python<span class="k">)</span><span class="s2">"</span><span class="w"> </span>scripts/graphify/rebuild.py<span class="w"> </span>--mets-a-jour
 </code></pre></div>
+<p>Elle garde la partition du graphe : chaque nœud reste dans sa communauté, un nœud neuf va chez
+ses voisins, et les libellés ne bougent pas d'une lecture à l'autre. <code>--repartitionne</code> la refait
+en entier quand elle a vieilli (<a href="../decisions/5940-la-partition-du-graphe-se-garde-et-ne-se-refait-que-sur-demande/">ADR 5940</a>).</p>
 <p>Elle se lance depuis la copie principale, et avec l'interprète de graphify, que ce fichier nomme. Le
 <code>python3</code> du poste peut trouver la commande <code>graphify</code> sans importer son module : la mise à jour
 refuse alors en le disant, avant d'avoir touché au graphe.</p>
