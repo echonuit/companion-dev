@@ -13370,6 +13370,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5877-la-mise-a-jour-du-graphe-relit-la-structure-de-toutes-les-pages/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5877 · La mise à jour du graphe relit la structure de toutes les pages
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -14800,6 +14835,11 @@ il se désigne par <code>--graphe</code>.</p>
 </div>
 <p>Personne n'écrit ce graphe à la main : quand <code>VIGIECHIRO_GRAPHIFY=1</code> est posé, le crochet
 <code>post-commit</code> le refait par <code>scripts/graphify/rebuild.py</code>, qui conserve la couche sémantique.</p>
+<p>Ce crochet ne relit que le code. Les titres d'une page ne suivent qu'à
+<code>python3 scripts/graphify/rebuild.py --mets-a-jour</code>, qui relit la structure de toutes les pages et
+dit ce qu'il retire. <code>graphify update .</code> seul ne le fait pas : il laisse telle quelle la structure
+d'une page qui porte une couche, et ses titres datent alors du jour où elle l'a reçue. La raison et
+la mesure sont dans l'<a href="../decisions/5877-la-mise-a-jour-du-graphe-relit-la-structure-de-toutes-les-pages/">ADR 5877</a>.</p>
 <h2 id="semgrep-pour-les-questions-de-forme"><code>semgrep</code> pour les questions de forme<a class="headerlink" href="#semgrep-pour-les-questions-de-forme" title="Permanent link">&para;</a></h2>
 <p><code>semgrep</code> lit l'arbre syntaxique, pas les lignes. Il répond juste là où <code>grep</code> ne peut que deviner :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'CritereListe.$M(...)'</span><span class="w"> </span>src/main
