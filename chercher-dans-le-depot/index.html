@@ -13882,6 +13882,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5941-le-crochet-relit-la-structure-des-pages-en-une-extraction-avec-le-code/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5941 · Le crochet de commit relit la structure des pages
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15375,8 +15410,9 @@ refuse sinon, est dans l'<a href="../decisions/5813-une-hyperarete-porte-un-iden
 <h3 id="ce-qui-le-tient-a-jour">Ce qui le tient à jour<a class="headerlink" href="#ce-qui-le-tient-a-jour" title="Permanent link">&para;</a></h3>
 <p>Personne n'écrit ce graphe à la main : quand <code>VIGIECHIRO_GRAPHIFY=1</code> est posé, le crochet
 <code>post-commit</code> le refait par <code>scripts/graphify/rebuild.py</code>, qui conserve la couche sémantique.</p>
-<p>Ce crochet ne relit que le code. Les titres d'une page ne suivent qu'à la mise à jour, qui relit la
-structure de toutes les pages et dit ce qu'elle retire :</p>
+<p>Ce crochet relit le code et les titres des pages que le commit touche, et dit les titres qu'il
+retire (<a href="../decisions/5941-le-crochet-relit-la-structure-des-pages-en-une-extraction-avec-le-code/">ADR 5941</a>). Sa prose, elle, attend un lecteur. Les pages que le commit ne touche pas ne
+suivent qu'à la mise à jour, qui relit la structure de toutes les pages :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>graphify-out/.graphify_python<span class="k">)</span><span class="s2">"</span><span class="w"> </span>scripts/graphify/rebuild.py<span class="w"> </span>--mets-a-jour
 </code></pre></div>
 <p>Elle se lance depuis la copie principale, et avec l'interprète de graphify, que ce fichier nomme. Le
