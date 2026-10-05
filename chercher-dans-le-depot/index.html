@@ -13847,6 +13847,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5939-une-question-de-prose-se-pose-aux-enonces-de-la-couche/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5939 · Une question de prose se pose aux énoncés de la couche
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15178,7 +15213,7 @@
 
 
 <h1 id="chercher-dans-le-depot">Chercher dans le dépôt<a class="headerlink" href="#chercher-dans-le-depot" title="Permanent link">&para;</a></h1>
-<p>Six outils, et ils ne répondent pas aux mêmes questions. Se tromper d'outil coûte rarement une
+<p>Sept outils, et ils ne répondent pas aux mêmes questions. Se tromper d'outil coûte rarement une
 erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, ce qui est pire.</p>
 <table>
 <thead>
@@ -15193,6 +15228,11 @@ erreur visible : cela coûte une réponse <strong>fausse et plausible</strong>, 
 <td>un concept, ses voisins, ce qui lui ressemble</td>
 <td><code>graphify</code></td>
 <td>un sous-graphe déjà réduit</td>
+</tr>
+<tr>
+<td>le <strong>pourquoi</strong> d'une règle, ce que la prose en dit</td>
+<td><code>scripts/graphify/couche_semantique.py cherche</code></td>
+<td>les énoncés de la couche, avec leur justification et leur page</td>
 </tr>
 <tr>
 <td><strong>qui appelle CETTE méthode Java</strong>, résolu</td>
@@ -15293,16 +15333,18 @@ dans l'<a href="../decisions/5904-une-hyperarete-se-declare-et-les-ponts-parcour
 textuel de la passe 3 de la clôture, que porte la compétence <code>recoller-la-doc-au-code</code> depuis #5791 :
 le graphe n'en connaît que les titres, et cet instrument en est le lecteur.</p>
 <div class="admonition warning">
-<p class="admonition-title">Une question en langage courant n'atteint pas toujours la prose</p>
+<p class="admonition-title">Une question en langage courant se pose aux énoncés</p>
 <p><code>graphify query</code> part des libellés qui ressemblent aux mots de la question, et un symbole de
 code homonyme capte le départ. « Pourquoi le dépôt se fait en WAV par défaut plutôt qu'en
-ZIP » ne rend que du code : <code>WAV</code> et <code>ZIP</code> sont aussi deux constantes Java, alors que la
-couche porte plus de trente énoncés sur le sujet. Posée avec les mots de la page, « forme du
-dépôt par défaut », la même question rend les deux énoncés qui y répondent.</p>
-<p>Mesuré le 5 octobre 2026 sur sept questions, posées au graphe avec puis sans sa couche : cinq
-reçoivent de la prose qui touche au sujet, une reçoit une prose sans rapport, une n'en reçoit
-aucune. Quand
-la réponse ne rend que du code, reposer la question avec les mots d'un titre ou d'une règle.</p>
+ZIP » n'y rend que du code : <code>WAV</code> et <code>ZIP</code> sont aussi deux constantes Java, alors que la
+couche porte plus de trente énoncés sur le sujet.</p>
+<p>Pour une question sur un pourquoi ou sur une règle, la commande du dépôt cherche les énoncés
+par leurs mots, justification comprise :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>cherche<span class="w"> </span><span class="s2">"pourquoi le dépôt se fait en WAV"</span>
+</code></pre></div>
+<p>Elle compare des mots, pas des sens : quand elle rend zéro, la prose n'en dit rien, ou le dit
+autrement. Mesuré le 5 octobre 2026 sur sept questions : six rendent la page attendue parmi
+leurs cinq premiers énoncés, la septième au huitième rang. La raison est dans l'<a href="../decisions/5939-une-question-de-prose-se-pose-aux-enonces-de-la-couche/">ADR 5939</a>.</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Une page récente répond avec sa version d'avant</p>
@@ -15316,10 +15358,10 @@ il se désigne par <code>--graphe</code>.</p>
 <h3 id="refaire-la-couche-dune-page">Refaire la couche d'une page<a class="headerlink" href="#refaire-la-couche-dune-page" title="Permanent link">&para;</a></h3>
 <p>La couche sémantique ne se refait pas par une commande : quelqu'un relit la page. Le script borde
 ce travail en quatre gestes, et son en-tête en donne le détail.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python3<span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>a-reextraire<span class="w">                    </span><span class="c1"># quelles pages</span>
-<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>python3<span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>decoupe<span class="w"> </span>--dossier<span class="w"> </span>DIR<span class="w"> </span>PAGE<span class="w">      </span><span class="c1"># ce qu'il faut lire</span>
-<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>python3<span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>audite<span class="w"> </span>--dossier<span class="w"> </span>DIR<span class="w">            </span><span class="c1"># le rendu tient-il</span>
-<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>graphify-out/.graphify_python<span class="k">)</span><span class="s2">"</span><span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>fusionne<span class="w"> </span>--dossier<span class="w"> </span>DIR
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>python3<span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>a-reextraire<span class="w">                    </span><span class="c1"># quelles pages</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>python3<span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>decoupe<span class="w"> </span>--dossier<span class="w"> </span>DIR<span class="w"> </span>PAGE<span class="w">      </span><span class="c1"># ce qu'il faut lire</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>python3<span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>audite<span class="w"> </span>--dossier<span class="w"> </span>DIR<span class="w">            </span><span class="c1"># le rendu tient-il</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>graphify-out/.graphify_python<span class="k">)</span><span class="s2">"</span><span class="w"> </span>scripts/graphify/couche_semantique.py<span class="w"> </span>fusionne<span class="w"> </span>--dossier<span class="w"> </span>DIR
 </code></pre></div>
 <p>Entre <code>decoupe</code> et <code>audite</code>, le lecteur écrit <code>rendu_NN.json</code> dans <code>DIR</code>, en suivant
 <code>scripts/graphify/consigne-des-agents.md</code>. La fiche que <code>decoupe</code> pose dit ce que la page portait :
@@ -15335,7 +15377,7 @@ refuse sinon, est dans l'<a href="../decisions/5813-une-hyperarete-porte-un-iden
 <code>post-commit</code> le refait par <code>scripts/graphify/rebuild.py</code>, qui conserve la couche sémantique.</p>
 <p>Ce crochet ne relit que le code. Les titres d'une page ne suivent qu'à la mise à jour, qui relit la
 structure de toutes les pages et dit ce qu'elle retire :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>graphify-out/.graphify_python<span class="k">)</span><span class="s2">"</span><span class="w"> </span>scripts/graphify/rebuild.py<span class="w"> </span>--mets-a-jour
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="s2">"</span><span class="k">$(</span>cat<span class="w"> </span>graphify-out/.graphify_python<span class="k">)</span><span class="s2">"</span><span class="w"> </span>scripts/graphify/rebuild.py<span class="w"> </span>--mets-a-jour
 </code></pre></div>
 <p>Elle se lance depuis la copie principale, et avec l'interprète de graphify, que ce fichier nomme. Le
 <code>python3</code> du poste peut trouver la commande <code>graphify</code> sans importer son module : la mise à jour
@@ -15345,8 +15387,8 @@ couche, et ses titres datent alors du jour où elle l'a reçue. La raison et la 
 l'<a href="../decisions/5877-la-mise-a-jour-du-graphe-relit-la-structure-de-toutes-les-pages/">ADR 5877</a>.</p>
 <h2 id="semgrep-pour-les-questions-de-forme"><code>semgrep</code> pour les questions de forme<a class="headerlink" href="#semgrep-pour-les-questions-de-forme" title="Permanent link">&para;</a></h2>
 <p><code>semgrep</code> lit l'arbre syntaxique, pas les lignes. Il répond juste là où <code>grep</code> ne peut que deviner :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'CritereListe.$M(...)'</span><span class="w"> </span>src/main
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'new Scene(...)'</span><span class="w"> </span>src/main
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'CritereListe.$M(...)'</span><span class="w"> </span>src/main
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>semgrep<span class="w"> </span>--lang<span class="w"> </span>java<span class="w"> </span>--metrics<span class="o">=</span>off<span class="w"> </span>--pattern<span class="w"> </span><span class="s1">'new Scene(...)'</span><span class="w"> </span>src/main
 </code></pre></div>
 <p>Le second exemple n'est pas gratuit : la règle du dépôt est de passer par <code>Habillage.scene(...)</code>, et
 la question « qui construit une <code>Scene</code> à la main ? » n'a pas de réponse textuelle fiable - le nom
