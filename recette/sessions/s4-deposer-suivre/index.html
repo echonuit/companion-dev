@@ -13205,6 +13205,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/5859-le-fil-d-etapes-suit-le-dernier-geste-du-depot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5859 · Le fil d'étapes suit le dernier geste du dépôt
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -14774,8 +14809,8 @@ conservé). La CLI, elle, refuse. À filmer dans le bloc A sur un passage marqu�
 <p><em>A4 · Marquer déposé, réinitialiser, régression</em></p>
 <ul>
 <li><strong>S4-22</strong> · <em>geste: marquer-depose-a-la-main</em> · Sans participation liée, le bouton est « ✅ Marquer déposé ».</li>
-<li><strong>S4-23</strong> · <em>geste: marquer-depose-a-la-main</em> · Après « Marquer déposé » : statut « Déposé », et <strong>toutes</strong> les étapes du stepper sont franchies
-  (S4-C03 : y compris « Lancer la participation », qui n'a pas eu lieu).</li>
+<li><strong>S4-23</strong> · <em>geste: marquer-depose-a-la-main</em> · Après « Marquer déposé » : statut « Déposé », et <strong>toutes</strong> les étapes du stepper sont franchies.
+  Le dépôt fait à la main n'a pas de suite dans l'application : sa dernière étape se nomme « Marquer déposé », et elle est faite.</li>
 <li><strong>S4-24</strong> · <em>geste: marquer-depose-a-la-main</em> · Sur le passage déposé, la carte « Sons &amp; validation » se déverrouille.</li>
 <li><strong>S4-25</strong> · <em>geste: reinitialiser-le-depot</em> · « 🔄 Réinitialiser le dépôt » est visible, avec son infobulle.</li>
 <li><strong>S4-26</strong> · <em>geste: reinitialiser-le-depot</em> · Après réinitialisation : table vidée, statut « Prêt à déposer », message explicite.</li>
@@ -14833,6 +14868,7 @@ le dépôt normalement, et <strong>c'est le point</strong> - le cas à jouer est
 <li><strong>S4-99</strong> · Sans réglage de forme (séquences WAV, le défaut) et connecté, ouvrir « Préparer le dépôt » : le fil d'étapes compte <strong>trois</strong> puces, aucune carte « Générer les archives », et l'étape « 2. Téléverser sur Vigie-Chiro » ne propose ni chemin de dossier ni « Ouvrir le dossier (dépôt manuel) ». Après le téléversement, le compte rendu compte des <strong>séquences</strong>. Passer aux archives ZIP dans Réglages ▸ Dépôt puis rouvrir l'écran d'une nuit non déposée : les quatre étapes et le dépôt manuel reviennent (#5824).</li>
 <li><strong>S4-100</strong> · Entamer un dépôt en archives ZIP (une archive en ligne, puis « Annuler »), passer le réglage à « Séquences WAV », rouvrir l'écran : il reste celui des archives, quatre étapes, et « Reprendre le dépôt » ne renvoie que les archives manquantes, <strong>en ZIP</strong>. Aucune séquence WAV ne part à côté des archives déjà en ligne (#5677).</li>
 <li><strong>S4-101</strong> · Cocher une nuit dont le dépôt est entamé et « Préparer le dépôt des lignes cochées… » : l'annonce l'écarte en disant « dépôt entamé : reprenez-le depuis l'écran de dépôt », et non « déjà déposé » (#5623).</li>
+<li><strong>S4-102</strong> · Sur une nuit que l'application vient de déposer, avant de lancer la participation : la dernière étape du fil dit « Lancer la participation », comme sa carte et son bouton, et elle est l'étape <strong>courante</strong>, pas une étape franchie. Après « Lancer la participation », une fois l'analyse planifiée, elle passe franchie (#5859). Sur un dépôt marqué à la main (S4-23), elle dit « Marquer déposé ».</li>
 </ul>
 <h3 id="traitement-en-lot-ce-quun-seul-poste-ne-peut-pas-prouver-2357">Traitement en lot : ce qu'un seul poste ne peut pas prouver (#2357)<a class="headerlink" href="#traitement-en-lot-ce-quun-seul-poste-ne-peut-pas-prouver-2357" title="Permanent link">&para;</a></h3>
 <blockquote>
@@ -14979,7 +15015,7 @@ peuvent pas dire si le premier import « paraît instantané » ni si « Annuler
 <tr>
 <td>S4-C03</td>
 <td>F</td>
-<td>Le stepper affiche <strong>toutes les étapes franchies</strong> dès « Déposé », alors que « Lancer la participation » reste à faire (la doc martèle « déposer ≠ faire traiter »)</td>
+<td>Le stepper affiche <strong>toutes les étapes franchies</strong> dès « Déposé », alors que « Lancer la participation » reste à faire (la doc martèle « déposer ≠ faire traiter »). <strong>Traité par #5859</strong> : quand une participation est liée, la dernière étape se nomme « Lancer la participation » et reste courante jusqu'à ce que l'analyse soit demandée (cas S4-102)</td>
 </tr>
 <tr>
 <td>S4-C04</td>
