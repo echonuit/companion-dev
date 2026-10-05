@@ -13386,6 +13386,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5743-un-invariant-se-borne-par-une-liste-nommee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5743 · Un invariant se borne par une liste nommée
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -14669,6 +14704,34 @@
 <h1 id="un-refus-ne-voyage-pas-dans-le-canal-des-constats-sinon-il-herite-de-leur-titre">Un refus ne voyage pas dans le canal des constats, sinon il hérite de leur titre<a class="headerlink" href="#un-refus-ne-voyage-pas-dans-le-canal-des-constats-sinon-il-herite-de-leur-titre" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-10-04</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A3 · Un dispositif dit ce qu&#x27;il couvre, et ce qu&#x27;il n&#x27;a pas pu lire</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5774, lot du sous-chantier #5762 (huit corps de demande sur deux sessions)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>scripts/methode/verifie-sous-commandes-openspec.py</code>, <code>scripts/methode/verifie-specs-valides.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>2026-10-05</strong> : cette décision est <strong>complétée</strong> par
+<a href="../5743-un-invariant-se-borne-par-une-liste-nommee/">5743</a>. Ses deux attentes sont tenues, et une
+mesure la précise sur un point qui peut la faire appliquer de travers.</p>
+<p><strong>Le troisième verdict existe.</strong> « Elle ne promet pas que la porte en tienne compte [...] et c'est
+l'issue #5780 » : ce lot est livré, et <code>scripts/batterie.py</code> sépare désormais « rouge » de
+« muet ».</p>
+<p><strong>Mais la porte classe par les MARQUES, pas par le code de sortie.</strong> Mesuré sur
+<code>verdict_du_lancement</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>code=1 AVEC « REFUS : » et « POUR REPARER : »  -&gt;  muet
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>code=2 AVEC ces marques                        -&gt;  muet
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>code=1 SANS ces marques                        -&gt;  rouge
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>code=2 SANS ces marques                        -&gt;  rouge
+</code></pre></div>
+<p>« Le code de sortie suit le canal » dit comment ÉCRIRE un garde ; il ne décrit pas comment la
+porte LIT. Un garde qui a jugé et qui emploie <code>refuse(..., code=1)</code> pour profiter de la forme
+déclarée est donc annoncé « n'a PAS pu juger », ce qui se lit « ça ne vient pas de mon diff ».
+C'est exactement le faux signal que cette décision combat, retourné.</p>
+<p>Vécu le 2026-10-05 sur #5743, par un premier jet poussé en demande : <strong>28 checks verts</strong>, parce
+qu'un garde passe tant que son invariant tient, donc le mauvais canal n'est emprunté par aucune
+exécution verte. Trouvé en relisant cette décision à la passe 0 d'une clôture, et non par un
+dispositif.</p>
+<p><strong>Donc un constat rouge sort en 1 et n'emploie ni <code>refuse</code> ni <code>message_de_refus</code></strong> : deux <code>print</code>
+sur <code>stderr</code> et un <code>SystemExit(1)</code>. Le cas qui tient cela regarde la SORTIE et non le code, et
+<code>verifie_temoins_non_decoratifs.py</code> en porte un.</p>
+<p>Le reste fait foi.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p><code>verifie-sous-commandes-openspec.py</code> rendait une liste de constats, et son appelant l'imprimait sous
 un titre : « Invocations d'OpenSpec qui n'existent pas ». Ce qui l'empêchait de <strong>juger</strong> passait par
