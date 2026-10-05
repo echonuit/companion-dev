@@ -14780,10 +14780,14 @@ Leur état de départ étant déclaré, ils se comparent, et la condition que l'
 mesurée (#5797) : quatre tournages du même commit, six paires, et aucun des cinq clips ne s'écarte de
 plus de 0,267 %. Leurs planchers sont dans <code>planchers-tournages.tsv</code>, et
 <a href="../comparer-deux-tournages/">la page de la comparaison</a> dit comment les lire.</p>
-<p>Ce qui manque encore n'est pas une permission mais un <strong>second côté</strong> : <code>comparer-tournages.yml</code> prend
-ses deux tournages dans des versions publiées, et il n'existe qu'une pré-version
-<code>clips-plateforme-de-test</code>, écrasée à chaque tournage. D'ici là, deux tournages se comparent à la main,
-depuis les artefacts de leurs exécutions.</p>
+<p><code>comparer-tournages.yml</code> prend ses deux tournages dans des versions publiées, et celle-ci est écrasée à
+chaque tournage. Le tournage d'avant est donc <strong>gardé</strong> : avant de verser, le job de publication
+recopie la pré-version sur <code>clips-plateforme-de-test-precedent</code> (#5854). La comparaison se lance de
+l'une à l'autre, <code>avant</code> = <code>clips-plateforme-de-test-precedent</code>, <code>apres</code> = <code>clips-plateforme-de-test</code>.</p>
+<p>Les notes de chaque pré-version disent l'exécution et le commit qui l'ont tournée. Elles se lisent
+<strong>avant</strong> le rapport : deux tournages du même commit mesurent du bruit, deux commits différents
+mesurent ce que le second a changé. Seuls deux tournages consécutifs se comparent ainsi ; au-delà, les
+artefacts de leurs exécutions restent disponibles quatorze jours.</p>
 <h2 id="ce-quun-clip-connecte-prouve-et-quun-autre-ne-peut-pas">Ce qu'un clip connecté prouve, et qu'un autre ne peut pas<a class="headerlink" href="#ce-quun-clip-connecte-prouve-et-quun-autre-ne-peut-pas" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../../decisions/4142-un-cas-dit-ou-se-lit-son-verdict/">ADR 4142</a> a mesuré que sur les 360 cas de
 recette non couverts, <strong>environ 220</strong> vivent dans des sessions dont l'objet est <strong>hors de
