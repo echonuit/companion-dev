@@ -15577,7 +15577,7 @@ tournages qu'on sait identiques.</p>
 runners GitHub distincts, soit <strong>quinze paires</strong> par clip. Mesurés le 5 octobre 2026 par l'atelier
 <code>mesurer-les-planchers.yml</code>, avec l'instrument du flux, ffmpeg 6.1.1 et ImageMagick 6.9.12-98
 (#5885).</p>
-<p>Sept clips n'ont pas de plancher, parce qu'ils ont deux fins (voir plus bas). Sur les <strong>88</strong> autres :</p>
+<p>Six clips n'ont pas de plancher, parce qu'ils ont deux fins (voir plus bas). Sur les <strong>94</strong> autres :</p>
 <table>
 <thead>
 <tr>
@@ -15587,29 +15587,33 @@ runners GitHub distincts, soit <strong>quinze paires</strong> par clip. Mesurés
 </thead>
 <tbody>
 <tr>
+<td>&gt; 1 %</td>
+<td>1</td>
+</tr>
+<tr>
 <td>0,5 à 1 %</td>
-<td>9</td>
-</tr>
-<tr>
-<td>0,1 à 0,5 %</td>
-<td>48</td>
-</tr>
-<tr>
-<td>0,05 à 0,1 %</td>
 <td>10</td>
 </tr>
 <tr>
+<td>0,1 à 0,5 %</td>
+<td>53</td>
+</tr>
+<tr>
+<td>0,05 à 0,1 %</td>
+<td>8</td>
+</tr>
+<tr>
 <td>&lt; 0,05 %</td>
-<td>21, dont 5 à zéro</td>
+<td>22, dont 5 à zéro</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Médiane : 0,160 %.</strong> Le pire vaut 0,979 %, sur
+<p><strong>Médiane : 0,173 %.</strong> Le pire vaut 1,033 %, sur
 <code>ScenarioJournalAbsentTest.sans_journal_la_nuit_est_inconnue</code>.</p>
 <div class="admonition danger">
 <p class="admonition-title">Un seuil global mentirait dans les deux sens</p>
-<p>Retenir le pire plancher, 0,979 %, comme seuil unique <strong>aveuglerait 79 cas pour se protéger de
-neuf</strong> : un libellé entier changé, qui vaut 0,364 %, passerait sous le seuil sans être vu.</p>
+<p>Retenir le pire plancher, 1,033 %, comme seuil unique <strong>aveuglerait 83 cas pour se protéger de
+onze</strong> : un libellé entier changé, qui vaut 0,364 %, passerait sous le seuil sans être vu.</p>
 <p>Retenir la médiane laisserait au contraire la moitié des cas crier au changement à chaque
 tournage.</p>
 <p>Un écart se lit donc contre <strong>le plancher de son propre cas</strong>, pas contre un seuil unique.</p>
@@ -15856,7 +15860,7 @@ qui a rempli le fichier avant que l'atelier existe. Sur un poste, le fichier obt
 l'instrument du poste, et le flux refusera de le lire.</p>
 </div>
 <h3 id="les-clips-auxquels-on-refuse-un-plancher">Les clips auxquels on refuse un plancher<a class="headerlink" href="#les-clips-auxquels-on-refuse-un-plancher" title="Permanent link">&para;</a></h3>
-<p>Un plancher mesure le bruit d'un clip qui <strong>finit sur son verdict</strong>. Sept clips ont deux fins : deux
+<p>Un plancher mesure le bruit d'un clip qui <strong>finit sur son verdict</strong>. Six clips ont deux fins : deux
 tournages du même commit y diffèrent de 3 à 26 %, parce que le clip s'arrête pendant une
 transformation, pendant un fondu, ou sur une page que rien n'a calée.</p>
 <table>
@@ -15891,11 +15895,6 @@ transformation, pendant un fondu, ou sur une page que rien n'a calée.</p>
 <tr>
 <td><code>ScenarioBandeauLectureSeuleTest.le_support_en_lecture_seule_s_annonce_et_l_import_aboutit</code></td>
 <td>21,2 %</td>
-<td>#5911</td>
-</tr>
-<tr>
-<td><code>ScenarioMenuDeLigneImportTest.le_menu_de_ligne_s_ouvre_pendant_l_import</code></td>
-<td>9,7 %</td>
 <td>#5911</td>
 </tr>
 <tr>
