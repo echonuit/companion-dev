@@ -13915,6 +13915,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5862-la-vue-d-un-passage-verifie-le-traitement-dans-les-mots-de-l-ecran-de-lot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5862 · La vue d'un passage vérifie le traitement, dans les mots de l'écran de lot
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16312,7 +16347,7 @@
 </tr>
 <tr>
 <td><a href="4359-une-javadoc-contracte-elle-ne-raconte-pas/">4359</a></td>
-<td>Rien ne disait ce qu'une javadoc doit porter, et la mesure le montre : 3 641 lignes de prose au-delà de huit par bloc, sur 713 blocs dans 572 fichiers, ramenées à <!--inv:cliquet-javadoc-->740<!--/inv--> sur 319 blocs par les tranches du lot 2. Trois endroits, un rôle chacun : le code porte l'intention, la javadoc dit le contrat et s'adresse à qui appelle, l'ADR dit pourquoi et la javadoc la CITE au lieu de la redire. La dette se tient par un cliquet ouvert à sa valeur mesurée, pas par un nettoyage (article A9)</td>
+<td>Rien ne disait ce qu'une javadoc doit porter, et la mesure le montre : 3 641 lignes de prose au-delà de huit par bloc, sur 713 blocs dans 572 fichiers, ramenées à <!--inv:cliquet-javadoc-->739<!--/inv--> sur 319 blocs par les tranches du lot 2. Trois endroits, un rôle chacun : le code porte l'intention, la javadoc dit le contrat et s'adresse à qui appelle, l'ADR dit pourquoi et la javadoc la CITE au lieu de la redire. La dette se tient par un cliquet ouvert à sa valeur mesurée, pas par un nettoyage (article A9)</td>
 <td>#4359, EPIC #4334</td>
 </tr>
 <tr>
@@ -16332,7 +16367,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->740<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 461<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 461<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -17139,6 +17174,11 @@
 <td><a href="5940-la-partition-du-graphe-se-garde-et-ne-se-refait-que-sur-demande/">5940</a></td>
 <td>Les libellés des communautés se perdaient pour un quart à chaque reconstruction, et la règle de report n'y était pour rien : le graphe entier était repartitionné à chaque fois, et <strong>388 communautés sur 1 119</strong> en sortaient identiques pour 365 nœuds de plus. La reconstruction <strong>garde la communauté</strong> de chaque nœud qui existait et range un neuf chez la majorité de ses voisins ; les libellés se reportent par identifiant. La partition entière ne se refait que sur demande, par <code>--repartitionne</code>.</td>
 <td>#5940, lot 11 du chantier #5812</td>
+</tr>
+<tr>
+<td><a href="5862-la-vue-d-un-passage-verifie-le-traitement-dans-les-mots-de-l-ecran-de-lot/">5862</a></td>
+<td>La vue d'un passage ne savait rien du traitement : il fallait aller jusqu'à l'écran de lot pour savoir si l'analyse était finie. Elle porte « Vérifier le traitement », qui relève l'analyse et importe les observations par la règle de l'ADR 5784. Les phrases du traitement vivent dans le socle : les deux écrans lisent le même texte sans dépendre l'un de l'autre. Le résultat va au bandeau de retour, et la vue ne garde ni ne sonde aucun état.</td>
+<td>Lot 30 du chantier #5596 (#5862)</td>
 </tr>
 </tbody>
 </table>
