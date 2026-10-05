@@ -1409,6 +1409,26 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5597-une-partie-multipart-part-sans-le-type-que-sa-signature-ne-couvre-pas/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5598-la-provenance-d-un-refus-remonte-par-le-depot/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5599-un-depot-entame-se-regenere-sauf-pendant-un-televersement/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5601-l-heure-exigee-s-affiche-arrondie-du-cote-du-plancher/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5607-un-carre-se-classe-a-un-seul-endroit-et-creer-est-une-demande/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5628-un-ecart-de-medianes-ne-se-conclut-pas-sans-sa-dispersion/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
@@ -1433,6 +1453,10 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5676-un-geste-a-un-seul-point-d-action-et-son-resultat-se-lit-pres-de-lui/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
@@ -1441,11 +1465,19 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5688-une-position-se-saisit-d-une-seule-facon/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5700-un-controle-de-forme-suit-son-lecteur/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5707-un-geste-du-pointeur-situe-sa-cible-sur-le-fil/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5720-un-perdant-de-collision-est-une-absence-attendue/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
@@ -1461,11 +1493,23 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5784-un-releve-qui-trouve-l-analyse-terminee-importe/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5790-le-graphe-lit-la-prose-d-un-perimetre-declare/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5813-une-hyperarete-porte-un-identifiant-et-une-mise-a-jour-declare-ce-qu-elle-lache/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5824-l-ecran-et-la-commande-n-offrent-et-ne-nomment-que-ce-qui-sert/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5851-une-lectrice-peut-cesser-de-l-etre-sur-une-option/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
