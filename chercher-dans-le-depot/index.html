@@ -12817,6 +12817,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/5813-une-hyperarete-porte-un-identifiant-et-une-mise-a-jour-declare-ce-qu-elle-lache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5813 · Une hyperarête porte un identifiant, une mise à jour déclare ce qu'elle lâche
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/" class="md-nav__link">
         
   
@@ -14266,9 +14301,12 @@ textuel de la passe 3 de la clôture, que porte la compétence <code>recoller-la
 le graphe n'en connaît que les titres, et cet instrument en est le lecteur.</p>
 <div class="admonition warning">
 <p class="admonition-title">Une page récente répond avec sa version d'avant</p>
-<p>La couche sémantique date d'un commit. Une page modifiée depuis garde ses nœuds d'avant, sans
-rien signaler : le graphe répond, et il répond l'ancienne prose. Sur une page qui vient de
-changer, lire la page.</p>
+<p>Une page modifiée depuis son extraction garde ses nœuds d'avant, sans rien signaler : le
+graphe répond, et il répond l'ancienne prose. Sur une page qui vient de changer, lire la page.</p>
+<p><code>python3 scripts/graphify/couche_semantique.py a-reextraire</code> rend ces pages, une par ligne
+avec sa raison. Il refuse plutôt que de rendre une liste vide quand il n'a rien à comparer :
+le graphe est ignoré par git et ne vit que dans la copie principale, donc depuis un worktree
+il se désigne par <code>--graphe</code>.</p>
 </div>
 <p>Personne n'écrit ce graphe à la main : quand <code>VIGIECHIRO_GRAPHIFY=1</code> est posé, le crochet
 <code>post-commit</code> le refait par <code>scripts/graphify/rebuild.py</code>, qui conserve la couche sémantique.</p>

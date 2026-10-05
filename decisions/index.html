@@ -12802,6 +12802,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5813-une-hyperarete-porte-un-identifiant-et-une-mise-a-jour-declare-ce-qu-elle-lache/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5813 · Une hyperarête porte un identifiant, une mise à jour déclare ce qu'elle lâche
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/" class="md-nav__link">
         
   
@@ -15899,6 +15934,11 @@
 <td><a href="5677-le-depot-part-en-wav-et-un-depot-entame-garde-son-mode/">5677</a></td>
 <td>Le ZIP était le mode de dépôt par défaut parce qu'on le disait « le plus rapide », sans mesure. Le retour d'expérience du porteur dit l'inverse : la compression prend du temps et du disque sans gain perceptible au téléversement, et le ZIP fait en plus perdre l'audio en ligne. Sans réglage, le dépôt part donc en <strong>séquences WAV</strong> ; un réglage posé est respecté. Le changement a révélé qu'un dépôt entamé en ZIP et repris en WAV <strong>renvoyait toutes les séquences à côté des archives déjà en ligne</strong>, sans rien dire : un dépôt entamé garde désormais le mode de ses unités déposées</td>
 <td>#5677, chantier #5596</td>
+</tr>
+<tr>
+<td><a href="5813-une-hyperarete-porte-un-identifiant-et-une-mise-a-jour-declare-ce-qu-elle-lache/">5813</a></td>
+<td>L'ADR 5790 nommait trois pertes silencieuses de la fusion des lots sémantiques. Le rejeu de l'outil sur des lots réels en a trouvé deux de plus, invisibles dans un compte de nœuds : une hyperarête sans identifiant tombe à la fusion suivante, <strong>même à vide</strong>, et 25 des 71 de la première extraction n'en portaient pas ; une réextraction remplace toute la couche de sa page, donc un identifiant non réémis est effacé. L'outil pose un identifiant stable, et refuse un lot de mise à jour qui lâche un identifiant sans le déclarer.</td>
+<td>#5813, lot 2 du chantier #5812</td>
 </tr>
 </tbody>
 </table>
