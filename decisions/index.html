@@ -13460,6 +13460,76 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5814-une-empreinte-par-page-dit-ce-qui-est-a-reextraire/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5814 · Une empreinte par page dit ce qui est à réextraire
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5868-une-citation-part-du-noeud-de-page-et-un-pont-ne-fabrique-pas-de-noeud-de-document/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5868 · Une citation part du nœud de page
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16619,6 +16689,16 @@
 <td><a href="5904-une-hyperarete-se-declare-et-les-ponts-parcourent-les-pages-du-graphe/">5904</a></td>
 <td>Une session neuve, refaisant la couche d'une page avec la seule documentation du dépôt, a trouvé qu'une page réextraite <strong>perdait son hyperarête en silence</strong> : la fiche ne la nommait pas, l'audit n'en regardait aucune, la fusion rendait « 0 perdu ». 63 pages sur 589 en portaient une. La fiche nomme désormais les hyperarêtes, l'audit refuse celle qu'un rendu lâche sans la déclarer, et la fusion retire en le disant un membre qui ne désigne plus rien. <code>fusionne</code> écrit le graphe de son arbre et refuse un autre graphe. Et les ponts parcourent <strong>les pages que le graphe porte</strong> au lieu d'une liste de dossiers : 436 citations de classe s'ajoutent, surtout depuis <code>openspec/</code>.</td>
 <td>#5904, lot 7 du chantier #5812</td>
+</tr>
+<tr>
+<td><a href="5814-une-empreinte-par-page-dit-ce-qui-est-a-reextraire/">5814</a></td>
+<td>Une page modifiée gardait ses nœuds sémantiques d'avant, et savoir lesquelles se faisait par un <code>git diff</code> contre un commit tenu de mémoire. <code>fusionne</code> note désormais l'<strong>empreinte git de chaque page</strong>, et <code>a-reextraire</code> rend les pages modifiées, neuves ou disparues, avec leur raison : 14 pages le 5 octobre, comme un <code>git diff</code> indépendant. Il <strong>refuse</strong> au lieu de rendre une liste vide quand il n'a ni graphe ni empreinte. Et <code>rebuild.py --mets-a-jour</code> reporte les libellés des communautés par recouvrement de leurs membres, là où <code>graphify update .</code> les renomme toutes.</td>
+<td>#5814, lot 3 du chantier #5812 ; écrite à sa clôture</td>
+</tr>
+<tr>
+<td><a href="5868-une-citation-part-du-noeud-de-page-et-un-pont-ne-fabrique-pas-de-noeud-de-document/">5868</a></td>
+<td>Cinq pages de la racine, dont <code>AGENTS.md</code>, avaient perdu leur nœud de page : une passe de pont parcourait la racine sans y reconnaître de nœud de fichier, en fabriquait un second, et le suffixait <code>_doc</code>, que le moteur réserve au jumeau d'un document. Une citation part désormais du <strong>nœud de page</strong>, reconnu à sa nature, et les deux passes partagent ce choix au lieu d'en porter deux copies. <strong>Un pont ne fabrique plus de nœud de document</strong> : il ferait passer la page pour couverte, et le moteur ne relirait plus sa structure.</td>
+<td>#5868, lot 5 du chantier #5812 ; écrite à sa clôture</td>
 </tr>
 </tbody>
 </table>

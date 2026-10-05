@@ -1509,6 +1509,10 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5814-une-empreinte-par-page-dit-ce-qui-est-a-reextraire/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5824-l-ecran-et-la-commande-n-offrent-et-ne-nomment-que-ce-qui-sert/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
@@ -1526,6 +1530,10 @@
     </url>
     <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5859-le-fil-d-etapes-suit-le-dernier-geste-du-depot/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5868-une-citation-part-du-noeud-de-page-et-un-pont-ne-fabrique-pas-de-noeud-de-document/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
