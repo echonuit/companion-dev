@@ -13285,6 +13285,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5839-le-point-fixe-n-impose-aucune-distance-entre-deux-points/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5839 · Le Point Fixe n'impose aucune distance entre deux points
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15812,7 +15847,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 330<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 331<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -16419,6 +16454,11 @@
 <td><a href="5857-un-registre-sort-du-perimetre-et-une-page-sortie-quitte-la-couche/">5857</a></td>
 <td>Le périmètre de la couche sémantique (ADR 5790) retenait <code>scripts/methode/relus.txt</code>, un registre que <strong>15 des 33 fusions</strong> suivantes ont réécrit : il sortait « modifiée » à presque chaque passe, pour une couche d'un seul nœud. Il sort du périmètre, nommément. Et parce qu'une page sortie du périmètre serait alors rendue « disparue » à chaque passe, une commande <code>oublie</code> retire sa couche et son empreinte ; elle refuse une page encore dans le périmètre.</td>
 <td>#5857, lot 4 du chantier #5812</td>
+</tr>
+<tr>
+<td><a href="5839-le-point-fixe-n-impose-aucune-distance-entre-deux-points/">5839</a></td>
+<td>La carte d'un point alertait sous 200 m, « trop rapprochés pour le protocole ». Ce seuil est celui du protocole Carré du portail, que Companion ne traite pas ; le Point Fixe n'impose aucune distance entre deux points. La distance s'affiche sans se juger, et le seul voisinage signalé reste celui de la création, à 40 m (ADR 5688)</td>
+<td>Lot 26 du chantier #5596 (#5839), trouvé à la passe 7 de sa clôture</td>
 </tr>
 </tbody>
 </table>
