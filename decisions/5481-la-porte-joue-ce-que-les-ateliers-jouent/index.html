@@ -13771,6 +13771,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5931-la-porte-derive-ce-qu-elle-nomme-et-n-ecrit-qu-une-liste-confrontee/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5931 · La porte dérive ce qu'elle nomme, et n'écrit qu'une liste qu'un garde confronte
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15054,6 +15089,17 @@
 <h1 id="la-porte-joue-ce-que-les-ateliers-jouent-et-dit-sous-son-verdict-ce-quelle-ne-joue-pas">La porte joue ce que les ateliers jouent, et dit sous son verdict ce qu'elle ne joue pas<a class="headerlink" href="#la-porte-joue-ce-que-les-ateliers-jouent-et-dit-sous-son-verdict-ce-quelle-ne-joue-pas" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-25</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A3 · Un dispositif dit ce qu&#x27;il couvre, et ce qu&#x27;il n&#x27;a pas pu lire</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5478 (le chantier qui fermait des faux verts en a produit un), lot #5481</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>scripts/batterie.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>2026-10-05</strong> : « jamais d'une liste écrite dans la porte » est <strong>précisé</strong> par
+<a href="../5931-la-porte-derive-ce-qu-elle-nomme-et-n-ecrit-qu-une-liste-confrontee/">5931</a>. L'interdiction
+vise la liste <strong>non confrontée</strong> : l'ADR 5373 admet une liste dont un garde dérive la même
+population et refuse quand les deux divergent, et <code>GARDES_JAVA</code> est dans ce cas. Les deux règles ne
+se citaient pas, et un chantier s'est tenu à leur intersection sans que rien ne le dise. S'y ajoute
+que la dérivation vaut aussi pour ce que la porte <strong>nomme</strong>, et pas seulement pour ce qu'elle joue.
+Le reste fait foi, la limite de cette page comprise : une règle indexée sur la CI est muette là où
+la CI est muette.</p>
+</div>
 <h2 id="le-contexte">Le contexte<a class="headerlink" href="#le-contexte" title="Permanent link">&para;</a></h2>
 <p><code>scripts/batterie.py</code> répond à « quels contrôles ce diff engage-t-il ? » et rend une ligne de
 verdict. Deux défauts la rendaient trompeuse, et ils sont de nature différente.</p>
@@ -15066,10 +15112,7 @@ qu'il l'était. Ce n'est pas un verdict affaibli, c'est un verdict d'une autre n
 que ce qu'elle ne couvre pas était annoncé <strong>au-dessus</strong>, dans une section qui nomme des commandes
 sans les lancer. Cinq fois en vingt-quatre heures, une porte verte a précédé une CI rouge.</p>
 <h2 id="la-decision">La décision<a class="headerlink" href="#la-decision" title="Permanent link">&para;</a></h2>
-<p><strong>Les arguments et les outils se dérivent des ateliers</strong>, jamais d'une liste écrite dans la porte.
-Une forme et une seule est rejouée, faite de drapeaux uniquement ; un garde que les ateliers lancent
-tantôt nu, tantôt avec des arguments, reste lancé nu, parce que la porte ne choisit pas à la place de
-l'atelier.</p>
+<p><strong>Les arguments et les outils se dérivent des ateliers</strong>, jamais d'une liste écrite dans la porte.</p>
 <p><strong>Et ce que la porte ne joue pas se dit SOUS sa ligne de verdict.</strong> La position est la décision : ce
 qui est annoncé au-dessus d'un résumé n'est pas lu par qui descend jusqu'au résumé.</p>
 <h2 id="pourquoi-deriver-et-non-enumerer">Pourquoi dériver, et non énumérer<a class="headerlink" href="#pourquoi-deriver-et-non-enumerer" title="Permanent link">&para;</a></h2>
