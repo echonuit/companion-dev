@@ -13228,6 +13228,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#s4-98-actualiser-importe-les-observations-dune-analyse-terminee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S4-98 · « Actualiser » importe les observations d'une analyse terminée
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -14264,6 +14275,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#s4-98-actualiser-importe-les-observations-dune-analyse-terminee" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        S4-98 · « Actualiser » importe les observations d'une analyse terminée
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -14364,14 +14386,19 @@ l'<a href="../../decisions/5641-les-tests-connectes-ont-deux-cibles/">ADR 5641</
 <code>plateforme_de_test</code> de <code>tournage-recette.yml</code> (#5793) : l'API Vigie-Chiro épinglée, montée par les
 tests eux-mêmes, sur un état de départ déclaré, sans jeton, sur Ubuntu seul. Le scénario est le même :
 le banc lit la cible que le profil déclare, et seuls ses cas qui ont un sens sur cette cible sont
-joués (<code>recette-connectee &amp; plateforme-de-test</code>), aujourd'hui S8-01, S8-05, S8-06, S2-59, S2-60, S4-47, S4-90 et S4-92.</p>
-<p>S4-47 est le premier cas qui n'existe <strong>que</strong> là (#5795), S4-90 et S4-92 les suivants (#5796) : leurs
-scénarios portent en plus
+joués (<code>recette-connectee &amp; plateforme-de-test</code>), aujourd'hui S8-01, S8-05, S8-06, S2-59, S2-60, S4-47, S4-90, S4-92 et S4-98.</p>
+<p>S4-47 est le premier cas qui n'existe <strong>que</strong> là (#5795), S4-90 et S4-92 les suivants (#5796), puis
+S4-98 (#5836) : leurs scénarios portent en plus
 <code>plateforme-de-test-seule</code>, que le tournage national exclut et que son oracle n'attend pas.</p>
 <p>Ses clips vont sur une pré-version à elle, <code>clips-plateforme-de-test</code>, et non sur <code>clips-connectes</code>.
-Leur état de départ étant déclaré, ils pourront se comparer, sous la condition que l'ADR 5641 pose et
-que #5797 mesure : deux tournages du même commit sous le plancher de l'ADR 4287. D'ici là, ne pas les
-comparer.</p>
+Leur état de départ étant déclaré, ils se comparent, et la condition que l'ADR 5641 posait est
+mesurée (#5797) : quatre tournages du même commit, six paires, et aucun des cinq clips ne s'écarte de
+plus de 0,267 %. Leurs planchers sont dans <code>planchers-tournages.tsv</code>, et
+<a href="../comparer-deux-tournages/">la page de la comparaison</a> dit comment les lire.</p>
+<p>Ce qui manque encore n'est pas une permission mais un <strong>second côté</strong> : <code>comparer-tournages.yml</code> prend
+ses deux tournages dans des versions publiées, et il n'existe qu'une pré-version
+<code>clips-plateforme-de-test</code>, écrasée à chaque tournage. D'ici là, deux tournages se comparent à la main,
+depuis les artefacts de leurs exécutions.</p>
 <h2 id="ce-quun-clip-connecte-prouve-et-quun-autre-ne-peut-pas">Ce qu'un clip connecté prouve, et qu'un autre ne peut pas<a class="headerlink" href="#ce-quun-clip-connecte-prouve-et-quun-autre-ne-peut-pas" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../../decisions/4142-un-cas-dit-ou-se-lit-son-verdict/">ADR 4142</a> a mesuré que sur les 360 cas de
 recette non couverts, <strong>environ 220</strong> vivent dans des sessions dont l'objet est <strong>hors de
@@ -14529,6 +14556,9 @@ l'observatrice y porte le site du carré 130711, et la participation créée dis
 <p><strong>Il attend le texte du compte rendu, pas son nœud</strong> (#5804). Le nœud paraît avant que son texte soit
 posé ; la nationale, lente, masquait cette course, et la plateforme de test faisait lire un compte
 rendu vide.</p>
+<p><strong>Et il l'amène dans le cadre</strong> (#5797). Au premier tournage sur la plateforme de test, le clip
+s'arrêtait sur le formulaire, pendant la transformation : le compte rendu était lu par le banc et
+jamais montré. Sa dernière image changeait donc d'un tournage à l'autre, de 19 % sur la première paire.</p>
 <p><strong>Ce qu'il ne prouve pas.</strong> Que la participation soit correctement <strong>remplie</strong>. « Voir la
 participation » l'ouvre sur le portail, et cette moitié-là se juge à l'oeil, hors du banc - la session
 l'annonce déjà : deux de ces cas « exigent de regarder ailleurs que dans l'application ».</p>
@@ -14575,6 +14605,25 @@ portée. Et pour S4-92 :</p>
 <p>Le récapitulatif de confirmation, sur lequel S4-92 se juge, est lu par le banc et ne paraît pas à l'image : le clip montre les deux publications et leur compte rendu, pas la phrase qui dit que la seconde ne rapatrie plus rien.</p>
 </blockquote>
 <video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-plateforme-de-test/ScenarioConnectePublicationTest.publier_une_correction_puis_la_republier.mp4"></video>
+
+<h3 id="s4-98-actualiser-importe-les-observations-dune-analyse-terminee">S4-98 · « Actualiser » importe les observations d'une analyse terminée<a class="headerlink" href="#s4-98-actualiser-importe-les-observations-dune-analyse-terminee" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p><strong>S4-98</strong> Une fois l'analyse terminée côté plateforme, « Actualiser » : la carte affiche « Analyse
+terminée » et, dessous, les observations importées avec leur nombre. Cliquer de nouveau : la carte
+dit que les observations sont déjà importées, et rien n'est réimporté.</p>
+</blockquote>
+<p><strong>D'où vient ce clip.</strong> De la <strong>plateforme de test</strong>, et d'elle seule : il vit sur la pré-version
+<code>clips-plateforme-de-test</code>. Le geste part d'un relevé qui rend « terminée » ; contre un double, on
+lirait l'état qu'on lui a fait rendre.</p>
+<p><strong>Ce qu'il sème.</strong> Un passage local déjà déposé, relié à la participation <code>nuit-traitee</code> de l'état de
+départ, avec ses deux séquences et <strong>aucune observation en base</strong>.</p>
+<p><strong>Ce qu'il prouve.</strong> Avant le clic, la base est vide et la carte n'annonce rien. Après, elle dit
+« Analyse terminée » et « Observations importées depuis Vigie-Chiro : 2 observation(s) », et les deux
+observations sont en base sans être passé par « Sons &amp; validation ». Au second clic, elle dit qu'elles
+sont déjà importées, et leur nombre n'a pas bougé.</p>
+<p><strong>Ce qu'il ne joue pas.</strong> La moitié « ligne de commande » du cas, <code>etat-traitement-vigiechiro
+--importer</code>, ni l'ouverture de « Sons &amp; validation » : le compte en base est lu par le banc.</p>
+<video controls width="100%" src="https://github.com/echonuit/vigiechiro-pr-companion/releases/download/clips-plateforme-de-test/ScenarioConnecteActualisationTest.actualiser_importe_les_observations_d_une_analyse_terminee.mp4"></video>
 
 <h2 id="ce-que-ces-clips-publient-et-le-compte-que-cela-engage">Ce que ces clips publient, et le compte que cela engage<a class="headerlink" href="#ce-que-ces-clips-publient-et-le-compte-que-cela-engage" title="Permanent link">&para;</a></h2>
 <p><code>S8-06</code> montre l'identité que la plateforme a rendue. Un clip connecté porte donc, <strong>en clair et sur
