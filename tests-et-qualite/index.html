@@ -13450,6 +13450,181 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5644-un-scenario-connecte-sert-les-deux-cibles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5644 · Un scénario connecté sert les deux cibles
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5854-le-tournage-precedent-se-garde-avant-d-etre-ecrase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5854 · Le tournage précédent se garde avant d'être écrasé
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5870-un-verdict-au-bas-de-sa-page-s-y-cale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5870 · Un verdict au bas de sa page s'y cale
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5885-un-plancher-appartient-a-l-instrument-qui-l-a-pris/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5885 · Un plancher appartient à l'instrument qui l'a pris
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5911-un-clip-a-deux-fins-n-a-pas-de-plancher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5911 · Un clip à deux fins n'a pas de plancher
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15487,6 +15662,11 @@ fork, ce que garantit le profil, qui ne joue que ce tag.</p>
 </ul>
 <p>Dans les trois cas la classe porte <code>@Tag("plateforme-de-test")</code>, et <code>DeclarationDeLaPlateformeTest</code>
 le refuse sinon.</p>
+<p>Un scénario d'écran peut aussi se <strong>filmer</strong> sur cette cible : <code>tournage-recette.yml</code> prend l'entrée
+<code>plateforme_de_test</code>, et ses clips vont sur leur propre pré-version, où ils se comparent d'un tournage
+au suivant (#5644). Un scénario qui n'existe que sur la plateforme de test porte en plus
+<code>@Tag("plateforme-de-test-seule")</code>, que le tournage national exclut. Le détail est dans
+<a href="../recette/clips-connectes/">Les clips connectés</a>.</p>
 <h3 id="ses-epingles">Ses épingles<a class="headerlink" href="#ses-epingles" title="Permanent link">&para;</a></h3>
 <p><code>epingles.properties</code> est le <strong>seul</strong> endroit qui porte la révision de l'API et le digest de Mongo.
 <code>api.Dockerfile</code> ne donne donc aucune valeur par défaut à <code>REVISION</code>, et <code>ImageDeLApiSansRevisionTest</code>

@@ -13450,6 +13450,181 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/5644-un-scenario-connecte-sert-les-deux-cibles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5644 · Un scénario connecté sert les deux cibles
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/5854-le-tournage-precedent-se-garde-avant-d-etre-ecrase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5854 · Le tournage précédent se garde avant d'être écrasé
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/5870-un-verdict-au-bas-de-sa-page-s-y-cale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5870 · Un verdict au bas de sa page s'y cale
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/5885-un-plancher-appartient-a-l-instrument-qui-l-a-pris/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5885 · Un plancher appartient à l'instrument qui l'a pris
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/5911-un-clip-a-deux-fins-n-a-pas-de-plancher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5911 · Un clip à deux fins n'a pas de plancher
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15608,6 +15783,10 @@ mesure qui échoue se compte à part dans le résumé.</p>
 <p>Et un <strong>outil absent</strong> est une panne d'installation, pas une mesure : le script refuse de commencer
 et nomme ce qui manque, au lieu de rendre cinquante « ? » qui se liraient comme cinquante cas stables.
 Les deux ne se réparent pas au même endroit, donc ils ne doivent pas se lire pareil.</p>
+<p>La mesure des planchers a le même refus depuis #5847. Un dossier absent ou vide, ou des tournages
+qui n'ont aucun clip en commun, la font échouer en nommant ce qui manque, et le fichier n'est pas
+touché. Avant cela, deux chemins faux rendaient « 0 cas », « plancher le plus haut : 0 % » et un code
+de sortie nul, ce qui se lit comme un excellent résultat.</p>
 <p>Ce n'est pas de la prudence de principe : le premier jet de cet outil rendait « ? » sur les sept cas
 d'un vrai tournage, et son index annonçait tranquillement « aucun cas ne bouge ». La cause était que
 <code>identify</code> écrit <code>1.152e+06</code> pour une toile de 1280 × 900, et le test d'entier qui suivait refusait la

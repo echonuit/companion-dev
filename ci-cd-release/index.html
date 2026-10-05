@@ -13450,6 +13450,181 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5644-un-scenario-connecte-sert-les-deux-cibles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5644 · Un scénario connecté sert les deux cibles
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5854-le-tournage-precedent-se-garde-avant-d-etre-ecrase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5854 · Le tournage précédent se garde avant d'être écrasé
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5870-un-verdict-au-bas-de-sa-page-s-y-cale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5870 · Un verdict au bas de sa page s'y cale
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5885-un-plancher-appartient-a-l-instrument-qui-l-a-pris/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5885 · Un plancher appartient à l'instrument qui l'a pris
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5911-un-clip-a-deux-fins-n-a-pas-de-plancher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5911 · Un clip à deux fins n'a pas de plancher
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16097,7 +16272,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie_decisions_du_tournage_connecte.py</code></td>
-<td>huit décisions des ateliers de tournage qui vivaient dans du YAML que rien ne gardait (#4331) : <code>comparer-tournages.yml</code> REFUSE la source <code>clips-connectes</code> et ne refuse PAS <code>clips-plateforme-de-test</code> (#5793, ADR 5641), <code>publier-connecte</code> et <code>publier-plateforme-de-test</code> dépendent de <code>filmer</code> et portent une fonction d état, le contrôle du jeton vient AVANT le pas qui filme, et <code>filmer</code> NOMME son artefact avec sa tentative, toute reprise le lisant de sa sortie (#5797 : une publication relancée versait l artefact de la tentative échouée), et le tournage précédent de la plateforme de test est recopié sur <code>clips-plateforme-de-test-precedent</code> AVANT toute écriture sur la pré-version courante, source que la comparaison ne refuse pas (#5854). Les trois dernières sont celles de <code>mesurer-les-planchers.yml</code> (#5885) : il REFUSE des tournages qui ne sont pas du même commit ou qui n ont pas conclu, témoins compris, parce qu un plancher pris entre deux commits range un changement du produit parmi le bruit ; un témoin n est jamais pris dans la mesure, sous le plancher de laquelle il resterait par construction ; et l atelier ne porte aucune permission d écriture, le fichier se committant par une demande. Les refus ne sont pas relus mais LANCÉS - ils vivent dans un <code>run:</code>, donc du shell, face à un <code>gh</code> leurre - et le verdict se prend sur le MESSAGE, pas sur le code de sortie. Son auto-test fabrique dix-sept copies cassées, une par décision et par bord</td>
+<td>neuf décisions des ateliers de tournage qui vivaient dans du YAML que rien ne gardait (#4331) : <code>comparer-tournages.yml</code> REFUSE la source <code>clips-connectes</code> et ne refuse PAS <code>clips-plateforme-de-test</code> (#5793, ADR 5641), <code>publier-connecte</code> et <code>publier-plateforme-de-test</code> dépendent de <code>filmer</code> et portent une fonction d état, le contrôle du jeton vient AVANT le pas qui filme, et <code>filmer</code> NOMME son artefact avec sa tentative, toute reprise le lisant de sa sortie (#5797 : une publication relancée versait l artefact de la tentative échouée), et le tournage précédent de la plateforme de test est recopié sur <code>clips-plateforme-de-test-precedent</code> AVANT toute écriture sur la pré-version courante, source que la comparaison ne refuse pas (#5854). Les quatre dernières sont celles de <code>mesurer-les-planchers.yml</code> (#5885) : il REFUSE des tournages qui ne sont pas du même commit ou qui n ont pas conclu, témoins compris, parce qu un plancher pris entre deux commits range un changement du produit parmi le bruit ; un témoin n est jamais pris dans la mesure, sous le plancher de laquelle il resterait par construction ; l atelier ne porte aucune permission d écriture, le fichier se committant par une demande ; et il ne reprend une exécution que si elle porte UN artefact de clips, une exécution relancée en portant un par tentative (#5644, trouvé à la clôture). Les refus ne sont pas relus mais LANCÉS - ils vivent dans un <code>run:</code>, donc du shell, face à un <code>gh</code> leurre - et le verdict se prend sur le MESSAGE, pas sur le code de sortie. Son auto-test fabrique dix-neuf copies cassées, une par décision et par bord</td>
 <td><code>lint.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>

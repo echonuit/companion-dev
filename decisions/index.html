@@ -13565,6 +13565,181 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5644-un-scenario-connecte-sert-les-deux-cibles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5644 · Un scénario connecté sert les deux cibles
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5854-le-tournage-precedent-se-garde-avant-d-etre-ecrase/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5854 · Le tournage précédent se garde avant d'être écrasé
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5870-un-verdict-au-bas-de-sa-page-s-y-cale/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5870 · Un verdict au bas de sa page s'y cale
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5885-un-plancher-appartient-a-l-instrument-qui-l-a-pris/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5885 · Un plancher appartient à l'instrument qui l'a pris
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5911-un-clip-a-deux-fins-n-a-pas-de-plancher/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5911 · Un clip à deux fins n'a pas de plancher
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16739,6 +16914,31 @@
 <td><a href="5867-le-repli-manuel-s-offre-apres-un-refus-sans-recours/">5867</a></td>
 <td>Connecté en séquences WAV, l'écran de lot n'offrait plus aucune voie quand Vigie-Chiro refusait des séquences sans recours. Le repli manuel s'offre dès qu'une séquence est refusée définitivement pour une cause autre que les droits : la carte des archives reparaît sous celle du téléversement, sans numéro, et le fil reste à trois étapes. La règle se lit dans le plan enregistré, à un seul endroit, pour l'écran et pour <code>deposer-vigiechiro</code>. La carte porte le dernier geste, « Marquer le passage déposé », et <code>deposer</code> ne re-prépare plus un dépôt entamé. Le dépôt que l'application téléverse garde sa forme</td>
 <td>Lot 34 du chantier #5596 (#5867)</td>
+</tr>
+<tr>
+<td><a href="5644-un-scenario-connecte-sert-les-deux-cibles/">5644</a></td>
+<td>Le tournage des clips connectés visait la plateforme nationale en dur. Il choisit maintenant sa cible, et un même scénario sert les deux quand il le peut : deux scénarios pour un même cas feraient deux sources de vérité. Celui qui n'a de sens que sur la plateforme de test, parce qu'il écrit, la vise explicitement et porte <code>plateforme-de-test-seule</code>, que le tournage national exclut. La condition que l'ADR 5641 laissait ouverte est mesurée : sur quinze paires, les cinq clips ont un plancher de 0,005 à 0,503 %, donc ils se comparent</td>
+<td>#5644, sous-chantier de #5640</td>
+</tr>
+<tr>
+<td><a href="5854-le-tournage-precedent-se-garde-avant-d-etre-ecrase/">5854</a></td>
+<td>Les clips de la plateforme de test vont sur une pré-version que chaque tournage écrase : la comparaison n'avait qu'un côté à leur donner. Le job de publication la recopie sous un second nom AVANT d'y écrire, et l'ordre est la décision : recopier après garderait le tournage courant sous les deux noms, et la comparaison dirait « rien n'a changé » entre un tournage et lui-même. Écartés : tourner sur chaque tag de version, qui hérite de deux rouges connus, et lire l'artefact d'une exécution, qui expire</td>
+<td>#5854, lot 8 de #5644</td>
+</tr>
+<tr>
+<td><a href="5870-un-verdict-au-bas-de-sa-page-s-y-cale/">5870</a></td>
+<td>Un clip variait de 20 % entre deux tournages du même commit : même contenu, page défilée ailleurs. <code>amenerDansLeCadre</code> place sa cible par un quotient, et JavaFX garde ensuite le décalage en pixels, donc une carte qui grandit laisse la page en deçà de son bas. Un verdict qui est le dernier élément de sa page se montre par <code>allerAuBasDeLaPage</code>, appelé une fois son état arrivé, et l'aide refuse une cible qui n'est pas au bas. Ce qui établit le remède est la cause, reproduite par un banc, et non l'absence du défaut sur quelques paires</td>
+<td>#5870, lot 9 de #5644</td>
+</tr>
+<tr>
+<td><a href="5885-un-plancher-appartient-a-l-instrument-qui-l-a-pris/">5885</a></td>
+<td>Le même clip rend 0,020 % avec ffmpeg 8 et ImageMagick 7, 0,134 % avec les versions du runner. Les planchers du dépôt venaient d'un poste : 32 clips sur 51 sortaient à plus du double pour un code identique. Le fichier dit son instrument, et l'outil REFUSE de comparer contre un autre, ou de le compléter, en nommant les deux. La mesure passe par un atelier qui n'écrit rien sur le dépôt. Amende l'ADR 4287 : un plancher repart de zéro quand son instrument change, garder le pire de deux instruments ne décrivant le bruit d'aucun</td>
+<td>#5885, lot 10 de #5644</td>
+</tr>
+<tr>
+<td><a href="5911-un-clip-a-deux-fins-n-a-pas-de-plancher/">5911</a></td>
+<td>Sept clips ont deux fins : leurs paires valent soit moins de 3 %, soit de 9 à 26 %, parce qu'ils s'arrêtent pendant un import, pendant un fondu, ou sur une page que rien n'a calée. Leur écrire ce plancher rendrait la comparaison aveugle à tout changement plus petit. Ils sont nommés dans l'outil avec leur issue : la mesure affiche leur écart sans l'écrire, et la comparaison les annonce « sans plancher », pas « plancher inconnu ». Le critère est la dernière image, regardée, et non un seuil</td>
+<td>#5911, trouvé par le lot 10 de #5644</td>
 </tr>
 </tbody>
 </table>

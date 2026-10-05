@@ -1441,6 +1441,10 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5644-un-scenario-connecte-sert-les-deux-cibles/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5663-la-plateforme-de-test-pose-l-etat-de-la-jvm-dans-un-fork-a-elle/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
@@ -1525,6 +1529,10 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5854-le-tournage-precedent-se-garde-avant-d-etre-ecrase/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5857-un-registre-sort-du-perimetre-et-une-page-sortie-quitte-la-couche/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
@@ -1541,11 +1549,23 @@
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5870-un-verdict-au-bas-de-sa-page-s-y-cale/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5877-la-mise-a-jour-du-graphe-relit-la-structure-de-toutes-les-pages/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5885-un-plancher-appartient-a-l-instrument-qui-l-a-pris/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/5904-une-hyperarete-se-declare-et-les-ponts-parcourent-les-pages-du-graphe/</loc>
+         <lastmod>2026-10-05</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/5911-un-clip-a-deux-fins-n-a-pas-de-plancher/</loc>
          <lastmod>2026-10-05</lastmod>
     </url>
     <url>
