@@ -15422,8 +15422,10 @@ ont déjà construit deux chemins.</p>
    explicitement</strong> et l'écrire dans les deux, plutôt que de laisser la fusion arbitrer.
    <strong>Vérifier ce qui est déjà pris</strong> : <code>gh issue list --assignee "*"</code> donne la liste, et le commentaire
    de prise dit le chantier, la branche et le remède envisagé (voir ci-dessous). Une revendication
-   ancienne se vérifie au lieu de se croire (branche vivante ? PR ouverte ?) parce qu'une
-   revendication oubliée fait passer une issue libre pour prise.</li>
+   ancienne se vérifie au lieu de se croire (la demande de sa branche est-elle ouverte, ou déjà
+   fusionnée ?) parce qu'une revendication oubliée fait passer une issue libre pour prise. Git seul
+   n'y répond pas : après un squash, il dit la branche en avance pour toujours. La recette est dans la
+   compétence <code>ouvrir-une-issue</code>.</li>
 <li><strong>Recadrer titre et corps</strong> des issues déplacées. Un recadrage laissé en commentaire sous un corps
    périmé ne recadre rien : qui lit en diagonale retient la première version.</li>
 </ol>
@@ -15527,7 +15529,7 @@ on jette.</p>
 <p><strong>Un signalement se relâche.</strong> Quand on s'arrête (reporté, bloqué, abandonné) on <strong>retire l'assignee et
 on le dit</strong>. Une revendication oubliée depuis trois semaines est pire que rien : elle fait passer une
 issue libre pour prise, et personne ne la reprendra. Au triage (étape 0), une revendication ancienne se
-vérifie (branche vivante ? PR ouverte ?) au lieu de se croire.</p>
+vérifie (la demande de sa branche est-elle ouverte, ou déjà fusionnée ?) au lieu de se croire.</p>
 <div class="admonition warning">
 <p class="admonition-title">Ce que le signalement ne couvre pas</p>
 <p>Il répond à « <strong>cette issue est-elle prise ?</strong> ». Il ne répond pas à « <strong>cette issue est-elle la
