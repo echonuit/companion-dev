@@ -15582,7 +15582,7 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/securite-dependances.yml">securite-dependances.yml</a></td>
 <td>hebdomadaire (lundi 6 h UTC) + PR sur <code>pom.xml</code></td>
-<td>Rapport de vulnérabilités des dépendances livrées (cf. plus bas). Le filtre de chemins inclut le workflow lui-même : une étape que <strong>seul un <code>schedule</code> exerce</strong> peut être fusionnée cassée, et ce chemin la fait tourner sur la PR qui la modifie</td>
+<td>Rapport de vulnérabilités des dépendances livrées (cf. plus bas), et deux mesures de fraîcheur : les actions épinglées et les outillages <code>npm</code> figés. Le filtre de chemins inclut le workflow lui-même : une étape que <strong>seul un <code>schedule</code> exerce</strong> peut être fusionnée cassée, et ce chemin la fait tourner sur la PR qui la modifie</td>
 <td>—</td>
 </tr>
 <tr>
@@ -16843,6 +16843,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>securite-dependances.yml</code> et <code>winget.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
+<td><code>verifie_fraicheur_npm.py</code></td>
+<td>un outillage <code>npm</code> <strong>figé par lockfile</strong> peut être périmé sans que rien ne le dise, Dependabot ne pouvant ouvrir aucune demande sous <code>.github/openspec/</code> ni <code>.github/release/</code> (#6095) : il compare chaque dépendance épinglée au registre, et date le retard depuis la première version stable manquée. Un registre muet le fait <strong>refuser</strong> en 2, il ne rend pas « à jour »</td>
+<td><code>securite-dependances.yml</code>, le lundi ; en constat sur une demande qui touche le garde, l'atelier ou un manifeste (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>verifie_affichage_flatpak.py</code></td>
 <td>le Flatpak déclare ce qu'il faut pour démarrer <strong>sur un bureau Wayland</strong></td>
 <td><code>flatpak.yml</code> (autotest : <code>lint.yml</code>)</td>
@@ -17417,6 +17422,55 @@ compter sur le mécanisme censé le combler :</p>
 </tr>
 </tbody>
 </table>
+<h4 id="la-fraicheur-des-outillages-npm-sur-la-meme-regle-6095">La fraîcheur des outillages npm, sur la même règle (#6095)<a class="headerlink" href="#la-fraicheur-des-outillages-npm-sur-la-meme-regle-6095" title="Permanent link">&para;</a></h4>
+<p>Les deux outillages figés par lockfile, <code>.github/release/</code> et <code>.github/openspec/</code>, n'avaient aucun
+signal de retard. Dependabot porte une entrée pour le premier et ne peut ouvrir aucune demande : son
+service refuse chaque soumission, 40 exécutions en échec sur 40 au 2026-10-06. Ce jour-là, deux
+greffons de l'outillage de publication avaient une majeure de retard depuis juillet.</p>
+<p>Un troisième job du même atelier, <code>fraicheur-des-outillages-npm</code>, lance
+<code>verifie_fraicheur_npm.py</code>. Sa règle est celle du tableau ci-dessus, et ses seuils sont les mêmes,
+pour ne pas avoir deux gardes de fraîcheur qui jugent différemment :</p>
+<table>
+<thead>
+<tr>
+<th>Écart constaté</th>
+<th>Verdict</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>même version, ou préversion plus récente seule</td>
+<td>rien à dire</td>
+</tr>
+<tr>
+<td>retard dans la même majeure</td>
+<td><strong>signalé</strong>, non bloquant</td>
+</tr>
+<tr>
+<td>retard d'une <strong>majeure entière</strong></td>
+<td><strong>rouge</strong></td>
+</tr>
+<tr>
+<td>retard dans la même majeure depuis <strong>365 jours</strong></td>
+<td><strong>rouge</strong></td>
+</tr>
+<tr>
+<td>épinglage par intervalle, manifeste illisible</td>
+<td><strong>rouge</strong></td>
+</tr>
+<tr>
+<td>registre muet après trois tentatives</td>
+<td><strong>refus</strong>, code 2</td>
+</tr>
+</tbody>
+</table>
+<p>Deux choses le séparent de son patron. L'âge n'est pas celui de la version épinglée mais celui du
+<strong>retard</strong> : les jours écoulés depuis la première version stable que l'épinglage n'a pas. Un paquet
+que son auteur ne republie plus est ancien et à jour. Et un registre muet ne rend pas un rouge mais
+un refus, parce qu'« indéterminé » n'est ni frais ni périmé.</p>
+<p>Sur une demande qui touche le garde, son atelier ou un manifeste, le job tourne en <code>--constat</code> : il
+écrit le retard réel dans le récapitulatif sans faire rougir un diff qui n'y est pour rien. La
+demande prouve que l'étape fonctionne ; le lundi juge.</p>
 <h4 id="un-tag-qui-ne-bouge-jamais-rendait-cette-mesure-aveugle-2213">Un tag qui ne bouge jamais rendait cette mesure aveugle (#2213)<a class="headerlink" href="#un-tag-qui-ne-bouge-jamais-rendait-cette-mesure-aveugle-2213" title="Permanent link">&para;</a></h4>
 <p>Les quatre premières lignes comparent des <strong>tags</strong>. Elles ne peuvent donc rien voir quand l'amont n'en
 publie plus.</p>
@@ -18051,8 +18105,9 @@ paru, soit rien. Un nombre choisi aurait rangé un cas du mauvais côté sans qu
 <strong>mensuellement</strong>, pour <code>maven</code> et <code>github-actions</code>. Une troisième entrée vise l'outillage de
 publication (<code>npm</code>, dans <code>/.github/release</code>) et <strong>n'a jamais ouvert de demande</strong> : la forge refuse
 celles que Dependabot y soumet, 39 exécutions sur 39 en échec au 2026-10-06 (#6084). Les deux
-outillages figés par lockfile, celui-ci et <code>.github/openspec/</code>, ne sont donc suivis par personne, et
-leurs README disent comment poser la question à la main. <strong>JavaFX (<code>org.openjfx:*</code>) est volontairement exclu</strong> de l'automatisation : ses
+outillages figés par lockfile, celui-ci et <code>.github/openspec/</code>, sont donc suivis par un garde et non
+par Dependabot : <code>verifie_fraicheur_npm.py</code>, chaque lundi (voir « La fraîcheur des outillages npm »
+plus haut). <strong>JavaFX (<code>org.openjfx:*</code>) est volontairement exclu</strong> de l'automatisation : ses
 bumps ont un impact fort (rendu, Headless Platform) et se décident à la main.</p>
 <!--/inv-->
 
