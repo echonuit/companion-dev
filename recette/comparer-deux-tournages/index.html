@@ -15770,24 +15770,25 @@ tournages qu'on sait identiques.</p>
 runners GitHub distincts, soit <strong>quinze paires</strong> par clip. Mesurés le 5 octobre 2026 par l'atelier
 <code>mesurer-les-planchers.yml</code>, avec l'instrument du flux, ffmpeg 6.1.1 et ImageMagick 6.9.12-98
 (#5885).</p>
-<p><strong>Le fichier s'est complété depuis, et les paires ne sont plus uniformes.</strong> Les clips de la session
-S2 en portent <strong>vingt et une</strong>, mesurées sur quatre tournages de plus (#5956), et celui du menu de
-ligne en porte <strong>six</strong>, sa ligne étant neuve. La quatrième colonne de <code>planchers-tournages.tsv</code> dit,
+<p><strong>Le fichier s'est complété depuis, et les paires ne sont plus uniformes.</strong> Chaque mesure ajoute les
+siennes à tous les clips des tournages qu'on lui donne (#5956, #5893), et un clip sorti de la table
+des clips sans plancher en porte moins que les autres, sa ligne étant neuve. La quatrième colonne de
+<code>planchers-tournages.tsv</code> dit,
 pour chaque clip, sur combien de paires son plancher a été pris - et un plancher tiré de peu de
 paires en prouve d'autant moins. Le décompte des lignes par nombre de paires ne s'écrit pas ici :
 chaque mesure le déplace, et le fichier le dit mieux que cette page.</p>
 <p>Le fichier mêle deux populations, et chaque compte de cette page nomme la sienne. Les clips
-<strong>ordinaires</strong> qui ont un plancher sont <!--inv:clips-ordinaires-a-plancher-->89<!--/inv-->. Ceux de
+<strong>ordinaires</strong> qui ont un plancher sont <!--inv:clips-ordinaires-a-plancher-->92<!--/inv-->. Ceux de
 la <strong>plateforme de test</strong> sont <!--inv:clips-de-la-plateforme-de-test-a-plancher-->5<!--/inv-->, et
 ont leur propre section. Les clips <strong>sans plancher</strong>, parce qu'ils ont deux fins, sont</p>
 <!--inv:clips-sans-plancher-->
-<p>6 (voir plus bas). Ces trois comptes sont relus à chaque
+<p>3 (voir plus bas). Ces trois comptes sont relus à chaque
 demande contre l'outil et son fichier : un clip corrigé qui quitte la table fait rougir cette page
 tant qu'elle ne le dit pas. Un cas est de la plateforme de test quand sa méthode, ou sa classe, en
 porte le tag : ni le nom de sa classe ni le tag de sa seule classe ne suffisent à le dire.</p>
 <p>La distribution des planchers des clips ordinaires, <strong>relevée le 6 octobre 2026</strong> sur le fichier de
-<code>main</code> à <code>358205ef5</code>. C'est une mesure datée : elle ne suit pas le fichier, et se relève quand
-l'argument qu'elle sert en a besoin.</p>
+<code>main</code> à <code>358205ef5</code>, qui en portait alors 89. C'est une mesure datée : elle ne suit pas le fichier,
+et se relève quand l'argument qu'elle sert en a besoin.</p>
 <table>
 <thead>
 <tr>
@@ -16074,8 +16075,8 @@ l'instrument du poste, et le flux refusera de le lire.</p>
 </div>
 <h3 id="les-clips-auxquels-on-refuse-un-plancher">Les clips auxquels on refuse un plancher<a class="headerlink" href="#les-clips-auxquels-on-refuse-un-plancher" title="Permanent link">&para;</a></h3>
 <p>Un plancher mesure le bruit d'un clip qui <strong>finit sur son verdict</strong>. Certains clips ont deux fins :
-deux tournages du même commit y diffèrent de 3 à 26 %, parce que le clip s'arrête pendant une
-transformation, pendant un fondu, ou sur une page que rien n'a calée.</p>
+deux tournages du même commit y diffèrent de 3 à 26 %, parce que le clip s'arrête pendant un
+import, pendant un fondu, ou sur une page que rien n'a calée.</p>
 <p>Ce tableau est celui de la table <code>SANS_PLANCHER</code> de l'outil, et un test le confronte à elle dans
 les deux sens. Sa colonne du milieu est une mesure datée, prise le 5 octobre 2026 sur quinze paires.</p>
 <table>
@@ -16087,21 +16088,6 @@ les deux sens. Sa colonne du milieu est une mesure datée, prise le 5 octobre 20
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code>ScenarioAnnonceConnexionTest.deconnecte_le_compte_rendu_ne_pretend_rien</code></td>
-<td>23,9 %</td>
-<td>#5893</td>
-</tr>
-<tr>
-<td><code>ScenarioRejetsEtArchiveTest.l_import_aboutit_malgre_les_rejets</code></td>
-<td>23,8 %</td>
-<td>#5893</td>
-</tr>
-<tr>
-<td><code>ScenarioRejetsEtArchiveTest.la_decompression_se_voit_avant_l_inspection</code></td>
-<td>22,5 %</td>
-<td>#5893</td>
-</tr>
 <tr>
 <td><code>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce</code></td>
 <td>26,2 %</td>
@@ -16120,7 +16106,8 @@ les deux sens. Sa colonne du milieu est une mesure datée, prise le 5 octobre 20
 </tbody>
 </table>
 <p>Leur écrire ce chiffre rendrait la comparaison aveugle, sur ces clips, à tout changement plus petit.</p>
-<p>Ils sont donc nommés dans l'outil (<code>SANS_PLANCHER</code>), avec leur issue. La mesure affiche leur écart
+<p>Ceux de l'écran d'import en sont sortis, une fois leur verdict tenu à l'image (#5952, #5893).</p>
+<p>Les autres sont nommés dans l'outil (<code>SANS_PLANCHER</code>), avec leur issue. La mesure affiche leur écart
 sans l'écrire, et la comparaison les annonce « sans plancher », suivi du numéro. Une ligne s'en
 retire avec l'issue qui la porte.</p>
 <p>Le critère n'est pas un seuil : c'est la <strong>dernière image</strong>, regardée. Un clip y entre quand deux
