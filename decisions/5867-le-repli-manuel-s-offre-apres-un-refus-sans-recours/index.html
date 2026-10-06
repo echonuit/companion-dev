@@ -13957,6 +13957,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5975-les-archives-du-repli-ne-rendent-au-serveur-que-ce-qu-il-n-a-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5975 · Les archives du repli manuel ne rendent au serveur que ce qu'il n'a pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15251,6 +15286,12 @@
 <h1 id="le-repli-manuel-soffre-apres-un-refus-sans-recours-et-nest-pas-une-etape">Le repli manuel s'offre après un refus sans recours, et n'est pas une étape<a class="headerlink" href="#le-repli-manuel-soffre-apres-un-refus-sans-recours-et-nest-pas-une-etape" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-10-05</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A23 · Ce qui s&#x27;affiche est embarqué et montré en entier, et rien ne s&#x27;offre qui ne se montre</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5867, lot 34 du chantier #5596 (retour de terrain 2.193.0)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>src/test/java/fr/univ_amu/iut/lot/DepotUniteDaoTest.java</code>, <code>src/test/java/fr/univ_amu/iut/lot/view/EtapeDesArchivesTest.java</code>, <code>src/test/java/fr/univ_amu/iut/lot/view/LotRepliManuelViewTest.java</code>, <code>src/test/java/fr/univ_amu/iut/lot/viewmodel/SuiviLignesDepotTest.java</code>, <code>src/test/java/fr/univ_amu/iut/cli/commande/DeposerVigieChiroTest.java</code>, <code>src/test/java/fr/univ_amu/iut/cli/commande/DeposerTest.java</code>, <code>src/test/java/fr/univ_amu/iut/audit/model/ServiceRecuperabiliteTest.java</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>2026-10-05</strong> : cette décision est <strong>amendée</strong> par
+<a href="../5975-les-archives-du-repli-ne-rendent-au-serveur-que-ce-qu-il-n-a-pas/">5975</a>. Les archives du repli ne contiennent plus toute la nuit : seulement les séquences
+qui ne sont pas en ligne. Le reste fait foi.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../5824-l-ecran-et-la-commande-n-offrent-et-ne-nomment-que-ce-qui-sert/">ADR 5824</a> a retiré de l'écran
 de lot, connecté et en séquences WAV, l'étape des archives et le dépôt manuel. Elle en consignait la
@@ -15303,10 +15344,9 @@ se serait renuméroté au moment où l'utilisateur est en difficulté.</p>
 <p><strong>Poser le compte sur <code>LotViewModel</code>.</strong> Il franchissait le plafond <code>GodClass</code>, ce que l'ADR 5824 annonçait :
 le compte vit sur le modèle de vue du dépôt, dont c'est l'état.</p>
 <h2 id="consequences">Conséquences<a class="headerlink" href="#consequences" title="Permanent link">&para;</a></h2>
-<p>Les archives du repli contiennent <strong>toute la nuit</strong>, séquences déjà en ligne comprises : le générateur n'est
-pas touché. Le serveur les ajoute sans chercher si elles y sont déjà (#5970) : une séquence déjà en ligne
-figure <strong>deux fois</strong> dans les fichiers de la participation, et <strong>une fois</strong> dans ses observations.
-<code>ArchiveDuRepliSurLaPlateformeDeTestTest</code> le tient ; ce que le repli doit contenir reste à décider.</p>
+<p>Les archives du repli contenaient <strong>toute la nuit</strong>, séquences déjà en ligne comprises. Le serveur les
+ajoute sans chercher si elles y sont déjà (#5970) : une séquence déjà en ligne figurait deux fois dans les
+fichiers de la participation. L'ADR <a href="../5975-les-archives-du-repli-ne-rendent-au-serveur-que-ce-qu-il-n-a-pas/">5975</a> n'y met plus que ce qui manque.</p>
 <p>Une nuit finie par le repli est annoncée perdue par le bilan de récupérabilité si son disque ne suffit pas,
 avec le compte de ce qui manque.</p>
 

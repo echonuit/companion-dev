@@ -13950,6 +13950,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="5975-les-archives-du-repli-ne-rendent-au-serveur-que-ce-qu-il-n-a-pas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5975 · Les archives du repli manuel ne rendent au serveur que ce qu'il n'a pas
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16367,7 +16402,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 461<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 463<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -16477,7 +16512,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 384<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 387<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17179,6 +17214,11 @@
 <td><a href="5862-la-vue-d-un-passage-verifie-le-traitement-dans-les-mots-de-l-ecran-de-lot/">5862</a></td>
 <td>La vue d'un passage ne savait rien du traitement : il fallait aller jusqu'à l'écran de lot pour savoir si l'analyse était finie. Elle porte « Vérifier le traitement », qui relève l'analyse et importe les observations par la règle de l'ADR 5784. Les phrases du traitement vivent dans le socle : les deux écrans lisent le même texte sans dépendre l'un de l'autre. Le résultat va au bandeau de retour, et la vue ne garde ni ne sonde aucun état.</td>
 <td>Lot 30 du chantier #5596 (#5862)</td>
+</tr>
+<tr>
+<td><a href="5975-les-archives-du-repli-ne-rendent-au-serveur-que-ce-qu-il-n-a-pas/">5975</a></td>
+<td>Le repli manuel faisait générer des archives de toute la nuit. Joué sur le code du serveur, le scénario montre qu'il ajoute chaque fichier d'une archive sans chercher s'il est déjà là : une séquence déjà en ligne revenait en double dans les fichiers de la participation. Sur un dépôt entamé en séquences WAV, la génération lit le plan de dépôt et n'archive que ce qu'il ne dit pas déposé, pour l'écran comme pour <code>exporter-lot</code> ; quand tout est en ligne, elle refuse en le disant.</td>
+<td>#5975, lot 4 du chantier #5967</td>
 </tr>
 </tbody>
 </table>
