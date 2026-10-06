@@ -15334,6 +15334,24 @@
 <h1 id="un-banc-de-mutation-compte-trois-verdicts-parce-quun-rouge-par-plantage-ne-prouve-rien">Un banc de mutation compte trois verdicts, parce qu'un rouge par plantage ne prouve rien<a class="headerlink" href="#un-banc-de-mutation-compte-trois-verdicts-parce-quun-rouge-par-plantage-ne-prouve-rien" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-09-05</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A2 · Un garde est vu rouge sur sa propre mutation</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#5257 (chantier #5215)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>.github/scripts/temoins_de_ci_non_decoratifs.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>2026-10-06</strong> : cette décision est <strong>complétée</strong> par
+<a href="../5743-un-invariant-se-borne-par-une-liste-nommee/">5743</a>, et trois phrases de son texte ne
+décrivent plus le dépôt. Ses mesures, datées du 2026-09-05, restent ce qu'elles étaient.</p>
+<p><strong>La question du cliquet n'est plus ouverte.</strong> « Faut-il un cliquet sur le compte des non
+concluants ? » : la mesure demandée a été faite (#5497), et la réponse est une liste <strong>nommée</strong>,
+non un cliquet. Chaque banc porte une table <code>PLANTENT_SOUS_MUTATION</code>, confrontée dans les deux
+sens. Un compte aurait laissé échanger un plantage réparé contre un plantage neuf.</p>
+<p><strong>« Il ne refuse que sur un décoratif » se lit avec cette table.</strong> Un non concluant ne fait
+toujours pas rougir par lui-même. Un garde qui plante sans y être nommé, ou une entrée qui ne
+plante plus, fait en revanche sortir le banc en 1 : c'est un constat sur la table, rendu sans
+marque de refus, et non un refus sur ce que le banc n'a pas su lire.</p>
+<p><strong>« Les deux bancs de <code>scripts/</code> n'ont pas encore ce verdict » est tenu</strong> depuis #5271. Les
+trois bancs rendent trois comptes et portent chacun leur table : celui des ADR depuis #5905,
+ceux de <code>scripts/methode</code> et de <code>.github/scripts</code> depuis #5497.</p>
+<p>Le reste fait foi.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../4490-un-temoin-se-prouve-par-mutation-mecaniquement/">ADR 4490</a> rend la mutation
 mécanique : on neutralise les fonctions de détection d'un garde, on relance son auto-test, et on
