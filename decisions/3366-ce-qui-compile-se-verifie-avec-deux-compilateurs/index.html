@@ -15539,7 +15539,10 @@ appris ; un compilateur voit ce qu'il refuse.</strong></p>
 <li>deux dépendances de plus, dans un profil <strong>hors build par défaut</strong>. Leurs versions vivent dans le
   <code>pom.xml</code>, <strong>où Dependabot les voit</strong> : posées dans un workflow, elles ne seraient surveillées par
   personne - c'est exactement le défaut que l'<a href="../2748-un-dispositif-qui-peut-ne-rien-verifier-le-dit/">ADR 2748</a>
-  et #3382 viennent de traiter.</li>
+  et #3382 viennent de traiter. Depuis #6090 elles sont <strong>trois</strong>, et elles montent ensemble :
+  <code>plexus-compiler-api</code> est déclarée à la même propriété que <code>plexus-compiler-eclipse</code>, parce que
+  <code>maven-compiler-plugin</code> l'épingle de son côté et qu'une classe fille plus récente que sa classe mère
+  a rendu un <code>NoSuchMethodError</code> ; <code>ecj</code> suit la version que <code>plexus-compiler-eclipse</code> demande.</li>
 </ul>
 <h3 id="module-infojava-est-exclu-de-cette-passe"><code>module-info.java</code> est exclu de cette passe<a class="headerlink" href="#module-infojava-est-exclu-de-cette-passe" title="Permanent link">&para;</a></h3>
 <p>Sous <code>plexus-compiler-eclipse</code>, ecj ne résout ni les modules automatiques (<code>com.google.gson</code>,
