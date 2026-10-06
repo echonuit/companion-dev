@@ -16059,7 +16059,9 @@ un seul commit dont le message était le texte ; les quatre demandes multi-commi
 corps que <code>verifie_corps_pr.py</code> avait validé. La bascule aligne la forge sur ce que cette page
 décrivait déjà, et fait de ce garde celui de l'historique, ce que l'ADR 4453 suppose (#5248).</p>
 <p><strong><code>gh pr merge --squash</code> se lance nu.</strong> Un <code>--body-file</code> écarte encore le corps validé et lui
-substitue un texte que rien n'a lu, sous ce réglage comme sous l'autre.</p>
+substitue un texte que rien n'a lu, sous ce réglage comme sous l'autre. Un <code>--subject</code> fait de
+même au sujet : il remplace celui que la forge compose, <code>(#N)</code> compris, et la ligne du CHANGELOG
+perd son lien vers la demande sans que rien ne rougisse (#4775).</p>
 <p><strong>Pas d'espace avant le <code>:</code></strong> : <code>feat(scope): …</code> publie, <code>feat(scope) : …</code> ne publie rien. Cette
 seconde forme a arrêté la publication du 18 au 20 juillet 2026, en accumulant 58 commits
 releasables <strong>sans faire rougir quoi que ce soit</strong> - « aucun changement pertinent » est un verdict
