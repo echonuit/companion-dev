@@ -16711,6 +16711,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
+<td><code>resout_le_tag_de_version.py</code></td>
+<td>le tag que l'atelier de publication consomme, <strong>reprise comprise</strong>. Le premier moyen reste le tag porté par <code>HEAD</code> ; un repli ne sert qu'à la reprise, et il est borné par la <strong>version</strong> et non par le graphe - est candidat un tag dont la version dépasse la plus haute version <strong>publiée</strong>, et plusieurs candidats font <strong>refuser</strong> plutôt que d'en choisir un. Deux bornes plausibles ont été écartées par la mesure : « le plus haut tag sans publication » refuserait dès aujourd'hui, les 17 séquelles de ce dépôt entrant dedans ; et « les tags qui ne sont pas ancêtres de la dernière publiée » les sélectionnerait toutes les 17, leurs commits n'étant <strong>pas sur <code>main</code></strong> après une réécriture d'historique. Une forge muette <strong>refuse</strong> au lieu de rendre une liste vide, parce qu'ici le vide signifierait « aucune publication », c'est-à-dire l'alerte même. Six cas, dont le cinquième tient les 17 séquelles ; <strong>trois mutations jouées, appariement annoncé d'avance, trois conformes</strong></td>
+<td><code>release.yml</code> (autotest : <code>lint.yml</code>)</td>
+</tr>
+<tr>
 <td><code>trie_les_echecs_de_plateforme.py</code></td>
 <td>ce que la suite donne sur une plateforme, TestFX à part, et si le passage est bien <strong>allé au bout</strong> : un job coupé par <code>timeout-minutes</code> rendait le même tableau sous le titre « toutes les classes de test », 618 sur 758, sans un échec et avec un code 0 (#4544)</td>
 <td><code>suite-sous-windows-et-macos.yml</code> (autotest : <code>lint.yml</code>)</td>
