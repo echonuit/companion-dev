@@ -15403,9 +15403,10 @@ en fait foi : il en contient aujourd'hui bien plus que trois (<!--inv:migrations
    migration présente</strong> dans le dossier - <strong>surtout pas</strong> <code>V04</code>, le compteur est déjà bien plus
    haut.</li>
 <li><strong>Ajoutez son nom au tableau <code>MIGRATIONS</code></strong> de <code>MigrationSchema</code> - <strong>l'ordre fait foi</strong>.
-   <code>MigrationSchemaTest</code> refuse un nom listé sans fichier, un numéro en double et un ordre qui ne
-   croît pas. L'oubli inverse ne fait rien rougir : un fichier posé sans sa ligne part dans le jar
-   et ne s'exécute jamais (#4645).</li>
+   <code>MigrationSchemaTest</code> refuse un nom listé sans fichier, un fichier posé sans sa ligne, un
+   numéro en double et un ordre qui ne croît pas. L'oubli dans un sens comme dans l'autre fait
+   donc rougir, depuis #4645 : avant lui, un fichier posé sans sa ligne partait dans le jar et ne
+   s'exécutait jamais.</li>
 <li><strong>N'y mettez ni <code>PRAGMA</code>, ni <code>VACUUM</code>, ni <code>BEGIN</code>/<code>COMMIT</code> explicite</strong> : le script s'exécute
    dans une transaction (voir ci-dessous), et ces trois-là n'y survivent pas. Un <code>PRAGMA</code> y est
    silencieusement sans effet, ce qui est le pire des trois. Une migration qui en aurait
