@@ -7406,6 +7406,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ce-que-5996-y-ajoute-les-heures-et-ce-qui-se-cherche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que #5996 y ajoute : les heures, et ce qui se cherche
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-qui-reste-deliberement-hors-de-cette-decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -15277,6 +15288,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ce-que-5996-y-ajoute-les-heures-et-ce-qui-se-cherche" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ce que #5996 y ajoute : les heures, et ce qui se cherche
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#ce-qui-reste-deliberement-hors-de-cette-decision" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -15332,7 +15354,7 @@
 
 
 <h1 id="le-texte-se-lit-le-json-se-parse-une-commande-ecrit-sa-date-deux-fois-differemment">Le texte se lit, le JSON se parse : une commande écrit sa date deux fois différemment<a class="headerlink" href="#le-texte-se-lit-le-json-se-parse-une-commande-ecrit-sa-date-deux-fois-differemment" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-18</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A16 · L&#x27;information se porte dans le type, pas dans la prudence des phrases</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#3990, passe 9 de la clôture des suites des finitions de recette (#3424)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>StatutPassageTest#json_passage_complet</code></span></div></div>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-18</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A16 · L&#x27;information se porte dans le type, pas dans la prudence des phrases</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#3990, passe 9 de la clôture des suites des finitions de recette (#3424)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification certaine</span><span class="adr-bandeau__valeur"><code>StatutPassageTest#json_passage_complet</code>, <code>StatutPassageTest#le_json_garde_les_heures_de_la_base</code>, <code>ServiceRechercheGlobaleTest#une_nuit_se_cherche_par_la_date_qu_on_lit</code></span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p><code>statut-passage</code> imprimait <code>Nuit : 2026-06-15</code> et <code>déposé le 2026-06-20</code> dans son <strong>texte</strong>, alors que
@@ -15374,6 +15396,17 @@ franciser le JSON par souci de cohérence, et <strong>rien ne l'aurait signalé<
 verts, et le premier à s'en apercevoir aurait été l'utilisateur d'un script.</p>
 <p>Les deux clés sont désormais assertées. C'est la moitié la plus importante de cette ADR : une décision
 de ne <strong>pas</strong> changer quelque chose n'est tenue que si un test rougit quand on la défait.</p>
+<h2 id="ce-que-5996-y-ajoute-les-heures-et-ce-qui-se-cherche">Ce que #5996 y ajoute : les heures, et ce qui se cherche<a class="headerlink" href="#ce-que-5996-y-ajoute-les-heures-et-ce-qui-se-cherche" title="Permanent link">&para;</a></h2>
+<p><strong>La règle vaut pour les heures d'une nuit.</strong> <code>statut-passage</code> les recopiait de la base, « 21:30:07 → 05:45:52 »,
+quand la fiche du passage les dit sans secondes. Sa sortie texte passe par <code>Horodatage.heureCourte</code> ; son
+<code>--json</code> garde la valeur de la base, et un test le tient sur une nuit aux secondes non nulles.</p>
+<p><strong>Les heures réalignées gardent leurs secondes, en texte comme à l'écran.</strong> <code>metadonnees-passage</code> et le compte
+rendu d'envoi disent les heures d'une nuit avant et après leur réalignement sur les enregistrements. Ce
+réalignement peut se jouer à la seconde : raccourcies, « 21:30:00 → 21:30:07 » se liraient « 21:30 → 21:30 »,
+et la correction ne se verrait plus. Qui voudrait « finir le travail » y perdrait ce que la phrase sert à dire.</p>
+<p><strong>Ce qui s'affiche se cherche.</strong> La recherche globale dit la date d'une nuit en français, et la trouve par cette
+forme comme par la forme ISO. Franciser l'affichage seul aurait fait taper à l'utilisateur ce qu'il lit sans
+rien trouver ; retirer l'ISO aurait cassé une requête que des habitués tapent.</p>
 <h2 id="ce-qui-reste-deliberement-hors-de-cette-decision">Ce qui reste délibérément hors de cette décision<a class="headerlink" href="#ce-qui-reste-deliberement-hors-de-cette-decision" title="Permanent link">&para;</a></h2>
 <p>Deux commandes portent, sous le même nom <code>dateDebut</code>, des <strong>datetimes avec décalage</strong> venus de l'API
 (<code>2026-07-03T22:00:00+02:00</code>) : <code>reconstruire-passage</code> et <code>lister-participations-vigiechiro</code>.</p>
