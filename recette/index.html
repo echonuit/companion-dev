@@ -14234,6 +14234,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#un-cas-qui-passe-par-une-modale-se-filme-avec-ses-deux-ecrans-4188" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un cas qui passe par une modale se filme avec ses deux écrans (#4188)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -15491,6 +15502,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#un-cas-qui-passe-par-une-modale-se-filme-avec-ses-deux-ecrans-4188" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un cas qui passe par une modale se filme avec ses deux écrans (#4188)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -15833,6 +15855,29 @@ c'est le résultat <strong>juste</strong>.</p>
 <p><strong>Le clip ne rend pas le verdict, il le rend possible.</strong> Filmer une application cassée produit une
 vidéo parfaitement valide : ce qui fait foi reste l'assertion pour un cas asserté, et le <strong>regard
 d'un humain</strong> pour un cas perceptif.</p>
+<h3 id="un-cas-qui-passe-par-une-modale-se-filme-avec-ses-deux-ecrans-4188">Un cas qui passe par une modale se filme avec ses deux écrans (#4188)<a class="headerlink" href="#un-cas-qui-passe-par-une-modale-se-filme-avec-ses-deux-ecrans-4188" title="Permanent link">&para;</a></h3>
+<p>Une modale montée seule donne un clip où elle flotte sur du noir : on n'y voit ni le geste qui l'a
+ouverte, ni ce qu'elle a changé. L'<a href="../decisions/4188-une-modale-se-filme-avec-son-ecran/">ADR 4188</a>
+pose donc qu'un cas de recette qui passe par une modale se filme en trois temps :</p>
+<ol>
+<li>l'<strong>écran de départ</strong>, où le geste qui ouvre la modale est fait : un clic sur son bouton, pas un
+   appel de navigation ;</li>
+<li>la <strong>modale</strong>, remplie par des gestes ;</li>
+<li>l'<strong>écran d'arrivée</strong>, une fois la modale refermée, tenu assez longtemps pour qu'on voie ce qui a
+   changé.</li>
+</ol>
+<p>Le cas appartient au scénario qui montre le geste. La classe qui monte la modale seule garde ses
+assertions, qui éprouvent son câblage, et perd son cas : <code>ClipDeModaleTest</code> refuse qu'une classe de
+test cite un <code>@CasDeRecette</code> et charge elle-même un FXML dont le nom contient <code>Modale</code>. Il saute une
+classe qui porte <code>@FixtureDeRecette</code>. Il ne voit ni que l'ouverture est un clic, ni que le scénario
+s'arrête assez longtemps sur l'écran d'arrivée : cela se juge en regardant le clip.</p>
+<p>La règle vaut pour les modales d'une feature, celles qu'un <code>*Modale*.fxml</code> décrit. Leur navigation
+les ouvre en <code>show()</code>, si bien qu'elles se pilotent en headless comme n'importe quelle fenêtre. Les
+dialogues du socle, une alerte ou une confirmation par exemple, s'ouvrent en <code>showAndWait()</code>, qui
+fige TestFX : un test les remplace par un double, la règle ne les couvre pas et le garde ne les
+regarde pas.</p>
+<p><code>ScenarioModaleCarreTest</code> sert de modèle : il part de « Mes sites », ouvre la déclaration par son
+bouton et laisse la fenêtre derrière la modale.</p>
 <h2 id="la-fiche-devaluation-six-axes">La fiche d'évaluation : six axes<a class="headerlink" href="#la-fiche-devaluation-six-axes" title="Permanent link">&para;</a></h2>
 <p>Chaque écran est noté sur <strong>six axes</strong>, verdict trivalué (<strong>OK / remarque / bloquant</strong>). Les axes <strong>P</strong>
 et <strong>D</strong> s'instruisent en <strong>passe statique</strong> (ils ne demandent pas de piloter l'écran) ; la session
