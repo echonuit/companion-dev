@@ -17793,7 +17793,7 @@ comme « tag posé, pas de publication ». Il reste trois états, et chacun a sa
 <td>commit, journal, tag, note, <strong>brouillon</strong></td>
 <td>les installeurs attachés, et le brouillon reste brouillon</td>
 <td><strong>relancer l'atelier</strong>, qui téléverse sur la publication existante</td>
-<td><strong>non</strong> : #4083 a au contraire <strong>supprimé</strong> le brouillon, la relance butant alors sur la tête de <code>main</code></td>
+<td><strong>non</strong> : #4083 a au contraire <strong>supprimé</strong> le brouillon, la relance butant alors sur la tête de <code>main</code> - obstacle <strong>levé depuis</strong> par #6023</td>
 </tr>
 </tbody>
 </table>
@@ -17803,10 +17803,10 @@ comme « tag posé, pas de publication ». Il reste trois états, et chacun a sa
 fichiers attachés. Les deux autres sont <strong>déduites du fonctionnement de la chaîne</strong>, et ce n'est
 pas la même chose qu'un geste éprouvé.</p>
 <p>La troisième mérite une mise en garde particulière : #4083 l'a <strong>écartée</strong> pour la 2.186.0, et non
-parce qu'elle était fausse en principe. La relance butait sur la résolution du tag, qui dépend de
-la tête de <code>main</code> - <code>main</code> portait alors 46 commits de plus que le tag. C'est la fragilité décrite
-plus bas, et c'est elle qui rendra cette reprise praticable une fois levée. Tant qu'elle tient,
-« relancer l'atelier » n'est une reprise que si la tête de <code>main</code> est encore le commit taggué.</p>
+parce qu'elle était fausse en principe. La relance butait sur la résolution du tag, qui dépendait
+alors de la tête de <code>main</code> - <code>main</code> portait 46 commits de plus que le tag. <strong>Cet obstacle est levé
+depuis #6023</strong>, et cette reprise est donc praticable aujourd'hui ; elle reste néanmoins <strong>non
+jouée</strong>, et ce n'est pas la même chose qu'éprouvée.</p>
 </div>
 <p><strong>Le premier état est le plus dangereux, et c'est le moins visible.</strong> Sans tag, le train suivant
 recalcule la <strong>même</strong> version - il compte depuis le dernier tag, qui est celui d'avant - et
@@ -17829,14 +17829,21 @@ la main. La chaîne reste seule productrice des artefacts et de leur attestation
 <li><strong>Supprimer le tag et recommencer.</strong> Écarté par #4083 : le <code>CHANGELOG.md</code> porte déjà l'entrée, et
   semantic-release recréerait la même version avec une seconde entrée.</li>
 </ul>
-<h3 id="ce-que-la-reprise-suppose-encore-et-qui-est-fragile">Ce que la reprise suppose encore, et qui est fragile<a class="headerlink" href="#ce-que-la-reprise-suppose-encore-et-qui-est-fragile" title="Permanent link">&para;</a></h3>
-<p>L'étape « Récupérer le tag fraîchement créé » du job <code>release</code> résout le tag par
-<code>git describe --tags --exact-match HEAD</code>. <strong>La reprise dépend donc de la tête de <code>main</code></strong> : elle
-n'aboutit que si cette tête est encore le commit taggué. Une fusion entre l'échec et la relance, et
-<code>installers</code> comme <code>publish</code> sont sautés une seconde fois, par leur garde <code>tag != ''</code>. Le 2026-10-06,
-<code>main</code> avait avancé six minutes après la relance - la reprise a tenu de peu.</p>
-<p>Tout l'aval, lui, est juste : il consomme <code>needs.release.outputs.tag</code>, et <code>installers</code> extrait déjà
-<code>ref: &lt;tag&gt;</code>. La fragilité est confinée à cette <strong>unique résolution</strong>.</p>
+<h3 id="ce-dont-la-reprise-ne-depend-plus-et-comment-elle-en-a-ete-affranchie">Ce dont la reprise ne dépend plus, et comment elle en a été affranchie<a class="headerlink" href="#ce-dont-la-reprise-ne-depend-plus-et-comment-elle-en-a-ete-affranchie" title="Permanent link">&para;</a></h3>
+<p>Jusqu'à #6023, l'étape qui résout le tag le cherchait par <code>git describe --tags --exact-match HEAD</code>.
+<strong>La reprise dépendait donc de la tête de <code>main</code></strong> : elle n'aboutissait que si cette tête était encore
+le commit taggué. Une fusion entre l'échec et la relance, et <code>installers</code> comme <code>publish</code> étaient
+sautés une seconde fois. Le 2026-10-06, <code>main</code> avait avancé six minutes après la relance - la reprise
+a tenu de peu, et #4083 avait buté sur le même mur avec 46 commits d'écart.</p>
+<p>La résolution vit maintenant dans <code>.github/scripts/resout_le_tag_de_version.py</code>, et elle garde ce
+premier moyen pour le train normal. Un <strong>repli</strong> ne sert qu'à la reprise : est candidat un tag dont la
+<strong>version</strong> dépasse la plus haute version <strong>publiée</strong>, et plusieurs candidats font refuser plutôt que
+d'en choisir un. La borne est la version et non le graphe, pour la raison que l'encadré de la section
+suivante donne. Elle est sortie du YAML pour être éprouvable : du shell dans <code>release.yml</code> ne se joue
+qu'en publiant, et son banc porte sept cas.</p>
+<p>Tout l'aval était déjà juste : il consomme <code>needs.release.outputs.tag</code>, et <code>installers</code> extrait
+<code>ref: &lt;tag&gt;</code>. La fragilité était confinée à cette <strong>unique résolution</strong>, et c'est ce qui a rendu le
+remède petit.</p>
 <h3 id="trois-occurrences-et-un-etat-qui-persiste">Trois occurrences, et un état qui persiste<a class="headerlink" href="#trois-occurrences-et-un-etat-qui-persiste" title="Permanent link">&para;</a></h3>
 <table>
 <thead>
