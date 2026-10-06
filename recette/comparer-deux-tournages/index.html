@@ -15772,10 +15772,22 @@ runners GitHub distincts, soit <strong>quinze paires</strong> par clip. Mesurés
 (#5885).</p>
 <p><strong>Le fichier s'est complété depuis, et les paires ne sont plus uniformes.</strong> Les clips de la session
 S2 en portent <strong>vingt et une</strong>, mesurées sur quatre tournages de plus (#5956), et celui du menu de
-ligne en porte <strong>six</strong>, sa ligne étant neuve. Au total : 68 lignes à quinze paires, 25 à vingt et une,
-une à six. La quatrième colonne de <code>planchers-tournages.tsv</code> dit, pour chaque clip, sur combien de
-paires son plancher a été pris - et un plancher tiré de peu de paires en prouve d'autant moins.</p>
-<p>Six clips n'ont pas de plancher, parce qu'ils ont deux fins (voir plus bas). Sur les <strong>89</strong> autres, clips ordinaires seuls - les cinq clips de la plateforme de test ont leur propre section :</p>
+ligne en porte <strong>six</strong>, sa ligne étant neuve. La quatrième colonne de <code>planchers-tournages.tsv</code> dit,
+pour chaque clip, sur combien de paires son plancher a été pris - et un plancher tiré de peu de
+paires en prouve d'autant moins. Le décompte des lignes par nombre de paires ne s'écrit pas ici :
+chaque mesure le déplace, et le fichier le dit mieux que cette page.</p>
+<p>Le fichier mêle deux populations, et chaque compte de cette page nomme la sienne. Les clips
+<strong>ordinaires</strong> qui ont un plancher sont <!--inv:clips-ordinaires-a-plancher-->89<!--/inv-->. Ceux de
+la <strong>plateforme de test</strong> sont <!--inv:clips-de-la-plateforme-de-test-a-plancher-->5<!--/inv-->, et
+ont leur propre section. Les clips <strong>sans plancher</strong>, parce qu'ils ont deux fins, sont</p>
+<!--inv:clips-sans-plancher-->
+<p>6 (voir plus bas). Ces trois comptes sont relus à chaque
+demande contre l'outil et son fichier : un clip corrigé qui quitte la table fait rougir cette page
+tant qu'elle ne le dit pas. Un cas est de la plateforme de test quand sa méthode, ou sa classe, en
+porte le tag : ni le nom de sa classe ni le tag de sa seule classe ne suffisent à le dire.</p>
+<p>La distribution des planchers des clips ordinaires, <strong>relevée le 6 octobre 2026</strong> sur le fichier de
+<code>main</code> à <code>358205ef5</code>. C'est une mesure datée : elle ne suit pas le fichier, et se relève quand
+l'argument qu'elle sert en a besoin.</p>
 <table>
 <thead>
 <tr>
@@ -15905,7 +15917,8 @@ mesurées avec l'instrument du flux (#5870).</p>
 </tr>
 </tbody>
 </table>
-<p>Aucun ne dépasse le pire plancher des clips ordinaires, 1,033 % : ces clips se comparent.</p>
+<p>Aucun ne dépasse le pire plancher des clips ordinaires, 1,033 % au relevé du 6 octobre 2026 : ces
+clips se comparent.</p>
 <div class="admonition danger">
 <p class="admonition-title">Un plancher se mesure avec l'instrument du flux, pas avec celui du poste</p>
 <p>Le même script, sur la même paire de clips, ne rend pas le même chiffre partout. Mesuré sur une
@@ -16060,14 +16073,16 @@ qui a rempli le fichier avant que l'atelier existe. Sur un poste, le fichier obt
 l'instrument du poste, et le flux refusera de le lire.</p>
 </div>
 <h3 id="les-clips-auxquels-on-refuse-un-plancher">Les clips auxquels on refuse un plancher<a class="headerlink" href="#les-clips-auxquels-on-refuse-un-plancher" title="Permanent link">&para;</a></h3>
-<p>Un plancher mesure le bruit d'un clip qui <strong>finit sur son verdict</strong>. Six clips ont deux fins : deux
-tournages du même commit y diffèrent de 3 à 26 %, parce que le clip s'arrête pendant une
+<p>Un plancher mesure le bruit d'un clip qui <strong>finit sur son verdict</strong>. Certains clips ont deux fins :
+deux tournages du même commit y diffèrent de 3 à 26 %, parce que le clip s'arrête pendant une
 transformation, pendant un fondu, ou sur une page que rien n'a calée.</p>
+<p>Ce tableau est celui de la table <code>SANS_PLANCHER</code> de l'outil, et un test le confronte à elle dans
+les deux sens. Sa colonne du milieu est une mesure datée, prise le 5 octobre 2026 sur quinze paires.</p>
 <table>
 <thead>
 <tr>
 <th>clip</th>
-<th>ses quinze paires vont jusqu'à</th>
+<th>ses paires allaient jusqu'à, le 5 octobre 2026</th>
 <th>issue</th>
 </tr>
 </thead>
@@ -16170,6 +16185,7 @@ mesure. Un instrument cassé qui se présente en succès est pire que pas d'inst
 était introuvable, la part de pixels valait « ? », et les cinquante cas d'un vrai tournage se rangeaient
 en « mesure impossible » - <strong>le job restant vert</strong>. Le compteur de mesures impossibles a dit la panne ;
 sans lui, le résumé aurait annoncé « aucun cas ne bouge », et la chaîne aurait eu l'air éprouvée.</p>
+<!--/inv-->
 
 
 
