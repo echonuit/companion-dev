@@ -15402,7 +15402,10 @@ en fait foi : il en contient aujourd'hui bien plus que trois (<!--inv:migrations
 <li>Créez <code>db/migration/Vnn__description.sql</code>, où <code>nn</code> est le <strong>numéro qui suit la dernière
    migration présente</strong> dans le dossier - <strong>surtout pas</strong> <code>V04</code>, le compteur est déjà bien plus
    haut.</li>
-<li><strong>Ajoutez son nom au tableau <code>MIGRATIONS</code></strong> de <code>MigrationSchema</code> - <strong>l'ordre fait foi</strong>.</li>
+<li><strong>Ajoutez son nom au tableau <code>MIGRATIONS</code></strong> de <code>MigrationSchema</code> - <strong>l'ordre fait foi</strong>.
+   <code>MigrationSchemaTest</code> refuse un nom listé sans fichier, un numéro en double et un ordre qui ne
+   croît pas. L'oubli inverse ne fait rien rougir : un fichier posé sans sa ligne part dans le jar
+   et ne s'exécute jamais (#4645).</li>
 <li><strong>N'y mettez ni <code>PRAGMA</code>, ni <code>VACUUM</code>, ni <code>BEGIN</code>/<code>COMMIT</code> explicite</strong> : le script s'exécute
    dans une transaction (voir ci-dessous), et ces trois-là n'y survivent pas. Un <code>PRAGMA</code> y est
    silencieusement sans effet, ce qui est le pire des trois. Une migration qui en aurait
@@ -15415,6 +15418,25 @@ en fait foi : il en contient aujourd'hui bien plus que trois (<!--inv:migrations
 <li><strong>Le nombre de migrations est un chiffre balisé.</strong> <code>&lt;!--inv:migrations--&gt;</code> vit dans <strong>deux</strong>
    documents, <code>persistance.md</code> (ici) et <code>modele-de-donnees.md</code>, et <code>DocumentationAJourTest</code> les
    vérifie tous les deux. En corriger un seul laisse l'autre rouge.</li>
+<li><strong>Si elle crée ou retire une table, le nombre de tables bouge aussi.</strong> <code>&lt;!--inv:tables--&gt;</code> ne
+   vit que dans <code>modele-de-donnees.md</code>, et <code>DocumentationAJourTest</code> le recompte sur le schéma
+   appliqué.</li>
+<li><strong>Si elle ajoute une colonne de chemin</strong> (<code>*_path TEXT</code>), inscrivez sa table dans
+   <code>TablesAChemin</code>. <code>TablesACheminTest</code> lit les scripts et refuse une table à chemin que la liste
+   ignore : ses fichiers ne suivraient pas leur dossier à la restauration.</li>
+<li><strong>Si elle amène un DAO ou un service, fournissez-les dans un module d'injection</strong> :
+   <code>PersistenceModule</code> pour le socle, le module <code>di/</code> de la feature sinon. Le dépôt les fournit par
+   <code>@Provides</code>, un par un, et l'oubli se voit à la composition : l'injecteur ne se construit plus.
+   Voir <a href="../injection/">Injection (Guice)</a>.</li>
+<li><strong>Si du code Java l'accompagne, deux registres bougent avec lui.</strong> Un fichier Java neuf, ou dont
+   la javadoc change, se marque relu par
+   <code>python3 scripts/methode/couverture-relecture.py --marque &lt;fichier&gt;</code> : le cliquet
+   <code>4468-javadoc-non-relue.py</code> refuse sinon. Et un renvoi d'issue qu'un fichier se met à porter en
+   javadoc fait monter un plancher, celui de la production
+   (<a href="../decisions/4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">ADR 4395</a>) ou celui des tests
+   (<a href="../decisions/4587-le-plancher-des-renvois-de-test-est-distinct/">ADR 4587</a>).
+   <code>python3 scripts/methode/releve-les-planchers.py --ecrire</code> relève les trois endroits de chacun,
+   et un plancher resté en arrière <strong>refuse</strong> : <code>4395-renvois-en-javadoc.py</code> rend <code>a-relever</code>.</li>
 <li><strong>Une fois poussée, elle ne se modifie plus.</strong> Elle est appliquée chez d'autres, et ne se
    rejouera pas chez eux. Ce qu'il faut corriger se corrige dans une migration <strong>suivante</strong> ; une
    retouche du script déjà publié fait refuser le démarrage (voir ci-dessous).</li>
@@ -15645,7 +15667,7 @@ peut pas dépendre d'une feature, mais une feature dépend du socle, et cet inve
 connaissance de <strong>schéma</strong>.</p>
 <p>Ce que chacun <strong>fait</strong> de chaque table lui reste propre : le socle réenracine, la feature
 réenracine <strong>et</strong> renomme les noms logiques.</p>
-<p><code>TablesACheminTest</code> confronte cette liste aux colonnes de chemin déclarées par les 38 migrations.
+<p><code>TablesACheminTest</code> confronte cette liste aux colonnes de chemin que déclarent les migrations.
 C'est le second filet, et il attrape autre chose que la déduplication : une <strong>migration</strong> qui
 ajoute une colonne de chemin à une table de plus, et que personne ne pense à inscrire.</p>
 </div>

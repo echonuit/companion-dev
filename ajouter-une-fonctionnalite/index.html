@@ -15513,8 +15513,10 @@ la fermeture de l'issue.</p>
 <li>Une <strong>entité</strong> en <code>record</code> (immuable), p. ex. <code>record Truc(Long id, String nom)</code>.</li>
 <li>Un <strong>DAO</strong> en <code>PreparedStatement</code> héritant du patron des autres <code>*/model/dao/</code> (pas d'ORM).</li>
 <li>Un <strong>service</strong> qui orchestre les DAO et porte la logique métier.</li>
-<li>Si le schéma change : ajoutez une <strong>migration</strong> <code>src/main/resources/db/migration/V0x__ma_table.sql</code>
-  (numéro suivant). Elle s'applique automatiquement au démarrage.</li>
+<li>Si le schéma change : ajoutez une <strong>migration</strong> <code>src/main/resources/db/migration/Vnn__ma_table.sql</code>
+  (numéro suivant) <strong>et</strong> son nom dans <code>MigrationSchema.MIGRATIONS</code>, sans quoi elle ne s'applique pas.
+  Ce qu'elle oblige ailleurs est dit dans l'encadré
+  <a href="../persistance/#les-migrations-de-schema">« Ajouter une migration »</a>.</li>
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Frontière</p>
