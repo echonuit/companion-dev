@@ -14125,6 +14125,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="4775-les-sujets-de-main-n-ont-pas-de-garde/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4775 · Les sujets de main n'ont pas de garde, et fusionner sans --subject en tient lieu
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -17379,6 +17414,11 @@
 <td><a href="5987-un-tag-de-version-sans-publication-se-signale/">5987</a></td>
 <td>Une publication qui s'arrête en chemin laisse un tag et un journal d'apparence normale, et aucune publication : il faut interroger la forge pour le voir, et rien ne le disait - 17 tags de version étaient dans cet état. Un garde le signale en fin de train, borné par la <strong>version</strong> et non par le graphe : est anormal un tag dont la version dépasse la plus haute version publiée. Deux bornes plausibles ont été écartées par la mesure, dont l'ancestralité, les commits de ces tags n'étant plus sur <code>main</code>. Il s'éteint de lui-même après un train réussi, et une forge muette le fait refuser au lieu d'alerter.</td>
 <td>#5987, lot 2 du chantier #6005</td>
+</tr>
+<tr>
+<td><a href="4775-les-sujets-de-main-n-ont-pas-de-garde/">4775</a></td>
+<td>Un commit est arrivé sur <code>main</code> sans le numéro de sa demande, parce que la fusion avait reçu un <code>--subject</code>. Le geste est écrit : fusionner nu. Le garde sur les sujets de <code>main</code>, lui, n'est pas écrit, par décision : il jugerait après la fusion, là où rien ne se répare, et il coûterait des exemptions et un cliquet pour un lien de journal perdu zéro fois. Mesuré sur 671 commits depuis le 29 août 2026 : une occurrence, aucune récidive. La page dit ce qui rouvrirait la question.</td>
+<td>#4775, lot 4 du chantier #6009</td>
 </tr>
 </tbody>
 </table>
