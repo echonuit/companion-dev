@@ -16877,7 +16877,7 @@ part commune est tombée de 65 % et 54 % à <strong>55 % et 48 %</strong>.</p>
 qui interroge la forge, la copie devient une dette qui se paie trois fois : rouvrez #4954 et
 tranchez <strong>avant</strong> de le finir, pas après.</p>
 </div>
-<p>| <code>lance-test-filme.sh</code> | un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres | <code>recette-filmee.yml</code> - workflow <strong>manuel</strong> |
+<p>| <code>lance-test-filme.sh</code> | un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres ; son montage refuse un film arrêté avant l'ordre d'arrêt, dont tous les clips seraient décalés (#6017) | <code>recette-filmee.yml</code> - workflow <strong>manuel</strong> |
 | <code>filtrer_bruit_cartes.py</code> | rend leur version committée aux aperçus de carte dont <strong>seul le fond</strong> a changé | <code>capture-vues.yml</code> |
 | <code>compare_apercus.py</code> | montre, sur une PR, les écrans qu'elle change : avant/après accolés, part de pixels, et le <strong>dit</strong> quand aucun ne change | <code>capture-vues.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>compare_tournages.py</code> | montre ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Le chiffre <strong>trie</strong>, la carte <strong>localise</strong> ; une mesure impossible se compte au lieu de passer pour « rien n'a changé ». Mesure aussi les <strong>planchers</strong> par cas, toutes paires, et écrit en en-tête l'<strong>instrument</strong> qui les a pris : il refuse de comparer contre des planchers pris par un autre, ou de les compléter, en nommant les deux (#5885). Les clips qui ont deux fins n'ont pas de plancher, et la comparaison le dit avec leur issue : leur compte et leurs noms se lisent dans <code>comparer-deux-tournages.md</code>, où un test les confronte à la table <code>SANS_PLANCHER</code> (#5953) | <code>comparer-tournages.yml</code>, <code>mesurer-les-planchers.yml</code> (autotest : <code>lint.yml</code>) |
@@ -17955,10 +17955,18 @@ point d'entrée, pas un horodatage.</p>
 compte depuis son début, et l'instant de l'image 0 n'est pas celui où l'on a lancé <code>ffmpeg</code> : il
 s'initialise, et cette latence varie. On la rend sans objet en prenant l'heure au moment où l'on
 demande l'arrêt, puis en retranchant la durée du fichier obtenu.</p>
+<p><strong>Cette mesure tient à une condition : que le film tourne encore quand on lui demande de s'arrêter.</strong>
+Le film a un plafond, tiré du <code>timeout-minutes</code> du job qui filme, et une séance qui le dépasse laisse
+un film arrêté seul : l'origine calculée part alors trop tard, et chaque clip montre un autre cas
+que le sien. Le 6 octobre 2026, 90 clips ont été publiés ainsi, décalés de 158 secondes, sans
+qu'aucun contrôle rougisse (#6017). Le montage <strong>refuse</strong> donc un film qui n'a pas reçu l'ordre
+d'arrêt, et le dit en nommant le plafond à relever.</p>
 <p><strong>Le contrôle porte sur la couverture, pas sur la clarté des clips.</strong> Exiger qu'un clip soit clair
 ferait rougir un test de ViewModel, qui cite des cas et n'ouvre légitimement aucune fenêtre. Ce qui
 est exigé : les images où quelque chose est à l'écran doivent tomber <strong>dans</strong> les plages calculées.
-Un <code>t0</code> faux les fait toutes tomber à côté.</p>
+Un <code>t0</code> faux les fait tomber à côté sur un film où le geste est isolé. Dans une séance continue de
+fenêtres, elles retombent dans les plages des cas voisins et la couverture reste haute : c'est le
+refus ci-dessus qui tient ce cas-là.</p>
 <p>Les plages sont celles de <strong>tous</strong> les tests, pas seulement des tests cités. La première séance
 réelle a refusé un alignement correct pour cette raison : <code>ConnexionModaleViewTest</code> compte dix tests
 dont trois annotés, et les sept autres ouvrent aussi des fenêtres - le contrôle jugeait hors sujet
