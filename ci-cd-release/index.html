@@ -13870,6 +13870,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5930-une-comparaison-reprend-une-execution-avec-les-refus-de-la-mesure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5930 · Une comparaison reprend une exécution de tournage
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15461,7 +15496,7 @@ publication.</p>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/comparer-tournages.yml">comparer-tournages.yml</a></td>
 <td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
-<td>Dit ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Prend deux sources - un tag de version ou <code>clips-recette</code> - et <strong>normalise les préfixes de banc</strong>, sans quoi <code>bash-Truc.mp4</code> et <code>Truc.mp4</code> passeraient pour deux cas différents. À la demande et non committé : la comparaison « dernière version contre tournante » change dès que l'un des deux bouge (#4274)</td>
+<td>Dit ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Prend deux sources - un tag de version, <code>clips-recette</code>, ou un <strong>numéro d'exécution</strong> de <code>tournage-recette.yml</code>, pour comparer une branche à <code>main</code> avant fusion (#5930) - et <strong>normalise les préfixes de banc</strong>, sans quoi <code>bash-Truc.mp4</code> et <code>Truc.mp4</code> passeraient pour deux cas différents. À la demande et non committé : la comparaison « dernière version contre tournante » change dès que l'un des deux bouge (#4274)</td>
 <td>—</td>
 </tr>
 <tr>
@@ -16517,7 +16552,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie_decisions_du_tournage_connecte.py</code></td>
-<td>neuf décisions des ateliers de tournage qui vivaient dans du YAML que rien ne gardait (#4331) : <code>comparer-tournages.yml</code> REFUSE la source <code>clips-connectes</code> et ne refuse PAS <code>clips-plateforme-de-test</code> (#5793, ADR 5641), <code>publier-connecte</code> et <code>publier-plateforme-de-test</code> dépendent de <code>filmer</code> et portent une fonction d état, le contrôle du jeton vient AVANT le pas qui filme, et <code>filmer</code> NOMME son artefact avec sa tentative, toute reprise le lisant de sa sortie (#5797 : une publication relancée versait l artefact de la tentative échouée), et le tournage précédent de la plateforme de test est recopié sur <code>clips-plateforme-de-test-precedent</code> AVANT toute écriture sur la pré-version courante, source que la comparaison ne refuse pas (#5854). Les quatre dernières sont celles de <code>mesurer-les-planchers.yml</code> (#5885) : il REFUSE des tournages qui ne sont pas du même commit ou qui n ont pas conclu, témoins compris, parce qu un plancher pris entre deux commits range un changement du produit parmi le bruit ; un témoin n est jamais pris dans la mesure, sous le plancher de laquelle il resterait par construction ; l atelier ne porte aucune permission d écriture, le fichier se committant par une demande ; et il ne reprend une exécution que si elle porte UN artefact de clips, une exécution relancée en portant un par tentative (#5644, trouvé à la clôture). Les refus ne sont pas relus mais LANCÉS - ils vivent dans un <code>run:</code>, donc du shell, face à un <code>gh</code> leurre - et le verdict se prend sur le MESSAGE, pas sur le code de sortie. Son auto-test fabrique dix-neuf copies cassées, une par décision et par bord</td>
+<td>dix décisions des ateliers de tournage qui vivaient dans du YAML que rien ne gardait (#4331) : <code>comparer-tournages.yml</code> REFUSE la source <code>clips-connectes</code> et ne refuse PAS <code>clips-plateforme-de-test</code> (#5793, ADR 5641), <code>publier-connecte</code> et <code>publier-plateforme-de-test</code> dépendent de <code>filmer</code> et portent une fonction d état, le contrôle du jeton vient AVANT le pas qui filme, et <code>filmer</code> NOMME son artefact avec sa tentative, toute reprise le lisant de sa sortie (#5797 : une publication relancée versait l artefact de la tentative échouée), et le tournage précédent de la plateforme de test est recopié sur <code>clips-plateforme-de-test-precedent</code> AVANT toute écriture sur la pré-version courante, source que la comparaison ne refuse pas (#5854). Les quatre suivantes sont celles de <code>mesurer-les-planchers.yml</code> (#5885) : il REFUSE des tournages qui ne sont pas du même commit ou qui n ont pas conclu, témoins compris, parce qu un plancher pris entre deux commits range un changement du produit parmi le bruit ; un témoin n est jamais pris dans la mesure, sous le plancher de laquelle il resterait par construction ; l atelier ne porte aucune permission d écriture, le fichier se committant par une demande ; et il ne reprend une exécution que si elle porte UN artefact de clips, une exécution relancée en portant un par tentative (#5644, trouvé à la clôture). La dixième est celle de la comparaison d une exécution (#5930, ADR 5930) : <code>comparer-tournages.yml</code> prend un numéro d exécution pour source, jamais cherché parmi les versions, et le reprend avec les refus de la mesure, exigés des deux ateliers par les mêmes phrases et face au même leurre ; un seul ne se reprend pas, celui du même commit, deux commits étant l objet d une comparaison ; un artefact expiré se dit, et l atelier déclare <code>actions: read</code>. Les refus ne sont pas relus mais LANCÉS - ils vivent dans un <code>run:</code>, donc du shell, face à un <code>gh</code> leurre - et le verdict se prend sur le MESSAGE, pas sur le code de sortie. Son auto-test fabrique vingt-six copies cassées, une par décision et par bord</td>
 <td><code>lint.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>

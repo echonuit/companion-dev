@@ -13870,6 +13870,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/5930-une-comparaison-reprend-une-execution-avec-les-refus-de-la-mesure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5930 · Une comparaison reprend une exécution de tournage
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -14301,6 +14336,23 @@
       
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="Lancer une comparaison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparer-une-branche-a-main-avant-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparer une branche à main avant fusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -15316,6 +15368,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Lancer une comparaison">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comparer-une-branche-a-main-avant-fusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Comparer une branche à main avant fusion
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -15551,7 +15620,7 @@ tournages</strong> fait le tri ; le regard fait le reste.</p>
 <tbody>
 <tr>
 <td><code>avant</code></td>
-<td>ce à quoi on compare : un tag de version (<code>v2.188.0</code>), <code>clips-recette</code>, ou <code>clips-plateforme-de-test-precedent</code></td>
+<td>ce à quoi on compare : un tag de version (<code>v2.188.0</code>), <code>clips-recette</code>, <code>clips-plateforme-de-test-precedent</code>, ou un numéro d'exécution de <code>tournage-recette.yml</code></td>
 </tr>
 <tr>
 <td><code>apres</code></td>
@@ -15559,7 +15628,7 @@ tournages</strong> fait le tri ; le regard fait le reste.</p>
 </tr>
 <tr>
 <td><code>banc</code></td>
-<td><code>bash</code> ou <code>java</code>, pour choisir le préfixe sur les tags de version</td>
+<td><code>bash</code> ou <code>java</code>, pour choisir le préfixe sur les tags de version. Sans effet sur une exécution</td>
 </tr>
 <tr>
 <td><code>tolerance</code></td>
@@ -15576,6 +15645,25 @@ jours.</p>
 sur cette cible recopie la pré-version sous le premier nom avant de l'écraser, et les notes des deux
 disent l'exécution et le commit qui les ont tournées : c'est là qu'on lit ce qu'on compare. Deux
 tournages du même commit mesurent du bruit ; deux commits différents, ce que le second a changé.</p>
+<h3 id="comparer-une-branche-a-main-avant-fusion">Comparer une branche à <code>main</code> avant fusion<a class="headerlink" href="#comparer-une-branche-a-main-avant-fusion" title="Permanent link">&para;</a></h3>
+<p>Une valeur purement numérique est un <strong>numéro d'exécution</strong> de <code>tournage-recette.yml</code>
+(<a href="../../decisions/5930-une-comparaison-reprend-une-execution-avec-les-refus-de-la-mesure/">ADR 5930</a>).
+On tourne <code>main</code>, on tourne la branche, et on donne les deux numéros :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>tournage-recette.yml<span class="w"> </span>--ref<span class="w"> </span>main<span class="w"> </span>-f<span class="w"> </span><span class="nv">session</span><span class="o">=</span>toutes<span class="w"> </span>-f<span class="w"> </span><span class="nv">plateforme</span><span class="o">=</span>ubuntu
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>tournage-recette.yml<span class="w"> </span>--ref<span class="w"> </span>&lt;branche&gt;<span class="w"> </span>-f<span class="w"> </span><span class="nv">session</span><span class="o">=</span>toutes<span class="w"> </span>-f<span class="w"> </span><span class="nv">plateforme</span><span class="o">=</span>ubuntu
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>comparer-tournages.yml<span class="w"> </span>--ref<span class="w"> </span>&lt;branche&gt;<span class="w"> </span>-f<span class="w"> </span><span class="nv">avant</span><span class="o">=</span>&lt;exécution<span class="w"> </span>de<span class="w"> </span>main&gt;<span class="w"> </span>-f<span class="w"> </span><span class="nv">apres</span><span class="o">=</span>&lt;exécution<span class="w"> </span>de<span class="w"> </span>la<span class="w"> </span>branche&gt;
+</code></pre></div>
+<p>L'atelier se lance depuis la branche tant qu'elle n'est pas fusionnée : c'est son fichier de planchers
+qui est lu, et il peut porter une ligne que <code>main</code> n'a pas encore. Les planchers sont ceux du dépôt,
+lus avec l'instrument du flux : plus besoin de conteneur sur un poste.</p>
+<p>Le résumé nomme les deux côtés avant l'index : le numéro, le commit et la branche de chaque exécution.</p>
+<p>Une exécution n'est reprise que si elle a conclu en succès et porte un artefact de clips, et un seul.
+Ce sont les refus de <code>mesurer-les-planchers.yml</code>, moins celui du même commit : deux commits sont
+l'objet d'une comparaison. Un artefact est gardé <strong>quatorze jours</strong>. Passé ce délai, l'atelier le dit,
+et le geste est de relancer un tournage du commit voulu.</p>
+<p>Une paire mixte est permise, une version d'un côté et une exécution de l'autre. Deux exécutions de
+populations différentes, l'une ordinaire et l'autre de la plateforme de test, n'ont en revanche aucun
+cas commun : tout sort « apparu » ou « disparu », et rien n'est comparé (#5934).</p>
 <div class="admonition note">
 <p class="admonition-title">Pourquoi rien n'est committé</p>
 <p>La comparaison « dernière version contre tournante » change dès que l'un des deux bouge. Une page
@@ -15833,8 +15921,8 @@ Rapportés à leur propre plancher, ils se séparent :</p>
 <h2 id="le-fichier-de-planchers">Le fichier de planchers<a class="headerlink" href="#le-fichier-de-planchers" title="Permanent link">&para;</a></h2>
 <p>Les planchers mesurés vivent dans <code>.github/assets/planchers-tournages.tsv</code>. Son en-tête dit par quel
 instrument ils ont été pris, puis vient une ligne par cas :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a># Instrument : ffmpeg 6.1.1 · ImageMagick 6.9.12-98
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce   0.000   0.412   6
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># Instrument : ffmpeg 6.1.1 · ImageMagick 6.9.12-98
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce   0.000   0.412   6
 </code></pre></div>
 <p>Le cas, le plancher de sa <strong>première</strong> image, celui de sa <strong>dernière</strong>, et <strong>le nombre de paires de
 tournages qui les ont produits</strong>.</p>
@@ -15856,7 +15944,9 @@ correctif de sécurité reporté par la distribution ne fait pas remesurer cent 
 <div class="admonition warning">
 <p class="admonition-title">Sur un poste, la comparaison avec planchers est donc refusée</p>
 <p>C'est voulu. Pour regarder une paire chez soi, comparer <strong>sans</strong> fichier de planchers : les écarts
-sortent en valeur absolue, et ne se lisent contre aucun sol.</p>
+sortent en valeur absolue, et ne se lisent contre aucun sol. Pour les lire contre leurs planchers,
+donner les deux numéros d'exécution à <code>comparer-tournages.yml</code> : c'est la section « Comparer une
+branche à <code>main</code> avant fusion », plus haut.</p>
 </div>
 <h3 id="le-mesurer-latelier-mesurer-les-planchersyml">Le mesurer : l'atelier <code>mesurer-les-planchers.yml</code><a class="headerlink" href="#le-mesurer-latelier-mesurer-les-planchersyml" title="Permanent link">&para;</a></h3>
 <p>Les planchers se mesurent par un atelier, qui joue sur la même image de runner et installe les mêmes

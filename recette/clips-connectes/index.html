@@ -13870,6 +13870,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/5930-une-comparaison-reprend-une-execution-avec-les-refus-de-la-mesure/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5930 · Une comparaison reprend une exécution de tournage
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15516,14 +15551,15 @@ mesurée (#5797, puis #5870 avec l'instrument du flux) : deux tournages du même
 pas de plus de 0,503 %, sur quinze paires par clip. Leurs planchers sont dans
 <code>planchers-tournages.tsv</code>, et
 <a href="../comparer-deux-tournages/">la page de la comparaison</a> dit comment les lire.</p>
-<p><code>comparer-tournages.yml</code> prend ses deux tournages dans des versions publiées, et celle-ci est écrasée à
-chaque tournage. Le tournage d'avant est donc <strong>gardé</strong> : avant de verser, le job de publication
+<p>Cette pré-version est écrasée à chaque tournage, et la comparaison veut deux côtés. Le tournage
+d'avant est donc <strong>gardé</strong> : avant de verser, le job de publication
 recopie la pré-version sur <code>clips-plateforme-de-test-precedent</code> (#5854). La comparaison se lance de
 l'une à l'autre, <code>avant</code> = <code>clips-plateforme-de-test-precedent</code>, <code>apres</code> = <code>clips-plateforme-de-test</code>.</p>
 <p>Les notes de chaque pré-version disent l'exécution et le commit qui l'ont tournée. Elles se lisent
 <strong>avant</strong> le rapport : deux tournages du même commit mesurent du bruit, deux commits différents
-mesurent ce que le second a changé. Seuls deux tournages consécutifs se comparent ainsi ; au-delà, les
-artefacts de leurs exécutions restent disponibles quatorze jours.</p>
+mesurent ce que le second a changé. Seuls deux tournages consécutifs se comparent ainsi. Au-delà, deux
+exécutions se comparent par leurs numéros, tant que leurs artefacts vivent, soit quatorze jours
+(<a href="../../decisions/5930-une-comparaison-reprend-une-execution-avec-les-refus-de-la-mesure/">ADR 5930</a>).</p>
 <h2 id="ce-quun-clip-connecte-prouve-et-quun-autre-ne-peut-pas">Ce qu'un clip connecté prouve, et qu'un autre ne peut pas<a class="headerlink" href="#ce-quun-clip-connecte-prouve-et-quun-autre-ne-peut-pas" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../../decisions/4142-un-cas-dit-ou-se-lit-son-verdict/">ADR 4142</a> a mesuré que sur les 360 cas de
 recette non couverts, <strong>environ 220</strong> vivent dans des sessions dont l'objet est <strong>hors de
