@@ -14051,6 +14051,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5265-trois-bancs-partagent-ce-qu-ils-rendent-pas-leur-mecanique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5265 · Trois bancs de mutation partagent ce qu'ils rendent, pas leur mécanique
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15340,6 +15375,14 @@
 les six gardes sans point d'entrée en ont reçu un, et le garde REFUSE désormais au lieu de les
 nommer. La phrase « le refus, non le saut » décrivait une sortie en 0, donc un signalement sans
 coût. Le corpus compte quinze gardes éprouvés et zéro non éprouvé.</p>
+<p><strong>Complétée le 2026-10-06</strong> par <a href="../5265-trois-bancs-partagent-ce-qu-ils-rendent-pas-leur-mecanique/">ADR 5265</a>,
+à la clôture de #5265. Quatre phrases de cette page se lisent avec elle. « Le marqueur est
+<code>if __name__ == "__main__":</code> » : le point d'entrée se lit dans l'arbre depuis #5263, une chaîne
+qui porte ce texte ne trompe plus le banc. « Dérivée du nom » : ce qui est épargné se dérive du
+graphe d'appel depuis #5524 (ADR 5452). « Rouge ne distingue pas » : le banc rend trois comptes
+depuis #5264, et un plantage ne compte plus pour une preuve (ADR 5257). « Le garde est dans son
+propre corpus » : la décision tient, et le banc la déclare depuis #5550 par une constante et un
+cas. Son corpus est ce que <code>lint.yml</code> lance sous <code>scripts/</code>, hors <code>scripts/adr</code>, depuis #5397.</p>
 </div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../4490-un-temoin-se-prouve-par-mutation-mecaniquement/">ADR 4490</a> rend l'article A2 mécanique :

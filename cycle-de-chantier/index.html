@@ -14026,6 +14026,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5265-trois-bancs-partagent-ce-qu-ils-rendent-pas-leur-mecanique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5265 · Trois bancs de mutation partagent ce qu'ils rendent, pas leur mécanique
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15696,6 +15731,12 @@ fois.</p>
 information, pas un échec : elle dit que le garde promet plus qu'il ne tient, et il faut l'écrire dans
 son en-tête plutôt que d'emprunter la solidité du voisin
 (<a href="../decisions/3540-un-cliquet-qui-compte-n-est-pas-la-preuve-de-la-regle/">ADR 3540</a>).</p>
+<p>Quand la mutation reste verte, c'est le cas miroir, et il se lit pareil. Avant d'écrire « garde
+décoratif », relire ce que le garde <strong>annonce</strong> : son en-tête, son <code>CONTRAT</code> quand il en déclare un,
+son message de refus. Si la propriété mutée y est, le garde promet plus qu'il ne tient. Si elle n'y est
+pas, la mutation demandait plus que le garde ne promet, et cette lecture-là ne se conclut pas en
+relisant : elle doit une seconde mutation, montée contre la phrase annoncée et <strong>vue rouge</strong>. Le cas
+mesuré et le détail sont dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/mutation/SKILL.md"><code>mutation</code></a> (#5418).</p>
 <h2 id="a-la-cloture-dune-issue-ce-quon-laisse-derriere-soi">À la clôture d'une issue : ce qu'on laisse derrière soi<a class="headerlink" href="#a-la-cloture-dune-issue-ce-quon-laisse-derriere-soi" title="Permanent link">&para;</a></h2>
 <p>Une issue se ferme sur deux textes qu'on relira dans six mois <strong>sans le fil</strong> : son <strong>corps</strong>, et celui
 de sa <strong>pull request</strong>.</p>
