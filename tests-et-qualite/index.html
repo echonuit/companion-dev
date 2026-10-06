@@ -13905,6 +13905,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/5970-la-plateforme-de-test-joue-l-extraction-d-une-archive-par-le-code-du-serveur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5970 · La plateforme de test joue l'extraction d'une archive par le code du serveur, sans embarquer son worker
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15958,7 +15993,11 @@ décision, qui se dit dans la demande qui la porte.</p>
 <li><strong>La signature v2</strong> des dépôts : en mode <code>DEV_FAKE_S3_URL</code>, l'API ne signe aucune URL, et toutes
   les parties d'un multipart arrivent sur la même adresse (#5658).</li>
 <li><strong>Le traitement</strong> : pas de worker Tadarida. Une participation « traitée » vient de l'état
-  déclaré, et un calcul lancé reste planifié.</li>
+  déclaré, et un calcul lancé reste planifié. Une seule moitié du worker s'y joue, à la demande d'un
+  banc : l'<strong>extraction d'une archive</strong>, par le code du serveur lui-même
+  (<code>WorkerDeLaPlateformeDeTest.jouerLExtraction</code>,
+  <a href="../decisions/5970-la-plateforme-de-test-joue-l-extraction-d-une-archive-par-le-code-du-serveur/">ADR 5970</a>).
+  C'est elle qui dit ce que le serveur fait d'un son qu'une archive lui rend alors qu'il l'a déjà.</li>
 <li><strong>La lecture par la fiche web</strong> des écritures de Companion : c'est le lot #5645.</li>
 <li><strong>Un transfert ou une durée</strong> : sur un lien local, la latence est nulle (lot #5646).</li>
 </ul>

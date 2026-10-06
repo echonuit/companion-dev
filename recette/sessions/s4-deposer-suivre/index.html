@@ -13905,6 +13905,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../decisions/5970-la-plateforme-de-test-joue-l-extraction-d-une-archive-par-le-code-du-serveur/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5970 · La plateforme de test joue l'extraction d'une archive par le code du serveur, sans embarquer son worker
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15523,6 +15558,7 @@ le dépôt normalement, et <strong>c'est le point</strong> - le cas à jouer est
   dépôt ».</li>
 <li><strong>S4-44</strong> · <em>hors-portée: un serveur qui a réellement gardé une partie des archives, et qui dit lesquelles : la reprise se juge sur ce qu'il en reste chez LUI</em> · Reprendre ne renvoie que les archives manquantes.</li>
 <li><strong>S4-105</strong> · <em>hors-portée: le vrai portail, sur lequel le dépôt à la main passe par un navigateur, et l'analyse Tadarida, qui ne tourne pas sur la plateforme de test. Ce que le serveur fait de l'archive, lui, est observé sur son code : <code>ArchiveDuRepliSurLaPlateformeDeTestTest</code></em> · En séquences WAV, interrompre un dépôt quand une partie des séquences est en ligne (« Annuler le dépôt », ou couper le réseau). Générer les archives (<code>exporter-lot --passage N</code>) : elles ne contiennent que les séquences qui ne sont pas en ligne. Les déposer à la main sur le portail, puis lancer la participation. Une fois l'analyse terminée, sur la fiche de la participation, chaque séquence figure <strong>une seule fois</strong> dans les fichiers. Si une séquence y figure deux fois, le noter tel quel : soit l'archive contenait un son déjà en ligne, soit le portail a changé (#5970, #5975).</li>
+<li><strong>S4-106</strong> · <em>prérequis: une base de départ où un dépôt en séquences WAV est en cours, une partie des séquences déposées et le reste non (générateur de bases déclarées de #4325)</em> · <code>exporter-lot --passage N</code> : la commande annonce ses archives. En ouvrir une : aucune des séquences déjà déposées n'y est, et toutes les autres y sont. C'est la moitié de S4-105 qui se joue sans le portail : ce que les archives du repli contiennent (#5975).</li>
 <li><strong>S4-45</strong> · <em>prérequis: une base de départ où un dépôt est en cours, une partie des unités déposées et le reste non (générateur de bases déclarées de #4325)</em> · Fermer puis rouvrir l'écran : la table se réhydrate.</li>
 <li><strong>S4-46</strong> · <em>hors-portée: toutes les unités réellement déposées, donc autant de transferts menés à bout</em> · Le passage ne devient « Déposé » que lorsque <strong>toutes</strong> les unités le sont.</li>
 <li><strong>S4-47</strong> · « 🚀 Lancer la participation » : la carte « Traitement Vigie-Chiro » apparaît (« Analyse planifiée »).</li>
