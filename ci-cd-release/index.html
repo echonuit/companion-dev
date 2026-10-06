@@ -16719,7 +16719,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verdict_du_tournage.py</code></td>
-<td>ce qu'un tournage a vraiment donné : combien de cas ont <strong>rougi</strong>, lu dans les rapports <strong>XML</strong> de surefire et jamais dans les <code>.txt</code>, qui mentent sur les <code>@Nested</code>. Le tournage tourne sous <code>failure.ignore</code> - on veut les clips d'un cas qui rougit -, si bien qu'un scénario rouge laissait le job vert et son clip se versait sans marque (#4351). Il <strong>rapporte</strong>, il ne juge pas</td>
+<td>ce qu'un tournage a vraiment donné : combien de <strong>tests</strong> ont <strong>rougi</strong>, lu dans les rapports <strong>XML</strong> de surefire et jamais dans les <code>.txt</code>, qui mentent sur les <code>@Nested</code>. Il compte des tests et non des cas de recette, et sort du compte la classe que l'atelier joue sans la filmer, tant qu'elle est verte et rapportée (#5865). Le tournage tourne sous <code>failure.ignore</code> - on veut les clips d'un cas qui rougit -, si bien qu'un scénario rouge laissait le job vert et son clip se versait sans marque (#4351). Il <strong>rapporte</strong>, il ne juge pas</td>
 <td><code>tournage-recette.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>
