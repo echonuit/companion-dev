@@ -14045,6 +14045,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../decisions/6069-le-dernier-geste-d-un-clip-pose-une-position/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6069 · Le dernier geste d'un clip pose une position
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15888,11 +15923,11 @@ pour chaque clip, sur combien de paires son plancher a été pris - et un planch
 paires en prouve d'autant moins. Le décompte des lignes par nombre de paires ne s'écrit pas ici :
 chaque mesure le déplace, et le fichier le dit mieux que cette page.</p>
 <p>Le fichier mêle deux populations, et chaque compte de cette page nomme la sienne. Les clips
-<strong>ordinaires</strong> qui ont un plancher sont <!--inv:clips-ordinaires-a-plancher-->94<!--/inv-->. Ceux de
+<strong>ordinaires</strong> qui ont un plancher sont <!--inv:clips-ordinaires-a-plancher-->95<!--/inv-->. Ceux de
 la <strong>plateforme de test</strong> sont <!--inv:clips-de-la-plateforme-de-test-a-plancher-->5<!--/inv-->, et
 ont leur propre section. Les clips <strong>sans plancher</strong>, ceux qui ont deux fins, sont au nombre de</p>
 <!--inv:clips-sans-plancher-->
-<p>1 (voir plus bas). Ces trois comptes sont relus à chaque
+<p>0 (voir plus bas). Ces trois comptes sont relus à chaque
 demande contre l'outil et son fichier : un clip corrigé qui quitte la table fait rougir cette page
 tant qu'elle ne le dit pas. Un cas est de la plateforme de test quand sa méthode, ou sa classe, en
 porte le tag : ni le nom de sa classe ni le tag de sa seule classe ne suffisent à le dire.</p>
@@ -16055,6 +16090,9 @@ tombés du même côté.</p>
 reproduite par un banc (<code>GesteVisibleBasDePageTest</code>), et son remède : un clip dont le verdict est
 le dernier élément de sa page finit par <code>GesteVisible.allerAuBasDeLaPage</code> (#5870). Les quinze
 paires ci-dessus ne montrent plus ce mode.</p>
+<p>Un verdict qui est ailleurs dans sa page se <strong>pose</strong> par <code>GesteVisible.poserDansLeCadre</code>, et
+l'assertion de fin relit cette position : « dans le cadre » est vrai à plusieurs endroits de la
+page, et un clip y a gagné une seconde fin que six tournages n'avaient pas montrée (#6069).</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Une dernière image qui change tout</p>
@@ -16184,37 +16222,22 @@ qui a rempli le fichier avant que l'atelier existe. Sur un poste, le fichier obt
 l'instrument du poste, et le flux refusera de le lire.</p>
 </div>
 <h3 id="les-clips-auxquels-on-refuse-un-plancher">Les clips auxquels on refuse un plancher<a class="headerlink" href="#les-clips-auxquels-on-refuse-un-plancher" title="Permanent link">&para;</a></h3>
-<p>Un plancher mesure le bruit d'un clip qui <strong>finit sur son verdict</strong>. Certains clips ont deux fins :
-deux tournages du même commit y diffèrent de 3 à 26 %, parce que le clip s'arrête pendant un
-import, pendant un fondu, ou sur une page que rien n'a calée.</p>
-<p>Ce tableau est celui de la table <code>SANS_PLANCHER</code> de l'outil, et un test le confronte à elle dans
-les deux sens. Sa colonne du milieu est une mesure datée, prise le 6 octobre 2026 sur six paires.</p>
-<table>
-<thead>
-<tr>
-<th>clip</th>
-<th>ses paires allaient jusqu'à, le 6 octobre 2026</th>
-<th>issue</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>ScenarioRejetsEtArchiveTest.la_decompression_se_voit_avant_l_inspection</code></td>
-<td>20,9 %</td>
-<td>#6069</td>
-</tr>
-</tbody>
-</table>
-<p>Lui écrire ce chiffre rendrait la comparaison aveugle, sur ce clip, à tout changement plus petit.</p>
-<p><strong>Ce clip y est revenu.</strong> Il en était sorti avec un plancher de 0,274 %, pris sur six tournages qui
-finissaient tous de la même façon ; les six suivants ont montré sa seconde fin deux fois. Un mode
-qui sort deux fois sur douze ne se voit pas à coup sûr sur six tournages, et un plancher mesuré sans
-lui est faux sans que rien ne le dise.</p>
-<p>Les sept clips que l'<a href="../../decisions/5911-un-clip-a-deux-fins-n-a-pas-de-plancher/">ADR 5911</a> y
-avait rangés en sont sortis, une fois leur verdict tenu à l'image (#5952, #5893, #5911).</p>
-<p>Un clip sans plancher est nommé dans l'outil, avec son issue. La mesure affiche son écart sans
-l'écrire, et la comparaison l'annonce « sans plancher », suivi du numéro. Sa ligne s'en retire avec
-l'issue qui la porte.</p>
+<p>Un plancher mesure le bruit d'un clip qui <strong>finit sur son verdict</strong>. Un clip peut avoir deux fins :
+deux tournages du même commit y diffèrent alors de 3 à 26 %, parce qu'il s'arrête pendant un import,
+pendant un fondu, ou sur une page que rien n'a posée. Lui écrire ce chiffre rendrait la comparaison
+aveugle, sur lui, à tout changement plus petit.</p>
+<p>Un tel clip est nommé dans l'outil (<code>SANS_PLANCHER</code>), avec son issue. La mesure affiche son écart
+sans l'écrire, et la comparaison l'annonce « sans plancher », suivi du numéro. Sa ligne s'en retire
+avec l'issue qui la porte. Un test confronte cette section à la table dans les deux sens : un clip
+qui y entre doit paraître ici dans un tableau, son nom entre accents graves et son issue en dernière
+colonne.</p>
+<p><strong>La table est vide.</strong> Les sept clips que
+l'<a href="../../decisions/5911-un-clip-a-deux-fins-n-a-pas-de-plancher/">ADR 5911</a> y avait rangés en sont
+sortis, une fois leur verdict tenu à l'image (#5952, #5893, #5911).</p>
+<p><strong>L'un d'eux y est revenu, puis en est ressorti</strong> (#6069). Son plancher avait été pris sur six
+tournages qui finissaient tous de la même façon ; les six suivants ont montré sa seconde fin deux
+fois. Un mode qui sort deux fois sur douze ne se voit pas à coup sûr sur six tournages, et un
+plancher mesuré sans lui est faux sans que rien ne le dise. Sa seconde sortie s'est jugée sur douze.</p>
 <p>Le critère n'est pas un seuil : c'est la <strong>dernière image</strong>, regardée. Un clip y entre quand deux
 tournages du même commit ne montrent pas le même écran, pas quand son chiffre est haut.</p>
 <h3 id="quatre-silences-que-le-fichier-ne-produit-pas">Quatre silences que le fichier ne produit pas<a class="headerlink" href="#quatre-silences-que-le-fichier-ne-produit-pas" title="Permanent link">&para;</a></h3>
