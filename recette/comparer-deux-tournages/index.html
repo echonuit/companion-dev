@@ -15883,11 +15883,11 @@ pour chaque clip, sur combien de paires son plancher a été pris - et un planch
 paires en prouve d'autant moins. Le décompte des lignes par nombre de paires ne s'écrit pas ici :
 chaque mesure le déplace, et le fichier le dit mieux que cette page.</p>
 <p>Le fichier mêle deux populations, et chaque compte de cette page nomme la sienne. Les clips
-<strong>ordinaires</strong> qui ont un plancher sont <!--inv:clips-ordinaires-a-plancher-->92<!--/inv-->. Ceux de
+<strong>ordinaires</strong> qui ont un plancher sont <!--inv:clips-ordinaires-a-plancher-->94<!--/inv-->. Ceux de
 la <strong>plateforme de test</strong> sont <!--inv:clips-de-la-plateforme-de-test-a-plancher-->5<!--/inv-->, et
-ont leur propre section. Les clips <strong>sans plancher</strong>, parce qu'ils ont deux fins, sont</p>
+ont leur propre section. Les clips <strong>sans plancher</strong>, ceux qui ont deux fins, sont au nombre de</p>
 <!--inv:clips-sans-plancher-->
-<p>3 (voir plus bas). Ces trois comptes sont relus à chaque
+<p>1 (voir plus bas). Ces trois comptes sont relus à chaque
 demande contre l'outil et son fichier : un clip corrigé qui quitte la table fait rougir cette page
 tant qu'elle ne le dit pas. Un cas est de la plateforme de test quand sa méthode, ou sa classe, en
 porte le tag : ni le nom de sa classe ni le tag de sa seule classe ne suffisent à le dire.</p>
@@ -16183,38 +16183,33 @@ l'instrument du poste, et le flux refusera de le lire.</p>
 deux tournages du même commit y diffèrent de 3 à 26 %, parce que le clip s'arrête pendant un
 import, pendant un fondu, ou sur une page que rien n'a calée.</p>
 <p>Ce tableau est celui de la table <code>SANS_PLANCHER</code> de l'outil, et un test le confronte à elle dans
-les deux sens. Sa colonne du milieu est une mesure datée, prise le 5 octobre 2026 sur quinze paires.</p>
+les deux sens. Sa colonne du milieu est une mesure datée, prise le 6 octobre 2026 sur six paires.</p>
 <table>
 <thead>
 <tr>
 <th>clip</th>
-<th>ses paires allaient jusqu'à, le 5 octobre 2026</th>
+<th>ses paires allaient jusqu'à, le 6 octobre 2026</th>
 <th>issue</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><code>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce</code></td>
-<td>26,2 %</td>
-<td>#5911</td>
-</tr>
-<tr>
-<td><code>ScenarioBandeauLectureSeuleTest.le_support_en_lecture_seule_s_annonce_et_l_import_aboutit</code></td>
-<td>21,2 %</td>
-<td>#5911</td>
-</tr>
-<tr>
-<td><code>ScenarioPassagePivotTest.modifier_le_passage</code></td>
-<td>2,9 %</td>
-<td>#5911</td>
+<td><code>ScenarioRejetsEtArchiveTest.la_decompression_se_voit_avant_l_inspection</code></td>
+<td>20,9 %</td>
+<td>#6069</td>
 </tr>
 </tbody>
 </table>
-<p>Leur écrire ce chiffre rendrait la comparaison aveugle, sur ces clips, à tout changement plus petit.</p>
-<p>Ceux de l'écran d'import en sont sortis, une fois leur verdict tenu à l'image (#5952, #5893).</p>
-<p>Les autres sont nommés dans l'outil (<code>SANS_PLANCHER</code>), avec leur issue. La mesure affiche leur écart
-sans l'écrire, et la comparaison les annonce « sans plancher », suivi du numéro. Une ligne s'en
-retire avec l'issue qui la porte.</p>
+<p>Lui écrire ce chiffre rendrait la comparaison aveugle, sur ce clip, à tout changement plus petit.</p>
+<p><strong>Ce clip y est revenu.</strong> Il en était sorti avec un plancher de 0,274 %, pris sur six tournages qui
+finissaient tous de la même façon ; les six suivants ont montré sa seconde fin deux fois. Un mode
+qui sort deux fois sur douze ne se voit pas à coup sûr sur six tournages, et un plancher mesuré sans
+lui est faux sans que rien ne le dise.</p>
+<p>Les sept clips que l'<a href="../../decisions/5911-un-clip-a-deux-fins-n-a-pas-de-plancher/">ADR 5911</a> y
+avait rangés en sont sortis, une fois leur verdict tenu à l'image (#5952, #5893, #5911).</p>
+<p>Un clip sans plancher est nommé dans l'outil, avec son issue. La mesure affiche son écart sans
+l'écrire, et la comparaison l'annonce « sans plancher », suivi du numéro. Sa ligne s'en retire avec
+l'issue qui la porte.</p>
 <p>Le critère n'est pas un seuil : c'est la <strong>dernière image</strong>, regardée. Un clip y entre quand deux
 tournages du même commit ne montrent pas le même écran, pas quand son chiffre est haut.</p>
 <h3 id="quatre-silences-que-le-fichier-ne-produit-pas">Quatre silences que le fichier ne produit pas<a class="headerlink" href="#quatre-silences-que-le-fichier-ne-produit-pas" title="Permanent link">&para;</a></h3>
