@@ -15527,7 +15527,7 @@ reste propre à chacun, et chaque écart porte sa raison là où il est écrit.<
 <td>ce qui borne le second sens de la table</td>
 <td>la portée du diff</td>
 <td>rien</td>
-<td>les outils du poste, <code>NE_JOUENT_QU_AVEC</code></td>
+<td>le corpus entier</td>
 </tr>
 <tr>
 <td>ses exemptions nommées</td>
@@ -15546,8 +15546,8 @@ et ce qui l'entoure diffère : la borne du second sens, et la forme des non conc
 <p>Trois fonctions du même nom ne sont pas une duplication à réduire : la lecture du point d'entrée
 est identique dans deux bancs et diffère dans le troisième, la confrontation diffère dans les trois.</p>
 <p>Un écart entre deux bancs se lit avec sa raison, ou se consigne comme une trouvaille. Les aligner
-« par cohérence » retirerait au banc des ADR sa barrière contre le rappel sans fin, ou ferait rougir
-la table du banc de CI sur tout poste qui porte ImageMagick.</p>
+« par cohérence » retirerait au banc des ADR sa barrière contre le rappel sans fin, ou lui ferait
+annoncer des réparations imaginaires sur un diff partiel.</p>
 <p>Ce qui se paie : une règle neuve s'écrit trois fois, et la troisième s'oublie (#5263, #5495, #5550).
 Le remède retenu est que chaque banc porte son cas rouge, non que le code soit commun.</p>
 <h2 id="ce-que-cette-decision-ne-couvre-pas">Ce que cette décision ne couvre pas<a class="headerlink" href="#ce-que-cette-decision-ne-couvre-pas" title="Permanent link">&para;</a></h2>
@@ -15566,9 +15566,9 @@ est le même.</p>
 <h2 id="comment-on-le-sait">Comment on le sait<a class="headerlink" href="#comment-on-le-sait" title="Permanent link">&para;</a></h2>
 <p>Le job <code>temoins</code> sur <code>main</code> à <code>e8682ff5f</code> : 50 tiennent et 4 ne concluent pas sur 54 pour le banc
 des ADR, 20 et 10 sur 30 pour celui de méthode, 39 et 9 sur 48 pour celui de CI. Aucun
-décoratif, et chaque somme vaut sa population. Deux des 39 n'ont rien prouvé sur ce runner : leur
-auto-test refuse de commencer sans ImageMagick ou ffmpeg, et le banc lit ce refus comme un rouge qui
-tient (#5497).</p>
+décoratif, et chaque somme vaut sa population. Deux des 39 n'avaient rien prouvé sur ce runner : leur
+auto-test refuse de commencer sans ImageMagick ou ffmpeg, et le banc lisait ce refus comme un rouge
+qui tient. Depuis #6030 il les compte non concluants, 11 sur tout hôte.</p>
 <p>Les fonctions homonymes ont été comparées par leur arbre à <code>0467bca9f</code>.</p>
 
 
