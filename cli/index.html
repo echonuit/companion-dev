@@ -15729,9 +15729,9 @@ rougir la CI</strong> (#1458). Le tableau a compté jusqu'à <strong>22 commande
 </tr>
 <tr>
 <td><code>ouvrir-paquet-recu</code></td>
-<td><code>--fichier &lt;paquet&gt;</code></td>
+<td><code>--fichier &lt;paquet&gt; [--remplacer]</code></td>
 <td>#4729</td>
-<td>Le relecteur ouvre un paquet confié : la sélection de l'expéditeur devient la sienne, <strong>figée</strong>. L'identité s'appose à l'ouverture (#4626), et son absence est un refus</td>
+<td>Le relecteur ouvre un paquet confié : la sélection de l'expéditeur devient la sienne, <strong>figée</strong>. L'identité s'appose à l'ouverture (#4626), et son absence est un refus. Une sélection déjà présente sur la nuit exige <code>--remplacer</code> : le refus dit combien de séquences et de verdicts seraient perdus, et n'écrit rien</td>
 </tr>
 <tr>
 <td><code>renvoyer-avis</code></td>
