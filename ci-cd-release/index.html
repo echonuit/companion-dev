@@ -16850,6 +16850,14 @@ ce qui doit disparaître. Ce relevé mesure et borne ; il ne convertit rien.</p>
 <p><strong>Chaque chiffre est obtenu en lançant quelque chose.</strong> Aucun ne vient d'un motif sur le source, et
 c'est la seule façon de répondre à la question posée : ce qu'un script <strong>répond</strong>, pas ce à quoi il
 ressemble.</p>
+<p><strong>Ce relevé est daté : il a été pris le 2026-09-03, sur les cinquante fichiers que le dépôt comptait
+ce jour-là.</strong> Ses chiffres ne se rejouent plus, la population ayant été presque toute convertie
+depuis par les chantiers #5215 et #5235. Les scripts y sont nommés comme ils s'appellent
+aujourd'hui, en <code>.py</code> pour ceux qui ont été convertis. Ce qui reste ne se lit pas dans ces
+tableaux : le cliquet de
+l'<a href="../decisions/5188-bash-disparait-une-tolerance-est-un-delai/">ADR 5188</a> en compte</p>
+<!--inv:cliquet-corpus-shell-->
+<p>2, et il les nomme.</p>
 <h4 id="la-population">La population<a class="headerlink" href="#la-population" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -16910,321 +16918,17 @@ le drapeau. Le contrôle de non-déterminisme le dément : <strong>deux appels s
 déjà</strong>, parce que la question déclenche une compilation Maven puis un rendu JavaFX que le délai
 d'attente coupe à un endroit variable. Un contraste ne conclut que sur un script déterministe, et
 celui-ci ne l'est pas. Il est rangé parmi les outils.</p>
-<h4 id="les-cinquante-un-par-un">Les cinquante, un par un<a class="headerlink" href="#les-cinquante-un-par-un" title="Permanent link">&para;</a></h4>
+<h4 id="ce-quil-en-reste-un-par-un">Ce qu'il en reste, un par un<a class="headerlink" href="#ce-quil-en-reste-un-par-un" title="Permanent link">&para;</a></h4>
 <p>Un compte dit combien il reste ; il ne dit pas <strong>quoi convertir</strong>. Le dépôt nomme ses exceptions
-plutôt que de les compter, et une population qui doit disparaître se nomme pour la même raison : la
-liste est le plan de travail des chantiers de conversion.</p>
-<div class="enrouleur">
-<table>
-<thead>
-<tr>
-<th>script</th>
-<th>ce qu'il est</th>
-<th style="text-align: center;">la CI l'atteint</th>
-<th>destination</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>.github/assets/capture_screenshots.py</code></td>
-<td>outil</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/assets/check_capture_mains.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/assets/check_captures.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/assets/check_doc_images.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/assets/check_doc_videos.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/assets/compare_apercus.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/assets/compare_tournages.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/assets/filtrer_bruit_cartes.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/assets/mesure_pixels.py</code></td>
-<td>outil</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/cas_manquants_du_tournage.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/clips_orphelins.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/construit_appimage.py</code></td>
-<td>outil</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/installer_paquets.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/interroge_le_jeton.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/lance-test-filme.sh</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td><strong>après condition</strong> : banc Java validé</td>
-</tr>
-<tr>
-<td><code>.github/scripts/mesure_duree_portail.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/porte_sur_le_contrat_de_fichiers.py</code></td>
-<td>outil</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/rappelle_le_critere_de_fin.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/revoque_jeton.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/trie_les_echecs_de_plateforme.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/veille_contrat_api.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/veille_plateformes.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verdict_du_tournage.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_affichage_flatpak.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_apt.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_butoirs.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_chemins_ascii.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_cloture_consignee.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_conditions_booleennes.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_conditions_de_job.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_corps_pr.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_decisions_du_tournage_connecte.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_demarrage_emballage.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_epinglage.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_forme_du_jeton.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_fraicheur_actions.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_inventaires_ci.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_jeton_vivant.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_jeton.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_noms_d_etapes.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_permissions.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_portee_des_secrets.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_renvois_workflows.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_secret_winget.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_specification_consignee.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_titre_pr.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>.github/scripts/verifie_verdict_avant_fusion.py</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>icone/genere_icones.py</code></td>
-<td>outil</td>
-<td style="text-align: center;"><strong>non</strong></td>
-<td>conversion</td>
-</tr>
-<tr>
-<td><code>scripts/doc-video/filme-un-parcours.sh</code></td>
-<td>garde</td>
-<td style="text-align: center;">oui</td>
-<td>conversion</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>La colonne <strong>ce qu'il est</strong> vient du contraste mesuré, pas d'une lecture du source. La colonne <strong>la
-CI l'atteint</strong> est transitive : un script lancé par un garde est exécuté par la CI aussi sûrement
-qu'un script cité dans un <code>run:</code>.</p>
+plutôt que de les compter, et une population qui doit disparaître se nomme pour la même raison.</p>
+<p>Cette section portait la liste des cinquante, tenue à la main, et elle servait de plan de travail aux
+chantiers de conversion. Chaque conversion y laissait une ligne qui annonçait encore « conversion »
+pour un fichier qui n'était plus en shell (#5227). <strong>La liste est maintenant celle que rend le
+cliquet</strong>, qui lit <code>git ls-files '*.sh'</code> :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python3<span class="w"> </span>scripts/adr/5188-corpus-shell.py
+</code></pre></div>
+<p>Il nomme chaque script restant et, pour celui qui est toléré, la condition de sa tolérance. Ce que
+les autres sont devenus se lit dans les lots de #5215 et de #5235.</p>
 <h4 id="ce-que-la-ci-atteint">Ce que la CI atteint<a class="headerlink" href="#ce-que-la-ci-atteint" title="Permanent link">&para;</a></h4>
 <table>
 <thead>
@@ -17250,7 +16954,9 @@ lancés ». Quatre d'entre eux sont en réalité appelés par un autre script ou
 et un script lancé par un garde est exécuté par la CI aussi sûrement qu'un script cité dans un <code>run:</code>.</p>
 <h4 id="ou-chacun-descend">Où chacun descend<a class="headerlink" href="#ou-chacun-descend" title="Permanent link">&para;</a></h4>
 <p><strong>Les cinquante disparaissent.</strong> Bash n'a pas d'état stable dans ce dépôt, et une tolérance est un
-<strong>délai daté, jamais une exemption</strong> (ADR 5188).</p>
+<strong>délai daté, jamais une exemption</strong> (ADR 5188). La répartition ci-dessous est celle qui a été
+décidée le 2026-09-03, sur les cinquante : elle dit où chacun devait descendre, pas ce qui reste à
+faire.</p>
 <table>
 <thead>
 <tr>
@@ -17276,13 +16982,20 @@ et un script lancé par un garde est exécuté par la CI aussi sûrement qu'un s
 ce qu'il outille. Ce n'est pas un arbitrage laissé ouvert sur le fond : rien ne reste en shell. Les
 cinq outils qui ne sont pas des gardes ne font pas exception ; ils n'ont simplement pas la même
 urgence, n'étant tenus par aucun auto-test.</p>
+<p>Le sort de ce qui reste a été précisé depuis, par
+l'<a href="../decisions/5282-les-huit-parcours-filmes-passent-au-banc-java/">ADR 5282</a>. Elle décide que les
+huit parcours filmés migrent vers le banc Java, et elle écrit que « le retrait de
+<code>filme-un-parcours.sh</code> et la descente du cliquet » attendent que les huit soient portés. Elle est
+aussi la levée de la condition qui tolérait <code>lance-test-filme.sh</code> : sa conversion suit la migration
+des parcours.</p>
 <h4 id="deux-limites-de-ce-releve-declarees">Deux limites de ce relevé, déclarées<a class="headerlink" href="#deux-limites-de-ce-releve-declarees" title="Permanent link">&para;</a></h4>
 <p><strong>L'inventaire de la CI compte les gardes shell par une recherche textuelle.</strong>
 <code>verifie_inventaires_ci.py</code> retire les lignes de commentaire puis cherche la chaîne <code>--auto-test</code>,
 là où sa moitié Python fait un vrai contrôle par <code>ast</code> en excluant les docstrings depuis #5032.
 Confronté à la mesure par contraste, <strong>il tombait juste : 45 des deux côtés, les mêmes 45</strong> - une
-mesure prise avant les conversions de #5210, #5219, #5221, #5229, #5231, #5233 et #5236, qui ont
-ramené la moitié shell à <strong>6</strong>, contre <strong>91</strong> du côté Python. Le lot des outils, lui, n'y change rien :
+mesure prise avant les conversions de #5210, #5219, #5221, #5229, #5231, #5233 et #5236, qui
+avaient ramené la moitié shell à <strong>6</strong>, contre <strong>91</strong> du côté Python, à la clôture du dernier de ces
+lots, le 2026-09-04. Les deux moitiés ont bougé depuis. Le lot des outils, lui, n'y change rien :
 aucun des quatre ne dispatchait <code>--auto-test</code>, donc aucun n'était compté.
 La confrontation n'a pas été refaite depuis, et ce qui est déclaré ici est la <strong>fragilité de la
 règle</strong>, pas la fraîcheur du chiffre : elle est fragile par construction, et c'est un risque écrit
@@ -17296,7 +17009,7 @@ de #4013, et elle a survécu à sa propre description.</p>
 suite repartir verte sans qu'une ligne ait changé. Sur 21 jours, <strong>55 passages sur 1 233 ont été
 rejoués à la main</strong>, soit 4,5 %, et personne ne savait ce que ce chiffre recouvrait.</p>
 <p>Le relevé le dit maintenant :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>python3<span class="w"> </span>scripts/methode/releve-les-bancs-instables.py<span class="w"> </span>--classe<span class="w"> </span>--jours<span class="w"> </span><span class="m">21</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>python3<span class="w"> </span>scripts/methode/releve-les-bancs-instables.py<span class="w"> </span>--classe<span class="w"> </span>--jours<span class="w"> </span><span class="m">21</span>
 </code></pre></div>
 <table>
 <thead>
@@ -17362,8 +17075,8 @@ seuil, et restent donc classées runner.</p>
 <h2 id="epinglage-des-actions-et-conteneurs-2737">Épinglage des actions et conteneurs (#2737)<a class="headerlink" href="#epinglage-des-actions-et-conteneurs-2737" title="Permanent link">&para;</a></h2>
 <p>Chaque <code>uses:</code> désigne un <strong>contenu</strong>, jamais un nom : une action est figée sur un <strong>SHA de commit</strong>,
 un conteneur sur un <strong>digest</strong>.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
-<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1</span><span class="w"> </span><span class="c1"># v7</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">docker://ghcr.io/flathub/flatpak-external-data-checker@sha256:58cbad60…</span>
 </code></pre></div>
 <p><strong>Pourquoi, alors qu'un tag semble suffire.</strong> Un tag est déplaçable. <code>actions/checkout@v7</code> peut être
 repointé sur un autre commit sans que rien ne bouge chez nous : ce qui s'exécute dans nos workflows
@@ -17379,9 +17092,9 @@ mise à jour invisible contre une mise à jour qui passe par une PR.</p>
 dans le job <code>lint</code>. Elle refuse toute référence non figée <strong>et</strong> tout SHA sans commentaire de version.
 Sans elle, la prochaine action ajoutée le serait par tag et l'épinglage se déferait en silence - la
 forme même du défaut corrigé. Pour résoudre un tag :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1"># si l'objet est de type « tag » (tag annoté), déréférencer :</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/ref/tags/&lt;tag&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># si l'objet est de type « tag » (tag annoté), déréférencer :</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>gh<span class="w"> </span>api<span class="w"> </span>repos/&lt;proprietaire&gt;/&lt;action&gt;/git/tags/&lt;sha&gt;<span class="w"> </span>--jq<span class="w"> </span>.object.sha
 </code></pre></div>
 <h2 id="la-publication-part-a-heure-fixe-2744">La publication part à heure fixe (#2744)<a class="headerlink" href="#la-publication-part-a-heure-fixe-2744" title="Permanent link">&para;</a></h2>
 <p><code>release.yml</code> ne se déclenche plus au push sur <code>main</code> mais <strong>le mercredi à 6 h UTC</strong>, plus
@@ -17460,7 +17173,7 @@ celui publié</em>, elle ne dit rien de <strong>qui</strong> l'a produit - et el
 fichier, donc sa confiance vaut celle qu'on accorde à la page du projet. L'attestation lie le binaire
 à un <strong>commit</strong> et à une <strong>exécution</strong> de ce workflow, et se vérifie contre <strong>Sigstore</strong>, hors de notre
 portée.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gh<span class="w"> </span>attestation<span class="w"> </span>verify<span class="w"> </span>&lt;fichier&gt;<span class="w"> </span>--repo<span class="w"> </span>echonuit/vigiechiro-pr-companion
 </code></pre></div>
 <p><strong>Elle est produite sur la sortie de build, avant tout téléversement</strong>, pour la même raison que
 l'empreinte : une corruption survenue au téléversement se retrouverait sinon <em>attestée</em>. Les <code>.sha256</code>
@@ -17886,8 +17599,8 @@ avis de portée <code>development</code>, ce qu'est tout cet arbre : au 2026-08-
 <h3 id="le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose">Le train ne commente pas les issues, et c'est le train qui l'impose<a class="headerlink" href="#le-train-ne-commente-pas-les-issues-et-cest-le-train-qui-limpose" title="Permanent link">&para;</a></h3>
 <p><code>@semantic-release/github</code> commente par défaut chaque issue et PR incluse dans une version. Le premier
 départ du train, déclenché à la main le 2026-08-06 sur <strong>104 commits</strong>, est tombé exactement là :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>TypeError: Cannot destructure property 'repository' of '(intermediate value)' as it is undefined.
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>    at @semantic-release/github/lib/success.js:81
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>TypeError: Cannot destructure property 'repository' of '(intermediate value)' as it is undefined.
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>    at @semantic-release/github/lib/success.js:81
 </code></pre></div>
 <p>La cause n'est pas un bogue de circonstance, c'est une <strong>conséquence structurelle de l'ADR 2744</strong>. Le
 greffon découpe les commits en lots de <strong>100</strong> et construit, pour chaque lot, une requête GraphQL avec
@@ -17940,9 +17653,9 @@ ne part dans git.</p>
 <p>Un film d'un bloc ne sert à personne pour trancher un cas : personne ne regardera trente minutes.
 La séance dépose donc, à côté de la vidéo, un <strong>journal de repères</strong>
 (<code>target/recette-filmee/reperes.tsv</code>) qui dit <strong>quand</strong> chaque cas s'est joué.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a># repères de séance (#3774) : epoch_ms  borne   test    cas
-<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>1786725329321   debut   ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
-<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>1786725329581   fin ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a># repères de séance (#3774) : epoch_ms  borne   test    cas
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>1786725329321   debut   ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>1786725329581   fin ConnexionViewModelTest.injoignable_conserve_le_jeton    S1-07
 </code></pre></div>
 <p>Les instants sont des <strong>millisecondes depuis l'époque</strong>, la même grandeur que <code>date +%s%3N</code> : c'est
 ce qui permet au montage de les ramener à des positions dans la vidéo.</p>
@@ -18003,7 +17716,7 @@ les cinq sixièmes de ce qu'il voyait, et annonçait 16 %. C'était le même tra
 <p>Un montage refusé <strong>ne laisse aucun clip</strong> et fait échouer le lancement, même quand les tests sont
 verts - c'est justement le cas où personne n'irait vérifier.</p>
 <h3 id="la-tournage-complet-tout-ce-qui-cite-un-cas-en-une-seance-3835">La tournage complet : tout ce qui cite un cas, en une séance (#3835)<a class="headerlink" href="#la-tournage-complet-tout-ce-qui-cite-un-cas-en-une-seance-3835" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>--planche
+<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>.github/scripts/lance-test-filme.sh<span class="w"> </span>--planche
 </code></pre></div>
 <p>Le montage taille déjà un clip par <strong>test</strong> et indexe par <strong>cas</strong>. Passer les seize classes citantes
 à un même <code>-Dtest=A,B,C</code> rend donc, d'un coup, un index qui les couvre toutes : il n'y a rien à
@@ -18048,8 +17761,8 @@ proposé la même case à tout le monde.</p>
 </table>
 <p>La frontière est « <strong>aucune</strong> image utile », et non un seuil réglé à la main : soit quelque chose a
 paru, soit rien. Un nombre choisi aurait rangé un cas du mauvais côté sans qu'on le sache.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w">                                  </span><span class="c1"># le passage normal</span>
-<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">sans_gestionnaire_de_fenetres</span><span class="o">=</span><span class="nb">true</span><span class="w">   </span><span class="c1"># le témoin</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w">                                  </span><span class="c1"># le passage normal</span>
+<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>gh<span class="w"> </span>workflow<span class="w"> </span>run<span class="w"> </span>recette-filmee.yml<span class="w"> </span>-f<span class="w"> </span><span class="nv">sans_gestionnaire_de_fenetres</span><span class="o">=</span><span class="nb">true</span><span class="w">   </span><span class="c1"># le témoin</span>
 </code></pre></div>
 <h2 id="dependances">Dépendances<a class="headerlink" href="#dependances" title="Permanent link">&para;</a></h2>
 <p>Les mises à jour sont proposées par <strong>Dependabot</strong>
@@ -18057,6 +17770,7 @@ paru, soit rien. Un nombre choisi aurait rangé un cas du mauvais côté sans qu
 <strong>mensuellement</strong>, pour <code>maven</code>, <code>github-actions</code> et l'outillage de publication (<code>npm</code>, dans
 <code>/.github/release</code>). <strong>JavaFX (<code>org.openjfx:*</code>) est volontairement exclu</strong> de l'automatisation : ses
 bumps ont un impact fort (rendu, Headless Platform) et se décident à la main.</p>
+<!--/inv-->
 
 
 
