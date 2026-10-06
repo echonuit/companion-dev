@@ -15469,8 +15469,13 @@ hérite de l'<code>ihm</code> du principal et <code>vigiechiro</code> tapé seul
 seule raison qu'un <code>bin/VigieChiroCompanion</code> ne se tape pas sous Unix.</p>
 <h2 id="ce-que-la-decision-ne-couvre-pas">Ce que la décision NE couvre pas<a class="headerlink" href="#ce-que-la-decision-ne-couvre-pas" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>macOS.</strong> Le lanceur vit dans <code>Contents/MacOS/</code> : exécutable par chemin complet, pas appelable
-  depuis un terminal. Ce qui l'y mettra se décidera avec le cask Homebrew de #2110.</li>
+<li><strong>macOS, où la doc suffit.</strong> Le lanceur vit dans <code>Contents/MacOS/</code>, hors du <code>PATH</code> : il s'exécute
+  par son chemin complet et ne s'appelle pas par son nom. Arbitré le 6 octobre 2026 (#4088) : rien
+  n'est posé à l'installation, et <code>docs/ligne-de-commande.md</code> donne le chemin et l'alias à poser dans
+  <code>~/.zshrc</code>. Le cask Homebrew, dont la stanza <code>binary</code> aurait fait le lien, est écarté depuis le
+  8 septembre (#2110), et un <code>.dmg</code> n'a pas de script d'installation qui le poserait. La question se
+  rouvrirait sur une demande d'utilisateur macOS constatée plutôt que supposée, ou si #2110 était
+  rouvert.</li>
 <li><strong>Les réglages par propriété JVM.</strong> Trois refus conseillent un <code>-D</code> que le produit installé ne peut
   pas passer : c'est #4075, un sujet voisin et distinct.</li>
 <li><strong>L'écran Réglages.</strong> Rien n'y change : les bornes de lecture et d'extraction restent délibérément
