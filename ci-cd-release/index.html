@@ -15623,7 +15623,7 @@ publication.</p>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.github/workflows/recette-filmee.yml">recette-filmee.yml</a></td>
-<td><strong>manuel</strong> (<code>workflow_dispatch</code>)</td>
+<td><strong>appelé par le train</strong> (<code>workflow_call</code> depuis <code>release.yml</code>), ou manuel</td>
 <td>Éprouve qu'un runner <strong>pilote</strong> un test filmé, et pas seulement qu'il l'exécute. Porte son <strong>témoin</strong> : sans gestionnaire de fenêtres, le lancement doit être refusé (cf. plus bas). Avec <code>publier_les_clips</code>, il verse le tournage complet sur <code>clips-recette</code> <strong>et</strong>, quand le train lui passe une version, une copie préfixée <code>bash-</code> sur le <strong>tag</strong> de cette version, qui lui ne bougera jamais (#4258)</td>
 <td>—</td>
 </tr>
@@ -16609,7 +16609,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie_contrats_tiennent.py</code></td>
-<td>qu'un contrat DÉCLARÉ ne contredise pas ce que le garde FAIT : <code>imprime_contrat</code> refusait un contrat incomplet, rien ne le confrontait au réel (ADR 4636). La règle n'est pas l'égalité mais l'absence de contradiction, parce que le vocabulaire diffère (<code>RACINES</code> vaut <code>PRODUCTION + TESTS</code>) et que le contrat sait souvent PLUS que l'inférence. Sa population se dérive de la <strong>déclaration</strong> et non d'une mention, par <code>ast</code> depuis #5144 : un grep sur <code>--contrat</code> comptait les fichiers qui en PARLENT. Elle compte <strong>68</strong> porteurs, dont le dernier garde shell, nommé à part parce qu'aucun AST Python ne le lit. Chaque contrat est obtenu en <strong>lançant</strong> le garde, jamais en lisant son source</td>
+<td>qu'un contrat DÉCLARÉ ne contredise pas ce que le garde FAIT : <code>imprime_contrat</code> refusait un contrat incomplet, rien ne le confrontait au réel (ADR 4636). La règle n'est pas l'égalité mais l'absence de contradiction, parce que le vocabulaire diffère (<code>RACINES</code> vaut <code>PRODUCTION + TESTS</code>) et que le contrat sait souvent PLUS que l'inférence. Sa population se dérive de la <strong>déclaration</strong> et non d'une mention, par <code>ast</code> depuis #5144 : un grep sur <code>--contrat</code> comptait les fichiers qui en PARLENT. Sa taille se lit dans sa sortie (<code>lus=</code>), et plus aucun garde shell n'en fait partie : le dernier qui portait un contrat, <code>verifie-butoirs.sh</code>, a été converti par #5224. Chaque contrat est obtenu en <strong>lançant</strong> le garde, jamais en lisant son source</td>
 <td><code>lint.yml</code></td>
 </tr>
 <tr>
@@ -16877,7 +16877,7 @@ part commune est tombée de 65 % et 54 % à <strong>55 % et 48 %</strong>.</p>
 qui interroge la forge, la copie devient une dette qui se paie trois fois : rouvrez #4954 et
 tranchez <strong>avant</strong> de le finir, pas après.</p>
 </div>
-<p>| <code>lance-test-filme.sh</code> | un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres ; son montage refuse un film arrêté avant l'ordre d'arrêt, dont tous les clips seraient décalés (#6017) | <code>recette-filmee.yml</code> - workflow <strong>manuel</strong> |
+<p>| <code>lance-test-filme.sh</code> | un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres ; son montage refuse un film arrêté avant l'ordre d'arrêt, dont tous les clips seraient décalés (#6017) | <code>recette-filmee.yml</code>, que le train appelle après la publication et qui se lance aussi à la main (autotest : <code>lint.yml</code>, job <code>banc-filme</code>) |
 | <code>filtrer_bruit_cartes.py</code> | rend leur version committée aux aperçus de carte dont <strong>seul le fond</strong> a changé | <code>capture-vues.yml</code> |
 | <code>compare_apercus.py</code> | montre, sur une PR, les écrans qu'elle change : avant/après accolés, part de pixels, et le <strong>dit</strong> quand aucun ne change | <code>capture-vues.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>compare_tournages.py</code> | montre ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Le chiffre <strong>trie</strong>, la carte <strong>localise</strong> ; une mesure impossible se compte au lieu de passer pour « rien n'a changé », et une comparaison sans <strong>aucun cas commun</strong> sort en 1, son index écrit (#5934). Mesure aussi les <strong>planchers</strong> par cas, toutes paires, et écrit en en-tête l'<strong>instrument</strong> qui les a pris : il refuse de comparer contre des planchers pris par un autre, ou de les compléter, en nommant les deux (#5885). Les clips qui ont deux fins n'ont pas de plancher, et la comparaison le dit avec leur issue : leur compte et leurs noms se lisent dans <code>comparer-deux-tournages.md</code>, où un test les confronte à la table <code>SANS_PLANCHER</code> (#5953) | <code>comparer-tournages.yml</code>, <code>mesurer-les-planchers.yml</code> (autotest : <code>lint.yml</code>) |
