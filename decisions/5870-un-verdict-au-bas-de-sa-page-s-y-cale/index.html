@@ -15546,6 +15546,9 @@ est dans le cadre. Le bas d'une page ne dépend pas de l'instant où un nœud a 
 <p><strong>Elle refuse une cible qui n'est pas au bas.</strong> Employée ailleurs, elle mettrait le verdict hors du
 cadre en ayant l'air de l'y amener, et le clip finirait sur autre chose. Le refus dit que le geste ne
 vaut que pour le dernier élément d'une page.</p>
+<p><strong>Elle refuse aussi une cible qui ne descend d'aucun panneau de défilement</strong> (#5982). Sans page à
+caler, « tous les panneaux sont au bas » se disait d'une liste vide, et l'aide concluait dès que la
+cible était dans le cadre. Ses huit appels ont été relus à cette occasion : aucun n'était dans ce cas.</p>
 <p><code>amenerDansLeCadre</code> n'est pas modifié : vingt-cinq scénarios l'emploient, et il reste le bon geste pour
 une cible au milieu d'une page, ou pour garder une carte à l'image pendant qu'elle change.</p>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
