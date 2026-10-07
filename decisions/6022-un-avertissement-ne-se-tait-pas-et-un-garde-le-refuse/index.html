@@ -15640,7 +15640,8 @@ par l'arbre syntaxique, et son cliquet est à zéro : il se lit comme un refus, 
 <p><strong>La liste des valeurs admises est fermée : <code>unchecked</code> et <code>rawtypes</code>.</strong> Elles s'adressent à javac,
 sur un transtypage générique qu'il ne peut pas prouver. PMD ne les lit pas, et les 55 annotations du
 dépôt sont de celles-là. Toute autre valeur est refusée, y compris celles que PMD n'honore pas
-aujourd'hui. Une valeur qui n'est pas un littéral, constante ou concaténation, est refusée sans être
+aujourd'hui, <code>fallthrough</code>, <code>deprecation</code> ou <code>serial</code> : le dépôt n'en porte aucune, et la première
+qui se présentera se discutera. Une valeur qui n'est pas un littéral, constante ou concaténation, est refusée sans être
 résolue.</p>
 <p><strong>La marque <code>NOPMD</code> se refuse là où PMD la lit, et pas ailleurs</strong> : dans un commentaire de ligne qui
 suit du code. Sur une ligne qui ne porte que du commentaire, aucune violation ne peut commencer, et
@@ -15649,40 +15650,8 @@ la mention ne fait rien taire.</p>
 <p>Le garde doit refuser ce que l'outil honore, et la documentation de l'outil n'est pas une mesure. Le
 7 octobre 2026, sur <code>80ae6d71db</code>, une classe jetable de dix-huit méthodes privées mortes a été jouée
 contre <code>UnusedPrivateMethod</code> sous PMD 7.17.0.</p>
-<table>
-<thead>
-<tr>
-<th>Forme</th>
-<th>PMD se tait</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>"unused"</code>, <code>"all"</code>, <code>"PMD"</code>, <code>"PMD.UnusedPrivateMethod"</code></td>
-<td>oui</td>
-</tr>
-<tr>
-<td>un tableau qui contient l'une d'elles</td>
-<td>oui</td>
-</tr>
-<tr>
-<td><code>"unchecked"</code>, <code>"rawtypes"</code>, <code>"fallthrough"</code>, le nom d'une autre règle</td>
-<td>non</td>
-</tr>
-<tr>
-<td><code>// NOPMD</code> en fin de ligne, collé ou non, seul ou dans une phrase</td>
-<td>oui</td>
-</tr>
-<tr>
-<td>un <code>///</code> de fin de ligne qui cite <code>NOPMD</code></td>
-<td>oui</td>
-</tr>
-<tr>
-<td><code>/* NOPMD */</code>, <code>// nopmd</code>, un <code>///</code> posé sur la ligne d'au-dessus</td>
-<td>non</td>
-</tr>
-</tbody>
-</table>
+<p>Le relevé forme par forme, ce qui le fait taire et ce qui ne le fait pas, est dans l'en-tête du
+garde <code>scripts/adr/6022-annotation-qui-fait-taire.py</code>.</p>
 <h2 id="pourquoi-une-liste-fermee-et-pourquoi-larbre">Pourquoi une liste fermée, et pourquoi l'arbre<a class="headerlink" href="#pourquoi-une-liste-fermee-et-pourquoi-larbre" title="Permanent link">&para;</a></h2>
 <p>Une liste de refus, <code>unused</code> et <code>PMD.*</code>, aurait laissé passer <code>all</code>, que PMD honore, et la prochaine
 valeur qu'il apprendra à honorer. La liste fermée inverse la charge : ajouter une valeur admise est
@@ -15698,10 +15667,13 @@ même raison.</p>
   relecture, A8.</li>
 <li><strong>Une annotation réintroduite fait rougir <code>methode</code> à chaque demande</strong>, et la porte locale en
   quelques secondes, sans JVM.</li>
-<li><strong><code>fallthrough</code>, <code>deprecation</code> ou <code>serial</code> sont refusées</strong> bien qu'elles ne fassent pas taire PMD.
-  Le dépôt n'en porte aucune. La première qui se présentera se discutera, et c'est voulu.</li>
-<li><strong>Les trois règles <code>Unused*</code> que le chantier #6022 fait entrer au portail</strong> arrivent derrière une
-  porte fermée : une règle neuve qui mord est le moment où l'annotation tente.</li>
+<li><strong>Les trois règles <code>Unused*</code> sont entrées derrière cette porte fermée (#6123, #6125, #6128), et
+  laissent trois conventions</strong>, que <code>pmd-ruleset.xml</code> motive. Une ressource de <code>try</code> tenue pour sa
+  seule portée se nomme <code>_</code>, ou s'écrit <code>try (canal)</code> quand la variable est finale. Une signature
+  imposée par une bibliothèque se règle par une lambda à l'appel, sans exclusion ni annotation :
+  <code>Cli.java</code> devant picocli. Un collaborateur injecté jamais lu s'ouvre avant d'être retiré : résidu
+  d'un retrait décidé ou branchement oublié, et le second est un défaut à remonter, pas un champ à
+  retirer. La règle PMD tient les deux premières, rien ne tient la troisième.</li>
 </ul>
 <h2 id="ce-que-le-garde-ne-voit-pas">Ce que le garde ne voit pas<a class="headerlink" href="#ce-que-le-garde-ne-voit-pas" title="Permanent link">&para;</a></h2>
 <ul>
