@@ -7962,6 +7962,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../../decisions/4309-le-pire-observe-reste-la-regle-et-un-plancher-a-un-sol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4309 · Le pire observé reste la règle, et un plancher a un sol
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../decisions/4334-ce-que-le-portage-a-decide-de-ne-pas-porter/" class="md-nav__link">
         
   
@@ -14673,6 +14708,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#un-plancher-ne-redescend-qua-la-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un plancher ne redescend qu'à la main
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#les-clips-auxquels-on-refuse-un-plancher" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -15704,6 +15750,17 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#un-plancher-ne-redescend-qua-la-main" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un plancher ne redescend qu'à la main
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#les-clips-auxquels-on-refuse-un-plancher" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -16044,9 +16101,18 @@ comparés contre le fichier.</p>
 </tr>
 </tbody>
 </table>
-<p>Les trois qui restent valent 0,015 %, 0,195 % et 0,300 % d'écart. Le premier s'affiche « ×15 »
-parce que son plancher vaut 0,001 % : un rapport élevé sur un plancher proche de zéro se lit
-avec son écart absolu, et la carte des différences tranche.</p>
+<p>Les trois qui restaient valaient 0,015 %, 0,195 % et 0,300 % d'écart. Le premier s'affichait
+« ×15 » parce que son plancher valait 0,001 % : c'était du bruit lu comme une alerte.</p>
+<p><strong>Un plancher a depuis un sol</strong> (#4309). Aucun rapport ne se calcule contre moins de 0,0105 %,
+la moitié de ce que rend un chiffre changé. Neuf planchers sur cent étaient sous ce sol, dont
+cinq à zéro. Rien de plus petit qu'un chiffre changé ne dépasse donc ×2, et un chiffre changé se
+lit ×2, comme le tableau de « Comment lire le chiffre » l'annonce. Ce même écart de 0,015 % se
+lit aujourd'hui ×1,4.</p>
+<p>Au contrôle du 7 octobre 2026, deux témoins contre des planchers de 12 à 54 paires : sur 95
+clips, dix-huit écarts non nuls sous 0,021 %, dont le pire se lit ×0,6. Un seul clip dépasse le
+double, <code>emporter_une_nuit_et_ses_deux_refus</code>, à 0,857 % contre un plancher de 0,009 % pris sur
+douze paires : un écart de cette taille n'est pas du bruit lu de trop près, et le sol n'y
+change rien.</p>
 <p>Ce reste n'est pas un défaut de ces clips. Un maximum pris sur quinze valeurs est dépassé par
 une seizième de temps en temps, et chaque passage de l'atelier ajoute des paires.</p>
 </div>
@@ -16154,10 +16220,11 @@ Rapportés à leur propre plancher, ils se séparent :</p>
 <p>Les planchers mesurés vivent dans <code>.github/assets/planchers-tournages.tsv</code>. Son en-tête dit par quel
 instrument ils ont été pris, puis vient une ligne par cas :</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a># Instrument : ffmpeg 6.1.1 · ImageMagick 6.9.12-98
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce   0.000   0.412   6
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>ScenarioAccueilTest.chaque_carte_ouvre_ce_qu_elle_annonce   0.000   0.412   6   0
 </code></pre></div>
-<p>Le cas, le plancher de sa <strong>première</strong> image, celui de sa <strong>dernière</strong>, et <strong>le nombre de paires de
-tournages qui les ont produits</strong>.</p>
+<p>Le cas, le plancher de sa <strong>première</strong> image, celui de sa <strong>dernière</strong>, <strong>le nombre de paires de
+tournages qui les ont produits</strong>, et le nombre de paires écoulées <strong>depuis que ce plancher a été
+approché</strong> (voir « Un plancher ne redescend qu'à la main »).</p>
 <p>Le flux de comparaison le passe automatiquement, et chaque cas est alors classé par son <strong>rapport à
 son propre bruit</strong> plutôt que par son écart absolu. Le résumé compte les cas « au-dessus de leur
 propre plancher », qui est le nombre à regarder.</p>
@@ -16243,10 +16310,36 @@ dit que ce plancher est pris sur trop peu de paires, pas que le produit a chang�
 <p>Les clips ordinaires et ceux de la plateforme de test ne sortent pas des mêmes tournages : ce sont
 deux lancements, le second complétant le fichier rendu par le premier.</p>
 <div class="admonition warning">
-<p class="admonition-title">Le pire, et non la moyenne</p>
+<p class="admonition-title">Le pire, et non la moyenne ni un centile</p>
 <p>Un plancher qui sous-estime le bruit fabrique des faux positifs, c'est-à-dire exactement ce qu'on
 cherche à éviter. Mieux vaut rater un petit changement sur un cas instable que crier au changement
 à chaque tournage.</p>
+<p>Un centile a été envisagé puis écarté
+(<a href="../../decisions/4309-le-pire-observe-reste-la-regle-et-un-plancher-a-un-sol/">ADR 4309</a>). Les
+maximums les plus isolés du fichier n'étaient pas de mauvais tirages mais des clips à deux fins,
+qu'un centile aurait rangés parmi les cas stables. Et les paires d'une mesure ne sont pas
+indépendantes : un tournage atypique sur quatre occupe trois paires sur six.</p>
+</div>
+<h3 id="un-plancher-ne-redescend-qua-la-main">Un plancher ne redescend qu'à la main<a class="headerlink" href="#un-plancher-ne-redescend-qua-la-main" title="Permanent link">&para;</a></h3>
+<p>Le prix du pire observé est qu'un plancher pris avant la correction d'un clip, ou un mauvais jour,
+reste. La mesure ne le fait jamais redescendre d'elle-même. Elle <strong>signale</strong> en revanche le cas dont
+le plancher n'a plus été approché :</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Plancher à relire : &lt;cas&gt; porte 0.807 %, que 18 paires de suite n'ont pas approché à moitié près.
+</code></pre></div>
+<p>La cinquième colonne du fichier tient ce compte. Une paire qui atteint la moitié du plancher le
+remet à zéro ; au bout de dix-huit paires sans cela, soit trois mesures de quatre tournages, le cas
+est nommé dans le journal de la mesure et dans le résumé de l'atelier. Un plancher sous le sol n'est
+jamais signalé.</p>
+<p>C'est un signal, pas un verdict : il ne dit pas si le clip a été corrigé ou s'il a eu un mauvais
+jour. Le geste reste celui du tableau plus haut, retirer sa ligne sur une branche et remesurer.</p>
+<div class="admonition note">
+<p class="admonition-title">Pourquoi un compte tenu dans le fichier, et non une comparaison à chaque mesure</p>
+<p>Comparer chaque plancher au pire des paires d'<strong>une</strong> mesure nommait de 8 à 16 clips à chaque
+fois, et jamais les mêmes : le bruit de beaucoup de clips sort par à-coups, et le pire de 48
+paires dépasse naturellement le pire de 6. Ce qui distingue un plancher périmé est qu'il n'est
+plus approché, mesure après mesure.</p>
+<p>Les lignes écrites avant #4309 sont parties de zéro : le signal ne dit rien d'elles avant trois
+mesures.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Mesurer ailleurs que dans l'atelier</p>
@@ -16297,8 +16390,9 @@ n'est pas pour autant aveugle - les premières images de deux cas différents di
 <strong>0,809 %</strong> puis <strong>0,073 %</strong>, onze fois moins. On en avait conclu que ce plancher n'était pas une
 propriété du cas, mais un mauvais tirage.</p>
 <p>La règle du <strong>pire observé</strong> le gardait pourtant, et c'est son prix assumé : un plancher ne
-redescend jamais, donc <strong>un seul mauvais tirage aveugle un cas pour de bon</strong>. Avec assez de
-paires, un centile vaudrait mieux qu'un maximum (#4309).</p>
+redescend pas de lui-même, donc <strong>un seul mauvais tirage aveugle un cas</strong> tant que personne ne
+retire sa ligne. On a cru qu'un centile vaudrait mieux qu'un maximum ; les données ont dit que
+non, et la mesure signale désormais le plancher que rien n'approche plus (#4309).</p>
 <p>Six paires, avec l'instrument du flux, ont dit ce que deux ne pouvaient pas : ce clip a un fond de
 1,6 à 2,2 % et une seconde fin à <strong>26 %</strong>, prise pendant un fondu, un tournage sur quatre (#5911).
 Ce n'était ni un tirage ni du bruit. Il n'a plus de plancher tant qu'il ne finit pas sur une

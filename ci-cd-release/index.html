@@ -7962,6 +7962,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/4309-le-pire-observe-reste-la-regle-et-un-plancher-a-un-sol/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4309 · Le pire observé reste la règle, et un plancher a un sol
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/4334-ce-que-le-portage-a-decide-de-ne-pas-porter/" class="md-nav__link">
         
   
@@ -16960,7 +16995,7 @@ tranchez <strong>avant</strong> de le finir, pas après.</p>
 <p>| <code>lance-test-filme.sh</code> | un runner <strong>pilote</strong> un test filmé, et refuse de le lancer sans gestionnaire de fenêtres ; son montage refuse un film arrêté avant l'ordre d'arrêt, dont tous les clips seraient décalés (#6017) | <code>recette-filmee.yml</code>, que le train appelle après la publication et qui se lance aussi à la main (autotest : <code>lint.yml</code>, job <code>banc-filme</code>) |
 | <code>filtrer_bruit_cartes.py</code> | rend leur version committée aux aperçus de carte dont <strong>seul le fond</strong> a changé | <code>capture-vues.yml</code> |
 | <code>compare_apercus.py</code> | montre, sur une PR, les écrans qu'elle change : avant/après accolés, part de pixels, et le <strong>dit</strong> quand aucun ne change | <code>capture-vues.yml</code> (autotest : <code>lint.yml</code>) |
-| <code>compare_tournages.py</code> | montre ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Le chiffre <strong>trie</strong>, la carte <strong>localise</strong> ; une mesure impossible se compte au lieu de passer pour « rien n'a changé », et une comparaison sans <strong>aucun cas commun</strong> sort en 1, son index écrit (#5934). Mesure aussi les <strong>planchers</strong> par cas, toutes paires, et écrit en en-tête l'<strong>instrument</strong> qui les a pris : il refuse de comparer contre des planchers pris par un autre, ou de les compléter, en nommant les deux (#5885). Les clips qui ont deux fins n'ont pas de plancher, et la comparaison le dit avec leur issue : leur compte et leurs noms se lisent dans <code>comparer-deux-tournages.md</code>, où un test les confronte à la table <code>SANS_PLANCHER</code> (#5953) | <code>comparer-tournages.yml</code>, <code>mesurer-les-planchers.yml</code> (autotest : <code>lint.yml</code>) |
+| <code>compare_tournages.py</code> | montre ce qui a changé entre <strong>deux tournages</strong> : présence du cas, image finale accolée, carte des différences, durée. Le chiffre <strong>trie</strong>, la carte <strong>localise</strong> ; une mesure impossible se compte au lieu de passer pour « rien n'a changé », et une comparaison sans <strong>aucun cas commun</strong> sort en 1, son index écrit (#5934). Mesure aussi les <strong>planchers</strong> par cas, toutes paires, et écrit en en-tête l'<strong>instrument</strong> qui les a pris : il refuse de comparer contre des planchers pris par un autre, ou de les compléter, en nommant les deux (#5885). Aucun rapport ne se calcule contre moins de 0,0105 %, et la mesure tient en cinquième colonne les paires écoulées depuis que chaque plancher a été approché : à dix-huit, elle nomme le cas à relire (#4309). Les clips qui ont deux fins n'ont pas de plancher, et la comparaison le dit avec leur issue : leur compte et leurs noms se lisent dans <code>comparer-deux-tournages.md</code>, où un test les confronte à la table <code>SANS_PLANCHER</code> (#5953) | <code>comparer-tournages.yml</code>, <code>mesurer-les-planchers.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>verifie_chantier_de_l_issue.py</code> | l'issue que la demande de fusion <strong>ferme</strong> appartient à un chantier, <strong>et son corps dit le même que la forge</strong> : rattacher demande deux gestes, et le garde ne lisait que le second jusqu'à #5210. La marque se reconnaît sur une <strong>ligne à elle seule</strong>, forme mesurée sur 35 issues sur 35 quand « en tête de corps » n'en rendait que 15 : une prose qui cite la forme n'en porte pas une. Porté du bash au Python par #5210, le cliquet du corpus shell passant de 50 à 49 - sa première descente. Son <code>parent</code> n'est ni absent, ni le sas des suites #4562, d'où rien ne se traite. Il ne juge que cette issue-là, jamais le dépôt entier | <code>corps-pr.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>rappelle_le_critere_de_fin.py</code> | un <strong>lot</strong> dit dans son corps comment on saura qu'il est fini. Une LOUPE : elle rend un texte à poster, ne refuse rien, et ne juge pas la <strong>qualité</strong> du critère. Elle reconnaît un lot par son <code>parent</code> ou par la marque « Fait partie de #N », le sas #4562 exclu. <strong>Elle parle à DEUX moments depuis #5211</strong> : à l'ouverture de l'issue, et à l'ouverture d'une demande qui ferme le lot, où elle NOMME les lots muets. Le second existe parce que le premier ne repasse pas et que le trou n'était pas tenu par ce qu'on croyait : la phrase « la loupe hebdomadaire balaie le stock » était fausse, cette loupe ne lisant que les sous-issues OUVERTES le lundi à 6 h UTC, soit 13 % des 386 lots clos nés depuis la règle. Aucun des deux ne refuse, l'arbitrage de #4961 ayant écarté le rouge et non le signalement | <code>critere-de-fin.yml</code> (autotest : <code>lint.yml</code>) |
 | <code>concordances-du-cycle.py</code> | les quatre concordances qui relient commandes, tableau des passes et compétences : une commande ouvre une compétence qui existe, le tableau en nomme une qui existe, la <code>description</code> annonce la passe que le tableau attribue, aucune compétence n'est orpheline. Il ne vérifie pas qu'une compétence <strong>dise vrai</strong> | <code>lint.yml</code> |
