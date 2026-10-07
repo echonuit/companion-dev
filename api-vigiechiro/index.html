@@ -16507,10 +16507,16 @@ serait plus reproposé. Position distante illisible : même verdict, par prudenc
 <p>On serait tenté d'en faire un garde. <strong>Il ne faut pas</strong> : les liens de site viennent de
 <code>GET /moi/participations</code> et non de <code>/moi/sites</code> (#718, cf. <code>ClientVigieChiro.mesSites</code>), donc un
 carré relié peut appartenir à quelqu'un d'autre. Companion le sait : <code>ImportSiteDistant</code> relève, à
-chaque import du site, s'il appartient à un tiers (#2525). La publication d'un point n'emploie pas
-ce savoir, par choix, et Companion ne connaît pas la validation de l'observateur sur le protocole.
-Griser sur « verrouillé » bloquerait le participant validé, à qui la plateforme dit oui. Le refus
-est <strong>rendu compte avec son geste</strong>, pas deviné.
+chaque import du site, s'il appartient à un tiers (#2525). La publication d'un point n'emploie ce
+savoir que pour le dire, jamais pour refuser, et Companion ne connaît pas la validation de
+l'observateur sur le protocole. Griser sur « verrouillé » bloquerait le participant validé, à qui
+la plateforme dit oui. Le refus est <strong>rendu compte avec son geste</strong>, pas deviné.</p>
+<p><strong>L'écran dit donc qu'on publie sur le carré d'un tiers, et ce n'est pas un garde</strong> (#6132).
+<code>PublicationDepuisLaFiche.mentionDuTiers</code> lit la marque <code>site_tiers</code>, et rend une phrase affichée
+sous le lien de la carte et sous la case de la modale de création. Elle n'entre pas dans
+<code>empechement</code>, ne grise rien et ne demande aucune confirmation : publier sur le carré d'un autre
+observateur est l'usage majoritaire. Sans ligne dans <code>site_tiers</code>, l'écran se tait, ce qui ne veut
+pas dire que le carré est à l'utilisateur : la marque ne présume jamais un tiers.
 - <strong>Aller-retour d'écriture (#1862)</strong> : <strong>quatre verdicts confirmés en réel</strong> (exécutée le 2026-07-18 sur
   la participation de rebut <code>6a50f790…</code>, quatre probes vertes).</p>
 <table>
