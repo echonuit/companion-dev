@@ -15863,8 +15863,8 @@ associe chaque vue FXML à ses aperçus.</p>
 pas</strong>. Il vit dans <code>ApercuFx</code>, au moment du rendu, et <strong>interrompt</strong> la chaîne : un aperçu déformé
 n'est pas écrit.</p>
 <p>L'application monte ses vues dans un <code>ScrollPane</code> permanent : ce qui déborde <strong>défile</strong>. La capture
-rend une scène de taille fixe et n'a pas ce recours : ce qui déborde se <strong>déforme</strong>, de deux façons
-que le message d'erreur distingue.</p>
+rend une scène de taille fixe et n'a pas ce recours : ce qui déborde se <strong>déforme</strong>, de façons que
+le message d'erreur distingue.</p>
 <table>
 <thead>
 <tr>
@@ -15884,8 +15884,32 @@ que le message d'erreur distingue.</p>
 <td>Le contrôle est trop <strong>étroit</strong> pour son texte</td>
 <td>Figer par <code>minWidth="-Infinity"</code>, élargir la colonne, ou assumer par <code>abregeable</code></td>
 </tr>
+<tr>
+<td><code>cellule de table coupee</code></td>
+<td>Une <strong>colonne</strong> est trop étroite pour le texte d'une de ses cellules. Le message donne le libellé, ce qui en est dessiné, le titre de la colonne et sa largeur</td>
+<td>Élargir la colonne, ou, si le texte ne peut tenir dans aucune largeur, l'assumer par <code>ColonneAbregeable.assumer(colonne)</code></td>
+</tr>
 </tbody>
 </table>
+<p><strong>Une cellule de table se juge sur ce qu'elle dessine, pas sur sa largeur</strong> (#5113). Le critère de la
+deuxième ligne compare la largeur qu'un contrôle demande à celle qu'il a reçue, et une <code>TableCell</code>
+demande la largeur de sa <strong>colonne</strong>, jamais celle de son texte : l'écart y vaut zéro quel que soit le
+contenu. Le garde est resté aveugle à toute cellule coupée jusqu'à ce qu'une capture parte avec
+« complétude inconnue » amputé (#5111). Il compare donc, pour une cellule, le texte que son habillage
+a posé à l'écran à celui qu'elle a reçu : l'ellipse les rend différents dès qu'un caractère manque.</p>
+<p><strong>Une colonne n'est marquée <code>abregeable</code> que parce que son texte se relit ailleurs.</strong> Un nom de fichier
+de soixante caractères ou le détail d'un constat d'audit ne tiennent dans aucune largeur raisonnable :
+la colonne les coupe, et c'est acceptable si le survol les rend en entier. Les deux gestes se posent
+donc ensemble, par <code>ColonneAbregeable.assumer(colonne)</code>, qui donne à chaque cellule une infobulle
+portant son texte puis marque la colonne. Le garde tient le lien : une cellule coupée n'est exemptée
+que si elle porte la marque <strong>et</strong> une infobulle qui contient son texte. La marque posée seule est
+refusée, avec la mention <code>marquee « abregeable » sans infobulle</code>, sans quoi elle deviendrait le moyen
+de faire taire le garde. Trois colonnes le font aujourd'hui : « Détail » de l'audit, « Fichier » de la
+table de dépôt, « Fichier » de la sélection d'écoute.</p>
+<p>Ne sont pas jugées : une cellule vide, une ligne sortie du champ (la table la retire du graphe) et une
+table masquée. Une cellule qui porte un <strong>graphique</strong> au lieu d'un texte n'est pas jugée comme cellule ; les libellés que ce
+graphique contient le sont par les deux premières lignes du tableau. Le banc est
+<code>LisibiliteCaptureCelluleDeTableTest</code>.</p>
 <p><strong><code>minWidth="-Infinity"</code></strong> est le remède le plus fréquent. La largeur <em>minimale</em> d'un <code>Labeled</code>
 autorise la troncature : une <code>HBox</code> en déficit rogne donc les libellés d'action plutôt que les
 sélecteurs et champs de recherche qui les entourent. Le figer inverse cette priorité : le déficit se
