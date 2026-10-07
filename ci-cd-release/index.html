@@ -16554,7 +16554,7 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 </tr>
 <tr>
 <td><code>verifie_corps_pr.py</code></td>
-<td>cadratin, apostrophe courbe, élision sans apostrophe, et fermeture écrite en français (« Ferme #N ») dans le corps d'une PR</td>
+<td>cadratin, apostrophe courbe, élision sans apostrophe et fermeture écrite en français (« Ferme #N ») dans le corps d'une PR. Depuis #4749, les <strong>cinq traces d'outil</strong> qui se comptent aussi : un corps de PR n'est pas un fichier suivi, donc <code>scripts/adr/4783-traces-d-outil.py</code> ne le lisait pas. Les deux gardes lisent la même définition, <code>scripts/_commun/traces.py</code>. Un bloc clôturé reste épargné, et l'espace sans chasse que Dependabot place derrière une arobase aussi</td>
 <td><code>corps-pr.yml</code> (autotest : <code>lint.yml</code>)</td>
 </tr>
 <tr>

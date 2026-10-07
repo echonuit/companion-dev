@@ -2083,6 +2083,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#le-corps-dune-demande-depuis-4749" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le corps d'une demande, depuis #4749
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -15565,6 +15576,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#le-corps-dune-demande-depuis-4749" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Le corps d'une demande, depuis #4749
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -15599,7 +15621,7 @@
 
 
 <h1 id="le-zero-des-traces-doutil-se-garde-parce-quil-se-retourne-dun-seul-collage">Le zéro des traces d'outil se garde, parce qu'il se retourne d'un seul collage<a class="headerlink" href="#le-zero-des-traces-doutil-se-garde-parce-quil-se-retourne-dun-seul-collage" title="Permanent link">&para;</a></h1>
-<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-29</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A31 · La prose visible se relit à l&#x27;humaniseur</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4783 (lot 3 du chantier #4748)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification probable</span><span class="adr-bandeau__valeur"><code>scripts/adr/4783-traces-d-outil.py</code></span></div></div>
+<div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-29</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A31 · La prose visible se relit à l&#x27;humaniseur</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4783 (lot 3 du chantier #4748)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification probable</span><span class="adr-bandeau__valeur"><code>scripts/adr/4783-traces-d-outil.py</code>, <code>.github/scripts/verifie_corps_pr.py</code></span></div></div>
 
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>La grille de la compétence <code>humaniser</code> porte six <strong>traces d'outil</strong> depuis #4776 : jetons de
@@ -15633,13 +15655,14 @@ mesure le prouve : sans l'exemption, le garde rend 22 marques de citation, toute
 <code>T1</code>.
 C'est l'<a href="../3645-un-detecteur-textuel-s-exclut-de-son-corpus/">ADR 3645</a>, et pour une fois elle a été
 appliquée avant plutôt qu'après un rouge.</p>
-<p><strong>Le garde lui-même</strong>, qui nomme les mêmes chaînes.</p>
+<p><strong>Le module qui porte la définition</strong>, <code>scripts/_commun/traces.py</code>, qui nomme les mêmes chaînes.
+C'était le garde lui-même jusqu'à #4749.</p>
 <p><strong>Le signe cité plutôt qu'employé</strong>, au grain de la ligne : entre accents graves, ou seul contenu
 d'une chaîne littérale. <code>private static final char BOM</code> décrit la marque d'ordre, il ne la pose pas.
 Et le liant <code>U+200D</code> qui suit un pictogramme compose une séquence d'emoji au lieu de traîner.</p>
 <h2 id="alternatives-ecartees">Alternatives écartées<a class="headerlink" href="#alternatives-ecartees" title="Permanent link">&para;</a></h2>
-<p><strong>Une loupe qui ne bloque pas.</strong> Cinq existent dans le dépôt et elles servent, mais elles servent à
-mesurer une dette qu'on fait descendre. Le zéro n'en est pas une, et une loupe laisserait passer
+<p><strong>Une loupe qui ne bloque pas.</strong> Le dépôt en comptait cinq le 2026-08-29 et elles servent, mais
+elles servent à mesurer une dette qu'on fait descendre. Le zéro n'en est pas une, et une loupe laisserait passer
 l'occurrence qui le retourne.</p>
 <p><strong>Ne rien écrire.</strong> C'est le précédent des onze occurrences, et il ne s'applique pas : il vise le
 coût d'une règle qui refuse souvent, quand celle-ci ne refusera jamais tant que personne ne colle.</p>
@@ -15651,6 +15674,17 @@ ne pas se voir à la relecture.</p>
 des
 deux copies de la compétence disparaîtrait si la grille cessait d'énumérer ses chaînes, ce qui la
 rendrait moins utile.</p>
+<h2 id="le-corps-dune-demande-depuis-4749">Le corps d'une demande, depuis #4749<a class="headerlink" href="#le-corps-dune-demande-depuis-4749" title="Permanent link">&para;</a></h2>
+<p>Le garde lit les fichiers suivis, et le corps d'une demande de fusion n'en est pas un. Mesuré le
+2026-10-07 : <code>verifie_corps_pr.py</code> déclarait conforme un corps qui portait trois de ces traces.</p>
+<p>Il les refuse depuis #4749, sur la même définition. Elle est sortie du garde pour vivre dans
+<code>scripts/_commun/traces.py</code>, que les deux lisent : une seconde liste aurait divergé de la première.
+Ce n'est pas une décision neuve. L'<a href="../4453-la-prose-publiee-sur-la-forge-releve-de-la-meme-grille/">ADR 4453</a>
+range déjà ce corps dans la prose que la grille couvre, et celle-ci tient le zéro : il manquait de
+lire cette population.</p>
+<p>Une exemption s'y ajoute, propre au corps : l'espace sans chasse que Dependabot place derrière une
+arobase, pour ne pas notifier les auteurs des notes de version qu'il recopie. Sur les 300 dernières
+demandes fusionnées, le caractère apparaît 68 fois et toujours à cette place.</p>
 
 
 

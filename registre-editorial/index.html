@@ -15857,8 +15857,8 @@ comptage.</p>
 </tr>
 <tr>
 <td>traces d'outil, cinq familles comptables</td>
-<td><code>scripts/adr/4783-traces-d-outil.py</code>, article A31</td>
-<td>tolérance zéro, cliquet à <!--inv:cliquet-traces-outil-->0<!--/inv-->, trois exemptions déclarées</td>
+<td><code>scripts/adr/4783-traces-d-outil.py</code> pour les fichiers suivis, <code>.github/scripts/verifie_corps_pr.py</code> pour le corps d'une demande, article A31</td>
+<td>tolérance zéro, cliquet à <!--inv:cliquet-traces-outil-->0<!--/inv-->, trois exemptions déclarées, et une quatrième propre au corps</td>
 </tr>
 <tr>
 <td>source vague, conjecture présentée en fait</td>
@@ -15897,6 +15897,10 @@ ci-dessus : leur compte vit dans le garde qui les tient, et un inventaire se cit
 duplique (ADR 3535). Mesure du 2026-08-29, sur 2 726 fichiers et 372 370 lignes : <strong>zéro</strong> pour les
 cinq. Sans l'exemption de la compétence qui les énumère, le même compteur rend 22 marques de
 citation, toutes aux lignes qui les définissent.</p>
+<p>Le corps d'une demande de fusion est tenu au même zéro depuis #4749, par <code>verifie_corps_pr.py</code>, qui
+lit la même définition. Mesure du 2026-10-07 sur les 300 dernières demandes fusionnées : aucun corps
+refusé, une fois épargnée l'espace sans chasse que Dependabot place derrière une arobase pour ne pas
+notifier les auteurs qu'il cite. Le caractère apparaît 68 fois, toujours à cette place, dans 4 corps.</p>
 <p>Cette page rend compte des motifs <strong>comptables</strong>. Ceux qui ne le sont pas, l'importance gonflée,
 l'analyse creuse en participe présent, la langue de la brochure, le tricolon forcé, l'aphorisme de
 fin, ne se mesurent pas par une expression : ils se voient à la lecture, et quatre d'entre eux sont
