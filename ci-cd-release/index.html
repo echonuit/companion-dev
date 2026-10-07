@@ -14080,6 +14080,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6022 · Un avertissement de qualité ne se tait pas, et un garde le refuse
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16555,6 +16590,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <tr>
 <td><code>5707-geste-du-pointeur-hors-du-fil.py</code></td>
 <td>les gestes du pointeur - <code>moveTo</code>, <code>clickOn</code>, <code>doubleClickOn</code>, <code>rightClickOn</code>, <code>drag</code>, <code>dropTo</code> - qui <strong>situent</strong> leur cible depuis le fil du test. TestFX la situe en lisant <code>getBoundsInLocal</code> puis <code>localToScene</code> de chaque candidat, ce qui recalcule la geometrie du sous-arbre et <strong>itere les elements</strong> de tout <code>Path</code> qui s y trouve ; le caret d un champ de saisie en est un, que JavaFX rebatit a chaque clignotement. Une fois sur 558 tirages de trente jours, le banc meurt d une <code>ConcurrentModificationException</code> dont la pile est entierement dans JavaFX. <strong>Il complete 5278 par l autre bout</strong> : 5278 tient les PREDICATS d attente, 4246 tient les HELPERS qui lisent le graphe eux-memes, et ni l un ni l autre ne pouvait voir une lecture <strong>deleguee a la bibliotheque</strong>. Sa population CONTIENT strictement celle de 5068, 38 sites sur 38. Quatre formes ecartees : <code>clickOn()</code> nu, un premier argument <code>MouseButton.*</code>, <code>press</code>/<code>release</code> qui agissent ou le pointeur est, et la forme JUSTE <code>pointSurLeFil(...)</code> qui reste LUE pour que l auto-test prouve qu elle est distinguee. <strong>Un cliquet et non un banc</strong> : deux temoins Java ont ete ecrits et jetes, le fil JavaFX recalculant toute propriete partagee le premier et servant son cache au fil du test. Cliquet a <strong>163</strong>, mesure 169 lus / 169 fautifs avant le lot, 169 / 163 apres</td>
+<td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
+</tr>
+<tr>
+<td><code>6022-annotation-qui-fait-taire.py</code></td>
+<td>l annotation et la marque qui font taire le portail qualite, dans <code>src/main/java</code> et <code>src/test/java</code>. Une <code>@SuppressWarnings</code> est refusee des qu une de ses valeurs sort de la liste FERMEE <code>unchecked</code>, <code>rawtypes</code>, ou n est pas un litteral : une liste de refus laisserait passer <code>all</code>, que PMD honore comme <code>unused</code>, <code>PMD</code> et <code>PMD.&lt;regle&gt;</code>. Une marque <code>NOPMD</code> est refusee dans un commentaire de ligne qui SUIT du code, seul endroit ou PMD la lit ; un bloc, des minuscules ou une ligne de commentaire seule ne font rien taire, et les deux mentions en prose du depot restent vertes. Ce que PMD honore a ete MESURE le 2026-10-07 sur une classe jetable, sous PMD 7.17.0. La lecture passe par l arbre syntaxique. Il ne lit pas les exclusions ecrites dans <code>pmd-ruleset.xml</code>. Cliquet a <strong>zero</strong>, qui se lit comme un refus (<a href="../decisions/6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/">ADR 6022</a>)</td>
 <td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
 </tr>
 <tr>

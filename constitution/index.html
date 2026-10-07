@@ -14587,6 +14587,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6022 · Un avertissement de qualité ne se tait pas, et un garde le refuse
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16268,11 +16303,12 @@ besoin. Chaque ADR déclare son article en en-tête, et un garde refuse celle qu
 d'où vient cette constitution : il interdit un renvoi qui ne résout que dans un dépôt disparu, ce qui
 n'a pas d'objet ici, où les renvois résolvent. Le numéro n'est pas réattribué : une ADR cite un
 article par son numéro, et un numéro qui change de sens est pire qu'un numéro absent.</p>
-<p><strong>Ce que la jurisprudence a révélé.</strong> Deux articles n'ont produit aucune décision : la mutation qui
-mesure dès qu'un comportement est complet (A8), et l'interdiction de supprimer un avertissement
-(A10). Tous deux disent comment on <em>travaille</em> plutôt que ce que le produit <em>fait</em>, et tous deux
-vivaient dans un fichier exclu du dépôt jusqu'à #4335. La mesure est rappelée ici plutôt que tue :
-un article que rien ne tient est une dette, pas une règle.</p>
+<p><strong>Ce que la jurisprudence a révélé.</strong> Un article n'a produit aucune décision : la mutation qui
+mesure dès qu'un comportement est complet (A8). Il dit comment on <em>travaille</em> plutôt que ce que le
+produit <em>fait</em>, et il vivait dans un fichier exclu du dépôt jusqu'à #4335. L'interdiction de
+supprimer un avertissement était dans le même cas jusqu'à l'ADR 6022, qui lui a donné un garde après
+que deux méthodes mortes ont vécu cinq semaines sous une annotation. La mesure est rappelée ici
+plutôt que tue : un article que rien ne tient est une dette, pas une règle.</p>
 <p><strong>A1 en est sorti, et aucun compte n'est plus cité ici.</strong> La preuve qui précède l'affirmation
 figurait dans cette liste ; quatre décisions la tiennent désormais. Ce paragraphe annonçait aussi
 « 194 ADR » et « vingt-trois articles », deux nombres qui ne portaient rien : l'argument est le même
@@ -16323,6 +16359,9 @@ par un. Le pourcentage ne dit rien.</p>
 l'appliquant.</p>
 <h3 id="a10-jamais-de-suppression-davertissement">A10 : Jamais de suppression d'avertissement<a class="headerlink" href="#a10-jamais-de-suppression-davertissement" title="Permanent link">&para;</a></h3>
 <p>Ni <code>@SuppressWarnings</code>, ni <code>//NOPMD</code>. Un avertissement se traite en refactorant.</p>
+<p>Un garde le refuse, <code>scripts/adr/6022-annotation-qui-fait-taire.py</code>. Il n'admet que <code>unchecked</code> et
+<code>rawtypes</code>, qui s'adressent à javac sur un transtypage générique et ne font taire aucun outil de
+qualité.</p>
 <h3 id="a11-lassume-se-declare-il-ne-se-contourne-pas">A11 : L'assumé se déclare, il ne se contourne pas<a class="headerlink" href="#a11-lassume-se-declare-il-ne-se-contourne-pas" title="Permanent link">&para;</a></h3>
 <p>Une règle absente et assumée vaut mieux qu'une règle contournée. Une perte consentie s'annonce, un
 secret laissé en clair se dit, une exclusion nomme son repreneur ou c'est un trou. Ce qui est
@@ -16489,9 +16528,9 @@ signature qu'elle surmonte.</p>
 </tr>
 <tr>
 <td>A10 · Jamais de suppression d'avertissement</td>
-<td style="text-align: right;">0</td>
-<td style="text-align: right;">0</td>
-<td><strong>relecture seule</strong></td>
+<td style="text-align: right;">1</td>
+<td style="text-align: right;">1</td>
+<td><code>scripts/adr/6022-annotation-qui-fait-taire.py</code></td>
 </tr>
 <tr>
 <td>A11 · L'assumé se déclare, il ne se contourne pas</td>
@@ -16615,10 +16654,9 @@ signature qu'elle surmonte.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>2 article(s) sur 30 ne sont tenus que par la relecture.</strong> C'est la liste des chantiers de garde restants, et elle se lit comme un inventaire, pas comme une fatalité.</p>
+<p><strong>1 article(s) sur 30 ne sont tenus que par la relecture.</strong> C'est la liste des chantiers de garde restants, et elle se lit comme un inventaire, pas comme une fatalité.</p>
 <ul>
 <li>A8 · La mutation mesure dès qu'un comportement est complet</li>
-<li>A10 · Jamais de suppression d'avertissement</li>
 </ul>
 <!-- fin de la matrice engendree -->
 
