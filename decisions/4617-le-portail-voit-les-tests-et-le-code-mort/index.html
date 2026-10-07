@@ -15500,6 +15500,14 @@
 <h1 id="le-portail-regarde-les-deux-zones-et-le-code-mort-compte">Le portail regarde les deux zones, et le code mort compte<a class="headerlink" href="#le-portail-regarde-les-deux-zones-et-le-code-mort-compte" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-08-27</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A9 · La dette se tient par un cliquet, pas par un nettoyage</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#4617 (sas des suites #4562)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification probable</span><span class="adr-bandeau__valeur"><code>scripts/adr/4617-code-mort-et-zone-de-test.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>Complétée le 2026-10-07</strong> par
+<a href="../6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/">ADR 6022</a> : le chantier #6022
+fait entrer d'autres règles <code>Unused*</code> au jeu, une demande par règle, chacune avec ses retraits.
+<code>UnusedPrivateField</code> y est depuis #6115 : 20 champs mesurés sur <code>76070c320d</code>, 11 en production
+et 9 en test, tous retirés dans la demande qui ajoute la règle. Le cliquet est resté à 40.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Une méthode privée jamais appelée a vécu dans <code>SonsValidationArchiveViewTest</code>, à soixante-quinze
 lignes de la version correcte du même helper, et rien ne l'a vue (#4554). Deux trous l'expliquent,
