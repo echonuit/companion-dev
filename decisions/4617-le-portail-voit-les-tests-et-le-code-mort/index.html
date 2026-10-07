@@ -15543,7 +15543,9 @@ fait entrer d'autres règles <code>Unused*</code> au jeu, une demande par règle
 <code>UnusedPrivateField</code> y est depuis #6115 : 20 champs mesurés sur <code>76070c320d</code>, 11 en production
 et 9 en test, tous retirés dans la demande qui ajoute la règle. <code>UnusedFormalParameter</code> y est
 depuis #6116 : 8 paramètres mesurés sur <code>ba33f0a66c</code>, 2 en production et 6 en test, retirés de
-même. Le cliquet est resté à 40.</p>
+même. <code>UnusedLocalVariable</code> y est depuis #6117 : 39 variables mesurées sur <code>0e060d5bbb</code>, 6 en
+production et 33 en test, dont 18 mortes, retirées, et 21 ressources de <code>try</code> nommées <code>_</code> ou
+ramenées à <code>try (canal)</code>. Le cliquet est resté à 40 d'un bout à l'autre.</p>
 </div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Une méthode privée jamais appelée a vécu dans <code>SonsValidationArchiveViewTest</code>, à soixante-quinze
