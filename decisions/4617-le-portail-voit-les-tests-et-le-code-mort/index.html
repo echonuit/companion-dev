@@ -15506,7 +15506,9 @@
 <a href="../6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/">ADR 6022</a> : le chantier #6022
 fait entrer d'autres règles <code>Unused*</code> au jeu, une demande par règle, chacune avec ses retraits.
 <code>UnusedPrivateField</code> y est depuis #6115 : 20 champs mesurés sur <code>76070c320d</code>, 11 en production
-et 9 en test, tous retirés dans la demande qui ajoute la règle. Le cliquet est resté à 40.</p>
+et 9 en test, tous retirés dans la demande qui ajoute la règle. <code>UnusedFormalParameter</code> y est
+depuis #6116 : 8 paramètres mesurés sur <code>ba33f0a66c</code>, 2 en production et 6 en test, retirés de
+même. Le cliquet est resté à 40.</p>
 </div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>Une méthode privée jamais appelée a vécu dans <code>SonsValidationArchiveViewTest</code>, à soixante-quinze
