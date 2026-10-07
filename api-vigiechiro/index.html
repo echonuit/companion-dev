@@ -16506,9 +16506,11 @@ surtout <strong>rien n'est retenu</strong> : marquer le point publié figerait l
 serait plus reproposé. Position distante illisible : même verdict, par prudence.</p>
 <p>On serait tenté d'en faire un garde. <strong>Il ne faut pas</strong> : les liens de site viennent de
 <code>GET /moi/participations</code> et non de <code>/moi/sites</code> (#718, cf. <code>ClientVigieChiro.mesSites</code>), donc un
-carré relié peut appartenir à quelqu'un d'autre, et Companion ne connaît ni le propriétaire, ni la
-validation sur le protocole. Griser sur « verrouillé » bloquerait le participant validé, à qui la
-plateforme dit oui. Le refus est <strong>rendu compte avec son geste</strong>, pas deviné.
+carré relié peut appartenir à quelqu'un d'autre. Companion le sait : <code>ImportSiteDistant</code> relève, à
+chaque import du site, s'il appartient à un tiers (#2525). La publication d'un point n'emploie pas
+ce savoir, par choix, et Companion ne connaît pas la validation de l'observateur sur le protocole.
+Griser sur « verrouillé » bloquerait le participant validé, à qui la plateforme dit oui. Le refus
+est <strong>rendu compte avec son geste</strong>, pas deviné.
 - <strong>Aller-retour d'écriture (#1862)</strong> : <strong>quatre verdicts confirmés en réel</strong> (exécutée le 2026-07-18 sur
   la participation de rebut <code>6a50f790…</code>, quatre probes vertes).</p>
 <table>

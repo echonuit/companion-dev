@@ -15900,7 +15900,8 @@ l'ADR 3574 a démêlé (#3632).</p>
 <p class="admonition-title"><code>root_path</code> n'est pas le seul chemin en base</p>
 <p>Chaque original, chaque séquence d'écoute, le journal du capteur, le relevé climatique et le CSV
 Tadarida portent leur chemin <strong>absolu</strong> : six tables au total (<code>ReecritureRacineSession</code>, dont
-l'inventaire a été confronté aux colonnes <code>*_path</code> des 38 migrations). Ne réécrire que la racine
+l'inventaire a été confronté le 2026-08-03 aux colonnes <code>*_path</code> des 38 migrations d'alors ;
+depuis #3180, <code>TablesACheminTest</code> relit le schéma à chaque demande). Ne réécrire que la racine
 donne une base qui <strong>paraît</strong> corrigée et une application qui ne retrouve plus un seul fichier.</p>
 <p>Ce piège n'est pas théorique : c'est l'état dans lequel cette fonctionnalité a d'abord été
 écrite. Les tests Java relisaient <code>root_path</code> et concluaient au succès ; l'E2E <code>bats</code> qui restaure
