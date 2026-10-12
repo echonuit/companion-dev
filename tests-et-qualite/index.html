@@ -16355,6 +16355,14 @@ fork, ce que garantit le profil, qui ne joue que ce tag.</p>
 <li>Le front web : <code>acces().urlDuFront()</code> rend l'adresse de sa page d'entrée, dérivée de celle de l'API
   puisqu'ils partagent leur origine. Exemple :
   <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/commun/api/plateforme/FrontWebSurLaPlateformeDeTestTest.java"><code>FrontWebSurLaPlateformeDeTestTest</code></a>.</li>
+<li>La fiche web dans un navigateur : un <code>BrowserWebDriverContainer</code> à l'image <code>navigateur.image</code> des
+  épingles, qui rejoint <code>PlateformeDeTest.reseau()</code> et ouvre <code>urlDuFrontDansLeReseau()</code>. La connexion
+  passe par <code>?token=</code> et le jeton de l'utilisatrice, que la directive de connexion du front lit ; la
+  connexion de <code>DEV_FAKE_AUTH</code> ouvrirait une session « John Doe », qui ne possède rien. L'observatrice
+  a la charte acceptée dans l'état de départ, sans quoi sa modale couvrirait la fiche. Le navigateur ne
+  résout que l'alias de l'API (<code>--host-resolver-rules</code>) : ce que le front chargeait de cdnjs est servi
+  par l'image, et un test ne dépend plus d'Internet. Exemple :
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/commun/api/plateforme/FicheWebDUneParticipationTest.java"><code>FicheWebDUneParticipationTest</code></a>.</li>
 <li>Un scénario d'écran : <code>BancDeRecette.surLaPlateformeDeTest("observatrice")</code>, exclusive des autres
   déclarations du banc. Le banc vise la plateforme et dépose le jeton sans profil ; la modale le
   revérifie seule. Exemple :
@@ -16374,8 +16382,8 @@ au suivant (#5644). Un scénario qui n'existe que sur la plateforme de test port
 <code>@Tag("plateforme-de-test-seule")</code>, que le tournage national exclut. Le détail est dans
 <a href="../recette/clips-connectes/">Les clips connectés</a>.</p>
 <h3 id="ses-epingles">Ses épingles<a class="headerlink" href="#ses-epingles" title="Permanent link">&para;</a></h3>
-<p><code>epingles.properties</code> est le <strong>seul</strong> endroit qui porte la révision de l'API, celle du front et le
-digest de Mongo. <code>api.Dockerfile</code> ne donne donc aucune valeur par défaut à <code>REVISION</code> ni à
+<p><code>epingles.properties</code> est le <strong>seul</strong> endroit qui porte la révision de l'API, celle du front, et les
+digests de Mongo et du navigateur. <code>api.Dockerfile</code> ne donne donc aucune valeur par défaut à <code>REVISION</code> ni à
 <code>FRONT_REVISION</code>, et <code>ImageDeLApiSansRevisionTest</code> exige qu'il refuse de se construire sans l'une ou
 l'autre. Chacun de ses deux cas vise le nom de son épingle : un refus qui ne nommerait
 qu'<code>epingles.properties</code> laisserait un cas passer sur le refus de l'autre. Les deux épingles se
@@ -16397,9 +16405,9 @@ décision, qui se dit dans la demande qui la porte.</p>
   (<code>WorkerDeLaPlateformeDeTest.jouerLExtraction</code>,
   <a href="../decisions/5970-la-plateforme-de-test-joue-l-extraction-d-une-archive-par-le-code-du-serveur/">ADR 5970</a>).
   C'est elle qui dit ce que le serveur fait d'un son qu'une archive lui rend alors qu'il l'a déjà.</li>
-<li><strong>La lecture par la fiche web</strong> des écritures de Companion : le front est servi, mais aucun
-  navigateur ne l'ouvre encore (#6061), et ce qu'il rend sans les ressources qu'il charge du dehors
-  (cdnjs, Google Maps) n'est pas mesuré. C'est la suite du sous-chantier #5645.</li>
+<li><strong>La lecture par la fiche web</strong> des écritures de Companion : un navigateur ouvre la fiche d'une
+  participation semée (#6061), mais aucun test n'y relit encore ce que Companion a écrit. C'est la
+  suite du sous-chantier #5645 (#6062 à #6064).</li>
 <li><strong>Un transfert ou une durée</strong> : sur un lien local, la latence est nulle (lot #5646).</li>
 </ul>
 <h2 id="les-outils-qualite">Les outils qualité<a class="headerlink" href="#les-outils-qualite" title="Permanent link">&para;</a></h2>
