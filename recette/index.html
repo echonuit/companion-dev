@@ -14490,6 +14490,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#un-clip-finit-sur-son-verdict-pose-5933" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un clip finit sur son verdict, posé (#5933)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -15758,6 +15769,17 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#un-clip-finit-sur-son-verdict-pose-5933" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Un clip finit sur son verdict, posé (#5933)
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -16123,6 +16145,55 @@ fige TestFX : un test les remplace par un double, la règle ne les couvre pas et
 regarde pas.</p>
 <p><code>ScenarioModaleCarreTest</code> sert de modèle : il part de « Mes sites », ouvre la déclaration par son
 bouton et laisse la fenêtre derrière la modale.</p>
+<h3 id="un-clip-finit-sur-son-verdict-pose-5933">Un clip finit sur son verdict, posé (#5933)<a class="headerlink" href="#un-clip-finit-sur-son-verdict-pose-5933" title="Permanent link">&para;</a></h3>
+<p>Deux tournages du même commit se comparent par leur <strong>dernière image</strong> (<a href="comparer-deux-tournages/">comparer deux
+tournages</a>). Elle doit donc montrer le verdict du cas, au même endroit,
+à chaque tournage. Le chantier #5933 a sorti neuf clips qui ne le faisaient pas, et les causes
+rencontrées se répètent :</p>
+<table>
+<thead>
+<tr>
+<th>Ce que montre la dernière image</th>
+<th>La cause</th>
+<th>Le geste</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>l'opération encore en vol</td>
+<td>l'attente avant la fin ne peut pas expirer : un libellé jamais vide, un nœud que le FXML déclare</td>
+<td>attendre un état que l'étape seule produit (<a href="../decisions/6002-une-attente-de-fin-attend-un-etat-que-son-etape-seule-produit/">ADR 6002</a>)</td>
+</tr>
+<tr>
+<td>tantôt avant, tantôt après la conclusion</td>
+<td>le cas finit sitôt l'état arrivé</td>
+<td>caler la page, puis <code>Respiration.surLeMomentCle</code> et <code>Respiration.leTempsDeLire</code></td>
+</tr>
+<tr>
+<td>un écran délavé, une fois sur quatre</td>
+<td>la fin tombe dans le fondu d'entrée de l'écran</td>
+<td>attendre l'opacité à 1 (<code>ScenarioAccueilTest</code> en fait le produit sur les ancêtres)</td>
+</tr>
+<tr>
+<td>la page défilée à deux endroits</td>
+<td>le dernier geste accepte plusieurs positions</td>
+<td><code>GesteVisible.allerAuBasDeLaPage</code> si le verdict est le dernier élément de sa page, sinon <code>GesteVisible.poserDansLeCadre</code> (<a href="../decisions/5870-un-verdict-au-bas-de-sa-page-s-y-cale/">ADR 5870</a>, <a href="../decisions/6069-le-dernier-geste-d-un-clip-pose-une-position/">ADR 6069</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Une cinquième cause n'était pas dans le scénario mais dans l'encodeur : la place de la dernière image
+clé faisait varier la dernière image de 0,3 à 0,9 %. Elle est réglée une fois pour toutes (<a href="../decisions/6135-la-derniere-image-d-un-clip-ne-depend-plus-d-une-image-cle/">ADR
+6135</a>), et ne demande
+rien au scénario.</p>
+<p><strong>L'assertion de fin s'écrit par <code>CadreVisible.contient(noeud)</code></strong>, qui juge contre le cadre et non
+contre la scène : un nœud caché derrière la barre d'état reste visible pour la scène. Et elle se
+demande : resterait-elle verte si la page était ailleurs ? Une assertion vraie dans les deux positions
+ne tient pas le calage.</p>
+<p><strong>Un clip se juge sur plusieurs tournages, pas sur une paire.</strong> Six tournages du même commit, et la
+dernière image de chacun regardée, montrent un second mode qui sort une fois sur quatre. Un mode plus
+rare demande davantage : un clip est revenu dans la table des clips sans plancher après six tournages
+d'un seul mode (#6069), et il en a fallu douze pour l'en sortir. La comparaison contre un tournage du
+commit d'avant montre aussi ce qu'un lot a changé hors de son périmètre.</p>
 <h2 id="la-fiche-devaluation-six-axes">La fiche d'évaluation : six axes<a class="headerlink" href="#la-fiche-devaluation-six-axes" title="Permanent link">&para;</a></h2>
 <p>Chaque écran est noté sur <strong>six axes</strong>, verdict trivalué (<strong>OK / remarque / bloquant</strong>). Les axes <strong>P</strong>
 et <strong>D</strong> s'instruisent en <strong>passe statique</strong> (ils ne demandent pas de piloter l'écran) ; la session
