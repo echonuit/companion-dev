@@ -14237,6 +14237,41 @@
   
   
     <li class="md-nav__item">
+      <a href="6135-la-derniere-image-d-un-clip-ne-depend-plus-d-une-image-cle/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6135 · La dernière image d'un clip ne dépend plus d'une image clé
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/" class="md-nav__link">
         
   
@@ -16867,7 +16902,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 438<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 439<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17604,6 +17639,11 @@
 <td><a href="6069-le-dernier-geste-d-un-clip-pose-une-position/">6069</a></td>
 <td>Un clip sorti de la table des clips sans plancher y est revenu : deux tournages sur douze finissaient la page en haut, à 21 % des autres. Son dernier geste s'arrêtait dès que la cible était dans le cadre, ce qui est vrai à plusieurs positions. Le dernier geste d'un clip <strong>pose</strong> une position et la vérifie au demi-pixel, et l'assertion de fin la relit après la tenue</td>
 <td>#6069, lot 11 de #5933</td>
+</tr>
+<tr>
+<td><a href="6135-la-derniere-image-d-un-clip-ne-depend-plus-d-une-image-cle/">6135</a></td>
+<td>La dernière image d'un clip variait de 0,3 à 0,9 % entre deux tournages du même commit, parce que x264 plaçait sa dernière image clé selon le rythme du tournage et qu'une image immobile garde la qualité de cette clé. Les clés tombent à pas fixe de 25 images, sans coupure de scène, et l'encodeur finit la séance sur un pas entier de copies de sa dernière image, après l'avoir bourrée jusqu'au multiple. À source constante, l'écart tombe à 0,000 %. Les planchers se remesurent depuis zéro, et ne valent que pour cette chaîne (#6150)</td>
+<td>#6135, lot 17 de #5933</td>
 </tr>
 <tr>
 <td><a href="6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/">6022</a></td>
