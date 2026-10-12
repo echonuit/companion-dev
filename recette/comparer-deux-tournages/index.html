@@ -15714,9 +15714,11 @@ travail non publié change à l'écran</strong>.</p>
 jours.</p>
 <p>Les clips de la <strong>plateforme de test</strong> se comparent d'un tournage au suivant : <code>avant</code> =
 <code>clips-plateforme-de-test-precedent</code>, <code>apres</code> = <code>clips-plateforme-de-test</code> (#5854). Chaque tournage
-sur cette cible recopie la pré-version sous le premier nom avant de l'écraser, et les notes des deux
-disent l'exécution et le commit qui les ont tournées : c'est là qu'on lit ce qu'on compare. Deux
-tournages du même commit mesurent du bruit ; deux commits différents, ce que le second a changé.</p>
+de <code>main</code> sur cette cible recopie la pré-version sous le premier nom avant de l'écraser, et les notes
+des deux disent l'exécution et le commit qui les ont tournées : c'est là qu'on lit ce qu'on compare.
+Deux tournages du même commit mesurent du bruit ; deux commits différents, ce que le second a changé.
+Un tournage de branche ne verse sur aucune des deux (#6155) : la comparaison par défaut ne compare que
+des tournages de <code>main</code>, et une branche se compare par numéros d'exécution, comme ci-dessous.</p>
 <h3 id="comparer-une-branche-a-main-avant-fusion">Comparer une branche à <code>main</code> avant fusion<a class="headerlink" href="#comparer-une-branche-a-main-avant-fusion" title="Permanent link">&para;</a></h3>
 <p>Une valeur purement numérique est un <strong>numéro d'exécution</strong> de <code>tournage-recette.yml</code>
 (<a href="../../decisions/5930-une-comparaison-reprend-une-execution-avec-les-refus-de-la-mesure/">ADR 5930</a>).
