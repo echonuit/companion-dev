@@ -14185,6 +14185,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6142 · Une tâche de fond rend une valeur et n'écrit pas la scène, et un espion de test le relève
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16804,7 +16839,12 @@ souvent <strong>avalée</strong> (l'écran fige). Découper <strong>préparation
 / retour sur le fil FX - c'est exactement le contrat du socle <code>ExecuteurTache</code> (#793, cf.
 <a href="../patterns/">Patterns</a>), <strong>synchrone par défaut en test de vue/ViewModel</strong> (liaison Guice
 <code>@ImplementedBy(ExecuteurTacheSynchrone.class)</code>, cf. <a href="../patterns/">Patterns</a>) : avec lui,
-<code>bouton.fire()</code> rend l'état terminal observable au retour du clic, sans attente.</p>
+<code>bouton.fire()</code> rend l'état terminal observable au retour du clic, sans attente.
+L'exécuteur synchrone cache donc l'écriture d'une tâche dans la scène : elle a lieu sur le fil
+JavaFX. Toute classe qui monte le toolkit porte <code>SansEcritureHorsDuFil</code>, qui relève les écritures
+d'un nœud affiché faites hors de ce fil quand le banc monte l'exécuteur asynchrone, et un garde
+refuse la classe qui ne la porte pas
+(<a href="../decisions/6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/">ADR 6142</a>).</p>
 </div>
 <div class="admonition warning">
 <p class="admonition-title">Dès que l'exécuteur est asynchrone : attendre le signal, pas le retour du clic</p>

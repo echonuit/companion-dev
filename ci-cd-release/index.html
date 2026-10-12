@@ -14185,6 +14185,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6142 · Une tâche de fond rend une valeur et n'écrit pas la scène, et un espion de test le relève
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16666,6 +16701,11 @@ succès - et c'est pourquoi chaque garde de ce dépôt répond à <code>--auto-t
 <td><code>6022-annotation-qui-fait-taire.py</code></td>
 <td>l annotation et la marque qui font taire le portail qualite, dans <code>src/main/java</code> et <code>src/test/java</code>. Une <code>@SuppressWarnings</code> est refusee des qu une de ses valeurs sort de la liste FERMEE <code>unchecked</code>, <code>rawtypes</code>, ou n est pas un litteral : une liste de refus laisserait passer <code>all</code>, que PMD honore comme <code>unused</code>, <code>PMD</code> et <code>PMD.&lt;regle&gt;</code>. Une marque <code>NOPMD</code> est refusee dans un commentaire de ligne qui SUIT du code, seul endroit ou PMD la lit ; un bloc, des minuscules ou une ligne de commentaire seule ne font rien taire, et les deux mentions en prose du depot restent vertes. Ce que PMD honore a ete MESURE le 2026-10-07 sur une classe jetable, sous PMD 7.17.0. La lecture passe par l arbre syntaxique. Il ne lit pas les exclusions ecrites dans <code>pmd-ruleset.xml</code>. Cliquet a <strong>zero</strong>, qui se lit comme un refus (<a href="../decisions/6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/">ADR 6022</a>)</td>
 <td><code>lint.yml</code> (cliquets ADR, autotest dedie)</td>
+</tr>
+<tr>
+<td><code>6142-banc-a-toolkit-sans-espion.py</code></td>
+<td>les classes de test qui montent le toolkit JavaFX sans porter l espion du fil. Un <code>@ExtendWith</code> de <code>src/test/java</code> qui nomme <code>ApplicationExtension</code> est suspect quand il ne nomme pas <code>SansEcritureHorsDuFil</code> dans la MEME annotation, lue par l arbre syntaxique : une javadoc qui cite l un ou l autre n annote rien. Cliquet a <strong>zero</strong>. Une seule exempte, dans une liste fermee : <code>SansEcritureHorsDuFilTest</code>, l auto-test de l extension. Il ne dit rien de ce que l espion VOIT une fois porte, et un toolkit demarre sans <code>ApplicationExtension</code> sort de sa population</td>
+<td>ADR 6142</td>
 </tr>
 <tr>
 <td><code>5437-fixture-suppose-la-plateforme.py</code></td>

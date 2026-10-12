@@ -14300,6 +14300,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6142 · Une tâche de fond rend une valeur et n'écrit pas la scène, et un espion de test le relève
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16832,7 +16867,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 425<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 433<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17579,6 +17614,11 @@
 <td><a href="4462-une-cible-cliquable-tient-vingt-quatre-pixels/">4462</a></td>
 <td>WCAG 2.5.8 demande qu'une cible cliquable fasse au moins 24 × 24 px. Le garde qui tient ce seuil avait été porté du dépôt de référence sans la décision qui le fonde : son contrat disait « sans ADR », et la matrice d'ergonomie rangeait <code>wcag-cible</code> parmi les heuristiques que rien ne sert. Une cible cliquable ne se déclare pas sous 24 px, sur six types de nœud. Le garde ne lit que les dimensions chiffrées écrites dans un FXML, soit trois cibles sur 147 : les autres tiennent leur taille de leur police, et la page dit ce qu'il ne voit pas</td>
 <td>#4462, lot de #5006</td>
+</tr>
+<tr>
+<td><a href="6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/">6142</a></td>
+<td>Une tâche de fond écrivait le champ du dossier de l'écran d'import depuis son fil, tous les bancs de l'import la jouaient et aucun ne l'a vue : JavaFX ne vérifie pas le fil d'une écriture de propriété. Une tâche de fond rend une valeur, appliquée au retour sur le fil JavaFX. Un espion de test relève toute écriture d'un nœud montré faite hors de ce fil et fait rougir le cas, et un garde refuse une classe à toolkit qui ne le porte pas. Il ne voit que ce que les bancs jouent.</td>
+<td>#6142, lot de #5697</td>
 </tr>
 </tbody>
 </table>

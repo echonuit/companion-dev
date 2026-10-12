@@ -14276,6 +14276,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6142 · Une tâche de fond rend une valeur et n'écrit pas la scène, et un espion de test le relève
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16484,7 +16519,12 @@ bloqué. Le patron correct (thread virtuel → travail → <code>Platform.runLat
 <li><code>ExecuteurTache</code> (interface <code>@ImplementedBy</code> synchrone) : <code>executer(Supplier travail, Consumer
   succès, Consumer échec)</code> exécute le travail <strong>hors du fil JavaFX</strong> puis applique résultat/erreur
   <strong>sur</strong> le fil JavaFX. <code>ExecuteurTacheAsynchrone</code> (thread virtuel + <code>runLater</code>) en production ;
-  <code>ExecuteurTacheSynchrone</code> (défaut) rend les tests déterministes. Sœur d'<code>ExecuteurFiche</code>.</li>
+  <code>ExecuteurTacheSynchrone</code> (défaut) rend les tests déterministes. Sœur d'<code>ExecuteurFiche</code>.
+  <strong>Le travail ne touche aucune propriété dont dépend un nœud affiché</strong> : il rend une valeur, et c'est
+  <code>succès</code> qui l'applique. JavaFX ne vérifie pas le fil d'une écriture de propriété, et #6138 a
+  réécrit un champ de l'écran d'import depuis la tâche, de #1490 à #6139. L'extension de test
+  <code>SansEcritureHorsDuFil</code> relève une telle écriture et fait rougir le cas
+  (<a href="../decisions/6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/">ADR 6142</a>).</li>
 <li><code>IndicateurOccupation</code> : superpose sur un <code>StackPane</code> hôte un voile + roue + libellé « … en
   cours » (<code>enCoursProperty</code>, styles <code>.occupation-*</code> dans <code>design.css</code>), et pilote un <code>ExecuteurTache</code>
   via <code>occuper(libellé, travail, succès, échec)</code>. Le voile capte les clics le temps du traitement.</li>

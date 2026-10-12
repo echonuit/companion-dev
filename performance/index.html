@@ -14185,6 +14185,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6142 · Une tâche de fond rend une valeur et n'écrit pas la scène, et un espion de test le relève
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15852,7 +15887,9 @@ ramènent la progression. Le README du banc donne une procédure semi-manuelle p
 <p>Cette discipline du fil JavaFX (travail lourd hors fil, retour et progression relayés par le
 socle <code>ExecuteurTache</code>, cf. <a href="../patterns/">Patterns</a>) est la même que celle décrite côté
 <a href="../navigation/">Navigation et chrome</a> et appliquée à toutes les tâches longues : c'est un
-<strong>invariant</strong> de l'application, pas une optimisation ponctuelle.</p>
+<strong>invariant</strong> de l'application, pas une optimisation ponctuelle. Sa moitié « la tâche n'écrit
+pas la scène » est tenue par un espion de test
+(<a href="../decisions/6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/">ADR 6142</a>).</p>
 </div>
 <h2 id="les-ecritures-de-masse-passent-par-une-unite-de-travail">Les écritures de masse passent par une unité de travail<a class="headerlink" href="#les-ecritures-de-masse-passent-par-une-unite-de-travail" title="Permanent link">&para;</a></h2>
 <p>Chaque appel DAO <strong>auto-commit</strong> par défaut. Sur SQLite, un commit est un <code>fsync</code> : une boucle qui écrit
