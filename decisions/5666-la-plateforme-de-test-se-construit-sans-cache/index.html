@@ -14292,6 +14292,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../6060-le-front-web-de-la-plateforme-de-test-a-la-meme-origine-que-son-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6060 · Le front web de la plateforme de test a la même origine que son API
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/" class="md-nav__link">
         
   
@@ -15691,6 +15726,11 @@ autres jobs raccourcissent.</p>
 celle du plus long job de chaque run, par l'API des jobs (<code>/actions/runs/&lt;id&gt;/jobs</code>, champs
 <code>started_at</code> et <code>completed_at</code>). Une mesure prise sur un seul run ne suffit pas : les durées varient
 d'un facteur deux d'un runner à l'autre.</p>
+<p><strong>Remesurée le 12 octobre 2026, quand le front web est entré dans l'image de l'API (#6060).</strong> Le job
+durait de 100 à 144 s sur six runs verts de <code>main</code>. Sur trois tentatives du commit qui porte le
+front, il dure 227, 209 et 246 s, la deuxième rougie par la chute de #5818. Il finit septième sur
+quatorze, quand le plus long dure 537 à 612 s. La construction du front, environ une minute et
+demie, ne raccourcirait donc toujours pas l'attente d'un verdict : la décision tient.</p>
 <h2 id="ce-qui-a-ete-ecarte">Ce qui a été écarté<a class="headerlink" href="#ce-qui-a-ete-ecarte" title="Permanent link">&para;</a></h2>
 <p><strong>Construire les images par <code>buildx</code> hors de l'extension</strong>, puis les lui passer par leur nom : c'est
 le « sans changer l'extension » que le bloc de #5666 excluait. On

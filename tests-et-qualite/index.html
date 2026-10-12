@@ -14192,6 +14192,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../decisions/6060-le-front-web-de-la-plateforme-de-test-a-la-meme-origine-que-son-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6060 · Le front web de la plateforme de test a la même origine que son API
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../decisions/6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/" class="md-nav__link">
         
   
@@ -16301,7 +16336,10 @@ monte une plateforme <strong>par JVM</strong>, au premier test qui la demande, d
 <li>le faux S3 en TLS (<code>faux_s3.py</code>, <code>faux-s3.Dockerfile</code>), dont le certificat couvre l'hôte que
    Testcontainers rend ;</li>
 <li>l'API Vigie-Chiro (<code>api.Dockerfile</code>), à la révision épinglée, sous <code>/api/v1</code>, avec
-   <code>DEV_FAKE_S3_URL</code> pointé sur l'adresse du faux S3 <strong>vue depuis la JVM</strong>, d'où l'ordre ;</li>
+   <code>DEV_FAKE_S3_URL</code> pointé sur l'adresse du faux S3 <strong>vue depuis la JVM</strong>, d'où l'ordre. La même
+   image porte le <strong>front web</strong> de Vigie-Chiro, construit à sa propre révision, que l'API sert à sa
+   racine (<code>FRONTEND_HOSTED</code>) : le front et l'API ont la même origine, et le front appelle l'API par
+   l'adresse relative <code>/api/v1</code> (#6060) ;</li>
 <li>l'état de départ déclaré (<code>etat-de-depart.json</code>), matérialisé par <code>amorcer.py</code> dans le
    conteneur de l'API.</li>
 </ol>
@@ -16314,6 +16352,9 @@ fork, ce que garantit le profil, qui ne joue que ce tag.</p>
   déclarée (<code>observatrice</code>, <code>validatrice</code>, <code>administratrice</code>) et les identifiants de l'état de départ
   (<code>participations:nuit-traitee</code>). Exemple :
   <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/commun/api/plateforme/DepotSurLaPlateformeDeTestTest.java"><code>DepotSurLaPlateformeDeTestTest</code></a>.</li>
+<li>Le front web : <code>acces().urlDuFront()</code> rend l'adresse de sa page d'entrée, dérivée de celle de l'API
+  puisqu'ils partagent leur origine. Exemple :
+  <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/commun/api/plateforme/FrontWebSurLaPlateformeDeTestTest.java"><code>FrontWebSurLaPlateformeDeTestTest</code></a>.</li>
 <li>Un scénario d'écran : <code>BancDeRecette.surLaPlateformeDeTest("observatrice")</code>, exclusive des autres
   déclarations du banc. Le banc vise la plateforme et dépose le jeton sans profil ; la modale le
   revérifie seule. Exemple :
@@ -16325,7 +16366,7 @@ fork, ce que garantit le profil, qui ne joue que ce tag.</p>
   refuse tout saut (<code>scripts/plateforme-de-test/releve_des_sautes.py</code>) : une donnée qu'une sonde suppose
   se déclare dans l'état de départ.</li>
 </ul>
-<p>Dans les trois cas la classe porte <code>@Tag("plateforme-de-test")</code>, et <code>DeclarationDeLaPlateformeTest</code>
+<p>Dans tous les cas la classe porte <code>@Tag("plateforme-de-test")</code>, et <code>DeclarationDeLaPlateformeTest</code>
 le refuse sinon.</p>
 <p>Un scénario d'écran peut aussi se <strong>filmer</strong> sur cette cible : <code>tournage-recette.yml</code> prend l'entrée
 <code>plateforme_de_test</code>, et ses clips vont sur leur propre pré-version, où ils se comparent d'un tournage
@@ -16333,9 +16374,17 @@ au suivant (#5644). Un scénario qui n'existe que sur la plateforme de test port
 <code>@Tag("plateforme-de-test-seule")</code>, que le tournage national exclut. Le détail est dans
 <a href="../recette/clips-connectes/">Les clips connectés</a>.</p>
 <h3 id="ses-epingles">Ses épingles<a class="headerlink" href="#ses-epingles" title="Permanent link">&para;</a></h3>
-<p><code>epingles.properties</code> est le <strong>seul</strong> endroit qui porte la révision de l'API et le digest de Mongo.
-<code>api.Dockerfile</code> ne donne donc aucune valeur par défaut à <code>REVISION</code>, et <code>ImageDeLApiSansRevisionTest</code>
-exige qu'il refuse de se construire sans elle.
+<p><code>epingles.properties</code> est le <strong>seul</strong> endroit qui porte la révision de l'API, celle du front et le
+digest de Mongo. <code>api.Dockerfile</code> ne donne donc aucune valeur par défaut à <code>REVISION</code> ni à
+<code>FRONT_REVISION</code>, et <code>ImageDeLApiSansRevisionTest</code> exige qu'il refuse de se construire sans l'une ou
+l'autre. Chacun de ses deux cas vise le nom de son épingle : un refus qui ne nommerait
+qu'<code>epingles.properties</code> laisserait un cas passer sur le refus de l'autre. Les deux épingles se
+vérifient dans la première étape du Dockerfile, avant toute construction : sans elle, le cas de l'API
+bâtissait tout le front avant de refuser, et disputait le runner à la plateforme.</p>
+<p>Le front se construit comme son amont le déploie (Node 22, <code>bower</code>, <code>grunt build</code>), en une minute
+environ. Ses dépendances sont retirées dans la même instruction : le constructeur de Testcontainers
+garde l'image de cette étape à chaque reconstruction, et chacune laissait plusieurs centaines de
+mégaoctets sur le disque.
 Remonter la révision est le remède d'une dérive constatée face à la plateforme nationale : c'est une
 décision, qui se dit dans la demande qui la porte.</p>
 <h3 id="ce-quelle-ne-prouve-pas">Ce qu'elle ne prouve pas<a class="headerlink" href="#ce-quelle-ne-prouve-pas" title="Permanent link">&para;</a></h3>
@@ -16348,7 +16397,9 @@ décision, qui se dit dans la demande qui la porte.</p>
   (<code>WorkerDeLaPlateformeDeTest.jouerLExtraction</code>,
   <a href="../decisions/5970-la-plateforme-de-test-joue-l-extraction-d-une-archive-par-le-code-du-serveur/">ADR 5970</a>).
   C'est elle qui dit ce que le serveur fait d'un son qu'une archive lui rend alors qu'il l'a déjà.</li>
-<li><strong>La lecture par la fiche web</strong> des écritures de Companion : c'est le lot #5645.</li>
+<li><strong>La lecture par la fiche web</strong> des écritures de Companion : le front est servi, mais aucun
+  navigateur ne l'ouvre encore (#6061), et ce qu'il rend sans les ressources qu'il charge du dehors
+  (cdnjs, Google Maps) n'est pas mesuré. C'est la suite du sous-chantier #5645.</li>
 <li><strong>Un transfert ou une durée</strong> : sur un lien local, la latence est nulle (lot #5646).</li>
 </ul>
 <h2 id="les-outils-qualite">Les outils qualité<a class="headerlink" href="#les-outils-qualite" title="Permanent link">&para;</a></h2>

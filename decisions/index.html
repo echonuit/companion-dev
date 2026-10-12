@@ -14307,6 +14307,41 @@
   
   
     <li class="md-nav__item">
+      <a href="6060-le-front-web-de-la-plateforme-de-test-a-la-meme-origine-que-son-api/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6060 · Le front web de la plateforme de test a la même origine que son API
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/" class="md-nav__link">
         
   
@@ -16937,7 +16972,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 441<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 445<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17684,6 +17719,11 @@
 <td><a href="6002-une-attente-de-fin-attend-un-etat-que-son-etape-seule-produit/">6002</a></td>
 <td>Quarante et une attentes de fin classées une par une : quatorze lisaient un libellé qui n'est jamais vide, deux la présence d'un bouton que la modale déclare dès son chargement. Elles ne pouvaient pas expirer, et sous une étape retardée des cas passaient sans l'avoir attendue. Une attente de fin porte sur un état que son étape seule produit ; un état attendu à plusieurs endroits a son aide (<code>InspectionConclue.attendre</code>), et la vacance se prouve par le retard de l'ADR 5334. Prolonge l'ADR 5334</td>
 <td>#6002, #6105 et #6134, lots de #5933</td>
+</tr>
+<tr>
+<td><a href="6060-le-front-web-de-la-plateforme-de-test-a-la-meme-origine-que-son-api/">6060</a></td>
+<td>Pour relire sur la fiche web ce que Companion écrit, la plateforme de test sert le front web de Vigie-Chiro. Il est construit dans l'image de l'API, à sa propre révision épinglée, et l'API le sert à sa racine (<code>FRONTEND_HOSTED</code>) : même origine, adresse d'API relative <code>/api/v1</code> figée à la construction, aucun CORS. Deux origines, un relais nginx et une image à la demande sont écartés</td>
+<td>#6060, lot 1 de #5645</td>
 </tr>
 <tr>
 <td><a href="6022-un-avertissement-ne-se-tait-pas-et-un-garde-le-refuse/">6022</a></td>
