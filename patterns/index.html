@@ -17468,20 +17468,34 @@ d'événements : un service qui n'est pas observable le devient par une <strong>
 </tr>
 </tbody>
 </table>
+<p>Le port porte aussi <code>relire()</code>, avec un défaut vide pour un état constant. Relire ne décide rien : le
+lecteur demande seulement qu'on regarde de nouveau la source de vérité.</p>
 <p><strong>Trois différences avec le signal de mutation</strong>, et chacune vient de ce qu'on observe un état et non
 des événements :</p>
 <ul>
 <li><strong>Un booléen, pas un compteur.</strong> Deux mutations successives doivent réveiller deux fois ; deux
   lectures qui rendent « connecté » ne sont <strong>pas</strong> deux nouvelles. Reposer la même valeur ne réveille
   personne, et c'est le comportement voulu.</li>
-<li><strong>Un seul émetteur, nommé.</strong> « Tu écris, tu signales » n'a pas de sens ici : il n'y a qu'un endroit
-  dans l'IHM où le jeton stocké change, la modale de connexion. Elle s'abonne à sa propre
-  <code>jetonEnregistreProperty</code>, ce qui couvre d'un seul branchement les cinq chemins qui rafraîchissent
-  (connexion, échec, refus, injoignable, déconnexion) - dont on en oublierait un à les recopier.</li>
-<li><strong>La valeur se lit au berceau.</strong> <code>RefletDuJeton</code> s'initialise depuis <code>FournisseurToken</code> à la
-  construction. Partir de <code>false</code> grisserait tous les gestes au démarrage d'une session déjà connectée,
-  jusqu'à la première ouverture de la modale.</li>
+<li><strong>Pas d'émetteur unique : on relit là où l'on peut l'apprendre.</strong> Le jeton cesse de valoir par trois
+  chemins que personne ne signale : l'<strong>horloge</strong> (<code>StockageConnexion</code> le périme après 14 jours), la
+  <strong>plateforme</strong> (un <code>401</code> de l'API, que le transport fait oublier au stockage, #6151), et la <strong>modale</strong>
+  de connexion. On ne relit donc pas à la source du changement, qu'on ne voit pas toujours, mais là où un
+  écran peut le découvrir :<ul>
+<li>la modale relit à son <strong>ouverture</strong>, et sur chaque changement de sa <code>jetonEnregistreProperty</code>, ce
+  qui couvre les cinq chemins qui rafraîchissent (connexion, échec, refus, injoignable,
+  déconnexion). L'écouteur seul ne suffisait pas : le modèle de vue naît avec <code>jetonEnregistre</code> à
+  faux, et sur un jeton périmé <code>rafraichir()</code> repose faux sans rien réveiller ;</li>
+<li>chaque écran du port relit <strong>au retour de ses gestes de plateforme</strong>, dans les retours de succès,
+  d'échec et d'annulation, sur le fil JavaFX, jamais dans la tâche. C'est le moment où un jeton
+  périmé ou refusé se découvre, et le geste doit alors se fermer avant le clic suivant.</li>
 </ul>
+</li>
+</ul>
+<p>Avant #6151, la page disait « un seul émetteur, nommé : la modale ». L'horloge et la plateforme en
+  étaient deux autres, et le bouton restait ouvert sur un jeton mort.
+- <strong>La valeur se lit au berceau.</strong> <code>RefletDuJeton</code> s'initialise depuis <code>FournisseurToken</code> à la
+  construction. Partir de <code>false</code> grisserait tous les gestes au démarrage d'une session déjà connectée,
+  jusqu'à la première ouverture de la modale.</p>
 <p><strong>Côté lecteur</strong>, pas de contrat de navigation : l'écran s'abonne explicitement, parce que la
 dépendance mérite d'être lue dans son code.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">etatConnexion</span><span class="p">.</span><span class="na">ifPresent</span><span class="p">(</span><span class="n">etat</span><span class="w"> </span><span class="o">-&gt;</span>
