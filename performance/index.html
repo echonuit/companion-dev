@@ -15829,8 +15829,9 @@ complètes (avec les propriétés <code>-Dperf.*</code> de dimensionnement) sont
 <h3 id="o5-couche-donnees">O5 : couche données<a class="headerlink" href="#o5-couche-donnees" title="Permanent link">&para;</a></h3>
 <p>Les deux opérations critiques sont <strong>largement sous les cibles</strong> (facteur ~4 à ~10), grâce à l'index
 <code>idx_obs_results</code> posé en réponse au point #28 :</p>
-<p>Relevé du 24/08/2026, sur la topologie par défaut : <strong>40 carrés de 10 points</strong>, 1000 passages,
-4031 observations.</p>
+<p>Relevé du 2026-10-12, sur la topologie par défaut (<strong>40 carrés de 10 points</strong>, 1000 passages, 4031
+observations), sur la machine que nomme <code>docs/benchmarks/README.md</code> (i5-1145G7, 8 cœurs, 30,4 Gio,
+JDK 25.0.3). Trois lancements :</p>
 <table>
 <thead>
 <tr>
@@ -15844,17 +15845,20 @@ complètes (avec les propriétés <code>-Dperf.*</code> de dimensionnement) sont
 <tr>
 <td>Sélection ~4031 observations (<code>findByResults</code>)</td>
 <td>&lt; 100 ms</td>
-<td>34,4 ms ✅</td>
-<td>9,5 ms</td>
+<td>30,7 · 38,1 · 33,7 ms</td>
+<td>11,0 · 12,5 · 18,7 ms</td>
 </tr>
 <tr>
 <td>Tri/filtre ~1000 passages (multisite)</td>
 <td>&lt; 200 ms</td>
-<td>26,2 ms ✅</td>
-<td>8,2 ms</td>
+<td>47,8 · 41,6 · 32,7 ms</td>
+<td>10,3 · 11,2 · 12,3 ms</td>
 </tr>
 </tbody>
 </table>
+<p>Le relevé du 24/08/2026, sans machine nommée, donnait 34,4 et 26,2 ms à froid, 9,5 et 8,2 ms à chaud.
+Ces chiffres sont ceux de la couche données : <code>findByResults</code> n'est pas la requête que charge l'écran
+des sons, et l'IHM n'est pas mesurée (#105).</p>
 <div class="admonition note">
 <p class="admonition-title">Les deux colonnes, et laquelle regarder</p>
 <p>Le <strong>froid</strong> dit ce que coûte le premier geste du jour, démarrage de la JVM compris. Le <strong>chaud</strong> dit
@@ -15878,52 +15882,54 @@ dimension où le coût vivait.</p>
 <p>Sans l'index, la sélection faisait un <code>SCAN</code> (~75 ms froid) ; l'index la ramène à ~25 ms. Le gain est
 <strong>verrouillé par un test CI</strong> (non-régression du plan d'exécution).</p>
 <h3 id="o3-import-dune-nuit">O3 : import d'une nuit<a class="headerlink" href="#o3-import-dune-nuit" title="Permanent link">&para;</a></h3>
-<p>Le temps d'import <strong>croît linéairement</strong> avec la taille (débit ~stable 180-250 fichiers/s), la
-<strong>mémoire plafonne</strong> (~600-700 Mo pour ~1000-1500 fichiers) :</p>
+<p>Relevé du 2026-10-12, même machine, WAV de 5 s à 384 kHz, heap par défaut :</p>
 <table>
 <thead>
 <tr>
 <th style="text-align: right;">Fichiers</th>
 <th style="text-align: right;">Taille src</th>
-<th style="text-align: right;">Temps total</th>
+<th style="text-align: right;">Temps total (lancements)</th>
 <th style="text-align: right;">Débit</th>
-<th style="text-align: right;">Mémoire crête</th>
+<th style="text-align: right;">Après GC</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td style="text-align: right;">100</td>
-<td style="text-align: right;">146 Mo</td>
-<td style="text-align: right;">0,55 s</td>
-<td style="text-align: right;">~184 f/s</td>
-<td style="text-align: right;">172 Mo</td>
+<td style="text-align: right;">0,36 Gio</td>
+<td style="text-align: right;">0,77 s</td>
+<td style="text-align: right;">~478 Mo/s</td>
+<td style="text-align: right;">56 Mo</td>
 </tr>
 <tr>
-<td style="text-align: right;">500</td>
-<td style="text-align: right;">732 Mo</td>
-<td style="text-align: right;">2,38 s</td>
-<td style="text-align: right;">~210 f/s</td>
-<td style="text-align: right;">569 Mo</td>
+<td style="text-align: right;">1572</td>
+<td style="text-align: right;">5,62 Gio</td>
+<td style="text-align: right;">48,9 · 40,3 · 42,7 s</td>
+<td style="text-align: right;">~118-147 Mo/s</td>
+<td style="text-align: right;">81-82 Mo</td>
 </tr>
 <tr>
-<td style="text-align: right;">1000</td>
-<td style="text-align: right;">1,43 Gio</td>
-<td style="text-align: right;">3,97 s</td>
-<td style="text-align: right;">~252 f/s</td>
-<td style="text-align: right;">626 Mo</td>
+<td style="text-align: right;">2517</td>
+<td style="text-align: right;">9,00 Gio</td>
+<td style="text-align: right;">83,5 · 86,6 s</td>
+<td style="text-align: right;">~106-110 Mo/s</td>
+<td style="text-align: right;">84-85 Mo</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Lectures clés</strong> : la <strong>copie SD→workspace (I/O) domine</strong> (~65-70 %), la transformation parallélisée
-(#12) ~25-30 %, la persistance est négligeable (~3 %). Ordre de grandeur de référence : une <strong>vraie
-nuit</strong> (1572 fichiers) s'importe en <strong>~6-8 s</strong>, <strong>2109 séquences</strong> (découpage à 5 s réelles,
-<code>ceil(D/5)</code> par enregistrement), empreinte ~600-700 Mo.</p>
+<p><strong>Lectures clés</strong> : la nuit standard tient en moins d'une minute ; l'occupation après GC ne croît pas
+avec la nuit ; le <strong>débit baisse</strong> quand la nuit grandit, sur la même machine, et la cause n'est pas
+établie (le cache disque est l'hypothèse la plus simple, non vérifiée). La copie prend 36 à 47 % du
+temps, la transformation 51 à 62 %, la persistance moins de 3 %. Une <strong>vraie nuit</strong> de 1572 bruts
+produit <strong>2109 séquences</strong> (découpage à 5 s réelles, <code>ceil(D/5)</code> par enregistrement) ; la nuit du banc,
+à WAV de 5 s, en produit une par fichier. Le test de charge à 20 Go n'a pas été tiré, faute de disque
+(#105).</p>
 <div class="admonition warning">
 <p class="admonition-title">L'empreinte annoncée n'est pas le besoin en RAM</p>
-<p>Les ~600-700 Mo sont une <strong>crête sous heap généreux</strong> : G1 laisse s'accumuler le déchet
-transitoire jusqu'à son seuil. Le <strong>live set</strong> est bien plus petit - la même nuit passe sous
-<code>-Xmx128m</code> avec 82-83 Mo vifs, au même débit (#104). Pour dimensionner une machine, c'est ce
-second chiffre qui compte.</p>
+<p>La <strong>crête sous heap généreux</strong> échantillonnée par le banc va de 332 à 1114 Mo d'un lancement à
+l'autre de la même nuit de 1572 WAV : G1 laisse s'accumuler le déchet transitoire jusqu'à son seuil.
+L'occupation <strong>après GC</strong> reste à 81-82 Mo, et la même nuit passe sous <code>-Xmx128m</code> au même débit.
+Pour dimensionner une machine, c'est ce second chiffre qui compte.</p>
 </div>
 <p><strong>La mémoire ne suit plus la durée d'un WAV (#104).</strong> La transformation lit l'original par morceaux
 (<code>FichierWav.ouvrirPcm</code>), une tranche de 5 s en mémoire par original en vol, au lieu de le charger
@@ -15932,9 +15938,9 @@ entier. Mesuré le 2026-10-12 sur 16 WAV de 120 s : l'occupation après GC passe
 complet est dans <code>docs/benchmarks/README.md</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Des ordres de grandeur, pas des garanties</p>
-<p>Ces chiffres viennent d'une <strong>machine de référence</strong>. Sur un poste plus modeste, refaire la mesure.
-La règle du banc : <strong>première utilisation du jour</strong> (JIT + cache disque froids) pour la valeur
-« à froid » qui fait foi, puis relancer 2-3 fois et garder l'ordre de grandeur.</p>
+<p>Ces chiffres valent pour la machine qu'ils nomment. Sur un autre poste, refaire la mesure. La règle
+du banc suit <code>O5.md</code> : un appel jeté, puis trois relevés dont on publie les trois valeurs ; la valeur
+à froid se publie à part, parce qu'elle mesure le démarrage de la JVM et non la capacité.</p>
 </div>
 <h3 id="choisir-un-mecanisme-de-parallelisme">Choisir un mécanisme de parallélisme<a class="headerlink" href="#choisir-un-mecanisme-de-parallelisme" title="Permanent link">&para;</a></h3>
 <p>Deux questions distinctes, qu'il est tentant de confondre :</p>
