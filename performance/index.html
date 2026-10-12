@@ -15925,6 +15925,11 @@ transitoire jusqu'à son seuil. Le <strong>live set</strong> est bien plus petit
 <code>-Xmx128m</code> avec 82-83 Mo vifs, au même débit (#104). Pour dimensionner une machine, c'est ce
 second chiffre qui compte.</p>
 </div>
+<p><strong>La mémoire ne suit plus la durée d'un WAV (#104).</strong> La transformation lit l'original par morceaux
+(<code>FichierWav.ouvrirPcm</code>), une tranche de 5 s en mémoire par original en vol, au lieu de le charger
+entier. Mesuré le 2026-10-12 sur 16 WAV de 120 s : l'occupation après GC passe de 904 à 68 Mo sous
+<code>-Xmx2g</code>, et la nuit, qui tombait sur une <code>OutOfMemoryError</code> sous <code>-Xmx128m</code>, s'importe. Le tableau
+complet est dans <code>docs/benchmarks/README.md</code>.</p>
 <div class="admonition warning">
 <p class="admonition-title">Des ordres de grandeur, pas des garanties</p>
 <p>Ces chiffres viennent d'une <strong>machine de référence</strong>. Sur un poste plus modeste, refaire la mesure.
