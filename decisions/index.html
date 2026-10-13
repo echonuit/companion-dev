@@ -14580,6 +14580,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6183-l-api-de-la-plateforme-de-test-est-servie-comme-en-production/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6183 · L'API de la plateforme de test est servie comme en production
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -17899,6 +17934,11 @@
 <td><a href="6184-un-ecran-n-ecoute-ce-qui-lui-survit-que-par-une-ecoute-faible/">6184</a></td>
 <td>Un écran qui pose un écouteur sur un singleton s'y fait retenir jusqu'à la fermeture : la fiche d'un carré le faisait (#6170), l'écran des réglages aussi, trouvé par le garde à son premier tir. Un écran suit ce qui lui survit par une liaison, ou par <code>EcouteFaible</code>, qui inscrit l'écouteur faible et le fait tenir par son porteur. <code>EcranQuitteEstRenduTest</code> ouvre chaque écran qui reçoit un singleton observable, le quitte et le veut rendu, et tient son inventaire contre la composition. Les modales et le chrome sont hors du test, et c'est dit</td>
 <td>#6178, lot #6184</td>
+</tr>
+<tr>
+<td><a href="6183-l-api-de-la-plateforme-de-test-est-servie-comme-en-production/">6183</a></td>
+<td>Le job <code>plateforme-de-test</code> rougissait par intermittence sur une écriture sans réponse, et rien ne disait ce que l'API faisait alors. Ses journaux, versés depuis, ont montré la requête absente du côté de l'API, qui n'avait ni redémarré ni planté. L'image lance désormais l'API par <code>gunicorn</code>, comme l'amont en production, avec des workers synchrones qui ne gardent aucune connexion ouverte. Dix-neuf tirs sans cette chute ont suivi, dont dix verts de suite ; le mécanisme reste une hypothèse</td>
+<td>#6183</td>
 </tr>
 </tbody>
 </table>
