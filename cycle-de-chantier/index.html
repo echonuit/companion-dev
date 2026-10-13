@@ -15924,56 +15924,79 @@ une fraction plus basse posée après une plus haute ne redescend pas, et l'esti
 sur l'ancienne. La capture était juste par accident de séquence, et rien ne le disait. Sans ce
 rouge-là, la règle serait restée invisible jusqu'au jour où un outil aurait posé une fraction
 décroissante.</p>
-<h3 id="une-trouvaille-se-consigne-en-issue-au-moment-ou-on-la-fait">Une trouvaille se consigne en ISSUE, au moment où on la fait<a class="headerlink" href="#une-trouvaille-se-consigne-en-issue-au-moment-ou-on-la-fait" title="Permanent link">&para;</a></h3>
-<p>Le paragraphe ci-dessus dit de lire la trouvaille. Celui-ci dit ce qu'on en fait ensuite, et le
-geste est immédiat : <strong>on ouvre l'issue tout de suite</strong>, avant de revenir au travail en cours.</p>
-<p>Pas à la clôture, et pas en commentaire. Un commentaire n'a pas d'état, ne se filtre pas, ne remonte
-dans aucune liste, et sort de la vue dès que sa pull request est fusionnée. Une trouvaille qui n'existe
-que là est perdue à la fusion.</p>
+<h3 id="une-trouvaille-secrit-au-moment-ou-on-la-fait-et-la-plupart-ne-deviennent-pas-des-issues">Une trouvaille s'écrit au moment où on la fait, et la plupart ne deviennent pas des issues<a class="headerlink" href="#une-trouvaille-secrit-au-moment-ou-on-la-fait-et-la-plupart-ne-deviennent-pas-des-issues" title="Permanent link">&para;</a></h3>
+<p>Le paragraphe ci-dessus dit de lire la trouvaille. Celui-ci dit où elle s'écrit, et le geste est
+immédiat : <strong>on l'écrit tout de suite</strong>, avant de revenir au travail en cours. Ce qui dépend de la
+trouvaille est le support, et c'est ici seulement que la règle s'écrit ; les autres pages et les
+compétences y renvoient.</p>
+<p><strong>Une suite qu'on ne traite pas se nomme comme dette, sans issue.</strong> Qu'elle soit trouvée pendant un
+lot ou à la clôture du chantier, elle s'écrit à deux endroits successifs :</p>
+<ul>
+<li>tant que le chantier court, dans le <strong>corps de son EPIC</strong>, fait par fait, avec le fichier, la ligne
+  et le chiffre ;</li>
+<li>à la clôture, dans le <strong>bilan</strong> de la passe 12 (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/rendre-le-bilan/SKILL.md"><code>rendre-le-bilan</code></a>),
+  qui la reprend en « dette restante ».</li>
+</ul>
+<p><strong>Une issue ne s'ouvre que pour un défaut mesuré qui toucherait un utilisateur, ou qui ferait mentir
+un garde.</strong> Les deux conditions comptent. Mesuré veut dire qu'on tient le chiffre, le message
+littéral ou la reproduction, et pas une impression ; et le défaut atteint quelqu'un qui se sert du
+produit, ou fait dire à un garde du dépôt une chose fausse.</p>
+<p><strong>Un engagement daté garde son issue.</strong> Ce n'est pas une suite qu'on abandonne : il se tient à une
+date. La loupe de l'<a href="../decisions/5539-un-engagement-date-se-lit-par-un-dispositif/">ADR 5539</a> ne lit les
+engagements que dans le titre et le corps des issues, et un engagement écrit dans un bilan lui serait
+invisible.</p>
+<p>La règle a été décidée par le porteur le 2026-10-06 et confirmée le 2026-10-13 (#6201). Elle
+remplace celle qui faisait de chaque trouvaille une issue, et ce qu'elle a coûté se mesure. Le
+2026-10-06, une journée de travail a fermé une quarantaine d'issues, et le stock n'a baissé que de
+179 à 168 : chaque suite devenait une issue. Le 2026-10-13, une session a ouvert trois issues de
+suite sous #6178, dont deux non mesurées, en appliquant à la lettre ce que cette page disait alors.</p>
 <p><strong>Ce qui se perd n'est pas la trouvaille, c'est son détail.</strong> On se souvient trois jours plus tard
 qu'« il y avait un souci avec le tri des échecs ». On ne se souvient pas que le job avait été coupé à
 92 minutes sur un plafond de 90, que le tableau annonçait 618 classes sur 758, ni que le script rendait
-<code>0</code>. Ces trois nombres sont ce qui rend l'issue traitable, et ce sont exactement eux qui ne se
-retrouvent pas. Une issue de trois lignes écrite sur le coup vaut mieux qu'un paragraphe exact écrit de
-mémoire.</p>
-<p>Elle se rattache alors à l'un des deux endroits, et le choix ne se discute pas longtemps :</p>
+<code>0</code>. Ces trois nombres sont ce qui rend la trouvaille traitable, et ce sont exactement eux qui ne se
+retrouvent pas. Trois lignes écrites sur le coup dans le corps de l'EPIC valent mieux qu'un paragraphe
+exact écrit de mémoire au moment du bilan.</p>
+<p>Quand l'issue s'ouvre, elle se rattache à l'un des deux endroits, et le choix ne se discute pas
+longtemps :</p>
 <ul>
-<li>à l'<strong>EPIC du chantier en cours</strong>, si elle tombe dans son périmètre ;</li>
+<li>à l'<strong>EPIC du chantier qui traite sa cause</strong>, s'il existe ;</li>
 <li>sinon à l'<strong>EPIC des suites</strong> (<a href="https://github.com/echonuit/vigiechiro-pr-companion/issues/4562">#4562</a>),
   qui est un <strong>sas</strong> : rien ne s'y traite directement, et la passe 9 le vide.</li>
 </ul>
 <p>En cas de doute, l'EPIC des suites. Un rattachement trop large se corrige en passe 9, qui est faite
-pour cela ; une trouvaille jamais écrite ne se corrige pas.</p>
+pour cela.</p>
 <p><strong>Le rattachement est une sous-issue</strong>, pas une ligne ajoutée au corps de l'EPIC :</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gh<span class="w"> </span>issue<span class="w"> </span>create<span class="w"> </span>--parent<span class="w"> </span>&lt;EPIC&gt;<span class="w"> </span>--title<span class="w"> </span><span class="s2">"..."</span><span class="w">   </span><span class="c1"># à l'ouverture de la trouvaille</span>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>gh<span class="w"> </span>issue<span class="w"> </span>create<span class="w"> </span>--parent<span class="w"> </span>&lt;EPIC&gt;<span class="w"> </span>--title<span class="w"> </span><span class="s2">"..."</span><span class="w">   </span><span class="c1"># à l'ouverture du défaut mesuré</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>gh<span class="w"> </span>issue<span class="w"> </span>edit<span class="w"> </span>&lt;n&gt;<span class="w"> </span>--parent<span class="w"> </span>&lt;EPIC&gt;<span class="w">               </span><span class="c1"># pour la déplacer</span>
 </code></pre></div>
-<p>Une liste tenue à la main dans un corps d'EPIC se périme sans bruit, et elle ne se compte pas. Le
-lien natif se lit par <code>gh issue view &lt;EPIC&gt; --json parent,subIssues,subIssuesSummary</code> : chaque issue
-porte son chantier, et la taille d'un EPIC est un nombre plutôt qu'un décompte à l'œil.</p>
-<p><strong>La seule dispense, et elle est étroite</strong> : une trouvaille <strong>corrigée dans la pull request en cours</strong>
-n'a pas besoin d'issue. Le corps de la PR la porte, et rien ne peut se perdre entre la trouvaille et
-son remède puisqu'ils voyagent ensemble. C'est le cas de l'auto-test absent découvert en traitant</p>
-<h1 id="4544-corrige-dans-la-meme-pr-et-jamais-consigne-ailleurs">4544, corrigé dans la même PR et jamais consigné ailleurs.<a class="headerlink" href="#4544-corrige-dans-la-meme-pr-et-jamais-consigne-ailleurs" title="Permanent link">&para;</a></h1>
+<p>Une liste d'issues tenue à la main dans un corps d'EPIC se périme sans bruit, et elle ne se compte pas.
+Le lien natif se lit par <code>gh issue view &lt;EPIC&gt; --json parent,subIssues,subIssuesSummary</code> : chaque issue
+porte son chantier, et la taille d'un EPIC est un nombre plutôt qu'un décompte à l'œil. La dette, elle,
+n'est pas une liste d'issues : c'est la description de ce qu'on laisse, et elle a sa place dans le
+corps.</p>
+<p><strong>La dispense, et elle est étroite</strong> : une trouvaille <strong>corrigée dans la pull request en cours</strong> ne
+s'écrit ni en dette ni en issue. Le corps de la PR la porte, et rien ne peut se perdre entre la
+trouvaille et son remède puisqu'ils voyagent ensemble. C'est le cas de l'auto-test absent découvert en
+traitant #4544, corrigé dans la même PR et jamais consigné ailleurs.</p>
 <p>Elle cesse de s'appliquer dès que le remède sort de cette PR, pour quelque raison que ce soit :
-périmètre, taille, ou simplement le fait qu'on le remette à plus tard. À cet instant précis, l'issue
-s'ouvre. « Je le corrige tout de suite » est la formule qui fait disparaître les trouvailles quand
-elle se révèle fausse une heure après.</p>
+périmètre, taille, ou simplement le fait qu'on le remette à plus tard. À cet instant précis, la
+trouvaille s'écrit, en dette ou en issue selon la règle ci-dessus. « Je le corrige tout de suite » est
+la formule qui fait disparaître les trouvailles quand elle se révèle fausse une heure après.</p>
 <div class="admonition warning">
 <p class="admonition-title">Un compte rendu n'est pas une consignation</p>
 <p>Signaler la trouvaille dans le corps d'une pull request, dans un commentaire ou dans un rapport de
 fin de tâche <strong>ne compte pas</strong>. Le signalement y est réel et il est pourtant perdu, parce qu'un
 rapport long enterre ses propres trouvailles : qui le lit en diagonale retient la conclusion, pas
-les trois lignes du milieu.</p>
-<p>Vécu sur #4522, qui en a produit trois. Une seule est devenue une issue sur le coup, #4544, et
-c'est la seule qui n'a jamais risqué de disparaître. Les deux autres, #4553 et #4554, n'ont été
-ouvertes qu'après réclamation explicite, alors qu'elles avaient été décrites dès leur
-découverte. Le signalement ne manquait pas ; il n'avait aucun support qui survive.</p>
+les trois lignes du milieu. Le corps de l'EPIC, lui, se relit à la clôture, et le bilan le reprend.</p>
+<p>Vécu sur #4522, qui en a produit trois. Une seule a été consignée sur le coup, #4544, et c'est la
+seule qui n'a jamais risqué de disparaître. Les deux autres, #4553 et #4554, n'ont été consignées
+qu'après réclamation explicite, alors qu'elles avaient été décrites dès leur découverte. Le
+signalement ne manquait pas ; il n'avait aucun support qui survive.</p>
 </div>
-<p><strong>Ce n'est pas une charge nouvelle.</strong> C'est le même travail que la passe 9 demandait déjà, fait au
-moment où le contexte est frais plutôt que reconstitué. Ce qui change est le coût : quelques minutes
-pendant qu'on a le message d'erreur sous les yeux, contre une demi-heure d'archéologie trois jours plus
-tard, pour un résultat moins juste.</p>
+<p><strong>Ce n'est pas une charge nouvelle.</strong> Le bilan de la passe 12 devait déjà nommer la dette restante ;
+l'écrire en chemin, c'est le faire au moment où le contexte est frais plutôt que reconstitué. Ce qui
+change est le coût : quelques minutes pendant qu'on a le message d'erreur sous les yeux, contre une
+demi-heure d'archéologie trois jours plus tard, pour un résultat moins juste.</p>
 <h3 id="refactor-a-chaque-tour-et-a-la-bonne-echelle">REFACTOR : à chaque tour, et à la bonne échelle<a class="headerlink" href="#refactor-a-chaque-tour-et-a-la-bonne-echelle" title="Permanent link">&para;</a></h3>
 <p><strong>Le refactoring appartient au cycle, pas seulement à la clôture.</strong> Il est <strong>tenté à chaque tour de
 boucle</strong>, c'est-à-dire des dizaines de fois par issue : pas nécessairement appliqué, mais
@@ -16101,8 +16124,9 @@ de cela ne doit rester uniquement en commentaire.</p>
   trouvailles incidentes.</li>
 </ul>
 <p>Une trouvaille incidente s'écrit donc à deux endroits, et le commentaire n'est pas le second : elle a
-déjà son issue, ouverte au moment où on l'a faite (voir « Une trouvaille se consigne en ISSUE »
-ci-dessus). Le commentaire en garde la trace dans le fil ; c'est l'issue qui la porte.</p>
+déjà été écrite au moment où on l'a faite, en dette dans le corps de l'EPIC ou, si c'est un défaut
+mesuré, dans sa propre issue (voir « Une trouvaille s'écrit au moment où on la fait » ci-dessus). Le
+commentaire en garde la trace dans le fil ; c'est l'EPIC ou l'issue qui la porte.</p>
 <p>D'où la règle : <strong>tout commentaire qui change la lecture de l'issue est suivi d'une édition du corps.</strong>
 Le commentaire reste comme trace, le corps porte la conclusion.</p>
 <p>C'est la généralisation d'une règle qui n'existait qu'au triage (étape 0) : « un recadrage laissé en
@@ -16158,8 +16182,8 @@ quand toutes les décisions sont prises, et le bilan vient en dernier parce qu'i
 <h3 id="12-phase-de-bilan">12. Phase de bilan<a class="headerlink" href="#12-phase-de-bilan" title="Permanent link">&para;</a></h3>
 <p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/rendre-le-bilan/SKILL.md"><code>rendre-le-bilan</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h2 id="les-suites-dune-cloture-se-closent-aussi">Les suites d'une clôture se closent aussi<a class="headerlink" href="#les-suites-dune-cloture-se-closent-aussi" title="Permanent link">&para;</a></h2>
-<p>La passe 9 consolide les issues ouvertes en chemin ; la passe 12 les nomme « dette restante » et clôt
-l'EPIC. Ces issues, une fois livrées, forment un <strong>nouveau delta</strong>, et rien ne les rattrape si l'on
+<p>La passe 9 consolide les issues ouvertes en chemin pour des défauts mesurés ; la passe 12 reprend la
+dette nommée dans le corps de l'EPIC en « dette restante », et clôt l'EPIC. Ces issues, une fois livrées, forment un <strong>nouveau delta</strong>, et rien ne les rattrape si l'on
 considère que le chantier est fini.</p>
 <p>Le dépôt l'a vécu trois fois : les suites de l'EPIC #1662 ont formé l'EPIC #1863, dont les suites
 ont formé le delta clos par #1920 ; les suites de #1838 ont eu leur propre clôture (#1921). Le patron
@@ -16196,10 +16220,10 @@ trompé : une analyse fausse laissée en place oriente le chantier suivant.</p>
 <a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="k">- [ ]</span> 4. Doc utilisateur (docs/) + captures
 <a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="k">- [ ]</span> 5. Brief projet (<span class="sb">`brief/`</span>, dans la PR du chantier) répercuté si un élément de conception change
 <a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="k">- [ ]</span> 6. Tests : inventaire des usages <span class="gs">**depuis le diff**</span> (chemins non nominaux, parité CLI ↔ IHM), E2E qui <span class="gs">**traversent les coutures**</span>, <span class="gs">**PIT ciblé**</span> (survivants lus un par un) et <span class="gs">**E2E `bats`**</span> si la CLI bouge
-<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">- [ ]</span> 6b. Recette <span class="gs">**préparée**</span> : chaque capacité ajoutée a sa case <span class="sb">`Sxx-NN`</span> dans sa <span class="gs">**session propriétaire**</span> (geste + observation attendue), la <span class="gs">**fixture**</span> existe ou la spec du générateur est étendue, session manquante ou jamais jouée <span class="gs">**signalée en issue**</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">- [ ]</span> 6b. Recette <span class="gs">**préparée**</span> : chaque capacité ajoutée a sa case <span class="sb">`Sxx-NN`</span> dans sa <span class="gs">**session propriétaire**</span> (geste + observation attendue), la <span class="gs">**fixture**</span> existe ou la spec du générateur est étendue, session manquante ou jamais jouée <span class="gs">**nommée en dette dans l'EPIC**</span>
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l'utilisateur**</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">- [ ]</span> 9. Nouveaux chantiers identifiés + issues créées
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">- [ ]</span> 9. Sas vidé de ce qui relève du chantier ; suites non traitées nommées en dette, issue seulement pour un défaut mesuré
 <a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">- [ ]</span> 10. Changement OpenSpec archivé : delta specs <span class="gs">**fusionnées d'abord**</span> dans <span class="sb">`openspec/specs/`</span>, toutes les capacités re-comparées, <span class="gs">**puis**</span> le dossier déplacé sous <span class="sb">`archive/`</span>
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="k">- [ ]</span> 11. ADR du chantier écrites (balayer les passes 0 à 10 ; une décision <span class="gs">**de ne pas faire**</span> en est une)
 <a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">- [ ]</span> 12. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
