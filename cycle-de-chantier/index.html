@@ -15796,8 +15796,10 @@ est cadrée.</p>
 <p>Les passes <strong>1 à 9 ne changent pas de numéro</strong>, et c'est délibéré. Le dépôt compte <strong>42 citations</strong>
 de passes numérotées, dont <strong>35 dans <code>dev-docs/decisions/</code></strong>, des documents que la règle déclare
 <strong>immuables</strong>. Décaler la série rendrait fausses 35 références qu'on s'interdit d'éditer, sans que
-rien ne rougisse. Les deux passes ajoutées se placent donc aux extrémités : la 0 en tête, la 10
-et la 11 en queue.</p>
+rien ne rougisse. Les passes ajoutées alors se sont donc placées aux extrémités : la 0 en tête, les
+deux dernières en queue. L'archivage OpenSpec s'est inséré depuis en 10 (#4518), parce que son
+effet devait précéder l'écriture des ADR : les deux dernières ont glissé d'un cran, et la série va
+de 0 à 12.</p>
 <p>Le « 0 » n'est pas un pis-aller : l'ouverture d'un chantier a déjà son étape 0, et c'est déjà
 <em>relire l'existant avant d'agir</em>. La même figure aux deux bouts.</p>
 </div>
@@ -16040,7 +16042,8 @@ lot ou à la clôture du chantier, elle s'écrit à deux endroits successifs :</
 <li>tant que le chantier court, dans le <strong>corps de son EPIC</strong>, fait par fait, avec le fichier, la ligne
   et le chiffre ;</li>
 <li>à la clôture, dans le <strong>bilan</strong> de la passe 12 (<a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/rendre-le-bilan/SKILL.md"><code>rendre-le-bilan</code></a>),
-  qui la reprend en « dette restante ».</li>
+  qui dit par quelle porte chacune est sortie : <strong>aucune ne reste dans l'EPIC qui se ferme</strong>. La
+  règle est plus bas, <a href="#une-dette-ne-reste-pas-dans-un-epic-qui-se-ferme">Une dette ne reste pas dans un EPIC qui se ferme</a>.</li>
 </ul>
 <p><strong>Une issue ne s'ouvre que pour un défaut mesuré qui toucherait un utilisateur, ou qui ferait mentir
 un garde.</strong> Les deux conditions comptent. Mesuré veut dire qu'on tient le chiffre, le message
@@ -16078,7 +16081,7 @@ pour cela.</p>
 Le lien natif se lit par <code>gh issue view &lt;EPIC&gt; --json parent,subIssues,subIssuesSummary</code> : chaque issue
 porte son chantier, et la taille d'un EPIC est un nombre plutôt qu'un décompte à l'œil. La dette, elle,
 n'est pas une liste d'issues : c'est la description de ce qu'on laisse, et elle a sa place dans le
-corps.</p>
+corps tant que l'EPIC est ouvert.</p>
 <p><strong>La dispense, et elle est étroite</strong> : une trouvaille <strong>corrigée dans la pull request en cours</strong> ne
 s'écrit ni en dette ni en issue. Le corps de la PR la porte, et rien ne peut se perdre entre la
 trouvaille et son remède puisqu'ils voyagent ensemble. C'est le cas de l'auto-test absent découvert en
@@ -16098,7 +16101,7 @@ seule qui n'a jamais risqué de disparaître. Les deux autres, #4553 et #4554, n
 qu'après réclamation explicite, alors qu'elles avaient été décrites dès leur découverte. Le
 signalement ne manquait pas ; il n'avait aucun support qui survive.</p>
 </div>
-<p><strong>Ce n'est pas une charge nouvelle.</strong> Le bilan de la passe 12 devait déjà nommer la dette restante ;
+<p><strong>Ce n'est pas une charge nouvelle.</strong> Le bilan de la passe 12 devait déjà nommer la dette ;
 l'écrire en chemin, c'est le faire au moment où le contexte est frais plutôt que reconstitué. Ce qui
 change est le coût : quelques minutes pendant qu'on a le message d'erreur sous les yeux, contre une
 demi-heure d'archéologie trois jours plus tard, pour un résultat moins juste.</p>
@@ -16286,9 +16289,79 @@ quand toutes les décisions sont prises, et le bilan vient en dernier parce qu'i
 <p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/ecrire-une-adr/SKILL.md"><code>ecrire-une-adr</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
 <h3 id="12-phase-de-bilan">12. Phase de bilan<a class="headerlink" href="#12-phase-de-bilan" title="Permanent link">&para;</a></h3>
 <p>La procédure vit dans la compétence <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/.agents/skills/rendre-le-bilan/SKILL.md"><code>rendre-le-bilan</code></a>, qui est ce qu'un agent lit au moment du geste.</p>
+<h2 id="une-dette-ne-reste-pas-dans-un-epic-qui-se-ferme">Une dette ne reste pas dans un EPIC qui se ferme<a class="headerlink" href="#une-dette-ne-reste-pas-dans-un-epic-qui-se-ferme" title="Permanent link">&para;</a></h2>
+<p>Nommer une dette dans le corps de l'EPIC la garde en vue tant que le chantier court. Le jour où
+l'EPIC se ferme, plus personne ne relit ce corps, et depuis #6203 une suite non traitée n'a pas
+d'issue qui la rappelle : une dette qu'on y laisse n'est plus due par personne. <strong>À la clôture, aucune
+dette ne reste donc dans l'EPIC.</strong> Chacune est d'abord instruite, puis elle sort par l'une de trois
+portes.</p>
+<p><strong>Instruite</strong> veut dire qu'elle porte trois choses, écrites :</p>
+<ul>
+<li>sa <strong>mesure du jour</strong>, rejouée à la clôture avec la commande ou le relevé qui la produit, ou la
+  raison pour laquelle on ne peut pas la mesurer. Une mesure prise en chemin se rejoue, puisque le
+  chantier a pu la déplacer ;</li>
+<li><strong>ce que la laisser coûte</strong>, et à qui ;</li>
+<li>une <strong>décision</strong>, qui est l'une des trois portes.</li>
+</ul>
+<p>Instruite ne veut pas dire traitée, ni même que son remède soit choisi : la décision demandée est
+celle de la porte. Une dette peut partir vers un autre EPIC avec deux remèdes encore ouverts, pourvu
+qu'elle parte avec sa mesure et son coût.</p>
+<p>Deux choses <strong>bloquent la fermeture</strong>. Une dette qui n'est pas instruite : celle dont on écrit
+« jamais mesuré » sans dire pourquoi. Et une dette qui n'a pris aucune porte : celle dont on écrit
+« à voir plus tard », ou « le choix reste à faire » sans dire quel EPIC le fera.</p>
+<p>Les trois portes :</p>
+<table>
+<thead>
+<tr>
+<th>Porte</th>
+<th>Ce qui s'écrit</th>
+<th>Où</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Abandonnée avec sa justification</strong></td>
+<td>la raison pour laquelle on ne le fera pas, qui dit ce que l'abandon coûte et à qui. C'est une décision de ne pas faire, et ce n'est plus une dette</td>
+<td>parmi les décisions du bilan, et en ADR quand elle est structurante (passe 11)</td>
+</tr>
+<tr>
+<td><strong>Transférée à un EPIC ouvert</strong></td>
+<td>la dette entière, avec sa mesure et sa provenance</td>
+<td>dans la section « Dette nommée » du corps de l'EPIC qui la reçoit ; le bilan dit où elle est partie</td>
+</tr>
+<tr>
+<td><strong>Engagée à une date</strong></td>
+<td>l'engagement, sa date, et l'unité dans laquelle il se vérifiera</td>
+<td>dans une issue, qu'un engagement daté garde (<a href="../decisions/5539-un-engagement-date-se-lit-par-un-dispositif/">ADR 5539</a>)</td>
+</tr>
+</tbody>
+</table>
+<p>Il n'y a pas de quatrième porte. Une dette qui n'en a pris aucune est une dette abandonnée sans
+justification, et c'est ce que la règle interdit.</p>
+<p><strong>Le corps de l'EPIC ne garde aucune dette due.</strong> Avant de fermer, sa section « Dette nommée » se
+réécrit : chaque dette y devient une ligne qui dit par quelle porte elle est sortie, et où la lire
+(le bilan, l'EPIC qui l'a reçue, ou l'issue qui porte la date). Le sort de chaque dette fait partie
+de ce que le bilan soumet au porteur avant de clore.</p>
+<p><strong>La porte se choisit en passe 9, et le bilan de la passe 12 la rapporte.</strong> Un abandon est une
+décision de ne pas faire : la passe 11 doit l'avoir sous les yeux pour dire s'il lui faut une ADR.
+Une dette révélée après la passe 9 fait rejouer ce choix pour elle, puis la passe 11.</p>
+<p><strong>L'EPIC qui reçoit une dette la devra à son tour.</strong> Une dette transférée retrouve la même question à
+la clôture suivante, et elle ne quitte cette chaîne que par une justification ou par une date. L'EPIC
+d'accueil est celui qui traite sa cause, ou un EPIC ouvert pour les suites de ce chantier (« Les
+suites de #N »). Il est <strong>ouvert</strong> au moment du transfert, et le transfert s'écrit <strong>à l'arrivée
+d'abord</strong> : une dette annoncée partie vers un EPIC qui ne la porte pas est une dette perdue.</p>
+<p><strong>Le sas des suites (#4562) n'est pas une destination.</strong> Il n'a ni périmètre ni clôture : rien ne s'y
+traite, et personne n'y instruirait une dette. Cette page l'appelle aussi « l'EPIC des suites » : ce
+n'est pas de lui qu'il s'agit au paragraphe précédent.</p>
+<p><strong>Un EPIC ouvert pour ne porter que des dettes est un chantier comme un autre.</strong> Son travail est de
+les instruire. Il ne se ferme pas avant, et il se clôt par les mêmes passes.</p>
+<p>La règle a été décidée par le porteur le 2026-10-13 (#6210). Ce jour-là, trois dettes venaient d'être
+écrites dans trois EPIC sous la règle de #6203 : l'une disait elle-même que son défaut n'avait jamais
+été mesuré, les deux autres laissaient leur choix ouvert. Aucune surface de la méthode ne disait ce
+qu'elles devaient devenir, et 66 EPIC clos portaient déjà les mots « dette restante ».</p>
 <h2 id="les-suites-dune-cloture-se-closent-aussi">Les suites d'une clôture se closent aussi<a class="headerlink" href="#les-suites-dune-cloture-se-closent-aussi" title="Permanent link">&para;</a></h2>
-<p>La passe 9 consolide les issues ouvertes en chemin pour des défauts mesurés ; la passe 12 reprend la
-dette nommée dans le corps de l'EPIC en « dette restante », et clôt l'EPIC. Ces issues, une fois livrées, forment un <strong>nouveau delta</strong>, et rien ne les rattrape si l'on
+<p>La passe 9 consolide les issues ouvertes en chemin pour des défauts mesurés ; la passe 12 instruit la
+dette nommée dans le corps de l'EPIC, la fait sortir par l'une de ses trois portes, et clôt l'EPIC. Ces issues, une fois livrées, forment un <strong>nouveau delta</strong>, et rien ne les rattrape si l'on
 considère que le chantier est fini.</p>
 <p>Le dépôt l'a vécu trois fois : les suites de l'EPIC #1662 ont formé l'EPIC #1863, dont les suites
 ont formé le delta clos par #1920 ; les suites de #1838 ont eu leur propre clôture (#1921). Le patron
@@ -16302,7 +16375,7 @@ qu'aucune ADR ne porte.</p>
 <p>Cette page a longtemps écrit ici « filtré sur les commits du chantier », et c'était faux : la clôture
 de #4671 a trouvé son défaut le plus coûteux dans un plancher <strong>posé par une autre session</strong> pendant
 qu'elle courait. Un delta filtré ne l'aurait pas montré.</p>
-<p><strong>Un bilan est une hypothèse, pas un verdict.</strong> Sa section « dette restante » décrit ce qu'on croyait
+<p><strong>Un bilan est une hypothèse, pas un verdict.</strong> Ce qu'il dit de chaque dette décrit ce qu'on croyait
 comprendre au moment de l'écrire. Le bilan de #1864 affirmait d'un défaut d'horodatage qu'« une
 troncature de fuseau est confirmée, mais elle n'explique pas tout - au moins deux facteurs, dont un qui
 détruit la fin de nuit ». C'était faux : il n'y avait qu'un facteur, mais il <strong>composait</strong> à chaque
@@ -16328,10 +16401,10 @@ trompé : une analyse fausse laissée en place oriente le chantier suivant.</p>
 <a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="k">- [ ]</span> 6b. Recette <span class="gs">**préparée**</span> : chaque capacité ajoutée a sa case <span class="sb">`Sxx-NN`</span> dans sa <span class="gs">**session propriétaire**</span> (geste + observation attendue), la <span class="gs">**fixture**</span> existe ou la spec du générateur est étendue, session manquante ou jamais jouée <span class="gs">**nommée en dette dans l'EPIC**</span>
 <a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="k">- [ ]</span> 7. Harmonisation : <span class="gs">**audit global**</span> (ce qui ressemble / bénéficierait, exhaustif) puis <span class="gs">**refactoring de conceptualisation**</span> (lisibilité ; duplication et abstraction = outils) ; <span class="gs">**choix, doutes, conséquences discutés avec l'utilisateur**</span>
 <a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="k">- [ ]</span> 8. Revue visuelle : <span class="gs">**toute conséquence visible**</span> couverte par une capture (captures <span class="gs">**ajoutées**</span> si besoin), régénérées et ouvertes une par une
-<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">- [ ]</span> 9. Sas vidé de ce qui relève du chantier ; suites non traitées nommées en dette, issue seulement pour un défaut mesuré
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="k">- [ ]</span> 9. Sas vidé de ce qui relève du chantier ; suites non traitées nommées en dette, issue seulement pour un défaut mesuré ; <span class="gs">**chaque dette instruite, et sa porte choisie**</span>
 <a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="k">- [ ]</span> 10. Changement OpenSpec archivé : delta specs <span class="gs">**fusionnées d'abord**</span> dans <span class="sb">`openspec/specs/`</span>, toutes les capacités re-comparées, <span class="gs">**puis**</span> le dossier déplacé sous <span class="sb">`archive/`</span>
 <a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="k">- [ ]</span> 11. ADR du chantier écrites (balayer les passes 0 à 10 ; une décision <span class="gs">**de ne pas faire**</span> en est une)
-<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">- [ ]</span> 12. Bilan (livré / dette / décisions) <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="k">- [ ]</span> 12. Bilan (livré / sort de chaque dette / décisions) : <span class="gs">**aucune dette ne reste dans l'EPIC**</span>, chacune est instruite, puis abandonnée avec sa justification, transférée à un EPIC ouvert (#N) ou engagée à une date ; <span class="gs">**+ artefact visuel avant/après soumis avant de clore**</span>
 </code></pre></div>
 <h2 id="modele-de-cycle-dune-issue-rouge-vert-refactor">Modèle de cycle d'une issue (rouge, vert, refactor)<a class="headerlink" href="#modele-de-cycle-dune-issue-rouge-vert-refactor" title="Permanent link">&para;</a></h2>
 <p>Le bloc <strong>↻</strong> se répète à <strong>chaque petit pas</strong>, jusqu'à ce que le comportement soit complet : une issue
