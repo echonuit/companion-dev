@@ -14475,6 +14475,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6171-le-seuil-d-ouverture-d-un-ecran-se-juge-a-chaud-et-en-rendu-gpu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6171 · Le seuil d'ouverture d'un écran se juge à chaud et en rendu GPU, et un relevé de l'IHM dit par quoi il a été dessiné
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -17007,7 +17042,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 484<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 487<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17779,6 +17814,11 @@
 <td><a href="6175-une-tache-de-fond-qui-calcule-laisse-la-moitie-des-coeurs-a-l-interface/">6175</a></td>
 <td>Avec une transformation par cœur, l'import ne laissait aucun cœur à l'interface : l'écran gelait jusqu'à 442 ms et la sonde du banc voyait 16 à 42 images par seconde. Une tâche de fond qui calcule mène de front la moitié des cœurs du poste (<code>ParallelismeDeFond</code>), et l'import la lit. Mesuré sur un poste à 16 cœurs : plus aucun écart de plus de 100 ms pendant la transformation, pour 15 % de durée en plus dans l'interface. Un test compte les transformations en vol dans un vrai import. La compaction du dépôt et la réactivation gardent leur borne, faute de mesure.</td>
 <td>#6175, lot de #6178</td>
+</tr>
+<tr>
+<td><a href="6171-le-seuil-d-ouverture-d-un-ecran-se-juge-a-chaud-et-en-rendu-gpu/">6171</a></td>
+<td>Le banc de l'IHM relevait de 203 à 758 ms à l'ouverture d'un écran après un import, pour un seuil de 200 ms. Mesuré en datant chaque ouverture : à chaud, l'image de 176 à 193 ms qui suit une ouverture est le dessin logiciel du banc, et n'existe pas en rendu GPU (122 ms au plus sur cent huit ouvertures). Le seuil se juge à chaud et en rendu GPU ; la première ouverture de chaque écran se publie à part ; le relevé écrit le dessin que Prism a réellement pris, et le banc se tire en GPU par <code>-Drecette.prism.order=es2</code>. Le seuil de 50 ms d'O5 reste non tenu (#6207).</td>
+<td>#6171, lot de #6178</td>
 </tr>
 </tbody>
 </table>
