@@ -14425,6 +14425,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6175-une-tache-de-fond-qui-calcule-laisse-la-moitie-des-coeurs-a-l-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6175 · Une tâche de fond qui calcule mène de front la moitié des cœurs, et laisse l'autre à l'interface
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -15697,6 +15732,12 @@
 <h1 id="le-mecanisme-de-parallelisme-se-choisit-sur-la-nature-de-lattente-la-borne-se-chiffre-sur-autre-chose">Le mécanisme de parallélisme se choisit sur la nature de l'attente, la borne se chiffre sur autre chose<a class="headerlink" href="#le-mecanisme-de-parallelisme-se-choisit-sur-la-nature-de-lattente-la-borne-se-chiffre-sur-autre-chose" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-07-20</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A15 · Un état est observé, une décision se prend, ni l&#x27;un ni l&#x27;autre ne se déduit</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">#2040 (EPIC #2116)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">le choix du mécanisme de parallélisme selon la nature de l&#x27;attente est un jugement de conception, non observable dans le code. Loupe : `scripts/adr/loupe-0044-mecanisme-parallelisme.py` Loupe : <code>scripts/adr/loupe-0044-mecanisme-parallelisme.py</code></span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>2026-10-13</strong> : la dernière ligne de la table du point 2 est <strong>amendée</strong> par
+<a href="../6175-une-tache-de-fond-qui-calcule-laisse-la-moitie-des-coeurs-a-l-interface/">6175</a>. L'import ne mène plus de front <code>availableProcessors()</code> traitements mais leur moitié,
+pour laisser des cœurs à l'interface.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'application parallélise à sept endroits en production, par deux mécanismes différents :</p>
 <table>

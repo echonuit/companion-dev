@@ -14440,6 +14440,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6175-une-tache-de-fond-qui-calcule-laisse-la-moitie-des-coeurs-a-l-interface/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6175 · Une tâche de fond qui calcule mène de front la moitié des cœurs, et laisse l'autre à l'interface
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16862,7 +16897,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 502<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 506<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -16972,7 +17007,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 482<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 484<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17739,6 +17774,11 @@
 <td><a href="6142-une-tache-de-fond-rend-une-valeur-et-n-ecrit-pas-la-scene/">6142</a></td>
 <td>Une tâche de fond écrivait le champ du dossier de l'écran d'import depuis son fil, tous les bancs de l'import la jouaient et aucun ne l'a vue : JavaFX ne vérifie pas le fil d'une écriture de propriété. Une tâche de fond rend une valeur, appliquée au retour sur le fil JavaFX. Un espion de test relève toute écriture d'un nœud montré faite hors de ce fil et fait rougir le cas, et un garde refuse une classe à toolkit qui ne le porte pas. Il ne voit que ce que les bancs jouent.</td>
 <td>#6142, lot de #5697</td>
+</tr>
+<tr>
+<td><a href="6175-une-tache-de-fond-qui-calcule-laisse-la-moitie-des-coeurs-a-l-interface/">6175</a></td>
+<td>Avec une transformation par cœur, l'import ne laissait aucun cœur à l'interface : l'écran gelait jusqu'à 442 ms et la sonde du banc voyait 16 à 42 images par seconde. Une tâche de fond qui calcule mène de front la moitié des cœurs du poste (<code>ParallelismeDeFond</code>), et l'import la lit. Mesuré sur un poste à 16 cœurs : plus aucun écart de plus de 100 ms pendant la transformation, pour 15 % de durée en plus dans l'interface. Un test compte les transformations en vol dans un vrai import. La compaction du dépôt et la réactivation gardent leur borne, faute de mesure.</td>
+<td>#6175, lot de #6178</td>
 </tr>
 </tbody>
 </table>
