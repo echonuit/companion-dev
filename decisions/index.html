@@ -14510,6 +14510,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6191-la-taille-de-police-se-declare-sur-la-racine/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6191 · La taille de police se déclare sur la racine, comme la famille
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -17042,7 +17077,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 487<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 489<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17819,6 +17854,11 @@
 <td><a href="6171-le-seuil-d-ouverture-d-un-ecran-se-juge-a-chaud-et-en-rendu-gpu/">6171</a></td>
 <td>Le banc de l'IHM relevait de 203 à 758 ms à l'ouverture d'un écran après un import, pour un seuil de 200 ms. Mesuré en datant chaque ouverture : à chaud, l'image de 176 à 193 ms qui suit une ouverture est le dessin logiciel du banc, et n'existe pas en rendu GPU (122 ms au plus sur cent huit ouvertures). Le seuil se juge à chaud et en rendu GPU ; la première ouverture de chaque écran se publie à part ; le relevé écrit le dessin que Prism a réellement pris, et le banc se tire en GPU par <code>-Drecette.prism.order=es2</code>. Le seuil de 50 ms d'O5 reste non tenu (#6207).</td>
 <td>#6171, lot de #6178</td>
+</tr>
+<tr>
+<td><a href="6191-la-taille-de-police-se-declare-sur-la-racine/">6191</a></td>
+<td><code>base.css</code> déclarait la famille de police sur <code>.root</code> et aucune taille : un texte sans taille propre prenait celle du système, 12 px sous Windows et 13 px sous Linux et macOS, et un même libellé tenait sur un poste et se coupait sur l'autre. <code>.root</code> déclare 12 px. Ce que JavaFX mesure hors du graphe de scène n'en dépend pas : un <code>ChoiceBox</code> reste plus large de 13 px sous Linux et macOS</td>
+<td>#5496, lot #6191</td>
 </tr>
 </tbody>
 </table>
