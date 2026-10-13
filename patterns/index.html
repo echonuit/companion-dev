@@ -17385,13 +17385,13 @@ patron d'un simple <code>try</code>/<code>finally</code> de nettoyage.</p>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/model/ReactivationDepuisBruts.java"><code>ReactivationDepuisBruts</code></a></td>
-<td><code>DossierTemporaire.creer("vc-regen-…")</code></td>
+<td><code>DossierTemporaire.creer(&lt;espace de travail&gt;, "vc-regen-…")</code></td>
 <td>en <code>finally</code>, après rebranchement</td>
 <td><strong>un brut à la fois</strong></td>
 </tr>
 <tr>
 <td><a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/main/java/fr/univ_amu/iut/passage/model/HydratationDepuisBruts.java"><code>HydratationDepuisBruts</code></a></td>
-<td>un temporaire par brut, sur un fil d'<code>ExecutionParallele</code></td>
+<td>un temporaire par brut sous l'espace de travail, sur un fil d'<code>ExecutionParallele</code></td>
 <td>en <code>finally</code></td>
 <td>le <code>Semaphore</code> d'<code>ExecutionParallele</code></td>
 </tr>
@@ -17421,6 +17421,10 @@ patron d'un simple <code>try</code>/<code>finally</code> de nettoyage.</p>
 <em>après</em> le commit qui marque l'unité <code>DEPOSE</code>, jamais avant : une coupure entre les deux laisserait une
 unité ni en ligne ni sur le disque. La reprise la régénérerait, mais on aurait perdu la preuve de
 l'envoi.</p>
+<p><strong>Où matérialiser compte autant que quand.</strong> Les temporaires de régénération naissent sous l'espace de
+travail, comme l'extraction d'une archive (<code>ExtracteurZip</code>), et jamais dans <code>java.io.tmpdir</code> : ce dossier
+est souvent un <em>tmpfs</em>, où le pic borné devient de la mémoire vive que la JVM ne voit pas. Une nuit de
+huit bruts de 20 min, hydratée en parallèle, y prenait 7031 Mo au poste (#6174).</p>
 <p><strong>Principes.</strong> <strong>SRP</strong> (qui produit la ressource sait la libérer) ; borne le pic disque, objectif O3.</p>
 <div class="admonition note">
 <p class="admonition-title">Deux politiques d'échec de libération, et c'est voulu</p>
