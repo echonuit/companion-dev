@@ -14521,6 +14521,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6184-un-ecran-n-ecoute-ce-qui-lui-survit-que-par-une-ecoute-faible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6184 · Un écran n'écoute ce qui lui survit que par une liaison ou une écoute faible, et un test le veut rendu une fois quitté
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -17788,6 +17823,31 @@ ne se recopie pas (<a href="../decisions/3535-un-inventaire-ne-se-duplique-pas-i
 </ul>
 <p><strong>Principes.</strong> <strong>Observer</strong> (le contrôle suit une propriété) et <strong>DIP</strong> pour la source qu'on
 réinterroge.</p>
+<hr />
+<h3 id="un-ecran-necoute-pas-a-mains-nues-ce-qui-lui-survit">Un écran n'écoute pas à mains nues ce qui lui survit<a class="headerlink" href="#un-ecran-necoute-pas-a-mains-nues-ce-qui-lui-survit" title="Permanent link">&para;</a></h3>
+<p><strong>Le problème.</strong> Un singleton vit autant que l'application, un écran le temps d'être affiché. Un
+<code>addListener</code> posé par l'écran sur une propriété du singleton inscrit l'écouteur dans la liste du
+singleton : elle le tient, il tient le contrôle qu'il met à jour, et par lui tout l'écran, jusqu'à la
+fermeture. Rien ne se voit à l'usage. La fiche d'un carré le faisait sur l'état de connexion (#6170),
+l'écran des réglages sur les réglages réactifs (#6184).</p>
+<p><strong>La règle.</strong> Dans l'ordre :</p>
+<ol>
+<li><strong>lier</strong> (<code>bind</code>, <code>bindBidirectional</code>) : une liaison ne retient rien ;</li>
+<li>sinon, <strong>une écoute faible tenue par son porteur</strong> :</li>
+</ol>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1">// le réglage vit autant que l'application, le spinner le temps de l'écran</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">EcouteFaible</span><span class="p">.</span><span class="na">poser</span><span class="p">(</span><span class="n">spinner</span><span class="p">,</span><span class="w"> </span><span class="n">valeur</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">observable</span><span class="p">,</span><span class="w"> </span><span class="n">ancien</span><span class="p">,</span><span class="w"> </span><span class="n">nouveau</span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">fabrique</span><span class="p">.</span><span class="na">setValue</span><span class="p">(</span><span class="n">nouveau</span><span class="p">.</span><span class="na">intValue</span><span class="p">()));</span>
+</code></pre></div>
+<p><code>EcouteFaible</code> inscrit l'écouteur faible auprès de la source et le range dans les propriétés du nœud
+qu'il met à jour. Les deux moitiés comptent : un écouteur faible que rien ne tient tombe au premier
+ramasse-miettes, et l'écran cesse de suivre sans rien dire.</p>
+<p>Un écouteur posé par la vue sur <strong>son propre</strong> modèle de vue n'est pas concerné : ils partent ensemble.</p>
+<p><strong>Ce qui la tient.</strong> <code>EcranQuitteEstRenduTest</code> ouvre chaque écran qui reçoit un singleton observable,
+le quitte et refuse qu'il soit retenu. Un nouvel écran de ce genre s'ajoute à l'inventaire
+<code>EcransSuivantUnSingleton</code> avec le geste qui l'ouvre : le test le réclame. Ce qu'il ne couvre pas est
+écrit dans l'<a href="../decisions/6184-un-ecran-n-ecoute-ce-qui-lui-survit-que-par-une-ecoute-faible/">ADR 6184</a>.</p>
+<p><strong>Principes.</strong> <strong>Observer</strong>, et un cycle de vie qu'on peut oublier est mal placé
+(<a href="../decisions/3651-un-cycle-de-vie-qu-on-peut-oublier-est-mal-place/">ADR 3651</a>).</p>
 <hr />
 <div class="admonition note">
 <p class="admonition-title">API fluente (le « builder » le plus proche)</p>

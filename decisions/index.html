@@ -14545,6 +14545,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6184-un-ecran-n-ecoute-ce-qui-lui-survit-que-par-une-ecoute-faible/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6184 · Un écran n'écoute ce qui lui survit que par une liaison ou une écoute faible, et un test le veut rendu une fois quitté
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16967,7 +17002,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 506<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 508<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -17077,7 +17112,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 489<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 495<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17859,6 +17894,11 @@
 <td><a href="6191-la-taille-de-police-se-declare-sur-la-racine/">6191</a></td>
 <td><code>base.css</code> déclarait la famille de police sur <code>.root</code> et aucune taille : un texte sans taille propre prenait celle du système, 12 px sous Windows et 13 px sous Linux et macOS, et un même libellé tenait sur un poste et se coupait sur l'autre. <code>.root</code> déclare 12 px. Ce que JavaFX mesure hors du graphe de scène n'en dépend pas : un <code>ChoiceBox</code> reste plus large de 13 px sous Linux et macOS</td>
 <td>#5496, lot #6191</td>
+</tr>
+<tr>
+<td><a href="6184-un-ecran-n-ecoute-ce-qui-lui-survit-que-par-une-ecoute-faible/">6184</a></td>
+<td>Un écran qui pose un écouteur sur un singleton s'y fait retenir jusqu'à la fermeture : la fiche d'un carré le faisait (#6170), l'écran des réglages aussi, trouvé par le garde à son premier tir. Un écran suit ce qui lui survit par une liaison, ou par <code>EcouteFaible</code>, qui inscrit l'écouteur faible et le fait tenir par son porteur. <code>EcranQuitteEstRenduTest</code> ouvre chaque écran qui reçoit un singleton observable, le quitte et le veut rendu, et tient son inventaire contre la composition. Les modales et le chrome sont hors du test, et c'est dit</td>
+<td>#6178, lot #6184</td>
 </tr>
 </tbody>
 </table>
