@@ -14650,41 +14650,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="6219-un-verdict-lu-sur-la-plateforme-de-test-a-sa-portee/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    6219 · Un verdict lu sur la plateforme de test a sa portée, et le garde la confronte au tag
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--stable"></span>
-  
-
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -17217,7 +17182,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 503<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 502<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -18014,11 +17979,6 @@
 <td><a href="6197-l-image-du-plan-etabli-se-juge-au-premier-import-et-tient-o3-sans-remede/">6197</a></td>
 <td>Au début d'un import, l'image où la table de suivi s'affiche durait de 100 à 255 ms dans les relevés du banc de l'IHM. Mesuré sur <code>main</code> à <code>cb9ed7676</code> : 162 ms au plus sur dix tirs par dessin, et c'est le coût d'une première mise en page, que les imports suivants du même processus ne paient pas. Elle se juge au premier import, le cas courant, tient O3 dans les deux dessins, et aucun remède n'est engagé. Quatre dépassements relevés sur le code d'avant #6209 ne sont pas expliqués</td>
 <td>#6178, lot #6197</td>
-</tr>
-<tr>
-<td><a href="6219-un-verdict-lu-sur-la-plateforme-de-test-a-sa-portee/">6219</a></td>
-<td>L'ADR 4142 fait dire à un test où se lit le verdict du cas qu'il cite, à l'écran ou hors de l'application avec une réserve. Depuis la plateforme de test, un test peut lire pour de bon ce qui se passe hors de l'application, et aucune des deux valeurs ne le décrit. Une troisième, <code>SUR_LA_PLATEFORME_DE_TEST</code>, le dit sans réserve, et le garde la refuse à un test qui ne porte pas le tag <code>plateforme-de-test</code></td>
-<td>#6219</td>
 </tr>
 </tbody>
 </table>

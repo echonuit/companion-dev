@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://companion-dev.echonuit.fr/recette/">
       
       
-        <link rel="prev" href="../decisions/6219-un-verdict-lu-sur-la-plateforme-de-test-a-sa-portee/">
+        <link rel="prev" href="../decisions/6197-l-image-du-plan-etabli-se-juge-au-premier-import-et-tient-o3-sans-remede/">
       
       
         <link rel="next" href="../retours/2189-ce-que-ton-retour-a-produit/">
@@ -14535,41 +14535,6 @@
 
               
             
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../decisions/6219-un-verdict-lu-sur-la-plateforme-de-test-a-sa-portee/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    6219 · Un verdict lu sur la plateforme de test a sa portée, et le garde la confronte au tag
-  
-
-    
-  </span>
-  
-  
-    
-  
-  
-    <span class="md-status md-status--stable"></span>
-  
-
-  
-
-      </a>
-    </li>
-  
-
-              
-            
           </ul>
         </nav>
       
@@ -16349,11 +16314,6 @@ scénario truque.</p>
 <td>le geste côté produit, et lui seul</td>
 <td>une <strong>réserve</strong>, disant ce que le clip ne prouve pas</td>
 </tr>
-<tr>
-<td><code>SUR_LA_PLATEFORME_DE_TEST</code></td>
-<td>rien : il n'y a pas de clip, le test lit lui-même le verdict hors de l'application</td>
-<td>que la classe porte le tag <code>plateforme-de-test</code></td>
-</tr>
 </tbody>
 </table>
 <p>Le second cas est celui des sessions dont l'objet est ailleurs : le dépôt reçu par Vigie-Chiro, la carte
@@ -16363,10 +16323,6 @@ devient muet sur son propre objet, ce qui est pire parce qu'on le regarde en cro
 <p><code>CorrespondanceRecetteTest</code> garde les deux sens : la réserve est exigée si et seulement si la portée est
 <code>HORS_APPLICATION</code>, et elle doit <strong>figurer sur la page du clip</strong>. Une réserve qui ne vit que dans le code
 ne borne rien : personne ne lit une annotation en regardant une vidéo.</p>
-<p>La troisième valeur est venue avec la plateforme de test (ADR 6219). Un navigateur y ouvre la fiche
-web de Vigie-Chiro, et un test relit ce que Companion y a écrit : le verdict est hors de l'application,
-et il est lu pour de bon. Le garde refuse cette valeur à un test qui ne se joue pas sur la plateforme.
-Ce qu'elle ne dit pas s'écrit dans le test : par quelle surface l'écriture est partie.</p>
 <p>Un seul cas cité porte aujourd'hui <code>HORS_APPLICATION</code> : <strong>S1-04</strong>, « ouvrir le site sur la
 plateforme », dont le geste se termine dans un navigateur que le clip ne peut pas montrer. Sa réserve le
 dit, sur la page du clip. Le reste est à l'écran, et ce n'est pas un hasard : ce qui a été couvert
@@ -16678,7 +16634,7 @@ plutôt que corrigée - on ne garde pas un doublon, on le retire (#3885).
       <nav class="md-footer__inner md-grid" aria-label="Pied de page" >
         
           
-          <a href="../decisions/6219-un-verdict-lu-sur-la-plateforme-de-test-a-sa-portee/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 6219 · Un verdict lu sur la plateforme de test a sa portée, et le garde la confronte au tag">
+          <a href="../decisions/6197-l-image-du-plan-etabli-se-juge-au-premier-import-et-tient-o3-sans-remede/" class="md-footer__link md-footer__link--prev" aria-label="Précédent: 6197 · L&#39;image du plan établi se juge au premier import d&#39;un processus, et tient O3 sans remède">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -16688,7 +16644,7 @@ plutôt que corrigée - on ne garde pas un doublon, on le retire (#3885).
                 Précédent
               </span>
               <div class="md-ellipsis">
-                6219 · Un verdict lu sur la plateforme de test a sa portée, et le garde la confronte au tag
+                6197 · L'image du plan établi se juge au premier import d'un processus, et tient O3 sans remède
               </div>
             </div>
           </a>
