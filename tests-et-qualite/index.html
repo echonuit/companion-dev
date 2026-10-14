@@ -16860,7 +16860,7 @@ fork, ce que garantit le profil, qui ne joue que ce tag.</p>
 le refuse sinon.</p>
 <p><strong>Quand le job rougit, les conteneurs disent ce qu'ils faisaient</strong> (#6183). L'API, le faux S3 et
 Mongo versent leur journal sous <code>target/plateforme-de-test/journaux/</code>, un fichier par conteneur et par
-fork, chaque ligne datée à sa réception par la JVM. Le job les dépose en artefact,
+fork, chaque ligne datée à sa réception par la JVM. La construction de l'image de l'API y verse aussi sa sortie, <code>&lt;pid&gt;-construction-api.log</code> : <code>ConstructionDeLImage</code> la construit par le client Docker de Testcontainers, parce qu'<code>ImageFromDockerfile</code> ne rend pas cette sortie et que les tests branchent SLF4J sur <code>slf4j-nop</code> (#6267). Le job les dépose en artefact,
 <code>journaux-de-la-plateforme-&lt;tentative&gt;</code>, avec les rapports surefire. L'API y écrit une ligne par requête à
 laquelle elle répond : une écriture que la JVM dit sans réponse se cherche là, à l'instant de
 l'échec. <code>JournauxDeLaPlateformeDeTestTest</code> exige d'y relire une requête marquée.</p>
@@ -17198,9 +17198,12 @@ dispatch, et une absence de mention n'est pas une absence de capacité.</p>
 shell » alors qu'<strong>aucun des deux scripts shell restants ne répond à <code>--contrat</code></strong>. La réponse s'obtient sans rien
 lire du dépôt : la branche s'imprime <strong>avant tout le reste</strong>, pour qu'un garde dont une dépendance
 manque rende quand même sa déclaration.</p>
-<p><code>verifie_contrat_obligatoire.py</code> <strong>refuse</strong> un point d'entrée de ces deux dossiers qui n'en
-déclarerait pas. Ce n'est pas un cliquet : il n'y a pas de marge à relever, et l'échappatoire est une
-liste d'exceptions <strong>nommées</strong>, vide aujourd'hui.</p>
+<p><code>verifie_contrat_obligatoire.py</code> <strong>refuse</strong> un point d'entrée Python du dépôt qui n'en déclarerait
+pas, <code>.github</code> excepté : ces deux dossiers, et depuis #5192 six de plus (<code>scripts/graphify</code>,
+<code>scripts/plateforme-de-test</code>, <code>scripts/qualite</code>, <code>icone</code>, <code>scripts/doc-video</code>, <code>scripts/mkdocs</code>). Ce
+n'est pas un cliquet : il n'y a pas de marge à relever, et l'échappatoire est une liste d'exceptions
+<strong>nommées</strong>, chacune avec sa raison. Elle en compte cinq depuis #5192 : un service de test qu'aucun
+dispositif ne décrit, et quatre outils qu'aucun test n'exerce, donc sans témoin à déclarer.</p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>python3<span class="w"> </span>scripts/adr/0008-echec-silencieux.py<span class="w"> </span>--contrat
 </code></pre></div>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>CONTRAT | garde=scripts/adr/0008-echec-silencieux.py
