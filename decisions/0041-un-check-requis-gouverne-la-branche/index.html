@@ -9521,6 +9521,41 @@
   
   
     <li class="md-nav__item">
+      <a href="../5004-une-pr-de-bot-se-tait-par-la-marque-de-son-commit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5004 · Une PR de bot se tait par la marque de son commit, pas par son jeton
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../4586-le-corpus-d-un-garde-se-declare-une-fois/" class="md-nav__link">
         
   
@@ -16025,6 +16060,13 @@
 <h1 id="un-check-requis-ne-gouverne-pas-les-pr-il-gouverne-la-branche">Un check requis ne gouverne pas les PR, il gouverne la branche<a class="headerlink" href="#un-check-requis-ne-gouverne-pas-les-pr-il-gouverne-la-branche" title="Permanent link">&para;</a></h1>
 <div class="adr-bandeau"><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Statut</span><span class="adr-bandeau__valeur">En vigueur, 2026-07-20</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Article</span><span class="adr-bandeau__valeur">A25 · Le travail de branche est isolé</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Chantier</span><span class="adr-bandeau__valeur">EPIC #2104 / lot 1 (#2106)</span></div><div class="adr-bandeau__ligne"><span class="adr-bandeau__cle">Vérification humaine</span><span class="adr-bandeau__valeur">que le contrôle de titre reste informatif et gouverne la branche, pas la PR, est un choix de configuration GitHub, pas un invariant du code</span></div></div>
 
+<div class="admonition warning">
+<p class="admonition-title">Ce qui fait foi aujourd'hui</p>
+<p><strong>2026-10-14</strong> : la cause donnée au Contexte est <strong>amendée</strong> par
+<a href="../5004-une-pr-de-bot-se-tait-par-la-marque-de-son-commit/">5004</a>. Une PR ouverte avec le
+<code>GITHUB_TOKEN</code> lance ses workflows depuis la 2.189.0 ; ce qui fait taire les PR de bot est la
+marque de saut sur leur commit. La conclusion tient, mais ce silence est devenu un choix du dépôt.</p>
+</div>
 <h2 id="contexte">Contexte<a class="headerlink" href="#contexte" title="Permanent link">&para;</a></h2>
 <p>L'<a href="../0040-le-sujet-de-commit-est-une-syntaxe/">ADR 0040</a> institue un contrôle du titre de PR, après
 que la publication du dépôt se soit arrêtée deux jours en silence. La question restée ouverte était
