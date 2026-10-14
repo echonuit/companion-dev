@@ -16727,8 +16727,20 @@ monte une plateforme <strong>par JVM</strong>, au premier test qui la demande, d
    racine (<code>FRONTEND_HOSTED</code>) : le front et l'API ont la même origine, et le front appelle l'API par
    l'adresse relative <code>/api/v1</code> (#6060) ;</li>
 <li>l'état de départ déclaré (<code>etat-de-depart.json</code>), matérialisé par <code>amorcer.py</code> dans le
-   conteneur de l'API.</li>
+   conteneur de l'API ;</li>
+<li>Toxiproxy, démarré en premier, avec deux mandataires devant l'API et le faux S3 (#6258). La JVM
+   joint les deux par eux, et <code>DEV_FAKE_S3_URL</code> est l'adresse du mandataire du faux S3 : les
+   téléversements y passent aussi. Le navigateur des bancs de la fiche web garde son chemin dans le
+   réseau, par l'alias de l'API.</li>
 </ol>
+<p>Un test pose un <strong>profil de réseau</strong> le temps d'un bloc, <code>try (var _ =
+PlateformeDeTest.sous(ProfilReseau.LENT)) { … }</code>, que la sortie du bloc retire : la plateforme est
+partagée par les classes d'un même fork, et un profil oublié ralentirait les suivantes. Les profils
+sont <code>NOMINAL</code>, <code>LENT</code> (une latence sur chaque réponse), <code>DEBIT_LIMITE</code> (un débit montant borné) et
+<code>COUPURE</code> (les deux mandataires fermés). Ils prouvent que Companion encaisse un réseau dégradé, pas
+que le vrai réseau se comporte comme eux : la plateforme nationale reste la vérification (chantier</p>
+<h1 id="5646-reseaudelaplateformedetesttest-exige-que-chaque-profil-sapplique-bien-a-ce-que-la-jvm">5646). <code>ReseauDeLaPlateformeDeTestTest</code> exige que chaque profil s'applique bien à ce que la JVM<a class="headerlink" href="#5646-reseaudelaplateformedetesttest-exige-que-chaque-profil-sapplique-bien-a-ce-que-la-jvm" title="Permanent link">&para;</a></h1>
+<p>joint.</p>
 <p>Elle pose ensuite <code>vigiechiro.s3.hotes</code> et fait accepter le certificat du faux S3 par
 <code>SSLContext.setDefault</code>. Cela ne tient que si aucun client HTTP n'a été construit avant dans le
 fork, ce que garantit le profil, qui ne joue que ce tag.</p>
