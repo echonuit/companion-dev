@@ -18149,9 +18149,11 @@ pour ne pas avoir deux gardes de fraîcheur qui jugent différemment :</p>
 <strong>retard</strong> : les jours écoulés depuis la première version stable que l'épinglage n'a pas. Un paquet
 que son auteur ne republie plus est ancien et à jour. Et un registre muet ne rend pas un rouge mais
 un refus, parce qu'« indéterminé » n'est ni frais ni périmé.</p>
-<p>Sur une demande qui touche le garde, son atelier ou un manifeste, le job tourne en <code>--constat</code> : il
-écrit le retard réel dans le récapitulatif sans faire rougir un diff qui n'y est pour rien. La
-demande prouve que l'étape fonctionne ; le lundi juge.</p>
+<p>Sur une demande qui ne touche que le garde ou son atelier, le job tourne en <code>--constat</code> : il écrit le
+retard réel dans le récapitulatif sans faire rougir un diff qui n'y est pour rien. La demande prouve
+que l'étape fonctionne ; le lundi juge. Une demande qui <strong>modifie un manifeste</strong>, elle, se juge : c'est
+elle qui pose l'épinglage, et en constat une majeure de retard y passait verte jusqu'au lundi suivant
+(#5290, dette 7). Le garde lit le diff par <code>_portee</code>, comme la portée du job.</p>
 <h4 id="un-tag-qui-ne-bouge-jamais-rendait-cette-mesure-aveugle-2213">Un tag qui ne bouge jamais rendait cette mesure aveugle (#2213)<a class="headerlink" href="#un-tag-qui-ne-bouge-jamais-rendait-cette-mesure-aveugle-2213" title="Permanent link">&para;</a></h4>
 <p>Les quatre premières lignes comparent des <strong>tags</strong>. Elles ne peuvent donc rien voir quand l'amont n'en
 publie plus.</p>
