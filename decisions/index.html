@@ -14650,6 +14650,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6207-l-ouverture-d-un-ecran-reconstruit-ne-tient-pas-50-ms-et-les-feuilles-du-chrome-vivent-sur-la-scene/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6207 · Un écran reconstruit à chaque ouverture ne tient pas les 50 ms d'O5, et les feuilles du chrome vivent sur la scène
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -17072,7 +17107,7 @@
 </tr>
 <tr>
 <td><a href="4395-un-renvoi-porte-par-la-javadoc-ne-se-perd-pas/">4395</a></td>
-<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 508<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
+<td>L'article A30 veut que la javadoc CITE l'ADR au lieu de la redire, et le renvoi <code>#N</code> est cette citation. Le même article ouvre un cliquet de <!--inv:cliquet-javadoc-->739<!--/inv--> lignes de prose à résorber : la citation vit dans la prose qu'on coupe, et un renvoi perdu ne casse rien, il cesse d'ouvrir. Mesure : <!--inv:plancher-renvois-->3 510<!--/inv--> issues distinctes citées dans 1 006 fichiers, dont 1 572 dans les fichiers dont la ligne d'origine offre une javadoc déjà contractée - qui, elle, n'en porte aucun. Un PLANCHER, de polarité inverse au cliquet : descendre est la perte, monter est à déclarer</td>
 <td>#4395, EPIC #4394</td>
 </tr>
 <tr>
@@ -17182,7 +17217,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 502<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 506<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -17979,6 +18014,11 @@
 <td><a href="6197-l-image-du-plan-etabli-se-juge-au-premier-import-et-tient-o3-sans-remede/">6197</a></td>
 <td>Au début d'un import, l'image où la table de suivi s'affiche durait de 100 à 255 ms dans les relevés du banc de l'IHM. Mesuré sur <code>main</code> à <code>cb9ed7676</code> : 162 ms au plus sur dix tirs par dessin, et c'est le coût d'une première mise en page, que les imports suivants du même processus ne paient pas. Elle se juge au premier import, le cas courant, tient O3 dans les deux dessins, et aucun remède n'est engagé. Quatre dépassements relevés sur le code d'avant #6209 ne sont pas expliqués</td>
 <td>#6178, lot #6197</td>
+</tr>
+<tr>
+<td><a href="6207-l-ouverture-d-un-ecran-reconstruit-ne-tient-pas-50-ms-et-les-feuilles-du-chrome-vivent-sur-la-scene/">6207</a></td>
+<td>O5 demande l'ouverture d'un écran de la topologie sous 50 ms. La vue multisite et l'écran des sons s'ouvrent de 92 à 294 ms à chaud à 150 carrés en rendu GPU, parce que le navigateur les reconstruit à chaque ouverture, et leur durée varie d'un jour à l'autre. Le seuil reste et n'est pas tenu : l'écart est une dette de #6178. En chemin, les feuilles du chrome passent de sa racine à la scène, ce qui retire un coût de JavaFX qui croissait avec la session ; son gain en temps n'est pas établi</td>
+<td>#6178, lot #6207</td>
 </tr>
 </tbody>
 </table>
