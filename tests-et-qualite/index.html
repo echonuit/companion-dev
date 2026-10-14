@@ -14570,6 +14570,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6219-un-test-qui-ne-filme-rien-ne-cite-pas-un-cas-de-recette/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6219 · Un test qui ne filme rien ne cite pas un cas de recette
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16580,7 +16615,8 @@ monte une plateforme <strong>par JVM</strong>, au premier test qui la demande, d
 <li>Mongo, par le digest de <code>scripts/plateforme-de-test/epingles.properties</code> ;</li>
 <li>le faux S3 en TLS (<code>faux_s3.py</code>, <code>faux-s3.Dockerfile</code>), dont le certificat couvre l'hôte que
    Testcontainers rend ;</li>
-<li>l'API Vigie-Chiro (<code>api.Dockerfile</code>), à la révision épinglée, sous <code>/api/v1</code>, avec
+<li>l'API Vigie-Chiro (<code>api.Dockerfile</code>), à la révision épinglée, servie par <code>gunicorn</code> comme en
+   production (ADR 6183), sous <code>/api/v1</code>, avec
    <code>DEV_FAKE_S3_URL</code> pointé sur l'adresse du faux S3 <strong>vue depuis la JVM</strong>, d'où l'ordre. La même
    image porte le <strong>front web</strong> de Vigie-Chiro, construit à sa propre révision, que l'API sert à sa
    racine (<code>FRONTEND_HOSTED</code>) : le front et l'API ont la même origine, et le front appelle l'API par
