@@ -14605,6 +14605,76 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6161-un-original-se-lit-par-morceaux-seule-une-sequence-bornee-se-lit-entiere/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6161 · Un original se lit par morceaux, seule une séquence bornée se lit entière
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisions/6174-un-temporaire-volumineux-nait-sous-l-espace-de-travail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6174 · Un temporaire volumineux naît sous l'espace de travail, jamais dans le dossier temporaire du système
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -16258,7 +16328,13 @@ Pour dimensionner une machine, c'est ce second chiffre qui compte.</p>
 (<code>FichierWav.ouvrirPcm</code>), une tranche de 5 s en mémoire par original en vol, au lieu de le charger
 entier. Mesuré le 2026-10-12 sur 16 WAV de 120 s : l'occupation après GC passe de 904 à 68 Mo sous
 <code>-Xmx2g</code>, et la nuit, qui tombait sur une <code>OutOfMemoryError</code> sous <code>-Xmx128m</code>, s'importe. Le tableau
-complet est dans <code>docs/benchmarks/README.md</code>.</p>
+complet est dans <code>docs/benchmarks/README.md</code>. Seule une séquence bornée de 5 s se lit encore
+entière, et un garde d'architecture refuse tout autre appelant de <code>FichierWav.lire</code> (<a href="../decisions/6161-un-original-se-lit-par-morceaux-seule-une-sequence-bornee-se-lit-entiere/">ADR 6161</a>).</p>
+<p><strong>Un temporaire volumineux naît sous l'espace de travail (#6174).</strong> <code>java.io.tmpdir</code> est souvent un
+tmpfs : ce qui s'y écrit est de la mémoire vive, que la JVM ne voit pas. La réactivation d'une nuit
+hydratée y a pris 7031 Mo et figé un poste. Le produit passe donc toujours le dossier parent, et un
+garde d'architecture refuse hors des outils un temporaire qui n'en a pas
+(<a href="../decisions/6174-un-temporaire-volumineux-nait-sous-l-espace-de-travail/">ADR 6174</a>).</p>
 <div class="admonition warning">
 <p class="admonition-title">Des ordres de grandeur, pas des garanties</p>
 <p>Ces chiffres valent pour la machine qu'ils nomment. Sur un autre poste, refaire la mesure. La règle

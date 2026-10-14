@@ -14720,6 +14720,76 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6161-un-original-se-lit-par-morceaux-seule-une-sequence-bornee-se-lit-entiere/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6161 · Un original se lit par morceaux, seule une séquence bornée se lit entière
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6174-un-temporaire-volumineux-nait-sous-l-espace-de-travail/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6174 · Un temporaire volumineux naît sous l'espace de travail, jamais dans le dossier temporaire du système
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -18059,6 +18129,16 @@
 <td><a href="6219-un-test-qui-ne-filme-rien-ne-cite-pas-un-cas-de-recette/">6219</a></td>
 <td>Des tests lisent pour de bon, dans un navigateur, ce que Companion écrit sur la fiche web, et vérifient des cas de recette marqués « hors-portée ». Les citer par <code>@CasDeRecette</code> les ferait entrer dans le tournage, qui attend un clip par cas cité : une portée dédiée a été livrée puis retirée le même jour. Un test qui ne filme rien ne cite pas ; le cas garde son marqueur, dont le motif nomme le test</td>
 <td>#6219</td>
+</tr>
+<tr>
+<td><a href="6161-un-original-se-lit-par-morceaux-seule-une-sequence-bornee-se-lit-entiere/">6161</a></td>
+<td>L'import chargeait chaque WAV entier, et tombait au-delà de 2 Gio. La transformation lit l'en-tête puis le signal tranche par tranche, au bit près ; <code>FichierWav.lire</code> ne reste que pour la séquence de 5 s que la vérification d'identité analyse, et <code>ArchitectureTest</code> refuse tout autre appelant. Occupation après GC de 904 à 68 Mo ; un WAV de 2,15 Gio s'importe</td>
+<td>#6161, lot #104</td>
+</tr>
+<tr>
+<td><a href="6174-un-temporaire-volumineux-nait-sous-l-espace-de-travail/">6174</a></td>
+<td>La réactivation régénérait dans <code>java.io.tmpdir</code>, un tmpfs sur ce poste : 7031 Mo de mémoire vive que la JVM ne voyait pas, et un poste figé. Un temporaire que le produit remplit naît sous l'espace de travail, un filet efface au démarrage ce qu'un plantage y laisse, et <code>ArchitectureTest</code> refuse hors des outils un temporaire sans dossier parent</td>
+<td>#6161, lot #6174</td>
 </tr>
 </tbody>
 </table>

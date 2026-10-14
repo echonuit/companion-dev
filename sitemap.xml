@@ -1649,7 +1649,15 @@
          <lastmod>2026-10-14</lastmod>
     </url>
     <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/6161-un-original-se-lit-par-morceaux-seule-une-sequence-bornee-se-lit-entiere/</loc>
+         <lastmod>2026-10-14</lastmod>
+    </url>
+    <url>
          <loc>https://companion-dev.echonuit.fr/decisions/6171-le-seuil-d-ouverture-d-un-ecran-se-juge-a-chaud-et-en-rendu-gpu/</loc>
+         <lastmod>2026-10-14</lastmod>
+    </url>
+    <url>
+         <loc>https://companion-dev.echonuit.fr/decisions/6174-un-temporaire-volumineux-nait-sous-l-espace-de-travail/</loc>
          <lastmod>2026-10-14</lastmod>
     </url>
     <url>
