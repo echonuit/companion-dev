@@ -16751,7 +16751,7 @@ Ce dépôt y écrit par deux chemins automatisés, et les deux se sont cassés :
 <tbody>
 <tr>
 <td>PR d'aperçus (<code>capture-vues.yml</code>)</td>
-<td><code>BLOCKED</code>, <strong>aucun check rapporté</strong> : GitHub ne déclenche aucun workflow pour un événement produit avec le <code>GITHUB_TOKEN</code> (garde-fou anti-récursion), donc <code>titre-pr.yml</code> ne s'exécute jamais - et un check requis muet bloque la fusion <strong>pour toujours</strong></td>
+<td><code>BLOCKED</code>, <strong>aucun check rapporté</strong> : le commit de la PR porte la marque de saut de CI, donc <code>titre-pr.yml</code> ne s'exécute jamais - et un check requis muet bloque la fusion <strong>pour toujours</strong>. On l'a longtemps attribué au <code>GITHUB_TOKEN</code>, qui ne déclencherait aucun workflow : c'est faux pour une PR, qui lance ses workflows quand son commit ne porte pas la marque (#5004)</td>
 </tr>
 <tr>
 <td>Push du CHANGELOG (<code>semantic-release</code>)</td>
