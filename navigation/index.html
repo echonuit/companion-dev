@@ -16101,6 +16101,14 @@ avec la police par défaut de JavaFX, différente de celle de la fenêtre qui le
 d'une machine à l'autre (<a href="../decisions/3374-une-fenetre-porte-son-habillage-ou-elle-n-est-pas-le-produit/">ADR 3374</a>).</p>
 <p>Les <strong>outils de capture</strong> empruntent le même chemin. Un aperçu montre donc l'écran tel que
 l'utilisateur le voit <strong>par construction</strong>, et non parce qu'on y a pensé.</p>
+<p><strong>Dans la fenêtre principale, le trio vit sur la scène.</strong> <code>MainView.fxml</code> le déclare sur sa racine, et
+chaque FXML d'écran redéclare <code>palette.css</code> et <code>design.css</code> pour se rendre seul. Quand la fenêtre reçoit
+sa scène, <code>Habillage.hisser</code> y monte les trois feuilles ; chaque vue que le chrome accueille perd, par
+<code>Habillage.alleger</code>, celles que la scène porte déjà, et garde sa feuille de fonctionnalité. Une feuille
+déclarée sur un parent fait enregistrer par JavaFX tous les parents qu'il contient, et le coût d'une
+ouverture d'écran croissait avec eux (<a href="../decisions/6207-l-ouverture-d-un-ecran-reconstruit-ne-tient-pas-50-ms-et-les-feuilles-du-chrome-vivent-sur-la-scene/">ADR 6207</a>).
+Le rendu ne change pas : les trois feuilles changent de niveau ensemble, ce que le piège ci-dessous
+exige.</p>
 <div class="admonition warning">
 <p class="admonition-title">Deux pièges, dont un silencieux</p>
 <p><strong>L'ordre compte.</strong> <code>base.css</code> consomme <code>-couleur-fond</code>, défini par <code>palette.css</code>. Posée à un autre
