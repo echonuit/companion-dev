@@ -14860,6 +14860,41 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="6256-la-reactivation-mene-la-moitie-des-coeurs-comme-l-import/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    6256 · La réactivation mène la moitié des cœurs, comme l'import
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -17397,7 +17432,7 @@
 </tr>
 <tr>
 <td><a href="4587-le-plancher-des-renvois-de-test-est-distinct/">4587</a></td>
-<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 521<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
+<td>Le plancher de l'ADR 4395 n'a jamais lu <code>src/test</code>, ou vivent <!--inv:plancher-renvois-test-->1 527<!--/inv--> renvois que rien ne garde - dont 274 pointant vers une issue que la production ne cite NULLE PART, soit 151 discussions dont le seul lien dans le code est un test. DEUX planchers et non un : un compteur unique laisserait une perte d'un cote se compenser par un gain de l'autre. La disjonction se prouve par mutation dans les deux sens</td>
 <td>#4587, apres #4646</td>
 </tr>
 <tr>
@@ -18219,6 +18254,11 @@
 <td><a href="6174-un-temporaire-volumineux-nait-sous-l-espace-de-travail/">6174</a></td>
 <td>La réactivation régénérait dans <code>java.io.tmpdir</code>, un tmpfs sur ce poste : 7031 Mo de mémoire vive que la JVM ne voyait pas, et un poste figé. Un temporaire que le produit remplit naît sous l'espace de travail, un filet efface au démarrage ce qu'un plantage y laisse, et <code>ArchitectureTest</code> refuse hors des outils un temporaire sans dossier parent</td>
 <td>#6161, lot #6174</td>
+</tr>
+<tr>
+<td><a href="6256-la-reactivation-mene-la-moitie-des-coeurs-comme-l-import/">6256</a></td>
+<td>L'ADR 6175 avait laissé tous ses cœurs à la réactivation faute de l'avoir vue à l'écran. Le banc de l'IHM la mène maintenant par sa modale : à tous les cœurs elle ne gèle pas l'écran, même restreinte à quatre (151 ms au plus). Elle mène pourtant la moitié des cœurs, par décision du porteur : plus de marge, du processeur laissé aux autres applications, une seule règle. Prix : rien sur seize cœurs, 10 à 30 % de durée en plus sur quatre</td>
+<td>#6246, lot #6256</td>
 </tr>
 </tbody>
 </table>
