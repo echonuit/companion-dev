@@ -9862,6 +9862,41 @@
   
   
     <li class="md-nav__item">
+      <a href="5692-un-outil-absent-fait-refuser/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5692 · Un outil externe absent fait refuser, il ne fait pas lever
+  
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--stable"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="4649-un-garde-de-forge-juge-l-objet-de-sa-demande/" class="md-nav__link">
         
   
@@ -17469,6 +17504,11 @@
 <td><a href="4788-l-absence-de-preuve-refuse-elle-ne-se-signale-pas/">4788</a></td>
 <td>Six gardes sur quinze étaient sans preuve au titre de A2, signalés en sortant 0 : un signalement sans coût n'est pas lu</td>
 <td>A2</td>
+</tr>
+<tr>
+<td><a href="5692-un-outil-absent-fait-refuser/">5692</a></td>
+<td><code>check=False</code> ne couvre pas un exécutable introuvable : un <code>gh</code> ou un <code>git</code> absent fait lever un <code>FileNotFoundError</code> avant tout code de sortie, et le dispositif s'arrête sur une trace au lieu de nommer la panne. Un outil externe absent fait donc REFUSER, par un filet qui attrape <code>OSError</code> ou une sonde <code>shutil.which</code>. Décidée par #5692 pour <code>gh</code> sans jamais être écrite, alors que trois scripts la citaient ; étendue à <code>git</code> par #6058, qui en portait 61 appels nus : <code>gh</code> reste à zéro, <code>git</code> descend par cliquet.</td>
+<td>#5584, lot #5692 ; #6213, lot #6058</td>
 </tr>
 <tr>
 <td><a href="4649-un-garde-de-forge-juge-l-objet-de-sa-demande/">4649</a></td>
