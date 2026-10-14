@@ -16619,7 +16619,9 @@ fork, ce que garantit le profil, qui ne joue que ce tag.</p>
   qui écriraient la même se disputeraient son <code>_etag</code>. Exemple :
   <a href="https://github.com/echonuit/vigiechiro-pr-companion/blob/main/src/test/java/fr/univ_amu/iut/commun/api/plateforme/EnvoiDesMetadonneesReluSurLaFicheWebTest.java"><code>EnvoiDesMetadonneesReluSurLaFicheWebTest</code></a>,
   qui relit le numéro de série dans le champ du formulaire et les températures sur la fiche (S4-70,
-  S4-71), et qu'un envoi n'efface pas ce que la fiche portait avant lui (S4-72).</li>
+  S4-71), et qu'un envoi n'efface pas ce que la fiche portait avant lui (S4-72). Une correction d'observation se
+  relit de la même façon : <code>CorrectionPublieeRelueSurLaFicheWebTest</code> publie par <code>PublicationCorrections</code>
+  et lit le taxon et la certitude sur la liste des données de la participation (S4-91).</li>
 <li>Un scénario d'écran : <code>BancDeRecette.surLaPlateformeDeTest("observatrice")</code>, exclusive des autres
   déclarations du banc. Le banc vise la plateforme et dépose le jeton sans profil ; la modale le
   revérifie seule. Exemple :
